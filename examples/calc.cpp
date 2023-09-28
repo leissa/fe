@@ -36,16 +36,21 @@ std::ostream& operator<<(std::ostream& os, const Loc loc) {
     m(K_let,    "let")    \
     m(K_return, "return")
 
-#define LET_MISC(m)             \
-    m(M_id,  "<identifier>")    \
+#define LET_MISC(m)            \
+    m(M_id,  "<identifier>")   \
     m(M_lit, "<literal>")
+
+#define LET_TOK(m)      \
+    m(D_paren_l,   "(") \
+    m(D_paren_r,   ")") \
+    m(T_semicolon, ";")
 
 #define LET_OP(m)             \
     m(O_add, "+", Add, true)  \
-    m(O_add, "-", Add, true)  \
-    m(O_add, "*", Mul, true)  \
-    m(O_add, "/", Mul, true)  \
-    m(O_ass, "=", Mul, false)
+    m(O_sub, "-", Add, true)  \
+    m(O_mul, "*", Mul, true)  \
+    m(O_div, "/", Mul, true)  \
+    m(O_ass, "=", ASS, false)
 
 class Tok {
 public:
@@ -54,6 +59,13 @@ public:
         LET_KEY(CODE)
         LET_MISC(CODE)
 #undef CODE
+#define CODE(t, str, prec, left_assoc) t,
+        LET_OP(CODE)
+#undef CODE
+    };
+
+    enum Prec {
+        Err, Bot, Ass, Add, Mul
     };
 
     Tok(Loc loc, Tag tag)

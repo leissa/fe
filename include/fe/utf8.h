@@ -2,10 +2,9 @@
 
 namespace fe::utf8 {
 
-static constexpr size_t Max   = 4;          ///< Maximal number of `char8_t`s of an UTF-8 byte sequence.
+static constexpr size_t Max   = 4;      ///< Maximal number of `char8_t`s of an UTF-8 byte sequence.
 static constexpr char32_t BOM = 0xfeff; ///< [Byte Order Mark](https://en.wikipedia.org/wiki/Byte_order_mark#UTF-8).
 static constexpr char32_t EoF = (char32_t)std::istream::traits_type::eof(); ///< End of File.
-static constexpr char32_t Err = (char32_t)-2;                               ///< Erroneous UTF char.
 
 /// Returns the expected number of bytes for an UTF-8 char sequence by inspecting the first byte.
 /// Retuns @c 0 if invalid.
@@ -25,9 +24,8 @@ inline char32_t append(char32_t c, char32_t b) { return (c << 6) | (b & 0b001111
 inline char32_t first(char32_t c, char32_t num) { return c & (0b00011111 >> (num - 2)); }
 
 /// Is the 2nd, 3rd, or 4th byte of an UTF-8 byte sequence valid?
-inline std::optional<char8_t> is_valid(char8_t c) {
-    return (c & char8_t(0b11000000)) == char8_t(0b10000000) ? (c & char8_t(0b00111111)) : std::optional<char8_t>();
-}
+/// @returns the extracted `char8_t` or `char8_t(-1)` if invalid.
+inline char8_t is_valid234(char8_t c) { return (c & char8_t(0b11000000)) == char8_t(0b10000000) ? (c & char8_t(0b00111111)) : char8_t(-1); }
 
 /// Encodes the next sequence of bytes from @p is as UTF-32.
 /// @returns `std::nullopt` on error.
@@ -36,16 +34,16 @@ inline char32_t encode(std::istream& is) {
     if (result == EoF) return result;
 
     switch (auto n = utf8::num_bytes(result)) {
-        case 0: return {};
+        case 0: return 0;
         case 1: return result;
         default:
             result = utf8::first(result, n);
 
             for (size_t i = 1; i != n; ++i)
-                if (auto x = utf8::is_valid(is.get()))
-                    result = utf8::append(result, *x);
+                if (auto x = is_valid234(is.get()); x != char8_t(-1))
+                    result = utf8::append(result, x);
                 else
-                    return Err;
+                    return 0;
     }
 
     return result;

@@ -21,6 +21,7 @@ public:
 
 protected:
     /// Get next `char32_t` in Lexer::istream_ and increase Lexer::loc_ / Lexer::k_pos_.
+    /// @returns `0` on an invalid UTF-8 sequence.
     char32_t next() {
         auto [pos, c32] = peek_;
         peek_.pos       = pos;
