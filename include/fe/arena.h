@@ -6,21 +6,49 @@
 
 namespace fe {
 
-template<size_t Align = alignof(size_t), size_t P = 1024 * 1024>
+template<size_t A = alignof(size_t), size_t P = 1024 * 1024>
 class Arena {
+public:
+    template<class T>
+    class Allocator {
+    public:
+        using value_type                             = T;
+        using size_type                              = std::size_t;
+        using difference_type                        = std::ptrdiff_t ;
+        using propagate_on_container_move_assignment = std::true_type;
+
+        Allocator() = delete;
+        constexpr Allocator(Arena<A, P>& arena) noexcept
+            : arena_(arena) {}
+
+        T* allocate(size_type n, const void* /*hint*/ = 0) { return (T*)arena_.alloc(n * sizeof(T)); }
+
+        void deallocate(T*, size_type) {}
+        constexpr size_type max_size() const { return size_type(-1) / sizeof(T); }
+
+        template<class U, class V>
+        friend bool operator==(const Allocator<U>& a, const Allocator<V>& b) noexcept { return &a.arena_ == b.arena_; }
+
+        template<class U, class V>
+        friend bool operator!=(const Allocator<U>& a, const Allocator<V>& b) noexcept { return &a.arena_ != b.arena_; }
+
+    private:
+        Arena<A, P>& arena_;
+    };
+
 private:
     struct Page {
         Page(size_t n)
             : buffer(std::make_unique_for_overwrite<char[]>(n)) {}
 
-        std::unique_ptr<char> buffer;
+        std::unique_ptr<char[]> buffer;
         std::unique_ptr<Page> next;
     };
 
 public:
     Arena() = default;
 
-    static constexpr size_t align(size_t n) { return (n + (Align - 1)) & ~(Align - 1); }
+    static constexpr size_t align(size_t n) { return (n + (A - 1)) & ~(A - 1); }
 
     [[nodiscard]] void* alloc(size_t n) {
         n = align(n);
@@ -30,9 +58,9 @@ public:
             index_ = 0;
         }
 
-        auto result = pages_.back().buffer + index_;
+        auto result = pages_.back().buffer.get() + index_;
         index_ += n;
-        assert(index_ % Align == 0);
+        assert(index_ % A == 0);
         return result;
     }
 
@@ -40,7 +68,7 @@ public:
     void dealloc(size_t n) {
         n = align(n);
         if (ptrdiff_t(index_ - n) > 0) index_ -= n; // don't care otherwise
-        assert(index_ % Align == 0);
+        assert(index_ % A == 0);
     }
 
     friend void swap(Arena& a1, Arena& a2) {
@@ -52,34 +80,6 @@ public:
 private:
     std::list<Page> pages_;
     size_t index_ = P;
-};
-
-template<class T, size_t A = alignof(size_t), size_t P = 1024 * 1024>
-struct Allocator {
-    using value_type = T;
-
-    Allocator(const Arena<A, P>& arena) noexcept
-        : arena_(arena) {}
-
-#if 0
-    template<class U>
-    constexpr Allocator(const Allocator <U>& other) noexcept
-        : arena_(other.arena_) {}
-#endif
-
-    [[nodiscard]] T* allocate(size_t n) {
-        if (auto p = static_cast<T*>(std::malloc(n * sizeof(T))))
-            return p;
-
-        throw std::bad_alloc();
-    }
-
-    void deallocate(T* p, std::size_t n) noexcept {
-        std::free(p);
-    }
-
-private:
-    Arena<A, P>& arena_;
 };
 
 } // namespace arena

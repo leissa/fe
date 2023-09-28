@@ -32,6 +32,56 @@ std::ostream& operator<<(std::ostream& os, const Loc loc) {
     return os << "<unknown location>";
 }
 
+#define LET_KEY(m)        \
+    m(K_let,    "let")    \
+    m(K_return, "return")
+
+#define LET_MISC(m)             \
+    m(M_id,  "<identifier>")    \
+    m(M_lit, "<literal>")
+
+#define LET_OP(m)             \
+    m(O_add, "+", Add, true)  \
+    m(O_add, "-", Add, true)  \
+    m(O_add, "*", Mul, true)  \
+    m(O_add, "/", Mul, true)  \
+    m(O_ass, "=", Mul, false)
+
+class Tok {
+public:
+    enum Tag {
+#define CODE(t, str) t,
+        LET_KEY(CODE)
+        LET_MISC(CODE)
+#undef CODE
+    };
+
+    Tok(Loc loc, Tag tag)
+        : loc_(loc)
+        , tag_(tag) {}
+    Tok(Loc loc, Sym sym)
+        : loc_(loc)
+        , tag_(Tag::M_id) {
+        sym_ = sym;
+    }
+    Tok(Loc loc, uint32_t u)
+        : loc_(loc)
+        , tag_(Tag::M_id) {
+        u_ = u;
+    }
+
+    Tag tag() const { return tag_; }
+    Loc loc() const { return loc_; }
+
+private:
+    Loc loc_;
+    Tag tag_;
+    union {
+        Sym sym_;
+        uint32_t u_;
+    };
+};
+
 struct Driver : public fe::SymPool {
 public:
     /// @name diagnostics
@@ -67,9 +117,28 @@ private:
 
 class Lexer : public fe::Lexer {
 public:
-    Lexer(std::istream& istream, const std::filesystem::path* path)
-        : fe::Lexer(istream, path) {
+    Lexer(Driver& driver, std::istream& istream, const std::filesystem::path* path)
+        : fe::Lexer(istream, path)
+        , driver_(driver)
+    {}
+
+    Tok lex() {
+        while (true) {
+            loc_.begin = peek_.pos;
+            str_.clear();
+
+            if (accept_if([](char32_t c) { return c == '_' || isalpha(c); })) {
+                while (accept_if([](char32_t c) { return c == '_' || c == '.' || isalnum(c); })) {}
+                return {loc_, driver_.sym(str_)};
+            }
+
+            std::cerr << "invalid input character" << std::endl;
+            next();
         }
+    }
+
+private:
+    Driver& driver_;
 };
 
 int main(int argc, char** argv) {
@@ -82,14 +151,17 @@ int main(int argc, char** argv) {
             return EXIT_FAILURE;
         }
 
+        Driver driver;
         std::filesystem::path file(argv[1]);
         std::ifstream ifs(file);
-        Lexer lexer(ifs, &file);
-        fe::Arena arena;
+        Lexer lexer(driver, ifs, &file);
+        fe::Arena<8, 128> arena;
         fe::SymPool syms;
         auto hello = syms.sym("hello world");
 
-
+        std::vector<int, fe::Arena<8, 128>::Allocator<int>> v(arena);
+        for (int i = 0, e = 10000; i != e; ++i)
+            v.emplace_back(i);
     } catch (const std::exception& e) {
         std::cerr << argv[0] << ": " << e.what() << std::endl;
         return EXIT_FAILURE;
