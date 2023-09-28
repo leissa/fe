@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.20 FATAL_ERROR)
 
 project(fe VERSION 0.1)
 
+option(FE_ABSL "If ON, use abseil containers, otherwise use std contaienrs" OFF)
+
 #find_package(absl REQUIRED)
 
 include(CMakePackageConfigHelpers)
@@ -9,10 +11,14 @@ include(GNUInstallDirs)
 
 add_library(fe INTERFACE)
 set_property(TARGET fe PROPERTY CXX_STANDARD 20)
+
 target_include_directories(fe
     INTERFACE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include> # for config.h
         $<INSTALL_INTERFACE:i${CMAKE_INSTALL_INCLUDEDIR}>)
+
+configure_file(include/fe/config.h.in ${PROJECT_BINARY_DIR}/include/fe/config.h)
 
 write_basic_package_version_file(
     "${PROJECT_BINARY_DIR}/cmake/fe-config-version.cmake"
@@ -21,7 +27,7 @@ write_basic_package_version_file(
 )
 
 configure_package_config_file(
-    ${PROJECT_SOURCE_DIR}/cmake/fe-config.cmake.in
+    cmake/fe-config.cmake.in
     ${PROJECT_BINARY_DIR}/cmake/fe-config.cmake
     INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/fe)
 
@@ -31,6 +37,12 @@ install(
         ${PROJECT_BINARY_DIR}/cmake/fe-config-version.cmake
     DESTINATION
         ${CMAKE_INSTALL_LIBDIR}/cmake/fe)
+
+install(
+    FILES
+        ${PROJECT_BINARY_DIR}/include/fe/config.h
+    DESTINATION
+        ${CMAKE_INSTALL_INCLUDEDIR}/fe)
 
 install(
     TARGETS fe
@@ -49,8 +61,9 @@ install(
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/fe)
 
 install(
-    DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/fe
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+    DIRECTORY include/fe
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+    FILES_MATCHING PATTERN "*.h")
 
 add_subdirectory(examples)
 

@@ -3,11 +3,23 @@
 #include <iostream>
 #include <string>
 
+#include "fe/config.h"
+
+#ifdef FE_ABSL
 #include <absl/container/flat_hash_map.h>
 #include <absl/container/flat_hash_set.h>
 #include <absl/container/node_hash_set.h>
+#else
+#include <unordered_set>
+#include <unordered_map>
+#endif
 
 #include "fe/arena.h"
+
+namespace fe {
+class Sym;
+}
+template<> struct std::hash<fe::Sym>;
 
 namespace fe {
 
@@ -17,7 +29,7 @@ namespace fe {
 /// This makes Sym::operator== and Sym::operator!= an O(1) operation.
 /// The empty string is internally handled as `nullptr`.
 /// Thus, you can create a Sym%bol representing an empty string without having access to the SymPool.
-/// @note The empty string, `nullptr`, and `"\0"` are all identified as Sym::Sym().
+/// @note The empty `std::string`, `nullptr`, and `"\0"` are all identified as Sym::Sym().
 class Sym {
 private:
     Sym(const std::string* ptr)
@@ -67,16 +79,40 @@ public:
     }
     ///@}
 
+#ifdef FE_ABSL
     template<class H>
-    friend H AbslHashValue(H h, Sym sym) {
-        return H::combine(std::move(h), sym.ptr_);
-    }
+    friend H AbslHashValue(H h, Sym sym) { return H::combine(std::move(h), sym.ptr_); }
+#endif
+    friend struct ::std::hash<fe::Sym>;
 
 private:
     const std::string* ptr_ = nullptr;
 
     friend class SymPool;
 };
+
+} // namespace fe
+
+template<>
+struct std::hash<fe::Sym> {
+    size_t operator()(fe::Sym sym) const { return std::hash<void*>()((void*)sym.ptr_); }
+};
+
+namespace fe {
+
+/// @name Sym
+///@{
+/// Set/Map is keyed by pointer - which is hashed in SymPool.
+#ifdef FE_ABSL
+template<class V>
+using SymMap = absl::flat_hash_map<Sym, V>;
+using SymSet = absl::flat_hash_set<Sym>;
+#else
+template<class V>
+using SymMap = std::unordered_map<Sym, V>;
+using SymSet = std::unordered_set<Sym>;
+#endif
+///@}
 
 /// @name std::ostream operator
 ///@{
@@ -105,16 +141,11 @@ public:
     }
 
 private:
+#ifdef FE_ABSL
     absl::node_hash_set<std::string> pool_;
+#else
+    std::unordered_set<std::string> pool_;
+#endif
 };
-
-/// @name Sym
-///@{
-/// Set/Map is keyed by pointer - which is hashed in SymPool.
-template<class V>
-using SymMap = absl::flat_hash_map<Sym, V>;
-using SymSet = absl::flat_hash_set<Sym>;
-using Syms   = std::deque<Sym>;
-///@}
 
 } // namespace fe

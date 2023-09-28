@@ -85,6 +85,10 @@ int main(int argc, char** argv) {
         std::filesystem::path file(argv[1]);
         std::ifstream ifs(file);
         Lexer lexer(ifs, &file);
+        fe::Arena arena;
+        fe::SymPool syms;
+        auto hello = syms.sym("hello world");
+
 
     } catch (const std::exception& e) {
         std::cerr << argv[0] << ": " << e.what() << std::endl;
