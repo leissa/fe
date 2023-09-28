@@ -1,9 +1,14 @@
+#include <exception>
+#include <iostream>
+#include <fstream>
+#include <filesystem>
+
 #include <fe/sym.h>
 #include <fe/lexer.h>
 
-#include <iostream>
-
-using namespace fe;
+using fe::Loc;
+using fe::Pos;
+using fe::Sym;
 
 std::ostream& operator<<(std::ostream& os, const Pos pos) {
     if (pos.row) {
@@ -27,7 +32,7 @@ std::ostream& operator<<(std::ostream& os, const Loc loc) {
     return os << "<unknown location>";
 }
 
-struct Driver : public SymPool {
+struct Driver : public fe::SymPool {
 public:
     /// @name diagnostics
     ///@{
@@ -60,8 +65,34 @@ private:
     unsigned num_warnings_ = 0;
 };
 
-class Lexer : public ::fe::Lexer {
+class Lexer : public fe::Lexer {
+public:
+    Lexer(std::istream& istream, const std::filesystem::path* path)
+        : fe::Lexer(istream, path) {
+        }
 };
 
-int main() {
+int main(int argc, char** argv) {
+    try {
+        if (argc == 1) {
+            std::cerr << argv[0] << ": " << "no input file" << std::endl;
+            return EXIT_FAILURE;
+        } else if (argc >= 3) {
+            std::cerr << argv[0] << ": " << "only specify one input file" << std::endl;
+            return EXIT_FAILURE;
+        }
+
+        std::filesystem::path file(argv[1]);
+        std::ifstream ifs(file);
+        Lexer lexer(ifs, &file);
+
+    } catch (const std::exception& e) {
+        std::cerr << argv[0] << ": " << e.what() << std::endl;
+        return EXIT_FAILURE;
+    } catch (...) {
+        std::cerr << argv[0] << ": unknown exception" << std::endl;
+        return EXIT_FAILURE;
+    }
+
+    return EXIT_SUCCESS;
 }
