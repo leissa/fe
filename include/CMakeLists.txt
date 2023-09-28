@@ -1,0 +1,10 @@
+add_library(fe INTERFACE)
+
+include(GNUInstallDirs)
+
+target_include_directories(fe
+    INTERFACE
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+        $<INSTALL_INTERFACE:i${CMAKE_INSTALL_INCLUDEDIR}>)
+
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/fe DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
