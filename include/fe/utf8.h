@@ -16,7 +16,6 @@ size_t num_bytes(char8_t c) {
     return 0;
 }
 
-
 /// Append @p b to @p c for converting UTF-8 to UTF-32.
 inline char32_t append(char32_t c, char32_t b) { return (c << 6) | (b & 0b00111111); }
 
