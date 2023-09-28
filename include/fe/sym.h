@@ -91,6 +91,7 @@ private:
     friend class SymPool;
 };
 
+#ifndef DOXYGEN
 } // namespace fe
 
 template<>
@@ -99,6 +100,7 @@ struct std::hash<fe::Sym> {
 };
 
 namespace fe {
+#endif
 
 /// @name Sym
 ///@{

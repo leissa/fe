@@ -1,13 +1,16 @@
-set(DOXYFILE        ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile)
+set(DOXYFILE        ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
 set(DOXY_INDEX_HTML ${CMAKE_CURRENT_BINARY_DIR}/html/index.html)
+set(DOXY_EXTRA_FILES ${CMAKE_CURRENT_SOURCE_DIR}/README.md)
+
+configure_file(Doxyfile.in ${DOXYFILE} @ONLY)
 
 add_custom_command(
     OUTPUT ${DOXY_INDEX_HTML}
     COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYFILE}
     MAIN_DEPENDENCY ${DOXYFILE}
-    DEPENDS fe
+    DEPENDS fe ${DOXY_EXTRA_FILES}
     COMMENT "Generating Doxygen HTML documentation"
     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
 )
 
-add_custom_target(docs ALL DEPENDS ${DOXY_INDEX_HTML})
+add_custom_target(docs ALL DEPENDS fe ${DOXY_INDEX_HTML})
