@@ -19,3 +19,12 @@ endif()
 
 add_subdirectory(src)
 add_subdirectory(examples)
+
+option(FE_BUILD_DOCS "If ON, documentation will be built (requires Doxygen)." OFF)
+
+if(FE_BUILD_DOCS)
+    find_package(Doxygen REQUIRED dot)
+    if(DOXYGEN_FOUND)
+        add_subdirectory(docs)
+    endif()
+endif()
