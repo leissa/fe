@@ -7,6 +7,8 @@
 #include <absl/container/flat_hash_set.h>
 #include <absl/container/node_hash_set.h>
 
+#include "fe/arena.h"
+
 namespace fe {
 
 /// A Sym%bol just wraps a `const std::string*`, so pass Sym itself around as value.

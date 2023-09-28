@@ -21,7 +21,7 @@ public:
 protected:
     char32_t peek() const { return peek_.c; }
     /// Get next `char32_t` in Lexer::istream_ and increase Lexer::loc_ / Lexer::k_pos_.
-    char32_t next();
+    char32_t next() { /* TODO */ return 0; }
 
     /// @return `true` if @p pred holds.
     /// In this case invoke Lexer::next() and append to Lexer::str_.

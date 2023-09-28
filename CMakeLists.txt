@@ -32,7 +32,6 @@ install(
     DESTINATION
         ${CMAKE_INSTALL_LIBDIR}/cmake/fe)
 
-
 install(
     TARGETS fe
     EXPORT fe-export
