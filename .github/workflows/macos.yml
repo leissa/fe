@@ -1,0 +1,32 @@
+name: macos
+
+on:
+  push:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build-and-test:
+    name: Build and test ${{matrix.build-type}} mode
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        build-type: [Debug, Release]
+
+    steps:
+      - name: Clone recursively
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Configure
+        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{matrix.build-type}} -DBUILD_TESTING=ON -DFE_BUILD_EXAMPLES=ON
+
+      - name: Build
+        run: cmake --build ${{github.workspace}}/build -v
+
+#     - name: Test
+#       working-directory: ${{github.workspace}}/build
+#       run: |
+#         export PATH=${{github.workspace}}/bin:$PATH
+#         ctest --verbose -C ${{matrix.build-type}} --output-on-failure

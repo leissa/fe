@@ -27,7 +27,7 @@ jobs:
           export CXX=g++-13
 
       - name: Configure {{github.workspace}}
-        run: CXX=g++-13 cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{matrix.build-type}} -DBUILD_TESTING=ON -DTHORIN_BUILD_EXAMPLES=ON
+        run: CXX=g++-13 cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{matrix.build-type}} -DBUILD_TESTING=ON -DFE_BUILD_EXAMPLES=ON
 
       - name: Build
         run: cmake --build ${{github.workspace}}/build -v
