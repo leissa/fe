@@ -2,12 +2,10 @@ cmake_minimum_required(VERSION 3.23 FATAL_ERROR)
 
 project(fe VERSION 0.1)
 
-option(FE_ABSL "If ON, use abseil containers, otherwise use std contaienrs" OFF)
-
-#find_package(absl REQUIRED)
-
 include(CMakePackageConfigHelpers)
 include(GNUInstallDirs)
+
+option(FE_ABSL "If ON, use abseil containers, otherwise use std contaienrs" OFF)
 
 add_library(fe INTERFACE)
 target_compile_features(fe INTERFACE cxx_std_20)
@@ -35,6 +33,13 @@ configure_file(
     include/fe/config.h.in
     include/fe/config.h
 )
+if(FE_ABSL)
+    target_link_libraries(fe
+        INTERFACE
+            absl::flat_hash_map absl::flat_hash_set
+            absl::node_hash_map absl::node_hash_set
+    )
+endif()
 
 write_basic_package_version_file(
     "${CMAKE_CURRENT_BINARY_DIR}/cmake/fe-config-version.cmake"
@@ -86,8 +91,15 @@ install(
 )
 add_subdirectory(examples)
 
-option(FE_BUILD_DOCS "If ON, documentation will be built (requires Doxygen)." OFF)
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+    include(CTest)
+    if(BUILD_TESTING)
+        add_subdirectory(external/doctest)
+        add_subdirectory(tests)
+    endif()
+endif()
 
+option(FE_BUILD_DOCS "If ON, documentation will be built (requires Doxygen)." OFF)
 if(FE_BUILD_DOCS)
     find_package(Doxygen REQUIRED dot)
     if(DOXYGEN_FOUND)
