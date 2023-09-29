@@ -26,10 +26,6 @@ template<> struct std::hash<fe::Sym>;
 
 namespace fe {
 
-#ifdef __clang__
-auto operator<=>(const std::string& s1, const std::string& s2) { return strcmp(s1.c_str(), s2.c_str()) <=> 0; }
-#endif
-
 /// A Sym%bol just wraps a `const std::string*`, so pass Sym itself around as value.
 /// With the exception of the empty string, you should only create Sym%bols via SymPool::sym.
 /// This in turn will toss all Sym%bols into a big hash set.
@@ -64,7 +60,13 @@ public:
         return cmp == 0 ? std::strong_ordering::greater : cmp;
     }
     auto operator==(char c) const { return (*this) <=> c == std::strong_ordering::equal; }
-    auto operator<=>(Sym other) const { return **this <=> *other; }
+    auto operator<=>(Sym other) const {
+#ifdef __clang__
+        return std::strcmp(s1.c_str(), s2.c_str()) <=> 0; // std::string <=> std::string is causing probls with clang
+#else
+        return **this <=> *other;
+#endif
+    }
     bool operator==(Sym other) const { return this->ptr_ == other.ptr_; }
     bool operator!=(Sym other) const { return this->ptr_ != other.ptr_; }
     ///@}
