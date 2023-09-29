@@ -62,7 +62,7 @@ public:
     auto operator==(char c) const { return (*this) <=> c == std::strong_ordering::equal; }
     auto operator<=>(Sym other) const {
 #ifdef __clang__
-        return std::strcmp(s1.c_str(), s2.c_str()) <=> 0; // std::string <=> std::string is causing probls with clang
+        return std::strcmp((*this)->c_str(), other->c_str()) <=> 0; // std::string <=> std::string is causing probls with clang
 #else
         return **this <=> *other;
 #endif
