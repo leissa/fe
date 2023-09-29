@@ -1,5 +1,8 @@
 #pragma once
 
+#ifdef __clang__
+#include <cstring>
+#endif
 #include <iostream>
 #include <string>
 
@@ -22,6 +25,10 @@ class Sym;
 template<> struct std::hash<fe::Sym>;
 
 namespace fe {
+
+#ifdef __clang__
+std::strong_ordering operator<=>(const std::string& s1, const std::string& s2) { return strcmp(s1.c_str(), s2.c_str()); }
+#endif
 
 /// A Sym%bol just wraps a `const std::string*`, so pass Sym itself around as value.
 /// With the exception of the empty string, you should only create Sym%bols via SymPool::sym.
