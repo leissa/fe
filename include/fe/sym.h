@@ -27,7 +27,7 @@ template<> struct std::hash<fe::Sym>;
 namespace fe {
 
 #ifdef __clang__
-std::strong_ordering operator<=>(const std::string& s1, const std::string& s2) { return strcmp(s1.c_str(), s2.c_str()); }
+auto operator<=>(const std::string& s1, const std::string& s2) { return strcmp(s1.c_str(), s2.c_str()) <=> 0; }
 #endif
 
 /// A Sym%bol just wraps a `const std::string*`, so pass Sym itself around as value.
