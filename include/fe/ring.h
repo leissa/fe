@@ -11,7 +11,7 @@ namespace fe {
 template<class T, size_t N>
 class Ring {
 public:
-    void push(const T& t) {
+    void put(const T& t) {
         array_[first_] = t;
         first_ = (first_ + 1) % N;
     }

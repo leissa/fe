@@ -204,7 +204,7 @@ private:
     Driver& driver_;
 };
 
-class Parser : public fe::Parser<Tok, 1> {
+class Parser : public fe::Parser<Tok, Tok::Tag, 1, Parser> {
 };
 
 int main(int argc, char** argv) {
