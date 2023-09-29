@@ -14,7 +14,7 @@
 #include <unordered_map>
 #endif
 
-#include "fe/arena.h"
+//#include "fe/arena.h"
 
 namespace fe {
 class Sym;
