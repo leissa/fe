@@ -26,11 +26,11 @@ jobs:
         with:
           path: |
             ./llvm
-          key: llvm-16
+          key: llvm-15
       - name: Install LLVM and Clang
         uses: KyleMayes/install-llvm-action@v1
         with:
-          version: 16
+          version: 15
           cached: ${{ steps.cache-llvm.outputs.cache-hit }}
           env: true
 
