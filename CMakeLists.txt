@@ -71,19 +71,19 @@ install(
 install(
     EXPORT fe_exports
     DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/fe"
-    NAMESPACE fe::)
-
+    NAMESPACE fe::
+)
 install(
     EXPORT fe_exports
     FILE "fe-targets.cmake"
     NAMESPACE fe::
-    DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/fe")
-
+    DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/fe"
+)
 install(
     DIRECTORY include/fe
     DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
-    FILES_MATCHING PATTERN "*.h")
-
+    FILES_MATCHING PATTERN "*.h"
+)
 add_subdirectory(examples)
 
 option(FE_BUILD_DOCS "If ON, documentation will be built (requires Doxygen)." OFF)
