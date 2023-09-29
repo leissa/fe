@@ -125,10 +125,14 @@ inline std::ostream& operator<<(std::ostream& o, const Sym sym) { return o << *s
 /// You can access the SymPool from Driver.
 class SymPool {
 public:
-    SymPool()               = default;
+    SymPool() {}
+        //: allocator_(arena_) {}
+        //, pool_(allocator_) {}
+    //SymPool(SymPool&& other)
+        //: arena_(std::move(other.arena_))
+        //, allocator_(std::move(other.allocator_)) {}
+        //, pool_(std::move(other.pool_), arena_) {}
     SymPool(const SymPool&) = delete;
-    SymPool(SymPool&& other)
-        : pool_(std::move(other.pool_)) {}
 
     /// @name sym
     ///@{
@@ -143,11 +147,21 @@ public:
     }
 
 private:
+    //using StrArena  = Arena<alignof(std::string), 1024 * 1024>;
+    //using Allocator = StrArena::Allocator<std::string>;
+
+    //StrArena arena_;
+    //Allocator allocator_;
 #ifdef FE_ABSL
-    absl::node_hash_set<std::string> pool_;
+    absl::node_hash_set<
 #else
-    std::unordered_set<std::string> pool_;
+    std::unordered_set<
 #endif
+        std::string,
+        std::hash<std::string>,
+        std::equal_to<std::string>
+        //Allocator
+    > pool_;
 };
 
 } // namespace fe

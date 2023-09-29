@@ -20,17 +20,21 @@ public:
         Allocator() = delete;
         constexpr Allocator(Arena<A, P>& arena) noexcept
             : arena_(arena) {}
+        constexpr Allocator(const Arena<A, P>::Allocator<T>& allocator) noexcept
+            : arena_(allocator.arena_) {}
 
         T* allocate(size_type n, const void* /*hint*/ = 0) { return (T*)arena_.alloc(n * sizeof(T)); }
 
         void deallocate(T*, size_type) {}
         constexpr size_type max_size() const { return size_type(-1) / sizeof(T); }
 
+#if 0
         template<class U, class V>
         friend bool operator==(const Allocator<U>& a, const Allocator<V>& b) noexcept { return &a.arena_ == b.arena_; }
 
         template<class U, class V>
         friend bool operator!=(const Allocator<U>& a, const Allocator<V>& b) noexcept { return &a.arena_ != b.arena_; }
+#endif
 
     private:
         Arena<A, P>& arena_;
