@@ -2,10 +2,13 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
+#include <vector>
 
 #include <fe/assert.h>
+
 #include <fe/sym.h>
 #include <fe/lexer.h>
+#include <fe/parser.h>
 
 using fe::Loc;
 using fe::Pos;
@@ -199,6 +202,9 @@ public:
 
 private:
     Driver& driver_;
+};
+
+class Parser : public fe::Parser<Tok, 1> {
 };
 
 int main(int argc, char** argv) {

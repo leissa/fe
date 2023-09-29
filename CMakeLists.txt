@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.20 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.23 FATAL_ERROR)
 
 project(fe VERSION 0.1)
 
@@ -10,59 +10,78 @@ include(CMakePackageConfigHelpers)
 include(GNUInstallDirs)
 
 add_library(fe INTERFACE)
-set_property(TARGET fe PROPERTY CXX_STANDARD 20)
-
+target_compile_features(fe INTERFACE cxx_std_20)
+target_sources(fe
+    INTERFACE FILE_SET headers
+    BASE_DIRS include
+    TYPE HEADERS
+    FILES
+        include/fe/arena.h
+        include/fe/assert.h
+        include/fe/cast.h
+        include/fe/lexer.h
+        include/fe/loc.h
+        include/fe/parser.h
+        include/fe/ring.h
+        include/fe/sym.h
+        include/fe/utf8.h
+)
 target_include_directories(fe
     INTERFACE
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include> # for config.h
-        $<INSTALL_INTERFACE:i${CMAKE_INSTALL_INCLUDEDIR}>)
-
-configure_file(include/fe/config.h.in ${PROJECT_BINARY_DIR}/include/fe/config.h)
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+)
+configure_file(
+    include/fe/config.h.in
+    include/fe/config.h
+)
 
 write_basic_package_version_file(
-    "${PROJECT_BINARY_DIR}/cmake/fe-config-version.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/cmake/fe-config-version.cmake"
     VERSION ${fe_VERSION}
     COMPATIBILITY SameMajorVersion
 )
-
 configure_package_config_file(
     cmake/fe-config.cmake.in
-    ${PROJECT_BINARY_DIR}/cmake/fe-config.cmake
-    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/fe)
-
-install(
-    FILES
-        ${PROJECT_BINARY_DIR}/cmake/fe-config.cmake
-        ${PROJECT_BINARY_DIR}/cmake/fe-config-version.cmake
-    DESTINATION
-        ${CMAKE_INSTALL_LIBDIR}/cmake/fe)
-
-install(
-    FILES
-        ${PROJECT_BINARY_DIR}/include/fe/config.h
-    DESTINATION
-        ${CMAKE_INSTALL_INCLUDEDIR}/fe)
-
+    "${CMAKE_CURRENT_BINARY_DIR}/cmake/fe-config.cmake"
+    INSTALL_DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/fe"
+)
 install(
     TARGETS fe
-    EXPORT fe-export
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
-
+    EXPORT fe_exports
+    FILE_SET headers
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+)
 install(
-    EXPORT fe-export
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/fe
+    FILES
+        "${CMAKE_CURRENT_BINARY_DIR}/cmake/fe-config.cmake"
+        "${CMAKE_CURRENT_BINARY_DIR}/cmake/fe-config-version.cmake"
+    DESTINATION
+        "${CMAKE_INSTALL_LIBDIR}/cmake/fe"
+)
+install(
+    FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/include/fe/config.h"
+    DESTINATION
+        "${CMAKE_INSTALL_INCLUDEDIR}/fe"
+)
+install(
+    EXPORT fe_exports
+    DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/fe"
     NAMESPACE fe::)
 
 install(
-    EXPORT fe-export
+    EXPORT fe_exports
     FILE "fe-targets.cmake"
     NAMESPACE fe::
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/fe)
+    DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/fe")
 
 install(
     DIRECTORY include/fe
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+    DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
     FILES_MATCHING PATTERN "*.h")
 
 add_subdirectory(examples)

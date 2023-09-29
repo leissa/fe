@@ -30,3 +30,9 @@ inline void breakpoint() {
 #endif
 
 } // namespace fe
+
+#ifndef NDEBUG
+#    define assert_unused(x) assert(x)
+#else
+#    define assert_unused(x) ((void)(0 && (x)))
+#endif
