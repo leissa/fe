@@ -75,17 +75,16 @@ public:
 
     Tok(Loc loc, Tag tag)
         : loc_(loc)
-        , tag_(tag) {}
+        , tag_(tag)
+    {}
     Tok(Loc loc, Sym sym)
         : loc_(loc)
-        , tag_(Tag::M_id) {
-        sym_ = sym;
-    }
+        , tag_(Tag::M_id)
+        , sym_(sym) {}
     Tok(Loc loc, uint64_t u64)
         : loc_(loc)
-        , tag_(Tag::M_lit) {
-        u64_ = u64;
-    }
+        , tag_(Tag::M_lit)
+        , u64_(u64) {}
 
     Tag tag() const { return tag_; }
     Loc loc() const { return loc_; }
