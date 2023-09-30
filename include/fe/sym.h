@@ -1,6 +1,8 @@
 #pragma once
 
-#include <compare>
+#ifdef __clang__
+#include <cstring>
+#endif
 #include <iostream>
 #include <string>
 
@@ -58,7 +60,13 @@ public:
         return cmp == 0 ? std::strong_ordering::greater : cmp;
     }
     auto operator==(char c) const { return (*this) <=> c == std::strong_ordering::equal; }
-    auto operator<=>(Sym other) const { return **this <=> *other; }
+    auto operator<=>(Sym other) const {
+#ifdef __clang__
+        return std::strcmp((*this)->c_str(), other->c_str()) <=> 0; // std::string <=> std::string is causing probls with clang
+#else
+        return **this <=> *other;
+#endif
+    }
     bool operator==(Sym other) const { return this->ptr_ == other.ptr_; }
     bool operator!=(Sym other) const { return this->ptr_ != other.ptr_; }
     ///@}
