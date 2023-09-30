@@ -16,6 +16,10 @@ private:
     const S& self() const { return *static_cast<const S*>(this); }
 
 protected:
+    Parser() {
+        for (size_t i = 0; i != K; ++i) ahead_[0] = self()->lexer().lex()();
+    }
+
     class Tracker {
     public:
         Tracker(Parser& parser, const Pos& pos)

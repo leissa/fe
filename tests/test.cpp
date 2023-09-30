@@ -6,13 +6,14 @@
 
 TEST_CASE("ring1") {
     fe::Ring<int, 1> ring1;
-    ring1.put(0);
+    ring1[0] = 0;
     CHECK(ring1.front() == 0);
     ring1.put(1);
     CHECK(ring1.front() == 1);
 
     fe::Ring<int, 2> ring2;
-    ring2.put(0).put(1);
+    ring2[0] = 0;
+    ring2[1] = 1;
     CHECK(ring2.front() == 0);
     CHECK(ring2[0] == 0);
     CHECK(ring2[1] == 1);
@@ -26,7 +27,9 @@ TEST_CASE("ring1") {
     CHECK(ring2[1] == 3);
 
     fe::Ring<int, 3> ring3;
-    ring3.put(0).put(1).put(2);
+    ring3[0] = 0;
+    ring3[1] = 1;
+    ring3[2] = 2;
     CHECK(ring3.front() == 0);
     CHECK(ring3[0] == 0);
     CHECK(ring3[1] == 1);
