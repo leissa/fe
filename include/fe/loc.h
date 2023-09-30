@@ -17,7 +17,7 @@ struct Pos {
         , col(col) {}
 
     explicit operator bool() const { return row; }
-    bool operator==(Pos other) const { return row == other.row && col == other.col; }
+    auto operator<=>(const Pos&) const = default;
 
     uint16_t row = 0;
     uint16_t col = 0;
