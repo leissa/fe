@@ -33,10 +33,6 @@ jobs:
           call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
           cmake --build ${{github.workspace}}/build -v
 
-#     - name: Test
-#       working-directory: ${{github.workspace}}/build
-#       shell: cmd
-#       run: |
-#         call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
-#         set PATH=${{github.workspace}}/bin;%PATH%
-#         ctest --verbose -C ${{matrix.build-type}} --output-on-failure
+      - name: Test
+        shell: cmd
+        run: ${{github.workspace}}/build/bin/fe-test.exe

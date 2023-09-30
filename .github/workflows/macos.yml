@@ -40,8 +40,5 @@ jobs:
       - name: Build
         run: cmake --build ${{github.workspace}}/build -v
 
-#     - name: Test
-#       working-directory: ${{github.workspace}}/build
-#       run: |
-#         export PATH=${{github.workspace}}/bin:$PATH
-#         ctest --verbose -C ${{matrix.build-type}} --output-on-failure
+      - name: Test
+        run: ${{github.workspace}}/build/bin/fe-test
