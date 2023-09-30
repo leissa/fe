@@ -53,13 +53,6 @@ public:
 
     /// @name Comparisons
     ///@{
-    auto operator<=>(char c) const {
-        if ((*this)->size() == 0) return std::strong_ordering::less;
-        auto cmp = (*this)[0] <=> c;
-        if ((*this)->size() == 1) return cmp;
-        return cmp == 0 ? std::strong_ordering::greater : cmp;
-    }
-    auto operator==(char c) const { return (*this) <=> c == std::strong_ordering::equal; }
     auto operator<=>(Sym other) const {
 #ifdef __clang__
         return std::strcmp((*this)->c_str(), other->c_str()) <=> 0; // std::string <=> std::string is causing probls with clang
@@ -69,6 +62,14 @@ public:
     }
     bool operator==(Sym other) const { return this->ptr_ == other.ptr_; }
     bool operator!=(Sym other) const { return this->ptr_ != other.ptr_; }
+    auto operator<=>(char c) const {
+        if ((*this)->size() == 0) return std::strong_ordering::less;
+        auto cmp = (*this)[0] <=> c;
+        if ((*this)->size() == 1) return cmp;
+        return cmp == 0 ? std::strong_ordering::greater : cmp;
+    }
+    auto operator==(char c) const { return (*this) <=> c == 0; }
+    auto operator!=(char c) const { return (*this) <=> c != 0; }
     ///@}
 
     /// @name Cast Operators

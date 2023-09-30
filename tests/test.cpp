@@ -1,10 +1,12 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 
+#include <fe/arena.h>
 #include <fe/ring.h>
+#include <fe/sym.h>
 
 #include <doctest/doctest.h>
 
-TEST_CASE("ring1") {
+TEST_CASE("Ring") {
     fe::Ring<int, 1> ring1;
     ring1[0] = 0;
     CHECK(ring1.front() == 0);
@@ -49,4 +51,20 @@ TEST_CASE("ring1") {
     CHECK(ring3[0] == 3);
     CHECK(ring3[1] == 4);
     CHECK(ring3[2] == 5);
+}
+
+TEST_CASE("Sym") {
+    fe::SymPool syms;
+    auto x   = syms.sym("");
+    auto b   = syms.sym("b");
+    auto bc  = syms.sym("bc");
+    CHECK(b == 'b');
+    CHECK(b != 'a');
+    CHECK(b <= 'b');
+    CHECK(b >= 'b');
+    CHECK(b <  'c');
+    CHECK(b >  'a');
+    CHECK(bc < 'c');
+    CHECK(bc > 'a');
+    CHECK(bc > 'b');
 }
