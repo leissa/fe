@@ -32,6 +32,6 @@ jobs:
       - name: Build
         run: cmake --build ${{github.workspace}}/build -v
 
-#     - name: Test with Valgrind
-#       working-directory: ${{github.workspace}}/build
-#       run: ctest --verbose -C ${{matrix.build-type}} --output-on-failure -T memcheck
+     - name: Test with Valgrind
+       working-directory: ${{github.workspace}}/build
+       run: valgrind --error-exitcode=1 --leak-check=full ./${{github.workspace}}/build/tests/fe-test
