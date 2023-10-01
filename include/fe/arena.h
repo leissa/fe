@@ -11,12 +11,16 @@ public:
     template<class T>
     class Allocator {
     public:
+        using pointer                                = T*;
+        using const_pointer                          = const T*;
+        using void_pointer                           = void*;
+        using cosnt_void_pointer                     = const void*;
         using value_type                             = T;
         using size_type                              = std::size_t;
         using difference_type                        = std::ptrdiff_t ;
         using propagate_on_container_move_assignment = std::true_type;
 
-        Allocator() = delete;
+        constexpr Allocator() noexcept = default;
         constexpr Allocator(Arena<A, P>& arena) noexcept
             : arena_(arena) {}
         constexpr Allocator(const Arena<A, P>::Allocator<T>& allocator) noexcept
