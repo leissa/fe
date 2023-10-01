@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['finis_0',['finis',['../structfe_1_1Loc.html#a19c742b2f7de9b42ce45d92d3210a3ea',1,'fe::Loc']]]
+  ['eof_0',['EoF',['../namespacefe_1_1utf8.html#a958f5b14010ee32136a35e5534a205ce',1,'fe::utf8']]]
 ];

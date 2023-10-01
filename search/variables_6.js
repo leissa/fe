@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['loc_5f_0',['loc_',['../classfe_1_1Lexer.html#acad7cc20025f5e9f9d6b588b6468a719',1,'fe::Lexer']]]
+  ['istream_5f_0',['istream_',['../classfe_1_1Lexer.html#a114e9d94837f8bf36d96d5f19d57973e',1,'fe::Lexer']]]
 ];

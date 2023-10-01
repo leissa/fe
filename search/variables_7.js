@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['max_0',['Max',['../namespacefe_1_1utf8.html#a753d178a1e977540ac8cd44fe4390a58',1,'fe::utf8']]]
+  ['loc_5f_0',['loc_',['../classfe_1_1Lexer.html#acad7cc20025f5e9f9d6b588b6468a719',1,'fe::Lexer']]]
 ];

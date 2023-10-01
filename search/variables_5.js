@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['istream_5f_0',['istream_',['../classfe_1_1Lexer.html#a114e9d94837f8bf36d96d5f19d57973e',1,'fe::Lexer']]]
+  ['finis_0',['finis',['../structfe_1_1Loc.html#a19c742b2f7de9b42ce45d92d3210a3ea',1,'fe::Loc']]]
 ];

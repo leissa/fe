@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['parser_0',['Parser',['../classfe_1_1Parser.html#a0af3370832e49e1f268457ca80b695fa',1,'fe::Parser']]],
-  ['pos_1',['pos',['../structfe_1_1Pos.html#a5eabfa6ae7547c45d7502fdc503427bd',1,'fe::Pos::Pos()=default'],['../structfe_1_1Pos.html#a2f5a03e5db4071ac152db6f830c17732',1,'fe::Pos::Pos(uint16_t row)'],['../structfe_1_1Pos.html#a54c10d1c6f371ef318b340c1090a904a',1,'fe::Pos::Pos(uint16_t row, uint16_t col)']]],
-  ['put_2',['put',['../classfe_1_1Ring.html#aa521f2245b0946c14a3d149ef99c18b1',1,'fe::Ring::put()'],['../classfe_1_1Ring_3_01T_00_011_01_4.html#a53a64df0db6ba84c392fe54be65ce663',1,'fe::Ring&lt; T, 1 &gt;::put()'],['../classfe_1_1Ring_3_01T_00_012_01_4.html#a8245b84e052bc94f542d11028501ae02',1,'fe::Ring&lt; T, 2 &gt;::put()']]]
+  ['sym_0',['sym',['../classfe_1_1Sym.html#a5ad9546136421d6e33db08cef8526d47',1,'fe::Sym::Sym()'],['../classfe_1_1SymPool.html#a1a7c3278db18ad72926b06c1e757b865',1,'fe::SymPool::sym(std::string_view s)'],['../classfe_1_1SymPool.html#a0836abbed0a57732e84be5b627d35588',1,'fe::SymPool::sym(const char *s)'],['../classfe_1_1SymPool.html#a4e0a3b0bcbcf7b9c9b4370250001fe7e',1,'fe::SymPool::sym(std::string s)']]],
+  ['sympool_1',['sympool',['../classfe_1_1SymPool.html#a3df3435dde76a17a4cd63a9328398902',1,'fe::SymPool::SymPool()'],['../classfe_1_1SymPool.html#a9446b07a54c8892bc6135608d0321af7',1,'fe::SymPool::SymPool(const SymPool &amp;)=delete']]]
 ];
