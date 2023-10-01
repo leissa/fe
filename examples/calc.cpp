@@ -220,12 +220,6 @@ int main(int argc, char** argv) {
         std::filesystem::path file(argv[1]);
         std::ifstream ifs(file);
         Lexer lexer(driver, ifs, &file);
-        //fe::Arena<8, 128> arena;
-        fe::SymPool syms;
-        auto hello = syms.sym("hello world");
-
-        //std::vector<int, fe::Arena<8, 128>::Allocator<int>> v(arena);
-        //for (int i = 0, e = 10000; i != e; ++i) v.emplace_back(i);
 
         for (int i = 0; i < 10; ++i) {
             auto tok = lexer.lex();

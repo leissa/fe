@@ -7,7 +7,9 @@
 #include <doctest/doctest.h>
 
 TEST_CASE("Arena") {
-    fe::Arena arena;
+    fe::Arena<alignof(int), 128> arena;
+    std::vector<int, fe::Arena<alignof(int), 128>::Allocator<int>> v(arena);
+    for (int i = 0, e = 10000; i != e; ++i) v.emplace_back(i);
 }
 
 TEST_CASE("Ring") {
