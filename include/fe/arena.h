@@ -31,10 +31,10 @@ public:
         constexpr size_type max_size() const { return size_type(-1) / sizeof(T); }
 
         template<class U, class V>
-        friend bool operator==(const Allocator<U>& a, const Allocator<V>& b) noexcept { return &a.arena_ == b.arena_; }
+        friend bool operator==(const Allocator<U>& a, const Allocator<V>& b) noexcept { return &a.arena_ == &b.arena_; }
 
         template<class U, class V>
-        friend bool operator!=(const Allocator<U>& a, const Allocator<V>& b) noexcept { return &a.arena_ != b.arena_; }
+        friend bool operator!=(const Allocator<U>& a, const Allocator<V>& b) noexcept { return &a.arena_ != &b.arena_; }
 
     private:
         Arena<A, P>& arena_;
