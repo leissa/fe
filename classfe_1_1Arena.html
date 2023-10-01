@@ -119,7 +119,7 @@ $(document).ready(function(){initNavTree('classfe_1_1Arena.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 
-<p>&lt; 1MB.  
+<p>An arena pre-allocates so-called <em>pages</em> of size <code>p</code>.  
  <a href="classfe_1_1Arena.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="arena_8h_source.html">fe/arena.h</a>&gt;</code></p>
@@ -149,7 +149,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1863a45d5d5387cd4e63a7f12f184efc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae49bccd0c183b4a96a3d93f4702ed8e0" id="r_ae49bccd0c183b4a96a3d93f4702ed8e0"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="structfe_1_1Arena_1_1Allocator.html">class</a> T &gt; </td></tr>
 <tr class="memitem:ae49bccd0c183b4a96a3d93f4702ed8e0"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structfe_1_1Arena_1_1Allocator.html">Allocator</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classfe_1_1Arena.html#ae49bccd0c183b4a96a3d93f4702ed8e0">allocator</a> ()</td></tr>
-<tr class="memdesc:ae49bccd0c183b4a96a3d93f4702ed8e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create <a class="el" href="structfe_1_1Arena_1_1Allocator.html" title="An allocator.">Allocator</a> from <a class="el" href="classfe_1_1Arena.html" title="&lt; 1MB.">Arena</a>.  <br /></td></tr>
+<tr class="memdesc:ae49bccd0c183b4a96a3d93f4702ed8e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create <a class="el" href="structfe_1_1Arena_1_1Allocator.html" title="An allocator.">Allocator</a> from <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size p.">Arena</a>.  <br /></td></tr>
 <tr class="separator:ae49bccd0c183b4a96a3d93f4702ed8e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
@@ -160,9 +160,9 @@ Static Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;size_t A = sizeof(size_t), size_t P = Default_Page_Size&gt;<br />
-class fe::Arena&lt; A, P &gt;</div><p>&lt; 1MB. </p>
-<p>An arena pre-allocates so-called <em>pages</em> of size <code>p</code>. You can use <a class="el" href="classfe_1_1Arena.html#a1c2a660e9fe75481844428942862031c" title="Get n bytes of fresh memory.">Arena::alloc</a> to obtain memory from this. When a page runs out of memory, the next page will be (pre-)allocated. You cannot directly release memory obtained via this method. Instead, <em>all</em> memory acquired via this <a class="el" href="classfe_1_1Arena.html" title="&lt; 1MB.">Arena</a> will be released as soon as this <a class="el" href="classfe_1_1Arena.html" title="&lt; 1MB.">Arena</a> will be destroyed. As an exception, you can <a class="el" href="classfe_1_1Arena.html#a1863a45d5d5387cd4e63a7f12f184efc" title="Tries to remove n bytes again.">Arena::dealloc</a> memory that just as been acquired.</p>
-<p>Use <a class="el" href="structfe_1_1Arena_1_1Allocator.html" title="An allocator.">Allocator</a> to adopt it in <a href="https://en.cppreference.com/w/cpp/named_req/AllocatorAwareContainer">containers</a>. Construct it via <a class="el" href="classfe_1_1Arena.html#ae49bccd0c183b4a96a3d93f4702ed8e0" title="Create Allocator from Arena.">Arena::allocator</a>. </p><dl class="section note"><dt>Note</dt><dd>The <a class="el" href="classfe_1_1Arena.html" title="&lt; 1MB.">Arena</a> assumes a consistent alignment of <code>A</code> for all allocated objects. </dd></dl>
+class fe::Arena&lt; A, P &gt;</div><p>An arena pre-allocates so-called <em>pages</em> of size <code>p</code>. </p>
+<p>You can use <a class="el" href="classfe_1_1Arena.html#a1c2a660e9fe75481844428942862031c" title="Get n bytes of fresh memory.">Arena::alloc</a> to obtain memory from this. When a page runs out of memory, the next page will be (pre-)allocated. You cannot directly release memory obtained via this method. Instead, <em>all</em> memory acquired via this <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size p.">Arena</a> will be released as soon as this <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size p.">Arena</a> will be destroyed. As an exception, you can <a class="el" href="classfe_1_1Arena.html#a1863a45d5d5387cd4e63a7f12f184efc" title="Tries to remove n bytes again.">Arena::dealloc</a> memory that just as been acquired.</p>
+<p>Use <a class="el" href="structfe_1_1Arena_1_1Allocator.html" title="An allocator.">Allocator</a> to adopt it in <a href="https://en.cppreference.com/w/cpp/named_req/AllocatorAwareContainer">containers</a>. Construct it via <a class="el" href="classfe_1_1Arena.html#ae49bccd0c183b4a96a3d93f4702ed8e0" title="Create Allocator from Arena.">Arena::allocator</a>. </p><dl class="section note"><dt>Note</dt><dd>The <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size p.">Arena</a> assumes a consistent alignment of <code>A</code> for all allocated objects. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00021">21</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -320,7 +320,7 @@ template&lt;<a class="el" href="structfe_1_1Arena_1_1Allocator.html">class</a> T
 </table>
 </div><div class="memdoc">
 
-<p>Create <a class="el" href="structfe_1_1Arena_1_1Allocator.html" title="An allocator.">Allocator</a> from <a class="el" href="classfe_1_1Arena.html" title="&lt; 1MB.">Arena</a>. </p>
+<p>Create <a class="el" href="structfe_1_1Arena_1_1Allocator.html" title="An allocator.">Allocator</a> from <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size p.">Arena</a>. </p>
 
 <p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00080">80</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
