@@ -9,5 +9,7 @@ var classfe_1_1Arena_1_1Allocator =
     [ "Allocator", "classfe_1_1Arena_1_1Allocator.html#ac2037875193f3c1eb4b1670001bfbd84", null ],
     [ "allocate", "classfe_1_1Arena_1_1Allocator.html#ad063b53f67c4e7ef08c4a73b9df66389", null ],
     [ "deallocate", "classfe_1_1Arena_1_1Allocator.html#a263585c311ff14531e308509a26a140b", null ],
-    [ "max_size", "classfe_1_1Arena_1_1Allocator.html#a514a6e7511ac9db5517705fac826be20", null ]
+    [ "max_size", "classfe_1_1Arena_1_1Allocator.html#a514a6e7511ac9db5517705fac826be20", null ],
+    [ "operator!=", "classfe_1_1Arena_1_1Allocator.html#a79c5a34c83e51c8b33d4f8bda3b4d6ca", null ],
+    [ "operator==", "classfe_1_1Arena_1_1Allocator.html#ac6a10d5bde845225f558572dad88faa3", null ]
 ];
