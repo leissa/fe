@@ -131,12 +131,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a368b866a5344d3f1a4541cda55469b03" id="r_a368b866a5344d3f1a4541cda55469b03"><td class="memItemLeft" align="right" valign="top">char8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a368b866a5344d3f1a4541cda55469b03">is_valid234</a> (char8_t c)</td></tr>
 <tr class="memdesc:a368b866a5344d3f1a4541cda55469b03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the 2nd, 3rd, or 4th byte of an UTF-8 byte sequence valid?  <br /></td></tr>
 <tr class="separator:a368b866a5344d3f1a4541cda55469b03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a160de6e52b3d051fe7ee5767935a2ad2" id="r_a160de6e52b3d051fe7ee5767935a2ad2"><td class="memItemLeft" align="right" valign="top">char32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a160de6e52b3d051fe7ee5767935a2ad2">encode</a> (std::istream &amp;is)</td></tr>
-<tr class="memdesc:a160de6e52b3d051fe7ee5767935a2ad2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes the next sequence of bytes from <code>is</code> as UTF-32.  <br /></td></tr>
-<tr class="separator:a160de6e52b3d051fe7ee5767935a2ad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad872a723304f352b1ae9aa5528e30f98" id="r_ad872a723304f352b1ae9aa5528e30f98"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#ad872a723304f352b1ae9aa5528e30f98">decode</a> (std::ostream &amp;os, char32_t c32)</td></tr>
-<tr class="memdesc:ad872a723304f352b1ae9aa5528e30f98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decodes the UTF-32 char <code>c</code> to UTF-8 and writes the sequence of bytes to <code>os</code>.  <br /></td></tr>
-<tr class="separator:ad872a723304f352b1ae9aa5528e30f98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ca17134ff0be619535e913b53a80e79" id="r_a4ca17134ff0be619535e913b53a80e79"><td class="memItemLeft" align="right" valign="top">char32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a4ca17134ff0be619535e913b53a80e79">decode</a> (std::istream &amp;is)</td></tr>
+<tr class="memdesc:a4ca17134ff0be619535e913b53a80e79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decodes the next sequence of bytes from <code>is</code> as UTF-32.  <br /></td></tr>
+<tr class="separator:a4ca17134ff0be619535e913b53a80e79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50c98a6d25495ac66c1a30e1ba83da99" id="r_a50c98a6d25495ac66c1a30e1ba83da99"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a50c98a6d25495ac66c1a30e1ba83da99">encode</a> (std::ostream &amp;os, char32_t c32)</td></tr>
+<tr class="memdesc:a50c98a6d25495ac66c1a30e1ba83da99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes the UTF-32 char <code>c32</code> as UTF-8 and writes the sequence of bytes to <code>os</code>.  <br /></td></tr>
+<tr class="separator:a50c98a6d25495ac66c1a30e1ba83da99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -189,12 +189,12 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00020">20</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00031">encode()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00031">decode()</a>.</p>
 
 </div>
 </div>
-<a id="ad872a723304f352b1ae9aa5528e30f98" name="ad872a723304f352b1ae9aa5528e30f98"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad872a723304f352b1ae9aa5528e30f98">&#9670;&#160;</a></span>decode()</h2>
+<a id="a4ca17134ff0be619535e913b53a80e79" name="a4ca17134ff0be619535e913b53a80e79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ca17134ff0be619535e913b53a80e79">&#9670;&#160;</a></span>decode()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -203,7 +203,42 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool fe::utf8::decode </td>
+          <td class="memname">char32_t fe::utf8::decode </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>is</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Decodes the next sequence of bytes from <code>is</code> as UTF-32. </p>
+<dl class="section return"><dt>Returns</dt><dd><code>0</code> on error. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00031">31</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00020">append()</a>, <a class="el" href="utf8_8h_source.html#l00007">EoF</a>, <a class="el" href="utf8_8h_source.html#l00023">first()</a>, <a class="el" href="utf8_8h_source.html#l00027">is_valid234()</a>, and <a class="el" href="utf8_8h_source.html#l00011">num_bytes()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00025">fe::Lexer::next()</a>.</p>
+
+</div>
+</div>
+<a id="a50c98a6d25495ac66c1a30e1ba83da99" name="a50c98a6d25495ac66c1a30e1ba83da99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50c98a6d25495ac66c1a30e1ba83da99">&#9670;&#160;</a></span>encode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fe::utf8::encode </td>
           <td>(</td>
           <td class="paramtype">std::ostream &amp;&#160;</td>
           <td class="paramname"><em>os</em>, </td>
@@ -227,45 +262,10 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Decodes the UTF-32 char <code>c</code> to UTF-8 and writes the sequence of bytes to <code>os</code>. </p>
+<p>Encodes the UTF-32 char <code>c32</code> as UTF-8 and writes the sequence of bytes to <code>os</code>. </p>
 <dl class="section return"><dt>Returns</dt><dd><code>false</code> on error. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00060">60</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
-
-</div>
-</div>
-<a id="a160de6e52b3d051fe7ee5767935a2ad2" name="a160de6e52b3d051fe7ee5767935a2ad2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a160de6e52b3d051fe7ee5767935a2ad2">&#9670;&#160;</a></span>encode()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">char32_t fe::utf8::encode </td>
-          <td>(</td>
-          <td class="paramtype">std::istream &amp;&#160;</td>
-          <td class="paramname"><em>is</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Encodes the next sequence of bytes from <code>is</code> as UTF-32. </p>
-<dl class="section return"><dt>Returns</dt><dd><code>std::nullopt</code> on error. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00031">31</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
-
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00020">append()</a>, <a class="el" href="utf8_8h_source.html#l00007">EoF</a>, <a class="el" href="utf8_8h_source.html#l00023">first()</a>, <a class="el" href="utf8_8h_source.html#l00027">is_valid234()</a>, and <a class="el" href="utf8_8h_source.html#l00011">num_bytes()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00025">fe::Lexer::next()</a>.</p>
 
 </div>
 </div>
@@ -307,7 +307,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00023">23</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00031">encode()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00031">decode()</a>.</p>
 
 </div>
 </div>
@@ -340,7 +340,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00027">27</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00031">encode()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00031">decode()</a>.</p>
 
 </div>
 </div>
@@ -365,7 +365,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00011">11</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00031">encode()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00031">decode()</a>.</p>
 
 </div>
 </div>
@@ -420,7 +420,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00007">7</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00031">encode()</a>, and <a class="el" href="lexer_8h_source.html#l00025">fe::Lexer::next()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00031">decode()</a>, and <a class="el" href="lexer_8h_source.html#l00025">fe::Lexer::next()</a>.</p>
 
 </div>
 </div>

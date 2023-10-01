@@ -1,8 +1,8 @@
 var utf8_8h =
 [
     [ "append", "utf8_8h.html#aa73f03b25b2098b8e139d1d037bd7c97", null ],
-    [ "decode", "utf8_8h.html#ad872a723304f352b1ae9aa5528e30f98", null ],
-    [ "encode", "utf8_8h.html#a160de6e52b3d051fe7ee5767935a2ad2", null ],
+    [ "decode", "utf8_8h.html#a4ca17134ff0be619535e913b53a80e79", null ],
+    [ "encode", "utf8_8h.html#a50c98a6d25495ac66c1a30e1ba83da99", null ],
     [ "first", "utf8_8h.html#ab8b8a7ebfb35f84b56defdde79becd08", null ],
     [ "is_valid234", "utf8_8h.html#a368b866a5344d3f1a4541cda55469b03", null ],
     [ "num_bytes", "utf8_8h.html#a6decf030f56d34b82146f21e502dcee9", null ],

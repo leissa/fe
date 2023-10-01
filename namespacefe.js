@@ -2,8 +2,8 @@ var namespacefe =
 [
     [ "utf8", "namespacefe_1_1utf8.html", [
       [ "append", "namespacefe_1_1utf8.html#aa73f03b25b2098b8e139d1d037bd7c97", null ],
-      [ "decode", "namespacefe_1_1utf8.html#ad872a723304f352b1ae9aa5528e30f98", null ],
-      [ "encode", "namespacefe_1_1utf8.html#a160de6e52b3d051fe7ee5767935a2ad2", null ],
+      [ "decode", "namespacefe_1_1utf8.html#a4ca17134ff0be619535e913b53a80e79", null ],
+      [ "encode", "namespacefe_1_1utf8.html#a50c98a6d25495ac66c1a30e1ba83da99", null ],
       [ "first", "namespacefe_1_1utf8.html#ab8b8a7ebfb35f84b56defdde79becd08", null ],
       [ "is_valid234", "namespacefe_1_1utf8.html#a368b866a5344d3f1a4541cda55469b03", null ],
       [ "num_bytes", "namespacefe_1_1utf8.html#a6decf030f56d34b82146f21e502dcee9", null ],
