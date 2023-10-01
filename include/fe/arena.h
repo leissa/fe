@@ -5,43 +5,39 @@
 
 namespace fe {
 
-template<size_t A = alignof(size_t), size_t P = 1024 * 1024>
+constexpr size_t Default_Page_Size = 1024 * 1024;
+
+template<size_t A = sizeof(size_t), size_t P = Default_Page_Size>
 class Arena {
 public:
     template<class T>
     class Allocator {
     public:
-        using pointer                                = T*;
-        using const_pointer                          = const T*;
-        using void_pointer                           = void*;
-        using cosnt_void_pointer                     = const void*;
-        using value_type                             = T;
-        using size_type                              = std::size_t;
-        using difference_type                        = std::ptrdiff_t ;
-        using propagate_on_container_move_assignment = std::true_type;
+        using value_type = T;
 
-        constexpr Allocator() noexcept = default;
-        constexpr Allocator(Arena<A, P>& arena) noexcept
-            : arena_(arena) {}
-        constexpr Allocator(const Arena<A, P>::Allocator<T>& allocator) noexcept
+        Allocator() noexcept = delete;
+        template<class U>
+        Allocator(const Arena<A, P>::Allocator<U>& allocator) noexcept
             : arena_(allocator.arena_) {}
+        Allocator(Arena<A, P>& arena) noexcept
+            : arena_(arena) {}
 
-        T* allocate(size_type n, const void* /*hint*/ = 0) {
+        [[nodiscard]] T* allocate(size_t n) {
             static_assert(alignof(T) <= A, "alignment of Arena too small");
             return (T*)arena_.alloc(n * sizeof(T));
         }
 
-        void deallocate(T*, size_type) {}
-        constexpr size_type max_size() const { return size_type(-1) / sizeof(T); }
+        void deallocate(T*, size_t) noexcept {}
 
         template<class U> bool operator==(const Allocator<U>& other) const noexcept { return &this->arena_ == &other.arena_; }
         template<class U> bool operator!=(const Allocator<U>& other) const noexcept { return &this->arena_ != &other.arena_; }
 
-    private:
+#ifndef _MSC_VER
+    private: // MSVC complaints in templated "copy" constructor above
+#endif
         Arena<A, P>& arena_;
     };
 
-public:
     Arena() = default;
     ~Arena() {
         for (auto p : pages_) delete[] p;
@@ -71,6 +67,9 @@ public:
         assert(index_ % A == 0);
     }
 
+    /// Create Allocator from Arena.
+    template<class T> Allocator<T> allocator() { return Allocator<T>(*this); }
+
     friend void swap(Arena& a1, Arena& a2) {
         using std::swap;
         swap(a1.pages_, a2.pages_);
@@ -83,3 +82,4 @@ private:
 };
 
 } // namespace arena
+
