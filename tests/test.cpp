@@ -1,10 +1,14 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 
-//#include <fe/arena.h>
+#include <fe/arena.h>
 #include <fe/ring.h>
 #include <fe/sym.h>
 
 #include <doctest/doctest.h>
+
+TEST_CASE("Arena") {
+    fe::Arena arena;
+}
 
 TEST_CASE("Ring") {
     fe::Ring<int, 1> ring1;

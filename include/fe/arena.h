@@ -1,8 +1,7 @@
 #pragma once
 
 #include <cassert>
-#include <list>
-#include <memory>
+#include <vector>
 
 namespace fe {
 
@@ -23,34 +22,29 @@ public:
         constexpr Allocator(const Arena<A, P>::Allocator<T>& allocator) noexcept
             : arena_(allocator.arena_) {}
 
-        T* allocate(size_type n, const void* /*hint*/ = 0) { return (T*)arena_.alloc(n * sizeof(T)); }
+        T* allocate(size_type n, const void* /*hint*/ = 0) {
+            static_assert(alignof(T) <= A, "alignment of Arena too small");
+            return (T*)arena_.alloc(n * sizeof(T));
+        }
 
         void deallocate(T*, size_type) {}
         constexpr size_type max_size() const { return size_type(-1) / sizeof(T); }
 
-#if 0
         template<class U, class V>
         friend bool operator==(const Allocator<U>& a, const Allocator<V>& b) noexcept { return &a.arena_ == b.arena_; }
 
         template<class U, class V>
         friend bool operator!=(const Allocator<U>& a, const Allocator<V>& b) noexcept { return &a.arena_ != b.arena_; }
-#endif
 
     private:
         Arena<A, P>& arena_;
     };
 
-private:
-    struct Page {
-        Page(size_t n)
-            : buffer(std::make_unique_for_overwrite<char[]>(n)) {}
-
-        std::unique_ptr<char[]> buffer;
-        std::unique_ptr<Page> next;
-    };
-
 public:
     Arena() = default;
+    ~Arena() {
+        for (auto p : pages_) delete[] p;
+    }
 
     static constexpr size_t align(size_t n) { return (n + (A - 1)) & ~(A - 1); }
 
@@ -58,17 +52,18 @@ public:
         n = align(n);
 
         if (index_ + n > P) {
-            pages_.emplace_back(std::max(P, n));
+            pages_.emplace_back(new char[std::max(P, n)]);
             index_ = 0;
         }
 
-        auto result = pages_.back().buffer.get() + index_;
+        auto result = pages_.back() + index_;
         index_ += n;
         assert(index_ % A == 0);
         return result;
     }
 
-    /// @warning Invoke destructor of object beforehand.
+    /// Tries to remove @p n bytes again.
+    /// If this crosses a page boundary, nothing happens.
     void dealloc(size_t n) {
         n = align(n);
         if (ptrdiff_t(index_ - n) > 0) index_ -= n; // don't care otherwise
@@ -82,7 +77,7 @@ public:
     }
 
 private:
-    std::list<Page> pages_;
+    std::vector<char*> pages_;
     size_t index_ = P;
 };
 
