@@ -5,7 +5,7 @@
 
 namespace fe {
 
-constexpr size_t Default_Page_Size = 1024 * 1024;
+constexpr size_t Default_Page_Size = 1024 * 1024; /// < 1MB.
 
 /// An arena pre-allocates so-called *pages* of size @p p.
 /// You can use Arena::alloc to obtain memory from this.
@@ -23,31 +23,27 @@ public:
     /// An [allocator](https://en.cppreference.com/w/cpp/named_req/Allocator).
     /// Construct one via Arena::allocator.
     template<class T>
-    class Allocator {
-    public:
+    struct Allocator {
         using value_type = T;
 
         Allocator() noexcept = delete;
         template<class U>
         Allocator(const Arena<A, P>::Allocator<U>& allocator) noexcept
-            : arena_(allocator.arena_) {}
+            : arena(allocator.arena) {}
         Allocator(Arena<A, P>& arena) noexcept
-            : arena_(arena) {}
+            : arena(arena) {}
 
         [[nodiscard]] T* allocate(size_t n) {
             static_assert(alignof(T) <= A, "alignment of Arena too small");
-            return (T*)arena_.alloc(n * sizeof(T));
+            return (T*)arena.alloc(n * sizeof(T));
         }
 
         void deallocate(T*, size_t) noexcept {}
 
-        template<class U> bool operator==(const Allocator<U>& a) const noexcept { return &arena_ == &a.arena_; }
-        template<class U> bool operator!=(const Allocator<U>& a) const noexcept { return &arena_ != &a.arena_; }
+        template<class U> bool operator==(const Allocator<U>& a) const noexcept { return &arena == &a.arena; }
+        template<class U> bool operator!=(const Allocator<U>& a) const noexcept { return &arena != &a.arena; }
 
-#ifndef _MSC_VER
-    private: // MSVC complaints in templated "copy" constructor above
-#endif
-        Arena<A, P>& arena_;
+        Arena<A, P>& arena;
     };
 
     Arena() = default;

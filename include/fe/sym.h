@@ -137,10 +137,9 @@ inline std::ostream& operator<<(std::ostream& o, const Sym sym) { return o << *s
 class SymPool {
 public:
     SymPool()
-        : allocator_(arena_.allocator<std::string>()) {}
+        : pool_(arena_.allocator<std::string>()) {}
     SymPool(SymPool&& other)
         : arena_(std::move(other.arena_))
-        , allocator_(std::move(other.allocator_))
         , pool_(std::move(other.pool_)) {}
     SymPool(const SymPool&) = delete;
 
@@ -157,11 +156,7 @@ public:
     }
 
 private:
-    using StrArena  = Arena<sizeof(size_t), Default_Page_Size>;
-    using Allocator = StrArena::Allocator<std::string>;
-
-    StrArena arena_;
-    Allocator allocator_;
+    Arena<> arena_;
 #ifdef FE_ABSL
     absl::node_hash_set<
 #else
@@ -169,8 +164,8 @@ private:
 #endif
         std::string,
         std::hash<std::string>,
-        std::equal_to<std::string>
-        //Allocator
+        std::equal_to<std::string>,
+        Arena<>::Allocator<std::string>
     > pool_;
 };
 
