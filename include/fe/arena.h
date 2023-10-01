@@ -5,7 +5,7 @@
 
 namespace fe {
 
-constexpr size_t Default_Page_Size = 1024 * 1024; /// < 1MB.
+constexpr size_t Default_Page_Size = 1024 * 1024; ///< 1MB.
 
 /// An arena pre-allocates so-called *pages* of size @p p.
 /// You can use Arena::alloc to obtain memory from this.
