@@ -7,7 +7,7 @@ var indexSectionsWithContent =
   4: "abdefilmnopstu~",
   5: "abcefilmprs",
   6: "dpsv",
-  7: "os",
+  7: "s",
   8: "a",
   9: "f"
 };
