@@ -26,9 +26,9 @@ inline char32_t first(char32_t c, char32_t num) { return c & (0b00011111 >> (num
 /// @returns the extracted `char8_t` or `char8_t(-1)` if invalid.
 inline char8_t is_valid234(char8_t c) { return (c & char8_t(0b11000000)) == char8_t(0b10000000) ? (c & char8_t(0b00111111)) : char8_t(-1); }
 
-/// Encodes the next sequence of bytes from @p is as UTF-32.
-/// @returns `std::nullopt` on error.
-inline char32_t encode(std::istream& is) {
+/// Decodes the next sequence of bytes from @p is as UTF-32.
+/// @returns `0` on error.
+inline char32_t decode(std::istream& is) {
     char32_t result = is.get();
     if (result == EoF) return result;
 
@@ -55,9 +55,9 @@ std::ostream& ao(std::ostream& os, char32_t c32, char32_t a = 0b00111111, char32
 }
 } // namespace
 
-/// Decodes the UTF-32 char @p c to UTF-8 and writes the sequence of bytes to @p os.
+/// Encodes the UTF-32 char @p c32 as UTF-8 and writes the sequence of bytes to @p os.
 /// @returns `false` on error.
-inline bool decode(std::ostream& os, char32_t c32) {
+inline bool encode(std::ostream& os, char32_t c32) {
     // clang-format off
     if (c32 <= 0x00007f) {          ao(os, c32      , 0b11111111, 0b00000000);                              return true; }
     if (c32 <= 0x0007ff) {       ao(ao(os, c32 >>  6, 0b00011111, 0b11000000),                        c32); return true; }

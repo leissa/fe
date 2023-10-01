@@ -25,7 +25,7 @@ protected:
     char32_t next() {
         auto [pos, c32] = peek_;
         peek_.pos       = pos;
-        peek_.c32       = utf8::encode(istream_);
+        peek_.c32       = utf8::decode(istream_);
 
         if (peek_.c32 == '\n') {
             ++peek_.pos.row;
