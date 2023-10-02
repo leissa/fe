@@ -8,7 +8,7 @@ static constexpr char32_t EoF = (char32_t)std::istream::traits_type::eof(); ///<
 
 /// Returns the expected number of bytes for an UTF-8 char sequence by inspecting the first byte.
 /// Retuns @c 0 if invalid.
-size_t num_bytes(char8_t c) {
+inline size_t num_bytes(char8_t c) {
     if ((c & char8_t(0b10000000)) == char8_t(0b00000000)) return 1;
     if ((c & char8_t(0b11100000)) == char8_t(0b11000000)) return 2;
     if ((c & char8_t(0b11110000)) == char8_t(0b11100000)) return 3;

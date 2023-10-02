@@ -43,13 +43,31 @@ protected:
         return res;
     }
 
-    /// @return `true` if @p pred holds.
-    /// In this case invoke Lexer::next() and append to Lexer::str_.
-    template<class Pred, bool lower = false>
+    /// What should happend to the accept%ed char?
+    enum class Append {
+        Off,   ///< Do not append accepted char to str_.
+        On,    ///< Append accepted char as is to str_.
+        Lower, ///< Append accepted char via `std::tolower` to str_.
+        Upper, ///< Append accepted char via `std::toupper` to str_.
+    };
+
+    /// @returns `true` if @p pred holds.
+    /// In this case invoke Lexer::next() and append to Lexer::str_, if @p append.
+    template<Append append = Append::On, class Pred>
     bool accept_if(Pred pred) {
-        return pred(ahead()) ? (str_ += lower ? std::tolower(next()) : next(), true) : false;
+        if (pred(ahead())) {
+            auto c = next();
+            if constexpr (append != Append::Off) {
+                if constexpr (append == Append::Lower) c = std::tolower(c);
+                if constexpr (append == Append::Upper) c = std::toupper(c);
+                str_ += c;
+            }
+            return true;
+        }
+        return false;
     }
-    bool accept(char32_t c32) { return ahead() == c32 ? (str_ += next(), true) : false; }
+    template<Append append = Append::On>
+    bool accept(char32_t c) { return accept_if<append>([c](char32_t d) { return c == d; }); }
 
     std::istream& istream_;
     Ring<char32_t, K> ahead_;
