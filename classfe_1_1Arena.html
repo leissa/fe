@@ -141,12 +141,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6353a21652f8b7b32d908b347f7fd2b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a719ce1483561076b9253dd2d8b45f791" id="r_a719ce1483561076b9253dd2d8b45f791"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Arena.html#a719ce1483561076b9253dd2d8b45f791">~Arena</a> ()</td></tr>
 <tr class="separator:a719ce1483561076b9253dd2d8b45f791"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c2a660e9fe75481844428942862031c" id="r_a1c2a660e9fe75481844428942862031c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structfe_1_1Arena_1_1Allocator.html">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Arena.html#a1c2a660e9fe75481844428942862031c">alloc</a> (size_t <a class="el" href="structfe_1_1Arena_1_1Allocator.html">n</a>)</td></tr>
-<tr class="memdesc:a1c2a660e9fe75481844428942862031c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get <code>n</code> bytes of fresh memory.  <br /></td></tr>
-<tr class="separator:a1c2a660e9fe75481844428942862031c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1863a45d5d5387cd4e63a7f12f184efc" id="r_a1863a45d5d5387cd4e63a7f12f184efc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structfe_1_1Arena_1_1Allocator.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Arena.html#a1863a45d5d5387cd4e63a7f12f184efc">dealloc</a> (size_t <a class="el" href="structfe_1_1Arena_1_1Allocator.html">n</a>)</td></tr>
-<tr class="memdesc:a1863a45d5d5387cd4e63a7f12f184efc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to remove <code>n</code> bytes again.  <br /></td></tr>
-<tr class="separator:a1863a45d5d5387cd4e63a7f12f184efc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab31cb1751f8b9376dbf3b259622ad69f" id="r_ab31cb1751f8b9376dbf3b259622ad69f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structfe_1_1Arena_1_1Allocator.html">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Arena.html#ab31cb1751f8b9376dbf3b259622ad69f">allocate</a> (size_t <a class="el" href="structfe_1_1Arena_1_1Allocator.html">n</a>)</td></tr>
+<tr class="memdesc:ab31cb1751f8b9376dbf3b259622ad69f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get <code>n</code> bytes of fresh memory.  <br /></td></tr>
+<tr class="separator:ab31cb1751f8b9376dbf3b259622ad69f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7c20115f9ef9d6355b68fc096e8d0f6" id="r_aa7c20115f9ef9d6355b68fc096e8d0f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structfe_1_1Arena_1_1Allocator.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Arena.html#aa7c20115f9ef9d6355b68fc096e8d0f6">deallocate</a> (size_t <a class="el" href="structfe_1_1Arena_1_1Allocator.html">n</a>)</td></tr>
+<tr class="memdesc:aa7c20115f9ef9d6355b68fc096e8d0f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to remove <code>n</code> bytes again.  <br /></td></tr>
+<tr class="separator:aa7c20115f9ef9d6355b68fc096e8d0f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae49bccd0c183b4a96a3d93f4702ed8e0" id="r_ae49bccd0c183b4a96a3d93f4702ed8e0"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="structfe_1_1Arena_1_1Allocator.html">class</a> T &gt; </td></tr>
 <tr class="memitem:ae49bccd0c183b4a96a3d93f4702ed8e0"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structfe_1_1Arena_1_1Allocator.html">Allocator</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classfe_1_1Arena.html#ae49bccd0c183b4a96a3d93f4702ed8e0">allocator</a> ()</td></tr>
 <tr class="memdesc:ae49bccd0c183b4a96a3d93f4702ed8e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create <a class="el" href="structfe_1_1Arena_1_1Allocator.html" title="An allocator.">Allocator</a> from <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size p.">Arena</a>.  <br /></td></tr>
@@ -161,7 +161,7 @@ Static Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;size_t A = sizeof(size_t), size_t P = Default_Page_Size&gt;<br />
 class fe::Arena&lt; A, P &gt;</div><p>An arena pre-allocates so-called <em>pages</em> of size <code>p</code>. </p>
-<p>You can use <a class="el" href="classfe_1_1Arena.html#a1c2a660e9fe75481844428942862031c" title="Get n bytes of fresh memory.">Arena::alloc</a> to obtain memory from this. When a page runs out of memory, the next page will be (pre-)allocated. You cannot directly release memory obtained via this method. Instead, <em>all</em> memory acquired via this <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size p.">Arena</a> will be released as soon as this <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size p.">Arena</a> will be destroyed. As an exception, you can <a class="el" href="classfe_1_1Arena.html#a1863a45d5d5387cd4e63a7f12f184efc" title="Tries to remove n bytes again.">Arena::dealloc</a> memory that just as been acquired.</p>
+<p>You can use Arena::alloc to obtain memory from this. When a page runs out of memory, the next page will be (pre-)allocated. You cannot directly release memory obtained via this method. Instead, <em>all</em> memory acquired via this <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size p.">Arena</a> will be released as soon as this <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size p.">Arena</a> will be destroyed. As an exception, you can Arena::dealloc memory that just as been acquired.</p>
 <p>Use <a class="el" href="structfe_1_1Arena_1_1Allocator.html" title="An allocator.">Allocator</a> to adopt it in <a href="https://en.cppreference.com/w/cpp/named_req/AllocatorAwareContainer">containers</a>. Construct it via <a class="el" href="classfe_1_1Arena.html#ae49bccd0c183b4a96a3d93f4702ed8e0" title="Create Allocator from Arena.">Arena::allocator</a>. </p><dl class="section note"><dt>Note</dt><dd>The <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size p.">Arena</a> assumes a consistent alignment of <code>A</code> for all allocated objects. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00021">21</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
@@ -253,12 +253,12 @@ template&lt;size_t A = sizeof(size_t), size_t P = Default_Page_Size&gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00054">54</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="arena_8h_source.html#l00057">fe::Arena&lt; A, P &gt;::alloc()</a>, and <a class="el" href="arena_8h_source.html#l00073">fe::Arena&lt; A, P &gt;::dealloc()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="arena_8h_source.html#l00057">fe::Arena&lt; A, P &gt;::allocate()</a>, and <a class="el" href="arena_8h_source.html#l00073">fe::Arena&lt; A, P &gt;::deallocate()</a>.</p>
 
 </div>
 </div>
-<a id="a1c2a660e9fe75481844428942862031c" name="a1c2a660e9fe75481844428942862031c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c2a660e9fe75481844428942862031c">&#9670;&#160;</a></span>alloc()</h2>
+<a id="ab31cb1751f8b9376dbf3b259622ad69f" name="ab31cb1751f8b9376dbf3b259622ad69f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab31cb1751f8b9376dbf3b259622ad69f">&#9670;&#160;</a></span>allocate()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -269,7 +269,7 @@ template&lt;size_t A = sizeof(size_t), size_t P = Default_Page_Size&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structfe_1_1Arena_1_1Allocator.html">void</a> * <a class="el" href="classfe_1_1Arena.html">fe::Arena</a>&lt; <a class="el" href="structfe_1_1Arena_1_1Allocator.html">A</a>, <a class="el" href="structfe_1_1Arena_1_1Allocator.html">P</a> &gt;::alloc </td>
+          <td class="memname"><a class="el" href="structfe_1_1Arena_1_1Allocator.html">void</a> * <a class="el" href="classfe_1_1Arena.html">fe::Arena</a>&lt; <a class="el" href="structfe_1_1Arena_1_1Allocator.html">A</a>, <a class="el" href="structfe_1_1Arena_1_1Allocator.html">P</a> &gt;::allocate </td>
           <td>(</td>
           <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>n</em></td><td>)</td>
@@ -326,8 +326,8 @@ template&lt;<a class="el" href="structfe_1_1Arena_1_1Allocator.html">class</a> T
 
 </div>
 </div>
-<a id="a1863a45d5d5387cd4e63a7f12f184efc" name="a1863a45d5d5387cd4e63a7f12f184efc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1863a45d5d5387cd4e63a7f12f184efc">&#9670;&#160;</a></span>dealloc()</h2>
+<a id="aa7c20115f9ef9d6355b68fc096e8d0f6" name="aa7c20115f9ef9d6355b68fc096e8d0f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7c20115f9ef9d6355b68fc096e8d0f6">&#9670;&#160;</a></span>deallocate()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -338,7 +338,7 @@ template&lt;size_t A = sizeof(size_t), size_t P = Default_Page_Size&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structfe_1_1Arena_1_1Allocator.html">void</a> <a class="el" href="classfe_1_1Arena.html">fe::Arena</a>&lt; <a class="el" href="structfe_1_1Arena_1_1Allocator.html">A</a>, <a class="el" href="structfe_1_1Arena_1_1Allocator.html">P</a> &gt;::dealloc </td>
+          <td class="memname"><a class="el" href="structfe_1_1Arena_1_1Allocator.html">void</a> <a class="el" href="classfe_1_1Arena.html">fe::Arena</a>&lt; <a class="el" href="structfe_1_1Arena_1_1Allocator.html">A</a>, <a class="el" href="structfe_1_1Arena_1_1Allocator.html">P</a> &gt;::deallocate </td>
           <td>(</td>
           <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>n</em></td><td>)</td>
