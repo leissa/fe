@@ -9,8 +9,12 @@
 
 namespace fe {
 
-template<size_t K>
+template<size_t K, class S>
 class Lexer {
+private:
+    S& self() { return *static_cast<S*>(this); }
+    const S& self() const { return *static_cast<const S*>(this); }
+
 public:
     Lexer(std::istream& istream, const std::filesystem::path* path = nullptr)
         : istream_(istream)
@@ -62,7 +66,7 @@ protected:
     template<Append append = Append::On, class Pred>
     bool accept_if(Pred pred) {
         if (pred(ahead())) {
-            auto c = next();
+            auto c = self().next();
             if constexpr (append != Append::Off) {
                 if constexpr (append == Append::Lower) c = std::tolower(c);
                 if constexpr (append == Append::Upper) c = std::toupper(c);
