@@ -85,4 +85,3 @@ TEST_CASE("utf8") {
     fe::utf8::encode(oss, U'𐀮');
     CHECK(oss.str() == "a£λ𐄂𐀮");
 }
-
