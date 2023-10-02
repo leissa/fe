@@ -17,7 +17,7 @@ private:
 
 protected:
     Parser() {
-        for (size_t i = 0; i != K; ++i) ahead_[0] = self()->lexer().lex()();
+        for (size_t i = 0; i != K; ++i) ahead_[i] = self()->lexer().lex()();
     }
 
     class Tracker {

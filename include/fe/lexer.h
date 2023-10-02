@@ -16,7 +16,7 @@ public:
         : istream_(istream)
         , loc_(path, {0, 0})
         , peek_(1, 1) {
-        for (size_t i = 0; i != K; ++i) ahead_[0] = utf8::decode(istream_);
+        for (size_t i = 0; i != K; ++i) ahead_[i] = utf8::decode(istream_);
         accept(utf8::BOM); // eat UTF-8 BOM, if present
     }
 
