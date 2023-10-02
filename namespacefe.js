@@ -22,6 +22,7 @@ var namespacefe =
     [ "RuntimeCast", "classfe_1_1RuntimeCast.html", "classfe_1_1RuntimeCast" ],
     [ "Sym", "classfe_1_1Sym.html", "classfe_1_1Sym" ],
     [ "SymPool", "classfe_1_1SymPool.html", "classfe_1_1SymPool" ],
+    [ "Nodeable", "conceptfe_1_1Nodeable.html", null ],
     [ "SymMap", "namespacefe.html#a88895ca62d5b945c7215f6d70c5b2df9", null ],
     [ "SymSet", "namespacefe.html#a35e6d9ca9c8059e88e615ec663c30095", null ],
     [ "breakpoint", "namespacefe.html#aa67601e05290c4a15e0d5d5f1f12a4a2", null ],
