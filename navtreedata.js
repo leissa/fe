@@ -44,6 +44,7 @@ var NAVTREE =
         [ "Functions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ],
         [ "Typedefs", "functions_type.html", null ],
+        [ "Enumerations", "functions_enum.html", null ],
         [ "Related Symbols", "functions_rela.html", null ]
       ] ]
     ] ],
@@ -60,7 +61,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"structfe_1_1Loc.html#a1bed3b20ab4c477bc6e6726d4ec2d8bb"
+"structfe_1_1Arena_1_1Allocator.html#a8880685165e7faa663e9d6fd11c28f05"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

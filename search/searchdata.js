@@ -7,10 +7,12 @@ var indexSectionsWithContent =
   4: "abdefilnopstu~",
   5: "abcdefilmprs",
   6: "sv",
-  7: "s",
-  8: "a",
-  9: "f",
-  10: "f"
+  7: "a",
+  8: "lou",
+  9: "s",
+  10: "a",
+  11: "f",
+  12: "f"
 };
 
 var indexSectionNames =
@@ -22,10 +24,12 @@ var indexSectionNames =
   4: "functions",
   5: "variables",
   6: "typedefs",
-  7: "related",
-  8: "defines",
-  9: "pages",
-  10: "concepts"
+  7: "enums",
+  8: "enumvalues",
+  9: "related",
+  10: "defines",
+  11: "pages",
+  12: "concepts"
 };
 
 var indexSectionLabels =
@@ -37,9 +41,11 @@ var indexSectionLabels =
   4: "Functions",
   5: "Variables",
   6: "Typedefs",
-  7: "Friends",
-  8: "Macros",
-  9: "Pages",
-  10: "Concepts"
+  7: "Enumerations",
+  8: "Enumerator",
+  9: "Friends",
+  10: "Macros",
+  11: "Pages",
+  12: "Concepts"
 };
 
