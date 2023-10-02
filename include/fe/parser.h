@@ -26,7 +26,7 @@ protected:
             : parser_(parser)
             , pos_(pos) {}
 
-        Loc loc() const { return {parser_.prev().path, pos_, parser_.prev().finis}; }
+        Loc loc() const { return {parser_.prev_.path, pos_, parser_.prev_.finis}; }
 
     private:
         Parser& parser_;
@@ -40,8 +40,8 @@ protected:
 
     /// Invoke Lexer to retrieve next Token.
     Tok lex() {
-        auto result     = ahead();
-        self().prev()   = result.loc();
+        auto result    = ahead();
+        self().prev_   = result.loc();
         ahead_.put(self().lexer().lex());
         return result;
     }
