@@ -3,6 +3,7 @@
 #include <fe/arena.h>
 #include <fe/ring.h>
 #include <fe/sym.h>
+#include <fe/utf8.h>
 
 #include <doctest/doctest.h>
 
@@ -74,3 +75,14 @@ TEST_CASE("Sym") {
     CHECK(bc > 'a');
     CHECK(bc > 'b');
 }
+
+TEST_CASE("utf8") {
+    std::ostringstream oss;
+    fe::utf8::encode(oss, U'a');
+    fe::utf8::encode(oss, U'£');
+    fe::utf8::encode(oss, U'λ');
+    fe::utf8::encode(oss, U'𐄂');
+    fe::utf8::encode(oss, U'𐀮');
+    CHECK(oss.str() == "a£λ𐄂𐀮");
+}
+
