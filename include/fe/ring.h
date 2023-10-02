@@ -11,10 +11,10 @@ namespace fe {
 template<class T, size_t N>
 class Ring {
 public:
-    Ring& put(const T& t) {
-        array_[first_] = t;
+    T& put(const T& t) {
+        auto& res = array_[first_] = t;
         first_ = (first_ + 1) % N;
-        return *this;
+        return res;
     }
 
     T& front() { return array_[first_]; }
@@ -31,7 +31,7 @@ private:
 template<class T>
 class Ring<T, 1> {
 public:
-    Ring& put(const T& t) { t_ = t; return *this; }
+    T& put(const T& t) { return t_ = t; }
 
     T& front() { return t_; }
     const T& front() const { return t_; }
@@ -46,10 +46,9 @@ private:
 template<class T>
 class Ring<T, 2> {
 public:
-    Ring& put(const T& t) {
+    T& put(const T& t) {
         array_[0] = array_[1];
-        array_[1] = t;
-        return *this;
+        return array_[1] = t;
     }
 
     T& front() { return array_[0]; }
