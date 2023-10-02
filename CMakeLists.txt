@@ -62,7 +62,7 @@ configure_package_config_file(
 )
 install(
     TARGETS fe
-    EXPORT fe_exports
+    EXPORT fe-targets
     FILE_SET headers
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
@@ -83,13 +83,12 @@ install(
         "${CMAKE_INSTALL_INCLUDEDIR}/fe"
 )
 install(
-    EXPORT fe_exports
+    EXPORT fe-targets
     DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/fe"
     NAMESPACE fe::
 )
 install(
-    EXPORT fe_exports
-    FILE "fe-targets.cmake"
+    EXPORT fe-targets
     NAMESPACE fe::
     DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/fe"
 )
