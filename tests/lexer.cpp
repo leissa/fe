@@ -173,8 +173,7 @@ public:
 
     Tok lex() {
         while (true) {
-            loc_.begin = peek_;
-            str_.clear();
+            this->begin();
 
             if (accept(0)) {
                 std::cerr << "invalid UTF-8 sequence" << std::endl;
