@@ -5,6 +5,10 @@ project(fe VERSION 0.1)
 include(CMakePackageConfigHelpers)
 include(GNUInstallDirs)
 
+if(MSVC)
+    add_compile_options(/utf-8 /wd4146 /wd4245)
+endif()
+
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Choose the type of build." FORCE)
     set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
