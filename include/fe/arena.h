@@ -35,7 +35,7 @@ public:
 
         [[nodiscard]] T* allocate(size_t n) {
             static_assert(alignof(T) <= A, "alignment of Arena too small");
-            return (T*)arena.alloc(n * sizeof(T));
+            return (T*)arena.allocate(n * sizeof(T));
         }
 
         void deallocate(T*, size_t) noexcept {}
@@ -54,7 +54,7 @@ public:
     static constexpr size_t align(size_t n) { return (n + (A - 1)) & ~(A - 1); } ///< Align @p n to @p A.
 
     /// Get @p n bytes of fresh memory.
-    [[nodiscard]] void* alloc(size_t n) {
+    [[nodiscard]] void* allocate(size_t n) {
         n = align(n);
 
         if (index_ + n > P) {
@@ -70,7 +70,7 @@ public:
 
     /// Tries to remove @p n bytes again.
     /// If this crosses a page boundary, nothing happens.
-    void dealloc(size_t n) {
+    void deallocate(size_t n) {
         n = align(n);
         if (ptrdiff_t(index_ - n) > 0) index_ -= n; // don't care otherwise
         assert(index_ % A == 0);
