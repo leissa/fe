@@ -9,6 +9,7 @@ using fe::Loc;
 using fe::Pos;
 using fe::Sym;
 
+namespace fe {
 std::ostream& operator<<(std::ostream& os, const Pos pos) {
     if (pos.row) {
         if (pos.col) return os << pos.row << ':' << pos.col;
@@ -29,6 +30,7 @@ std::ostream& operator<<(std::ostream& os, const Loc loc) {
         return os;
     }
     return os << "<unknown location>";
+}
 }
 
 #define LET_KEY(m)        \
