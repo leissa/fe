@@ -9,6 +9,8 @@
 
 namespace fe {
 
+/// The blueprint for a lexer with a buffer of @p K tokens to peek into the future (Lexer::ahead).
+/// You can "overide" Lexer::next via CRTP (@p S is the child).
 template<size_t K, class S>
 class Lexer {
 private:

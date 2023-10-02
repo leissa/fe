@@ -155,19 +155,19 @@ private:
 };
 
 template<size_t K = 1>
-class Lexer : public fe::Lexer<K> {
+class Lexer : public fe::Lexer<K, Lexer<K>> {
 public:
-    using fe::Lexer<K>::ahead;
-    using fe::Lexer<K>::accept;
-    using fe::Lexer<K>::accept_if;
-    using fe::Lexer<K>::next;
+    using fe::Lexer<K, Lexer<K>>::ahead;
+    using fe::Lexer<K, Lexer<K>>::accept;
+    using fe::Lexer<K, Lexer<K>>::accept_if;
+    using fe::Lexer<K, Lexer<K>>::next;
 
-    using fe::Lexer<K>::loc_;
-    using fe::Lexer<K>::peek_;
-    using fe::Lexer<K>::str_;
+    using fe::Lexer<K, Lexer<K>>::loc_;
+    using fe::Lexer<K, Lexer<K>>::peek_;
+    using fe::Lexer<K, Lexer<K>>::str_;
 
     Lexer(Driver& driver, std::istream& istream, const std::filesystem::path* path = nullptr)
-        : fe::Lexer<K>(istream, path)
+        : fe::Lexer<K, Lexer<K>>(istream, path)
         , driver_(driver)
     {}
 
