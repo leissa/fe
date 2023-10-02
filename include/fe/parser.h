@@ -40,8 +40,8 @@ protected:
 
     /// Invoke Lexer to retrieve next Token.
     Tok lex() {
-        auto result    = ahead();
-        self().prev_   = result.loc();
+        auto result = ahead();
+        prev_       = result.loc();
         ahead_.put(self().lexer().lex());
         return result;
     }
@@ -67,6 +67,7 @@ protected:
     }
 
     Ring<Tok, K> ahead_;
+    Loc prev_;
 };
 
 } // namespace fe
