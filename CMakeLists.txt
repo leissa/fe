@@ -88,11 +88,6 @@ install(
     NAMESPACE fe::
 )
 install(
-    EXPORT fe-targets
-    NAMESPACE fe::
-    DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/fe"
-)
-install(
     DIRECTORY include/fe
     DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
     FILES_MATCHING PATTERN "*.h"
