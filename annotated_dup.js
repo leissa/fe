@@ -2,6 +2,8 @@ var annotated_dup =
 [
     [ "fe", "namespacefe.html", [
       [ "Arena", "classfe_1_1Arena.html", "classfe_1_1Arena" ],
+      [ "basic_ostream_formatter", "structfe_1_1basic__ostream__formatter.html", "structfe_1_1basic__ostream__formatter" ],
+      [ "Driver", "structfe_1_1Driver.html", "structfe_1_1Driver" ],
       [ "Lexer", "classfe_1_1Lexer.html", "classfe_1_1Lexer" ],
       [ "Loc", "structfe_1_1Loc.html", "structfe_1_1Loc" ],
       [ "Parser", "classfe_1_1Parser.html", "classfe_1_1Parser" ],
@@ -12,5 +14,9 @@ var annotated_dup =
       [ "RuntimeCast", "classfe_1_1RuntimeCast.html", "classfe_1_1RuntimeCast" ],
       [ "Sym", "classfe_1_1Sym.html", "classfe_1_1Sym" ],
       [ "SymPool", "classfe_1_1SymPool.html", "classfe_1_1SymPool" ]
+    ] ],
+    [ "std", null, [
+      [ "formatter< fe::Loc >", "structstd_1_1formatter_3_01fe_1_1Loc_01_4.html", null ],
+      [ "formatter< fe::Pos >", "structstd_1_1formatter_3_01fe_1_1Pos_01_4.html", null ]
     ] ]
 ];

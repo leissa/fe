@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['sym_0',['Sym',['../classfe_1_1Sym.html',1,'fe']]],
-  ['sympool_1',['SymPool',['../classfe_1_1SymPool.html',1,'fe']]]
+  ['lexer_0',['Lexer',['../classfe_1_1Lexer.html',1,'fe']]],
+  ['loc_1',['Loc',['../structfe_1_1Loc.html',1,'fe']]]
 ];

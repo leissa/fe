@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['parser_0',['Parser',['../classfe_1_1Parser.html',1,'fe']]],
-  ['pos_1',['Pos',['../structfe_1_1Pos.html',1,'fe']]]
+  ['driver_0',['Driver',['../structfe_1_1Driver.html',1,'fe']]]
 ];

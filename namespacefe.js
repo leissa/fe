@@ -12,6 +12,8 @@ var namespacefe =
       [ "Max", "namespacefe_1_1utf8.html#a753d178a1e977540ac8cd44fe4390a58", null ]
     ] ],
     [ "Arena", "classfe_1_1Arena.html", "classfe_1_1Arena" ],
+    [ "basic_ostream_formatter", "structfe_1_1basic__ostream__formatter.html", "structfe_1_1basic__ostream__formatter" ],
+    [ "Driver", "structfe_1_1Driver.html", "structfe_1_1Driver" ],
     [ "Lexer", "classfe_1_1Lexer.html", "classfe_1_1Lexer" ],
     [ "Loc", "structfe_1_1Loc.html", "structfe_1_1Loc" ],
     [ "Parser", "classfe_1_1Parser.html", "classfe_1_1Parser" ],
@@ -23,6 +25,7 @@ var namespacefe =
     [ "Sym", "classfe_1_1Sym.html", "classfe_1_1Sym" ],
     [ "SymPool", "classfe_1_1SymPool.html", "classfe_1_1SymPool" ],
     [ "Nodeable", "conceptfe_1_1Nodeable.html", null ],
+    [ "ostream_formatter", "namespacefe.html#aaac75883cf62e856e6c10ea01b4febff", null ],
     [ "SymMap", "namespacefe.html#a88895ca62d5b945c7215f6d70c5b2df9", null ],
     [ "SymSet", "namespacefe.html#a35e6d9ca9c8059e88e615ec663c30095", null ],
     [ "breakpoint", "namespacefe.html#aa67601e05290c4a15e0d5d5f1f12a4a2", null ],
