@@ -21,6 +21,15 @@ protected:
         prev_ = Loc(path, {1, 1});
     }
 
+    /// @name Track Loc%ation in Source File
+    ///@{
+    /// Use like this:
+    /// ```
+    /// auto track  = tracker();
+    /// auto foo    = parse_foo();
+    /// auto bar    = parse_bar();
+    /// auto foobar = new FooBar(track, foo, bar);
+    /// ```
     class Tracker {
     public:
         Tracker(Loc& prev, Pos pos)
@@ -37,6 +46,7 @@ protected:
 
     /// Factory method to build a Parser::Tracker.
     Tracker tracker() { return {prev_, ahead().loc().begin}; }
+    ///@}
 
     Tok ahead(size_t i = 0) const { return ahead_[i]; }
 

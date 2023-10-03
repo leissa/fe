@@ -29,7 +29,8 @@ struct Pos {
     friend std::ostream& operator<<(std::ostream& os, const Pos pos);
 };
 
-/// Loc%ation in a File; pa
+/// Loc%ation in a File.
+/// It's only two machine words on a 64 bit arch, so pass around as value.
 /// @warning Loc::path is only a pointer and it is your job to guarantee
 /// that the underlying `std::filesystem::path` outlives this Loc%ation.
 struct Loc {
