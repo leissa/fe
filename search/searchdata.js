@@ -9,7 +9,7 @@ var indexSectionsWithContent =
   6: "sv",
   7: "a",
   8: "lou",
-  9: "s",
+  9: "os",
   10: "a",
   11: "f",
   12: "f"

@@ -134,12 +134,13 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The blueprint for a lexer with a buffer of <code>K</code> tokens to peek into the future (<a class="el" href="classfe_1_1Lexer.html#a574d6f4a890b04a422faa6a549a48687">Lexer::ahead</a>).  <a href="classfe_1_1Lexer.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfe_1_1Loc.html">Loc</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structfe_1_1Loc.html" title="Location in a File.">Loc</a>ation in a File.  <a href="structfe_1_1Loc.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structfe_1_1Loc.html" title="Location in a File; pa.">Loc</a>ation in a File; pa.  <a href="structfe_1_1Loc.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Parser.html">Parser</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The blueprint for a <a href="https://en.wikipedia.org/wiki/Recursive_descent_parser">recursive descent</a>/ <a href="https://en.wikipedia.org/wiki/Recursive_ascent_parser">ascent parser</a> using a <code>K</code> lookahead of <code>Tok</code>ens.  <a href="classfe_1_1Parser.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfe_1_1Pos.html">Pos</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structfe_1_1Pos.html" title="Position in a source file; pass around as value.">Pos</a>ition in a source file; pass around as value.  <a href="structfe_1_1Pos.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Ring.html">Ring</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A ring buffer with <code>N</code> elements.  <a href="classfe_1_1Ring.html#details">More...</a><br /></td></tr>
@@ -183,6 +184,10 @@ Functions</h2></td></tr>
 <tr class="memitem:aa67601e05290c4a15e0d5d5f1f12a4a2" id="r_aa67601e05290c4a15e0d5d5f1f12a4a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe.html#aa67601e05290c4a15e0d5d5f1f12a4a2">breakpoint</a> ()</td></tr>
 <tr class="memdesc:aa67601e05290c4a15e0d5d5f1f12a4a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raise breaokpoint in debugger.  <br /></td></tr>
 <tr class="separator:aa67601e05290c4a15e0d5d5f1f12a4a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabb290ab41b02e1c1dab91a642f6ad3c" id="r_aabb290ab41b02e1c1dab91a642f6ad3c"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe.html#aabb290ab41b02e1c1dab91a642f6ad3c">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="structfe_1_1Pos.html">Pos</a> pos)</td></tr>
+<tr class="separator:aabb290ab41b02e1c1dab91a642f6ad3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9f3a1b6161c3e8406c9273a1e8c20ac" id="r_ae9f3a1b6161c3e8406c9273a1e8c20ac"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe.html#ae9f3a1b6161c3e8406c9273a1e8c20ac">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="structfe_1_1Loc.html">Loc</a> loc)</td></tr>
+<tr class="separator:ae9f3a1b6161c3e8406c9273a1e8c20ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">std::ostream operator</div></td></tr>
 <tr class="memitem:a4a220c29499814031b7ea364f0698b3d" id="r_a4a220c29499814031b7ea364f0698b3d"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe.html#a4a220c29499814031b7ea364f0698b3d">operator&lt;&lt;</a> (std::ostream &amp;o, const <a class="el" href="classfe_1_1Sym.html">Sym</a> sym)</td></tr>
 <tr class="separator:a4a220c29499814031b7ea364f0698b3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -259,7 +264,7 @@ template&lt;class V &gt; </div>
 </div>
 </div>
 <a id="a4a220c29499814031b7ea364f0698b3d" name="a4a220c29499814031b7ea364f0698b3d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4a220c29499814031b7ea364f0698b3d">&#9670;&#160;</a></span>operator&lt;&lt;()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a220c29499814031b7ea364f0698b3d">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -293,6 +298,66 @@ template&lt;class V &gt; </div>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00132">132</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+
+</div>
+</div>
+<a id="ae9f3a1b6161c3e8406c9273a1e8c20ac" name="ae9f3a1b6161c3e8406c9273a1e8c20ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9f3a1b6161c3e8406c9273a1e8c20ac">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; fe::operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structfe_1_1Loc.html">Loc</a>&#160;</td>
+          <td class="paramname"><em>loc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="loc_8cpp_8h_source.html#l00013">13</a> of file <a class="el" href="loc_8cpp_8h_source.html">loc.cpp.h</a>.</p>
+
+</div>
+</div>
+<a id="aabb290ab41b02e1c1dab91a642f6ad3c" name="aabb290ab41b02e1c1dab91a642f6ad3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabb290ab41b02e1c1dab91a642f6ad3c">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; fe::operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structfe_1_1Pos.html">Pos</a>&#160;</td>
+          <td class="paramname"><em>pos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="loc_8cpp_8h_source.html#l00005">5</a> of file <a class="el" href="loc_8cpp_8h_source.html">loc.cpp.h</a>.</p>
 
 </div>
 </div>

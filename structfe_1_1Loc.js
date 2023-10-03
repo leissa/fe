@@ -7,9 +7,11 @@ var structfe_1_1Loc =
     [ "Loc", "structfe_1_1Loc.html#a982a519842b0aba797a40523b74f7c7d", null ],
     [ "anew_begin", "structfe_1_1Loc.html#ab2672068ce5be21d43df1b88a1b0e750", null ],
     [ "anew_finis", "structfe_1_1Loc.html#af86329b830eb174032c7295254ec031b", null ],
+    [ "dump", "structfe_1_1Loc.html#a0531b0fe2bb2304752a1d58b80647365", null ],
     [ "operator bool", "structfe_1_1Loc.html#ac0c774b41ba6bac0b717d382176856d1", null ],
     [ "operator+", "structfe_1_1Loc.html#a54817ad7ff53cb3faa8f616e8248c91d", null ],
     [ "operator==", "structfe_1_1Loc.html#a5cdf2ba1dea8fe8648d4a54a02d0f7a3", null ],
+    [ "operator<<", "structfe_1_1Loc.html#a4b2fa104f6c10d07ca5c2496acf7f24c", null ],
     [ "begin", "structfe_1_1Loc.html#a7cda6af5faf94e9a9da31b95ba7f60c2", null ],
     [ "finis", "structfe_1_1Loc.html#a19c742b2f7de9b42ce45d92d3210a3ea", null ],
     [ "path", "structfe_1_1Loc.html#ad0df575a991aa15cb7b62ee3a8280c26", null ]

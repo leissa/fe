@@ -149,10 +149,10 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a549ba2f115c6ed413ee9afe5e5b69d6a" id="r_a549ba2f115c6ed413ee9afe5e5b69d6a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classfe_1_1Ring.html">Ring</a>&lt; char32_t, K &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Lexer.html#a549ba2f115c6ed413ee9afe5e5b69d6a">ahead_</a></td></tr>
 <tr class="separator:a549ba2f115c6ed413ee9afe5e5b69d6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a142d42503cc2dbeb8c496b66d47e75c7" id="r_a142d42503cc2dbeb8c496b66d47e75c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structfe_1_1Loc.html">Loc</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Lexer.html#a142d42503cc2dbeb8c496b66d47e75c7">loc_</a></td></tr>
-<tr class="memdesc:a142d42503cc2dbeb8c496b66d47e75c7"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structfe_1_1Loc.html" title="Location in a File.">Loc</a>ation of the token we are currently constructing within <a class="el" href="classfe_1_1Lexer.html#a8038ab296487b12c19dc2d7967e6b5c7">Lexer::str_</a>,.  <br /></td></tr>
+<tr class="memdesc:a142d42503cc2dbeb8c496b66d47e75c7"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structfe_1_1Loc.html" title="Location in a File; pa.">Loc</a>ation of the token we are currently constructing within <a class="el" href="classfe_1_1Lexer.html#a8038ab296487b12c19dc2d7967e6b5c7">Lexer::str_</a>,.  <br /></td></tr>
 <tr class="separator:a142d42503cc2dbeb8c496b66d47e75c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e8ce185f6095364ff336425c8f99e28" id="r_a5e8ce185f6095364ff336425c8f99e28"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structfe_1_1Pos.html">Pos</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Lexer.html#a5e8ce185f6095364ff336425c8f99e28">peek_</a></td></tr>
-<tr class="memdesc:a5e8ce185f6095364ff336425c8f99e28"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structfe_1_1Pos.html">Pos</a>ition of ahead_::first;.  <br /></td></tr>
+<tr class="memdesc:a5e8ce185f6095364ff336425c8f99e28"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structfe_1_1Pos.html" title="Position in a source file; pass around as value.">Pos</a>ition of ahead_::first;.  <br /></td></tr>
 <tr class="separator:a5e8ce185f6095364ff336425c8f99e28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8038ab296487b12c19dc2d7967e6b5c7" id="r_a8038ab296487b12c19dc2d7967e6b5c7"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Lexer.html#a8038ab296487b12c19dc2d7967e6b5c7">str_</a></td></tr>
 <tr class="separator:a8038ab296487b12c19dc2d7967e6b5c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -394,7 +394,7 @@ template&lt;size_t K, class S &gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00034">34</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
 
-<p class="reference">References <a class="el" href="loc_8h_source.html#l00051">fe::Loc::begin</a>, <a class="el" href="lexer_8h_source.html#l00090">fe::Lexer&lt; K, S &gt;::loc_</a>, <a class="el" href="lexer_8h_source.html#l00091">fe::Lexer&lt; K, S &gt;::peek_</a>, and <a class="el" href="lexer_8h_source.html#l00092">fe::Lexer&lt; K, S &gt;::str_</a>.</p>
+<p class="reference">References <a class="el" href="loc_8h_source.html#l00057">fe::Loc::begin</a>, <a class="el" href="lexer_8h_source.html#l00090">fe::Lexer&lt; K, S &gt;::loc_</a>, <a class="el" href="lexer_8h_source.html#l00091">fe::Lexer&lt; K, S &gt;::peek_</a>, and <a class="el" href="lexer_8h_source.html#l00092">fe::Lexer&lt; K, S &gt;::str_</a>.</p>
 
 </div>
 </div>
@@ -459,7 +459,7 @@ template&lt;size_t K, class S &gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00041">41</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
 
-<p class="reference">References <a class="el" href="lexer_8h_source.html#l00031">fe::Lexer&lt; K, S &gt;::ahead()</a>, <a class="el" href="lexer_8h_source.html#l00089">fe::Lexer&lt; K, S &gt;::ahead_</a>, <a class="el" href="loc_8h_source.html#l00023">fe::Pos::col</a>, <a class="el" href="utf8_8h_source.html#l00031">fe::utf8::decode()</a>, <a class="el" href="utf8_8h_source.html#l00007">fe::utf8::EoF</a>, <a class="el" href="loc_8h_source.html#l00052">fe::Loc::finis</a>, <a class="el" href="lexer_8h_source.html#l00088">fe::Lexer&lt; K, S &gt;::istream_</a>, <a class="el" href="lexer_8h_source.html#l00090">fe::Lexer&lt; K, S &gt;::loc_</a>, <a class="el" href="lexer_8h_source.html#l00091">fe::Lexer&lt; K, S &gt;::peek_</a>, <a class="el" href="ring_8h_source.html#l00037">fe::Ring&lt; T, N &gt;::put()</a>, and <a class="el" href="loc_8h_source.html#l00022">fe::Pos::row</a>.</p>
+<p class="reference">References <a class="el" href="lexer_8h_source.html#l00031">fe::Lexer&lt; K, S &gt;::ahead()</a>, <a class="el" href="lexer_8h_source.html#l00089">fe::Lexer&lt; K, S &gt;::ahead_</a>, <a class="el" href="loc_8h_source.html#l00026">fe::Pos::col</a>, <a class="el" href="utf8_8h_source.html#l00031">fe::utf8::decode()</a>, <a class="el" href="utf8_8h_source.html#l00007">fe::utf8::EoF</a>, <a class="el" href="loc_8h_source.html#l00058">fe::Loc::finis</a>, <a class="el" href="lexer_8h_source.html#l00088">fe::Lexer&lt; K, S &gt;::istream_</a>, <a class="el" href="lexer_8h_source.html#l00090">fe::Lexer&lt; K, S &gt;::loc_</a>, <a class="el" href="lexer_8h_source.html#l00091">fe::Lexer&lt; K, S &gt;::peek_</a>, <a class="el" href="ring_8h_source.html#l00037">fe::Ring&lt; T, N &gt;::put()</a>, and <a class="el" href="loc_8h_source.html#l00025">fe::Pos::row</a>.</p>
 
 </div>
 </div>
@@ -542,7 +542,7 @@ template&lt;size_t K, class S &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="structfe_1_1Loc.html" title="Location in a File.">Loc</a>ation of the token we are currently constructing within <a class="el" href="classfe_1_1Lexer.html#a8038ab296487b12c19dc2d7967e6b5c7">Lexer::str_</a>,. </p>
+<p><a class="el" href="structfe_1_1Loc.html" title="Location in a File; pa.">Loc</a>ation of the token we are currently constructing within <a class="el" href="classfe_1_1Lexer.html#a8038ab296487b12c19dc2d7967e6b5c7">Lexer::str_</a>,. </p>
 
 <p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00090">90</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
 
@@ -572,7 +572,7 @@ template&lt;size_t K, class S &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="structfe_1_1Pos.html">Pos</a>ition of ahead_::first;. </p>
+<p><a class="el" href="structfe_1_1Pos.html" title="Position in a source file; pass around as value.">Pos</a>ition of ahead_::first;. </p>
 
 <p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00091">91</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
 
