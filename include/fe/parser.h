@@ -15,11 +15,14 @@ private:
     const S& self() const { return *static_cast<const S*>(this); }
 
 protected:
+    /// @name Construction
+    ///@{
     void init(const std::filesystem::path* path) {
         ahead_.reset();
         for (size_t i = 0; i != K; ++i) ahead_[i] = self().lexer().lex();
         prev_ = Loc(path, {1, 1});
     }
+    ///@}
 
     /// @name Track Loc%ation in Source File
     ///@{
@@ -48,6 +51,10 @@ protected:
     Tracker tracker() { return {prev_, ahead().loc().begin}; }
     ///@}
 
+    /// @name Shift Token
+    ///@{
+
+    /// Get lookahead.
     Tok ahead(size_t i = 0) const { return ahead_[i]; }
 
     /// Invoke Lexer to retrieve next Token.
@@ -58,7 +65,7 @@ protected:
         return result;
     }
 
-    /// If Parser::ahead() is a @p tag, Parser::lex(), and return `true`.
+    /// If Parser::ahead() is a @p tag, consume and return it, otherwise yield `std::nullopt`.
     std::optional<Tok> accept(Tag tag) {
         if (tag != ahead().tag()) return {};
         return lex();
@@ -77,6 +84,7 @@ protected:
         assert(tag == ahead().tag() && "internal parser error");
         return lex();
     }
+    ///@}
 
     Ring<Tok, K> ahead_;
     Loc prev_;
