@@ -2,6 +2,8 @@
 
 #include <cstddef>
 #include <array>
+#include <algorithm>
+#include <initializer_list>
 
 #include <fe/assert.h>
 
@@ -11,6 +13,12 @@ namespace fe {
 template<class T, size_t N>
 class Ring {
 public:
+    Ring(std::initializer_list<T> list) { std::ranges::copy(list, array_); }
+    Ring()                       = default;
+    Ring(const Ring&)            = default;
+    Ring(Ring&&)                 = default;
+    Ring& operator=(const Ring&) = default;
+
     T& put(const T& t) {
         auto& res = array_[first_] = t;
         first_ = (first_ + 1) % N;
@@ -32,6 +40,13 @@ private:
 template<class T>
 class Ring<T, 1> {
 public:
+    Ring(std::initializer_list<T> list)
+        : t_(*list.begin()) {}
+    Ring()                       = default;
+    Ring(const Ring&)            = default;
+    Ring(Ring&&)                 = default;
+    Ring& operator=(const Ring&) = default;
+
     T& put(const T& t) { return t_ = t; }
 
     T& front() { return t_; }
@@ -48,6 +63,12 @@ private:
 template<class T>
 class Ring<T, 2> {
 public:
+    Ring(std::initializer_list<T> list) { std::ranges::copy(list, array_); }
+    Ring()                       = default;
+    Ring(const Ring&)            = default;
+    Ring(Ring&&)                 = default;
+    Ring& operator=(const Ring&) = default;
+
     T& put(const T& t) {
         array_[0] = array_[1];
         return array_[1] = t;
