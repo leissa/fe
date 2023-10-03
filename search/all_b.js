@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['parser_0',['parser',['../classfe_1_1Parser.html',1,'fe::Parser&lt; Tok, Tag, K, S &gt;'],['../classfe_1_1Parser.html#a0af3370832e49e1f268457ca80b695fa',1,'fe::Parser::Parser()']]],
+  ['parser_0',['Parser',['../classfe_1_1Parser.html',1,'fe']]],
   ['parser_2eh_1',['parser.h',['../parser_8h.html',1,'']]],
   ['path_2',['path',['../structfe_1_1Loc.html#ad0df575a991aa15cb7b62ee3a8280c26',1,'fe::Loc']]],
   ['peek_5f_3',['peek_',['../classfe_1_1Lexer.html#a5e8ce185f6095364ff336425c8f99e28',1,'fe::Lexer']]],

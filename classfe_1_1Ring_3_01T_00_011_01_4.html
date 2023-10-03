@@ -111,19 +111,19 @@ $(document).ready(function(){initNavTree('classfe_1_1Ring_3_01T_00_011_01_4.html
 
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classfe_1_1Ring_3_01T_00_011_01_4-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">fe::Ring&lt; T, 1 &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Specialization if <code>N == 1</code>.  
+<p>Specialization if <code>N == 1</code> - doesn't need a ring.  
  <a href="classfe_1_1Ring_3_01T_00_011_01_4.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="ring_8h_source.html">fe/ring.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Construction</div></td></tr>
 <tr class="memitem:ad94b650f9f2f5492360c9138aa38e617" id="r_ad94b650f9f2f5492360c9138aa38e617"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Ring_3_01T_00_011_01_4.html#ad94b650f9f2f5492360c9138aa38e617">Ring</a> (std::initializer_list&lt; T &gt; list)</td></tr>
 <tr class="separator:ad94b650f9f2f5492360c9138aa38e617"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1a657a25a9b0d0ee50b4d407e2ae403" id="r_ac1a657a25a9b0d0ee50b4d407e2ae403"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Ring_3_01T_00_011_01_4.html#ac1a657a25a9b0d0ee50b4d407e2ae403">Ring</a> ()=default</td></tr>
@@ -134,8 +134,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a0a91d3bd476871b0c87f6144131b6818"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55d8d2f1876e76bfd1773f2eb240c61c" id="r_a55d8d2f1876e76bfd1773f2eb240c61c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classfe_1_1Ring.html">Ring</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Ring_3_01T_00_011_01_4.html#a55d8d2f1876e76bfd1773f2eb240c61c">operator=</a> (const <a class="el" href="classfe_1_1Ring.html">Ring</a> &amp;)=default</td></tr>
 <tr class="separator:a55d8d2f1876e76bfd1773f2eb240c61c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a329f6481953faa2423fdb4b57bf974" id="r_a1a329f6481953faa2423fdb4b57bf974"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Ring_3_01T_00_011_01_4.html#a1a329f6481953faa2423fdb4b57bf974">put</a> (const T &amp;t)</td></tr>
-<tr class="separator:a1a329f6481953faa2423fdb4b57bf974"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Access</div></td></tr>
 <tr class="memitem:a8522e0f2e73e09434da36267fb694002" id="r_a8522e0f2e73e09434da36267fb694002"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Ring_3_01T_00_011_01_4.html#a8522e0f2e73e09434da36267fb694002">front</a> ()</td></tr>
 <tr class="separator:a8522e0f2e73e09434da36267fb694002"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1576a3573f5b1e34e217f45beea6a771" id="r_a1576a3573f5b1e34e217f45beea6a771"><td class="memItemLeft" align="right" valign="top">const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Ring_3_01T_00_011_01_4.html#a1576a3573f5b1e34e217f45beea6a771">front</a> () const</td></tr>
@@ -144,14 +143,17 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a696080bbccf928b97da47b47e4b64397"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63a6e234da6bcb4f6ae7a7f1816758e6" id="r_a63a6e234da6bcb4f6ae7a7f1816758e6"><td class="memItemLeft" align="right" valign="top">const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Ring_3_01T_00_011_01_4.html#a63a6e234da6bcb4f6ae7a7f1816758e6">operator[]</a> (size_t i) const</td></tr>
 <tr class="separator:a63a6e234da6bcb4f6ae7a7f1816758e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Modifiers</div></td></tr>
 <tr class="memitem:afa85d5e5922d3b59c79d7ebc33f8bc5b" id="r_afa85d5e5922d3b59c79d7ebc33f8bc5b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Ring_3_01T_00_011_01_4.html#afa85d5e5922d3b59c79d7ebc33f8bc5b">reset</a> ()</td></tr>
 <tr class="separator:afa85d5e5922d3b59c79d7ebc33f8bc5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a329f6481953faa2423fdb4b57bf974" id="r_a1a329f6481953faa2423fdb4b57bf974"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Ring_3_01T_00_011_01_4.html#a1a329f6481953faa2423fdb4b57bf974">put</a> (const T &amp;t)</td></tr>
+<tr class="separator:a1a329f6481953faa2423fdb4b57bf974"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class T&gt;<br />
-class fe::Ring&lt; T, 1 &gt;</div><p>Specialization if <code>N == 1</code>. </p>
+class fe::Ring&lt; T, 1 &gt;</div><p>Specialization if <code>N == 1</code> - doesn't need a ring. </p>
 
-<p class="definition">Definition at line <a class="el" href="ring_8h_source.html#l00041">41</a> of file <a class="el" href="ring_8h_source.html">ring.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ring_8h_source.html#l00051">51</a> of file <a class="el" href="ring_8h_source.html">ring.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad94b650f9f2f5492360c9138aa38e617" name="ad94b650f9f2f5492360c9138aa38e617"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad94b650f9f2f5492360c9138aa38e617">&#9670;&#160;</a></span>Ring() <span class="overload">[1/4]</span></h2>
@@ -179,7 +181,7 @@ template&lt;class T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ring_8h_source.html#l00043">43</a> of file <a class="el" href="ring_8h_source.html">ring.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ring_8h_source.html#l00055">55</a> of file <a class="el" href="ring_8h_source.html">ring.h</a>.</p>
 
 </div>
 </div>
@@ -292,7 +294,7 @@ template&lt;class T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ring_8h_source.html#l00052">52</a> of file <a class="el" href="ring_8h_source.html">ring.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ring_8h_source.html#l00065">65</a> of file <a class="el" href="ring_8h_source.html">ring.h</a>.</p>
 
 </div>
 </div>
@@ -321,7 +323,7 @@ template&lt;class T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ring_8h_source.html#l00053">53</a> of file <a class="el" href="ring_8h_source.html">ring.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ring_8h_source.html#l00066">66</a> of file <a class="el" href="ring_8h_source.html">ring.h</a>.</p>
 
 </div>
 </div>
@@ -379,7 +381,7 @@ template&lt;class T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ring_8h_source.html#l00054">54</a> of file <a class="el" href="ring_8h_source.html">ring.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ring_8h_source.html#l00067">67</a> of file <a class="el" href="ring_8h_source.html">ring.h</a>.</p>
 
 <p class="reference">References <a class="el" href="assert_8h_source.html#l00035">assert_unused</a>.</p>
 
@@ -411,7 +413,7 @@ template&lt;class T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ring_8h_source.html#l00055">55</a> of file <a class="el" href="ring_8h_source.html">ring.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ring_8h_source.html#l00068">68</a> of file <a class="el" href="ring_8h_source.html">ring.h</a>.</p>
 
 <p class="reference">References <a class="el" href="assert_8h_source.html#l00035">assert_unused</a>.</p>
 
@@ -443,7 +445,7 @@ template&lt;class T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ring_8h_source.html#l00050">50</a> of file <a class="el" href="ring_8h_source.html">ring.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ring_8h_source.html#l00074">74</a> of file <a class="el" href="ring_8h_source.html">ring.h</a>.</p>
 
 </div>
 </div>
@@ -472,7 +474,7 @@ template&lt;class T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ring_8h_source.html#l00056">56</a> of file <a class="el" href="ring_8h_source.html">ring.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ring_8h_source.html#l00073">73</a> of file <a class="el" href="ring_8h_source.html">ring.h</a>.</p>
 
 </div>
 </div>
