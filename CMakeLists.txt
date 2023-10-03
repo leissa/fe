@@ -22,8 +22,8 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 add_library(fe INTERFACE)
 target_compile_features(fe INTERFACE cxx_std_20)
-if(CLANG_MAJOR < 17)
-    target_compile_options(fe INTERFACE fexperimental-library)
+if(CLANG_MAJOR LESS 17)
+    target_compile_options(fe INTERFACE stdlib=libc++ -fexperimental-library)
 endif()
 target_sources(fe
     INTERFACE FILE_SET headers
