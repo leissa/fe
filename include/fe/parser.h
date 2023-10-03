@@ -15,9 +15,10 @@ private:
     const S& self() const { return *static_cast<const S*>(this); }
 
 protected:
-    void init() {
+    void init(const std::filesystem::path* path) {
         ahead_.reset();
         for (size_t i = 0; i != K; ++i) ahead_[i] = self().lexer().lex();
+        prev_ = Loc(path, {1, 1});
     }
 
     class Tracker {
