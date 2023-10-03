@@ -121,18 +121,20 @@ $(document).ready(function(){initNavTree('classfe_1_1Parser_1_1Tracker.html','')
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a700f9e05d2385423efc4a3359525568e" id="r_a700f9e05d2385423efc4a3359525568e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Parser_1_1Tracker.html#a700f9e05d2385423efc4a3359525568e">Tracker</a> (<a class="el" href="classfe_1_1Parser.html">Parser</a> &amp;parser, const <a class="el" href="structfe_1_1Pos.html">Pos</a> &amp;pos)</td></tr>
-<tr class="separator:a700f9e05d2385423efc4a3359525568e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af138c292a8083989821de13cbbf349ce" id="r_af138c292a8083989821de13cbbf349ce"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Parser_1_1Tracker.html#af138c292a8083989821de13cbbf349ce">Tracker</a> (<a class="el" href="structfe_1_1Loc.html">Loc</a> &amp;prev, <a class="el" href="structfe_1_1Pos.html">Pos</a> pos)</td></tr>
+<tr class="separator:af138c292a8083989821de13cbbf349ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed3db922e0970ec52d171663427e35e2" id="r_aed3db922e0970ec52d171663427e35e2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structfe_1_1Loc.html">Loc</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Parser_1_1Tracker.html#aed3db922e0970ec52d171663427e35e2">loc</a> () const</td></tr>
 <tr class="separator:aed3db922e0970ec52d171663427e35e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72a0c388621715231e05ffd0b15dcf8a" id="r_a72a0c388621715231e05ffd0b15dcf8a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Parser_1_1Tracker.html#a72a0c388621715231e05ffd0b15dcf8a">operator Loc</a> () const</td></tr>
+<tr class="separator:a72a0c388621715231e05ffd0b15dcf8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class Tok, class Tag, size_t K, class S&gt;<br />
 class fe::Parser&lt; Tok, Tag, K, S &gt;::Tracker</div>
 <p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00023">23</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a700f9e05d2385423efc4a3359525568e" name="a700f9e05d2385423efc4a3359525568e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a700f9e05d2385423efc4a3359525568e">&#9670;&#160;</a></span>Tracker()</h2>
+<a id="af138c292a8083989821de13cbbf349ce" name="af138c292a8083989821de13cbbf349ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af138c292a8083989821de13cbbf349ce">&#9670;&#160;</a></span>Tracker()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -145,13 +147,13 @@ template&lt;class Tok , class Tag , size_t K, class S &gt; </div>
         <tr>
           <td class="memname"><a class="el" href="classfe_1_1Parser.html">fe::Parser</a>&lt; Tok, Tag, K, S &gt;::Tracker::Tracker </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classfe_1_1Parser.html">Parser</a> &amp;&#160;</td>
-          <td class="paramname"><em>parser</em>, </td>
+          <td class="paramtype"><a class="el" href="structfe_1_1Loc.html">Loc</a> &amp;&#160;</td>
+          <td class="paramname"><em>prev</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="structfe_1_1Pos.html">Pos</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="structfe_1_1Pos.html">Pos</a>&#160;</td>
           <td class="paramname"><em>pos</em>&#160;</td>
         </tr>
         <tr>
@@ -199,7 +201,40 @@ template&lt;class Tok , class Tag , size_t K, class S &gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00029">29</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">References <a class="el" href="loc_8h_source.html#l00052">fe::Loc::finis</a>, <a class="el" href="loc_8h_source.html#l00050">fe::Loc::path</a>, and <a class="el" href="parser_8h_source.html#l00070">fe::Parser&lt; Tok, Tag, K, S &gt;::prev_</a>.</p>
+<p class="reference">References <a class="el" href="loc_8h_source.html#l00052">fe::Loc::finis</a>, and <a class="el" href="loc_8h_source.html#l00050">fe::Loc::path</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00030">fe::Parser&lt; Tok, Tag, K, S &gt;::Tracker::operator Loc()</a>.</p>
+
+</div>
+</div>
+<a id="a72a0c388621715231e05ffd0b15dcf8a" name="a72a0c388621715231e05ffd0b15dcf8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72a0c388621715231e05ffd0b15dcf8a">&#9670;&#160;</a></span>operator Loc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Tok , class Tag , size_t K, class S &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classfe_1_1Parser.html">fe::Parser</a>&lt; Tok, Tag, K, S &gt;::Tracker::operator <a class="el" href="structfe_1_1Loc.html">Loc</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00030">30</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+
+<p class="reference">References <a class="el" href="parser_8h_source.html#l00029">fe::Parser&lt; Tok, Tag, K, S &gt;::Tracker::loc()</a>.</p>
 
 </div>
 </div>
