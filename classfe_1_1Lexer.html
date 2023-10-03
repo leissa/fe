@@ -119,7 +119,7 @@ $(document).ready(function(){initNavTree('classfe_1_1Lexer.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 
-<p>The blueprint for a lexer with a buffer of <code>K</code> tokens to peek into the future (<a class="el" href="classfe_1_1Lexer.html#a52a357dc3a693d5c333e9210e4f6aee5">Lexer::ahead</a>).  
+<p>The blueprint for a lexer with a buffer of <code>K</code> tokens to peek into the future (<a class="el" href="classfe_1_1Lexer.html#a574d6f4a890b04a422faa6a549a48687">Lexer::ahead</a>).  
  <a href="classfe_1_1Lexer.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="lexer_8h_source.html">fe/lexer.h</a>&gt;</code></p>
@@ -133,8 +133,8 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a52a357dc3a693d5c333e9210e4f6aee5" id="r_a52a357dc3a693d5c333e9210e4f6aee5"><td class="memItemLeft" align="right" valign="top">const char32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Lexer.html#a52a357dc3a693d5c333e9210e4f6aee5">ahead</a> (size_t i=0) const</td></tr>
-<tr class="separator:a52a357dc3a693d5c333e9210e4f6aee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a574d6f4a890b04a422faa6a549a48687" id="r_a574d6f4a890b04a422faa6a549a48687"><td class="memItemLeft" align="right" valign="top">char32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Lexer.html#a574d6f4a890b04a422faa6a549a48687">ahead</a> (size_t i=0) const</td></tr>
+<tr class="separator:a574d6f4a890b04a422faa6a549a48687"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34bcea43f4f2928f8394c1f287728b64" id="r_a34bcea43f4f2928f8394c1f287728b64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Lexer.html#a34bcea43f4f2928f8394c1f287728b64">begin</a> ()</td></tr>
 <tr class="memdesc:a34bcea43f4f2928f8394c1f287728b64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invoke before assembling the next token.  <br /></td></tr>
 <tr class="separator:a34bcea43f4f2928f8394c1f287728b64"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -179,7 +179,7 @@ Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;size_t K, class S&gt;<br />
-class fe::Lexer&lt; K, S &gt;</div><p>The blueprint for a lexer with a buffer of <code>K</code> tokens to peek into the future (<a class="el" href="classfe_1_1Lexer.html#a52a357dc3a693d5c333e9210e4f6aee5">Lexer::ahead</a>). </p>
+class fe::Lexer&lt; K, S &gt;</div><p>The blueprint for a lexer with a buffer of <code>K</code> tokens to peek into the future (<a class="el" href="classfe_1_1Lexer.html#a574d6f4a890b04a422faa6a549a48687">Lexer::ahead</a>). </p>
 <p>You can "overide" <a class="el" href="classfe_1_1Lexer.html#a0bbfc87be21bdd46d883002eb10303c1" title="Get next char32_t in Lexer::istream_ and increase Lexer::loc_.">Lexer::next</a> via CRTP (<code>S</code> is the child). </p>
 
 <p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00014">14</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
@@ -331,8 +331,8 @@ template&lt;<a class="el" href="classfe_1_1Lexer.html#a99366b3ab28fff1d6a1013b10
 
 </div>
 </div>
-<a id="a52a357dc3a693d5c333e9210e4f6aee5" name="a52a357dc3a693d5c333e9210e4f6aee5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a52a357dc3a693d5c333e9210e4f6aee5">&#9670;&#160;</a></span>ahead()</h2>
+<a id="a574d6f4a890b04a422faa6a549a48687" name="a574d6f4a890b04a422faa6a549a48687"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a574d6f4a890b04a422faa6a549a48687">&#9670;&#160;</a></span>ahead()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -343,7 +343,7 @@ template&lt;size_t K, class S &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const char32_t <a class="el" href="classfe_1_1Lexer.html">fe::Lexer</a>&lt; K, S &gt;::ahead </td>
+          <td class="memname">char32_t <a class="el" href="classfe_1_1Lexer.html">fe::Lexer</a>&lt; K, S &gt;::ahead </td>
           <td>(</td>
           <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>i</em> = <code>0</code></td><td>)</td>

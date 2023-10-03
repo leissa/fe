@@ -2,7 +2,7 @@ var classfe_1_1Parser =
 [
     [ "Tracker", "classfe_1_1Parser_1_1Tracker.html", "classfe_1_1Parser_1_1Tracker" ],
     [ "accept", "classfe_1_1Parser.html#a38e0f61f40faae37682bd5a8f081bab7", null ],
-    [ "ahead", "classfe_1_1Parser.html#a0bc903a77470bf4e11f36abb957dfe93", null ],
+    [ "ahead", "classfe_1_1Parser.html#af07368e3fabbf75a441b4e206fba2aa4", null ],
     [ "eat", "classfe_1_1Parser.html#a7676ff550005c7f0334f6fda4067d1e0", null ],
     [ "expect", "classfe_1_1Parser.html#ab01ccf1dc21df6abc1df96282174e9f4", null ],
     [ "init", "classfe_1_1Parser.html#a10134258cf3c7fc081c4740ed22405cb", null ],
