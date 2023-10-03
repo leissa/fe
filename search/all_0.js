@@ -2,7 +2,7 @@ var searchData=
 [
   ['accept_0',['accept',['../classfe_1_1Lexer.html#aff112fcbcf92e4dbb66ec7285abbdc3a',1,'fe::Lexer::accept()'],['../classfe_1_1Parser.html#a38e0f61f40faae37682bd5a8f081bab7',1,'fe::Parser::accept()']]],
   ['accept_5fif_1',['accept_if',['../classfe_1_1Lexer.html#a22c475b33f8a76a36bc5a9b553c74605',1,'fe::Lexer']]],
-  ['ahead_2',['ahead',['../classfe_1_1Lexer.html#a574d6f4a890b04a422faa6a549a48687',1,'fe::Lexer::ahead()'],['../classfe_1_1Parser.html#a849ffb3d58c1beb68f5ada7b2fab4e2d',1,'fe::Parser::ahead(size_t i=0)'],['../classfe_1_1Parser.html#a1a3668dd3c701d9b017734b51e391517',1,'fe::Parser::ahead(size_t i=0) const']]],
+  ['ahead_2',['ahead',['../classfe_1_1Lexer.html#a52a357dc3a693d5c333e9210e4f6aee5',1,'fe::Lexer::ahead()'],['../classfe_1_1Parser.html#a0bc903a77470bf4e11f36abb957dfe93',1,'fe::Parser::ahead()']]],
   ['ahead_5f_3',['ahead_',['../classfe_1_1Lexer.html#a549ba2f115c6ed413ee9afe5e5b69d6a',1,'fe::Lexer::ahead_'],['../classfe_1_1Parser.html#a63a4e949bb44bcc9249b8ff2023b7fbc',1,'fe::Parser::ahead_']]],
   ['align_4',['align',['../classfe_1_1Arena.html#a9012a0b95026368fb37286220b14c6a1',1,'fe::Arena']]],
   ['allocate_5',['allocate',['../structfe_1_1Arena_1_1Allocator.html#add0507bbef9de6daddb0bdaa6083cd62',1,'fe::Arena::Allocator::allocate()'],['../classfe_1_1Arena.html#ab31cb1751f8b9376dbf3b259622ad69f',1,'fe::Arena::allocate(size_t n)']]],
