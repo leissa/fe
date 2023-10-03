@@ -95,6 +95,7 @@ public:
     friend H AbslHashValue(H h, Sym sym) { return H::combine(std::move(h), sym.ptr_); }
 #endif
     friend struct ::std::hash<fe::Sym>;
+    friend std::ostream& operator<<(std::ostream& o, Sym sym) { return o << *sym; }
 
 private:
     const std::string* ptr_ = nullptr;
@@ -125,11 +126,6 @@ template<class V>
 using SymMap = std::unordered_map<Sym, V>;
 using SymSet = std::unordered_set<Sym>;
 #endif
-///@}
-
-/// @name std::ostream operator
-///@{
-inline std::ostream& operator<<(std::ostream& o, const Sym sym) { return o << *sym; }
 ///@}
 
 /// Hash set where all strings - wrapped in Sym%bol - live in.
