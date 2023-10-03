@@ -24,6 +24,9 @@ add_library(fe INTERFACE)
 target_compile_features(fe INTERFACE cxx_std_20)
 if(CMAKE_CXX_COMPILER_ID MATCHES "Clang" AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 17)
     target_compile_options(fe INTERFACE -fexperimental-library)
+    if(APPLE)
+        target_compile_options(fe INTERFACE "-L$(brew --prefix llvm)/lib/c++")
+    endif()
 endif()
 target_sources(fe
     INTERFACE FILE_SET headers
