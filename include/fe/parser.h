@@ -8,7 +8,7 @@
 namespace fe {
 
 /// The blueprint for a [recursive descent](https://en.wikipedia.org/wiki/Recursive_descent_parser)/
-/// [ascent parser](https://en.wikipedia.org/wiki/Recursive_ascent_parser) using a @p K lookahead of @p Tok%ens.
+/// [ascent parser](https://en.wikipedia.org/wiki/Recursive_ascent_parser) using a @p K lookahead of `Tok`ens.
 template<class Tok, class Tag, size_t K, class S>
 class Parser {
 private:
@@ -16,8 +16,9 @@ private:
     const S& self() const { return *static_cast<const S*>(this); }
 
 protected:
-    Parser() {
-        //for (size_t i = 0; i != K; ++i) ahead_[i] = self().lexer().lex();
+    void init() {
+        ahead_.reset();
+        for (size_t i = 0; i != K; ++i) ahead_[i] = self().lexer().lex();
     }
 
     class Tracker {
