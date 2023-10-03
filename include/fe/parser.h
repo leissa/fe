@@ -22,19 +22,20 @@ protected:
 
     class Tracker {
     public:
-        Tracker(Parser& parser, const Pos& pos)
-            : parser_(parser)
+        Tracker(Loc& prev, Pos pos)
+            : prev_(prev)
             , pos_(pos) {}
 
-        Loc loc() const { return {parser_.prev_.path, pos_, parser_.prev_.finis}; }
+        Loc loc() const { return {prev_.path, pos_, prev_.finis}; }
+        operator Loc() const {  return loc(); }
 
     private:
-        Parser& parser_;
+        const Loc& prev_;
         Pos pos_;
     };
 
     /// Factory method to build a Parser::Tracker.
-    Tracker tracker() { return Tracker(*this, ahead().loc().begin); }
+    Tracker tracker() { return {prev_, ahead().loc().begin}; }
 
     Tok ahead(size_t i = 0) const { return ahead_[i]; }
 
