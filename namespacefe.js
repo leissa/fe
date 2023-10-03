@@ -26,7 +26,6 @@ var namespacefe =
     [ "SymMap", "namespacefe.html#a88895ca62d5b945c7215f6d70c5b2df9", null ],
     [ "SymSet", "namespacefe.html#a35e6d9ca9c8059e88e615ec663c30095", null ],
     [ "breakpoint", "namespacefe.html#aa67601e05290c4a15e0d5d5f1f12a4a2", null ],
-    [ "operator<<", "namespacefe.html#a4a220c29499814031b7ea364f0698b3d", null ],
     [ "operator<<", "namespacefe.html#ae9f3a1b6161c3e8406c9273a1e8c20ac", null ],
     [ "operator<<", "namespacefe.html#aabb290ab41b02e1c1dab91a642f6ad3c", null ],
     [ "unreachable", "namespacefe.html#aff9df682b55afdb0f712e5a0c1ff3a2b", null ],

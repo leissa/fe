@@ -16,5 +16,6 @@ var classfe_1_1Sym =
     [ "operator==", "classfe_1_1Sym.html#a3ba42f2a6b72efe90c9ff471dd1494bf", null ],
     [ "operator[]", "classfe_1_1Sym.html#a8a16e7621020d3c9bbb09abc2c57591e", null ],
     [ "::std::hash< fe::Sym >", "classfe_1_1Sym.html#a4c865acde4de25ac1247eeaac18710b5", null ],
+    [ "operator<<", "classfe_1_1Sym.html#a46b4e3d6859821564fa612901a84300e", null ],
     [ "SymPool", "classfe_1_1Sym.html#a5379cdd60ce3c910e14da02defe0a1aa", null ]
 ];
