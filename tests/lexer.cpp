@@ -1,10 +1,10 @@
 #include <sstream>
 
 #include <doctest/doctest.h>
-
+#include <fe/driver.h>
 #include <fe/lexer.h>
-#include <fe/parser.h>
 #include <fe/loc.cpp.h>
+#include <fe/parser.h>
 
 using fe::Loc;
 using fe::Pos;
@@ -33,6 +33,7 @@ public:
 
     enum Prec { Err, Bot, Ass, Add, Mul };
 
+    Tok() = default;
     Tok(Loc loc, Tag tag)
         : loc_(loc)
         , tag_(tag) {}
@@ -81,35 +82,7 @@ private:
     };
 };
 
-struct Driver : public fe::SymPool {
-public:
-    /// @name diagnostics
-    ///@{
-    template<class... Args> std::ostream& note(Loc loc, const char* fmt, Args&&... args) {
-        std::cerr << loc << ": note: ";
-        return errf(fmt, std::forward<Args&&>(args)...) << std::endl;
-    }
-
-    template<class... Args> std::ostream& warn(Loc loc, const char* fmt, Args&&... args) {
-        ++num_errors_;
-        std::cerr << loc << ": warning: ";
-        return errf(fmt, std::forward<Args&&>(args)...) << std::endl;
-    }
-
-    template<class... Args> std::ostream& err(Loc loc, const char* fmt, Args&&... args) {
-        ++num_warnings_;
-        std::cerr << loc << ": error: ";
-        return errf(fmt, std::forward<Args&&>(args)...) << std::endl;
-    }
-
-    unsigned num_errors() const { return num_errors_; }
-    unsigned num_warnings() const { return num_warnings_; }
-    ///@}
-
-private:
-    unsigned num_errors_   = 0;
-    unsigned num_warnings_ = 0;
-};
+template<> struct std::formatter<Tok> : fe::ostream_formatter {};
 
 template<size_t K = 1> class Lexer : public fe::Lexer<K, Lexer<K>> {
 public:
@@ -122,7 +95,7 @@ public:
     using fe::Lexer<K, Lexer<K>>::peek_;
     using fe::Lexer<K, Lexer<K>>::str_;
 
-    Lexer(Driver& driver, std::istream& istream, const std::filesystem::path* path = nullptr)
+    Lexer(fe::Driver& driver, std::istream& istream, const std::filesystem::path* path = nullptr)
         : fe::Lexer<K, Lexer<K>>(istream, path)
         , driver_(driver) {}
 
@@ -162,21 +135,21 @@ public:
                 return {loc_, u};
             }
 
-            std::cerr << "invalid input character: '" << (char)ahead(0) << '\'' << std::endl;
+            driver_.err(peek_, "invalid input character: ''{}'", (char)ahead(0));
             next();
         }
     }
 
 private:
-    Driver& driver_;
+    fe::Driver& driver_;
 };
 
 class Parser : public fe::Parser<Tok, Tok::Tag, 1, Parser> {};
 
 template<size_t K> void test_lexer() {
-    Driver driver;
+    fe::Driver drv;
     std::istringstream is(" test  abc    def if  \nwhile λ foo   ");
-    Lexer lexer(driver, is);
+    Lexer lexer(drv, is);
 
     auto t1 = lexer.lex();
     auto t2 = lexer.lex();
@@ -187,9 +160,8 @@ template<size_t K> void test_lexer() {
     auto t7 = lexer.lex();
     auto t8 = lexer.lex();
     auto t9 = lexer.lex();
-    std::ostringstream os;
-    os << t1 << t2 << t3 << t4 << t5 << t6 << t7 << t8 << t9;
-    CHECK(os.str() == "testabcdefifwhileλfoo<end of file><end of file>");
+    auto s  = std::format("{} {} {} {} {} {} {} {} {}", t1, t2, t3, t4, t5, t6, t7, t8, t9);
+    CHECK(s == "test abc def if while λ foo <end of file> <end of file>");
 
     // clang-format off
     CHECK(t1.loc() == Loc({1,  2}, {1,  5}));

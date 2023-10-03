@@ -1,13 +1,24 @@
 #pragma once
 
 #include <filesystem>
+#include <format>
 
 #include "fe/config.h"
 #include "fe/sym.h"
 
 namespace fe {
 
-namespace fs = std::filesystem;
+/// Make types that support ostream operators available for `std::format`.
+/// See https://stackoverflow.com/a/75738462.
+template<class Char> struct basic_ostream_formatter : std::formatter<std::basic_string_view<Char>, Char> {
+    template<class T, class O> O format(const T& value, std::basic_format_context<O, Char>& ctx) const {
+        std::basic_stringstream<Char> ss;
+        ss << value;
+        return std::formatter<std::basic_string_view<Char>, Char>::format(ss.view(), ctx);
+    }
+};
+
+using ostream_formatter = basic_ostream_formatter<char>;
 
 /// Pos%ition in a source file; pass around as value.
 struct Pos {
@@ -35,11 +46,11 @@ struct Pos {
 /// that the underlying `std::filesystem::path` outlives this Loc%ation.
 struct Loc {
     Loc() = default; ///< Creates an invalid Loc%ation.
-    Loc(const fs::path* path, Pos begin, Pos finis)
+    Loc(const std::filesystem::path* path, Pos begin, Pos finis)
         : path(path)
         , begin(begin)
         , finis(finis) {}
-    Loc(const fs::path* file, Pos pos)
+    Loc(const std::filesystem::path* file, Pos pos)
         : Loc(file, pos, pos) {}
     Loc(Pos begin, Pos finis)
         : Loc(nullptr, begin, finis) {}
@@ -54,9 +65,9 @@ struct Loc {
     bool operator==(Loc other) const { return begin == other.begin && finis == other.finis && path == other.path; }
     void dump() const { std::cout << *this << std::endl; }
 
-    const fs::path* path = nullptr;
-    Pos begin            = {};
-    Pos finis            = {};
+    const std::filesystem::path* path = {};
+    Pos begin                         = {};
+    Pos finis                         = {};
     ///< It's called `finis` because it refers to the **last** character within this Loc%ation.
     /// In the STL the word `end` refers to the position of something that is one element **past** the end.
 
@@ -65,3 +76,6 @@ struct Loc {
 };
 
 } // namespace fe
+
+template<> struct std::formatter<fe::Pos> : fe::ostream_formatter {};
+template<> struct std::formatter<fe::Loc> : fe::ostream_formatter {};

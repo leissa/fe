@@ -30,6 +30,7 @@ target_sources(fe
         include/fe/arena.h
         include/fe/assert.h
         include/fe/cast.h
+        include/fe/driver.h
         include/fe/lexer.h
         include/fe/loc.h
         include/fe/parser.h
