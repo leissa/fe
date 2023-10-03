@@ -26,7 +26,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "Clang" AND CMAKE_CXX_COMPILER_VERSION VERSION_
     target_compile_options(fe INTERFACE -fexperimental-library)
     if(APPLE)
         execute_process(COMMAND brew --prefix llvm OUTPUT_VARIABLE BREW_PREFIX_LLVM)
-        target_link_options(fe INTERFACE -L${BREW_PREFIX_LLVM}/lib/c++)
+        target_link_directories(fe INTERFACE ${BREW_PREFIX_LLVM}/lib/c++)
     endif()
 endif()
 target_sources(fe
