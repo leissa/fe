@@ -1,7 +1,7 @@
 #pragma once
 
-#include <istream>
 #include <filesystem>
+#include <istream>
 
 #include "fe/loc.h"
 #include "fe/ring.h"
@@ -11,8 +11,7 @@ namespace fe {
 
 /// The blueprint for a lexer with a buffer of @p K tokens to peek into the future (Lexer::ahead).
 /// You can "overide" Lexer::next via CRTP (@p S is the child).
-template<size_t K, class S>
-class Lexer {
+template<size_t K, class S> class Lexer {
 private:
     S& self() { return *static_cast<S*>(this); }
     const S& self() const { return *static_cast<const S*>(this); }
@@ -29,7 +28,7 @@ public:
     Loc loc() const { return loc_; }
 
 protected:
-    char32_t ahead(size_t i = 0) const { return ahead_[i]; }
+    const char32_t ahead(size_t i = 0) const { return ahead_[i]; }
 
     /// Invoke before assembling the next token.
     void begin() {
@@ -55,18 +54,20 @@ protected:
         return res;
     }
 
-    /// What should happend to the accept%ed char?
+    /// @name accept
+    ///@{
+
+    /// What should happend to the accepted char?
     enum class Append {
-        Off,   ///< Do not append accepted char to str_.
-        On,    ///< Append accepted char as is to str_.
-        Lower, ///< Append accepted char via `std::tolower` to str_.
-        Upper, ///< Append accepted char via `std::toupper` to str_.
+        Off,   ///< Do not append accepted char to Lexer::str_.
+        On,    ///< Append accepted char as is to Lexer::str_.
+        Lower, ///< Append accepted char via `std::tolower` to Lexer::str_.
+        Upper, ///< Append accepted char via `std::toupper` to Lexer::str_.
     };
 
     /// @returns `true` if @p pred holds.
     /// In this case invoke Lexer::next() and append to Lexer::str_, if @p append.
-    template<Append append = Append::On, class Pred>
-    bool accept_if(Pred pred) {
+    template<Append append = Append::On, class Pred> bool accept_if(Pred pred) {
         if (pred(ahead())) {
             auto c = self().next();
             if constexpr (append != Append::Off) {
@@ -78,8 +79,11 @@ protected:
         }
         return false;
     }
-    template<Append append = Append::On>
-    bool accept(char32_t c) { return accept_if<append>([c](char32_t d) { return c == d; }); }
+
+    template<Append append = Append::On> bool accept(char32_t c) {
+        return accept_if<append>([c](char32_t d) { return c == d; });
+    }
+    ///@}
 
     std::istream& istream_;
     Ring<char32_t, K> ahead_;

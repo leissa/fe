@@ -9,8 +9,7 @@ namespace fe {
 
 /// The blueprint for a [recursive descent](https://en.wikipedia.org/wiki/Recursive_descent_parser)/
 /// [ascent parser](https://en.wikipedia.org/wiki/Recursive_ascent_parser) using a @p K lookahead of `Tok`ens.
-template<class Tok, class Tag, size_t K, class S>
-class Parser {
+template<class Tok, class Tag, size_t K, class S> class Parser {
 private:
     S& self() { return *static_cast<S*>(this); }
     const S& self() const { return *static_cast<const S*>(this); }
@@ -37,8 +36,7 @@ protected:
     /// Factory method to build a Parser::Tracker.
     Tracker tracker() { return Tracker(*this, ahead().loc().begin); }
 
-    Tok& ahead(size_t i = 0) { return ahead_[i]; }
-    const Tok& ahead(size_t i = 0) const { return ahead_[i]; }
+    const Tok ahead(size_t i = 0) const { return ahead_[i]; }
 
     /// Invoke Lexer to retrieve next Token.
     Tok lex() {

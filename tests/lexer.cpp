@@ -1,7 +1,6 @@
 #include <sstream>
 
 #include <doctest/doctest.h>
-
 #include <fe/lexer.h>
 #include <fe/parser.h>
 
@@ -31,51 +30,34 @@ std::ostream& operator<<(std::ostream& os, const Loc loc) {
     }
     return os << "<unknown location>";
 }
-}
+} // namespace fe
 
-#define LET_KEY(m)        \
-    m(K_let,    "let")    \
-    m(K_return, "return")
+#define LET_KEY(m) m(K_let, "let") m(K_return, "return")
 
-#define LET_MISC(m)            \
-    m(M_id,  "<identifier>")   \
-    m(M_lit, "<literal>")
+#define LET_MISC(m) m(M_id, "<identifier>") m(M_lit, "<literal>")
 
-#define LET_TOK(m)      \
-    m(D_paren_l,   "(") \
-    m(D_paren_r,   ")") \
-    m(T_semicolon, ";") \
-    m(T_lambda,    "λ") \
-    m(T_EoF,       "<end of file>")
+#define LET_TOK(m) m(D_paren_l, "(") m(D_paren_r, ")") m(T_semicolon, ";") m(T_lambda, "λ") m(T_EoF, "<end of file>")
 
-#define LET_OP(m)             \
-    m(O_add, "+", Add, true)  \
-    m(O_sub, "-", Add, true)  \
-    m(O_mul, "*", Mul, true)  \
-    m(O_div, "/", Mul, true)  \
-    m(O_ass, "=", ASS, false)
+#define LET_OP(m)                                                                                       \
+    m(O_add, "+", Add, true) m(O_sub, "-", Add, true) m(O_mul, "*", Mul, true) m(O_div, "/", Mul, true) \
+        m(O_ass, "=", ASS, false)
 
 class Tok {
 public:
     enum Tag {
 #define CODE(t, str) t,
-        LET_KEY(CODE)
-        LET_MISC(CODE)
-        LET_TOK(CODE)
+        LET_KEY(CODE) LET_MISC(CODE) LET_TOK(CODE)
 #undef CODE
 #define CODE(t, str, prec, left_assoc) t,
-        LET_OP(CODE)
+            LET_OP(CODE)
 #undef CODE
     };
 
-    enum Prec {
-        Err, Bot, Ass, Add, Mul
-    };
+    enum Prec { Err, Bot, Ass, Add, Mul };
 
     Tok(Loc loc, Tag tag)
         : loc_(loc)
-        , tag_(tag)
-    {}
+        , tag_(tag) {}
     Tok(Loc loc, Sym sym)
         : loc_(loc)
         , tag_(Tag::M_id)
@@ -91,13 +73,13 @@ public:
     static const char* tag2str(Tag tag) {
         switch (tag) {
 #define CODE(t, str) \
-            case Tok::Tag::t: return str;
+    case Tok::Tag::t: return str;
             LET_KEY(CODE)
             LET_TOK(CODE)
             LET_MISC(CODE)
 #undef CODE
 #define CODE(t, str, prec, left_assoc) \
-            case Tok::Tag::t: return str;
+    case Tok::Tag::t: return str;
             LET_OP(CODE)
 #undef CODE
             default: fe::unreachable();
@@ -105,7 +87,7 @@ public:
     }
 
     std::string to_string() const {
-        if (tag_ == M_id)  return sym_;
+        if (tag_ == M_id) return sym_;
         if (tag_ == M_lit) return std::to_string(u64_);
         return tag2str(tag_);
     }
@@ -125,21 +107,18 @@ struct Driver : public fe::SymPool {
 public:
     /// @name diagnostics
     ///@{
-    template<class... Args>
-    std::ostream& note(Loc loc, const char* fmt, Args&&... args) {
+    template<class... Args> std::ostream& note(Loc loc, const char* fmt, Args&&... args) {
         std::cerr << loc << ": note: ";
         return errf(fmt, std::forward<Args&&>(args)...) << std::endl;
     }
 
-    template<class... Args>
-    std::ostream& warn(Loc loc, const char* fmt, Args&&... args) {
+    template<class... Args> std::ostream& warn(Loc loc, const char* fmt, Args&&... args) {
         ++num_errors_;
         std::cerr << loc << ": warning: ";
         return errf(fmt, std::forward<Args&&>(args)...) << std::endl;
     }
 
-    template<class... Args>
-    std::ostream& err(Loc loc, const char* fmt, Args&&... args) {
+    template<class... Args> std::ostream& err(Loc loc, const char* fmt, Args&&... args) {
         ++num_warnings_;
         std::cerr << loc << ": error: ";
         return errf(fmt, std::forward<Args&&>(args)...) << std::endl;
@@ -154,8 +133,7 @@ private:
     unsigned num_warnings_ = 0;
 };
 
-template<size_t K = 1>
-class Lexer : public fe::Lexer<K, Lexer<K>> {
+template<size_t K = 1> class Lexer : public fe::Lexer<K, Lexer<K>> {
 public:
     using fe::Lexer<K, Lexer<K>>::ahead;
     using fe::Lexer<K, Lexer<K>>::accept;
@@ -168,8 +146,7 @@ public:
 
     Lexer(Driver& driver, std::istream& istream, const std::filesystem::path* path = nullptr)
         : fe::Lexer<K, Lexer<K>>(istream, path)
-        , driver_(driver)
-    {}
+        , driver_(driver) {}
 
     Tok lex() {
         while (true) {
@@ -216,11 +193,9 @@ private:
     Driver& driver_;
 };
 
-class Parser : public fe::Parser<Tok, Tok::Tag, 1, Parser> {
-};
+class Parser : public fe::Parser<Tok, Tok::Tag, 1, Parser> {};
 
-template<size_t K>
-void test_lexer() {
+template<size_t K> void test_lexer() {
     Driver driver;
     std::istringstream is(" test  abc    def if  \nwhile λ foo   ");
     Lexer lexer(driver, is);
