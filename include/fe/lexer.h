@@ -25,8 +25,6 @@ public:
         accept(utf8::BOM); // eat UTF-8 BOM, if present
     }
 
-    Loc loc() const { return loc_; }
-
 protected:
     char32_t ahead(size_t i = 0) const { return ahead_[i]; }
 
