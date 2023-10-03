@@ -36,7 +36,7 @@ protected:
     /// Factory method to build a Parser::Tracker.
     Tracker tracker() { return Tracker(*this, ahead().loc().begin); }
 
-    const Tok ahead(size_t i = 0) const { return ahead_[i]; }
+    Tok ahead(size_t i = 0) const { return ahead_[i]; }
 
     /// Invoke Lexer to retrieve next Token.
     Tok lex() {

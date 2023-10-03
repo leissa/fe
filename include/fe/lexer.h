@@ -28,7 +28,7 @@ public:
     Loc loc() const { return loc_; }
 
 protected:
-    const char32_t ahead(size_t i = 0) const { return ahead_[i]; }
+    char32_t ahead(size_t i = 0) const { return ahead_[i]; }
 
     /// Invoke before assembling the next token.
     void begin() {
