@@ -1,36 +1,14 @@
 #include <sstream>
 
 #include <doctest/doctest.h>
+
 #include <fe/lexer.h>
 #include <fe/parser.h>
+#include <fe/loc.cpp.h>
 
 using fe::Loc;
 using fe::Pos;
 using fe::Sym;
-
-namespace fe {
-std::ostream& operator<<(std::ostream& os, const Pos pos) {
-    if (pos.row) {
-        if (pos.col) return os << pos.row << ':' << pos.col;
-        return os << pos.row;
-    }
-    return os << "<unknown position>";
-}
-
-std::ostream& operator<<(std::ostream& os, const Loc loc) {
-    if (loc) {
-        os << (loc.path ? *loc.path : "<unknown file>") << ':' << loc.begin;
-        if (loc.begin != loc.finis) {
-            if (loc.begin.row != loc.finis.row)
-                os << '-' << loc.finis;
-            else
-                os << '-' << loc.finis.col;
-        }
-        return os;
-    }
-    return os << "<unknown location>";
-}
-} // namespace fe
 
 #define LET_KEY(m) m(K_let, "let") m(K_return, "return")
 
