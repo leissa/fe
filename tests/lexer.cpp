@@ -33,7 +33,7 @@ public:
 
     enum Prec { Err, Bot, Ass, Add, Mul };
 
-    Tok() = default;
+    Tok() {}
     Tok(Loc loc, Tag tag)
         : loc_(loc)
         , tag_(tag) {}
