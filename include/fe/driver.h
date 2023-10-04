@@ -3,15 +3,15 @@
 #include <sstream>
 #include <string_view>
 
-#include <fe/loc.h>
 #include <fe/format.h>
+#include <fe/loc.h>
 #include <fe/sym.h>
 
 namespace fe {
 
 struct Driver : public SymPool {
 public:
-    /// @name diagnostics
+    /// @name Diagnostics
     ///@{
     template<class... Args> void note(Loc loc, std::format_string<Args...> fmt, Args&&... args) {
         std::cerr << loc << ": note: " << std::format(fmt, std::forward<Args&&>(args)...) << std::endl;

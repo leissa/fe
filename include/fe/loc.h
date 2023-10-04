@@ -9,14 +9,14 @@ namespace fe {
 
 /// Pos%ition in a source file; pass around as value.
 struct Pos {
-    Pos() = default; ///< Creates an invalid Pos&ition.
+    Pos() = default; ///< Creates an invalid Pos%ition.
     Pos(uint16_t row)
         : row(row) {}
     Pos(uint16_t row, uint16_t col)
         : row(row)
         , col(col) {}
 
-    explicit operator bool() const { return row != 0; } ///< Is a valid Pos&ition?
+    explicit operator bool() const { return row != 0; } ///< Is a valid Pos%ition?
     auto operator<=>(const Pos&) const = default;
     void dump() const { std::cout << *this << std::endl; }
 
