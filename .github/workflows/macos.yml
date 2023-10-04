@@ -19,20 +19,23 @@ jobs:
         with:
           submodules: recursive
 
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest
 
-      - name: Cache LLVM and Clang
-        id: cache-llvm
-        uses: actions/cache@v3
-        with:
-          path: |
-            ./llvm
-          key: llvm-15
-      - name: Install LLVM and Clang
-        uses: KyleMayes/install-llvm-action@v1
-        with:
-          version: 15
-          cached: ${{ steps.cache-llvm.outputs.cache-hit }}
-          env: true
+            #      - name: Cache LLVM and Clang
+            #        id: cache-llvm
+            #        uses: actions/cache@v3
+            #        with:
+            #          path: |
+            #            ./llvm
+            #          key: llvm-15
+            #      - name: Install LLVM and Clang
+            #        uses: KyleMayes/install-llvm-action@v1
+            #        with:
+            #          version: 15
+            #          cached: ${{ steps.cache-llvm.outputs.cache-hit }}
+            #          env: true
 
       - name: Configure
         run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{matrix.build-type}} -DBUILD_TESTING=ON -DFE_BUILD_EXAMPLES=ON
