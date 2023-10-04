@@ -1,10 +1,10 @@
 #pragma once
 
-#include <format>
 #include <sstream>
 #include <string_view>
 
 #include <fe/loc.h>
+#include <fe/format.h>
 #include <fe/sym.h>
 
 namespace fe {

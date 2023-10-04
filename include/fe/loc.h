@@ -1,28 +1,11 @@
 #pragma once
 
 #include <filesystem>
-#include <format>
 
 #include "fe/config.h"
 #include "fe/sym.h"
 
 namespace fe {
-
-/// Make types that support ostream operators available for `std::format`.
-/// See https://stackoverflow.com/a/75738462.
-template<class Char> struct basic_ostream_formatter : std::formatter<std::basic_string_view<Char>, Char> {
-    template<class T, class O> O format(const T& value, std::basic_format_context<O, Char>& ctx) const {
-        std::basic_stringstream<Char> ss;
-        ss << value;
-#if defined(_LIBCPP_VERSION) && _LIBCPP_VERSION < 17000
-        return std::formatter<std::basic_string_view<Char>, Char>::format(ss.str(), ctx);
-#else
-        return std::formatter<std::basic_string_view<Char>, Char>::format(ss.view(), ctx);
-#endif
-    }
-};
-
-using ostream_formatter = basic_ostream_formatter<char>;
 
 /// Pos%ition in a source file; pass around as value.
 struct Pos {
@@ -80,6 +63,3 @@ struct Loc {
 };
 
 } // namespace fe
-
-template<> struct std::formatter<fe::Pos> : fe::ostream_formatter {};
-template<> struct std::formatter<fe::Loc> : fe::ostream_formatter {};

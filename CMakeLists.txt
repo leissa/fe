@@ -31,8 +31,10 @@ target_sources(fe
         include/fe/assert.h
         include/fe/cast.h
         include/fe/driver.h
+        include/fe/format.h
         include/fe/lexer.h
         include/fe/loc.h
+        include/fe/loc.cpp.h
         include/fe/parser.h
         include/fe/ring.h
         include/fe/sym.h

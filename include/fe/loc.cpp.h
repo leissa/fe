@@ -1,5 +1,7 @@
 #include "fe/loc.h"
 
+#include "fe/format.h"
+
 namespace fe {
 
 std::ostream& operator<<(std::ostream& os, const Pos pos) {
