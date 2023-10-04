@@ -20,10 +20,14 @@ jobs:
           submodules: recursive
 
       - name: Install LLVM and Clang
-        run: brew install llvm@16
+        run: |
+          brew install llvm@16
+          export LDFLAGS="-L/usr/local/opt/llvm/lib"
+          export CPPFLAGS="-I/usr/local/opt/llvm/include"
+          LDFLAGS="-L/usr/local/opt/llvm/lib/c++ -Wl,-rpath,/usr/local/opt/llvm/lib/c++"
 
       - name: Configure
-        run: CXX=clang++-16 cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{matrix.build-type}} -DBUILD_TESTING=ON
+        run: CXX=clang++ cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{matrix.build-type}} -DBUILD_TESTING=ON
 
       - name: Build
         run: cmake --build ${{github.workspace}}/build -v
