@@ -16,7 +16,7 @@ template<class Char> struct basic_ostream_formatter : std::formatter<std::basic_
     template<class T, class O> O format(const T& value, std::basic_format_context<O, Char>& ctx) const {
         std::basic_stringstream<Char> ss;
         ss << value;
-#if defined(_LIBCPP_VERSION) && _LIBCPP_VERSION < 17000
+#if defined(_LIBCPP_VERSION) && _LIBCPP_VERSION < 170000
         return std::formatter<std::basic_string_view<Char>, Char>::format(ss.str(), ctx);
 #else
         return std::formatter<std::basic_string_view<Char>, Char>::format(ss.view(), ctx);
