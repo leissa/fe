@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['driver_0',['Driver',['../structfe_1_1Driver.html',1,'fe']]]
+  ['basic_5fostream_5fformatter_0',['basic_ostream_formatter',['../structfe_1_1basic__ostream__formatter.html',1,'fe']]]
 ];

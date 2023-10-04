@@ -114,6 +114,7 @@ $(document).ready(function(){initNavTree('namespacefe.html',''); initResizable()
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#concepts">Concepts</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">fe Namespace Reference</div></div>
@@ -129,6 +130,9 @@ Namespaces</h2></td></tr>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Arena.html">Arena</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An arena pre-allocates so-called <em>pages</em> of size <code>p</code>.  <a href="classfe_1_1Arena.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfe_1_1basic__ostream__formatter.html">basic_ostream_formatter</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make types that support ostream operators available for <code>std::format</code>.  <a href="structfe_1_1basic__ostream__formatter.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfe_1_1Driver.html">Driver</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -170,6 +174,8 @@ Concepts</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
+<tr class="memitem:aaac75883cf62e856e6c10ea01b4febff" id="r_aaac75883cf62e856e6c10ea01b4febff"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe.html#aaac75883cf62e856e6c10ea01b4febff">ostream_formatter</a> = <a class="el" href="structfe_1_1basic__ostream__formatter.html">basic_ostream_formatter</a>&lt; char &gt;</td></tr>
+<tr class="separator:aaac75883cf62e856e6c10ea01b4febff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Sym</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Set/Map is keyed by pointer - which is hashed in <a class="el" href="classfe_1_1SymPool.html" title="Hash set where all strings - wrapped in Symbol - live in.">SymPool</a>. </p>
 </div></td></tr>
@@ -190,6 +196,21 @@ Functions</h2></td></tr>
 <tr class="separator:aabb290ab41b02e1c1dab91a642f6ad3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9f3a1b6161c3e8406c9273a1e8c20ac" id="r_ae9f3a1b6161c3e8406c9273a1e8c20ac"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe.html#ae9f3a1b6161c3e8406c9273a1e8c20ac">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="structfe_1_1Loc.html">Loc</a> loc)</td></tr>
 <tr class="separator:ae9f3a1b6161c3e8406c9273a1e8c20ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">out/outln/err/errln</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Print to <code>std::cout</code>/<code>std::cerr</code> via <code>std::format</code>; the <code>*ln</code> variants conclude with <code>std::endl</code>. </p>
+</div></td></tr>
+<tr class="memitem:a60893edf9c1ff5e68301f516a54dec11" id="r_a60893edf9c1ff5e68301f516a54dec11"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:a60893edf9c1ff5e68301f516a54dec11"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#a60893edf9c1ff5e68301f516a54dec11">err</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:a60893edf9c1ff5e68301f516a54dec11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3db74b6b86b3b8fe8b4d885613080cc" id="r_ad3db74b6b86b3b8fe8b4d885613080cc"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:ad3db74b6b86b3b8fe8b4d885613080cc"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#ad3db74b6b86b3b8fe8b4d885613080cc">out</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:ad3db74b6b86b3b8fe8b4d885613080cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a240e31424b3ed2b0f844ebfacf3df8e1" id="r_a240e31424b3ed2b0f844ebfacf3df8e1"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:a240e31424b3ed2b0f844ebfacf3df8e1"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#a240e31424b3ed2b0f844ebfacf3df8e1">errln</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:a240e31424b3ed2b0f844ebfacf3df8e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d9d14e5b70e248c4ab31d8156247dcb" id="r_a6d9d14e5b70e248c4ab31d8156247dcb"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:a6d9d14e5b70e248c4ab31d8156247dcb"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#a6d9d14e5b70e248c4ab31d8156247dcb">outln</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:a6d9d14e5b70e248c4ab31d8156247dcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -198,6 +219,22 @@ Variables</h2></td></tr>
 <tr class="separator:aea99a2eb7a824f381592c0014e12ec1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
+<a id="aaac75883cf62e856e6c10ea01b4febff" name="aaac75883cf62e856e6c10ea01b4febff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaac75883cf62e856e6c10ea01b4febff">&#9670;&#160;</a></span>ostream_formatter</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespacefe.html#aaac75883cf62e856e6c10ea01b4febff">fe::ostream_formatter</a> = typedef <a class="el" href="structfe_1_1basic__ostream__formatter.html">basic_ostream_formatter</a>&lt;char&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00027">27</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+
+</div>
+</div>
 <a id="a88895ca62d5b945c7215f6d70c5b2df9" name="a88895ca62d5b945c7215f6d70c5b2df9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a88895ca62d5b945c7215f6d70c5b2df9">&#9670;&#160;</a></span>SymMap</h2>
 
@@ -262,6 +299,70 @@ template&lt;class V &gt; </div>
 
 </div>
 </div>
+<a id="a60893edf9c1ff5e68301f516a54dec11" name="a60893edf9c1ff5e68301f516a54dec11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60893edf9c1ff5e68301f516a54dec11">&#9670;&#160;</a></span>err()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void fe::err </td>
+          <td>(</td>
+          <td class="paramtype">std::format_string&lt; Args... &gt;&#160;</td>
+          <td class="paramname"><em>fmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00032">32</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+
+</div>
+</div>
+<a id="a240e31424b3ed2b0f844ebfacf3df8e1" name="a240e31424b3ed2b0f844ebfacf3df8e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a240e31424b3ed2b0f844ebfacf3df8e1">&#9670;&#160;</a></span>errln()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void fe::errln </td>
+          <td>(</td>
+          <td class="paramtype">std::format_string&lt; Args... &gt;&#160;</td>
+          <td class="paramname"><em>fmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00034">34</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+
+</div>
+</div>
 <a id="ae9f3a1b6161c3e8406c9273a1e8c20ac" name="ae9f3a1b6161c3e8406c9273a1e8c20ac"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae9f3a1b6161c3e8406c9273a1e8c20ac">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[1/2]</span></h2>
 
@@ -319,6 +420,70 @@ template&lt;class V &gt; </div>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="loc_8cpp_8h_source.html#l00007">7</a> of file <a class="el" href="loc_8cpp_8h_source.html">loc.cpp.h</a>.</p>
+
+</div>
+</div>
+<a id="ad3db74b6b86b3b8fe8b4d885613080cc" name="ad3db74b6b86b3b8fe8b4d885613080cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3db74b6b86b3b8fe8b4d885613080cc">&#9670;&#160;</a></span>out()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void fe::out </td>
+          <td>(</td>
+          <td class="paramtype">std::format_string&lt; Args... &gt;&#160;</td>
+          <td class="paramname"><em>fmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00033">33</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+
+</div>
+</div>
+<a id="a6d9d14e5b70e248c4ab31d8156247dcb" name="a6d9d14e5b70e248c4ab31d8156247dcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d9d14e5b70e248c4ab31d8156247dcb">&#9670;&#160;</a></span>outln()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void fe::outln </td>
+          <td>(</td>
+          <td class="paramtype">std::format_string&lt; Args... &gt;&#160;</td>
+          <td class="paramname"><em>fmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00035">35</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>

@@ -12,6 +12,7 @@ var namespacefe =
       [ "Max", "namespacefe_1_1utf8.html#a753d178a1e977540ac8cd44fe4390a58", null ]
     ] ],
     [ "Arena", "classfe_1_1Arena.html", "classfe_1_1Arena" ],
+    [ "basic_ostream_formatter", "structfe_1_1basic__ostream__formatter.html", "structfe_1_1basic__ostream__formatter" ],
     [ "Driver", "structfe_1_1Driver.html", "structfe_1_1Driver" ],
     [ "Lexer", "classfe_1_1Lexer.html", "classfe_1_1Lexer" ],
     [ "Loc", "structfe_1_1Loc.html", "structfe_1_1Loc" ],
@@ -24,11 +25,16 @@ var namespacefe =
     [ "Sym", "classfe_1_1Sym.html", "classfe_1_1Sym" ],
     [ "SymPool", "classfe_1_1SymPool.html", "classfe_1_1SymPool" ],
     [ "Nodeable", "conceptfe_1_1Nodeable.html", null ],
+    [ "ostream_formatter", "namespacefe.html#aaac75883cf62e856e6c10ea01b4febff", null ],
     [ "SymMap", "namespacefe.html#a88895ca62d5b945c7215f6d70c5b2df9", null ],
     [ "SymSet", "namespacefe.html#a35e6d9ca9c8059e88e615ec663c30095", null ],
     [ "breakpoint", "namespacefe.html#aa67601e05290c4a15e0d5d5f1f12a4a2", null ],
+    [ "err", "namespacefe.html#a60893edf9c1ff5e68301f516a54dec11", null ],
+    [ "errln", "namespacefe.html#a240e31424b3ed2b0f844ebfacf3df8e1", null ],
     [ "operator<<", "namespacefe.html#ae9f3a1b6161c3e8406c9273a1e8c20ac", null ],
     [ "operator<<", "namespacefe.html#aabb290ab41b02e1c1dab91a642f6ad3c", null ],
+    [ "out", "namespacefe.html#ad3db74b6b86b3b8fe8b4d885613080cc", null ],
+    [ "outln", "namespacefe.html#a6d9d14e5b70e248c4ab31d8156247dcb", null ],
     [ "unreachable", "namespacefe.html#aff9df682b55afdb0f712e5a0c1ff3a2b", null ],
     [ "Default_Page_Size", "namespacefe.html#aea99a2eb7a824f381592c0014e12ec1e", null ]
 ];
