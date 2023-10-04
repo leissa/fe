@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['ostream_5fformatter_0',['ostream_formatter',['../namespacefe.html#aaac75883cf62e856e6c10ea01b4febff',1,'fe']]]
+  ['symmap_0',['SymMap',['../namespacefe.html#a88895ca62d5b945c7215f6d70c5b2df9',1,'fe']]],
+  ['symset_1',['SymSet',['../namespacefe.html#a35e6d9ca9c8059e88e615ec663c30095',1,'fe']]]
 ];
