@@ -24,10 +24,10 @@ jobs:
 
       - name: Configure
         run: |
-          LDFLAGS="-L/usr/local/opt/llvm/lib/c++ -Wl,-rpath,/usr/local/opt/llvm/lib/c++" \
-          CXX="/usr/local/opt/llvm/bin/clang++" \
-          CXX_FLAGS="-stdlib=libc++" \
-          cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{matrix.build-type}} -DBUILD_TESTING=ON
+          cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{matrix.build-type}} -DBUILD_TESTING=ON \
+          -E env CXX="/usr/local/opt/llvm/bin/clang++" \
+          -E env CXXFLAGS="-stdlib=libc++" \
+          -E env LDFLAGS="-L/usr/local/opt/llvm/lib/c++ -Wl,-rpath,/usr/local/opt/llvm/lib/c++"
 
       - name: Build
         run: cmake --build ${{github.workspace}}/build -v
