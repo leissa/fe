@@ -36,7 +36,58 @@ template<class... Args> void errln(std::format_string<Args...> fmt, Args&&... ar
 template<class... Args> void outln(std::format_string<Args...> fmt, Args&&... args) { std::cout << std::format(fmt, std::forward<Args&&>(args)...) << std::endl; }
 // clang-format on
 
+/// Keeps track of indentation level during output
+class Tab {
+public:
+    Tab(const Tab&) = default;
+    Tab(std::string_view tab = {"\t"}, size_t indent = 0)
+        : tab_(tab)
+        , indent_(indent) {}
+
+    /// @name Getters
+    ///@{
+    size_t indent() const { return indent_; }
+    std::string_view tab() const { return tab_; }
+    ///@}
+
+    /// @name Setters
+    ///@{
+    Tab& operator=(size_t indent) {
+        indent_ = indent;
+        return *this;
+    }
+    Tab& operator=(std::string tab) {
+        tab_ = tab;
+        return *this;
+    }
+    ///@}
+
+    // clang-format off
+    /// @name Indent/Dedent
+    ///@{
+    Tab& operator++() {                      ++indent_; return *this; }
+    Tab& operator--() { assert(indent_ > 0); --indent_; return *this; }
+    Tab& operator+=(size_t indent) {                      indent_ += indent; return *this; }
+    Tab& operator-=(size_t indent) { assert(indent_ > 0); indent_ -= indent; return *this; }
+    Tab  operator++(int) {                      auto res = *this; ++indent_; return res; }
+    Tab  operator--(int) { assert(indent_ > 0); auto res = *this; --indent_; return res; }
+    Tab  operator+(size_t indent) const {                      return {tab_, indent_ + indent}; }
+    Tab  operator-(size_t indent) const { assert(indent_ > 0); return {tab_, indent_ - indent}; }
+    ///@}
+    // clang-format on
+
+    friend std::ostream& operator<<(std::ostream& os, Tab tab) {
+        for (size_t i = 0; i != tab.indent_; ++i) os << tab.tab_;
+        return os;
+    }
+
+private:
+    std::string_view tab_;
+    size_t indent_ = 0;
+};
+
 } // namespace fe
 
 template<> struct std::formatter<fe::Pos> : fe::ostream_formatter {};
 template<> struct std::formatter<fe::Loc> : fe::ostream_formatter {};
+template<> struct std::formatter<fe::Tab> : fe::ostream_formatter {};
