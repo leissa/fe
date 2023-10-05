@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_7earena_0',['~Arena',['../classfe_1_1Arena.html#a719ce1483561076b9253dd2d8b45f791',1,'fe::Arena']]]
+  ['warn_0',['warn',['../structfe_1_1Driver.html#a7df49a423aa2092dcd2f74dfa4694f68',1,'fe::Driver']]]
 ];
