@@ -6,7 +6,8 @@ var hierarchy =
     [ "std::formatter", null, [
       [ "fe::basic_ostream_formatter< Char >", "structfe_1_1basic__ostream__formatter.html", [
         [ "std::formatter< fe::Loc >", "structstd_1_1formatter_3_01fe_1_1Loc_01_4.html", null ],
-        [ "std::formatter< fe::Pos >", "structstd_1_1formatter_3_01fe_1_1Pos_01_4.html", null ]
+        [ "std::formatter< fe::Pos >", "structstd_1_1formatter_3_01fe_1_1Pos_01_4.html", null ],
+        [ "std::formatter< fe::Tab >", "structstd_1_1formatter_3_01fe_1_1Tab_01_4.html", null ]
       ] ]
     ] ],
     [ "fe::Lexer< K, S >", "classfe_1_1Lexer.html", null ],
@@ -23,6 +24,7 @@ var hierarchy =
     [ "fe::SymPool", "classfe_1_1SymPool.html", [
       [ "fe::Driver", "structfe_1_1Driver.html", null ]
     ] ],
+    [ "fe::Tab", "classfe_1_1Tab.html", null ],
     [ "fe::Parser< Tok, Tag, K, S >::Tracker", "classfe_1_1Parser_1_1Tracker.html", null ],
     [ "array< char32_t, N >", "namespace_3globalScope_4.html#classstd_1_1array_3_01char32__t_00_01N_01_4", null ],
     [ "array< Tok, N >", "namespace_3globalScope_4.html#classstd_1_1array_3_01Tok_00_01N_01_4", null ]
