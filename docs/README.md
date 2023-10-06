@@ -20,14 +20,14 @@ Simply [fork](https://github.com/leissa/let/fork) the toy language *[Let](https:
 ## Features
 
 * [Arena](@ref fe::Arena) allocator for efficient memory management
-* Efficient [symbol pool](@ref fe::SymPool). [String](@ref fe::Sym] comparisions are now only pointer comparisions!
+* Efficient [symbol pool](@ref fe::SymPool). [String](@ref fe::Sym] comparisons are now only pointer comparisons!
 * Keep track of [source code locations](@ref fe::Loc)
 * Blueprint for a [lexer](@ref fe::Lexer) with [UTF-8](@ref fe::utf8) support
 * Blueprint for a [parser](@ref fe::Parser)
 
 ## Building
 
-FE has optional support [Abseil](https://abseil.io/)'s excelent [hash containers](https://abseil.io/docs/cpp/guides/container).
+FE optionally supports [Abseil](https://abseil.io/)'s excellent [hash containers](https://abseil.io/docs/cpp/guides/container).
 In order to enable Abseil support, you have to define `FE_ABSL`.
 Otherwise, FE will fall back to the hash containers of the C++ standard library.
 
