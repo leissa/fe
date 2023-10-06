@@ -160,13 +160,12 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:a9012a0b95026368fb37286220b14c6a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Align <code>n</code> to <code>A</code>.  <br /></td></tr>
 <tr class="separator:a9012a0b95026368fb37286220b14c6a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader">&lt;tt&gt;std::unique_ptr&lt;/tt&gt; that uses the Arena under the hood</h2></td></tr>
-<tr><td class="ititle" colspan="2"><p>Use like this:</p>
-<div class="fragment"><div class="line">++</div>
-<div class="line"><span class="keyword">auto</span> <a class="code hl_typedef" href="classfe_1_1Arena.html#a5f0956a1fe1245d4910a218e859df230">ptr</a> = arena.mk&lt;<a class="code hl_typedef" href="classfe_1_1Arena.html#a5f0956a1fe1245d4910a218e859df230">Foo</a>&gt;(<a class="code hl_typedef" href="classfe_1_1Arena.html#a5f0956a1fe1245d4910a218e859df230">a</a>, <a class="code hl_typedef" href="classfe_1_1Arena.html#a5f0956a1fe1245d4910a218e859df230">b</a>, <a class="code hl_typedef" href="classfe_1_1Arena.html#a5f0956a1fe1245d4910a218e859df230">c</a>); <span class="comment">// new Foo(a, b, c) placed into arena</span></div>
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Smart pointer that uses the Arena under the hood</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p>This is a <a href="https://en.cppreference.com/w/cpp/memory/unique_ptr">std::unique_ptr</a> whose deleter will <em>only</em> invoke the destructor but <em>not</em> <code>delete</code> anything.</p>
+<p>This is handled by the <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size p.">Arena</a> upon its destruction.</p>
+<p>Use like this: </p><div class="fragment"><div class="line"><span class="keyword">auto</span> <a class="code hl_typedef" href="classfe_1_1Arena.html#a5f0956a1fe1245d4910a218e859df230">ptr</a> = arena.mk&lt;<a class="code hl_typedef" href="classfe_1_1Arena.html#a5f0956a1fe1245d4910a218e859df230">Foo</a>&gt;(<a class="code hl_typedef" href="classfe_1_1Arena.html#a5f0956a1fe1245d4910a218e859df230">a</a>, <a class="code hl_typedef" href="classfe_1_1Arena.html#a5f0956a1fe1245d4910a218e859df230">b</a>, <a class="code hl_typedef" href="classfe_1_1Arena.html#a5f0956a1fe1245d4910a218e859df230">c</a>); <span class="comment">// new Foo(a, b, c) placed into arena</span></div>
 <div class="ttc" id="aclassfe_1_1Arena_html_a5f0956a1fe1245d4910a218e859df230"><div class="ttname"><a href="classfe_1_1Arena.html#a5f0956a1fe1245d4910a218e859df230">fe::Arena::Ptr</a></div><div class="ttdeci">std::unique_ptr&lt; T, Deleter&lt; T &gt; &gt; Ptr</div><div class="ttdef"><b>Definition</b> <a href="arena_8h_source.html#l00069">arena.h:69</a></div></div>
-</div><!-- fragment --><p> The <a class="el" href="structfe_1_1Arena_1_1Deleter.html">Deleter</a> will only invoke the constructor but <em>not</em> <code>delete</code> anything. This is handled by the <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size p.">Arena</a> upon its destruction. </p>
-</td></tr>
+</div><!-- fragment --> </td></tr>
 <tr class="memitem:a5f0956a1fe1245d4910a218e859df230" id="r_a5f0956a1fe1245d4910a218e859df230"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classfe_1_1Arena.html#a5f0956a1fe1245d4910a218e859df230">class</a> T &gt; </td></tr>
 <tr class="memitem:a5f0956a1fe1245d4910a218e859df230"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classfe_1_1Arena.html#a5f0956a1fe1245d4910a218e859df230">using</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classfe_1_1Arena.html#a5f0956a1fe1245d4910a218e859df230">Ptr</a> = std::unique_ptr&lt; T, <a class="el" href="structfe_1_1Arena_1_1Deleter.html">Deleter</a>&lt; T &gt; &gt;</td></tr>
 <tr class="separator:a5f0956a1fe1245d4910a218e859df230"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -326,7 +325,7 @@ template&lt;size_t A = sizeof(size_t), size_t P = Default_Page_Size&gt; </div>
 
 <p class="reference">References <a class="el" href="arena_8h_source.html#l00081">fe::Arena&lt; A, P &gt;::align()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="arena_8h_source.html#l00041">fe::Arena&lt; A, P &gt;::Allocator&lt; T &gt;::allocate()</a>, and <a class="el" href="arena_8h_source.html#l00070">fe::Arena&lt; A, P &gt;::mk()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="arena_8h_source.html#l00039">fe::Arena&lt; A, P &gt;::Allocator&lt; T &gt;::allocate()</a>, and <a class="el" href="arena_8h_source.html#l00070">fe::Arena&lt; A, P &gt;::mk()</a>.</p>
 
 </div>
 </div>
