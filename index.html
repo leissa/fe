@@ -152,14 +152,9 @@ Option #2: Directly include FE in your Source Tree</h2>
 <div class="line">mkdir -p my_compiler/include/fe</div>
 <div class="line">cp -r fe/include/fe/*.h my_compiler/include/fe</div>
 </div><!-- fragment --></li>
-<li>Put a <code>config.h</code> file into <code>my_compiler/include/fe</code>:<ol type="a">
-<li>With Abseil support: <div class="fragment"><div class="line">echo &quot;pragma once\n\n#define FE_ABSL&quot; &gt;&gt; my_compiler/include/fe/config.h</div>
-</div><!-- fragment --></li>
-<li>Without Abseil support: <div class="fragment"><div class="line">touch my_compiler/include/fe/config.h</div>
-</div><!-- fragment --></li>
-</ol>
+<li><p class="startli">Integrate into your build system:</p>
+<p class="startli">Since your build system most likely already has <code>my_compiler/include/</code> as an include directory, nothing more needs to be done. If you want to use Abseil, just add <code>FE_BASL</code> to your <code>CXXFLAGS</code>.</p>
 </li>
-<li>Integrate into your build system. Since your build system most likely already has <code>my_compiler/include/</code> as an include directory, nothing more needs to be done.</li>
 <li>Don't forget to add the sources to your version control system! </li>
 </ol>
 </div></div><!-- PageDoc -->
