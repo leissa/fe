@@ -34,9 +34,14 @@ Otherwise, FE will fall back to the hash containers of the C++ standard library.
 ### Option #1: Include FE as Submodule (Recommended)
 
 Add FE as external submodule to your compiler project:
-```sh
-git submodule add ../../leissa/fe external/fe
-```
+* If your compiler project is already on GitHub, do this:
+    ```sh
+    git submodule add ../../leissa/fe external/fe
+    ```
+* Otherwise:
+    ```sh
+    git submodule add git@github.com:leissa/fe.git external/fe
+    ```
 Add this to your `CMakeLists.txt`:
 ```cmake
 set(FE_ABSL ON) # remove this line, if you don't want to use Abseil
@@ -62,3 +67,6 @@ target_link_libraries(my_compiler_target PUBLIC fe)
     ```sh
     touch my_compiler/include/fe/config.h
     ```
+3. Integrate into your build system.
+    Since your build system most likely already has `my_compiler/include/` as an include directory, nothing more needs to be done.
+4. Don't forget to add the sources to your version control system!
