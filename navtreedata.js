@@ -25,10 +25,8 @@
 var NAVTREE =
 [
   [ "fe", "index.html", [
-    [ "FE", "index.html#autotoc_md0", [
-      [ "Building", "index.html#autotoc_md1", null ],
-      [ "Get Started Now!", "index.html#autotoc_md2", null ]
-    ] ],
+    [ "Building", "index.html#autotoc_md1", null ],
+    [ "Get Started Now!", "index.html#autotoc_md2", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
