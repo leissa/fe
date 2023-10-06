@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "fe", "index.html", [
+  [ "FE", "index.html", [
     [ "What is FE?", "index.html#autotoc_md1", null ],
     [ "Get Started Now!", "index.html#autotoc_md2", null ],
     [ "Features", "index.html#autotoc_md3", null ],
