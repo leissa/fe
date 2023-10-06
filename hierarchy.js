@@ -3,6 +3,7 @@ var hierarchy =
     [ "fe::Arena< A, P >::Allocator< T >", "structfe_1_1Arena_1_1Allocator.html", null ],
     [ "fe::Arena< A, P >", "classfe_1_1Arena.html", null ],
     [ "fe::Arena< A, P >", "classfe_1_1Arena.html", null ],
+    [ "fe::Arena< A, P >::Deleter< T >", "structfe_1_1Arena_1_1Deleter.html", null ],
     [ "std::formatter", null, [
       [ "fe::basic_ostream_formatter< Char >", "structfe_1_1basic__ostream__formatter.html", [
         [ "std::formatter< fe::Loc >", "structstd_1_1formatter_3_01fe_1_1Loc_01_4.html", null ],

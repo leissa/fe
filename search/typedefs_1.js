@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['symmap_0',['SymMap',['../namespacefe.html#a88895ca62d5b945c7215f6d70c5b2df9',1,'fe']]],
-  ['symset_1',['SymSet',['../namespacefe.html#a35e6d9ca9c8059e88e615ec663c30095',1,'fe']]]
+  ['ptr_0',['Ptr',['../classfe_1_1Arena.html#a5f0956a1fe1245d4910a218e859df230',1,'fe::Arena']]]
 ];
