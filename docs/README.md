@@ -7,9 +7,23 @@
 
 A header-only C++ library for writing compiler/interpreter frontends.
 
+## What is FE?
+
+FE provides a set of utilities that helps you writing your own compiler or interpreter frontend.
+FE is **not** a lexer or parser generator.
+Instead, it will give you the blueprint to easily hand-write your own lexer and parser.
+
 ## Get Started Now!
 
 Simply [fork](https://github.com/leissa/let/fork) the toy language *[Let](https://github.com/leissa/let)*.
+
+## Features
+
+* [Arena](@ref fe::Arena) allocator for efficient memory management
+* Efficient [symbol pool](@ref fe:SymPool). String comparisions are now only pointer comparisions!
+* Keep track of [source code locations](@ref fe::Loc)
+* Blueprint for a [lexer](@ref fe::Lexer) with [UTF-8](@ref fe::utf8) support
+* Blueprint for a [parser](@ref fe::Parser)
 
 ## Building
 
@@ -17,7 +31,7 @@ FE has optional support [Abseil](https://abseil.io/)'s excelent [hash containers
 In order to enable Abseil support, you have to define `FE_ABSL`.
 Otherwise, FE will fall back to the hash containers of the C++ standard library.
 
-### Option #1: Include FE as Submodule
+### Option #1: Include FE as Submodule (Recommended)
 
 Add FE as external submodule to your compiler project:
 ```sh
@@ -35,10 +49,11 @@ target_link_libraries(my_compiler_target PUBLIC fe)
 
 1. Copy over the headers from FE to your compiler project:
     ```sh
-    mkdir -p my_compiler_project/include/fe
-    cp -r fe/include/fe/*.h my_compiler_project/include/fe
+    git clone git@github.com:leissa/fe.git
+    mkdir -p my_compiler/include/fe
+    cp -r fe/include/fe/*.h my_compiler/include/fe
     ```
-2. Put a `config.h` file into `include/fe`:
+2. Put a `config.h` file into `my_compiler/include/fe`:
     1. With Abseil support:
     ```sh
     echo "pragma once\n\n#define FE_ABSL" >> my_compiler/include/fe/config.h
