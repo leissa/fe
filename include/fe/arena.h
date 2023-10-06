@@ -1,7 +1,10 @@
 #pragma once
 
-#include <cassert>
+#include <algorithm>
+#include <memory>
 #include <vector>
+
+#include "fe/assert.h"
 
 namespace fe {
 
@@ -19,6 +22,8 @@ constexpr size_t Default_Page_Size = 1024 * 1024; ///< 1MB.
 /// @note The Arena assumes a consistent alignment of @p A for all  allocated objects.
 template<size_t A = sizeof(size_t), size_t P = Default_Page_Size>
 class Arena {
+    template<class T> static void deleter(T* ptr) { ptr->~T(); }
+
 public:
     /// An [allocator](https://en.cppreference.com/w/cpp/named_req/Allocator).
     /// Construct one via Arena::allocator.
@@ -45,6 +50,28 @@ public:
 
         Arena<A, P>& arena;
     };
+
+    /// @name `std::unique_ptr` that uses the Arena under the hood
+    ///@{
+    /// Use like this:
+    /// ```C++
+    /// auto ptr = arena.mk<Foo>(a, b, c); // new Foo(a, b, c) placed into arena
+    /// ```
+    /// The Deleter will only invoke the constructor but *not* `delete` anything.
+    /// This is handled by the Arena upon its destruction.
+    template<class T>
+    struct Deleter {
+        constexpr Deleter() noexcept = default;
+        template<class U> constexpr Deleter(const Deleter<U>&) noexcept {}
+        void operator()(T* ptr) { ptr->~T(); }
+    };
+
+    template<class T> using Ptr = std::unique_ptr<T, Deleter<T>>;
+    template<class T, class... Args> Ptr<T> mk(Args&&... args) {
+        auto ptr = new (allocate(sizeof(T))) T(std::forward<Args&&>(args)...);
+        return Ptr<T>(ptr, Deleter<T>());
+    }
+    ///@}
 
     Arena() = default;
     ~Arena() {
