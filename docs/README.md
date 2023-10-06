@@ -50,8 +50,9 @@ Otherwise, FE will fall back to the hash containers of the C++ standard library.
 
         target_link_libraries(my_compiler PUBLIC fe)
         ```
-    * Otherwise add `external/fe/include` as include directory.
-        In addiiton, add `-DFE_ABSL` to your `CXXFLAGS`, if you want to use Abseil.
+    * Otherwise:
+        * Add `external/fe/include` as include directory.
+        * Furthermore, add `-DFE_ABSL` to your `CXXFLAGS`, if you want to use Abseil.
 
 ### Option #2: Directly include FE in your Source Tree
 
@@ -69,5 +70,3 @@ Otherwise, FE will fall back to the hash containers of the C++ standard library.
     ```cmake
     target_compile_definitions(my_compiler PUBLIC FE_ABSL)
     ```
-
-4. Don't forget to add the sources to your version control system!
