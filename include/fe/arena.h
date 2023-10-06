@@ -22,8 +22,6 @@ constexpr size_t Default_Page_Size = 1024 * 1024; ///< 1MB.
 /// @note The Arena assumes a consistent alignment of @p A for all  allocated objects.
 template<size_t A = sizeof(size_t), size_t P = Default_Page_Size>
 class Arena {
-    template<class T> static void deleter(T* ptr) { ptr->~T(); }
-
 public:
     /// An [allocator](https://en.cppreference.com/w/cpp/named_req/Allocator).
     /// Construct one via Arena::allocator.
@@ -51,14 +49,16 @@ public:
         Arena<A, P>& arena;
     };
 
-    /// @name `std::unique_ptr` that uses the Arena under the hood
+    /// @name Smart pointer that uses the Arena under the hood
     ///@{
+    /// This is a [std::unique_ptr](https://en.cppreference.com/w/cpp/memory/unique_ptr)
+    /// whose deleter will *only* invoke the destructor but *not* `delete` anything.
+    /// This is handled by the Arena upon its destruction.
+    ///
     /// Use like this:
-    /// ```C++
+    /// ```
     /// auto ptr = arena.mk<Foo>(a, b, c); // new Foo(a, b, c) placed into arena
     /// ```
-    /// The Deleter will only invoke the constructor but *not* `delete` anything.
-    /// This is handled by the Arena upon its destruction.
     template<class T>
     struct Deleter {
         constexpr Deleter() noexcept = default;
