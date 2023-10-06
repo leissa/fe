@@ -27,6 +27,5 @@ var hierarchy =
     [ "fe::Tab", "classfe_1_1Tab.html", null ],
     [ "fe::Parser< Tok, Tag, K, S >::Tracker", "classfe_1_1Parser_1_1Tracker.html", null ],
     [ "array< char32_t, N >", "namespace_3globalScope_4.html#classstd_1_1array_3_01char32__t_00_01N_01_4", null ],
-    [ "array< Tok, N >", "namespace_3globalScope_4.html#classstd_1_1array_3_01Tok_00_01N_01_4", null ],
-    [ "size_t", "namespace_3globalScope_4.html#classsize__t", null ]
+    [ "array< Tok, N >", "namespace_3globalScope_4.html#classstd_1_1array_3_01Tok_00_01N_01_4", null ]
 ];

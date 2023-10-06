@@ -131,7 +131,7 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a574d6f4a890b04a422faa6a549a48687" id="r_a574d6f4a890b04a422faa6a549a48687"><td class="memItemLeft" align="right" valign="top">char32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Lexer.html#a574d6f4a890b04a422faa6a549a48687">ahead</a> (<a class="el" href="namespace_3globalScope_4.html#classsize__t">size_t</a> i=0) const</td></tr>
+<tr class="memitem:a574d6f4a890b04a422faa6a549a48687" id="r_a574d6f4a890b04a422faa6a549a48687"><td class="memItemLeft" align="right" valign="top">char32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Lexer.html#a574d6f4a890b04a422faa6a549a48687">ahead</a> (size_t i=0) const</td></tr>
 <tr class="separator:a574d6f4a890b04a422faa6a549a48687"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34bcea43f4f2928f8394c1f287728b64" id="r_a34bcea43f4f2928f8394c1f287728b64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Lexer.html#a34bcea43f4f2928f8394c1f287728b64">begin</a> ()</td></tr>
 <tr class="memdesc:a34bcea43f4f2928f8394c1f287728b64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invoke before assembling the next token.  <br /></td></tr>
@@ -176,7 +176,7 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:aff112fcbcf92e4dbb66ec7285abbdc3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="namespace_3globalScope_4.html#classsize__t">size_t</a> K, class S&gt;<br />
+<div class="textblock"><div class="compoundTemplParams">template&lt;size_t K, class S&gt;<br />
 class fe::Lexer&lt; K, S &gt;</div><p>The blueprint for a lexer with a buffer of <code>K</code> tokens to peek into the future (<a class="el" href="classfe_1_1Lexer.html#a574d6f4a890b04a422faa6a549a48687">Lexer::ahead</a>). </p>
 <p>You can "overide" <a class="el" href="classfe_1_1Lexer.html#a0bbfc87be21bdd46d883002eb10303c1" title="Get next char32_t in Lexer::istream_ and increase Lexer::loc_.">Lexer::next</a> via CRTP (<code>S</code> is the child). </p>
 
@@ -188,7 +188,7 @@ class fe::Lexer&lt; K, S &gt;</div><p>The blueprint for a lexer with a buffer of
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="namespace_3globalScope_4.html#classsize__t">size_t</a> K, class S &gt; </div>
+template&lt;size_t K, class S &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -227,7 +227,7 @@ template&lt;<a class="el" href="namespace_3globalScope_4.html#classsize__t">size
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="namespace_3globalScope_4.html#classsize__t">size_t</a> K, class S &gt; </div>
+template&lt;size_t K, class S &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -268,7 +268,7 @@ template&lt;<a class="el" href="namespace_3globalScope_4.html#classsize__t">size
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="namespace_3globalScope_4.html#classsize__t">size_t</a> K, class S &gt; </div>
+template&lt;size_t K, class S &gt; </div>
 <div class="memtemplate">
 template&lt;<a class="el" href="classfe_1_1Lexer.html#a99366b3ab28fff1d6a1013b1007246a6">Append</a> append = Append::On&gt; </div>
 <table class="mlabels">
@@ -300,7 +300,7 @@ template&lt;<a class="el" href="classfe_1_1Lexer.html#a99366b3ab28fff1d6a1013b10
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="namespace_3globalScope_4.html#classsize__t">size_t</a> K, class S &gt; </div>
+template&lt;size_t K, class S &gt; </div>
 <div class="memtemplate">
 template&lt;<a class="el" href="classfe_1_1Lexer.html#a99366b3ab28fff1d6a1013b1007246a6">Append</a> append = Append::On, class Pred &gt; </div>
 <table class="mlabels">
@@ -335,7 +335,7 @@ template&lt;<a class="el" href="classfe_1_1Lexer.html#a99366b3ab28fff1d6a1013b10
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="namespace_3globalScope_4.html#classsize__t">size_t</a> K, class S &gt; </div>
+template&lt;size_t K, class S &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -343,7 +343,7 @@ template&lt;<a class="el" href="namespace_3globalScope_4.html#classsize__t">size
         <tr>
           <td class="memname">char32_t <a class="el" href="classfe_1_1Lexer.html">fe::Lexer</a>&lt; K, S &gt;::ahead </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_3globalScope_4.html#classsize__t">size_t</a>&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>i</em> = <code>0</code></td><td>)</td>
           <td> const</td>
         </tr>
@@ -369,7 +369,7 @@ template&lt;<a class="el" href="namespace_3globalScope_4.html#classsize__t">size
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="namespace_3globalScope_4.html#classsize__t">size_t</a> K, class S &gt; </div>
+template&lt;size_t K, class S &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -402,7 +402,7 @@ template&lt;<a class="el" href="namespace_3globalScope_4.html#classsize__t">size
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="namespace_3globalScope_4.html#classsize__t">size_t</a> K, class S &gt; </div>
+template&lt;size_t K, class S &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -437,7 +437,7 @@ template&lt;<a class="el" href="namespace_3globalScope_4.html#classsize__t">size
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="namespace_3globalScope_4.html#classsize__t">size_t</a> K, class S &gt; </div>
+template&lt;size_t K, class S &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -465,7 +465,7 @@ template&lt;<a class="el" href="namespace_3globalScope_4.html#classsize__t">size
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="namespace_3globalScope_4.html#classsize__t">size_t</a> K, class S &gt; </div>
+template&lt;size_t K, class S &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -493,7 +493,7 @@ template&lt;<a class="el" href="namespace_3globalScope_4.html#classsize__t">size
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="namespace_3globalScope_4.html#classsize__t">size_t</a> K, class S &gt; </div>
+template&lt;size_t K, class S &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -523,7 +523,7 @@ template&lt;<a class="el" href="namespace_3globalScope_4.html#classsize__t">size
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="namespace_3globalScope_4.html#classsize__t">size_t</a> K, class S &gt; </div>
+template&lt;size_t K, class S &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -553,7 +553,7 @@ template&lt;<a class="el" href="namespace_3globalScope_4.html#classsize__t">size
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="namespace_3globalScope_4.html#classsize__t">size_t</a> K, class S &gt; </div>
+template&lt;size_t K, class S &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">

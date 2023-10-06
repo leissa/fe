@@ -135,9 +135,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ad0100b9e3c2c2cd623e6749053ebb6d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1fd8ae0ca377c163f7f0b34eff5a56e" id="r_ac1fd8ae0ca377c163f7f0b34eff5a56e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfe_1_1Arena_1_1Allocator.html#ac1fd8ae0ca377c163f7f0b34eff5a56e">Allocator</a> (<a class="el" href="classfe_1_1Arena.html">Arena</a> &amp;<a class="el" href="structfe_1_1Arena_1_1Allocator.html#af082bf4fe39e52f719e67aaca844f4f5">arena</a>) <a class="el" href="structfe_1_1Arena_1_1Allocator.html">noexcept</a></td></tr>
 <tr class="separator:ac1fd8ae0ca377c163f7f0b34eff5a56e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a01ae641100e200cfc220e96c0d6cf2" id="r_a5a01ae641100e200cfc220e96c0d6cf2"><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfe_1_1Arena_1_1Allocator.html#a5a01ae641100e200cfc220e96c0d6cf2">allocate</a> (<a class="el" href="namespace_3globalScope_4.html#classsize__t">size_t</a> <a class="el" href="structfe_1_1Arena_1_1Allocator.html">num_elems</a>)</td></tr>
+<tr class="memitem:a5a01ae641100e200cfc220e96c0d6cf2" id="r_a5a01ae641100e200cfc220e96c0d6cf2"><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfe_1_1Arena_1_1Allocator.html#a5a01ae641100e200cfc220e96c0d6cf2">allocate</a> (size_t <a class="el" href="structfe_1_1Arena_1_1Allocator.html">num_elems</a>)</td></tr>
 <tr class="separator:a5a01ae641100e200cfc220e96c0d6cf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b3329549e40270d3de047fbd8d04fd4" id="r_a6b3329549e40270d3de047fbd8d04fd4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structfe_1_1Arena_1_1Allocator.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfe_1_1Arena_1_1Allocator.html#a6b3329549e40270d3de047fbd8d04fd4">deallocate</a> (T *, <a class="el" href="namespace_3globalScope_4.html#classsize__t">size_t</a>) <a class="el" href="structfe_1_1Arena_1_1Allocator.html">noexcept</a></td></tr>
+<tr class="memitem:a6b3329549e40270d3de047fbd8d04fd4" id="r_a6b3329549e40270d3de047fbd8d04fd4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structfe_1_1Arena_1_1Allocator.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfe_1_1Arena_1_1Allocator.html#a6b3329549e40270d3de047fbd8d04fd4">deallocate</a> (T *, size_t) <a class="el" href="structfe_1_1Arena_1_1Allocator.html">noexcept</a></td></tr>
 <tr class="separator:a6b3329549e40270d3de047fbd8d04fd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a826048ec0d25d78261c2c300ce244400" id="r_a826048ec0d25d78261c2c300ce244400"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="structfe_1_1Arena_1_1Allocator.html">class</a> <a class="el" href="structfe_1_1Arena_1_1Allocator.html">U</a> &gt; </td></tr>
 <tr class="memitem:a826048ec0d25d78261c2c300ce244400"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structfe_1_1Arena_1_1Allocator.html">bool</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structfe_1_1Arena_1_1Allocator.html#a826048ec0d25d78261c2c300ce244400">operator==</a> (<a class="el" href="structfe_1_1Arena_1_1Allocator.html">const</a> <a class="el" href="structfe_1_1Arena_1_1Allocator.html">Allocator</a>&lt; <a class="el" href="structfe_1_1Arena_1_1Allocator.html">U</a> &gt; &amp;<a class="el" href="structfe_1_1Arena_1_1Allocator.html">a</a>) <a class="el" href="structfe_1_1Arena_1_1Allocator.html">const</a> <a class="el" href="structfe_1_1Arena_1_1Allocator.html">noexcept</a></td></tr>
@@ -279,7 +279,7 @@ template&lt;<a class="el" href="structfe_1_1Arena_1_1Allocator.html">class</a> T
         <tr>
           <td class="memname">T * <a class="el" href="structfe_1_1Arena_1_1Allocator.html">fe::Arena::Allocator</a>&lt; T &gt;::allocate </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespace_3globalScope_4.html#classsize__t">size_t</a>&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>num_elems</em></td><td>)</td>
           <td></td>
         </tr>
@@ -317,7 +317,7 @@ template&lt;<a class="el" href="structfe_1_1Arena_1_1Allocator.html">class</a> T
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespace_3globalScope_4.html#classsize__t">size_t</a>&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
