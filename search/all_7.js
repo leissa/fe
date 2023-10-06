@@ -1,8 +1,16 @@
 var searchData=
 [
-  ['indent_0',['indent',['../classfe_1_1Tab.html#a5c0704c9f1bb1c99fb827f5fb863384e',1,'fe::Tab']]],
-  ['init_1',['init',['../classfe_1_1Parser.html#aff4aefd0e9b228d67489e4aa3232fdeb',1,'fe::Parser']]],
-  ['is_5fvalid234_2',['is_valid234',['../namespacefe_1_1utf8.html#a368b866a5344d3f1a4541cda55469b03',1,'fe::utf8']]],
-  ['isa_3',['isa',['../classfe_1_1RuntimeCast.html#a3a5b6b6c64212ac9ac33635730333bfa',1,'fe::RuntimeCast::isa()'],['../classfe_1_1RuntimeCast.html#a6757eb14f9dfc8155802a0a9c08b85bc',1,'fe::RuntimeCast::isa()'],['../classfe_1_1RuntimeCast.html#a40e2312e4ad37c67c4f495ccb34349ba',1,'fe::RuntimeCast::isa() const'],['../classfe_1_1RuntimeCast.html#aa352b8bb371c5460061ab4e91fbdd5a1',1,'fe::RuntimeCast::isa() const']]],
-  ['istream_5f_4',['istream_',['../classfe_1_1Lexer.html#ab8dab537ecbc5e97ad064e286201fd14',1,'fe::Lexer']]]
+  ['fe_0',['fe',['../namespacefe.html',1,'fe'],['../index.html',1,'FE']]],
+  ['fe_20as_20submodule_1',['Option #1: Include FE as Submodule',['../index.html#autotoc_md3',1,'']]],
+  ['fe_20in_20your_20source_20tree_2',['Option #2: Directly include FE in your Source Tree',['../index.html#autotoc_md4',1,'']]],
+  ['fe_3a_3anodeable_3',['Nodeable',['../conceptfe_1_1Nodeable.html',1,'fe']]],
+  ['fe_3a_3autf8_4',['utf8',['../namespacefe_1_1utf8.html',1,'fe']]],
+  ['finis_5',['finis',['../structfe_1_1Loc.html#a19c742b2f7de9b42ce45d92d3210a3ea',1,'fe::Loc']]],
+  ['first_6',['first',['../namespacefe_1_1utf8.html#ab8b8a7ebfb35f84b56defdde79becd08',1,'fe::utf8']]],
+  ['format_7',['format',['../structfe_1_1basic__ostream__formatter.html#aa89752e176250523b64ad02bff885000',1,'fe::basic_ostream_formatter']]],
+  ['format_2eh_8',['format.h',['../format_8h.html',1,'']]],
+  ['formatter_3c_20fe_3a_3aloc_20_3e_9',['formatter&lt; fe::Loc &gt;',['../structstd_1_1formatter_3_01fe_1_1Loc_01_4.html',1,'std']]],
+  ['formatter_3c_20fe_3a_3apos_20_3e_10',['formatter&lt; fe::Pos &gt;',['../structstd_1_1formatter_3_01fe_1_1Pos_01_4.html',1,'std']]],
+  ['formatter_3c_20fe_3a_3atab_20_3e_11',['formatter&lt; fe::Tab &gt;',['../structstd_1_1formatter_3_01fe_1_1Tab_01_4.html',1,'std']]],
+  ['front_12',['front',['../classfe_1_1Ring_3_01T_00_011_01_4.html#a1576a3573f5b1e34e217f45beea6a771',1,'fe::Ring&lt; T, 1 &gt;::front()'],['../classfe_1_1Ring_3_01T_00_012_01_4.html#a02191e2a152d58a7c297e980e0817be5',1,'fe::Ring&lt; T, 2 &gt;::front()'],['../classfe_1_1Ring_3_01T_00_012_01_4.html#a2a982c2d80c030c60369f1f05d212919',1,'fe::Ring&lt; T, 2 &gt;::front() const'],['../classfe_1_1Ring_3_01T_00_011_01_4.html#a8522e0f2e73e09434da36267fb694002',1,'fe::Ring&lt; T, 1 &gt;::front()'],['../classfe_1_1Ring.html#acb2e78a03a337d42be2a354ede5402cd',1,'fe::Ring::front() const'],['../classfe_1_1Ring.html#ab86228fc41dc079697e029f33e59d40f',1,'fe::Ring::front()']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_7earena_0',['~Arena',['../classfe_1_1Arena.html#a719ce1483561076b9253dd2d8b45f791',1,'fe::Arena']]]
+  ['value_5ftype_0',['value_type',['../structfe_1_1Arena_1_1Allocator.html#a8880685165e7faa663e9d6fd11c28f05',1,'fe::Arena::Allocator']]]
 ];

@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['parser_0',['Parser',['../classfe_1_1Parser.html',1,'fe']]],
-  ['parser_2eh_1',['parser.h',['../parser_8h.html',1,'']]],
-  ['path_2',['path',['../structfe_1_1Loc.html#a4055e56d870f6ff028628f7788cd4598',1,'fe::Loc']]],
-  ['peek_5f_3',['peek_',['../classfe_1_1Lexer.html#a5e8ce185f6095364ff336425c8f99e28',1,'fe::Lexer']]],
-  ['pos_4',['pos',['../structfe_1_1Pos.html',1,'fe::Pos'],['../structfe_1_1Pos.html#a5eabfa6ae7547c45d7502fdc503427bd',1,'fe::Pos::Pos()=default'],['../structfe_1_1Pos.html#a2f5a03e5db4071ac152db6f830c17732',1,'fe::Pos::Pos(uint16_t row)'],['../structfe_1_1Pos.html#a54c10d1c6f371ef318b340c1090a904a',1,'fe::Pos::Pos(uint16_t row, uint16_t col)']]],
-  ['prev_5f_5',['prev_',['../classfe_1_1Parser.html#a4b4cf353b85c2b1eb9c294acd916cb36',1,'fe::Parser']]],
-  ['put_6',['put',['../classfe_1_1Ring.html#abe605ad4c47892eab1f281869949059e',1,'fe::Ring::put()'],['../classfe_1_1Ring_3_01T_00_011_01_4.html#a1a329f6481953faa2423fdb4b57bf974',1,'fe::Ring&lt; T, 1 &gt;::put()'],['../classfe_1_1Ring_3_01T_00_012_01_4.html#aad669f30a23afefbe32fba3068a04706',1,'fe::Ring&lt; T, 2 &gt;::put()']]]
+  ['next_0',['next',['../classfe_1_1Lexer.html#a0bbfc87be21bdd46d883002eb10303c1',1,'fe::Lexer']]],
+  ['note_1',['note',['../structfe_1_1Driver.html#a260d08dac386fcb1f04b220e69806eb7',1,'fe::Driver']]],
+  ['now_2',['Get Started Now!',['../index.html#autotoc_md1',1,'']]],
+  ['num_5fbytes_3',['num_bytes',['../namespacefe_1_1utf8.html#a6decf030f56d34b82146f21e502dcee9',1,'fe::utf8']]],
+  ['num_5ferrors_4',['num_errors',['../structfe_1_1Driver.html#aa48333257f240659d2496f47e991680d',1,'fe::Driver']]],
+  ['num_5fwarnings_5',['num_warnings',['../structfe_1_1Driver.html#a1d5029604845d7fab9162f43e07cb9a0',1,'fe::Driver']]]
 ];

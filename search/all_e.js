@@ -1,11 +1,10 @@
 var searchData=
 [
-  ['started_20now_0',['Get Started Now!',['../index.html#autotoc_md2',1,'']]],
-  ['str_5f_1',['str_',['../classfe_1_1Lexer.html#a8038ab296487b12c19dc2d7967e6b5c7',1,'fe::Lexer']]],
-  ['swap_2',['swap',['../classfe_1_1Arena.html#a0665305af109dae59bd4342c5b8d7935',1,'fe::Arena::swap'],['../classfe_1_1SymPool.html#a92e65da7b2cc9bf15c9b994eab1079b0',1,'fe::SymPool::swap']]],
-  ['sym_3',['sym',['../classfe_1_1Sym.html',1,'fe::Sym'],['../classfe_1_1Sym.html#a5ad9546136421d6e33db08cef8526d47',1,'fe::Sym::Sym()'],['../classfe_1_1SymPool.html#a1a7c3278db18ad72926b06c1e757b865',1,'fe::SymPool::sym(std::string_view s)'],['../classfe_1_1SymPool.html#a0836abbed0a57732e84be5b627d35588',1,'fe::SymPool::sym(const char *s)'],['../classfe_1_1SymPool.html#a4e0a3b0bcbcf7b9c9b4370250001fe7e',1,'fe::SymPool::sym(std::string s)']]],
-  ['sym_2eh_4',['sym.h',['../sym_8h.html',1,'']]],
-  ['symmap_5',['SymMap',['../namespacefe.html#a88895ca62d5b945c7215f6d70c5b2df9',1,'fe']]],
-  ['sympool_6',['sympool',['../classfe_1_1SymPool.html',1,'fe::SymPool'],['../classfe_1_1SymPool.html#a3df3435dde76a17a4cd63a9328398902',1,'fe::SymPool::SymPool()'],['../classfe_1_1SymPool.html#acd7180b83ffd0ca4fed9901a2e7d535e',1,'fe::SymPool::SymPool(SymPool &amp;&amp;other)'],['../classfe_1_1SymPool.html#a9446b07a54c8892bc6135608d0321af7',1,'fe::SymPool::SymPool(const SymPool &amp;)=delete']]],
-  ['symset_7',['SymSet',['../namespacefe.html#a35e6d9ca9c8059e88e615ec663c30095',1,'fe']]]
+  ['parser_0',['Parser',['../classfe_1_1Parser.html',1,'fe']]],
+  ['parser_2eh_1',['parser.h',['../parser_8h.html',1,'']]],
+  ['path_2',['path',['../structfe_1_1Loc.html#a4055e56d870f6ff028628f7788cd4598',1,'fe::Loc']]],
+  ['peek_5f_3',['peek_',['../classfe_1_1Lexer.html#a5e8ce185f6095364ff336425c8f99e28',1,'fe::Lexer']]],
+  ['pos_4',['pos',['../structfe_1_1Pos.html',1,'fe::Pos'],['../structfe_1_1Pos.html#a5eabfa6ae7547c45d7502fdc503427bd',1,'fe::Pos::Pos()=default'],['../structfe_1_1Pos.html#a2f5a03e5db4071ac152db6f830c17732',1,'fe::Pos::Pos(uint16_t row)'],['../structfe_1_1Pos.html#a54c10d1c6f371ef318b340c1090a904a',1,'fe::Pos::Pos(uint16_t row, uint16_t col)']]],
+  ['prev_5f_5',['prev_',['../classfe_1_1Parser.html#a4b4cf353b85c2b1eb9c294acd916cb36',1,'fe::Parser']]],
+  ['put_6',['put',['../classfe_1_1Ring.html#abe605ad4c47892eab1f281869949059e',1,'fe::Ring::put()'],['../classfe_1_1Ring_3_01T_00_011_01_4.html#a1a329f6481953faa2423fdb4b57bf974',1,'fe::Ring&lt; T, 1 &gt;::put()'],['../classfe_1_1Ring_3_01T_00_012_01_4.html#aad669f30a23afefbe32fba3068a04706',1,'fe::Ring&lt; T, 2 &gt;::put()']]]
 ];
