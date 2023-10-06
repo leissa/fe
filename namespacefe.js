@@ -36,6 +36,5 @@ var namespacefe =
     [ "operator<<", "namespacefe.html#aabb290ab41b02e1c1dab91a642f6ad3c", null ],
     [ "out", "namespacefe.html#ad3db74b6b86b3b8fe8b4d885613080cc", null ],
     [ "outln", "namespacefe.html#a6d9d14e5b70e248c4ab31d8156247dcb", null ],
-    [ "unreachable", "namespacefe.html#aff9df682b55afdb0f712e5a0c1ff3a2b", null ],
-    [ "Default_Page_Size", "namespacefe.html#aea99a2eb7a824f381592c0014e12ec1e", null ]
+    [ "unreachable", "namespacefe.html#aff9df682b55afdb0f712e5a0c1ff3a2b", null ]
 ];

@@ -1,9 +1,8 @@
 var hierarchy =
 [
-    [ "fe::Arena< A, P >::Allocator< T >", "structfe_1_1Arena_1_1Allocator.html", null ],
-    [ "fe::Arena< A, P >", "classfe_1_1Arena.html", null ],
-    [ "fe::Arena< A, P >", "classfe_1_1Arena.html", null ],
-    [ "fe::Arena< A, P >::Deleter< T >", "structfe_1_1Arena_1_1Deleter.html", null ],
+    [ "fe::Arena::Allocator< T >", "structfe_1_1Arena_1_1Allocator.html", null ],
+    [ "fe::Arena", "classfe_1_1Arena.html", null ],
+    [ "fe::Arena::Deleter< T >", "structfe_1_1Arena_1_1Deleter.html", null ],
     [ "std::formatter", null, [
       [ "fe::basic_ostream_formatter< Char >", "structfe_1_1basic__ostream__formatter.html", [
         [ "std::formatter< fe::Loc >", "structstd_1_1formatter_3_01fe_1_1Loc_01_4.html", null ],
@@ -28,5 +27,6 @@ var hierarchy =
     [ "fe::Tab", "classfe_1_1Tab.html", null ],
     [ "fe::Parser< Tok, Tag, K, S >::Tracker", "classfe_1_1Parser_1_1Tracker.html", null ],
     [ "array< char32_t, N >", "namespace_3globalScope_4.html#classstd_1_1array_3_01char32__t_00_01N_01_4", null ],
-    [ "array< Tok, N >", "namespace_3globalScope_4.html#classstd_1_1array_3_01Tok_00_01N_01_4", null ]
+    [ "array< Tok, N >", "namespace_3globalScope_4.html#classstd_1_1array_3_01Tok_00_01N_01_4", null ],
+    [ "size_t", "namespace_3globalScope_4.html#classsize__t", null ]
 ];
