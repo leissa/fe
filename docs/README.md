@@ -42,6 +42,7 @@ Otherwise, FE will fall back to the hash containers of the C++ standard library.
         ```sh
         git submodule add git@github.com:leissa/fe.git external/fe
         ```
+
 2. Integrate into your build system:
     * If you use CMake, add something like this to your `CMakeLists.txt`:
         ```cmake
@@ -62,6 +63,7 @@ Otherwise, FE will fall back to the hash containers of the C++ standard library.
     mkdir -p my_compiler/include/fe
     cp -r fe/include/fe/*.h my_compiler/include/fe
     ```
+
 2. Integrate into your build system:
 
     Since your build system most likely already has `my_compiler/include/` as an include directory, nothing more needs to be done.
