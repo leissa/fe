@@ -1,15 +1,14 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 
+#include <doctest/doctest.h>
 #include <fe/arena.h>
 #include <fe/ring.h>
 #include <fe/sym.h>
 #include <fe/utf8.h>
 
-#include <doctest/doctest.h>
-
 TEST_CASE("Arena") {
-    fe::Arena<alignof(char*), 128> arena;
-    std::vector<int, fe::Arena<alignof(char*), 128>::Allocator<int>> v(arena.allocator<int>());
+    fe::Arena arena;
+    std::vector<int, fe::Arena::Allocator<int>> v(arena.allocator<int>());
     for (int i = 0, e = 10000; i != e; ++i) v.emplace_back(i);
 }
 
@@ -62,15 +61,15 @@ TEST_CASE("Ring") {
 
 TEST_CASE("Sym") {
     fe::SymPool syms;
-    auto x   = syms.sym("");
-    auto b   = syms.sym("b");
-    auto bc  = syms.sym("bc");
+    auto x  = syms.sym("");
+    auto b  = syms.sym("b");
+    auto bc = syms.sym("bc");
     CHECK(b == 'b');
     CHECK(b != 'a');
     CHECK(b <= 'b');
     CHECK(b >= 'b');
-    CHECK(b <  'c');
-    CHECK(b >  'a');
+    CHECK(b < 'c');
+    CHECK(b > 'a');
     CHECK(bc < 'c');
     CHECK(bc > 'a');
     CHECK(bc > 'b');

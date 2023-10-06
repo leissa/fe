@@ -101,8 +101,7 @@ public:
         return result;
     }
 
-    template<class T>
-    [[nodiscard]] T* allocate(size_t num_elems) {
+    template<class T> [[nodiscard]] T* allocate(size_t num_elems) {
         align(alignof(T));
         return static_cast<T*>(allocate(num_elems * std::max(sizeof(T), alignof(T))));
     }
@@ -116,8 +115,9 @@ public:
     /// Use like this:
     /// ```
     /// auto state = arena.state();
-    /// auto ptr = arena.allocate(n);
+    /// auto ptr   = arena.allocate(n);
     /// if (/* I don't want that */) arena.deallocate(state);
+    /// ```
     /// @warning Only use, if you really know what you are doing.
     using State = std::pair<size_t, size_t>;
     State state() const { return {pages_.size(), index_}; }
