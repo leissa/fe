@@ -149,7 +149,11 @@ Option #1: Include FE as Submodule (Recommended)</h2>
 <div class="line"> </div>
 <div class="line">target_link_libraries(my_compiler PUBLIC fe)</div>
 </div><!-- fragment --></li>
-<li>Otherwise add <code>external/fe/include</code> as include directory. In addiiton, add <code>-DFE_ABSL</code> to your <code>CXXFLAGS</code>, if you want to use Abseil.</li>
+<li>Otherwise:<ul>
+<li>Add <code>external/fe/include</code> as include directory.</li>
+<li>Furthermore, add <code>-DFE_ABSL</code> to your <code>CXXFLAGS</code>, if you want to use Abseil.</li>
+</ul>
+</li>
 </ul>
 </li>
 </ol>
@@ -162,8 +166,7 @@ Option #2: Directly include FE in your Source Tree</h2>
 </div><!-- fragment --></li>
 <li><p class="startli">Integrate into your build system:</p>
 <p class="startli">Since your build system most likely already has <code>my_compiler/include/</code> as an include directory, nothing more needs to be done. In addiiton, add <code>-DFE_ABSL</code> to your <code>CXXFLAGS</code>, if you want to use Abseil. In the case of CMake, add something like this to your <code>CMakeLists.txt</code>: </p><div class="fragment"><div class="line">target_compile_definitions(my_compiler PUBLIC FE_ABSL)</div>
-</div><!-- fragment --></li>
-<li>Don't forget to add the sources to your version control system! </li>
+</div><!-- fragment --> </li>
 </ol>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
