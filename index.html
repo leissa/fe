@@ -116,25 +116,38 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="textblock"><p><a class="anchor" id="md__2home_2runner_2work_2fe_2fe_2docs_2README"></a> <img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/doxygen.yml?logo=gitbook&amp;logoColor=white&amp;label=docs&amp;link=https%3A%2F%2Fleissa.github.io%2Ffe%2F&amp;link=https%3A%2F%2Fgithub.com%2Fleissa%2Ffe%2Factions%2Fworkflows%2Fdoxygen.yml" alt="docs" class="inline"/> <img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/linux.yml?logo=linux&amp;logoColor=white&amp;label=linux&amp;link=https%3A%2F%2Fgithub.com%2Fleissa%2Ffe%2Factions%2Fworkflows%2Flinux.yml" alt="linux" class="inline"/> <img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/macos.yml?logo=apple&amp;logoColor=white&amp;label=macos&amp;link=https%3A%2F%2Fgithub.com%2Fleissa%2Ffe%2Factions%2Fworkflows%2Fmacos.yml" alt="macos" class="inline"/> <img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/windows.yml?logo=windows&amp;logoColor=white&amp;label=windows&amp;link=https%3A%2F%2Fgithub.com%2Fleissa%2Ffe%2Factions%2Fworkflows%2Fwindows.yml" alt="windows" class="inline"/></p>
 <p>A header-only C++ library for writing compiler/interpreter frontends.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
+What is FE?</h1>
+<p>FE provides a set of utilities that helps you writing your own compiler or interpreter frontend. FE is <b>not</b> a lexer or parser generator. Instead, it will give you the blueprint to easily hand-write your own lexer and parser.</p>
+<h1><a class="anchor" id="autotoc_md2"></a>
 Get Started Now!</h1>
 <p>Simply <a href="https://github.com/leissa/let/fork">fork</a> the toy language <em><a href="https://github.com/leissa/let">Let</a></em>.</p>
-<h1><a class="anchor" id="autotoc_md2"></a>
+<h1><a class="anchor" id="autotoc_md3"></a>
+Features</h1>
+<ul>
+<li><a class="el" href="classfe_1_1Arena.html">Arena</a> allocator for efficient memory management</li>
+<li>Efficient symbol pool. String comparisions are now only pointer comparisions!</li>
+<li>Keep track of <a class="el" href="structfe_1_1Loc.html">source code locations</a></li>
+<li>Blueprint for a <a class="el" href="classfe_1_1Lexer.html">lexer</a> with <a class="el" href="namespacefe_1_1utf8.html">UTF-8</a> support</li>
+<li>Blueprint for a <a class="el" href="classfe_1_1Parser.html">parser</a></li>
+</ul>
+<h1><a class="anchor" id="autotoc_md4"></a>
 Building</h1>
 <p>FE has optional support <a href="https://abseil.io/">Abseil</a>'s excelent <a href="https://abseil.io/docs/cpp/guides/container">hash containers</a>. In order to enable Abseil support, you have to define <code>FE_ABSL</code>. Otherwise, FE will fall back to the hash containers of the C++ standard library.</p>
-<h2><a class="anchor" id="autotoc_md3"></a>
-Option #1: Include FE as Submodule</h2>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Option #1: Include FE as Submodule (Recommended)</h2>
 <p>Add FE as external submodule to your compiler project: </p><div class="fragment"><div class="line">git submodule add ../../leissa/fe external/fe</div>
 </div><!-- fragment --><p> Add this to your <code>CMakeLists.txt</code>: </p><div class="fragment"><div class="line">set(FE_ABSL ON) # remove this line if you don&#39;t want to use Abseil</div>
 <div class="line">add_subdirectory(external/fe)</div>
 <div class="line"> </div>
 <div class="line">target_link_libraries(my_compiler_target PUBLIC fe)</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md4"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md6"></a>
 Option #2: Directly include FE in your Source Tree</h2>
 <ol type="1">
-<li>Copy over the headers from FE to your compiler project: <div class="fragment"><div class="line">mkdir -p my_compiler_project/include/fe</div>
-<div class="line">cp -r fe/include/fe/*.h my_compiler_project/include/fe</div>
+<li>Copy over the headers from FE to your compiler project: <div class="fragment"><div class="line">git clone git@github.com:leissa/fe.git</div>
+<div class="line">mkdir -p my_compiler/include/fe</div>
+<div class="line">cp -r fe/include/fe/*.h my_compiler/include/fe</div>
 </div><!-- fragment --></li>
-<li>Put a <code>config.h</code> file into <code>include/fe</code>:<ol type="a">
+<li>Put a <code>config.h</code> file into <code>my_compiler/include/fe</code>:<ol type="a">
 <li>With Abseil support: <div class="fragment"><div class="line">echo &quot;pragma once\n\n#define FE_ABSL&quot; &gt;&gt; my_compiler/include/fe/config.h</div>
 </div><!-- fragment --></li>
 <li>Without Abseil support: <div class="fragment"><div class="line">touch my_compiler/include/fe/config.h</div>

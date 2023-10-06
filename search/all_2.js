@@ -14,7 +14,7 @@ var searchData=
   ['arena_2eh_11',['arena.h',['../arena_8h.html',1,'']]],
   ['arena_3c_20a_2c_20p_20_3e_12',['Arena&lt; A, P &gt;',['../classfe_1_1Arena.html',1,'fe']]],
   ['as_13',['as',['../classfe_1_1RuntimeCast.html#a1f2d655724345f4b4e0bc4540ea78554',1,'fe::RuntimeCast::as()'],['../classfe_1_1RuntimeCast.html#af077f6cb9aef8502e4c76674a3a2666d',1,'fe::RuntimeCast::as() const']]],
-  ['as_20submodule_14',['Option #1: Include FE as Submodule',['../index.html#autotoc_md3',1,'']]],
+  ['as_20submodule_20recommended_14',['Option #1: Include FE as Submodule (Recommended)',['../index.html#autotoc_md5',1,'']]],
   ['assert_2eh_15',['assert.h',['../assert_8h.html',1,'']]],
   ['assert_5funused_16',['assert_unused',['../assert_8h.html#a1bf507325593e1ed7b3acc75596bd525',1,'assert.h']]]
 ];
