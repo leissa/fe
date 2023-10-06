@@ -164,10 +164,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a9012a0b95026368fb37286220b14c6a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader">Smart pointer</h2></td></tr>
-<tr><td class="ititle" colspan="2"><p>This is a <a href="https://en.cppreference.com/w/cpp/memory/unique_ptr">std::unique_ptr</a> that uses the <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size p.">Arena</a> under the hood and whose deleter will <em>only</em> invoke the destructor but <em>not</em> <code>delete</code> anything.</p>
-<p>This is handled by the <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size p.">Arena</a> upon its destruction.</p>
+<tr><td class="ititle" colspan="2"><p>This is a <a href="https://en.cppreference.com/w/cpp/memory/unique_ptr">std::unique_ptr</a> that uses the <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size p.">Arena</a> under the hood and whose deleter will <em>only</em> invoke the destructor but <em>not</em> <code>delete</code> anything; memory will be released when upon destruction of the <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size p.">Arena</a>.</p>
 <p>Use like this: </p><div class="fragment"><div class="line"><span class="keyword">auto</span> <a class="code hl_struct" href="structfe_1_1Arena_1_1Allocator.html">ptr</a> = arena.mk&lt;<a class="code hl_struct" href="structfe_1_1Arena_1_1Allocator.html">Foo</a>&gt;(<a class="code hl_struct" href="structfe_1_1Arena_1_1Allocator.html">a</a>, <a class="code hl_struct" href="structfe_1_1Arena_1_1Allocator.html">b</a>, <a class="code hl_struct" href="structfe_1_1Arena_1_1Allocator.html">c</a>); <span class="comment">// new Foo(a, b, c) placed into arena</span></div>
-<div class="ttc" id="astructfe_1_1Arena_1_1Allocator_html"><div class="ttname"><a href="structfe_1_1Arena_1_1Allocator.html">fe::Arena::Allocator</a></div><div class="ttdef"><b>Definition</b> <a href="arena_8h_source.html#l00030">arena.h:30</a></div></div>
+<div class="ttc" id="astructfe_1_1Arena_1_1Allocator_html"><div class="ttname"><a href="structfe_1_1Arena_1_1Allocator.html">fe::Arena::Allocator</a></div><div class="ttdef"><b>Definition</b> <a href="arena_8h_source.html#l00028">arena.h:28</a></div></div>
 </div><!-- fragment --> </td></tr>
 <tr class="memitem:a5f0956a1fe1245d4910a218e859df230" id="r_a5f0956a1fe1245d4910a218e859df230"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="structfe_1_1Arena_1_1Allocator.html">class</a> T &gt; </td></tr>
 <tr class="memitem:a5f0956a1fe1245d4910a218e859df230"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structfe_1_1Arena_1_1Allocator.html">using</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classfe_1_1Arena.html#a5f0956a1fe1245d4910a218e859df230">Ptr</a> = std::unique_ptr&lt; T, <a class="el" href="structfe_1_1Arena_1_1Deleter.html">Deleter</a>&lt; T &gt; &gt;</td></tr>
@@ -182,7 +181,7 @@ class fe::Arena&lt; A, P &gt;</div><p>An arena pre-allocates so-called <em>pages
 <p>You can use Arena::alloc to obtain memory from this. When a page runs out of memory, the next page will be (pre-)allocated. You cannot directly release memory obtained via this method. Instead, <em>all</em> memory acquired via this <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size p.">Arena</a> will be released as soon as this <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size p.">Arena</a> will be destroyed. As an exception, you can Arena::dealloc memory that just as been acquired.</p>
 <p>Use <a class="el" href="structfe_1_1Arena_1_1Allocator.html">Allocator</a> to adopt it in <a href="https://en.cppreference.com/w/cpp/named_req/AllocatorAwareContainer">containers</a>. Construct it via <a class="el" href="classfe_1_1Arena.html#ae49bccd0c183b4a96a3d93f4702ed8e0" title="Create Allocator from Arena.">Arena::allocator</a>. </p><dl class="section note"><dt>Note</dt><dd>The <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size p.">Arena</a> assumes a consistent alignment of <code>A</code> for all allocated objects. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00024">24</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00023">23</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a5f0956a1fe1245d4910a218e859df230" name="a5f0956a1fe1245d4910a218e859df230"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5f0956a1fe1245d4910a218e859df230">&#9670;&#160;</a></span>Ptr</h2>
@@ -200,7 +199,7 @@ template&lt;<a class="el" href="structfe_1_1Arena_1_1Allocator.html">class</a> T
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00075">75</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00072">72</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
 </div>
 </div>
@@ -257,7 +256,7 @@ template&lt;size_t A = sizeof(size_t), size_t P = Default_Page_Size&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00085">85</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00082">82</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
 </div>
 </div>
@@ -290,9 +289,9 @@ template&lt;size_t A = sizeof(size_t), size_t P = Default_Page_Size&gt; </div>
 
 <p>Align <code>n</code> to <code>A</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00090">90</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00087">87</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="arena_8h_source.html#l00096">fe::Arena&lt; A, P &gt;::allocate()</a>, and <a class="el" href="arena_8h_source.html#l00112">fe::Arena&lt; A, P &gt;::deallocate()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="arena_8h_source.html#l00093">fe::Arena&lt; A, P &gt;::allocate()</a>, and <a class="el" href="arena_8h_source.html#l00109">fe::Arena&lt; A, P &gt;::deallocate()</a>.</p>
 
 </div>
 </div>
@@ -324,11 +323,11 @@ template&lt;size_t A = sizeof(size_t), size_t P = Default_Page_Size&gt; </div>
 
 <p>Get <code>n</code> bytes of fresh memory. </p>
 
-<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00096">96</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00093">93</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
-<p class="reference">References <a class="el" href="arena_8h_source.html#l00090">fe::Arena&lt; A, P &gt;::align()</a>.</p>
+<p class="reference">References <a class="el" href="arena_8h_source.html#l00087">fe::Arena&lt; A, P &gt;::align()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="arena_8h_source.html#l00040">fe::Arena&lt; A, P &gt;::Allocator&lt; T &gt;::allocate()</a>, and <a class="el" href="arena_8h_source.html#l00076">fe::Arena&lt; A, P &gt;::mk()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="arena_8h_source.html#l00038">fe::Arena&lt; A, P &gt;::Allocator&lt; T &gt;::allocate()</a>, and <a class="el" href="arena_8h_source.html#l00073">fe::Arena&lt; A, P &gt;::mk()</a>.</p>
 
 </div>
 </div>
@@ -361,7 +360,7 @@ template&lt;<a class="el" href="structfe_1_1Arena_1_1Allocator.html">class</a> T
 
 <p>Create <a class="el" href="structfe_1_1Arena_1_1Allocator.html">Allocator</a> from <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size p.">Arena</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00054">54</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00052">52</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
 </div>
 </div>
@@ -394,9 +393,9 @@ template&lt;size_t A = sizeof(size_t), size_t P = Default_Page_Size&gt; </div>
 <p>Tries to remove <code>n</code> bytes again. </p>
 <p>If this crosses a page boundary, nothing happens. </p>
 
-<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00112">112</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00109">109</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
-<p class="reference">References <a class="el" href="arena_8h_source.html#l00090">fe::Arena&lt; A, P &gt;::align()</a>.</p>
+<p class="reference">References <a class="el" href="arena_8h_source.html#l00087">fe::Arena&lt; A, P &gt;::align()</a>.</p>
 
 </div>
 </div>
@@ -428,9 +427,9 @@ template&lt;<a class="el" href="structfe_1_1Arena_1_1Allocator.html">class</a> T
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00076">76</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00073">73</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
-<p class="reference">References <a class="el" href="arena_8h_source.html#l00096">fe::Arena&lt; A, P &gt;::allocate()</a>.</p>
+<p class="reference">References <a class="el" href="arena_8h_source.html#l00093">fe::Arena&lt; A, P &gt;::allocate()</a>.</p>
 
 </div>
 </div>
