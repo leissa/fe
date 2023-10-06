@@ -20,14 +20,12 @@ constexpr size_t Default_Page_Size = 1024 * 1024; ///< 1MB.
 /// Use Allocator to adopt it in [containers](https://en.cppreference.com/w/cpp/named_req/AllocatorAwareContainer).
 /// Construct it via Arena::allocator.
 /// @note The Arena assumes a consistent alignment of @p A for all  allocated objects.
-template<size_t A = sizeof(size_t), size_t P = Default_Page_Size>
-class Arena {
+template<size_t A = sizeof(size_t), size_t P = Default_Page_Size> class Arena {
 public:
     /// @name Allocator
     ///@{
     /// An [allocator](https://en.cppreference.com/w/cpp/named_req/Allocator) in order to use this Arena for containers.
-    template<class T>
-    struct Allocator {
+    template<class T> struct Allocator {
         using value_type = T;
 
         Allocator() noexcept = delete;
@@ -58,15 +56,14 @@ public:
     ///@{
     /// This is a [std::unique_ptr](https://en.cppreference.com/w/cpp/memory/unique_ptr)
     /// that uses the Arena under the hood
-    /// and whose deleter will *only* invoke the destructor but *not* `delete` anything.
-    /// This is handled by the Arena upon its destruction.
+    /// and whose deleter will *only* invoke the destructor but *not* `delete` anything;
+    /// memory will be released when upon destruction of the Arena.
     ///
     /// Use like this:
     /// ```
     /// auto ptr = arena.mk<Foo>(a, b, c); // new Foo(a, b, c) placed into arena
     /// ```
-    template<class T>
-    struct Deleter {
+    template<class T> struct Deleter {
         constexpr Deleter() noexcept = default;
         template<class U> constexpr Deleter(const Deleter<U>&) noexcept {}
         void operator()(T* ptr) { ptr->~T(); }
@@ -127,4 +124,4 @@ private:
     size_t index_ = P;
 };
 
-} // namespace arena
+} // namespace fe
