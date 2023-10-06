@@ -23,8 +23,9 @@ constexpr size_t Default_Page_Size = 1024 * 1024; ///< 1MB.
 template<size_t A = sizeof(size_t), size_t P = Default_Page_Size>
 class Arena {
 public:
-    /// An [allocator](https://en.cppreference.com/w/cpp/named_req/Allocator).
-    /// Construct one via Arena::allocator.
+    /// @name Allocator
+    ///@{
+    /// An [allocator](https://en.cppreference.com/w/cpp/named_req/Allocator) in order to use this Arena for containers.
     template<class T>
     struct Allocator {
         using value_type = T;
@@ -49,10 +50,15 @@ public:
         Arena<A, P>& arena;
     };
 
-    /// @name Smart pointer that uses the Arena under the hood
+    /// Create Allocator from Arena.
+    template<class T> Allocator<T> allocator() { return Allocator<T>(*this); }
+    ///@}
+
+    /// @name Smart pointer
     ///@{
     /// This is a [std::unique_ptr](https://en.cppreference.com/w/cpp/memory/unique_ptr)
-    /// whose deleter will *only* invoke the destructor but *not* `delete` anything.
+    /// that uses the Arena under the hood
+    /// and whose deleter will *only* invoke the destructor but *not* `delete` anything.
     /// This is handled by the Arena upon its destruction.
     ///
     /// Use like this:
@@ -73,12 +79,18 @@ public:
     }
     ///@}
 
+    /// @name Construction/Destruction
+    ///@{
     Arena() = default;
     ~Arena() {
         for (auto p : pages_) delete[] p;
     }
+    ///@}
 
     static constexpr size_t align(size_t n) { return (n + (A - 1)) & ~(A - 1); } ///< Align @p n to @p A.
+
+    /// @name Memory Management
+    ///@{
 
     /// Get @p n bytes of fresh memory.
     [[nodiscard]] void* allocate(size_t n) {
@@ -102,9 +114,7 @@ public:
         if (ptrdiff_t(index_ - n) > 0) index_ -= n; // don't care otherwise
         assert(index_ % A == 0);
     }
-
-    /// Create Allocator from Arena.
-    template<class T> Allocator<T> allocator() { return Allocator<T>(*this); }
+    ///@}
 
     friend void swap(Arena& a1, Arena& a2) {
         using std::swap;
