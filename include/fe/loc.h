@@ -2,7 +2,6 @@
 
 #include <filesystem>
 
-#include "fe/config.h"
 #include "fe/sym.h"
 
 namespace fe {

@@ -6,7 +6,6 @@
 #include <iostream>
 #include <string>
 
-#include "fe/config.h"
 #include "fe/arena.h"
 
 #ifdef FE_ABSL

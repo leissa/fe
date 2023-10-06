@@ -14,14 +14,19 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
 endif()
 
-option(FE_ABSL "If ON, use abseil containers, otherwise use std contaienrs" OFF)
-
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 add_library(fe INTERFACE)
 target_compile_features(fe INTERFACE cxx_std_20)
+
+option(FE_ABSL "If ON, use abseil containers, otherwise use std contaienrs" OFF)
+message(STATUS "abseil support: ${FE_ABSL}")
+if(FE_ABSL)
+    target_compile_definitions(fe INTERFACE FE_ABSL)
+endif()
+
 target_sources(fe
     INTERFACE FILE_SET headers
     BASE_DIRS include
@@ -37,18 +42,11 @@ target_sources(fe
         include/fe/loc.cpp.h
         include/fe/parser.h
         include/fe/ring.h
+        include/fe/tab.h
         include/fe/sym.h
         include/fe/utf8.h
 )
-target_include_directories(fe
-    INTERFACE
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include> # for config.h
-        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
-)
-configure_file(
-    include/fe/config.h.in
-    include/fe/config.h
-)
+target_include_directories(fe INTERFACE $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 if(FE_ABSL)
     target_link_libraries(fe
         INTERFACE
@@ -82,12 +80,6 @@ install(
         "${CMAKE_CURRENT_BINARY_DIR}/cmake/fe-config-version.cmake"
     DESTINATION
         "${CMAKE_INSTALL_LIBDIR}/cmake/fe"
-)
-install(
-    FILES
-    "${CMAKE_CURRENT_BINARY_DIR}/include/fe/config.h"
-    DESTINATION
-        "${CMAKE_INSTALL_INCLUDEDIR}/fe"
 )
 install(
     EXPORT fe-targets

@@ -58,15 +58,9 @@ target_link_libraries(my_compiler_target PUBLIC fe)
     mkdir -p my_compiler/include/fe
     cp -r fe/include/fe/*.h my_compiler/include/fe
     ```
-2. Put a `config.h` file into `my_compiler/include/fe`:
-    1. With Abseil support:
-    ```sh
-    echo "pragma once\n\n#define FE_ABSL" >> my_compiler/include/fe/config.h
-    ```
-    2. Without Abseil support:
-    ```sh
-    touch my_compiler/include/fe/config.h
-    ```
-3. Integrate into your build system.
+2. Integrate into your build system:
+
     Since your build system most likely already has `my_compiler/include/` as an include directory, nothing more needs to be done.
+    If you want to use Abseil, just add `FE_BASL` to your `CXXFLAGS`.
+
 4. Don't forget to add the sources to your version control system!
