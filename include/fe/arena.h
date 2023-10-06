@@ -8,7 +8,7 @@
 
 namespace fe {
 
-/// An arena pre-allocates so-called *pages* of size @p p.
+/// An arena pre-allocates so-called *pages* of size Arena::page_size_.
 /// You can use Arena::alloc to obtain memory from this.
 /// When a page runs out of memory, the next page will be (pre-)allocated.
 /// You cannot directly release memory obtained via this method.
@@ -17,7 +17,6 @@ namespace fe {
 ///
 /// Use Allocator to adopt it in [containers](https://en.cppreference.com/w/cpp/named_req/AllocatorAwareContainer).
 /// Construct it via Arena::allocator.
-/// @note The Arena assumes a consistent alignment of @p A for all  allocated objects.
 class Arena {
 public:
     static constexpr size_t Default_Page_Size = 1024 * 1024; ///< 1MB.
@@ -49,7 +48,7 @@ public:
     template<class T> Allocator<T> allocator() { return Allocator<T>(*this); }
     ///@}
 
-    /// @name Smart pointer
+    /// @name Smart Pointer
     ///@{
     /// This is a [std::unique_ptr](https://en.cppreference.com/w/cpp/memory/unique_ptr)
     /// that uses the Arena under the hood
@@ -105,7 +104,6 @@ public:
         align(alignof(T));
         return static_cast<T*>(allocate(num_elems * std::max(sizeof(T), alignof(T))));
     }
-
     ///@}
 
     /// @name Dealloc
