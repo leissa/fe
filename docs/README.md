@@ -20,7 +20,7 @@ Simply [fork](https://github.com/leissa/let/fork) the toy language *[Let](https:
 ## Features
 
 * [Arena](@ref fe::Arena) allocator for efficient memory management
-* Efficient [symbol pool](@ref fe:SymPool). String comparisions are now only pointer comparisions!
+* Efficient [symbol pool](@ref fe::SymPool). [String](@ref fe::Sym] comparisions are now only pointer comparisions!
 * Keep track of [source code locations](@ref fe::Loc)
 * Blueprint for a [lexer](@ref fe::Lexer) with [UTF-8](@ref fe::utf8) support
 * Blueprint for a [parser](@ref fe::Parser)
@@ -39,7 +39,7 @@ git submodule add ../../leissa/fe external/fe
 ```
 Add this to your `CMakeLists.txt`:
 ```cmake
-set(FE_ABSL ON) # remove this line if you don't want to use Abseil
+set(FE_ABSL ON) # remove this line, if you don't want to use Abseil
 add_subdirectory(external/fe)
 
 target_link_libraries(my_compiler_target PUBLIC fe)
