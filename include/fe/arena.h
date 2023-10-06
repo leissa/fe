@@ -8,8 +8,6 @@
 
 namespace fe {
 
-constexpr size_t Default_Page_Size = 1024 * 1024; ///< 1MB.
-
 /// An arena pre-allocates so-called *pages* of size @p p.
 /// You can use Arena::alloc to obtain memory from this.
 /// When a page runs out of memory, the next page will be (pre-)allocated.
@@ -20,8 +18,10 @@ constexpr size_t Default_Page_Size = 1024 * 1024; ///< 1MB.
 /// Use Allocator to adopt it in [containers](https://en.cppreference.com/w/cpp/named_req/AllocatorAwareContainer).
 /// Construct it via Arena::allocator.
 /// @note The Arena assumes a consistent alignment of @p A for all  allocated objects.
-template<size_t A = sizeof(size_t), size_t P = Default_Page_Size> class Arena {
+class Arena {
 public:
+    static constexpr size_t Default_Page_Size = 1024 * 1024; ///< 1MB.
+
     /// @name Allocator
     ///@{
     /// An [allocator](https://en.cppreference.com/w/cpp/named_req/Allocator) in order to use this Arena for containers.
@@ -30,22 +30,19 @@ public:
 
         Allocator() noexcept = delete;
         template<class U>
-        Allocator(const Arena<A, P>::Allocator<U>& allocator) noexcept
+        Allocator(const Arena::Allocator<U>& allocator) noexcept
             : arena(allocator.arena) {}
-        Allocator(Arena<A, P>& arena) noexcept
+        Allocator(Arena& arena) noexcept
             : arena(arena) {}
 
-        [[nodiscard]] T* allocate(size_t n) {
-            static_assert(alignof(T) <= A, "alignment of Arena too small");
-            return (T*)arena.allocate(n * sizeof(T));
-        }
+        [[nodiscard]] T* allocate(size_t num_elems) { return arena.allocate<T>(num_elems); }
 
         void deallocate(T*, size_t) noexcept {}
 
         template<class U> bool operator==(const Allocator<U>& a) const noexcept { return &arena == &a.arena; }
         template<class U> bool operator!=(const Allocator<U>& a) const noexcept { return &arena != &a.arena; }
 
-        Arena<A, P>& arena;
+        Arena& arena;
     };
 
     /// Create Allocator from Arena.
@@ -57,7 +54,7 @@ public:
     /// This is a [std::unique_ptr](https://en.cppreference.com/w/cpp/memory/unique_ptr)
     /// that uses the Arena under the hood
     /// and whose deleter will *only* invoke the destructor but *not* `delete` anything;
-    /// memory will be released when upon destruction of the Arena.
+    /// memory will be released upon destruction of the Arena.
     ///
     /// Use like this:
     /// ```
@@ -78,38 +75,54 @@ public:
 
     /// @name Construction/Destruction
     ///@{
-    Arena() = default;
+    Arena(size_t page_size = Default_Page_Size)
+        : page_size_(page_size)
+        , index_(page_size) {}
     ~Arena() {
         for (auto p : pages_) delete[] p;
     }
     ///@}
 
-    static constexpr size_t align(size_t n) { return (n + (A - 1)) & ~(A - 1); } ///< Align @p n to @p A.
-
-    /// @name Memory Management
+    /// @name Alloc
     ///@{
 
-    /// Get @p n bytes of fresh memory.
-    [[nodiscard]] void* allocate(size_t n) {
-        n = align(n);
+    /// Align next allocate(size_t) to @p a.
+    void align(size_t a) { index_ = (index_ + (a - 1)) & ~(a - 1); }
 
-        if (index_ + n > P) {
-            pages_.emplace_back(new char[std::max(P, n)]);
+    /// Get @p n bytes of fresh memory.
+    [[nodiscard]] void* allocate(size_t num_bytes) {
+        if (index_ + num_bytes > page_size_) {
+            pages_.emplace_back(new char[std::max(page_size_, num_bytes)]);
             index_ = 0;
         }
 
         auto result = pages_.back() + index_;
-        index_ += n;
-        assert(index_ % A == 0);
+        index_ += num_bytes;
         return result;
     }
 
-    /// Tries to remove @p n bytes again.
+    template<class T>
+    [[nodiscard]] T* allocate(size_t num_elems) {
+        align(alignof(T));
+        return static_cast<T*>(allocate(num_elems * std::max(sizeof(T), alignof(T))));
+    }
+
+    ///@}
+
+    /// @name Dealloc
+    ///@{
+    /// Tries to remove bytes again.
     /// If this crosses a page boundary, nothing happens.
-    void deallocate(size_t n) {
-        n = align(n);
-        if (ptrdiff_t(index_ - n) > 0) index_ -= n; // don't care otherwise
-        assert(index_ % A == 0);
+    /// Use like this:
+    /// ```
+    /// auto state = arena.state();
+    /// auto ptr = arena.allocate(n);
+    /// if (/* I don't want that */) arena.deallocate(state);
+    /// @warning Only use, if you really know what you are doing.
+    using State = std::pair<size_t, size_t>;
+    State state() const { return {pages_.size(), index_}; }
+    void deallocate(State state) {
+        if (state.first == pages_.size()) index_ = state.second; // don't care otherwise
     }
     ///@}
 
@@ -121,7 +134,8 @@ public:
 
 private:
     std::vector<char*> pages_;
-    size_t index_ = P;
+    size_t page_size_;
+    size_t index_;
 };
 
 } // namespace fe

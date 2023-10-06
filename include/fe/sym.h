@@ -151,7 +151,7 @@ public:
     }
 
 private:
-    Arena<> arena_;
+    Arena arena_;
 #ifdef FE_ABSL
     absl::node_hash_set<
 #else
@@ -160,7 +160,7 @@ private:
         std::string,
         std::hash<std::string>,
         std::equal_to<std::string>,
-        Arena<>::Allocator<std::string>
+        Arena::Allocator<std::string>
     > pool_;
 };
 
