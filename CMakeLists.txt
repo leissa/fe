@@ -21,12 +21,6 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 add_library(fe INTERFACE)
 target_compile_features(fe INTERFACE cxx_std_20)
 
-option(FE_ABSL "If ON, use abseil containers, otherwise use std contaienrs" OFF)
-message(STATUS "abseil support: ${FE_ABSL}")
-if(FE_ABSL)
-    target_compile_definitions(fe INTERFACE FE_ABSL)
-endif()
-
 target_sources(fe
     INTERFACE FILE_SET headers
     BASE_DIRS include
@@ -47,7 +41,10 @@ target_sources(fe
         include/fe/utf8.h
 )
 target_include_directories(fe INTERFACE $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+
+option(FE_ABSL "If ON, use abseil containers, otherwise use std contaienrs" OFF)
 if(FE_ABSL)
+    target_compile_definitions(fe INTERFACE FE_ABSL)
     target_link_libraries(fe
         INTERFACE
             absl::flat_hash_map absl::flat_hash_set
