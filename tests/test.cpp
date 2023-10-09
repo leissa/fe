@@ -73,6 +73,10 @@ TEST_CASE("Sym") {
     CHECK(bc < 'c');
     CHECK(bc > 'a');
     CHECK(bc > 'b');
+    auto xyz = syms.sym("xyz");
+    std::string zyx;
+    for (auto i = xyz.rbegin(), e = xyz.rend(); i != e; ++i) zyx += *i;
+    CHECK(zyx == "zyx");
 }
 
 TEST_CASE("utf8") {

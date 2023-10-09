@@ -66,7 +66,7 @@ public:
     }
 
     std::string to_string() const {
-        if (tag_ == M_id) return sym_;
+        if (tag_ == M_id) return sym_.str();
         if (tag_ == M_lit) return std::to_string(u64_);
         return tag2str(tag_);
     }
