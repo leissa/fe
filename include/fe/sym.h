@@ -84,14 +84,7 @@ public:
 
     /// @name Comparisons
     ///@{
-    auto operator<=>(Sym other) const {
-        // #ifdef __clang__
-        // return std::str((*this)->c_str(), other->c_str()) <=> 0; // std::string <=> std::string is causing probls
-        // with clang
-        // #else
-        return this->view() <=> other.view();
-        // #endif
-    }
+    auto operator<=>(Sym other) const { return this->view() <=> other.view(); }
     bool operator==(Sym other) const { return this->data_ == other.data_; }
     bool operator!=(Sym other) const { return this->data_ != other.data_; }
     auto operator<=>(char c) const {
