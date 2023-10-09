@@ -6,8 +6,6 @@
 #include <iostream>
 #include <string>
 
-#include "fe/arena.h"
-
 #ifdef FE_ABSL
 #    include <absl/container/flat_hash_map.h>
 #    include <absl/container/flat_hash_set.h>
@@ -16,6 +14,8 @@
 #    include <unordered_map>
 #    include <unordered_set>
 #endif
+
+#include "fe/arena.h"
 
 namespace fe {
 
@@ -136,7 +136,7 @@ private:
     friend class SymPool;
 };
 
-#ifdef DOXYGEN
+#ifndef DOXYGEN
 } // namespace fe
 
 template<> struct std::hash<fe::Sym> {
