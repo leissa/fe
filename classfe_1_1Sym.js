@@ -1,6 +1,6 @@
 var classfe_1_1Sym =
 [
-    [ "Data", "structfe_1_1Sym_1_1Data.html", "structfe_1_1Sym_1_1Data" ],
+    [ "String", "structfe_1_1Sym_1_1String.html", "structfe_1_1Sym_1_1String" ],
     [ "Sym", "classfe_1_1Sym.html#a5ad9546136421d6e33db08cef8526d47", null ],
     [ "back", "classfe_1_1Sym.html#ac75c307cbfd47a4fa9b4d091cb0b42a7", null ],
     [ "begin", "classfe_1_1Sym.html#a6a6defba95ece286d5784deb7fef79bc", null ],

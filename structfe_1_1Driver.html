@@ -116,6 +116,9 @@ $(document).ready(function(){initNavTree('structfe_1_1Driver.html',''); initResi
 </div><!--header-->
 <div class="contents">
 
+<p>Use/derive from this class for "global" variables that you need all over the place.  
+ <a href="structfe_1_1Driver.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="driver_8h_source.html">fe/driver.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for fe::Driver:</div>
@@ -123,12 +126,10 @@ Inheritance diagram for fe::Driver:</div>
 <div class="center"><iframe scrolling="no" frameborder="0" src="structfe_1_1Driver__inherit__graph.svg" width="111" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr><td colspan="2"><div class="groupHeader">Diagnostics</div></td></tr>
-<tr class="memitem:a260d08dac386fcb1f04b220e69806eb7" id="r_a260d08dac386fcb1f04b220e69806eb7"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
-<tr class="memitem:a260d08dac386fcb1f04b220e69806eb7"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structfe_1_1Driver.html#a260d08dac386fcb1f04b220e69806eb7">note</a> (<a class="el" href="structfe_1_1Loc.html">Loc</a> loc, std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
-<tr class="separator:a260d08dac386fcb1f04b220e69806eb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Diagnostics</h2></td></tr>
+<tr class="memitem:a897b0a14fe5cc91d50005de4039d20cf" id="r_a897b0a14fe5cc91d50005de4039d20cf"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:a897b0a14fe5cc91d50005de4039d20cf"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structfe_1_1Driver.html#a897b0a14fe5cc91d50005de4039d20cf">note</a> (<a class="el" href="structfe_1_1Loc.html">Loc</a> loc, std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:a897b0a14fe5cc91d50005de4039d20cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7df49a423aa2092dcd2f74dfa4694f68" id="r_a7df49a423aa2092dcd2f74dfa4694f68"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
 <tr class="memitem:a7df49a423aa2092dcd2f74dfa4694f68"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structfe_1_1Driver.html#a7df49a423aa2092dcd2f74dfa4694f68">warn</a> (<a class="el" href="structfe_1_1Loc.html">Loc</a> loc, std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
 <tr class="separator:a7df49a423aa2092dcd2f74dfa4694f68"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -139,6 +140,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa48333257f240659d2496f47e991680d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d5029604845d7fab9162f43e07cb9a0" id="r_a1d5029604845d7fab9162f43e07cb9a0"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfe_1_1Driver.html#a1d5029604845d7fab9162f43e07cb9a0">num_warnings</a> () const</td></tr>
 <tr class="separator:a1d5029604845d7fab9162f43e07cb9a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_methods_classfe_1_1SymPool"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classfe_1_1SymPool')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classfe_1_1SymPool.html">fe::SymPool</a></td></tr>
 <tr class="memitem:a3df3435dde76a17a4cd63a9328398902 inherit pub_methods_classfe_1_1SymPool" id="r_a3df3435dde76a17a4cd63a9328398902"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1SymPool.html#a3df3435dde76a17a4cd63a9328398902">SymPool</a> ()</td></tr>
 <tr class="separator:a3df3435dde76a17a4cd63a9328398902 inherit pub_methods_classfe_1_1SymPool"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -155,8 +159,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a0836abbed0a57732e84be5b627d35588 inherit pub_methods_classfe_1_1SymPool"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00012">12</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
+<div class="textblock"><p>Use/derive from this class for "global" variables that you need all over the place. </p>
+<p>Well, there are not really global - that's the point of this class. Right now, it manages a <a class="el" href="classfe_1_1SymPool.html" title="Hash set where all strings - wrapped in Symbol - live in.">SymPool</a> (by inherting from it) and offers <code>std::format</code>-based diagnostics. </p>
+
+<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00015">15</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="aa255d783b1a36dec9bb4c9f71802355b" name="aa255d783b1a36dec9bb4c9f71802355b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa255d783b1a36dec9bb4c9f71802355b">&#9670;&#160;</a></span>err()</h2>
@@ -200,12 +206,12 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00023">23</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00026">26</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
 
 </div>
 </div>
-<a id="a260d08dac386fcb1f04b220e69806eb7" name="a260d08dac386fcb1f04b220e69806eb7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a260d08dac386fcb1f04b220e69806eb7">&#9670;&#160;</a></span>note()</h2>
+<a id="a897b0a14fe5cc91d50005de4039d20cf" name="a897b0a14fe5cc91d50005de4039d20cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a897b0a14fe5cc91d50005de4039d20cf">&#9670;&#160;</a></span>note()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -216,7 +222,7 @@ template&lt;class... Args&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void fe::Driver::note </td>
+          <td class="memname">static void fe::Driver::note </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structfe_1_1Loc.html">Loc</a>&#160;</td>
           <td class="paramname"><em>loc</em>, </td>
@@ -241,12 +247,12 @@ template&lt;class... Args&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00016">16</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00019">19</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
 
 </div>
 </div>
@@ -273,7 +279,7 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00028">28</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00031">31</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
 
 </div>
 </div>
@@ -300,7 +306,7 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00029">29</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00032">32</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
 
 </div>
 </div>
@@ -346,7 +352,7 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00019">19</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00022">22</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
 
 </div>
 </div>

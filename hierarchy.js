@@ -2,9 +2,8 @@ var hierarchy =
 [
     [ "fe::Arena::Allocator< T >", "structfe_1_1Arena_1_1Allocator.html", null ],
     [ "fe::Arena", "classfe_1_1Arena.html", null ],
-    [ "fe::Sym::Data", "structfe_1_1Sym_1_1Data.html", null ],
     [ "fe::Arena::Deleter< T >", "structfe_1_1Arena_1_1Deleter.html", null ],
-    [ "fe::Sym::Data::Equal", "structfe_1_1Sym_1_1Data_1_1Equal.html", null ],
+    [ "fe::Sym::String::Equal", "structfe_1_1Sym_1_1String_1_1Equal.html", null ],
     [ "std::formatter", null, [
       [ "fe::basic_ostream_formatter< Char >", "structfe_1_1basic__ostream__formatter.html", [
         [ "std::formatter< fe::Loc >", "structstd_1_1formatter_3_01fe_1_1Loc_01_4.html", null ],
@@ -13,7 +12,7 @@ var hierarchy =
         [ "std::formatter< fe::Tab >", "structstd_1_1formatter_3_01fe_1_1Tab_01_4.html", null ]
       ] ]
     ] ],
-    [ "fe::Sym::Data::Hash", "structfe_1_1Sym_1_1Data_1_1Hash.html", null ],
+    [ "fe::Sym::String::Hash", "structfe_1_1Sym_1_1String_1_1Hash.html", null ],
     [ "fe::Lexer< K, S >", "classfe_1_1Lexer.html", null ],
     [ "fe::Loc", "structfe_1_1Loc.html", null ],
     [ "fe::Parser< Tok, Tag, K, S >", "classfe_1_1Parser.html", null ],
@@ -24,6 +23,7 @@ var hierarchy =
     [ "fe::Ring< T, 2 >", "classfe_1_1Ring_3_01T_00_012_01_4.html", null ],
     [ "fe::Ring< Tok, K >", "classfe_1_1Ring.html", null ],
     [ "fe::RuntimeCast< B >", "classfe_1_1RuntimeCast.html", null ],
+    [ "fe::Sym::String", "structfe_1_1Sym_1_1String.html", null ],
     [ "fe::Sym", "classfe_1_1Sym.html", null ],
     [ "fe::SymPool", "classfe_1_1SymPool.html", [
       [ "fe::Driver", "structfe_1_1Driver.html", null ]
