@@ -9,11 +9,14 @@
 
 namespace fe {
 
+/// Use/derive from this class for "global" variables that you need all over the place.
+/// Well, there are not really global - that's the point of this class.
+/// Right now, it manages a SymPool (by inherting from it) and offers `std::format`-based diagnostics.
 struct Driver : public SymPool {
 public:
     /// @name Diagnostics
     ///@{
-    template<class... Args> void note(Loc loc, std::format_string<Args...> fmt, Args&&... args) {
+    template<class... Args> static void note(Loc loc, std::format_string<Args...> fmt, Args&&... args) {
         std::cerr << loc << ": note: " << std::format(fmt, std::forward<Args&&>(args)...) << std::endl;
     }
     template<class... Args> void warn(Loc loc, std::format_string<Args...> fmt, Args&&... args) {

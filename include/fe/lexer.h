@@ -52,10 +52,12 @@ protected:
         return res;
     }
 
-    /// @name accept
+    /// @name Accept
     ///@{
+    /// Accept next character in Lexer::istream_, depending on some condition.
 
     /// What should happend to the accepted char?
+    /// Normalize identifiers via Append::Lower or Append::Upper for case-insensitive languages like FORTRAN or SQL.
     enum class Append {
         Off,   ///< Do not append accepted char to Lexer::str_.
         On,    ///< Append accepted char as is to Lexer::str_.

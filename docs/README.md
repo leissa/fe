@@ -25,7 +25,6 @@ Simply [fork](https://github.com/leissa/let/fork) the toy language *[Let](https:
 * Keep track of [source code locations](@ref fe::Loc)
 * Blueprint for a [lexer](@ref fe::Lexer) with [UTF-8](@ref fe::utf8) support
 * Blueprint for a [parser](@ref fe::Parser)
-* Optional
 
 ## Building
 

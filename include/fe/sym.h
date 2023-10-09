@@ -19,24 +19,26 @@
 
 namespace fe {
 
-/// A Sym%bol just wraps a `const std::string*`, so pass Sym itself around as value.
-/// With the exception of the empty string, you should only create Sym%bols via SymPool::sym.
-/// This in turn will toss all Sym%bols into a big hash set.
-/// This makes Sym::operator== and Sym::operator!= an O(1) operation.
-/// The empty string is internally handled as `nullptr`.
-/// Thus, you can create a Sym%bol representing an empty string without having access to the SymPool.
-/// @note The empty `std::string`, `nullptr`, and `"\0"` are all identified as Sym::Sym().
+/// A Sym%bol just wraps a pointer to Sym::string, so pass Sym itself around as value.
+/// Sym is compatible with `std::string_view` (recommended way) and null-terminated C-strings.
+/// This means that [retrieving](@ref Sym::str) a `std::string_view` or a [null-terminated C-string](@ref Sym::c_str) is
+/// basically free. You can also [create](@ref Sym::str) a `std::string`, but this involves a copy. With the exception
+/// of the empty string, you should only create Sym%bols via SymPool::sym. This in turn will toss all Sym%bols into a
+/// big hash set. This makes Sym::operator== and Sym::operator!= an O(1) operation. The empty string is internally
+/// handled as `nullptr`. Thus, you can create a Sym%bol representing an empty string without having access to the
+/// SymPool.
+/// @note The empty `std::string`/`std::string_view`, `nullptr`, and `"\0"` are all identified as Sym::Sym().
 class Sym {
 public:
-    struct Data {
-        Data() = default;
-        Data(size_t size)
+    struct String {
+        String() = default;
+        String(size_t size)
             : size(size) {}
         size_t size;
         char chars[]; // This is actually a C-only features, but all C++ compilers support that anyway.
 
         struct Equal {
-            bool operator()(const Data* d1, const Data* d2) const {
+            bool operator()(const String* d1, const String* d2) const {
                 bool res = d1->size == d2->size;
                 for (size_t i = 0, e = d1->size; res && i != e; ++i) res &= d1->chars[i] == d2->chars[i];
                 return res;
@@ -44,30 +46,30 @@ public:
         };
 
         struct Hash {
-            size_t operator()(fe::Sym::Data* data) const {
-                return std::hash<std::string_view>()(std::string_view(data->chars, data->size));
+            size_t operator()(fe::Sym::String* string) const {
+                return std::hash<std::string_view>()(std::string_view(string->chars, string->size));
             }
         };
 
 #ifdef FE_ABSL
-        template<class H> friend H AbslHashValue(H h, Data* data) {
-            return H::combine(std::move(h), std::string_view(data->chars, data->size));
+        template<class H> friend H AbslHashValue(H h, String* string) {
+            return H::combine(std::move(h), std::string_view(string->chars, string->size));
         }
 #endif
     };
 
-    static_assert(sizeof(Data) == sizeof(size_t), "Data.chars should be 0");
+    static_assert(sizeof(String) == sizeof(size_t), "String.chars should be 0");
 
 private:
-    Sym(const Data* data)
-        : data_(data) {}
+    Sym(const String* string)
+        : string_(string) {}
 
 public:
     Sym() = default;
 
     /// @name Getters
     ///@{
-    size_t size() const { return data_ ? data_->size : 0; }
+    size_t size() const { return string_ ? string_->size : 0; }
     bool empty() const { return size() == 0; }
     ///@}
 
@@ -96,8 +98,8 @@ public:
     /// @name Comparisons
     ///@{
     auto operator<=>(Sym other) const { return this->view() <=> other.view(); }
-    bool operator==(Sym other) const { return this->data_ == other.data_; }
-    bool operator!=(Sym other) const { return this->data_ != other.data_; }
+    bool operator==(Sym other) const { return this->string_ == other.string_; }
+    bool operator!=(Sym other) const { return this->string_ != other.string_; }
     auto operator<=>(char c) const {
         if ((*this).size() == 0) return std::strong_ordering::less;
         auto cmp = (*this)[0] <=> c;
@@ -110,28 +112,30 @@ public:
 
     /// @name Conversions
     ///@{
-    const char* c_str() const { return data_ ? data_->chars : empty_str; }
+    const char* c_str() const { return string_ ? string_->chars : empty_; }
     operator const char*() const { return c_str(); }
 
-    std::string_view view() const { return data_ ? std::string_view(data_->chars, data_->size) : std::string_view(); }
+    std::string_view view() const {
+        return string_ ? std::string_view(string_->chars, string_->size) : std::string_view();
+    }
     std::string_view operator*() const { return view(); }
     operator std::string_view() const { return view(); }
 
     std::string str() const { return std::string(view()); }
     explicit operator std::string() const { return str(); } ///< `explicit` as this involves a copy.
 
-    explicit operator bool() const { return data_; }
+    explicit operator bool() const { return string_; }
     ///@}
 
 #ifdef FE_ABSL
-    template<class H> friend H AbslHashValue(H h, Sym sym) { return H::combine(std::move(h), sym.data_); }
+    template<class H> friend H AbslHashValue(H h, Sym sym) { return H::combine(std::move(h), sym.string_); }
 #endif
     friend struct ::std::hash<fe::Sym>;
     friend std::ostream& operator<<(std::ostream& o, Sym sym) { return o << *sym; }
 
 private:
-    static constexpr const char* empty_str = "";
-    const Data* data_                      = nullptr;
+    static constexpr const char* empty_ = "";
+    const String* string_               = nullptr;
 
     friend class SymPool;
 };
@@ -140,7 +144,7 @@ private:
 } // namespace fe
 
 template<> struct std::hash<fe::Sym> {
-    size_t operator()(fe::Sym sym) const { return std::hash<void*>()((void*)sym.data_); }
+    size_t operator()(fe::Sym sym) const { return std::hash<void*>()((void*)sym.string_); }
 };
 
 namespace fe {
@@ -163,7 +167,7 @@ using SymSet                   = std::unordered_set<Sym>;
 class SymPool {
 public:
     SymPool()
-        : pool_(arena_.allocator<Sym::Data*>()) {}
+        : pool_(arena_.allocator<Sym::String*>()) {}
     SymPool(SymPool&& other)
         : arena_(std::move(other.arena_))
         , pool_(std::move(other.pool_)) {}
@@ -174,8 +178,8 @@ public:
     Sym sym(std::string_view s) {
         if (s.empty()) return Sym();
         auto state = arena_.state();
-        auto ptr   = (Sym::Data*)arena_.allocate(sizeof(Sym::Data) + s.size() + 1 /*'\0'*/);
-        new (ptr) Sym::Data(s.size());
+        auto ptr   = (Sym::String*)arena_.allocate(sizeof(Sym::String) + s.size() + 1 /*'\0'*/);
+        new (ptr) Sym::String(s.size());
         *std::copy(s.begin(), s.end(), ptr->chars) = '\0';
         auto [i, ins]                              = pool_.emplace(ptr);
         if (ins) return Sym(ptr);
@@ -196,9 +200,10 @@ public:
 private:
     Arena arena_;
 #ifdef FE_ABSL
-    absl::node_hash_set<Sym::Data*, absl::Hash<Sym::Data*>, Sym::Data::Equal, Arena::Allocator<Sym::Data*>> pool_;
+    absl::node_hash_set<Sym::String*, absl::Hash<Sym::String*>, Sym::String::Equal, Arena::Allocator<Sym::String*>>
+        pool_;
 #else
-    std::unordered_set<Sym::Data*, Sym::Data::Hash, Sym::Data::Equal, Arena::Allocator<Sym::Data*>> pool_;
+    std::unordered_set<Sym::String*, Sym::String::Hash, Sym::String::Equal, Arena::Allocator<Sym::String*>> pool_;
 #endif
 };
 

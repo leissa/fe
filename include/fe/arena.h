@@ -81,7 +81,7 @@ public:
     }
     ///@}
 
-    /// @name Alloc
+    /// @name Allocate
     ///@{
 
     /// Align next allocate(size_t) to @p a.
@@ -105,7 +105,7 @@ public:
     }
     ///@}
 
-    /// @name Dealloc
+    /// @name Deallocate
     ///@{
     /// Tries to remove bytes again.
     /// If this crosses a page boundary, nothing happens.
