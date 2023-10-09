@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_7earena_0',['~Arena',['../classfe_1_1Arena.html#a2dd71a2bf9b8dcdd0baf8ee316965061',1,'fe::Arena']]]
+  ['your_20source_20tree_0',['Option #2: Directly include FE in your Source Tree',['../index.html#autotoc_md6',1,'']]]
 ];

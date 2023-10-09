@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['tab_0',['tab',['../classfe_1_1Tab.html#aefb32b7f85982a9069518a6c96699033',1,'fe::Tab::tab() const'],['../classfe_1_1Tab.html#ad4c8eaf1bbcefb808746bddedde9e017',1,'fe::Tab::Tab(const Tab &amp;)=default'],['../classfe_1_1Tab.html#a26e89818605504153a811452694db2ea',1,'fe::Tab::Tab(std::string_view tab={&quot;\t&quot;}, size_t indent=0)']]],
-  ['tracker_1',['tracker',['../classfe_1_1Parser.html#aea3507b75aa247b9431256f5463a7821',1,'fe::Parser::tracker()'],['../classfe_1_1Parser_1_1Tracker.html#af138c292a8083989821de13cbbf349ce',1,'fe::Parser::Tracker::Tracker()']]]
+  ['size_0',['size',['../classfe_1_1Sym.html#a3b4b33b61bf97b2b95ce0f2536ed6e8d',1,'fe::Sym']]],
+  ['state_1',['state',['../classfe_1_1Arena.html#ad5596516d2fa1fb1679b2485b60a9007',1,'fe::Arena']]],
+  ['str_2',['str',['../classfe_1_1Sym.html#a02b9bc5090c6c46b42cd768b38216d79',1,'fe::Sym']]],
+  ['sym_3',['sym',['../classfe_1_1Sym.html#a5ad9546136421d6e33db08cef8526d47',1,'fe::Sym::Sym()'],['../classfe_1_1SymPool.html#a1a7c3278db18ad72926b06c1e757b865',1,'fe::SymPool::sym(std::string_view s)'],['../classfe_1_1SymPool.html#aaa85e3916fd52036699bd97f6376d398',1,'fe::SymPool::sym(const std::string &amp;s)'],['../classfe_1_1SymPool.html#a0836abbed0a57732e84be5b627d35588',1,'fe::SymPool::sym(const char *s)']]],
+  ['sympool_4',['sympool',['../classfe_1_1SymPool.html#a3df3435dde76a17a4cd63a9328398902',1,'fe::SymPool::SymPool()'],['../classfe_1_1SymPool.html#acd7180b83ffd0ca4fed9901a2e7d535e',1,'fe::SymPool::SymPool(SymPool &amp;&amp;other)'],['../classfe_1_1SymPool.html#a9446b07a54c8892bc6135608d0321af7',1,'fe::SymPool::SymPool(const SymPool &amp;)=delete']]]
 ];

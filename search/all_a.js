@@ -1,11 +1,12 @@
 var searchData=
 [
-  ['lex_0',['lex',['../classfe_1_1Parser.html#a5d4335bae86e3127fbf5b42fb0fcd3e7',1,'fe::Parser']]],
-  ['lexer_1',['lexer',['../classfe_1_1Lexer.html',1,'fe::Lexer&lt; K, S &gt;'],['../classfe_1_1Lexer.html#a103bc4fe11808764c96552fb6d7975c0',1,'fe::Lexer::Lexer()']]],
-  ['lexer_2eh_2',['lexer.h',['../lexer_8h.html',1,'']]],
-  ['loc_3',['loc',['../structfe_1_1Loc.html',1,'fe::Loc'],['../classfe_1_1Parser_1_1Tracker.html#aed3db922e0970ec52d171663427e35e2',1,'fe::Parser::Tracker::loc()'],['../structfe_1_1Loc.html#a1bed3b20ab4c477bc6e6726d4ec2d8bb',1,'fe::Loc::Loc()=default'],['../structfe_1_1Loc.html#a3bfe5de956408815c560e7df3f97c7a6',1,'fe::Loc::Loc(const std::filesystem::path *path, Pos begin, Pos finis)'],['../structfe_1_1Loc.html#a6b21664894bdc5270854916db327e73a',1,'fe::Loc::Loc(const std::filesystem::path *file, Pos pos)'],['../structfe_1_1Loc.html#a03e8e51708b80dc81e3dbe95f9eed33a',1,'fe::Loc::Loc(Pos begin, Pos finis)'],['../structfe_1_1Loc.html#a982a519842b0aba797a40523b74f7c7d',1,'fe::Loc::Loc(Pos pos)']]],
-  ['loc_2ecpp_2eh_4',['loc.cpp.h',['../loc_8cpp_8h.html',1,'']]],
-  ['loc_2eh_5',['loc.h',['../loc_8h.html',1,'']]],
-  ['loc_5f_6',['loc_',['../classfe_1_1Lexer.html#a142d42503cc2dbeb8c496b66d47e75c7',1,'fe::Lexer']]],
-  ['lower_7',['Lower',['../classfe_1_1Lexer.html#a99366b3ab28fff1d6a1013b1007246a6ab75fcdd2d72d9e000beab48622402d93',1,'fe::Lexer']]]
+  ['in_20your_20source_20tree_0',['Option #2: Directly include FE in your Source Tree',['../index.html#autotoc_md6',1,'']]],
+  ['include_20fe_20as_20submodule_20recommended_1',['Option #1: Include FE as Submodule (Recommended)',['../index.html#autotoc_md5',1,'']]],
+  ['include_20fe_20in_20your_20source_20tree_2',['Option #2: Directly include FE in your Source Tree',['../index.html#autotoc_md6',1,'']]],
+  ['indent_3',['indent',['../classfe_1_1Tab.html#a5c0704c9f1bb1c99fb827f5fb863384e',1,'fe::Tab']]],
+  ['init_4',['init',['../classfe_1_1Parser.html#aff4aefd0e9b228d67489e4aa3232fdeb',1,'fe::Parser']]],
+  ['is_20fe_5',['What is FE?',['../index.html#autotoc_md1',1,'']]],
+  ['is_5fvalid234_6',['is_valid234',['../namespacefe_1_1utf8.html#a368b866a5344d3f1a4541cda55469b03',1,'fe::utf8']]],
+  ['isa_7',['isa',['../classfe_1_1RuntimeCast.html#a3a5b6b6c64212ac9ac33635730333bfa',1,'fe::RuntimeCast::isa()'],['../classfe_1_1RuntimeCast.html#a6757eb14f9dfc8155802a0a9c08b85bc',1,'fe::RuntimeCast::isa()'],['../classfe_1_1RuntimeCast.html#a40e2312e4ad37c67c4f495ccb34349ba',1,'fe::RuntimeCast::isa() const'],['../classfe_1_1RuntimeCast.html#aa352b8bb371c5460061ab4e91fbdd5a1',1,'fe::RuntimeCast::isa() const']]],
+  ['istream_5f_8',['istream_',['../classfe_1_1Lexer.html#ab8dab537ecbc5e97ad064e286201fd14',1,'fe::Lexer']]]
 ];
