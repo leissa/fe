@@ -9,21 +9,20 @@
 namespace fe {
 
 /// An arena pre-allocates so-called *pages* of size Arena::page_size_.
-/// You can use Arena::alloc to obtain memory from this.
+/// You can use Arena::allocate to obtain memory from this.
 /// When a page runs out of memory, the next page will be (pre-)allocated.
 /// You cannot directly release memory obtained via this method.
 /// Instead, *all* memory acquired via this Arena will be released as soon as this Arena will be destroyed.
-/// As an exception, you can Arena::dealloc memory that just as been acquired.
-///
-/// Use Allocator to adopt it in [containers](https://en.cppreference.com/w/cpp/named_req/AllocatorAwareContainer).
-/// Construct it via Arena::allocator.
+/// As an exception, you can Arena::deallocate memory that just as been acquired.
 class Arena {
 public:
     static constexpr size_t Default_Page_Size = 1024 * 1024; ///< 1MB.
 
     /// @name Allocator
     ///@{
-    /// An [allocator](https://en.cppreference.com/w/cpp/named_req/Allocator) in order to use this Arena for containers.
+    /// An [allocator](https://en.cppreference.com/w/cpp/named_req/Allocator) in order to use this Arena for
+    /// [containers](https://en.cppreference.com/w/cpp/named_req/AllocatorAwareContainer).
+    /// Construct it via Arena::allocator.
     template<class T> struct Allocator {
         using value_type = T;
 
