@@ -68,6 +68,17 @@ public:
     /// @name Getters
     ///@{
     size_t size() const { return data_ ? data_->size : 0; }
+    bool empty() const { return size() == 0; }
+    ///@}
+
+    /// @name Access
+    ///@{
+    char operator[](size_t i) const {
+        assert(i < size());
+        return c_str()[i];
+    }
+    char front() const { return (*this)[0]; }
+    char back() const { return (*this)[size() - 1]; }
     ///@}
 
     /// @name Iterators
@@ -99,7 +110,7 @@ public:
 
     /// @name Conversions
     ///@{
-    const char* c_str() const { return data_ ? data_->chars : empty; }
+    const char* c_str() const { return data_ ? data_->chars : empty_str; }
     operator const char*() const { return c_str(); }
 
     std::string_view view() const { return data_ ? std::string_view(data_->chars, data_->size) : std::string_view(); }
@@ -112,16 +123,6 @@ public:
     explicit operator bool() const { return data_; }
     ///@}
 
-    /// @name Access Operators
-    ///@{
-    char operator[](size_t i) const {
-        assert(i < size());
-        return c_str()[i];
-    }
-    char front() const { return (*this)[0]; }
-    char back() const { return (*this)[size() - 1]; }
-    ///@}
-
 #ifdef FE_ABSL
     template<class H> friend H AbslHashValue(H h, Sym sym) { return H::combine(std::move(h), sym.data_); }
 #endif
@@ -129,8 +130,8 @@ public:
     friend std::ostream& operator<<(std::ostream& o, Sym sym) { return o << *sym; }
 
 private:
-    static constexpr const char* empty = "";
-    const Data* data_                  = nullptr;
+    static constexpr const char* empty_str = "";
+    const Data* data_                      = nullptr;
 
     friend class SymPool;
 };
