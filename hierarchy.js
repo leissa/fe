@@ -14,7 +14,6 @@ var hierarchy =
       ] ]
     ] ],
     [ "fe::Sym::Data::Hash", "structfe_1_1Sym_1_1Data_1_1Hash.html", null ],
-    [ "std::hash< fe::Sym >", "structstd_1_1hash_3_01fe_1_1Sym_01_4.html", null ],
     [ "fe::Lexer< K, S >", "classfe_1_1Lexer.html", null ],
     [ "fe::Loc", "structfe_1_1Loc.html", null ],
     [ "fe::Parser< Tok, Tag, K, S >", "classfe_1_1Parser.html", null ],
