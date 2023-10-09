@@ -68,7 +68,7 @@ public:
     /// @name Getters
     ///@{
     size_t size() const { return data_ ? data_->size : 0; }
-    ///}@
+    ///@}
 
     /// @name Iterators
     ///@{
