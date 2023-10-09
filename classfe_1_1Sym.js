@@ -9,6 +9,7 @@ var classfe_1_1Sym =
     [ "cend", "classfe_1_1Sym.html#a08993c1f2e203f622750c8eec1173598", null ],
     [ "crbegin", "classfe_1_1Sym.html#ae4d248064b05229d52619d55fbf2d559", null ],
     [ "crend", "classfe_1_1Sym.html#a0759c00e000c842b44b16b94a36b9450", null ],
+    [ "empty", "classfe_1_1Sym.html#a21e38fb3a54967d1d65630b70a4ae1f7", null ],
     [ "end", "classfe_1_1Sym.html#a6d7c0e24340b65960847d52a01e97d73", null ],
     [ "front", "classfe_1_1Sym.html#a7472e7b17b20916476cb83ff1775ea4e", null ],
     [ "operator bool", "classfe_1_1Sym.html#a176b8be60e9c47c4a8100a967cc1eeb0", null ],
