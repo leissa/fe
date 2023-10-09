@@ -19,6 +19,7 @@ var annotated_dup =
     [ "std", null, [
       [ "formatter< fe::Loc >", "structstd_1_1formatter_3_01fe_1_1Loc_01_4.html", null ],
       [ "formatter< fe::Pos >", "structstd_1_1formatter_3_01fe_1_1Pos_01_4.html", null ],
+      [ "formatter< fe::Sym >", "structstd_1_1formatter_3_01fe_1_1Sym_01_4.html", null ],
       [ "formatter< fe::Tab >", "structstd_1_1formatter_3_01fe_1_1Tab_01_4.html", null ],
       [ "hash< fe::Sym >", "structstd_1_1hash_3_01fe_1_1Sym_01_4.html", "structstd_1_1hash_3_01fe_1_1Sym_01_4" ]
     ] ]

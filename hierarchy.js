@@ -9,6 +9,7 @@ var hierarchy =
       [ "fe::basic_ostream_formatter< Char >", "structfe_1_1basic__ostream__formatter.html", [
         [ "std::formatter< fe::Loc >", "structstd_1_1formatter_3_01fe_1_1Loc_01_4.html", null ],
         [ "std::formatter< fe::Pos >", "structstd_1_1formatter_3_01fe_1_1Pos_01_4.html", null ],
+        [ "std::formatter< fe::Sym >", "structstd_1_1formatter_3_01fe_1_1Sym_01_4.html", null ],
         [ "std::formatter< fe::Tab >", "structstd_1_1formatter_3_01fe_1_1Tab_01_4.html", null ]
       ] ]
     ] ],
