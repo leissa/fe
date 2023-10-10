@@ -18,14 +18,18 @@
 
 namespace fe {
 
-/// A Sym%bol just wraps a pointer to Sym::string, so pass Sym itself around as value.
-/// Sym is compatible with `std::string_view` (recommended way) and null-terminated C-strings.
-/// This means that [retrieving](@ref Sym::str) a `std::string_view` or a [null-terminated C-string](@ref Sym::c_str) is
-/// free. You can also [create](@ref Sym::str) a `std::string`, but this involves a copy. With the exception
-/// of the empty string, you should only create Sym%bols via SymPool::sym. This in turn will toss all Sym%bols into a
-/// big hash set. This makes Sym::operator== and Sym::operator!= an O(1) operation. The empty string is internally
-/// handled as `nullptr`. Thus, you can create a Sym%bol representing an empty string without having access to the
-/// SymPool.
+/// A Sym%bol just wraps a pointer to Sym::String, so pass Sym itself around as value.
+/// Sym is compatible with:
+/// * recommended: `std::string_view` (via Sym::view)
+/// * null-terminated C-strings (via Sym::c_str)
+///
+/// This means that retrieving a `std::string_view` or a null-terminated C-string is basically free.
+/// You can also obtain a `std::string` (via Sym::str), but this involves a copy.
+/// With the exception of the empty string, you should only create Sym%bols via SymPool::sym.
+/// This in turn will toss all Sym%bols into a big hash set.
+/// This makes Sym::operator== and Sym::operator!= an O(1) operation.
+/// The empty string is internally handled as `nullptr`.
+/// Thus, you can create a Sym%bol representing an empty string without having access to the SymPool.
 /// @note The empty `std::string`/`std::string_view`, `nullptr`, and `"\0"` are all identified as Sym::Sym().
 class Sym {
 public:
@@ -69,7 +73,7 @@ public:
     /// @name Getters
     ///@{
     size_t size() const { return string_ ? string_->size : 0; }
-    bool empty() const { return size() == 0; }
+    bool empty() const { return string_ == nullptr; }
     ///@}
 
     /// @name Access
@@ -117,13 +121,12 @@ public:
     std::string_view view() const {
         return string_ ? std::string_view(string_->chars, string_->size) : std::string_view();
     }
-    std::string_view operator*() const { return view(); }
     operator std::string_view() const { return view(); }
 
-    std::string str() const { return std::string(view()); }
+    std::string str() const { return std::string(view()); } ///< This involves a copy.
     explicit operator std::string() const { return str(); } ///< `explicit` as this involves a copy.
 
-    explicit operator bool() const { return string_; }
+    explicit operator bool() const { return string_; } ///< Is not empty?
     ///@}
 
 #ifdef FE_ABSL
