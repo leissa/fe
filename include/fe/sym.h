@@ -180,8 +180,12 @@ public:
         auto ptr   = (Sym::String*)arena_.allocate(sizeof(Sym::String) + s.size() + 1 /*'\0'*/);
         new (ptr) Sym::String(s.size());
         *std::copy(s.begin(), s.end(), ptr->chars) = '\0';
-        auto [i, ins]                              = pool_.emplace(ptr);
+#ifndef NDEBUG
+        auto before_emplace = arena_.state();
+#endif
+        auto [i, ins] = pool_.emplace(ptr);
         if (ins) return Sym(ptr);
+        assert(before_emplace == arena_.state() && "we assme an emplace that didn't insert, doesn't allocate");
         arena_.deallocate(state);
         return Sym(*i);
     }
