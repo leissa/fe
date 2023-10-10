@@ -9,7 +9,6 @@
 #ifdef FE_ABSL
 #    include <absl/container/flat_hash_map.h>
 #    include <absl/container/flat_hash_set.h>
-#    include <absl/container/node_hash_set.h>
 #else
 #    include <unordered_map>
 #    include <unordered_set>
@@ -22,7 +21,7 @@ namespace fe {
 /// A Sym%bol just wraps a pointer to Sym::string, so pass Sym itself around as value.
 /// Sym is compatible with `std::string_view` (recommended way) and null-terminated C-strings.
 /// This means that [retrieving](@ref Sym::str) a `std::string_view` or a [null-terminated C-string](@ref Sym::c_str) is
-/// basically free. You can also [create](@ref Sym::str) a `std::string`, but this involves a copy. With the exception
+/// free. You can also [create](@ref Sym::str) a `std::string`, but this involves a copy. With the exception
 /// of the empty string, you should only create Sym%bols via SymPool::sym. This in turn will toss all Sym%bols into a
 /// big hash set. This makes Sym::operator== and Sym::operator!= an O(1) operation. The empty string is internally
 /// handled as `nullptr`. Thus, you can create a Sym%bol representing an empty string without having access to the
@@ -200,7 +199,7 @@ public:
 private:
     Arena arena_;
 #ifdef FE_ABSL
-    absl::node_hash_set<Sym::String*, absl::Hash<Sym::String*>, Sym::String::Equal, Arena::Allocator<Sym::String*>>
+    absl::flat_hash_set<Sym::String*, absl::Hash<Sym::String*>, Sym::String::Equal, Arena::Allocator<Sym::String*>>
         pool_;
 #else
     std::unordered_set<Sym::String*, Sym::String::Hash, Sym::String::Equal, Arena::Allocator<Sym::String*>> pool_;
