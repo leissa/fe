@@ -5,12 +5,7 @@ var hierarchy =
     [ "fe::Arena::Deleter< T >", "structfe_1_1Arena_1_1Deleter.html", null ],
     [ "fe::Sym::String::Equal", "structfe_1_1Sym_1_1String_1_1Equal.html", null ],
     [ "std::formatter", null, [
-      [ "fe::basic_ostream_formatter< Char >", "structfe_1_1basic__ostream__formatter.html", [
-        [ "std::formatter< fe::Loc >", "structstd_1_1formatter_3_01fe_1_1Loc_01_4.html", null ],
-        [ "std::formatter< fe::Pos >", "structstd_1_1formatter_3_01fe_1_1Pos_01_4.html", null ],
-        [ "std::formatter< fe::Sym >", "structstd_1_1formatter_3_01fe_1_1Sym_01_4.html", null ],
-        [ "std::formatter< fe::Tab >", "structstd_1_1formatter_3_01fe_1_1Tab_01_4.html", null ]
-      ] ]
+      [ "fe::basic_ostream_formatter< Char >", "structfe_1_1basic__ostream__formatter.html", null ]
     ] ],
     [ "fe::Sym::String::Hash", "structfe_1_1Sym_1_1String_1_1Hash.html", null ],
     [ "fe::Lexer< K, S >", "classfe_1_1Lexer.html", null ],

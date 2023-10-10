@@ -15,11 +15,5 @@ var annotated_dup =
       [ "Sym", "classfe_1_1Sym.html", "classfe_1_1Sym" ],
       [ "SymPool", "classfe_1_1SymPool.html", "classfe_1_1SymPool" ],
       [ "Tab", "classfe_1_1Tab.html", "classfe_1_1Tab" ]
-    ] ],
-    [ "std", null, [
-      [ "formatter< fe::Loc >", "structstd_1_1formatter_3_01fe_1_1Loc_01_4.html", null ],
-      [ "formatter< fe::Pos >", "structstd_1_1formatter_3_01fe_1_1Pos_01_4.html", null ],
-      [ "formatter< fe::Sym >", "structstd_1_1formatter_3_01fe_1_1Sym_01_4.html", null ],
-      [ "formatter< fe::Tab >", "structstd_1_1formatter_3_01fe_1_1Tab_01_4.html", null ]
     ] ]
 ];
