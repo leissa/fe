@@ -166,10 +166,16 @@ using SymSet                   = std::unordered_set<Sym>;
 class SymPool {
 public:
     SymPool()
-        : pool_(arena_.allocator<Sym::String*>()) {}
+#ifdef FE_ABSL
+        {}
+#else
+        : pool_(arena_.allocator<const Sym::String*>()) {
+    }
+#endif
     SymPool(SymPool&& other)
         : arena_(std::move(other.arena_))
-        , pool_(std::move(other.pool_)) {}
+        , pool_(std::move(other.pool_)) {
+    }
     SymPool(const SymPool&) = delete;
 
     /// @name sym
@@ -206,8 +212,7 @@ public:
 private:
     Arena arena_;
 #ifdef FE_ABSL
-    absl::flat_hash_set<Sym::String*, absl::Hash<Sym::String*>, Sym::String::Equal, Arena::Allocator<Sym::String*>>
-        pool_;
+    absl::flat_hash_set<const Sym::String*, absl::Hash<const Sym::String*>, Sym::String::Equal> pool_;
 #else
     std::unordered_set<Sym::String*, Sym::String::Hash, Sym::String::Equal, Arena::Allocator<Sym::String*>> pool_;
 #endif
