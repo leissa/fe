@@ -64,16 +64,16 @@ public:
     static_assert(sizeof(String) == sizeof(size_t), "String.chars should be 0");
 
 private:
-    Sym(const String* string)
-        : string_(string) {}
+    Sym(const String* str)
+        : str_(str) {}
 
 public:
     Sym() = default;
 
     /// @name Getters
     ///@{
-    size_t size() const { return string_ ? string_->size : 0; }
-    bool empty() const { return string_ == nullptr; }
+    size_t size() const { return str_ ? str_->size : 0; }
+    bool empty() const { return str_ == nullptr; }
     ///@}
 
     /// @name Access
@@ -101,8 +101,8 @@ public:
     /// @name Comparisons
     ///@{
     auto operator<=>(Sym other) const { return this->view() <=> other.view(); }
-    bool operator==(Sym other) const { return this->string_ == other.string_; }
-    bool operator!=(Sym other) const { return this->string_ != other.string_; }
+    bool operator==(Sym other) const { return this->str_ == other.str_; }
+    bool operator!=(Sym other) const { return this->str_ != other.str_; }
     auto operator<=>(char c) const {
         if ((*this).size() == 0) return std::strong_ordering::less;
         auto cmp = (*this)[0] <=> c;
@@ -115,29 +115,27 @@ public:
 
     /// @name Conversions
     ///@{
-    const char* c_str() const { return string_ ? string_->chars : empty_; }
+    const char* c_str() const { return str_ ? str_->chars : empty_; }
     operator const char*() const { return c_str(); }
 
-    std::string_view view() const {
-        return string_ ? std::string_view(string_->chars, string_->size) : std::string_view();
-    }
+    std::string_view view() const { return str_ ? std::string_view(str_->chars, str_->size) : std::string_view(); }
     operator std::string_view() const { return view(); }
 
     std::string str() const { return std::string(view()); } ///< This involves a copy.
     explicit operator std::string() const { return str(); } ///< `explicit` as this involves a copy.
 
-    explicit operator bool() const { return string_; } ///< Is not empty?
+    explicit operator bool() const { return str_; } ///< Is not empty?
     ///@}
 
 #ifdef FE_ABSL
-    template<class H> friend H AbslHashValue(H h, Sym sym) { return H::combine(std::move(h), sym.string_); }
+    template<class H> friend H AbslHashValue(H h, Sym sym) { return H::combine(std::move(h), sym.str_); }
 #endif
     friend struct ::std::hash<fe::Sym>;
     friend std::ostream& operator<<(std::ostream& o, Sym sym) { return o << *sym; }
 
 private:
     static constexpr const char* empty_ = "";
-    const String* string_               = nullptr;
+    const String* str_                  = nullptr;
 
     friend class SymPool;
 };
@@ -146,7 +144,7 @@ private:
 } // namespace fe
 
 template<> struct std::hash<fe::Sym> {
-    size_t operator()(fe::Sym sym) const { return std::hash<void*>()((void*)sym.string_); }
+    size_t operator()(fe::Sym sym) const { return std::hash<void*>()((void*)sym.str_); }
 };
 
 namespace fe {

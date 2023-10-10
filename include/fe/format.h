@@ -88,7 +88,9 @@ private:
 
 } // namespace fe
 
+#ifndef DOXYGEN
 template<> struct std::formatter<fe::Pos> : fe::ostream_formatter {};
 template<> struct std::formatter<fe::Loc> : fe::ostream_formatter {};
 template<> struct std::formatter<fe::Sym> : fe::ostream_formatter {};
 template<> struct std::formatter<fe::Tab> : fe::ostream_formatter {};
+#endif

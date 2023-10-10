@@ -77,6 +77,13 @@ TEST_CASE("Sym") {
     std::string zyx;
     for (auto i = xyz.rbegin(), e = xyz.rend(); i != e; ++i) zyx += *i;
     CHECK(zyx == "zyx");
+    CHECK(xyz.front() == 'x');
+    CHECK(xyz.back() == 'z');
+    CHECK(xyz.size() == 3);
+    auto empty = fe::Sym();
+    CHECK(empty.empty());
+    CHECK(empty.size() == 0);
+    CHECK(!empty);
 }
 
 TEST_CASE("utf8") {
