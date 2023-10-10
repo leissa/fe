@@ -120,6 +120,9 @@ public:
 
     std::string_view view() const { return str_ ? std::string_view(str_->chars, str_->size) : std::string_view(); }
     operator std::string_view() const { return view(); }
+    std::string_view operator*() const { return view(); }
+    // Unfortunately, this doesn't work:
+    // std::string_view operator->() const { return view(); }
 
     std::string str() const { return std::string(view()); } ///< This involves a copy.
     explicit operator std::string() const { return str(); } ///< `explicit` as this involves a copy.
@@ -131,7 +134,7 @@ public:
     template<class H> friend H AbslHashValue(H h, Sym sym) { return H::combine(std::move(h), sym.str_); }
 #endif
     friend struct ::std::hash<fe::Sym>;
-    friend std::ostream& operator<<(std::ostream& o, Sym sym) { return o << *sym; }
+    friend std::ostream& operator<<(std::ostream& o, Sym sym) { return o << sym.view(); }
 
 private:
     static constexpr const char* empty_ = "";
