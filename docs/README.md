@@ -19,12 +19,13 @@ Simply [fork](https://github.com/leissa/let/fork) the toy language *[Let](https:
 
 ## Features
 
-* [Arena](@ref fe::Arena) allocator for efficient memory management
+* [Arena](@ref fe::Arena) allocator for efficient memory management.
 * Efficient [symbol pool](@ref fe::SymPool) with optional [Abseil](https://abseil.io/) support.
     [String](@ref fe::Sym) comparisons are now only pointer comparisons!
-* Keep track of [source code locations](@ref fe::Loc)
-* Blueprint for a [lexer](@ref fe::Lexer) with [UTF-8](@ref fe::utf8) support
-* Blueprint for a [parser](@ref fe::Parser)
+* Keep track of [source code locations](@ref fe::Loc).
+* Blueprint for a [lexer](@ref fe::Lexer) with [UTF-8](@ref fe::utf8) support.
+* Blueprint for a [parser](@ref fe::Parser).
+* You need at least C++-20.
 
 ## Building
 
