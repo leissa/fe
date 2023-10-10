@@ -45,13 +45,13 @@ public:
         };
 
         struct Hash {
-            size_t operator()(fe::Sym::String* string) const {
-                return std::hash<std::string_view>()(std::string_view(string->chars, string->size));
+            size_t operator()(const String* s) const {
+                return std::hash<std::string_view>()(std::string_view(s->chars, s->size));
             }
         };
 
 #ifdef FE_ABSL
-        template<class H> friend H AbslHashValue(H h, String* string) {
+        template<class H> friend H AbslHashValue(H h, const String* string) {
             return H::combine(std::move(h), std::string_view(string->chars, string->size));
         }
 #endif
@@ -214,7 +214,8 @@ private:
 #ifdef FE_ABSL
     absl::flat_hash_set<const Sym::String*, absl::Hash<const Sym::String*>, Sym::String::Equal> pool_;
 #else
-    std::unordered_set<Sym::String*, Sym::String::Hash, Sym::String::Equal, Arena::Allocator<Sym::String*>> pool_;
+    std::unordered_set<const Sym::String*, Sym::String::Hash, Sym::String::Equal, Arena::Allocator<const Sym::String*>>
+        pool_;
 #endif
 };
 
