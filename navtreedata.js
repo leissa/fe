@@ -32,6 +32,7 @@ var NAVTREE =
       [ "Option #1: Include FE as Submodule (Recommended)", "index.html#autotoc_md5", null ],
       [ "Option #2: Directly include FE in your Source Tree", "index.html#autotoc_md6", null ]
     ] ],
+    [ "Other Projects using FE", "index.html#autotoc_md7", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -69,7 +70,7 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "classfe_1_1Sym.html#ae4d248064b05229d52619d55fbf2d559",
-"utf8_8h.html#aa73f03b25b2098b8e139d1d037bd7c97"
+"utf8_8h.html#a958f5b14010ee32136a35e5534a205ce"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -169,6 +169,13 @@ Option #2: Directly include FE in your Source Tree</h2>
 <p class="startli">Since your build system most likely already has <code>my_compiler/include/</code> as an include directory, nothing more needs to be done. In addiiton, add <code>-DFE_ABSL</code> to your <code>CXXFLAGS</code>, if you want to use Abseil. In the case of CMake, add something like this to your <code>CMakeLists.txt</code>: </p><div class="fragment"><div class="line">target_compile_definitions(my_compiler PUBLIC FE_ABSL)</div>
 </div><!-- fragment --> </li>
 </ol>
+<h1><a class="anchor" id="autotoc_md7"></a>
+Other Projects using FE</h1>
+<ul>
+<li><a href="https://github.com/leissa/let">Let</a>: A simple demo language that builds upon FE</li>
+<li><a href="https://anydsl.github.io/thorin2/">Thorin2</a>: The Higher-ORder INtermediate representation</li>
+<li><a href="https://github.com/leissa/sql">SQL</a>: Small and simple SQL parser </li>
+</ul>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
