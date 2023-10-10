@@ -165,34 +165,35 @@ using SymSet                   = std::unordered_set<Sym>;
 /// You can access the SymPool from Driver.
 class SymPool {
 public:
-    SymPool()
+    using String = Sym::String;
+
+    SymPool(const SymPool&) = delete;
 #ifdef FE_ABSL
-        {}
-#else
-        : pool_(arena_.allocator<const Sym::String*>()) {
-    }
-#endif
+    SymPool() {}
     SymPool(SymPool&& other)
-        : arena_(std::move(other.arena_))
+        : strings_(std::move(other.strings_))
+        , pool_(std::move(other.pool_)) {}
+#else
+    SymPool()
+        : pool_(container_.allocator<const String*>()) {}
+    SymPool(SymPool&& other)
+        : strings_(std::move(other.strings_))
+        , container_(std::move(other.container_))
         , pool_(std::move(other.pool_)) {
     }
-    SymPool(const SymPool&) = delete;
+#endif
 
     /// @name sym
     ///@{
     Sym sym(std::string_view s) {
         if (s.empty()) return Sym();
-        auto state = arena_.state();
-        auto ptr   = (Sym::String*)arena_.allocate(sizeof(Sym::String) + s.size() + 1 /*'\0'*/);
-        new (ptr) Sym::String(s.size());
+        auto state = strings_.state();
+        auto ptr   = (String*)strings_.allocate(sizeof(String) + s.size() + 1 /*'\0'*/);
+        new (ptr) String(s.size());
         *std::copy(s.begin(), s.end(), ptr->chars) = '\0';
-#ifndef NDEBUG
-        auto before_emplace = arena_.state();
-#endif
         auto [i, ins] = pool_.emplace(ptr);
         if (ins) return Sym(ptr);
-        assert(before_emplace == arena_.state() && "we assme an emplace that didn't insert, doesn't allocate");
-        arena_.deallocate(state);
+        strings_.deallocate(state);
         return Sym(*i);
     }
     Sym sym(const std::string& s) { return sym((std::string_view)s); }
@@ -204,18 +205,21 @@ public:
     friend void swap(SymPool& p1, SymPool& p2) {
         using std::swap;
         // clang-format off
-        swap(p1.arena_, p2.arena_);
-        swap(p1.pool_,  p2.pool_ );
+        swap(p1.strings_,   p2.strings_  );
+#ifndef FE_ABSL
+        swap(p1.container_, p2.container_);
+#endif
+        swap(p1.pool_,      p2.pool_     );
         // clang-format on
     }
 
 private:
-    Arena arena_;
+    Arena strings_;
 #ifdef FE_ABSL
-    absl::flat_hash_set<const Sym::String*, absl::Hash<const Sym::String*>, Sym::String::Equal> pool_;
+    absl::flat_hash_set<const String*, absl::Hash<const String*>, String::Equal> pool_;
 #else
-    std::unordered_set<const Sym::String*, Sym::String::Hash, Sym::String::Equal, Arena::Allocator<const Sym::String*>>
-        pool_;
+    Arena container_;
+    std::unordered_set<const String*, String::Hash, String::Equal, Arena::Allocator<const String*>> pool_;
 #endif
 };
 
