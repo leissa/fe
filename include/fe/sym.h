@@ -193,7 +193,10 @@ public:
 
     friend void swap(SymPool& p1, SymPool& p2) {
         using std::swap;
-        swap(p1.pool_, p2.pool_);
+        // clang-format off
+        swap(p1.arena_, p2.arena_);
+        swap(p1.pool_,  p2.pool_ );
+        // clang-format on
     }
 
 private:
