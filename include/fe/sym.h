@@ -41,9 +41,9 @@ public:
         char chars[]; // This is actually a C-only features, but all C++ compilers support that anyway.
 
         struct Equal {
-            bool operator()(const String* d1, const String* d2) const {
-                bool res = d1->size == d2->size;
-                for (size_t i = 0, e = d1->size; res && i != e; ++i) res &= d1->chars[i] == d2->chars[i];
+            bool operator()(const String* s1, const String* s2) const {
+                bool res = s1->size == s2->size;
+                for (size_t i = 0, e = s1->size; res && i != e; ++i) res &= s1->chars[i] == s2->chars[i];
                 return res;
             }
         };
@@ -180,8 +180,7 @@ public:
     SymPool(SymPool&& other)
         : strings_(std::move(other.strings_))
         , container_(std::move(other.container_))
-        , pool_(std::move(other.pool_)) {
-    }
+        , pool_(std::move(other.pool_)) {}
 #endif
 
     /// @name sym
@@ -192,7 +191,7 @@ public:
         auto ptr   = (String*)strings_.allocate(sizeof(String) + s.size() + 1 /*'\0'*/);
         new (ptr) String(s.size());
         *std::copy(s.begin(), s.end(), ptr->chars) = '\0';
-        auto [i, ins] = pool_.emplace(ptr);
+        auto [i, ins]                              = pool_.emplace(ptr);
         if (ins) return Sym(ptr);
         strings_.deallocate(state);
         return Sym(*i);
