@@ -74,3 +74,8 @@ Otherwise, FE will fall back to the hash containers of the C++ standard library.
     ```cmake
     target_compile_definitions(my_compiler PUBLIC FE_ABSL)
     ```
+## Other Projects using FE
+
+* [Let](https://github.com/leissa/let): A simple demo language that builds upon FE
+* [Thorin2](https://anydsl.github.io/thorin2/): The Higher-ORder INtermediate representation
+* [SQL](https://github.com/leissa/sql): Small and simple SQL parser
