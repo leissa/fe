@@ -211,7 +211,7 @@ public:
 
         if (size <= Sym::Short_String_Bytes - 2) { // small string: need two more bytes for `\0' and size
             uintptr_t ptr = size;
-            std::copy(s.begin(), s.end(), (char*)&ptr + Sym::offset());
+            for (uintptr_t i = 0, shift = 8; i != size; ++i, shift += 8) ptr |= (uintptr_t(s[i]) << shift);
             return Sym(ptr);
         }
 
