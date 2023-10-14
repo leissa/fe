@@ -3,7 +3,6 @@
 #include <cassert>
 #include <cstring>
 
-#include <array>
 #include <bit>
 #include <iostream>
 #include <string>
@@ -133,11 +132,7 @@ public:
 
     std::string_view view() const {
         if (empty()) return {(const char*)&ptr_, 0};
-        if (auto size = ptr_ & Short_String_Mask) {
-            // auto offset = std::endian::native == std::endian::little ? 1 : 0;
-            // return {(const char*)&ptr_ + offset, size};
-            return {(const char*)&ptr_ + 1, size};
-        }
+        if (auto size = ptr_ & Short_String_Mask) return {(const char*)&ptr_ + offset(), size};
         return std::string_view(((const String*)ptr_)->chars, ((const String*)ptr_)->size);
     }
     operator std::string_view() const { return view(); }
@@ -158,6 +153,8 @@ public:
     friend std::ostream& operator<<(std::ostream& o, Sym sym) { return o << sym.view(); }
 
 private:
+    static constexpr uintptr_t offset() { return std::endian::native == std::endian::little ? 1 : 0; }
+
     uintptr_t ptr_ = 0;
 
     friend class SymPool;
@@ -213,9 +210,8 @@ public:
         auto size = s.size();
 
         if (size <= Sym::Short_String_Bytes - 2) { // small string: need two more bytes for `\0' and size
-            uintptr_t ptr   = size;
-            uintptr_t shift = 8;
-            for (size_t i = 0; i != size; ++i, shift += 8) ptr |= (uintptr_t(s[i]) << shift);
+            uintptr_t ptr = size;
+            std::copy(s.begin(), s.end(), (char*)&ptr + Sym::offset());
             return Sym(ptr);
         }
 
