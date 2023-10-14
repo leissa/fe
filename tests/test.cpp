@@ -6,6 +6,8 @@
 #include <fe/sym.h>
 #include <fe/utf8.h>
 
+using namespace std::literals;
+
 TEST_CASE("Arena") {
     fe::Arena arena;
     std::vector<int, fe::Arena::Allocator<int>> v(arena.allocator<int>());
@@ -61,9 +63,22 @@ TEST_CASE("Ring") {
 
 TEST_CASE("Sym") {
     fe::SymPool syms;
-    auto x  = syms.sym("");
-    auto b  = syms.sym("b");
-    auto bc = syms.sym("bc");
+
+    CHECK(syms.sym("a").view() == "a"s);
+    CHECK(syms.sym("ab").view() == "ab"s);
+    CHECK(syms.sym("abc").view() == "abc"s);
+    CHECK(syms.sym("abcd").view() == "abcd"s);
+    CHECK(syms.sym("abcde").view() == "abcde"s);
+    CHECK(syms.sym("abcdef").view() == "abcdef"s);
+    CHECK(syms.sym("abcdefg").view() == "abcdefg"s);
+    CHECK(syms.sym("abcdefgh").view() == "abcdefgh"s);
+    CHECK(syms.sym("abcdefghi").view() == "abcdefghi"s);
+    CHECK(syms.sym("abcdefghij").view() == "abcdefghij"s);
+
+    auto abc = syms.sym("abc");
+    auto x   = syms.sym("");
+    auto b   = syms.sym("b");
+    auto bc  = syms.sym("bc");
     CHECK(b == 'b');
     CHECK(b != 'a');
     CHECK(b <= 'b');

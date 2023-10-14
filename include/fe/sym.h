@@ -3,6 +3,8 @@
 #include <cassert>
 #include <cstring>
 
+#include <array>
+#include <bit>
 #include <iostream>
 #include <string>
 
@@ -15,6 +17,9 @@
 #endif
 
 #include "fe/arena.h"
+
+static_assert(std::endian::native == std::endian::little || std::endian::native == std::endian::big,
+              "mixed endianess not supported");
 
 namespace fe {
 
@@ -33,6 +38,9 @@ namespace fe {
 /// @note The empty `std::string`/`std::string_view`, `nullptr`, and `"\0"` are all identified as Sym::Sym().
 class Sym {
 public:
+    static constexpr size_t Short_String_Bytes = sizeof(uintptr_t);
+    static constexpr size_t Short_String_Mask  = Short_String_Bytes - 1;
+
     struct String {
         String() = default;
         String(size_t size)
@@ -64,16 +72,20 @@ public:
     static_assert(sizeof(String) == sizeof(size_t), "String.chars should be 0");
 
 private:
-    Sym(const String* str)
-        : str_(str) {}
+    Sym(uintptr_t ptr)
+        : ptr_(ptr) {}
 
 public:
     Sym() = default;
 
     /// @name Getters
     ///@{
-    size_t size() const { return str_ ? str_->size : 0; }
-    bool empty() const { return str_ == nullptr; }
+    bool empty() const { return ptr_ == 0; }
+    size_t size() const {
+        if (empty()) return 0;
+        if (auto size = ptr_ & Short_String_Mask) return size;
+        return ((const String*)ptr_)->size;
+    }
     ///@}
 
     /// @name Access
@@ -101,12 +113,13 @@ public:
     /// @name Comparisons
     ///@{
     auto operator<=>(Sym other) const { return this->view() <=> other.view(); }
-    bool operator==(Sym other) const { return this->str_ == other.str_; }
-    bool operator!=(Sym other) const { return this->str_ != other.str_; }
+    bool operator==(Sym other) const { return this->ptr_ == other.ptr_; }
+    bool operator!=(Sym other) const { return this->ptr_ != other.ptr_; }
     auto operator<=>(char c) const {
-        if ((*this).size() == 0) return std::strong_ordering::less;
+        auto s = size();
+        if (s == 0) return std::strong_ordering::less;
         auto cmp = (*this)[0] <=> c;
-        if ((*this).size() == 1) return cmp;
+        if (s == 1) return cmp;
         return cmp == 0 ? std::strong_ordering::greater : cmp;
     }
     auto operator==(char c) const { return (*this) <=> c == 0; }
@@ -115,10 +128,18 @@ public:
 
     /// @name Conversions
     ///@{
-    const char* c_str() const { return str_ ? str_->chars : empty_; }
+    const char* c_str() const { return view().data(); }
     operator const char*() const { return c_str(); }
 
-    std::string_view view() const { return str_ ? std::string_view(str_->chars, str_->size) : std::string_view(); }
+    std::string_view view() const {
+        if (empty()) return {(const char*)&ptr_, 0};
+        if (auto size = ptr_ & Short_String_Mask) {
+            // auto offset = std::endian::native == std::endian::little ? 1 : 0;
+            // return {(const char*)&ptr_ + offset, size};
+            return {(const char*)&ptr_ + 1, size};
+        }
+        return std::string_view(((const String*)ptr_)->chars, ((const String*)ptr_)->size);
+    }
     operator std::string_view() const { return view(); }
     std::string_view operator*() const { return view(); }
     // Unfortunately, this doesn't work:
@@ -127,7 +148,7 @@ public:
     std::string str() const { return std::string(view()); } ///< This involves a copy.
     explicit operator std::string() const { return str(); } ///< `explicit` as this involves a copy.
 
-    explicit operator bool() const { return str_; } ///< Is not empty?
+    explicit operator bool() const { return ptr_; } ///< Is not empty?
     ///@}
 
 #ifdef FE_ABSL
@@ -137,8 +158,7 @@ public:
     friend std::ostream& operator<<(std::ostream& o, Sym sym) { return o << sym.view(); }
 
 private:
-    static constexpr const char* empty_ = "";
-    const String* str_                  = nullptr;
+    uintptr_t ptr_ = 0;
 
     friend class SymPool;
 };
@@ -147,7 +167,7 @@ private:
 } // namespace fe
 
 template<> struct std::hash<fe::Sym> {
-    size_t operator()(fe::Sym sym) const { return std::hash<void*>()((void*)sym.str_); }
+    size_t operator()(fe::Sym sym) const { return std::hash<uintptr_t>()(sym.ptr_); }
 };
 
 namespace fe {
@@ -190,14 +210,23 @@ public:
     ///@{
     Sym sym(std::string_view s) {
         if (s.empty()) return Sym();
+        auto size = s.size();
+
+        if (size <= Sym::Short_String_Bytes - 2) { // small string: need two more bytes for `\0' and size
+            uintptr_t ptr   = size;
+            uintptr_t shift = 8;
+            for (size_t i = 0; i != size; ++i, shift += 8) ptr |= (uintptr_t(s[i]) << shift);
+            return Sym(ptr);
+        }
+
         auto state = strings_.state();
-        auto ptr   = (String*)strings_.allocate(sizeof(String) + s.size() + 1 /*'\0'*/);
+        auto ptr   = (String*)strings_.align(Sym::Short_String_Bytes).allocate(sizeof(String) + s.size() + 1 /*'\0'*/);
         new (ptr) String(s.size());
         *std::copy(s.begin(), s.end(), ptr->chars) = '\0';
         auto [i, ins]                              = pool_.emplace(ptr);
-        if (ins) return Sym(ptr);
+        if (ins) return Sym((uintptr_t)ptr);
         strings_.deallocate(state);
-        return Sym(*i);
+        return Sym((uintptr_t)*i);
     }
     Sym sym(const std::string& s) { return sym((std::string_view)s); }
     /// @p s is a null-terminated C-string.
