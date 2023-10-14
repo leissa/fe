@@ -150,7 +150,7 @@ public:
     ///@}
 
 #ifdef FE_ABSL
-    template<class H> friend H AbslHashValue(H h, Sym sym) { return H::combine(std::move(h), sym.str_); }
+    template<class H> friend H AbslHashValue(H h, Sym sym) { return H::combine(std::move(h), sym.ptr_); }
 #endif
     friend struct ::std::hash<fe::Sym>;
     friend std::ostream& operator<<(std::ostream& o, Sym sym) { return o << sym.view(); }
