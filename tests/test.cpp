@@ -75,6 +75,17 @@ TEST_CASE("Sym") {
     CHECK(syms.sym("abcdefghi").view() == "abcdefghi"s);
     CHECK(syms.sym("abcdefghij").view() == "abcdefghij"s);
 
+    CHECK(syms.sym("a") == syms.sym("a"s));
+    CHECK(syms.sym("ab") == syms.sym("ab"s));
+    CHECK(syms.sym("abc") == syms.sym("abc"s));
+    CHECK(syms.sym("abcd") == syms.sym("abcd"s));
+    CHECK(syms.sym("abcde") == syms.sym("abcde"s));
+    CHECK(syms.sym("abcdef") == syms.sym("abcdef"s));
+    CHECK(syms.sym("abcdefg") == syms.sym("abcdefg"s));
+    CHECK(syms.sym("abcdefgh") == syms.sym("abcdefgh"s));
+    CHECK(syms.sym("abcdefghi") == syms.sym("abcdefghi"s));
+    CHECK(syms.sym("abcdefghij") == syms.sym("abcdefghij"s));
+
     auto abc = syms.sym("abc");
     auto x   = syms.sym("");
     auto b   = syms.sym("b");
