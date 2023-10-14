@@ -132,7 +132,10 @@ public:
 
     std::string_view view() const {
         if (empty()) return {(const char*)&ptr_, 0};
-        if (auto size = ptr_ & Short_String_Mask) return {(const char*)&ptr_ + offset(), size};
+        // Little endian: 2 a b 0 register: 0ba2
+        // Big endian:    a b 0 2 register: ab02
+        uintptr_t offset = std::endian::native == std::endian::little ? 1 : 0;
+        if (auto size = ptr_ & Short_String_Mask) return {(const char*)&ptr_ + offset, size};
         return std::string_view(((const String*)ptr_)->chars, ((const String*)ptr_)->size);
     }
     operator std::string_view() const { return view(); }
@@ -153,8 +156,8 @@ public:
     friend std::ostream& operator<<(std::ostream& o, Sym sym) { return o << sym.view(); }
 
 private:
-    static constexpr uintptr_t offset() { return std::endian::native == std::endian::little ? 1 : 0; }
-
+    // Little endian: 2 a b 0 register: 0ba2
+    // Big endian:    a b 0 2 register: ab02
     uintptr_t ptr_ = 0;
 
     friend class SymPool;
@@ -211,7 +214,13 @@ public:
 
         if (size <= Sym::Short_String_Bytes - 2) { // small string: need two more bytes for `\0' and size
             uintptr_t ptr = size;
-            for (uintptr_t i = 0, shift = 8; i != size; ++i, shift += 8) ptr |= (uintptr_t(s[i]) << shift);
+            // Little endian: 2 a b 0 register: 0ba2
+            // Big endian:    a b 0 2 register: ab02
+            if constexpr (std::endian::native == std::endian::little)
+                for (uintptr_t i = 0, shift = 8; i != size; ++i, shift += 8) ptr |= (uintptr_t(s[i]) << shift);
+            else
+                for (uintptr_t i = 0, shift = (Sym::Short_String_Bytes - 1) * 8; i != size; ++i, shift -= 8)
+                    ptr |= (uintptr_t(s[i]) << shift);
             return Sym(ptr);
         }
 
