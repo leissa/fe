@@ -31,5 +31,7 @@ var classfe_1_1Sym =
     [ "view", "classfe_1_1Sym.html#aa85aa5325180c69757f712bcc2455613", null ],
     [ "::std::hash< fe::Sym >", "classfe_1_1Sym.html#a4c865acde4de25ac1247eeaac18710b5", null ],
     [ "operator<<", "classfe_1_1Sym.html#a46b4e3d6859821564fa612901a84300e", null ],
-    [ "SymPool", "classfe_1_1Sym.html#a5379cdd60ce3c910e14da02defe0a1aa", null ]
+    [ "SymPool", "classfe_1_1Sym.html#a5379cdd60ce3c910e14da02defe0a1aa", null ],
+    [ "Short_String_Bytes", "classfe_1_1Sym.html#a2d6e0bb54a5a9513e4a064dd38011863", null ],
+    [ "Short_String_Mask", "classfe_1_1Sym.html#a2d4bd5c6441545264c94de234dcc9d4e", null ]
 ];
