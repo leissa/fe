@@ -85,7 +85,7 @@ public:
     ///@{
 
     /// Align next allocate(size_t) to @p a.
-    void align(size_t a) { index_ = (index_ + (a - 1)) & ~(a - 1); }
+    Arena& align(size_t a) { return index_ = (index_ + (a - 1)) & ~(a - 1), *this; }
 
     /// Get @p n bytes of fresh memory.
     [[nodiscard]] void* allocate(size_t num_bytes) {
