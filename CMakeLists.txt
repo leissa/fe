@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.23 FATAL_ERROR)
 
-project(fe VERSION 0.1)
+project(fe VERSION 0.2.0)
 
 include(CMakePackageConfigHelpers)
 include(GNUInstallDirs)
