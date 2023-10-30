@@ -123,7 +123,7 @@ public:
     }
     ///@}
 
-    friend void swap(Arena& a1, Arena& a2) {
+    friend void swap(Arena& a1, Arena& a2) noexcept {
         using std::swap;
         swap(a1.pages_, a2.pages_);
         swap(a1.index_, a2.index_);

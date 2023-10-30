@@ -195,13 +195,13 @@ public:
     SymPool(const SymPool&) = delete;
 #ifdef FE_ABSL
     SymPool() {}
-    SymPool(SymPool&& other)
+    SymPool(SymPool&& other) noexcept
         : strings_(std::move(other.strings_))
         , pool_(std::move(other.pool_)) {}
 #else
     SymPool()
         : pool_(container_.allocator<const String*>()) {}
-    SymPool(SymPool&& other)
+    SymPool(SymPool&& other) noexcept
         : strings_(std::move(other.strings_))
         , container_(std::move(other.container_))
         , pool_(std::move(other.pool_)) {}
@@ -240,7 +240,7 @@ public:
     // TODO we can try to fit s in current page and hence eliminate the explicit use of strlen
     ///@}
 
-    friend void swap(SymPool& p1, SymPool& p2) {
+    friend void swap(SymPool& p1, SymPool& p2) noexcept {
         using std::swap;
         // clang-format off
         swap(p1.strings_,   p2.strings_  );
