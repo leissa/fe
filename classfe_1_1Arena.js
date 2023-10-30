@@ -13,6 +13,6 @@ var classfe_1_1Arena =
     [ "deallocate", "classfe_1_1Arena.html#a06ec61e3440601fba0a903b35866f2dc", null ],
     [ "mk", "classfe_1_1Arena.html#ac0ed8cd6c5553d0d1e75745501221a6f", null ],
     [ "state", "classfe_1_1Arena.html#ad5596516d2fa1fb1679b2485b60a9007", null ],
-    [ "swap", "classfe_1_1Arena.html#a0665305af109dae59bd4342c5b8d7935", null ],
+    [ "swap", "classfe_1_1Arena.html#a8f9ae98bbf9b30287b975cf8c5ae86c9", null ],
     [ "Default_Page_Size", "classfe_1_1Arena.html#acf8db82af7c5e70594460ffffeaaedc6", null ]
 ];
