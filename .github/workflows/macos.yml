@@ -24,9 +24,9 @@ jobs:
 
       - name: Configure
         run: |
-          CXX="/usr/local/opt/llvm/bin/clang++" \
+          CXX="/usr/local/opt/llvm@16/bin/clang++" \
           CXXFLAGS="-stdlib=libc++ -fexperimental-library" \
-          LDFLAGS="-L/usr/local/opt/llvm/lib/c++ -Wl,-rpath,/usr/local/opt/llvm/lib/c++" \
+          LDFLAGS="-L/usr/local/opt/llvm@16/lib/c++ -Wl,-rpath,/usr/local/opt/llvm@16/lib/c++" \
           cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{matrix.build-type}} -DBUILD_TESTING=ON
 
       - name: Build
