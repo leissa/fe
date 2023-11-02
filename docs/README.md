@@ -15,7 +15,9 @@ Instead, it will give you the blueprint to easily hand-write your own lexer and 
 
 ## Get Started Now!
 
-Simply [fork](https://github.com/leissa/let/fork) the toy language *[Let](https://github.com/leissa/let)*.
+Based on the toy language *[Let](https://github.com/leissa/let)*, either
+* create a [new repository from a template](https://github.com/new?template_owner=leissa&template_name=let), or
+* [fork](https://github.com/leissa/let/fork) it.
 
 ## Features
 
@@ -77,5 +79,6 @@ Otherwise, FE will fall back to the hash containers of the C++ standard library.
 ## Other Projects using FE
 
 * [Let](https://github.com/leissa/let): A simple demo language that builds upon FE
-* [Thorin2](https://anydsl.github.io/thorin2/): The Higher-ORder INtermediate representation
+* [GraphTool](https://github.com/leissa/graphtool): A small tool that reads a subset from Graphviz' DOT language and calculates several dominance-related properties
 * [SQL](https://github.com/leissa/sql): Small and simple SQL parser
+* [Thorin2](https://anydsl.github.io/thorin2/): The Higher-ORder INtermediate representation
