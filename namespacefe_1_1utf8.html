@@ -180,9 +180,9 @@ Functions</h2></td></tr>
 <tr class="separator:a50e0192b122a783b81710499f20ae6b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f47692e931db3f19ee1fcc516d72f9c" id="r_a6f47692e931db3f19ee1fcc516d72f9c"><td class="memItemLeft" align="right" valign="top">char32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a6f47692e931db3f19ee1fcc516d72f9c">toupper</a> (char32_t c)</td></tr>
 <tr class="separator:a6f47692e931db3f19ee1fcc516d72f9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc1a521dd5b7733ec1660b53a0eee893" id="r_adc1a521dd5b7733ec1660b53a0eee893"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#adc1a521dd5b7733ec1660b53a0eee893">_isrange</a> (char32_t c, char32_t begin, char32_t finis)</td></tr>
-<tr class="memdesc:adc1a521dd5b7733ec1660b53a0eee893"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is <code>c</code> within [begin, finis]?  <br /></td></tr>
-<tr class="separator:adc1a521dd5b7733ec1660b53a0eee893"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bac0a434d912c72cca84c2ba08ca33e" id="r_a4bac0a434d912c72cca84c2ba08ca33e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a4bac0a434d912c72cca84c2ba08ca33e">isrange</a> (char32_t c, char32_t begin, char32_t finis)</td></tr>
+<tr class="memdesc:a4bac0a434d912c72cca84c2ba08ca33e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is <code>c</code> within [begin, finis]?  <br /></td></tr>
+<tr class="separator:a4bac0a434d912c72cca84c2ba08ca33e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a850616460524bc90580a86ee0671151e" id="r_a850616460524bc90580a86ee0671151e"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a850616460524bc90580a86ee0671151e">isrange</a> (char32_t begin, char32_t finis)</td></tr>
 <tr class="separator:a850616460524bc90580a86ee0671151e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ec51ff1eab27435ede0d12d83d87b38" id="r_a2ec51ff1eab27435ede0d12d83d87b38"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a2ec51ff1eab27435ede0d12d83d87b38">isodigit</a> (char32_t c)</td></tr>
@@ -302,54 +302,6 @@ template&lt;class... T&gt; </div>
 <p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00129">129</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 <p class="reference">References <a class="el" href="utf8_8h_source.html#l00128">_any()</a>.</p>
-
-</div>
-</div>
-<a id="adc1a521dd5b7733ec1660b53a0eee893" name="adc1a521dd5b7733ec1660b53a0eee893"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adc1a521dd5b7733ec1660b53a0eee893">&#9670;&#160;</a></span>_isrange()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool fe::utf8::_isrange </td>
-          <td>(</td>
-          <td class="paramtype">char32_t&#160;</td>
-          <td class="paramname"><em>c</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char32_t&#160;</td>
-          <td class="paramname"><em>begin</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char32_t&#160;</td>
-          <td class="paramname"><em>finis</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Is <code>c</code> within [begin, finis]? </p>
-
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00116">116</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00121">isbdigit()</a>, <a class="el" href="utf8_8h_source.html#l00120">isodigit()</a>, and <a class="el" href="utf8_8h_source.html#l00117">isrange()</a>.</p>
 
 </div>
 </div>
@@ -688,7 +640,7 @@ template&lt;class... T&gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00121">121</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00116">_isrange()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00116">isrange()</a>.</p>
 
 </div>
 </div>
@@ -860,7 +812,7 @@ template&lt;class... T&gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00120">120</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00116">_isrange()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00116">isrange()</a>.</p>
 
 </div>
 </div>
@@ -921,7 +873,7 @@ template&lt;class... T&gt; </div>
 </div>
 </div>
 <a id="a850616460524bc90580a86ee0671151e" name="a850616460524bc90580a86ee0671151e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a850616460524bc90580a86ee0671151e">&#9670;&#160;</a></span>isrange()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a850616460524bc90580a86ee0671151e">&#9670;&#160;</a></span>isrange() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -956,7 +908,55 @@ template&lt;class... T&gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00117">117</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00116">_isrange()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00116">isrange()</a>.</p>
+
+</div>
+</div>
+<a id="a4bac0a434d912c72cca84c2ba08ca33e" name="a4bac0a434d912c72cca84c2ba08ca33e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4bac0a434d912c72cca84c2ba08ca33e">&#9670;&#160;</a></span>isrange() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fe::utf8::isrange </td>
+          <td>(</td>
+          <td class="paramtype">char32_t&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char32_t&#160;</td>
+          <td class="paramname"><em>begin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char32_t&#160;</td>
+          <td class="paramname"><em>finis</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Is <code>c</code> within [begin, finis]? </p>
+
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00116">116</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00121">isbdigit()</a>, <a class="el" href="utf8_8h_source.html#l00120">isodigit()</a>, and <a class="el" href="utf8_8h_source.html#l00117">isrange()</a>.</p>
 
 </div>
 </div>

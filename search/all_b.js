@@ -20,7 +20,7 @@ var searchData=
   ['isodigit_17',['isodigit',['../namespacefe_1_1utf8.html#a2ec51ff1eab27435ede0d12d83d87b38',1,'fe::utf8']]],
   ['isprint_18',['isprint',['../namespacefe_1_1utf8.html#a6f2b0aac8117fa3fed2c4d2c5e4a8c3b',1,'fe::utf8']]],
   ['ispunct_19',['ispunct',['../namespacefe_1_1utf8.html#ac231ad1863c20761eb9f365f9f154b44',1,'fe::utf8']]],
-  ['isrange_20',['isrange',['../namespacefe_1_1utf8.html#a850616460524bc90580a86ee0671151e',1,'fe::utf8']]],
+  ['isrange_20',['isrange',['../namespacefe_1_1utf8.html#a850616460524bc90580a86ee0671151e',1,'fe::utf8::isrange(char32_t begin, char32_t finis)'],['../namespacefe_1_1utf8.html#a4bac0a434d912c72cca84c2ba08ca33e',1,'fe::utf8::isrange(char32_t c, char32_t begin, char32_t finis)']]],
   ['isspace_21',['isspace',['../namespacefe_1_1utf8.html#a9d4fc1f151370f31fdf257552523a373',1,'fe::utf8']]],
   ['istream_5f_22',['istream_',['../classfe_1_1Lexer.html#ab8dab537ecbc5e97ad064e286201fd14',1,'fe::Lexer']]],
   ['isupper_23',['isupper',['../namespacefe_1_1utf8.html#a24ce91419bdb8b26a823e1c0dbab8f89',1,'fe::utf8']]],
