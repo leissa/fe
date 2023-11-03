@@ -2,9 +2,10 @@
 
 namespace fe::utf8 {
 
-static constexpr size_t Max   = 4;      ///< Maximal number of `char8_t`s of an UTF-8 byte sequence.
-static constexpr char32_t BOM = 0xfeff; ///< [Byte Order Mark](https://en.wikipedia.org/wiki/Byte_order_mark#UTF-8).
-static constexpr char32_t EoF = (char32_t)std::istream::traits_type::eof(); ///< End of File.
+static constexpr size_t Max    = 4;      ///< Maximal number of `char8_t`s of an UTF-8 byte sequence.
+static constexpr char32_t BOM  = 0xfeff; ///< [Byte Order Mark](https://en.wikipedia.org/wiki/Byte_order_mark#UTF-8).
+static constexpr char32_t EoF  = (char32_t)std::istream::traits_type::eof(); ///< End of File.
+static constexpr char32_t Null = 0;
 
 /// Returns the expected number of bytes for an UTF-8 char sequence by inspecting the first byte.
 /// Retuns @c 0 if invalid.
@@ -24,10 +25,12 @@ inline char32_t first(char32_t c, char32_t num) { return c & (0b00011111 >> (num
 
 /// Is the 2nd, 3rd, or 4th byte of an UTF-8 byte sequence valid?
 /// @returns the extracted `char8_t` or `char8_t(-1)` if invalid.
-inline char8_t is_valid234(char8_t c) { return (c & char8_t(0b11000000)) == char8_t(0b10000000) ? (c & char8_t(0b00111111)) : char8_t(-1); }
+inline char8_t is_valid234(char8_t c) {
+    return (c & char8_t(0b11000000)) == char8_t(0b10000000) ? (c & char8_t(0b00111111)) : char8_t(-1);
+}
 
 /// Decodes the next sequence of bytes from @p is as UTF-32.
-/// @returns `0` on error.
+/// @returns Null on error.
 inline char32_t decode(std::istream& is) {
     char32_t result = is.get();
     if (result == EoF) return result;

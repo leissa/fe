@@ -29,13 +29,13 @@ protected:
     char32_t ahead(size_t i = 0) const { return ahead_[i]; }
 
     /// Invoke before assembling the next token.
-    void begin() {
+    void start() {
         loc_.begin = peek_;
         str_.clear();
     }
 
     /// Get next `char32_t` in Lexer::istream_ and increase Lexer::loc_.
-    /// @returns `0` on an invalid UTF-8 sequence.
+    /// @returns Null on an invalid UTF-8 sequence.
     char32_t next() {
         loc_.finis = peek_;
         auto res   = ahead();
