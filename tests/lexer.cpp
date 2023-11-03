@@ -135,7 +135,7 @@ public:
                 return {loc_, u};
             }
 
-            driver_.err(peek_, "invalid input character: ''{}'", (char)ahead(0));
+            driver_.err(peek_, "invalid input character: ''{}'", fe::Char32(ahead()));
             next();
         }
     }

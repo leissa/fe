@@ -2,6 +2,9 @@
 
 #include <cctype>
 
+#include <istream>
+#include <ostream>
+
 namespace fe::utf8 {
 
 static constexpr size_t Max    = 4;      ///< Maximal number of `char8_t`s of an UTF-8 byte sequence.
