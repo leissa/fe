@@ -101,9 +101,9 @@ public:
 
     Tok lex() {
         while (true) {
-            this->begin();
+            this->start();
 
-            if (accept(0)) {
+            if (accept(fe::utf8::Null)) {
                 std::cerr << "invalid UTF-8 sequence" << std::endl;
                 continue;
             }
