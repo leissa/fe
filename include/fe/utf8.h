@@ -108,7 +108,7 @@ inline bool ispunct (char32_t c) { return (c & ~0xFF) == 0 ? std::ispunct (c) : 
 inline bool isspace (char32_t c) { return (c & ~0xFF) == 0 ? std::isspace (c) : false; }
 inline bool isupper (char32_t c) { return (c & ~0xFF) == 0 ? std::isupper (c) : false; }
 inline bool isxdigit(char32_t c) { return (c & ~0xFF) == 0 ? std::isxdigit(c) : false; }
-inline bool isascii (char32_t c) { return c <= 0x7f; }
+inline bool isascii (char32_t c) { return c <= 0x7F; }
 inline char32_t tolower(char32_t c) { return (c & ~0xFF) == 0 ? std::tolower(c) : c; }
 inline char32_t toupper(char32_t c) { return (c & ~0xFF) == 0 ? std::toupper(c) : c; }
 

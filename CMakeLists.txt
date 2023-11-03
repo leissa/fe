@@ -5,10 +5,6 @@ project(fe VERSION 0.2.0)
 include(CMakePackageConfigHelpers)
 include(GNUInstallDirs)
 
-if(MSVC)
-    add_compile_options(/utf-8 /wd4146 /wd4245)
-endif()
-
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Choose the type of build." FORCE)
     set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
@@ -41,6 +37,11 @@ target_sources(fe
         include/fe/utf8.h
 )
 target_include_directories(fe INTERFACE $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+
+if(MSVC)
+    target_compile_definitions(fe _CTYPE_DISABLE_MACROS)
+    target_compile_options(/utf-8 /wd4146 /wd4245)
+endif()
 
 option(FE_ABSL "If ON, use abseil containers, otherwise use std contaienrs" OFF)
 if(FE_ABSL)
