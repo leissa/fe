@@ -96,7 +96,7 @@ struct Char32 {
 /// > Like all other functions from `<cctype>`, the behavior of `std::isalnum` is undefined if the argument's value is
 /// neither representable as `unsigned char` nor equal to `EOF`.
 // clang-format off
-inline bool isalnum (char32_t c) { return (c & ~0xFF) == 0 ? std::isspace (c) : false; }
+inline bool isalnum (char32_t c) { return (c & ~0xFF) == 0 ? std::isalnum (c) : false; }
 inline bool isalpha (char32_t c) { return (c & ~0xFF) == 0 ? std::isalpha (c) : false; }
 inline bool isblank (char32_t c) { return (c & ~0xFF) == 0 ? std::isblank (c) : false; }
 inline bool iscntrl (char32_t c) { return (c & ~0xFF) == 0 ? std::iscntrl (c) : false; }
