@@ -13,6 +13,7 @@ var namespacefe_1_1utf8 =
     [ "isalnum", "namespacefe_1_1utf8.html#a8c1b42c416615422d2a68f761ba7ce5d", null ],
     [ "isalpha", "namespacefe_1_1utf8.html#a81e47205741ccebef31180e62371c335", null ],
     [ "isascii", "namespacefe_1_1utf8.html#a3da2ce510a2a38c08756d6fcb6d59321", null ],
+    [ "isbdigit", "namespacefe_1_1utf8.html#a076a4eaafb073e59753c3ced314e09cd", null ],
     [ "isblank", "namespacefe_1_1utf8.html#a2d8c47ef1ce5331124b980ed00aee07c", null ],
     [ "iscntrl", "namespacefe_1_1utf8.html#a44c5e5471eaf9d1a9082ccaebb48e9f4", null ],
     [ "isdigit", "namespacefe_1_1utf8.html#a746f9c2a6630f62bd39c638cfee74212", null ],
