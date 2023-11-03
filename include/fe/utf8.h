@@ -118,6 +118,7 @@ inline auto isrange(char32_t begin, char32_t finis) { return [=](char32_t c) { r
 
 /// Is octal digit?
 inline bool isodigit(char32_t c) { return _isrange(c, '0', '7'); }
+inline bool isbdigit(char32_t c) { return _isrange(c, '0', '1'); }
 // clang-format on
 ///@}
 
