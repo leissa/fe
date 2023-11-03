@@ -1,5 +1,6 @@
 var utf8_8h =
 [
+    [ "fe::utf8::Char32", "structfe_1_1utf8_1_1Char32.html", "structfe_1_1utf8_1_1Char32" ],
     [ "append", "utf8_8h.html#aa73f03b25b2098b8e139d1d037bd7c97", null ],
     [ "decode", "utf8_8h.html#a4ca17134ff0be619535e913b53a80e79", null ],
     [ "encode", "utf8_8h.html#a50c98a6d25495ac66c1a30e1ba83da99", null ],

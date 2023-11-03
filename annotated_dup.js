@@ -1,9 +1,11 @@
 var annotated_dup =
 [
     [ "fe", "namespacefe.html", [
+      [ "utf8", "namespacefe_1_1utf8.html", [
+        [ "Char32", "structfe_1_1utf8_1_1Char32.html", "structfe_1_1utf8_1_1Char32" ]
+      ] ],
       [ "Arena", "classfe_1_1Arena.html", "classfe_1_1Arena" ],
       [ "basic_ostream_formatter", "structfe_1_1basic__ostream__formatter.html", "structfe_1_1basic__ostream__formatter" ],
-      [ "Char32", "structfe_1_1Char32.html", "structfe_1_1Char32" ],
       [ "Driver", "structfe_1_1Driver.html", "structfe_1_1Driver" ],
       [ "Lexer", "classfe_1_1Lexer.html", "classfe_1_1Lexer" ],
       [ "Loc", "structfe_1_1Loc.html", "structfe_1_1Loc" ],
