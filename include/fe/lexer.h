@@ -67,7 +67,7 @@ protected:
 
     /// @returns `true` if @p pred holds.
     /// In this case invoke Lexer::next() and append to Lexer::str_, if @p append.
-    template<Append append = Append::On, class Pred> bool accept_if(Pred pred) {
+    template<Append append = Append::On, class Pred> bool accept(Pred pred) {
         if (pred(ahead())) {
             auto c = self().next();
             if constexpr (append != Append::Off) {
@@ -81,8 +81,9 @@ protected:
     }
 
     template<Append append = Append::On> bool accept(char32_t c) {
-        return accept_if<append>([c](char32_t d) { return c == d; });
+        return accept<append>([c](char32_t d) { return c == d; });
     }
+    template<Append append = Append::On> bool accept(char c) { return accept<append>((char32_t)c); }
     ///@}
 
     std::istream& istream_;

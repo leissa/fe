@@ -90,7 +90,6 @@ template<size_t K = 1> class Lexer : public fe::Lexer<K, Lexer<K>> {
 public:
     using fe::Lexer<K, Lexer<K>>::ahead;
     using fe::Lexer<K, Lexer<K>>::accept;
-    using fe::Lexer<K, Lexer<K>>::accept_if;
     using fe::Lexer<K, Lexer<K>>::next;
 
     using fe::Lexer<K, Lexer<K>>::loc_;
@@ -111,7 +110,7 @@ public:
             }
 
             if (accept(utf8::EoF)) return {loc_, Tok::Tag::T_EoF};
-            if (accept_if(utf8::isspace)) continue;
+            if (accept(utf8::isspace)) continue;
 
             if (accept('(')) return {loc_, Tok::Tag::D_paren_l};
             if (accept('(')) return {loc_, Tok::Tag::D_paren_r};
@@ -126,13 +125,13 @@ public:
 
             if (accept(U'λ')) return {loc_, Tok::Tag::T_lambda};
 
-            if (accept_if([](char32_t c) { return c == '_' || utf8::isalpha(c); })) {
-                while (accept_if([](char32_t c) { return c == '_' || c == '.' || utf8::isalnum(c); })) {}
+            if (accept([](char32_t c) { return c == '_' || utf8::isalpha(c); })) {
+                while (accept([](char32_t c) { return c == '_' || c == '.' || utf8::isalnum(c); })) {}
                 return {loc_, driver_.sym(str_)};
             }
 
-            if (accept_if(utf8::isdigit)) {
-                while (accept_if(utf8::isdigit)) {}
+            if (accept(utf8::isdigit)) {
+                while (accept(utf8::isdigit)) {}
                 auto u = strtoull(str_.c_str(), nullptr, 10);
                 return {loc_, u};
             }
