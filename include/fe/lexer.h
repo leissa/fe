@@ -61,8 +61,8 @@ protected:
     enum class Append {
         Off,   ///< Do not append accepted char to Lexer::str_.
         On,    ///< Append accepted char as is to Lexer::str_.
-        Lower, ///< Append accepted char via `std::tolower` to Lexer::str_.
-        Upper, ///< Append accepted char via `std::toupper` to Lexer::str_.
+        Lower, ///< Append accepted char via fe::utf8::tolower` to Lexer::str_.
+        Upper, ///< Append accepted char via fe::utf8::toupper` to Lexer::str_.
     };
 
     /// @returns `true` if @p pred holds.
@@ -71,8 +71,8 @@ protected:
         if (pred(ahead())) {
             auto c = self().next();
             if constexpr (append != Append::Off) {
-                if constexpr (append == Append::Lower) c = std::tolower(c);
-                if constexpr (append == Append::Upper) c = std::toupper(c);
+                if constexpr (append == Append::Lower) c = fe::utf8::tolower(c);
+                if constexpr (append == Append::Upper) c = fe::utf8::toupper(c);
                 str_ += c;
             }
             return true;

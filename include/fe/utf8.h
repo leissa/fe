@@ -38,7 +38,7 @@ inline char32_t decode(std::istream& is) {
     if (result == EoF) return result;
 
     switch (auto n = utf8::num_bytes(result)) {
-        case 0: return 0;
+        case 0: return Null;
         case 1: return result;
         default:
             result = utf8::first(result, n);
@@ -90,8 +90,9 @@ inline bool ispunct (char32_t c) { return (c & ~0xFF) == 0 ? std::ispunct (c) : 
 inline bool isspace (char32_t c) { return (c & ~0xFF) == 0 ? std::isspace (c) : false; }
 inline bool isupper (char32_t c) { return (c & ~0xFF) == 0 ? std::isupper (c) : false; }
 inline bool isxdigit(char32_t c) { return (c & ~0xFF) == 0 ? std::isxdigit(c) : false; }
-inline bool tolower (char32_t c) { return (c & ~0xFF) == 0 ? std::tolower (c) : false; }
-inline bool toupper (char32_t c) { return (c & ~0xFF) == 0 ? std::toupper (c) : false; }
+inline bool isascii (char32_t c) { return c <= 0x7f; }
+inline char32_t tolower(char32_t c) { return (c & ~0xFF) == 0 ? std::tolower(c) : c; }
+inline char32_t toupper(char32_t c) { return (c & ~0xFF) == 0 ? std::toupper(c) : c; }
 // clang-format on
 ///@}
 
