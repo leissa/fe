@@ -27,20 +27,6 @@ template<class Char> struct basic_ostream_formatter : std::formatter<std::basic_
 
 using ostream_formatter = basic_ostream_formatter<char>;
 
-/// Wrapper for `char32_t` which has a friend ostream operator.
-struct Char32 {
-    Char32(char32_t c)
-        : c(c) {}
-
-    friend std::ostream& operator<<(std::ostream& os, Char32 c) {
-        auto res = utf8::encode(os, c.c);
-        assert_unused(res);
-        return os;
-    }
-
-    char32_t c;
-};
-
 // clang-format off
 /// @name out/outln/err/errln
 ///@{
@@ -108,5 +94,5 @@ template<> struct std::formatter<fe::Pos> : fe::ostream_formatter {};
 template<> struct std::formatter<fe::Loc> : fe::ostream_formatter {};
 template<> struct std::formatter<fe::Sym> : fe::ostream_formatter {};
 template<> struct std::formatter<fe::Tab> : fe::ostream_formatter {};
-template<> struct std::formatter<fe::Char32> : fe::ostream_formatter {};
+template<> struct std::formatter<fe::utf8::Char32> : fe::ostream_formatter {};
 #endif

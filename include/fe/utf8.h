@@ -5,6 +5,8 @@
 #include <istream>
 #include <ostream>
 
+#include "fe/assert.h"
+
 namespace fe::utf8 {
 
 static constexpr size_t Max    = 4;      ///< Maximal number of `char8_t`s of an UTF-8 byte sequence.
@@ -74,6 +76,19 @@ inline bool encode(std::ostream& os, char32_t c32) {
     // clang-format on
     return false;
 }
+/// Wrapper for `char32_t` which has a friend ostream operator.
+struct Char32 {
+    Char32(char32_t c)
+        : c(c) {}
+
+    friend std::ostream& operator<<(std::ostream& os, Char32 c) {
+        auto res = utf8::encode(os, c.c);
+        assert_unused(res);
+        return os;
+    }
+
+    char32_t c;
+};
 
 /// @name Wrappers
 ///@{

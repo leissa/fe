@@ -10,6 +10,8 @@ using fe::Loc;
 using fe::Pos;
 using fe::Sym;
 
+namespace utf8 = fe::utf8;
+
 #define LET_KEY(m) m(K_let, "let") m(K_return, "return")
 
 #define LET_MISC(m) m(M_id, "<identifier>") m(M_lit, "<literal>")
@@ -103,13 +105,13 @@ public:
         while (true) {
             this->start();
 
-            if (accept(fe::utf8::Null)) {
+            if (accept(utf8::Null)) {
                 std::cerr << "invalid UTF-8 sequence" << std::endl;
                 continue;
             }
 
-            if (accept(fe::utf8::EoF)) return {loc_, Tok::Tag::T_EoF};
-            if (accept_if(fe::utf8::isspace)) continue;
+            if (accept(utf8::EoF)) return {loc_, Tok::Tag::T_EoF};
+            if (accept_if(utf8::isspace)) continue;
 
             if (accept('(')) return {loc_, Tok::Tag::D_paren_l};
             if (accept('(')) return {loc_, Tok::Tag::D_paren_r};
@@ -124,18 +126,18 @@ public:
 
             if (accept(U'λ')) return {loc_, Tok::Tag::T_lambda};
 
-            if (accept_if([](char32_t c) { return c == '_' || fe::utf8::isalpha(c); })) {
-                while (accept_if([](char32_t c) { return c == '_' || c == '.' || fe::utf8::isalnum(c); })) {}
+            if (accept_if([](char32_t c) { return c == '_' || utf8::isalpha(c); })) {
+                while (accept_if([](char32_t c) { return c == '_' || c == '.' || utf8::isalnum(c); })) {}
                 return {loc_, driver_.sym(str_)};
             }
 
-            if (accept_if(fe::utf8::isdigit)) {
-                while (accept_if(fe::utf8::isdigit)) {}
+            if (accept_if(utf8::isdigit)) {
+                while (accept_if(utf8::isdigit)) {}
                 auto u = strtoull(str_.c_str(), nullptr, 10);
                 return {loc_, u};
             }
 
-            driver_.err(peek_, "invalid input character: ''{}'", fe::Char32(ahead()));
+            driver_.err(peek_, "invalid input character: ''{}'", utf8::Char32(ahead()));
             next();
         }
     }
