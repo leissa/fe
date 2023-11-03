@@ -113,18 +113,22 @@ inline char32_t tolower(char32_t c) { return (c & ~0xFF) == 0 ? std::tolower(c) 
 inline char32_t toupper(char32_t c) { return (c & ~0xFF) == 0 ? std::toupper(c) : c; }
 
 /// Is @p c within [begin, finis]?
-inline bool isrange(char32_t c, char32_t begin, char32_t finis) { return begin <= c && c <= finis; }
+inline bool _isrange(char32_t c, char32_t begin, char32_t finis) { return begin <= c && c <= finis; }
+inline auto isrange(char32_t begin, char32_t finis) { return [=](char32_t c) { return _isrange(c, begin, finis); }; }
 
 /// Is octal digit?
-inline bool isodigit(char32_t c) { return isrange(c, '0', '7'); }
+inline bool isodigit(char32_t c) { return _isrange(c, '0', '7'); }
 // clang-format on
 ///@}
 
 /// @name any
 ///@{
 /// Checks whether @p c is any of the remaining arguments.
-inline bool any(char32_t c, char32_t d) { return c == d; }
-template<class... T> inline bool any(char32_t c, char32_t d, T... args) { return c == d || any(c, args...); }
+inline bool _any(char32_t c, char32_t d) { return c == d; }
+template<class... T> inline bool _any(char32_t c, char32_t d, T... args) { return c == d || _any(c, args...); }
+template<class... T> inline auto any(T... args) {
+    return [=](char32_t c) { return _any(c, args...); };
+}
 ///@}
 
 } // namespace fe::utf8

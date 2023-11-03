@@ -120,8 +120,8 @@ TEST_CASE("utf8") {
     fe::utf8::encode(oss, U'𐄂');
     fe::utf8::encode(oss, U'𐀮');
     CHECK(oss.str() == "a£λ𐄂𐀮");
-    CHECK(fe::utf8::any('a', 'a', 'b', 'c'));
-    CHECK(fe::utf8::any('b', 'a', 'b', 'c'));
-    CHECK(fe::utf8::any('c', 'a', 'b', 'c'));
-    CHECK(fe::utf8::any('x', 'a', 'b', 'c') == false);
+    CHECK(fe::utf8::any('a', 'b', 'c')('a'));
+    CHECK(fe::utf8::any('a', 'b', 'c')('b'));
+    CHECK(fe::utf8::any('a', 'b', 'c')('c'));
+    CHECK(fe::utf8::any('a', 'b', 'c')('x') == false);
 }
