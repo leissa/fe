@@ -9,7 +9,8 @@ var namespacefe =
       [ "num_bytes", "namespacefe_1_1utf8.html#a6decf030f56d34b82146f21e502dcee9", null ],
       [ "BOM", "namespacefe_1_1utf8.html#a262057ce9cd9138f8dd21b84c7379b1c", null ],
       [ "EoF", "namespacefe_1_1utf8.html#a958f5b14010ee32136a35e5534a205ce", null ],
-      [ "Max", "namespacefe_1_1utf8.html#a753d178a1e977540ac8cd44fe4390a58", null ]
+      [ "Max", "namespacefe_1_1utf8.html#a753d178a1e977540ac8cd44fe4390a58", null ],
+      [ "Null", "namespacefe_1_1utf8.html#aea7687cddcfc751ce19ef5be406dc67c", null ]
     ] ],
     [ "Arena", "classfe_1_1Arena.html", "classfe_1_1Arena" ],
     [ "basic_ostream_formatter", "structfe_1_1basic__ostream__formatter.html", "structfe_1_1basic__ostream__formatter" ],
