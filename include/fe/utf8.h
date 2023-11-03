@@ -111,7 +111,20 @@ inline bool isxdigit(char32_t c) { return (c & ~0xFF) == 0 ? std::isxdigit(c) : 
 inline bool isascii (char32_t c) { return c <= 0x7f; }
 inline char32_t tolower(char32_t c) { return (c & ~0xFF) == 0 ? std::tolower(c) : c; }
 inline char32_t toupper(char32_t c) { return (c & ~0xFF) == 0 ? std::toupper(c) : c; }
+
+/// Is @p c within [begin, finis]?
+inline bool isrange(char32_t c, char32_t begin, char32_t finis) { return begin <= c && c <= finis; }
+
+/// Is octal digit?
+inline bool isodigit(char32_t c) { return isrange(c, '0', '7'); }
 // clang-format on
+///@}
+
+/// @name any
+///@{
+/// Checks whether @p c is any of the remaining arguments.
+inline bool any(char32_t c, char32_t d) { return c == d; }
+template<class... T> inline bool any(char32_t c, char32_t d, T... args) { return c == d || any(c, args...); }
 ///@}
 
 } // namespace fe::utf8
