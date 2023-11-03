@@ -39,11 +39,8 @@ target_sources(fe
 target_include_directories(fe INTERFACE $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
 if(MSVC)
-    target_compile_definitions(fe PUBLIC _CTYPE_DISABLE_MACROS)
-    target_compile_options(fe
-        PUBLIC /utf-8
-        PRIVATE /wd4146 /wd4245
-    )
+    target_compile_definitions(fe INTERFACE _CTYPE_DISABLE_MACROS)
+    target_compile_options(fe INTERFACE /utf-8 /wd4146 /wd4245)
 endif()
 
 option(FE_ABSL "If ON, use abseil containers, otherwise use std contaienrs" OFF)
