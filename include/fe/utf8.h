@@ -113,12 +113,12 @@ inline char32_t tolower(char32_t c) { return (c & ~0xFF) == 0 ? std::tolower(c) 
 inline char32_t toupper(char32_t c) { return (c & ~0xFF) == 0 ? std::toupper(c) : c; }
 
 /// Is @p c within [begin, finis]?
-inline bool _isrange(char32_t c, char32_t begin, char32_t finis) { return begin <= c && c <= finis; }
-inline auto isrange(char32_t begin, char32_t finis) { return [=](char32_t c) { return _isrange(c, begin, finis); }; }
+inline bool isrange(char32_t c, char32_t begin, char32_t finis) { return begin <= c && c <= finis; }
+inline auto isrange(char32_t begin, char32_t finis) { return [=](char32_t c) { return isrange(c, begin, finis); }; }
 
 /// Is octal digit?
-inline bool isodigit(char32_t c) { return _isrange(c, '0', '7'); }
-inline bool isbdigit(char32_t c) { return _isrange(c, '0', '1'); }
+inline bool isodigit(char32_t c) { return isrange(c, '0', '7'); }
+inline bool isbdigit(char32_t c) { return isrange(c, '0', '1'); }
 // clang-format on
 ///@}
 
