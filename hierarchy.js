@@ -2,6 +2,7 @@ var hierarchy =
 [
     [ "fe::Arena::Allocator< T >", "structfe_1_1Arena_1_1Allocator.html", null ],
     [ "fe::Arena", "classfe_1_1Arena.html", null ],
+    [ "fe::Char32", "structfe_1_1Char32.html", null ],
     [ "fe::Arena::Deleter< T >", "structfe_1_1Arena_1_1Deleter.html", null ],
     [ "fe::Sym::String::Equal", "structfe_1_1Sym_1_1String_1_1Equal.html", null ],
     [ "std::formatter", null, [
