@@ -109,7 +109,7 @@ public:
             }
 
             if (accept(fe::utf8::EoF)) return {loc_, Tok::Tag::T_EoF};
-            if (accept_if(isspace)) continue;
+            if (accept_if(fe::utf8::isspace)) continue;
 
             if (accept('(')) return {loc_, Tok::Tag::D_paren_l};
             if (accept('(')) return {loc_, Tok::Tag::D_paren_r};
@@ -124,13 +124,13 @@ public:
 
             if (accept(U'λ')) return {loc_, Tok::Tag::T_lambda};
 
-            if (accept_if([](char32_t c) { return c == '_' || isalpha(c); })) {
-                while (accept_if([](char32_t c) { return c == '_' || c == '.' || isalnum(c); })) {}
+            if (accept_if([](char32_t c) { return c == '_' || fe::utf8::isalpha(c); })) {
+                while (accept_if([](char32_t c) { return c == '_' || c == '.' || fe::utf8::isalnum(c); })) {}
                 return {loc_, driver_.sym(str_)};
             }
 
-            if (accept_if(isdigit)) {
-                while (accept_if(isdigit)) {}
+            if (accept_if(fe::utf8::isdigit)) {
+                while (accept_if(fe::utf8::isdigit)) {}
                 auto u = strtoull(str_.c_str(), nullptr, 10);
                 return {loc_, u};
             }

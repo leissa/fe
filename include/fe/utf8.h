@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cctype>
+
 namespace fe::utf8 {
 
 static constexpr size_t Max    = 4;      ///< Maximal number of `char8_t`s of an UTF-8 byte sequence.
@@ -69,5 +71,28 @@ inline bool encode(std::ostream& os, char32_t c32) {
     // clang-format on
     return false;
 }
+
+/// @name Wrappers
+///@{
+/// Safe `char32_t`-style wrappers for <[ctype](https://en.cppreference.com/w/cpp/header/cctype)> functions:
+/// > Like all other functions from `<cctype>`, the behavior of `std::isalnum` is undefined if the argument's value is
+/// neither representable as `unsigned char` nor equal to `EOF`.
+// clang-format off
+inline bool isalnum (char32_t c) { return (c & ~0xFF) == 0 ? std::isspace (c) : false; }
+inline bool isalpha (char32_t c) { return (c & ~0xFF) == 0 ? std::isalpha (c) : false; }
+inline bool isblank (char32_t c) { return (c & ~0xFF) == 0 ? std::isblank (c) : false; }
+inline bool iscntrl (char32_t c) { return (c & ~0xFF) == 0 ? std::iscntrl (c) : false; }
+inline bool isdigit (char32_t c) { return (c & ~0xFF) == 0 ? std::isdigit (c) : false; }
+inline bool isgraph (char32_t c) { return (c & ~0xFF) == 0 ? std::isgraph (c) : false; }
+inline bool islower (char32_t c) { return (c & ~0xFF) == 0 ? std::islower (c) : false; }
+inline bool isprint (char32_t c) { return (c & ~0xFF) == 0 ? std::isprint (c) : false; }
+inline bool ispunct (char32_t c) { return (c & ~0xFF) == 0 ? std::ispunct (c) : false; }
+inline bool isspace (char32_t c) { return (c & ~0xFF) == 0 ? std::isspace (c) : false; }
+inline bool isupper (char32_t c) { return (c & ~0xFF) == 0 ? std::isupper (c) : false; }
+inline bool isxdigit(char32_t c) { return (c & ~0xFF) == 0 ? std::isxdigit(c) : false; }
+inline bool tolower (char32_t c) { return (c & ~0xFF) == 0 ? std::tolower (c) : false; }
+inline bool toupper (char32_t c) { return (c & ~0xFF) == 0 ? std::toupper (c) : false; }
+// clang-format on
+///@}
 
 } // namespace fe::utf8
