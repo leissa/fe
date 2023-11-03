@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['unreachable_0',['unreachable',['../namespacefe.html#aff9df682b55afdb0f712e5a0c1ff3a2b',1,'fe']]],
-  ['upper_1',['Upper',['../classfe_1_1Lexer.html#a99366b3ab28fff1d6a1013b1007246a6a19de5b94f7b83900d4b296d9fa491aec',1,'fe::Lexer']]],
-  ['using_20fe_2',['Other Projects using FE',['../index.html#autotoc_md7',1,'']]],
-  ['utf8_2eh_3',['utf8.h',['../utf8_8h.html',1,'']]]
+  ['tab_0',['tab',['../classfe_1_1Tab.html',1,'fe::Tab'],['../classfe_1_1Tab.html#ad4c8eaf1bbcefb808746bddedde9e017',1,'fe::Tab::Tab(const Tab &amp;)=default'],['../classfe_1_1Tab.html#a26e89818605504153a811452694db2ea',1,'fe::Tab::Tab(std::string_view tab={&quot;\t&quot;}, size_t indent=0)'],['../classfe_1_1Tab.html#aefb32b7f85982a9069518a6c96699033',1,'fe::Tab::tab() const']]],
+  ['tolower_1',['tolower',['../namespacefe_1_1utf8.html#a50e0192b122a783b81710499f20ae6b5',1,'fe::utf8']]],
+  ['toupper_2',['toupper',['../namespacefe_1_1utf8.html#a6f47692e931db3f19ee1fcc516d72f9c',1,'fe::utf8']]],
+  ['tracker_3',['tracker',['../classfe_1_1Parser_1_1Tracker.html',1,'fe::Parser&lt; Tok, Tag, K, S &gt;::Tracker'],['../classfe_1_1Parser_1_1Tracker.html#af138c292a8083989821de13cbbf349ce',1,'fe::Parser::Tracker::Tracker()'],['../classfe_1_1Parser.html#aea3507b75aa247b9431256f5463a7821',1,'fe::Parser::tracker()']]],
+  ['tree_4',['Option #2: Directly include FE in your Source Tree',['../index.html#autotoc_md6',1,'']]]
 ];

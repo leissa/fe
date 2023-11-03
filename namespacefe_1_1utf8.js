@@ -1,8 +1,10 @@
 var namespacefe_1_1utf8 =
 [
     [ "Char32", "structfe_1_1utf8_1_1Char32.html", "structfe_1_1utf8_1_1Char32" ],
-    [ "any", "namespacefe_1_1utf8.html#ae898401c68f08eb21251f5d74fd770ab", null ],
-    [ "any", "namespacefe_1_1utf8.html#a0e61c34b3ab55ce10a80337e8bc22ed1", null ],
+    [ "_any", "namespacefe_1_1utf8.html#a1442e9842927f4391294b6da7c1ab4f8", null ],
+    [ "_any", "namespacefe_1_1utf8.html#ab015a0943a1a0ffd66e38a8968d7bb7e", null ],
+    [ "_isrange", "namespacefe_1_1utf8.html#adc1a521dd5b7733ec1660b53a0eee893", null ],
+    [ "any", "namespacefe_1_1utf8.html#a878567e47549cb6104196c7fb77413fa", null ],
     [ "append", "namespacefe_1_1utf8.html#aa73f03b25b2098b8e139d1d037bd7c97", null ],
     [ "decode", "namespacefe_1_1utf8.html#a4ca17134ff0be619535e913b53a80e79", null ],
     [ "encode", "namespacefe_1_1utf8.html#a50c98a6d25495ac66c1a30e1ba83da99", null ],
@@ -19,7 +21,7 @@ var namespacefe_1_1utf8 =
     [ "isodigit", "namespacefe_1_1utf8.html#a2ec51ff1eab27435ede0d12d83d87b38", null ],
     [ "isprint", "namespacefe_1_1utf8.html#a6f2b0aac8117fa3fed2c4d2c5e4a8c3b", null ],
     [ "ispunct", "namespacefe_1_1utf8.html#ac231ad1863c20761eb9f365f9f154b44", null ],
-    [ "isrange", "namespacefe_1_1utf8.html#a4bac0a434d912c72cca84c2ba08ca33e", null ],
+    [ "isrange", "namespacefe_1_1utf8.html#a850616460524bc90580a86ee0671151e", null ],
     [ "isspace", "namespacefe_1_1utf8.html#a9d4fc1f151370f31fdf257552523a373", null ],
     [ "isupper", "namespacefe_1_1utf8.html#a24ce91419bdb8b26a823e1c0dbab8f89", null ],
     [ "isxdigit", "namespacefe_1_1utf8.html#aa3edcf64fc670e4f4cf138b8cc732d2b", null ],
