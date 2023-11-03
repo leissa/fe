@@ -7,8 +7,9 @@ var classfe_1_1Lexer =
       [ "Upper", "classfe_1_1Lexer.html#a99366b3ab28fff1d6a1013b1007246a6a19de5b94f7b83900d4b296d9fa491aec", null ]
     ] ],
     [ "Lexer", "classfe_1_1Lexer.html#a103bc4fe11808764c96552fb6d7975c0", null ],
+    [ "accept", "classfe_1_1Lexer.html#a440e792690fe68c243429847b2ab2659", null ],
     [ "accept", "classfe_1_1Lexer.html#aff112fcbcf92e4dbb66ec7285abbdc3a", null ],
-    [ "accept_if", "classfe_1_1Lexer.html#a22c475b33f8a76a36bc5a9b553c74605", null ],
+    [ "accept", "classfe_1_1Lexer.html#abdcc02fc2210e9ba86efb33616a98162", null ],
     [ "ahead", "classfe_1_1Lexer.html#a574d6f4a890b04a422faa6a549a48687", null ],
     [ "next", "classfe_1_1Lexer.html#a0bbfc87be21bdd46d883002eb10303c1", null ],
     [ "start", "classfe_1_1Lexer.html#a0ecd9086f866aa9a8d849620aba195a0", null ],
