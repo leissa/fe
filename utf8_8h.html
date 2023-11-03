@@ -117,7 +117,13 @@ $(document).ready(function(){initNavTree('utf8_8h.html',''); initResizable(); })
   <div class="headertitle"><div class="title">utf8.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><div class="dynheader">
+<div class="textblock"><code>#include &lt;cctype&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for utf8.h:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="utf8_8h__incl.svg" width="88" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="utf8_8h__dep__incl.svg" width="94" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
@@ -152,6 +158,40 @@ Functions</h2></td></tr>
 <tr class="memitem:a50c98a6d25495ac66c1a30e1ba83da99" id="r_a50c98a6d25495ac66c1a30e1ba83da99"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a50c98a6d25495ac66c1a30e1ba83da99">fe::utf8::encode</a> (std::ostream &amp;os, char32_t c32)</td></tr>
 <tr class="memdesc:a50c98a6d25495ac66c1a30e1ba83da99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes the UTF-32 char <code>c32</code> as UTF-8 and writes the sequence of bytes to <code>os</code>.  <br /></td></tr>
 <tr class="separator:a50c98a6d25495ac66c1a30e1ba83da99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Wrappers</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Safe <code>char32_t</code>-style wrappers for &lt;<a href="https://en.cppreference.com/w/cpp/header/cctype">ctype</a>&gt; functions: </p><blockquote class="doxtable">
+<p>&zwj;Like all other functions from <code>&lt;cctype&gt;</code>, the behavior of <code>std::isalnum</code> is undefined if the argument's value is neither representable as <code>unsigned char</code> nor equal to <code>EOF</code>.</p>
+<p></p>
+</blockquote>
+</div></td></tr>
+<tr class="memitem:a8c1b42c416615422d2a68f761ba7ce5d" id="r_a8c1b42c416615422d2a68f761ba7ce5d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a8c1b42c416615422d2a68f761ba7ce5d">fe::utf8::isalnum</a> (char32_t c)</td></tr>
+<tr class="separator:a8c1b42c416615422d2a68f761ba7ce5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81e47205741ccebef31180e62371c335" id="r_a81e47205741ccebef31180e62371c335"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a81e47205741ccebef31180e62371c335">fe::utf8::isalpha</a> (char32_t c)</td></tr>
+<tr class="separator:a81e47205741ccebef31180e62371c335"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d8c47ef1ce5331124b980ed00aee07c" id="r_a2d8c47ef1ce5331124b980ed00aee07c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a2d8c47ef1ce5331124b980ed00aee07c">fe::utf8::isblank</a> (char32_t c)</td></tr>
+<tr class="separator:a2d8c47ef1ce5331124b980ed00aee07c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44c5e5471eaf9d1a9082ccaebb48e9f4" id="r_a44c5e5471eaf9d1a9082ccaebb48e9f4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a44c5e5471eaf9d1a9082ccaebb48e9f4">fe::utf8::iscntrl</a> (char32_t c)</td></tr>
+<tr class="separator:a44c5e5471eaf9d1a9082ccaebb48e9f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a746f9c2a6630f62bd39c638cfee74212" id="r_a746f9c2a6630f62bd39c638cfee74212"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a746f9c2a6630f62bd39c638cfee74212">fe::utf8::isdigit</a> (char32_t c)</td></tr>
+<tr class="separator:a746f9c2a6630f62bd39c638cfee74212"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a3f585e310a8e257b9878e26a4a9bb8" id="r_a0a3f585e310a8e257b9878e26a4a9bb8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a0a3f585e310a8e257b9878e26a4a9bb8">fe::utf8::isgraph</a> (char32_t c)</td></tr>
+<tr class="separator:a0a3f585e310a8e257b9878e26a4a9bb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a881af7ba6754327c1b39fa346286fa63" id="r_a881af7ba6754327c1b39fa346286fa63"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a881af7ba6754327c1b39fa346286fa63">fe::utf8::islower</a> (char32_t c)</td></tr>
+<tr class="separator:a881af7ba6754327c1b39fa346286fa63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f2b0aac8117fa3fed2c4d2c5e4a8c3b" id="r_a6f2b0aac8117fa3fed2c4d2c5e4a8c3b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a6f2b0aac8117fa3fed2c4d2c5e4a8c3b">fe::utf8::isprint</a> (char32_t c)</td></tr>
+<tr class="separator:a6f2b0aac8117fa3fed2c4d2c5e4a8c3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac231ad1863c20761eb9f365f9f154b44" id="r_ac231ad1863c20761eb9f365f9f154b44"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#ac231ad1863c20761eb9f365f9f154b44">fe::utf8::ispunct</a> (char32_t c)</td></tr>
+<tr class="separator:ac231ad1863c20761eb9f365f9f154b44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d4fc1f151370f31fdf257552523a373" id="r_a9d4fc1f151370f31fdf257552523a373"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a9d4fc1f151370f31fdf257552523a373">fe::utf8::isspace</a> (char32_t c)</td></tr>
+<tr class="separator:a9d4fc1f151370f31fdf257552523a373"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24ce91419bdb8b26a823e1c0dbab8f89" id="r_a24ce91419bdb8b26a823e1c0dbab8f89"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a24ce91419bdb8b26a823e1c0dbab8f89">fe::utf8::isupper</a> (char32_t c)</td></tr>
+<tr class="separator:a24ce91419bdb8b26a823e1c0dbab8f89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3edcf64fc670e4f4cf138b8cc732d2b" id="r_aa3edcf64fc670e4f4cf138b8cc732d2b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#aa3edcf64fc670e4f4cf138b8cc732d2b">fe::utf8::isxdigit</a> (char32_t c)</td></tr>
+<tr class="separator:aa3edcf64fc670e4f4cf138b8cc732d2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad62188c6749bc242ecb143b4c6853ba3" id="r_ad62188c6749bc242ecb143b4c6853ba3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#ad62188c6749bc242ecb143b4c6853ba3">fe::utf8::tolower</a> (char32_t c)</td></tr>
+<tr class="separator:ad62188c6749bc242ecb143b4c6853ba3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21a5b10644562d4c03238c83c6a6b6b2" id="r_a21a5b10644562d4c03238c83c6a6b6b2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a21a5b10644562d4c03238c83c6a6b6b2">fe::utf8::toupper</a> (char32_t c)</td></tr>
+<tr class="separator:a21a5b10644562d4c03238c83c6a6b6b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>

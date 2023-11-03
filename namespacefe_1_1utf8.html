@@ -137,6 +137,40 @@ Functions</h2></td></tr>
 <tr class="memitem:a50c98a6d25495ac66c1a30e1ba83da99" id="r_a50c98a6d25495ac66c1a30e1ba83da99"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a50c98a6d25495ac66c1a30e1ba83da99">encode</a> (std::ostream &amp;os, char32_t c32)</td></tr>
 <tr class="memdesc:a50c98a6d25495ac66c1a30e1ba83da99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes the UTF-32 char <code>c32</code> as UTF-8 and writes the sequence of bytes to <code>os</code>.  <br /></td></tr>
 <tr class="separator:a50c98a6d25495ac66c1a30e1ba83da99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Wrappers</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Safe <code>char32_t</code>-style wrappers for &lt;<a href="https://en.cppreference.com/w/cpp/header/cctype">ctype</a>&gt; functions: </p><blockquote class="doxtable">
+<p>&zwj;Like all other functions from <code>&lt;cctype&gt;</code>, the behavior of <code>std::isalnum</code> is undefined if the argument's value is neither representable as <code>unsigned char</code> nor equal to <code>EOF</code>.</p>
+<p></p>
+</blockquote>
+</div></td></tr>
+<tr class="memitem:a8c1b42c416615422d2a68f761ba7ce5d" id="r_a8c1b42c416615422d2a68f761ba7ce5d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a8c1b42c416615422d2a68f761ba7ce5d">isalnum</a> (char32_t c)</td></tr>
+<tr class="separator:a8c1b42c416615422d2a68f761ba7ce5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81e47205741ccebef31180e62371c335" id="r_a81e47205741ccebef31180e62371c335"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a81e47205741ccebef31180e62371c335">isalpha</a> (char32_t c)</td></tr>
+<tr class="separator:a81e47205741ccebef31180e62371c335"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d8c47ef1ce5331124b980ed00aee07c" id="r_a2d8c47ef1ce5331124b980ed00aee07c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a2d8c47ef1ce5331124b980ed00aee07c">isblank</a> (char32_t c)</td></tr>
+<tr class="separator:a2d8c47ef1ce5331124b980ed00aee07c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44c5e5471eaf9d1a9082ccaebb48e9f4" id="r_a44c5e5471eaf9d1a9082ccaebb48e9f4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a44c5e5471eaf9d1a9082ccaebb48e9f4">iscntrl</a> (char32_t c)</td></tr>
+<tr class="separator:a44c5e5471eaf9d1a9082ccaebb48e9f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a746f9c2a6630f62bd39c638cfee74212" id="r_a746f9c2a6630f62bd39c638cfee74212"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a746f9c2a6630f62bd39c638cfee74212">isdigit</a> (char32_t c)</td></tr>
+<tr class="separator:a746f9c2a6630f62bd39c638cfee74212"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a3f585e310a8e257b9878e26a4a9bb8" id="r_a0a3f585e310a8e257b9878e26a4a9bb8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a0a3f585e310a8e257b9878e26a4a9bb8">isgraph</a> (char32_t c)</td></tr>
+<tr class="separator:a0a3f585e310a8e257b9878e26a4a9bb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a881af7ba6754327c1b39fa346286fa63" id="r_a881af7ba6754327c1b39fa346286fa63"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a881af7ba6754327c1b39fa346286fa63">islower</a> (char32_t c)</td></tr>
+<tr class="separator:a881af7ba6754327c1b39fa346286fa63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f2b0aac8117fa3fed2c4d2c5e4a8c3b" id="r_a6f2b0aac8117fa3fed2c4d2c5e4a8c3b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a6f2b0aac8117fa3fed2c4d2c5e4a8c3b">isprint</a> (char32_t c)</td></tr>
+<tr class="separator:a6f2b0aac8117fa3fed2c4d2c5e4a8c3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac231ad1863c20761eb9f365f9f154b44" id="r_ac231ad1863c20761eb9f365f9f154b44"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#ac231ad1863c20761eb9f365f9f154b44">ispunct</a> (char32_t c)</td></tr>
+<tr class="separator:ac231ad1863c20761eb9f365f9f154b44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d4fc1f151370f31fdf257552523a373" id="r_a9d4fc1f151370f31fdf257552523a373"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a9d4fc1f151370f31fdf257552523a373">isspace</a> (char32_t c)</td></tr>
+<tr class="separator:a9d4fc1f151370f31fdf257552523a373"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24ce91419bdb8b26a823e1c0dbab8f89" id="r_a24ce91419bdb8b26a823e1c0dbab8f89"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a24ce91419bdb8b26a823e1c0dbab8f89">isupper</a> (char32_t c)</td></tr>
+<tr class="separator:a24ce91419bdb8b26a823e1c0dbab8f89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3edcf64fc670e4f4cf138b8cc732d2b" id="r_aa3edcf64fc670e4f4cf138b8cc732d2b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#aa3edcf64fc670e4f4cf138b8cc732d2b">isxdigit</a> (char32_t c)</td></tr>
+<tr class="separator:aa3edcf64fc670e4f4cf138b8cc732d2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad62188c6749bc242ecb143b4c6853ba3" id="r_ad62188c6749bc242ecb143b4c6853ba3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#ad62188c6749bc242ecb143b4c6853ba3">tolower</a> (char32_t c)</td></tr>
+<tr class="separator:ad62188c6749bc242ecb143b4c6853ba3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21a5b10644562d4c03238c83c6a6b6b2" id="r_a21a5b10644562d4c03238c83c6a6b6b2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1utf8.html#a21a5b10644562d4c03238c83c6a6b6b2">toupper</a> (char32_t c)</td></tr>
+<tr class="separator:a21a5b10644562d4c03238c83c6a6b6b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -189,9 +223,9 @@ Variables</h2></td></tr>
 
 <p>Append <code>b</code> to <code>c</code> for converting UTF-8 to UTF-32. </p>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00021">21</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00023">23</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00034">decode()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00036">decode()</a>.</p>
 
 </div>
 </div>
@@ -222,9 +256,9 @@ Variables</h2></td></tr>
 <p>Decodes the next sequence of bytes from <code>is</code> as UTF-32. </p>
 <dl class="section return"><dt>Returns</dt><dd>Null on error. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00034">34</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00036">36</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00021">append()</a>, <a class="el" href="utf8_8h_source.html#l00007">EoF</a>, <a class="el" href="utf8_8h_source.html#l00024">first()</a>, <a class="el" href="utf8_8h_source.html#l00028">is_valid234()</a>, and <a class="el" href="utf8_8h_source.html#l00012">num_bytes()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00023">append()</a>, <a class="el" href="utf8_8h_source.html#l00009">EoF</a>, <a class="el" href="utf8_8h_source.html#l00026">first()</a>, <a class="el" href="utf8_8h_source.html#l00030">is_valid234()</a>, and <a class="el" href="utf8_8h_source.html#l00014">num_bytes()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00039">fe::Lexer&lt; K, S &gt;::next()</a>.</p>
 
@@ -267,7 +301,7 @@ Variables</h2></td></tr>
 <p>Encodes the UTF-32 char <code>c32</code> as UTF-8 and writes the sequence of bytes to <code>os</code>. </p>
 <dl class="section return"><dt>Returns</dt><dd><code>false</code> on error. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00063">63</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00065">65</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -307,9 +341,9 @@ Variables</h2></td></tr>
 
 <p>Get relevant bits of first UTF-8 byte <code>c</code> of a <em>multi-byte</em> sequence consisting of <code>num</code> bytes. </p>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00024">24</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00026">26</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00034">decode()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00036">decode()</a>.</p>
 
 </div>
 </div>
@@ -340,9 +374,345 @@ Variables</h2></td></tr>
 <p>Is the 2nd, 3rd, or 4th byte of an UTF-8 byte sequence valid? </p>
 <dl class="section return"><dt>Returns</dt><dd>the extracted <code>char8_t</code> or <code>char8_t(-1)</code> if invalid. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00028">28</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00030">30</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00034">decode()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00036">decode()</a>.</p>
+
+</div>
+</div>
+<a id="a8c1b42c416615422d2a68f761ba7ce5d" name="a8c1b42c416615422d2a68f761ba7ce5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c1b42c416615422d2a68f761ba7ce5d">&#9670;&#160;</a></span>isalnum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fe::utf8::isalnum </td>
+          <td>(</td>
+          <td class="paramtype">char32_t&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00081">81</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+
+</div>
+</div>
+<a id="a81e47205741ccebef31180e62371c335" name="a81e47205741ccebef31180e62371c335"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81e47205741ccebef31180e62371c335">&#9670;&#160;</a></span>isalpha()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fe::utf8::isalpha </td>
+          <td>(</td>
+          <td class="paramtype">char32_t&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00082">82</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+
+</div>
+</div>
+<a id="a2d8c47ef1ce5331124b980ed00aee07c" name="a2d8c47ef1ce5331124b980ed00aee07c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d8c47ef1ce5331124b980ed00aee07c">&#9670;&#160;</a></span>isblank()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fe::utf8::isblank </td>
+          <td>(</td>
+          <td class="paramtype">char32_t&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00083">83</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+
+</div>
+</div>
+<a id="a44c5e5471eaf9d1a9082ccaebb48e9f4" name="a44c5e5471eaf9d1a9082ccaebb48e9f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44c5e5471eaf9d1a9082ccaebb48e9f4">&#9670;&#160;</a></span>iscntrl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fe::utf8::iscntrl </td>
+          <td>(</td>
+          <td class="paramtype">char32_t&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00084">84</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+
+</div>
+</div>
+<a id="a746f9c2a6630f62bd39c638cfee74212" name="a746f9c2a6630f62bd39c638cfee74212"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a746f9c2a6630f62bd39c638cfee74212">&#9670;&#160;</a></span>isdigit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fe::utf8::isdigit </td>
+          <td>(</td>
+          <td class="paramtype">char32_t&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00085">85</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+
+</div>
+</div>
+<a id="a0a3f585e310a8e257b9878e26a4a9bb8" name="a0a3f585e310a8e257b9878e26a4a9bb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a3f585e310a8e257b9878e26a4a9bb8">&#9670;&#160;</a></span>isgraph()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fe::utf8::isgraph </td>
+          <td>(</td>
+          <td class="paramtype">char32_t&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00086">86</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+
+</div>
+</div>
+<a id="a881af7ba6754327c1b39fa346286fa63" name="a881af7ba6754327c1b39fa346286fa63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a881af7ba6754327c1b39fa346286fa63">&#9670;&#160;</a></span>islower()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fe::utf8::islower </td>
+          <td>(</td>
+          <td class="paramtype">char32_t&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00087">87</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+
+</div>
+</div>
+<a id="a6f2b0aac8117fa3fed2c4d2c5e4a8c3b" name="a6f2b0aac8117fa3fed2c4d2c5e4a8c3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f2b0aac8117fa3fed2c4d2c5e4a8c3b">&#9670;&#160;</a></span>isprint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fe::utf8::isprint </td>
+          <td>(</td>
+          <td class="paramtype">char32_t&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00088">88</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+
+</div>
+</div>
+<a id="ac231ad1863c20761eb9f365f9f154b44" name="ac231ad1863c20761eb9f365f9f154b44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac231ad1863c20761eb9f365f9f154b44">&#9670;&#160;</a></span>ispunct()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fe::utf8::ispunct </td>
+          <td>(</td>
+          <td class="paramtype">char32_t&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00089">89</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+
+</div>
+</div>
+<a id="a9d4fc1f151370f31fdf257552523a373" name="a9d4fc1f151370f31fdf257552523a373"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d4fc1f151370f31fdf257552523a373">&#9670;&#160;</a></span>isspace()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fe::utf8::isspace </td>
+          <td>(</td>
+          <td class="paramtype">char32_t&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00090">90</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+
+</div>
+</div>
+<a id="a24ce91419bdb8b26a823e1c0dbab8f89" name="a24ce91419bdb8b26a823e1c0dbab8f89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24ce91419bdb8b26a823e1c0dbab8f89">&#9670;&#160;</a></span>isupper()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fe::utf8::isupper </td>
+          <td>(</td>
+          <td class="paramtype">char32_t&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00091">91</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+
+</div>
+</div>
+<a id="aa3edcf64fc670e4f4cf138b8cc732d2b" name="aa3edcf64fc670e4f4cf138b8cc732d2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3edcf64fc670e4f4cf138b8cc732d2b">&#9670;&#160;</a></span>isxdigit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fe::utf8::isxdigit </td>
+          <td>(</td>
+          <td class="paramtype">char32_t&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00092">92</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -373,9 +743,65 @@ Variables</h2></td></tr>
 <p>Returns the expected number of bytes for an UTF-8 char sequence by inspecting the first byte. </p>
 <p>Retuns <code>0</code> if invalid. </p>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00012">12</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00014">14</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00034">decode()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00036">decode()</a>.</p>
+
+</div>
+</div>
+<a id="ad62188c6749bc242ecb143b4c6853ba3" name="ad62188c6749bc242ecb143b4c6853ba3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad62188c6749bc242ecb143b4c6853ba3">&#9670;&#160;</a></span>tolower()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fe::utf8::tolower </td>
+          <td>(</td>
+          <td class="paramtype">char32_t&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00093">93</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+
+</div>
+</div>
+<a id="a21a5b10644562d4c03238c83c6a6b6b2" name="a21a5b10644562d4c03238c83c6a6b6b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21a5b10644562d4c03238c83c6a6b6b2">&#9670;&#160;</a></span>toupper()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fe::utf8::toupper </td>
+          <td>(</td>
+          <td class="paramtype">char32_t&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00094">94</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -402,7 +828,7 @@ Variables</h2></td></tr>
 
 <p><a href="https://en.wikipedia.org/wiki/Byte_order_mark#UTF-8">Byte Order Mark</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00006">6</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00008">8</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -428,9 +854,9 @@ Variables</h2></td></tr>
 
 <p>End of File. </p>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00007">7</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00009">9</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00034">decode()</a>, and <a class="el" href="lexer_8h_source.html#l00039">fe::Lexer&lt; K, S &gt;::next()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00036">decode()</a>, and <a class="el" href="lexer_8h_source.html#l00039">fe::Lexer&lt; K, S &gt;::next()</a>.</p>
 
 </div>
 </div>
@@ -456,7 +882,7 @@ Variables</h2></td></tr>
 
 <p>Maximal number of <code>char8_t</code>s of an UTF-8 byte sequence. </p>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00005">5</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00007">7</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -480,7 +906,7 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00008">8</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00010">10</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
