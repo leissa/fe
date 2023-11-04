@@ -116,15 +116,14 @@ inline char32_t toupper(char32_t c) { return (c & ~0xFF) == 0 ? std::toupper(c) 
 inline bool isrange(char32_t c, char32_t begin, char32_t finis) { return begin <= c && c <= finis; }
 inline auto isrange(char32_t begin, char32_t finis) { return [=](char32_t c) { return isrange(c, begin, finis); }; }
 
-/// Is octal digit?
-inline bool isodigit(char32_t c) { return isrange(c, '0', '7'); }
-inline bool isbdigit(char32_t c) { return isrange(c, '0', '1'); }
+inline bool isodigit(char32_t c) { return isrange(c, '0', '7'); } ///< Is octal digit?
+inline bool isbdigit(char32_t c) { return isrange(c, '0', '1'); } ///< Is binary digit?
 // clang-format on
 ///@}
 
 /// @name any
 ///@{
-/// Checks whether @p c is any of the remaining arguments.
+/// Is @p c in any of the remaining arguments?
 inline bool _any(char32_t c, char32_t d) { return c == d; }
 template<class... T> inline bool _any(char32_t c, char32_t d, T... args) { return c == d || _any(c, args...); }
 template<class... T> inline auto any(T... args) {

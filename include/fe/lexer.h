@@ -80,10 +80,11 @@ protected:
         return false;
     }
 
-    template<Append append = Append::On> bool accept(char32_t c) {
-        return accept<append>([c](char32_t d) { return c == d; });
-    }
-    template<Append append = Append::On> bool accept(char c) { return accept<append>((char32_t)c); }
+    // clang-format off
+    template<Append append = Append::On> bool accept(char32_t c) { return accept<append>([c](char32_t d) { return c == d; }); }
+    template<Append append = Append::On> bool accept(char     c) { return accept<append>((char32_t)c); }
+    template<Append append = Append::On> bool accept(char8_t  c) { return accept<append>((char32_t)c); }
+    // clang-format on
     ///@}
 
     std::istream& istream_;
