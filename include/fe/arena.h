@@ -26,7 +26,7 @@ public:
     template<class T> struct Allocator {
         using value_type = T;
 
-        Allocator() noexcept = delete;
+        Allocator() = delete;
         template<class U>
         Allocator(const Arena::Allocator<U>& allocator) noexcept
             : arena(allocator.arena) {}
@@ -73,12 +73,18 @@ public:
 
     /// @name Construction/Destruction
     ///@{
-    Arena(size_t page_size = Default_Page_Size)
+    Arena(size_t page_size = Default_Page_Size) noexcept
         : page_size_(page_size)
         , index_(page_size) {}
+    Arena(const Arena&) = delete;
+    Arena(Arena&& other) noexcept
+        : Arena() {
+        swap(*this, other);
+    }
     ~Arena() {
         for (auto p : pages_) delete[] p;
     }
+    Arena& operator=(Arena) = delete;
     ///@}
 
     /// @name Allocate

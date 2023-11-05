@@ -193,17 +193,21 @@ class SymPool {
 public:
     using String = Sym::String;
 
+    /// @name Constructor & Destruction
+    ///@{
     SymPool(const SymPool&) = delete;
 #ifdef FE_ABSL
-    SymPool() {}
+    SymPool() noexcept {}
 #else
-    SymPool()
+    SymPool() noexcept
         : pool_(container_.allocator<const String*>()) {}
 #endif
     SymPool(SymPool&& other) noexcept
         : SymPool() {
         swap(*this, other);
     }
+    SymPool& operator=(SymPool) = delete;
+    ///@}
 
     /// @name sym
     ///@{
