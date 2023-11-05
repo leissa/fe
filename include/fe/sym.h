@@ -42,9 +42,10 @@ public:
     static constexpr size_t Short_String_Mask  = Short_String_Bytes - 1;
 
     struct String {
-        String() = default;
+        String() noexcept = default;
         String(size_t size)
             : size(size) {}
+
         size_t size;
         char chars[]; // This is actually a C-only features, but all C++ compilers support that anyway.
 
@@ -76,7 +77,7 @@ private:
         : ptr_(ptr) {}
 
 public:
-    Sym() = default;
+    Sym() noexcept = default;
 
     /// @name Getters
     ///@{
@@ -195,17 +196,14 @@ public:
     SymPool(const SymPool&) = delete;
 #ifdef FE_ABSL
     SymPool() {}
-    SymPool(SymPool&& other) noexcept
-        : strings_(std::move(other.strings_))
-        , pool_(std::move(other.pool_)) {}
 #else
     SymPool()
         : pool_(container_.allocator<const String*>()) {}
-    SymPool(SymPool&& other) noexcept
-        : strings_(std::move(other.strings_))
-        , container_(std::move(other.container_))
-        , pool_(std::move(other.pool_)) {}
 #endif
+    SymPool(SymPool&& other) noexcept
+        : SymPool() {
+        swap(*this, other);
+    }
 
     /// @name sym
     ///@{
