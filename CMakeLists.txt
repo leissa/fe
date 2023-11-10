@@ -23,7 +23,11 @@ message(STATUS "CXX_FORMAT_SUPPORT: ${CXX_FORMAT_SUPPORT}")
 if(CXX_FORMAT_SUPPORT)
     target_compile_definitions(fe INTERFACE FE_STD_FORMAT_SUPPORT)
 else()
-    add_subdirectory(external/fmt)
+    if (NOT FE_INSTALL_DEPENDENCIES)
+        add_subdirectory(external/fmt EXCLUDE_FROM_ALL)
+    else()
+        add_subdirectory(external/fmt)
+    endif()
     target_link_libraries(fe INTERFACE fmt::fmt)
 endif()
 
@@ -42,7 +46,6 @@ target_sources(fe
         include/fe/loc.cpp.h
         include/fe/parser.h
         include/fe/ring.h
-        include/fe/tab.h
         include/fe/sym.h
         include/fe/utf8.h
 )
@@ -63,6 +66,8 @@ if(FE_ABSL)
     )
 endif()
 
+set(targets_export_name "fe-targets")
+
 write_basic_package_version_file(
     "${CMAKE_CURRENT_BINARY_DIR}/cmake/fe-config-version.cmake"
     VERSION ${fe_VERSION}
@@ -75,7 +80,7 @@ configure_package_config_file(
 )
 install(
     TARGETS fe
-    EXPORT fe-targets
+    EXPORT ${targets_export_name}
     FILE_SET headers
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
@@ -90,7 +95,7 @@ install(
         "${CMAKE_INSTALL_LIBDIR}/cmake/fe"
 )
 install(
-    EXPORT fe-targets
+    EXPORT ${targets_export_name}
     DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/fe"
     NAMESPACE fe::
 )
