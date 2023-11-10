@@ -17,6 +17,16 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 add_library(fe INTERFACE)
 target_compile_features(fe INTERFACE cxx_std_20)
 
+include(CheckIncludeFileCXX)
+check_include_file_cxx("format" CXX_FORMAT_SUPPORT)
+message(STATUS "CXX_FORMAT_SUPPORT: ${CXX_FORMAT_SUPPORT}")
+if(CXX_FORMAT_SUPPORT)
+    target_compile_definitions(fe INTERFACE FE_STD_FORMAT_SUPPORT)
+else()
+    add_subdirectory(external/fmt)
+    target_link_libraries(fe INTERFACE fmt::fmt)
+endif()
+
 target_sources(fe
     INTERFACE FILE_SET headers
     BASE_DIRS include

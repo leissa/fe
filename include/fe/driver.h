@@ -16,16 +16,16 @@ struct Driver : public SymPool {
 public:
     /// @name Diagnostics
     ///@{
-    template<class... Args> static void note(Loc loc, std::format_string<Args...> fmt, Args&&... args) {
-        std::cerr << loc << ": note: " << std::format(fmt, std::forward<Args&&>(args)...) << std::endl;
+    template<class... Args> static void note(Loc loc, format::format_string<Args...> fmt, Args&&... args) {
+        std::cerr << loc << ": note: " << format::format(fmt, std::forward<Args&&>(args)...) << std::endl;
     }
-    template<class... Args> void warn(Loc loc, std::format_string<Args...> fmt, Args&&... args) {
+    template<class... Args> void warn(Loc loc, format::format_string<Args...> fmt, Args&&... args) {
         ++num_warnings_;
-        std::cerr << loc << ": warning: " << std::format(fmt, std::forward<Args&&>(args)...) << std::endl;
+        std::cerr << loc << ": warning: " << format::format(fmt, std::forward<Args&&>(args)...) << std::endl;
     }
-    template<class... Args> void err(Loc loc, std::format_string<Args...> fmt, Args&&... args) {
+    template<class... Args> void err(Loc loc, format::format_string<Args...> fmt, Args&&... args) {
         ++num_errors_;
-        std::cerr << loc << ": error: " << std::format(fmt, std::forward<Args&&>(args)...) << std::endl;
+        std::cerr << loc << ": error: " << format::format(fmt, std::forward<Args&&>(args)...) << std::endl;
     }
 
     unsigned num_errors() const { return num_errors_; }
