@@ -117,7 +117,7 @@ $(document).ready(function(){initNavTree('format_8h.html',''); initResizable(); 
   <div class="headertitle"><div class="title">format.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;format&gt;</code><br />
+<div class="textblock"><code>#include &lt;fmt/format.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="loc_8h_source.html">fe/loc.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="utf8_8h_source.html">fe/utf8.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -146,6 +146,8 @@ Classes</h2></td></tr>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacefe" id="r_namespacefe"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe.html">fe</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacefe_1_1format" id="r_namespacefe_1_1format"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe_1_1format.html">fe::format</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -157,18 +159,18 @@ Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">out/outln/err/errln</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Print to <code>std::cout</code>/<code>std::cerr</code> via <code>std::format</code>; the <code>*ln</code> variants conclude with <code>std::endl</code>. </p>
 </div></td></tr>
-<tr class="memitem:a60893edf9c1ff5e68301f516a54dec11" id="r_a60893edf9c1ff5e68301f516a54dec11"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
-<tr class="memitem:a60893edf9c1ff5e68301f516a54dec11"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#a60893edf9c1ff5e68301f516a54dec11">fe::err</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
-<tr class="separator:a60893edf9c1ff5e68301f516a54dec11"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3db74b6b86b3b8fe8b4d885613080cc" id="r_ad3db74b6b86b3b8fe8b4d885613080cc"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
-<tr class="memitem:ad3db74b6b86b3b8fe8b4d885613080cc"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#ad3db74b6b86b3b8fe8b4d885613080cc">fe::out</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
-<tr class="separator:ad3db74b6b86b3b8fe8b4d885613080cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a240e31424b3ed2b0f844ebfacf3df8e1" id="r_a240e31424b3ed2b0f844ebfacf3df8e1"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
-<tr class="memitem:a240e31424b3ed2b0f844ebfacf3df8e1"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#a240e31424b3ed2b0f844ebfacf3df8e1">fe::errln</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
-<tr class="separator:a240e31424b3ed2b0f844ebfacf3df8e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d9d14e5b70e248c4ab31d8156247dcb" id="r_a6d9d14e5b70e248c4ab31d8156247dcb"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
-<tr class="memitem:a6d9d14e5b70e248c4ab31d8156247dcb"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#a6d9d14e5b70e248c4ab31d8156247dcb">fe::outln</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
-<tr class="separator:a6d9d14e5b70e248c4ab31d8156247dcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09e9cd2dab128329e4c767edd7f73beb" id="r_a09e9cd2dab128329e4c767edd7f73beb"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:a09e9cd2dab128329e4c767edd7f73beb"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#a09e9cd2dab128329e4c767edd7f73beb">fe::err</a> (format::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:a09e9cd2dab128329e4c767edd7f73beb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bee00c0e794dfea578eb681af26416f" id="r_a5bee00c0e794dfea578eb681af26416f"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:a5bee00c0e794dfea578eb681af26416f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#a5bee00c0e794dfea578eb681af26416f">fe::out</a> (format::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:a5bee00c0e794dfea578eb681af26416f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a954d190530e13452d9528a880c352e68" id="r_a954d190530e13452d9528a880c352e68"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:a954d190530e13452d9528a880c352e68"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#a954d190530e13452d9528a880c352e68">fe::errln</a> (format::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:a954d190530e13452d9528a880c352e68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0087acd738ee00a5c1face97d0ec8cd" id="r_ac0087acd738ee00a5c1face97d0ec8cd"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:ac0087acd738ee00a5c1face97d0ec8cd"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#ac0087acd738ee00a5c1face97d0ec8cd">fe::outln</a> (format::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:ac0087acd738ee00a5c1face97d0ec8cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

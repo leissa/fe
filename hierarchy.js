@@ -5,7 +5,7 @@ var hierarchy =
     [ "fe::utf8::Char32", "structfe_1_1utf8_1_1Char32.html", null ],
     [ "fe::Arena::Deleter< T >", "structfe_1_1Arena_1_1Deleter.html", null ],
     [ "fe::Sym::String::Equal", "structfe_1_1Sym_1_1String_1_1Equal.html", null ],
-    [ "std::formatter", null, [
+    [ "format::formatter", null, [
       [ "fe::basic_ostream_formatter< Char >", "structfe_1_1basic__ostream__formatter.html", null ]
     ] ],
     [ "fe::Sym::String::Hash", "structfe_1_1Sym_1_1String_1_1Hash.html", null ],
