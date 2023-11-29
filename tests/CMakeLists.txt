@@ -1,7 +1,13 @@
-add_executable(fe-test
-    lexer.cpp
-    test.cpp
+add_executable(fe-test)
+target_sources(fe-test
+    PRIVATE
+        lexer.cpp
+        test.cpp
 )
-target_compile_features(fe-test PRIVATE cxx_std_20)
-target_compile_features(fe-test PRIVATE cxx_std_20)
-target_link_libraries(fe-test PRIVATE doctest fe)
+target_link_libraries(fe-test
+    PRIVATE
+        fe
+        doctest::doctest
+)
+include(../external/doctest/scripts/cmake/doctest.cmake)
+doctest_discover_tests(fe-test)

@@ -12,15 +12,29 @@ using fe::Sym;
 
 namespace utf8 = fe::utf8;
 
-#define LET_KEY(m) m(K_let, "let") m(K_return, "return")
+// clang-format off
+#define LET_KEY(m)          \
+    m(K_let, "let")         \
+    m(K_return, "return")
 
-#define LET_MISC(m) m(M_id, "<identifier>") m(M_lit, "<literal>")
+#define LET_MISC(m)         \
+    m(M_id, "<identifier>") \
+    m(M_lit, "<literal>")
 
-#define LET_TOK(m) m(D_paren_l, "(") m(D_paren_r, ")") m(T_semicolon, ";") m(T_lambda, "λ") m(T_EoF, "<end of file>")
+#define LET_TOK(m)          \
+    m(D_paren_l, "(")       \
+    m(D_paren_r, ")")       \
+    m(T_semicolon, ";")     \
+    m(T_lambda, "λ")        \
+    m(EoF, "<end of file>")
 
-#define LET_OP(m)                                                                                       \
-    m(O_add, "+", Add, true) m(O_sub, "-", Add, true) m(O_mul, "*", Mul, true) m(O_div, "/", Mul, true) \
-        m(O_ass, "=", ASS, false)
+#define LET_OP(m)            \
+    m(O_add, "+", Add, true) \
+    m(O_sub, "-", Add, true) \
+    m(O_mul, "*", Mul, true) \
+    m(O_div, "/", Mul, true) \
+    m(O_ass, "=", ASS, false)
+// clang-format on
 
 class Tok {
 public:
@@ -111,7 +125,7 @@ public:
                 continue;
             }
 
-            if (accept(utf8::EoF)) return {loc_, Tok::Tag::T_EoF};
+            if (accept(utf8::EoF)) return {loc_, Tok::Tag::EoF};
             if (accept(utf8::isspace)) continue;
 
             if (accept('(')) return {loc_, Tok::Tag::D_paren_l};

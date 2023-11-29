@@ -32,24 +32,26 @@ else()
 endif()
 
 target_sources(fe
-    INTERFACE FILE_SET headers
-    BASE_DIRS include
-    TYPE HEADERS
-    FILES
-        include/fe/arena.h
-        include/fe/assert.h
-        include/fe/cast.h
-        include/fe/driver.h
-        include/fe/format.h
-        include/fe/lexer.h
-        include/fe/loc.h
-        include/fe/loc.cpp.h
-        include/fe/parser.h
-        include/fe/ring.h
-        include/fe/sym.h
-        include/fe/utf8.h
+    INTERFACE
+        FILE_SET headers
+        BASE_DIRS include
+        TYPE HEADERS
+        FILES
+            include/fe/arena.h
+            include/fe/assert.h
+            include/fe/cast.h
+            include/fe/driver.h
+            include/fe/format.h
+            include/fe/lexer.h
+            include/fe/loc.h
+            include/fe/loc.cpp.h
+            include/fe/parser.h
+            include/fe/ring.h
+            include/fe/sym.h
+            include/fe/utf8.h
 )
 target_include_directories(fe INTERFACE $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+target_compile_features(fe INTERFACE cxx_std_20)
 
 if(MSVC)
     target_compile_definitions(fe INTERFACE _CTYPE_DISABLE_MACROS)
