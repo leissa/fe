@@ -12,7 +12,10 @@ namespace fe {
 /// ```
 /// class Tok {
 /// public:
-///     enum class Tag { Nil , /*...*/ };
+///     enum class Tag {
+///         Nil,
+///         // ...
+///     };
 ///     // ...
 ///     explicit bool operator() const { return tag_ != Tag::Nil; }
 ///     // ...
