@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 3.23 FATAL_ERROR)
 
-project(fe VERSION 0.2.0)
+project(fe VERSION 0.4.0)
 
 include(CMakePackageConfigHelpers)
+include(CheckIncludeFileCXX)
 include(GNUInstallDirs)
 
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
@@ -17,7 +18,6 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 add_library(fe INTERFACE)
 target_compile_features(fe INTERFACE cxx_std_20)
 
-include(CheckIncludeFileCXX)
 check_include_file_cxx("format" CXX_FORMAT_SUPPORT)
 message(STATUS "CXX_FORMAT_SUPPORT: ${CXX_FORMAT_SUPPORT}")
 if(CXX_FORMAT_SUPPORT)
