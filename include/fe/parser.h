@@ -1,7 +1,5 @@
 #pragma once
 
-#include <optional>
-
 #include "fe/loc.h"
 #include "fe/ring.h"
 
@@ -9,7 +7,25 @@ namespace fe {
 
 /// The blueprint for a [recursive descent](https://en.wikipedia.org/wiki/Recursive_descent_parser)/
 /// [ascent parser](https://en.wikipedia.org/wiki/Recursive_ascent_parser) using a @p K lookahead of `Tok`ens.
-template<class Tok, class Tag, size_t K, class S> class Parser {
+/// Parser::accept and Parser::expect indicate failure by constructing a @p Tok%en with its default constructor.
+/// Provide a conversion operator to `bool` to check for an error:
+/// ```
+/// class Tok {
+/// public:
+///     enum class Tag { Nil , /*...*/ };
+///     // ...
+///     explicit bool operator() const { return tag_ != Tag::Nil; }
+///     // ...
+/// };
+///
+/// // Your Parser:
+/// if (auto tok = accept(Tok::Tag:My_Tag)) {
+///     do_sth(tok);
+/// }
+/// ```
+template<class Tok, class Tag, size_t K, class S>
+requires(std::is_convertible_v<Tok, bool> || std::is_constructible_v<bool, Tok>) || std::is_default_constructible_v<Tok>
+class Parser {
 private:
     S& self() { return *static_cast<S*>(this); }
     const S& self() const { return *static_cast<const S*>(this); }
@@ -40,7 +56,7 @@ protected:
             , pos_(pos) {}
 
         Loc loc() const { return {prev_.path, pos_, prev_.finis}; }
-        operator Loc() const {  return loc(); }
+        operator Loc() const { return loc(); }
 
     private:
         const Loc& prev_;
@@ -66,7 +82,7 @@ protected:
     }
 
     /// If Parser::ahead() is a @p tag, consume and return it, otherwise yield `std::nullopt`.
-    std::optional<Tok> accept(Tag tag) {
+    Tok accept(Tag tag) {
         if (tag != ahead().tag()) return {};
         return lex();
     }

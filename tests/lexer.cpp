@@ -25,6 +25,7 @@ namespace utf8 = fe::utf8;
 class Tok {
 public:
     enum Tag {
+        Nil,
 #define CODE(t, str) t,
         LET_KEY(CODE) LET_MISC(CODE) LET_TOK(CODE)
 #undef CODE
@@ -50,6 +51,7 @@ public:
 
     Tag tag() const { return tag_; }
     Loc loc() const { return loc_; }
+    explicit operator bool() const { return tag_ != Tag::Nil; }
 
     static const char* tag2str(Tag tag) {
         switch (tag) {
@@ -77,7 +79,7 @@ public:
 
 private:
     Loc loc_;
-    Tag tag_;
+    Tag tag_ = Tag::Nil;
     union {
         Sym sym_;
         uint64_t u64_;
