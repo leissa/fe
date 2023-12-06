@@ -71,7 +71,7 @@ Otherwise, FE will fall back to the hash containers of the C++ standard library.
 2. Integrate into your build system:
 
     Since your build system most likely already has `my_compiler/include/` as an include directory, nothing more needs to be done.
-    In addiiton, add `-DFE_ABSL` to your `CXXFLAGS`, if you want to use Abseil.
+    In addition, add `-DFE_ABSL` to your `CXXFLAGS`, if you want to use Abseil.
     In the case of CMake, add something like this to your `CMakeLists.txt`:
     ```cmake
     target_compile_definitions(my_compiler PUBLIC FE_ABSL)
