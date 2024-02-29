@@ -35,7 +35,7 @@ namespace fe {
 /// The empty string is internally handled as `nullptr`.
 /// Thus, you can create a Sym%bol representing an empty string without having access to the SymPool.
 /// @note The empty `std::string`/`std::string_view`, `nullptr`, and `"\0"` are all identified as Sym::Sym().
-/// WArning: Big endian version has not been tested.
+/// @warning Big endian version has not been tested.
 class Sym {
 public:
     static constexpr size_t Short_String_Bytes = sizeof(uintptr_t);
