@@ -1,8 +1,8 @@
 #pragma once
 
 #include <algorithm>
+#include <list>
 #include <memory>
-#include <vector>
 
 #include "fe/assert.h"
 
@@ -73,16 +73,14 @@ public:
 
     /// @name Construction/Destruction
     ///@{
-    Arena(size_t page_size = Default_Page_Size) noexcept
-        : page_size_(page_size)
-        , index_(page_size) {}
+    Arena(size_t page_size = Default_Page_Size)
+        : page_size_(page_size) {
+        pages_.emplace_back(page_size);
+    }
     Arena(const Arena&) = delete;
     Arena(Arena&& other) noexcept
         : Arena() {
         swap(*this, other);
-    }
-    ~Arena() {
-        for (auto p : pages_) delete[] p;
     }
     Arena& operator=(Arena) = delete;
     ///@}
@@ -95,12 +93,12 @@ public:
 
     /// Get @p n bytes of fresh memory.
     [[nodiscard]] void* allocate(size_t num_bytes) {
-        if (index_ + num_bytes > page_size_) {
-            pages_.emplace_back(new char[std::max(page_size_, num_bytes)]);
+        if (index_ + num_bytes > pages_.back().size) {
+            pages_.emplace_back(std::max(page_size_, num_bytes));
             index_ = 0;
         }
 
-        auto result = pages_.back() + index_;
+        auto result = pages_.back().buffer.get() + index_;
         index_ += num_bytes;
         return result;
     }
@@ -113,8 +111,12 @@ public:
 
     /// @name Deallocate
     ///@{
-    /// Tries to remove bytes again.
-    /// If this crosses a page boundary, nothing happens.
+    /// Deallocate memory again in reverse order.
+
+    /// Removes @p num_bytes again.
+    void deallocate(size_t num_bytes) { index_ -= num_bytes; }
+
+    /// Goes back to @p state in Arena.
     /// Use like this:
     /// ```
     /// auto state = arena.state();
@@ -125,20 +127,34 @@ public:
     using State = std::pair<size_t, size_t>;
     State state() const { return {pages_.size(), index_}; }
     void deallocate(State state) {
-        if (state.first == pages_.size()) index_ = state.second; // don't care otherwise
+        if (state.first == pages_.size())
+            index_ = state.second; // don't care otherwise
+        else
+            index_ = 0;
     }
     ///@}
 
     friend void swap(Arena& a1, Arena& a2) noexcept {
         using std::swap;
-        swap(a1.pages_, a2.pages_);
-        swap(a1.index_, a2.index_);
+        // clang-format off
+        swap(a1.pages_,     a2.pages_);
+        swap(a1.page_size_, a2.page_size_);
+        swap(a1.index_,     a2.index_);
+        // clang-format on
     }
 
 private:
-    std::vector<char*> pages_;
+    struct Page {
+        Page(size_t size)
+            : size(size)
+            , buffer(std::make_unique<char[]>(size)) {}
+        const size_t size;
+        std::unique_ptr<char[]> buffer;
+    };
+
+    std::list<Page> pages_;
     size_t page_size_;
-    size_t index_;
+    size_t index_ = 0;
 };
 
 } // namespace fe
