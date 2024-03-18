@@ -24,6 +24,8 @@ namespace utf8 = fe::utf8;
 #define LET_TOK(m)          \
     m(D_paren_l, "(")       \
     m(D_paren_r, ")")       \
+    m(D_quote_l, "«")       \
+    m(D_quote_r, "»")       \
     m(T_semicolon, ";")     \
     m(T_lambda, "λ")        \
     m(EoF, "<end of file>")
@@ -130,6 +132,8 @@ public:
 
             if (accept('(')) return {loc_, Tok::Tag::D_paren_l};
             if (accept('(')) return {loc_, Tok::Tag::D_paren_r};
+            if (accept(U'«')) return {loc_, Tok::Tag::D_quote_l};
+            if (accept(U'»')) return {loc_, Tok::Tag::D_quote_r};
 
             if (accept('+')) return {loc_, Tok::Tag::O_add};
             if (accept('-')) return {loc_, Tok::Tag::O_sub};
@@ -165,7 +169,7 @@ class Parser : public fe::Parser<Tok, Tok::Tag, 1, Parser> {};
 
 template<size_t K> void test_lexer() {
     fe::Driver drv;
-    std::istringstream is(" test  abc    def if  \nwhile λ foo   ");
+    std::istringstream is(" test  abc    def if  \nwhile λ foo «n; X»  ");
     Lexer lexer(drv, is);
 
     auto t1 = lexer.lex();
@@ -177,19 +181,30 @@ template<size_t K> void test_lexer() {
     auto t7 = lexer.lex();
     auto t8 = lexer.lex();
     auto t9 = lexer.lex();
-    auto s  = fe::format::format("{} {} {} {} {} {} {} {} {}", t1, t2, t3, t4, t5, t6, t7, t8, t9);
-    CHECK(s == "test abc def if while λ foo <end of file> <end of file>");
+    auto t0 = lexer.lex();
+    auto ta = lexer.lex();
+    auto tb = lexer.lex();
+    auto tc = lexer.lex();
+    auto td = lexer.lex();
+    auto s = fe::format::format("{} {} {} {} {} {} {} {} {} {} {} {} {} {}", t1, t2, t3, t4, t5, t6, t7, t8, t9, t0, ta,
+                                tb, tc, td);
+    CHECK(s == "test abc def if while λ foo « n ; X » <end of file> <end of file>");
 
     // clang-format off
-    CHECK(t1.loc() == Loc({1,  2}, {1,  5}));
-    CHECK(t2.loc() == Loc({1,  8}, {1, 10}));
-    CHECK(t3.loc() == Loc({1, 15}, {1, 17}));
-    CHECK(t4.loc() == Loc({1, 19}, {1, 20}));
-    CHECK(t5.loc() == Loc({2,  1}, {2,  5}));
-    CHECK(t6.loc() == Loc({2,  7}, {2,  7}));
-    CHECK(t7.loc() == Loc({2,  9}, {2, 11}));
-    CHECK(t8.loc() == Loc({2, 14}, {2, 14}));
-    CHECK(t9.loc() == Loc({2, 14}, {2, 14}));
+    CHECK(t1.loc() == Loc({1,  2}, {1,  5})); // test
+    CHECK(t2.loc() == Loc({1,  8}, {1, 10})); // abc
+    CHECK(t3.loc() == Loc({1, 15}, {1, 17})); // def
+    CHECK(t4.loc() == Loc({1, 19}, {1, 20})); // if
+    CHECK(t5.loc() == Loc({2,  1}, {2,  5})); // while
+    CHECK(t6.loc() == Loc({2,  7}, {2,  7})); // λ
+    CHECK(t7.loc() == Loc({2,  9}, {2, 11})); // foo
+    CHECK(t8.loc() == Loc({2, 13}, {2, 13})); // «
+    CHECK(t9.loc() == Loc({2, 14}, {2, 14})); // n
+    CHECK(t0.loc() == Loc({2, 15}, {2, 15})); // ;
+    CHECK(ta.loc() == Loc({2, 17}, {2, 17})); // X
+    CHECK(tb.loc() == Loc({2, 18}, {2, 18})); // »
+    CHECK(tc.loc() == Loc({2, 20}, {2, 20})); // <end of file>
+    CHECK(td.loc() == Loc({2, 20}, {2, 20})); // <end of file>
     // clang-format on
 }
 
