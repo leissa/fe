@@ -43,9 +43,12 @@ public:
     ///@{
     void reset() { first_ = 0; }
 
-    T& put(const T& t) {
-        auto& res = array_[first_] = t;
-        first_                     = (first_ + 1) % N;
+    /// Puts @p t into buffer.
+    /// @returns element that falls out.
+    T put(T t) {
+        auto res       = array_[first_];
+        array_[first_] = t;
+        first_         = (first_ + 1) % N;
         return res;
     }
     ///@}
@@ -94,7 +97,11 @@ public:
     /// @name Modifiers
     ///@{
     void reset() {}
-    T& put(const T& t) { return t_ = t; }
+    T put(T t) {
+        auto res = t_;
+        t_ = t;
+        return res;
+    }
     ///@}
 
     friend void swap(Ring& r1, Ring& r2) noexcept {
@@ -138,9 +145,11 @@ public:
     /// @name Modifiers
     ///@{
     void reset() {}
-    T& put(const T& t) {
-        array_[0]        = array_[1];
-        return array_[1] = t;
+    T put(T t) {
+        auto res = array_[0];
+        array_[0] = array_[1];
+        array_[1] = t;
+        return res;
     }
     ///@}
 

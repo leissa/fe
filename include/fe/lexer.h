@@ -23,6 +23,7 @@ public:
         , peek_(1, 1) {
         for (size_t i = 0; i != K; ++i) ahead_[i] = utf8::decode(istream_);
         accept(utf8::BOM); // eat UTF-8 BOM, if present
+        assert(peek_.col == 1);
     }
 
 protected:
@@ -38,12 +39,12 @@ protected:
     /// @returns Null on an invalid UTF-8 sequence.
     char32_t next() {
         loc_.finis = peek_;
-        auto res   = ahead();
-        auto curr  = ahead_.put(utf8::decode(istream_));
+        auto res   = ahead_.put(utf8::decode(istream_));
+        auto c     = ahead_.front(); // char of the peek location
 
-        if (curr == '\n') {
-            ++peek_.row, peek_.col = 0;
-        } else if (curr == utf8::EoF) {
+        if (c == '\n') {
+            ++peek_.row; peek_.col = 0;
+        } else if (c == utf8::EoF || c == utf8::BOM) {
             /* do nothing */
         } else {
             ++peek_.col;
