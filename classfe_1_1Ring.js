@@ -9,7 +9,7 @@ var classfe_1_1Ring =
     [ "operator=", "classfe_1_1Ring.html#a1d844c235b17950b686b01fa31069809", null ],
     [ "operator[]", "classfe_1_1Ring.html#af26174ee668ff4f272457826174374da", null ],
     [ "operator[]", "classfe_1_1Ring.html#a2369beef0ac8d70dd69a6b18aa386223", null ],
-    [ "put", "classfe_1_1Ring.html#abe605ad4c47892eab1f281869949059e", null ],
+    [ "put", "classfe_1_1Ring.html#a481a2c4843195aedace816af111ac0d3", null ],
     [ "reset", "classfe_1_1Ring.html#a17df98ab4ef3ce9fd2bb13a911a4ad16", null ],
     [ "swap", "classfe_1_1Ring.html#aa1b0ab5c1c0c0596fdbadf6cad80b47d", null ]
 ];
