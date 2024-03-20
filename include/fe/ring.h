@@ -43,11 +43,11 @@ public:
     ///@{
     void reset() { first_ = 0; }
 
-    /// Puts @p t into buffer.
-    /// @returns element that falls out.
-    T put(T t) {
+    /// Puts @p item into buffer.
+    /// @returns item that falls out.
+    T put(T item) {
         auto res       = array_[first_];
-        array_[first_] = t;
+        array_[first_] = item;
         first_         = (first_ + 1) % N;
         return res;
     }
@@ -70,7 +70,7 @@ public:
     /// @name Construction
     ///@{
     Ring(std::initializer_list<T> list)
-        : t_(*list.begin()) {}
+        : item_(*list.begin()) {}
     Ring()            = default; // no noexcept: we don't know whether T's default constructor throws
     Ring(const Ring&) = default;
     Ring(Ring&& other)
@@ -82,35 +82,35 @@ public:
 
     /// @name Access
     ///@{
-    T& front() { return t_; }
-    const T& front() const { return t_; }
+    T& front() { return item_; }
+    const T& front() const { return item_; }
     T& operator[](size_t i) {
         assert_unused(i == 0);
-        return t_;
+        return item_;
     }
     const T& operator[](size_t i) const {
         assert_unused(i == 0);
-        return t_;
+        return item_;
     }
     ///@}
 
     /// @name Modifiers
     ///@{
     void reset() {}
-    T put(T t) {
-        auto res = t_;
-        t_ = t;
+    T put(T item) {
+        auto res = item_;
+        item_ = item;
         return res;
     }
     ///@}
 
     friend void swap(Ring& r1, Ring& r2) noexcept {
         using std::swap;
-        swap(r1.t_, r2.t_);
+        swap(r1.item_, r2.item_);
     }
 
 private:
-    T t_;
+    T item_;
 };
 
 /// Specialization if `N == 2`; doesn't need a ring, we just copy.
@@ -145,10 +145,10 @@ public:
     /// @name Modifiers
     ///@{
     void reset() {}
-    T put(T t) {
+    T put(T item) {
         auto res = array_[0];
         array_[0] = array_[1];
-        array_[1] = t;
+        array_[1] = item;
         return res;
     }
     ///@}
