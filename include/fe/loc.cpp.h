@@ -1,12 +1,11 @@
-#include "fe/loc.h"
-
 #include "fe/format.h"
+#include "fe/loc.h"
 
 namespace fe {
 
 std::ostream& operator<<(std::ostream& os, const Pos pos) {
     if (pos.row) {
-        if (pos.col) return os << pos.row << ':' << pos.col;
+        if (pos.col) return os << pos.row << " col " << pos.col;
         return os << pos.row;
     }
     return os << "<unknown position>";
