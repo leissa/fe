@@ -9,7 +9,7 @@ var structfe_1_1Loc =
     [ "anew_finis", "structfe_1_1Loc.html#af86329b830eb174032c7295254ec031b", null ],
     [ "dump", "structfe_1_1Loc.html#a0531b0fe2bb2304752a1d58b80647365", null ],
     [ "operator bool", "structfe_1_1Loc.html#ac0c774b41ba6bac0b717d382176856d1", null ],
-    [ "operator+", "structfe_1_1Loc.html#a54817ad7ff53cb3faa8f616e8248c91d", null ],
+    [ "operator+", "structfe_1_1Loc.html#ab9b7cd54cf00d37b433d5f953ef1ff44", null ],
     [ "operator==", "structfe_1_1Loc.html#a5cdf2ba1dea8fe8648d4a54a02d0f7a3", null ],
     [ "operator<<", "structfe_1_1Loc.html#a4b2fa104f6c10d07ca5c2496acf7f24c", null ],
     [ "begin", "structfe_1_1Loc.html#a7cda6af5faf94e9a9da31b95ba7f60c2", null ],
