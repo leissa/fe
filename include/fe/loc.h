@@ -45,7 +45,7 @@ struct Loc {
 
     Loc anew_begin() const { return {path, begin, begin}; }
     Loc anew_finis() const { return {path, finis, finis}; }
-    Loc operator+(Loc loc) const { return {path, begin, loc.finis}; }
+    Loc operator+(Pos pos) const { return {path, begin, pos}; }
     explicit operator bool() const { return (bool)begin; } ///< Is a valid Loc%ation?
     /// @note Loc::path is only checked via pointer equality.
     bool operator==(Loc other) const { return begin == other.begin && finis == other.finis && path == other.path; }
