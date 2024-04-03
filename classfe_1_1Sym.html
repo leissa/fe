@@ -114,6 +114,7 @@ $(document).ready(function(){initNavTree('classfe_1_1Sym.html',''); initResizabl
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="classfe_1_1Sym-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">fe::Sym Class Reference</div></div>
 </div><!--header-->
@@ -202,6 +203,15 @@ Static Public Attributes</h2></td></tr>
 <tr class="separator:a2d6e0bb54a5a9513e4a064dd38011863"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d4bd5c6441545264c94de234dcc9d4e" id="r_a2d4bd5c6441545264c94de234dcc9d4e"><td class="memItemLeft" align="right" valign="top">static constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Sym.html#a2d4bd5c6441545264c94de234dcc9d4e">Short_String_Mask</a> = <a class="el" href="classfe_1_1Sym.html#a2d6e0bb54a5a9513e4a064dd38011863">Short_String_Bytes</a> - 1</td></tr>
 <tr class="separator:a2d4bd5c6441545264c94de234dcc9d4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a4c865acde4de25ac1247eeaac18710b5" id="r_a4c865acde4de25ac1247eeaac18710b5"><td class="memItemLeft" align="right" valign="top">struct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Sym.html#a4c865acde4de25ac1247eeaac18710b5">::std::hash&lt; fe::Sym &gt;</a></td></tr>
+<tr class="separator:a4c865acde4de25ac1247eeaac18710b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5379cdd60ce3c910e14da02defe0a1aa" id="r_a5379cdd60ce3c910e14da02defe0a1aa"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Sym.html#a5379cdd60ce3c910e14da02defe0a1aa">SymPool</a></td></tr>
+<tr class="separator:a5379cdd60ce3c910e14da02defe0a1aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46b4e3d6859821564fa612901a84300e" id="r_a46b4e3d6859821564fa612901a84300e"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Sym.html#a46b4e3d6859821564fa612901a84300e">operator&lt;&lt;</a> (std::ostream &amp;o, <a class="el" href="classfe_1_1Sym.html">Sym</a> sym)</td></tr>
+<tr class="separator:a46b4e3d6859821564fa612901a84300e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol just wraps a pointer to <a class="el" href="structfe_1_1Sym_1_1String.html">Sym::String</a>, so pass <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a> itself around as value. </p>
@@ -1037,6 +1047,93 @@ Static Public Attributes</h2></td></tr>
 <p class="reference">References <a class="el" href="sym_8h_source.html#l00084">empty()</a>, <a class="el" href="sym_8h_source.html#l00042">Short_String_Mask</a>, and <a class="el" href="sym_8h_source.html#l00085">size()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00132">c_str()</a>, <a class="el" href="sym_8h_source.html#l00143">operator std::string_view()</a>, <a class="el" href="sym_8h_source.html#l00144">operator*()</a>, <a class="el" href="sym_8h_source.html#l00116">operator&lt;=&gt;()</a>, and <a class="el" href="sym_8h_source.html#l00148">str()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Friends And Related Symbol Documentation</h2>
+<a id="a4c865acde4de25ac1247eeaac18710b5" name="a4c865acde4de25ac1247eeaac18710b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c865acde4de25ac1247eeaac18710b5">&#9670;&#160;</a></span>::std::hash&lt; fe::Sym &gt;</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend struct ::std::hash&lt; <a class="el" href="classfe_1_1Sym.html">fe::Sym</a> &gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00151">151</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+
+</div>
+</div>
+<a id="a46b4e3d6859821564fa612901a84300e" name="a46b4e3d6859821564fa612901a84300e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46b4e3d6859821564fa612901a84300e">&#9670;&#160;</a></span>operator&lt;&lt;</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>o</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classfe_1_1Sym.html">Sym</a>&#160;</td>
+          <td class="paramname"><em>sym</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00158">158</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+
+</div>
+</div>
+<a id="a5379cdd60ce3c910e14da02defe0a1aa" name="a5379cdd60ce3c910e14da02defe0a1aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5379cdd60ce3c910e14da02defe0a1aa">&#9670;&#160;</a></span>SymPool</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="classfe_1_1SymPool.html">SymPool</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00165">165</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>

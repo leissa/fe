@@ -112,6 +112,7 @@ $(document).ready(function(){initNavTree('classfe_1_1SymPool.html',''); initResi
 <div class="header">
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="classfe_1_1SymPool-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">fe::SymPool Class Reference</div></div>
 </div><!--header-->
@@ -151,6 +152,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0836abbed0a57732e84be5b627d35588" id="r_a0836abbed0a57732e84be5b627d35588"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classfe_1_1Sym.html">Sym</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1SymPool.html#a0836abbed0a57732e84be5b627d35588">sym</a> (const char *s)</td></tr>
 <tr class="memdesc:a0836abbed0a57732e84be5b627d35588"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>s</code> is a null-terminated C-string.  <br /></td></tr>
 <tr class="separator:a0836abbed0a57732e84be5b627d35588"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:af464c4610c22df4db7d81a1e15f852be" id="r_af464c4610c22df4db7d81a1e15f852be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1SymPool.html#af464c4610c22df4db7d81a1e15f852be">swap</a> (<a class="el" href="classfe_1_1SymPool.html">SymPool</a> &amp;p1, <a class="el" href="classfe_1_1SymPool.html">SymPool</a> &amp;p2) noexcept</td></tr>
+<tr class="separator:af464c4610c22df4db7d81a1e15f852be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Hash set where all strings - wrapped in <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol - live in. </p>
@@ -378,6 +384,47 @@ Public Member Functions</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00214">214</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 <p class="reference">References <a class="el" href="arena_8h_source.html#l00092">fe::Arena::align()</a>, <a class="el" href="arena_8h_source.html#l00095">fe::Arena::allocate()</a>, <a class="el" href="arena_8h_source.html#l00117">fe::Arena::deallocate()</a>, <a class="el" href="sym_8h_source.html#l00041">fe::Sym::Short_String_Bytes</a>, and <a class="el" href="arena_8h_source.html#l00128">fe::Arena::state()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Friends And Related Symbol Documentation</h2>
+<a id="af464c4610c22df4db7d81a1e15f852be" name="af464c4610c22df4db7d81a1e15f852be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af464c4610c22df4db7d81a1e15f852be">&#9670;&#160;</a></span>swap</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void swap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classfe_1_1SymPool.html">SymPool</a> &amp;&#160;</td>
+          <td class="paramname"><em>p1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classfe_1_1SymPool.html">SymPool</a> &amp;&#160;</td>
+          <td class="paramname"><em>p2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00245">245</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00205">SymPool()</a>.</p>
 
 </div>
 </div>

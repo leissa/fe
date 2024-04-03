@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hash_0',['Hash',['../structfe_1_1Sym_1_1String_1_1Hash.html',1,'fe::Sym::String']]]
+  ['get_20started_20now_0',['Get Started Now!',['../index.html#autotoc_md2',1,'']]]
 ];

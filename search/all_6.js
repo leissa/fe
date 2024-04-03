@@ -1,11 +1,13 @@
 var searchData=
 [
-  ['deallocate_0',['deallocate',['../structfe_1_1Arena_1_1Allocator.html#a6b3329549e40270d3de047fbd8d04fd4',1,'fe::Arena::Allocator::deallocate()'],['../classfe_1_1Arena.html#a3407c0833ee49816fff174780a7589cc',1,'fe::Arena::deallocate(size_t num_bytes)'],['../classfe_1_1Arena.html#a06ec61e3440601fba0a903b35866f2dc',1,'fe::Arena::deallocate(State state)']]],
-  ['decode_1',['decode',['../namespacefe_1_1utf8.html#a4ca17134ff0be619535e913b53a80e79',1,'fe::utf8']]],
-  ['default_5fpage_5fsize_2',['Default_Page_Size',['../classfe_1_1Arena.html#acf8db82af7c5e70594460ffffeaaedc6',1,'fe::Arena']]],
-  ['deleter_3',['deleter',['../structfe_1_1Arena_1_1Deleter.html',1,'fe::Arena::Deleter&lt; T &gt;'],['../structfe_1_1Arena_1_1Deleter.html#a4f115196981ec080d075fd09f8fce52e',1,'fe::Arena::Deleter::Deleter() noexcept=default'],['../structfe_1_1Arena_1_1Deleter.html#a51afced4c194661045e5c3e5e8f07c83',1,'fe::Arena::Deleter::Deleter(const Deleter&lt; U &gt; &amp;) noexcept']]],
-  ['directly_20include_20fe_20in_20your_20source_20tree_4',['Option #2: Directly include FE in your Source Tree',['../index.html#autotoc_md6',1,'']]],
-  ['driver_5',['Driver',['../structfe_1_1Driver.html',1,'fe']]],
-  ['driver_2eh_6',['driver.h',['../driver_8h.html',1,'']]],
-  ['dump_7',['dump',['../structfe_1_1Pos.html#a9a6685af4e76850af36627fd7f9a0978',1,'fe::Pos::dump()'],['../structfe_1_1Loc.html#a0531b0fe2bb2304752a1d58b80647365',1,'fe::Loc::dump()']]]
+  ['c_0',['c',['../structfe_1_1utf8_1_1Char32.html#a77fb8e8b7ab039d14adbde307bbee793',1,'fe::utf8::Char32']]],
+  ['c_5fstr_1',['c_str',['../classfe_1_1Sym.html#a00b9a78ef01923bf106d313151879dc0',1,'fe::Sym']]],
+  ['cast_2eh_2',['cast.h',['../cast_8h.html',1,'']]],
+  ['cbegin_3',['cbegin',['../classfe_1_1Sym.html#ad8666de3bd3ab20309073888cc4bf1a1',1,'fe::Sym']]],
+  ['cend_4',['cend',['../classfe_1_1Sym.html#a08993c1f2e203f622750c8eec1173598',1,'fe::Sym']]],
+  ['char32_5',['char32',['../structfe_1_1utf8_1_1Char32.html',1,'fe::utf8::Char32'],['../structfe_1_1utf8_1_1Char32.html#af46564ecf7d2aa5557f8b452ea406abf',1,'fe::utf8::Char32::Char32()']]],
+  ['chars_6',['chars',['../structfe_1_1Sym_1_1String.html#a86ac99bc1a5ae5670498ab589c5f0c39',1,'fe::Sym::String']]],
+  ['col_7',['col',['../structfe_1_1Pos.html#a1adde7ab9d0f30f4aeae62e76289da31',1,'fe::Pos']]],
+  ['crbegin_8',['crbegin',['../classfe_1_1Sym.html#ae4d248064b05229d52619d55fbf2d559',1,'fe::Sym']]],
+  ['crend_9',['crend',['../classfe_1_1Sym.html#a0759c00e000c842b44b16b94a36b9450',1,'fe::Sym']]]
 ];

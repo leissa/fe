@@ -113,6 +113,7 @@ $(document).ready(function(){initNavTree('classfe_1_1Arena.html',''); initResiza
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="classfe_1_1Arena-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">fe::Arena Class Reference</div></div>
 </div><!--header-->
@@ -165,6 +166,11 @@ Static Public Attributes</h2></td></tr>
 <tr class="memitem:acf8db82af7c5e70594460ffffeaaedc6" id="r_acf8db82af7c5e70594460ffffeaaedc6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structfe_1_1Arena_1_1Allocator.html">static</a> <a class="el" href="structfe_1_1Arena_1_1Allocator.html">constexpr</a> size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Arena.html#acf8db82af7c5e70594460ffffeaaedc6">Default_Page_Size</a> = 1024 * 1024</td></tr>
 <tr class="memdesc:acf8db82af7c5e70594460ffffeaaedc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">1MB.  <br /></td></tr>
 <tr class="separator:acf8db82af7c5e70594460ffffeaaedc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a8f9ae98bbf9b30287b975cf8c5ae86c9" id="r_a8f9ae98bbf9b30287b975cf8c5ae86c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structfe_1_1Arena_1_1Allocator.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1Arena.html#a8f9ae98bbf9b30287b975cf8c5ae86c9">swap</a> (<a class="el" href="classfe_1_1Arena.html">Arena</a> &amp;<a class="el" href="structfe_1_1Arena_1_1Allocator.html">a1</a>, <a class="el" href="classfe_1_1Arena.html">Arena</a> &amp;<a class="el" href="structfe_1_1Arena_1_1Allocator.html">a2</a>) <a class="el" href="structfe_1_1Arena_1_1Allocator.html">noexcept</a></td></tr>
+<tr class="separator:a8f9ae98bbf9b30287b975cf8c5ae86c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader">Smart Pointer</h2></td></tr>
 <tr><td class="ititle" colspan="2"><p>This is a <a href="https://en.cppreference.com/w/cpp/memory/unique_ptr">std::unique_ptr</a> that uses the <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">Arena</a> under the hood and whose deleter will <em>only</em> invoke the destructor but <em>not</em> <code>delete</code> anything; memory will be released upon destruction of the <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">Arena</a>.</p>
@@ -599,6 +605,47 @@ template&lt;<a class="el" href="structfe_1_1Arena_1_1Allocator.html">class</a> T
 <p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00128">128</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="arena_8h_source.html#l00129">deallocate()</a>, and <a class="el" href="sym_8h_source.html#l00214">fe::SymPool::sym()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Friends And Related Symbol Documentation</h2>
+<a id="a8f9ae98bbf9b30287b975cf8c5ae86c9" name="a8f9ae98bbf9b30287b975cf8c5ae86c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f9ae98bbf9b30287b975cf8c5ae86c9">&#9670;&#160;</a></span>swap</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structfe_1_1Arena_1_1Allocator.html">void</a> swap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classfe_1_1Arena.html">Arena</a> &amp;&#160;</td>
+          <td class="paramname"><em>a1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classfe_1_1Arena.html">Arena</a> &amp;&#160;</td>
+          <td class="paramname"><em>a2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00137">137</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="arena_8h_source.html#l00081">Arena()</a>.</p>
 
 </div>
 </div>

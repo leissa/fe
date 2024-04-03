@@ -1,12 +1,11 @@
 var searchData=
 [
-  ['eat_0',['eat',['../classfe_1_1Parser.html#a7676ff550005c7f0334f6fda4067d1e0',1,'fe::Parser']]],
-  ['empty_1',['empty',['../classfe_1_1Sym.html#a21e38fb3a54967d1d65630b70a4ae1f7',1,'fe::Sym']]],
-  ['encode_2',['encode',['../namespacefe_1_1utf8.html#a50c98a6d25495ac66c1a30e1ba83da99',1,'fe::utf8']]],
-  ['end_3',['end',['../classfe_1_1Sym.html#a6d7c0e24340b65960847d52a01e97d73',1,'fe::Sym']]],
-  ['eof_4',['EoF',['../namespacefe_1_1utf8.html#a958f5b14010ee32136a35e5534a205ce',1,'fe::utf8']]],
-  ['equal_5',['Equal',['../structfe_1_1Sym_1_1String_1_1Equal.html',1,'fe::Sym::String']]],
-  ['err_6',['err',['../structfe_1_1Driver.html#a812a36c804ea55219e3f6a0a7ac865a3',1,'fe::Driver::err()'],['../namespacefe.html#a09e9cd2dab128329e4c767edd7f73beb',1,'fe::err(format::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)']]],
-  ['errln_7',['errln',['../namespacefe.html#a954d190530e13452d9528a880c352e68',1,'fe']]],
-  ['expect_8',['expect',['../classfe_1_1Parser.html#ab01ccf1dc21df6abc1df96282174e9f4',1,'fe::Parser']]]
+  ['deallocate_0',['deallocate',['../structfe_1_1Arena_1_1Allocator.html#a6b3329549e40270d3de047fbd8d04fd4',1,'fe::Arena::Allocator::deallocate()'],['../classfe_1_1Arena.html#a3407c0833ee49816fff174780a7589cc',1,'fe::Arena::deallocate(size_t num_bytes)'],['../classfe_1_1Arena.html#a06ec61e3440601fba0a903b35866f2dc',1,'fe::Arena::deallocate(State state)']]],
+  ['decode_1',['decode',['../namespacefe_1_1utf8.html#a4ca17134ff0be619535e913b53a80e79',1,'fe::utf8']]],
+  ['default_5fpage_5fsize_2',['Default_Page_Size',['../classfe_1_1Arena.html#acf8db82af7c5e70594460ffffeaaedc6',1,'fe::Arena']]],
+  ['deleter_3',['deleter',['../structfe_1_1Arena_1_1Deleter.html',1,'fe::Arena::Deleter&lt; T &gt;'],['../structfe_1_1Arena_1_1Deleter.html#a4f115196981ec080d075fd09f8fce52e',1,'fe::Arena::Deleter::Deleter() noexcept=default'],['../structfe_1_1Arena_1_1Deleter.html#a51afced4c194661045e5c3e5e8f07c83',1,'fe::Arena::Deleter::Deleter(const Deleter&lt; U &gt; &amp;) noexcept']]],
+  ['directly_20include_20fe_20in_20your_20source_20tree_4',['Option #2: Directly include FE in your Source Tree',['../index.html#autotoc_md6',1,'']]],
+  ['driver_5',['Driver',['../structfe_1_1Driver.html',1,'fe']]],
+  ['driver_2eh_6',['driver.h',['../driver_8h.html',1,'']]],
+  ['dump_7',['dump',['../structfe_1_1Pos.html#a9a6685af4e76850af36627fd7f9a0978',1,'fe::Pos::dump()'],['../structfe_1_1Loc.html#a0531b0fe2bb2304752a1d58b80647365',1,'fe::Loc::dump()']]]
 ];
