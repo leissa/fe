@@ -23,7 +23,7 @@ struct Pos {
     uint16_t col = 0;
 
     /// Write your own implementation or include fe/loc.cpp.h somewhere for a default one.
-    friend std::ostream& operator<<(std::ostream& os, const Pos pos);
+    friend std::ostream& operator<<(std::ostream& os, Pos pos);
 };
 
 /// Loc%ation in a File.
@@ -58,7 +58,7 @@ struct Loc {
     /// In the STL the word `end` refers to the position of something that is one element **past** the end.
 
     /// Write your own implementation or include fe/loc.cpp.h somewhere for a default one.
-    friend std::ostream& operator<<(std::ostream& os, const Loc loc);
+    friend std::ostream& operator<<(std::ostream& os, Loc loc);
 };
 
 } // namespace fe

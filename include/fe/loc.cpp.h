@@ -3,7 +3,7 @@
 
 namespace fe {
 
-std::ostream& operator<<(std::ostream& os, const Pos pos) {
+std::ostream& operator<<(std::ostream& os, Pos pos) {
     if (pos.row) {
         if (pos.col) return os << pos.row << ':' << pos.col;
         return os << pos.row;
@@ -11,7 +11,7 @@ std::ostream& operator<<(std::ostream& os, const Pos pos) {
     return os << "<unknown position>";
 }
 
-std::ostream& operator<<(std::ostream& os, const Loc loc) {
+std::ostream& operator<<(std::ostream& os, Loc loc) {
     if (loc) {
         os << (loc.path ? loc.path->string() : "<unknown file>") << ':' << loc.begin;
         if (loc.begin != loc.finis) os << '-' << loc.finis;
