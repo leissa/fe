@@ -20,4 +20,7 @@ std::ostream& operator<<(std::ostream& os, Loc loc) {
     return os << "<unknown location>";
 }
 
+void Pos::dump() const { std::cout << *this << std::endl; }
+void Loc::dump() const { std::cout << *this << std::endl; }
+
 } // namespace fe

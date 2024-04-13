@@ -17,7 +17,7 @@ struct Pos {
 
     explicit operator bool() const { return row != 0; } ///< Is a valid Pos%ition?
     auto operator<=>(const Pos&) const = default;
-    void dump() const { std::cout << *this << std::endl; }
+    void dump() const;
 
     uint16_t row = 0;
     uint16_t col = 0;
@@ -49,7 +49,7 @@ struct Loc {
     explicit operator bool() const { return (bool)begin; } ///< Is a valid Loc%ation?
     /// @note Loc::path is only checked via pointer equality.
     bool operator==(Loc other) const { return begin == other.begin && finis == other.finis && path == other.path; }
-    void dump() const { std::cout << *this << std::endl; }
+    void dump() const;
 
     const std::filesystem::path* path = {};
     Pos begin                         = {};
