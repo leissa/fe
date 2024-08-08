@@ -59,6 +59,7 @@ protected:
             , pos_(pos) {}
 
         Loc loc() const { return {prev_.path, pos_, prev_.finis}; }
+        Loc operator()() const { return loc(); }
         operator Loc() const { return loc(); }
 
     private:
