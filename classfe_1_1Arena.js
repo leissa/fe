@@ -2,7 +2,7 @@ var classfe_1_1Arena =
 [
     [ "Allocator", "structfe_1_1Arena_1_1Allocator.html", "structfe_1_1Arena_1_1Allocator" ],
     [ "Deleter", "structfe_1_1Arena_1_1Deleter.html", "structfe_1_1Arena_1_1Deleter" ],
-    [ "Ptr", "classfe_1_1Arena.html#a9ec4e56220ef5a3d2d80bfcd3653bbdc", null ],
+    [ "Ptr", "classfe_1_1Arena.html#a06eba7825bdfc4c92a88c42de4e139c4", null ],
     [ "State", "classfe_1_1Arena.html#a5e05161e3a767ebfdecbf2cb1e21f6d4", null ],
     [ "Arena", "classfe_1_1Arena.html#a6954c6cb8a60224261e98798a7cd5fda", null ],
     [ "Arena", "classfe_1_1Arena.html#a31a9b29bc955003c0df7f4103bc434c1", null ],

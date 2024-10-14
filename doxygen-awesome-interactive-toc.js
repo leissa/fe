@@ -55,7 +55,9 @@ class DoxygenAwesomeInteractiveToc {
                         headerNode: document.getElementById(id)
                     })
 
-                    document.getElementById("doc-content")?.addEventListener("scroll",this.throttle(DoxygenAwesomeInteractiveToc.update, 100))
+                    document.getElementById("doc-content")?.addEventListener("scroll", () => {
+                        DoxygenAwesomeInteractiveToc.update()
+                    })
                 })
                 DoxygenAwesomeInteractiveToc.update()
             }
@@ -75,17 +77,5 @@ class DoxygenAwesomeInteractiveToc {
         })
         active?.classList.add("active")
         active?.classList.remove("aboveActive")
-    }
-
-    static throttle(func, delay) {
-        let lastCall = 0;
-        return function (...args) {
-            const now = new Date().getTime();
-            if (now - lastCall < delay) {
-                return;
-            }
-            lastCall = now;
-            return setTimeout(() => {func(...args)}, delay);
-        };
     }
 }
