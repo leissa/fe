@@ -44,7 +44,6 @@ protected:
     ///@}
 
     /// @name Track Loc%ation in Source File
-    ///@{
     /// Use like this:
     /// ```
     /// auto track  = tracker();
@@ -52,6 +51,7 @@ protected:
     /// auto bar    = parse_bar();
     /// auto foobar = new FooBar(track, foo, bar);
     /// ```
+    ///@{
     class Tracker {
     public:
         Tracker(Loc& prev, Pos pos)
@@ -72,7 +72,6 @@ protected:
 
     /// @name Shift Token
     ///@{
-
     /// Get lookahead.
     Tok ahead(size_t i = 0) const { return ahead_[i]; }
 

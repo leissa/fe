@@ -19,10 +19,10 @@ public:
     static constexpr size_t Default_Page_Size = 1024 * 1024; ///< 1MB.
 
     /// @name Allocator
-    ///@{
     /// An [allocator](https://en.cppreference.com/w/cpp/named_req/Allocator) in order to use this Arena for
     /// [containers](https://en.cppreference.com/w/cpp/named_req/AllocatorAwareContainer).
     /// Construct it via Arena::allocator.
+    ///@{
     template<class T> struct Allocator {
         using value_type = T;
 
@@ -48,7 +48,6 @@ public:
     ///@}
 
     /// @name Smart Pointer
-    ///@{
     /// This is a [std::unique_ptr](https://en.cppreference.com/w/cpp/memory/unique_ptr)
     /// that uses the Arena under the hood
     /// and whose deleter will *only* invoke the destructor but *not* `delete` anything;
@@ -58,6 +57,7 @@ public:
     /// ```
     /// auto ptr = arena.mk<Foo>(a, b, c); // new Foo(a, b, c) placed into arena
     /// ```
+    ///@{
     template<class T> struct Deleter {
         constexpr Deleter() noexcept = default;
         template<class U> constexpr Deleter(const Deleter<U>&) noexcept {}
@@ -110,9 +110,8 @@ public:
     ///@}
 
     /// @name Deallocate
-    ///@{
     /// Deallocate memory again in reverse order.
-
+    ///@{
     /// Removes @p num_bytes again.
     void deallocate(size_t num_bytes) { index_ -= num_bytes; }
 
