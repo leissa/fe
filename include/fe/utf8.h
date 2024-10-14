@@ -91,10 +91,10 @@ struct Char32 {
 };
 
 /// @name Wrappers
-///@{
 /// Safe `char32_t`-style wrappers for <[ctype](https://en.cppreference.com/w/cpp/header/cctype)> functions:
 /// > Like all other functions from `<cctype>`, the behavior of `std::isalnum` is undefined if the argument's value is
 /// neither representable as `unsigned char` nor equal to `EOF`.
+///@{
 // clang-format off
 inline bool isalnum (char32_t c) { return (c & ~0xFF) == 0 ? std::isalnum (c) : false; }
 inline bool isalpha (char32_t c) { return (c & ~0xFF) == 0 ? std::isalpha (c) : false; }
@@ -122,8 +122,8 @@ inline bool isbdigit(char32_t c) { return isrange(c, '0', '1'); } ///< Is binary
 ///@}
 
 /// @name any
-///@{
 /// Is @p c in any of the remaining arguments?
+///@{
 inline bool _any(char32_t c, char32_t d) { return c == d; }
 template<class... T> inline bool _any(char32_t c, char32_t d, T... args) { return c == d || _any(c, args...); }
 template<class... T> inline auto any(T... args) {

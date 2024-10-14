@@ -43,7 +43,8 @@ protected:
         auto c     = ahead_.front(); // char of the peek location
 
         if (c == '\n') {
-            ++peek_.row; peek_.col = 0;
+            ++peek_.row;
+            peek_.col = 0;
         } else if (c == utf8::EoF || c == utf8::BOM) {
             /* do nothing */
         } else {
@@ -54,9 +55,8 @@ protected:
     }
 
     /// @name Accept
-    ///@{
     /// Accept next character in Lexer::istream_, depending on some condition.
-
+    ///@{
     /// What should happend to the accepted char?
     /// Normalize identifiers via Append::Lower or Append::Upper for case-insensitive languages like FORTRAN or SQL.
     enum class Append {

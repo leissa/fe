@@ -176,8 +176,8 @@ namespace fe {
 #endif
 
 /// @name Sym
-///@{
 /// Set/Map is keyed by pointer - which is hashed in SymPool.
+///@{
 #ifdef FE_ABSL
 template<class V> using SymMap = absl::flat_hash_map<Sym, V>;
 using SymSet                   = absl::flat_hash_set<Sym>;

@@ -39,10 +39,10 @@ template<class Char> struct basic_ostream_formatter : format::formatter<std::bas
 
 using ostream_formatter = basic_ostream_formatter<char>;
 
-// clang-format off
 /// @name out/outln/err/errln
-///@{
 /// Print to `std::cout`/`std::cerr` via `std::format`; the `*ln` variants conclude with `std::endl`.
+///@{
+// clang-format off
 template<class... Args> void err  (format::format_string<Args...> fmt, Args&&... args) { std::cerr << format::format(fmt, std::forward<Args&&>(args)...);              }
 template<class... Args> void out  (format::format_string<Args...> fmt, Args&&... args) { std::cout << format::format(fmt, std::forward<Args&&>(args)...);              }
 template<class... Args> void errln(format::format_string<Args...> fmt, Args&&... args) { std::cerr << format::format(fmt, std::forward<Args&&>(args)...) << std::endl; }
