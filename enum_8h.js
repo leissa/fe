@@ -2,6 +2,8 @@ var enum_8h =
 [
     [ "fe::is_bit_enum< T >", "structfe_1_1is__bit__enum.html", null ],
     [ "fe::BitEnum", "conceptfe_1_1BitEnum.html", null ],
+    [ "operator!=", "enum_8h.html#a7416bc7c50d30c606865d7602c2a24fd", null ],
+    [ "operator!=", "enum_8h.html#ac9e698e3cdb29d243a5ad870f9bcdae3", null ],
     [ "operator&", "enum_8h.html#affb141a1f7d28f82fe048d473c42208b", null ],
     [ "operator&", "enum_8h.html#a7acfa009ff59a9bc78f864386f6f5543", null ],
     [ "operator&", "enum_8h.html#a4dceb5ce0e8d7561d9313860ce95d5f3", null ],

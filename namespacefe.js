@@ -25,6 +25,8 @@ var namespacefe =
     [ "breakpoint", "namespacefe.html#aa67601e05290c4a15e0d5d5f1f12a4a2", null ],
     [ "err", "namespacefe.html#a09e9cd2dab128329e4c767edd7f73beb", null ],
     [ "errln", "namespacefe.html#a954d190530e13452d9528a880c352e68", null ],
+    [ "operator!=", "namespacefe.html#a7416bc7c50d30c606865d7602c2a24fd", null ],
+    [ "operator!=", "namespacefe.html#ac9e698e3cdb29d243a5ad870f9bcdae3", null ],
     [ "operator&", "namespacefe.html#affb141a1f7d28f82fe048d473c42208b", null ],
     [ "operator&", "namespacefe.html#a7acfa009ff59a9bc78f864386f6f5543", null ],
     [ "operator&", "namespacefe.html#a4dceb5ce0e8d7561d9313860ce95d5f3", null ],

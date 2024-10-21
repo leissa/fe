@@ -264,9 +264,15 @@ Functions</h2></td></tr>
 <tr class="memitem:a070c41104218d6a8690cdf758b058faa" id="r_a070c41104218d6a8690cdf758b058faa"><td class="memTemplParams" colspan="2">template&lt;BitEnum E&gt; </td></tr>
 <tr class="memitem:a070c41104218d6a8690cdf758b058faa"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a070c41104218d6a8690cdf758b058faa">operator==</a> (std::underlying_type_t&lt; E &gt; x, E y)</td></tr>
 <tr class="separator:a070c41104218d6a8690cdf758b058faa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9e698e3cdb29d243a5ad870f9bcdae3" id="r_ac9e698e3cdb29d243a5ad870f9bcdae3"><td class="memTemplParams" colspan="2">template&lt;BitEnum E&gt; </td></tr>
+<tr class="memitem:ac9e698e3cdb29d243a5ad870f9bcdae3"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ac9e698e3cdb29d243a5ad870f9bcdae3">operator!=</a> (std::underlying_type_t&lt; E &gt; x, E y)</td></tr>
+<tr class="separator:ac9e698e3cdb29d243a5ad870f9bcdae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adbd7ba3096a06173193218f3821e3da6" id="r_adbd7ba3096a06173193218f3821e3da6"><td class="memTemplParams" colspan="2">template&lt;BitEnum E&gt; </td></tr>
 <tr class="memitem:adbd7ba3096a06173193218f3821e3da6"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#adbd7ba3096a06173193218f3821e3da6">operator==</a> (E x, std::underlying_type_t&lt; E &gt; y)</td></tr>
 <tr class="separator:adbd7ba3096a06173193218f3821e3da6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7416bc7c50d30c606865d7602c2a24fd" id="r_a7416bc7c50d30c606865d7602c2a24fd"><td class="memTemplParams" colspan="2">template&lt;BitEnum E&gt; </td></tr>
+<tr class="memitem:a7416bc7c50d30c606865d7602c2a24fd"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a7416bc7c50d30c606865d7602c2a24fd">operator!=</a> (E x, std::underlying_type_t&lt; E &gt; y)</td></tr>
+<tr class="separator:a7416bc7c50d30c606865d7602c2a24fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">out/outln/err/errln</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Print to <code>std::cout</code>/<code>std::cerr</code> via <code>std::format</code>; the <code>*ln</code> variants conclude with <code>std::endl</code>. </p>
 </div></td></tr>
@@ -418,6 +424,72 @@ template&lt;class... Args&gt; </div>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00048">48</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+
+</div>
+</div>
+<a id="a7416bc7c50d30c606865d7602c2a24fd" name="a7416bc7c50d30c606865d7602c2a24fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7416bc7c50d30c606865d7602c2a24fd">&#9670;&#160;</a></span>operator!=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;BitEnum E&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fe::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">E</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::underlying_type_t&lt; E &gt;</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="enum_8h_source.html#l00054">54</a> of file <a class="el" href="enum_8h_source.html">enum.h</a>.</p>
+
+</div>
+</div>
+<a id="ac9e698e3cdb29d243a5ad870f9bcdae3" name="ac9e698e3cdb29d243a5ad870f9bcdae3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9e698e3cdb29d243a5ad870f9bcdae3">&#9670;&#160;</a></span>operator!=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;BitEnum E&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fe::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">std::underlying_type_t&lt; E &gt;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">E</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="enum_8h_source.html#l00052">52</a> of file <a class="el" href="enum_8h_source.html">enum.h</a>.</p>
 
 </div>
 </div>
@@ -661,7 +733,7 @@ template&lt;BitEnum E&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="enum_8h_source.html#l00052">52</a> of file <a class="el" href="enum_8h_source.html">enum.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="enum_8h_source.html#l00053">53</a> of file <a class="el" href="enum_8h_source.html">enum.h</a>.</p>
 
 </div>
 </div>
