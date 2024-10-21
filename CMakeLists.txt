@@ -36,6 +36,7 @@ target_sources(fe
             include/fe/arena.h
             include/fe/assert.h
             include/fe/cast.h
+            include/fe/enum.h
             include/fe/driver.h
             include/fe/format.h
             include/fe/lexer.h

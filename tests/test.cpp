@@ -2,6 +2,7 @@
 
 #include <doctest/doctest.h>
 #include <fe/arena.h>
+#include <fe/enum.h>
 #include <fe/ring.h>
 #include <fe/sym.h>
 #include <fe/utf8.h>
@@ -130,4 +131,22 @@ TEST_CASE("utf8") {
     CHECK(fe::utf8::any('a', 'b', 'c')('b'));
     CHECK(fe::utf8::any('a', 'b', 'c')('c'));
     CHECK(fe::utf8::any('a', 'b', 'c')('x') == false);
+}
+
+enum class MyEnum : unsigned {
+    A = 1 << 0,
+    B = 1 << 1,
+    C = 1 << 2,
+};
+
+template<> struct fe::is_bit_enum<MyEnum> : std::true_type {};
+using fe::operator&;
+using fe::operator|;
+using fe::operator^;
+
+TEST_CASE("enum") {
+    static_assert((MyEnum::A & MyEnum::A) == 1);
+    static_assert((MyEnum::A & MyEnum::B) == 0);
+    static_assert((MyEnum::A | MyEnum::B) == 3);
+    static_assert((MyEnum::A ^ MyEnum::A) == 0);
 }
