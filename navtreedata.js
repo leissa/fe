@@ -70,7 +70,7 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "classfe_1_1Sym.html#a885f28063f9fa9663085e276fe58ad64",
-"structfe_1_1Pos.html#a2f5a03e5db4071ac152db6f830c17732"
+"structfe_1_1Loc.html#a19c742b2f7de9b42ce45d92d3210a3ea"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

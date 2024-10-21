@@ -7,6 +7,7 @@ var annotated_dup =
       [ "Arena", "classfe_1_1Arena.html", "classfe_1_1Arena" ],
       [ "basic_ostream_formatter", "structfe_1_1basic__ostream__formatter.html", "structfe_1_1basic__ostream__formatter" ],
       [ "Driver", "structfe_1_1Driver.html", "structfe_1_1Driver" ],
+      [ "is_bit_enum", "structfe_1_1is__bit__enum.html", null ],
       [ "Lexer", "classfe_1_1Lexer.html", "classfe_1_1Lexer" ],
       [ "Loc", "structfe_1_1Loc.html", "structfe_1_1Loc" ],
       [ "Parser", "classfe_1_1Parser.html", "classfe_1_1Parser" ],
