@@ -25,7 +25,8 @@ concept BitEnum = std::is_enum_v<E> && is_bit_enum_v<E>;
 /// using fe::operator|;
 /// using fe::operator^;
 /// using fe::operator<=>;
-/// using fe::operator=;
+/// using fe::operator==;
+/// using fe::operator!=;
 ///
 /// enum class MyEnum : unsigned {
 ///     A = 1 << 0,
