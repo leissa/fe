@@ -81,5 +81,5 @@ Otherwise, FE will fall back to the hash containers of the C++ standard library.
 
 * [Let](https://github.com/leissa/let): A simple demo language that builds upon FE
 * [GraphTool](https://github.com/leissa/graphtool): A small tool that reads a subset from Graphviz' DOT language and calculates several dominance-related properties
+* [MimIR](https://anydsl.github.io/MimIR/): MimIR is my intermediate representation
 * [SQL](https://github.com/leissa/sql): Small and simple SQL parser
-* [Thorin2](https://anydsl.github.io/thorin2/): The Higher-ORder INtermediate representation
