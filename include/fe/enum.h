@@ -50,8 +50,8 @@ template <BitEnum E> constexpr auto operator^(                       E  x, std::
 template <BitEnum E> constexpr std::strong_ordering operator<=>(std::underlying_type_t<E> x, E y) { return x <=> std::underlying_type_t<E>(y); }
 template <BitEnum E> constexpr std::strong_ordering operator<=>(E x, std::underlying_type_t<E> y) { return std::underlying_type_t<E>(x) <=> y; }
 template <BitEnum E> constexpr bool operator==(std::underlying_type_t<E> x, E y) { return x == std::underlying_type_t<E>(y); }
-template <BitEnum E> constexpr bool operator!=(std::underlying_type_t<E> x, E y) { return x == std::underlying_type_t<E>(y); }
-template <BitEnum E> constexpr bool operator==(E x, std::underlying_type_t<E> y) { return std::underlying_type_t<E>(x) != y; }
+template <BitEnum E> constexpr bool operator!=(std::underlying_type_t<E> x, E y) { return x != std::underlying_type_t<E>(y); }
+template <BitEnum E> constexpr bool operator==(E x, std::underlying_type_t<E> y) { return std::underlying_type_t<E>(x) == y; }
 template <BitEnum E> constexpr bool operator!=(E x, std::underlying_type_t<E> y) { return std::underlying_type_t<E>(x) != y; }
 // clang-format on
 
