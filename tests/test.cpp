@@ -139,12 +139,14 @@ enum class MyEnum : unsigned {
     C = 1 << 2,
 };
 
-using MyFlags = fe::BitEnum<MyEnum>;
+template<> struct fe::is_bit_enum<MyEnum> : std::true_type {};
+using fe::operator&;
+using fe::operator|;
+using fe::operator^;
 
 TEST_CASE("enum") {
-    constexpr auto a = MyFlags(MyEnum::A);
-    static_assert((a & MyEnum::A) == MyFlags(1));
-    static_assert((a & MyEnum::B) == MyFlags(0));
-    static_assert((a | MyEnum::B) == MyFlags(3));
-    static_assert((a ^ MyEnum::A) == MyFlags(0));
+    static_assert((MyEnum::A & MyEnum::A) == 1);
+    static_assert((MyEnum::A & MyEnum::B) == 0);
+    static_assert((MyEnum::A | MyEnum::B) == 3);
+    static_assert((MyEnum::A ^ MyEnum::A) == 0);
 }
