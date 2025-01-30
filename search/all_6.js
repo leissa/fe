@@ -7,7 +7,8 @@ var searchData=
   ['cend_4',['cend',['../classfe_1_1Sym.html#a08993c1f2e203f622750c8eec1173598',1,'fe::Sym']]],
   ['char32_5',['Char32',['../structfe_1_1utf8_1_1Char32.html',1,'fe::utf8::Char32'],['../structfe_1_1utf8_1_1Char32.html#af46564ecf7d2aa5557f8b452ea406abf',1,'fe::utf8::Char32::Char32()']]],
   ['chars_6',['chars',['../structfe_1_1Sym_1_1String.html#a86ac99bc1a5ae5670498ab589c5f0c39',1,'fe::Sym::String']]],
-  ['col_7',['col',['../structfe_1_1Pos.html#a1adde7ab9d0f30f4aeae62e76289da31',1,'fe::Pos']]],
-  ['crbegin_8',['crbegin',['../classfe_1_1Sym.html#ae4d248064b05229d52619d55fbf2d559',1,'fe::Sym']]],
-  ['crend_9',['crend',['../classfe_1_1Sym.html#a0759c00e000c842b44b16b94a36b9450',1,'fe::Sym']]]
+  ['clear_7',['clear',['../classfe_1_1BitEnum.html#a71a5c5892f9fb4e189bdb653e57fbba2',1,'fe::BitEnum']]],
+  ['col_8',['col',['../structfe_1_1Pos.html#a1adde7ab9d0f30f4aeae62e76289da31',1,'fe::Pos']]],
+  ['crbegin_9',['crbegin',['../classfe_1_1Sym.html#ae4d248064b05229d52619d55fbf2d559',1,'fe::Sym']]],
+  ['crend_10',['crend',['../classfe_1_1Sym.html#a0759c00e000c842b44b16b94a36b9450',1,'fe::Sym']]]
 ];
