@@ -118,30 +118,108 @@ $(function(){initNavTree('enum_8h.html',''); initResizable(true); });
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#concepts">Concepts</a>  </div>
   <div class="headertitle"><div class="title">enum.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;compare&gt;</code><br />
-<code>#include &lt;initializer_list&gt;</code><br />
 <code>#include &lt;type_traits&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for enum.h:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="enum_8h__incl.svg" width="340" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="enum_8h__incl.svg" width="206" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="enum_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1BitEnum.html">fe::BitEnum&lt; E &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfe_1_1is__bit__enum.html">fe::is_bit_enum&lt; T &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe.html">fe</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="concepts" name="concepts"></a>
+Concepts</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptfe_1_1BitEnum.html">fe::BitEnum</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Bit operations for enum classs</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Provides all kind of bit and comparison operators for an <code>enum class</code> <code>E</code>.</p>
+<p>Note that the bit operators return <code>E's</code> underlying type and not the original <code>enum</code> <code>E</code>. This is because the result may not be a valid <code>enum</code> value. For the same reason, it doesn't make sense to declare operators such as <code>&amp;=</code>. Use like this: </p><div class="fragment"><div class="line"><span class="keyword">using </span>fe::operator&amp;;</div>
+<div class="line"><span class="keyword">using </span>fe::operator|;</div>
+<div class="line"><span class="keyword">using </span>fe::operator^;</div>
+<div class="line"><span class="keyword">using </span>fe::operator&lt;=&gt;;</div>
+<div class="line"><span class="keyword">using </span>fe::operator==;</div>
+<div class="line"><span class="keyword">using </span>fe::operator!=;</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">enum class</span> MyEnum : <span class="keywordtype">unsigned</span> {</div>
+<div class="line">    A = 1 &lt;&lt; 0,</div>
+<div class="line">    B = 1 &lt;&lt; 1,</div>
+<div class="line">    C = 1 &lt;&lt; 2,</div>
+<div class="line">};</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code hl_struct" href="structfe_1_1is__bit__enum.html">fe::is_bit_enum</a>&lt;MyEnum&gt; : std::true_type { };</div>
+<div class="ttc" id="astructfe_1_1is__bit__enum_html"><div class="ttname"><a href="structfe_1_1is__bit__enum.html">fe::is_bit_enum</a></div><div class="ttdef"><b>Definition</b> <a href="enum_8h_source.html#l00011">enum.h:11</a></div></div>
+</div><!-- fragment --> </div></td></tr>
+<tr class="memitem:affb141a1f7d28f82fe048d473c42208b" id="r_affb141a1f7d28f82fe048d473c42208b"><td class="memTemplParams" colspan="2">template&lt;BitEnum E&gt; </td></tr>
+<tr class="memitem:affb141a1f7d28f82fe048d473c42208b"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#affb141a1f7d28f82fe048d473c42208b">fe::operator&amp;</a> (E x, E y)</td></tr>
+<tr class="separator:affb141a1f7d28f82fe048d473c42208b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4dceb5ce0e8d7561d9313860ce95d5f3" id="r_a4dceb5ce0e8d7561d9313860ce95d5f3"><td class="memTemplParams" colspan="2">template&lt;BitEnum E&gt; </td></tr>
+<tr class="memitem:a4dceb5ce0e8d7561d9313860ce95d5f3"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#a4dceb5ce0e8d7561d9313860ce95d5f3">fe::operator&amp;</a> (std::underlying_type_t&lt; E &gt; x, E y)</td></tr>
+<tr class="separator:a4dceb5ce0e8d7561d9313860ce95d5f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7acfa009ff59a9bc78f864386f6f5543" id="r_a7acfa009ff59a9bc78f864386f6f5543"><td class="memTemplParams" colspan="2">template&lt;BitEnum E&gt; </td></tr>
+<tr class="memitem:a7acfa009ff59a9bc78f864386f6f5543"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#a7acfa009ff59a9bc78f864386f6f5543">fe::operator&amp;</a> (E x, std::underlying_type_t&lt; E &gt; y)</td></tr>
+<tr class="separator:a7acfa009ff59a9bc78f864386f6f5543"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2b92305568f922f949cf34427503cb4" id="r_ac2b92305568f922f949cf34427503cb4"><td class="memTemplParams" colspan="2">template&lt;BitEnum E&gt; </td></tr>
+<tr class="memitem:ac2b92305568f922f949cf34427503cb4"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#ac2b92305568f922f949cf34427503cb4">fe::operator|</a> (E x, E y)</td></tr>
+<tr class="separator:ac2b92305568f922f949cf34427503cb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bf907aceda9f907ba64301da85968bb" id="r_a1bf907aceda9f907ba64301da85968bb"><td class="memTemplParams" colspan="2">template&lt;BitEnum E&gt; </td></tr>
+<tr class="memitem:a1bf907aceda9f907ba64301da85968bb"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#a1bf907aceda9f907ba64301da85968bb">fe::operator|</a> (std::underlying_type_t&lt; E &gt; x, E y)</td></tr>
+<tr class="separator:a1bf907aceda9f907ba64301da85968bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a792f45c37132212da1d480ad30b98fae" id="r_a792f45c37132212da1d480ad30b98fae"><td class="memTemplParams" colspan="2">template&lt;BitEnum E&gt; </td></tr>
+<tr class="memitem:a792f45c37132212da1d480ad30b98fae"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#a792f45c37132212da1d480ad30b98fae">fe::operator|</a> (E x, std::underlying_type_t&lt; E &gt; y)</td></tr>
+<tr class="separator:a792f45c37132212da1d480ad30b98fae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadfdfb839a8bb20481bbf75f9fab738c" id="r_aadfdfb839a8bb20481bbf75f9fab738c"><td class="memTemplParams" colspan="2">template&lt;BitEnum E&gt; </td></tr>
+<tr class="memitem:aadfdfb839a8bb20481bbf75f9fab738c"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#aadfdfb839a8bb20481bbf75f9fab738c">fe::operator^</a> (E x, E y)</td></tr>
+<tr class="separator:aadfdfb839a8bb20481bbf75f9fab738c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca7a671a376affc90d31568d89c28feb" id="r_aca7a671a376affc90d31568d89c28feb"><td class="memTemplParams" colspan="2">template&lt;BitEnum E&gt; </td></tr>
+<tr class="memitem:aca7a671a376affc90d31568d89c28feb"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#aca7a671a376affc90d31568d89c28feb">fe::operator^</a> (std::underlying_type_t&lt; E &gt; x, E y)</td></tr>
+<tr class="separator:aca7a671a376affc90d31568d89c28feb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae800f2ad6dcb8476faced50ea37d5b30" id="r_ae800f2ad6dcb8476faced50ea37d5b30"><td class="memTemplParams" colspan="2">template&lt;BitEnum E&gt; </td></tr>
+<tr class="memitem:ae800f2ad6dcb8476faced50ea37d5b30"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#ae800f2ad6dcb8476faced50ea37d5b30">fe::operator^</a> (E x, std::underlying_type_t&lt; E &gt; y)</td></tr>
+<tr class="separator:ae800f2ad6dcb8476faced50ea37d5b30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71d6d67c81306d34e8313a5981f36dff" id="r_a71d6d67c81306d34e8313a5981f36dff"><td class="memTemplParams" colspan="2">template&lt;BitEnum E&gt; </td></tr>
+<tr class="memitem:a71d6d67c81306d34e8313a5981f36dff"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::strong_ordering&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#a71d6d67c81306d34e8313a5981f36dff">fe::operator&lt;=&gt;</a> (std::underlying_type_t&lt; E &gt; x, E y)</td></tr>
+<tr class="separator:a71d6d67c81306d34e8313a5981f36dff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a824b75304df6d25be99fb57e4e4a28cf" id="r_a824b75304df6d25be99fb57e4e4a28cf"><td class="memTemplParams" colspan="2">template&lt;BitEnum E&gt; </td></tr>
+<tr class="memitem:a824b75304df6d25be99fb57e4e4a28cf"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::strong_ordering&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#a824b75304df6d25be99fb57e4e4a28cf">fe::operator&lt;=&gt;</a> (E x, std::underlying_type_t&lt; E &gt; y)</td></tr>
+<tr class="separator:a824b75304df6d25be99fb57e4e4a28cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a070c41104218d6a8690cdf758b058faa" id="r_a070c41104218d6a8690cdf758b058faa"><td class="memTemplParams" colspan="2">template&lt;BitEnum E&gt; </td></tr>
+<tr class="memitem:a070c41104218d6a8690cdf758b058faa"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#a070c41104218d6a8690cdf758b058faa">fe::operator==</a> (std::underlying_type_t&lt; E &gt; x, E y)</td></tr>
+<tr class="separator:a070c41104218d6a8690cdf758b058faa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9e698e3cdb29d243a5ad870f9bcdae3" id="r_ac9e698e3cdb29d243a5ad870f9bcdae3"><td class="memTemplParams" colspan="2">template&lt;BitEnum E&gt; </td></tr>
+<tr class="memitem:ac9e698e3cdb29d243a5ad870f9bcdae3"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#ac9e698e3cdb29d243a5ad870f9bcdae3">fe::operator!=</a> (std::underlying_type_t&lt; E &gt; x, E y)</td></tr>
+<tr class="separator:ac9e698e3cdb29d243a5ad870f9bcdae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbd7ba3096a06173193218f3821e3da6" id="r_adbd7ba3096a06173193218f3821e3da6"><td class="memTemplParams" colspan="2">template&lt;BitEnum E&gt; </td></tr>
+<tr class="memitem:adbd7ba3096a06173193218f3821e3da6"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#adbd7ba3096a06173193218f3821e3da6">fe::operator==</a> (E x, std::underlying_type_t&lt; E &gt; y)</td></tr>
+<tr class="separator:adbd7ba3096a06173193218f3821e3da6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7416bc7c50d30c606865d7602c2a24fd" id="r_a7416bc7c50d30c606865d7602c2a24fd"><td class="memTemplParams" colspan="2">template&lt;BitEnum E&gt; </td></tr>
+<tr class="memitem:a7416bc7c50d30c606865d7602c2a24fd"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#a7416bc7c50d30c606865d7602c2a24fd">fe::operator!=</a> (E x, std::underlying_type_t&lt; E &gt; y)</td></tr>
+<tr class="separator:a7416bc7c50d30c606865d7602c2a24fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">is_enum</div></td></tr>
+<tr class="memitem:ae103d19a2604571950b51fa886deedce" id="r_ae103d19a2604571950b51fa886deedce"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:ae103d19a2604571950b51fa886deedce"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#ae103d19a2604571950b51fa886deedce">fe::is_bit_enum_v</a> = <a class="el" href="structfe_1_1is__bit__enum.html">is_bit_enum</a>&lt;T&gt;::value</td></tr>
+<tr class="separator:ae103d19a2604571950b51fa886deedce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->
