@@ -4,7 +4,7 @@ var searchData=
   ['tab_1',['tab',['../classfe_1_1Tab.html#aefb32b7f85982a9069518a6c96699033',1,'fe::Tab']]],
   ['tolower_2',['tolower',['../namespacefe_1_1utf8.html#a50e0192b122a783b81710499f20ae6b5',1,'fe::utf8']]],
   ['toupper_3',['toupper',['../namespacefe_1_1utf8.html#a6f47692e931db3f19ee1fcc516d72f9c',1,'fe::utf8']]],
-  ['tracker_4',['Tracker',['../classfe_1_1Parser_1_1Tracker.html',1,'fe::Parser&lt; Tok, Tag, K, S &gt;::Tracker'],['../classfe_1_1Parser_1_1Tracker.html#af138c292a8083989821de13cbbf349ce',1,'fe::Parser::Tracker::Tracker()']]],
-  ['tracker_5',['tracker',['../classfe_1_1Parser.html#aea3507b75aa247b9431256f5463a7821',1,'fe::Parser']]],
+  ['tracker_4',['Tracker',['../classfe_1_1Parser_1_1Tracker.html',1,'fe::Parser&lt; Tok, Tag, K, S &gt;::Tracker'],['../classfe_1_1Parser_1_1Tracker.html#a8b31319b66d8fb1a2911ec78e1b05ccf',1,'fe::Parser::Tracker::Tracker()']]],
+  ['tracker_5',['tracker',['../classfe_1_1Parser.html#aea3507b75aa247b9431256f5463a7821',1,'fe::Parser::tracker()'],['../classfe_1_1Parser.html#a41890743dc8c6cebd03e947d0635d09b',1,'fe::Parser::tracker(Loc loc)']]],
   ['tree_6',['Option #2: Directly include FE in your Source Tree',['../index.html#autotoc_md6',1,'']]]
 ];

@@ -8,6 +8,7 @@ var classfe_1_1Parser =
     [ "init", "classfe_1_1Parser.html#aff4aefd0e9b228d67489e4aa3232fdeb", null ],
     [ "lex", "classfe_1_1Parser.html#a5d4335bae86e3127fbf5b42fb0fcd3e7", null ],
     [ "tracker", "classfe_1_1Parser.html#aea3507b75aa247b9431256f5463a7821", null ],
+    [ "tracker", "classfe_1_1Parser.html#a41890743dc8c6cebd03e947d0635d09b", null ],
     [ "ahead_", "classfe_1_1Parser.html#a63a4e949bb44bcc9249b8ff2023b7fbc", null ],
-    [ "prev_", "classfe_1_1Parser.html#a4b4cf353b85c2b1eb9c294acd916cb36", null ]
+    [ "curr_", "classfe_1_1Parser.html#a69e76d15919fd71e0ee0f1e491c974f8", null ]
 ];

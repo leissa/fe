@@ -127,8 +127,8 @@ $(function(){initNavTree('classfe_1_1Parser_1_1Tracker.html',''); initResizable(
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af138c292a8083989821de13cbbf349ce" id="r_af138c292a8083989821de13cbbf349ce"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af138c292a8083989821de13cbbf349ce">Tracker</a> (<a class="el" href="structfe_1_1Loc.html">Loc</a> &amp;prev, <a class="el" href="structfe_1_1Pos.html">Pos</a> pos)</td></tr>
-<tr class="separator:af138c292a8083989821de13cbbf349ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b31319b66d8fb1a2911ec78e1b05ccf" id="r_a8b31319b66d8fb1a2911ec78e1b05ccf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b31319b66d8fb1a2911ec78e1b05ccf">Tracker</a> (<a class="el" href="structfe_1_1Pos.html">Pos</a> start, <a class="el" href="structfe_1_1Loc.html">Loc</a> &amp;curr)</td></tr>
+<tr class="separator:a8b31319b66d8fb1a2911ec78e1b05ccf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed3db922e0970ec52d171663427e35e2" id="r_aed3db922e0970ec52d171663427e35e2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structfe_1_1Loc.html">Loc</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed3db922e0970ec52d171663427e35e2">loc</a> () const</td></tr>
 <tr class="separator:aed3db922e0970ec52d171663427e35e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f8e04eb3d2c9efe41ee7f28f54c7893" id="r_a7f8e04eb3d2c9efe41ee7f28f54c7893"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structfe_1_1Loc.html">Loc</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f8e04eb3d2c9efe41ee7f28f54c7893">operator()</a> () const</td></tr>
@@ -139,10 +139,10 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class Tok, class Tag, size_t K, class S&gt;<br />
 class fe::Parser&lt; Tok, Tag, K, S &gt;::Tracker</div>
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00055">55</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00056">56</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="af138c292a8083989821de13cbbf349ce" name="af138c292a8083989821de13cbbf349ce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af138c292a8083989821de13cbbf349ce">&#9670;&#160;</a></span>Tracker()</h2>
+<a id="a8b31319b66d8fb1a2911ec78e1b05ccf" name="a8b31319b66d8fb1a2911ec78e1b05ccf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b31319b66d8fb1a2911ec78e1b05ccf">&#9670;&#160;</a></span>Tracker()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -155,12 +155,12 @@ template&lt;class Tok , class Tag , size_t K, class S &gt; </div>
         <tr>
           <td class="memname"><a class="el" href="classfe_1_1Parser.html">fe::Parser</a>&lt; Tok, Tag, K, S &gt;::Tracker::Tracker </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structfe_1_1Loc.html">Loc</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>prev</em></span>, </td>
+          <td class="paramtype"><a class="el" href="structfe_1_1Pos.html">Pos</a></td>          <td class="paramname"><span class="paramname"><em>start</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structfe_1_1Pos.html">Pos</a></td>          <td class="paramname"><span class="paramname"><em>pos</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="structfe_1_1Loc.html">Loc</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>curr</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -170,7 +170,7 @@ template&lt;class Tok , class Tag , size_t K, class S &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00057">57</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00058">58</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
 </div>
 </div>
@@ -200,7 +200,7 @@ template&lt;class Tok , class Tag , size_t K, class S &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00061">61</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00062">62</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
 </div>
 </div>
@@ -229,7 +229,7 @@ template&lt;class Tok , class Tag , size_t K, class S &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00063">63</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00064">64</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
 </div>
 </div>
@@ -258,7 +258,7 @@ template&lt;class Tok , class Tag , size_t K, class S &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00062">62</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00063">63</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
 </div>
 </div>
