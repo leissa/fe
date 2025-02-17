@@ -70,7 +70,7 @@ protected:
 
     /// Factory method to build a Parser::Tracker.
     Tracker tracker() { return {ahead().loc().begin, curr_}; }
-    Tracker tracker(Loc loc) { return {loc, curr_}; } ///< As above but start tracking at @p loc.
+    Tracker tracker(Pos start) { return {start, curr_}; } ///< As above but start tracking at @p loc.
     ///@}
 
     /// @name Shift Token
