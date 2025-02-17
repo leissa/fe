@@ -150,9 +150,11 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:aea3507b75aa247b9431256f5463a7821" id="r_aea3507b75aa247b9431256f5463a7821"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classfe_1_1Parser_1_1Tracker.html">Tracker</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aea3507b75aa247b9431256f5463a7821">tracker</a> ()</td></tr>
 <tr class="memdesc:aea3507b75aa247b9431256f5463a7821"><td class="mdescLeft">&#160;</td><td class="mdescRight">Factory method to build a <a class="el" href="classfe_1_1Parser_1_1Tracker.html">Parser::Tracker</a>.  <br /></td></tr>
 <tr class="separator:aea3507b75aa247b9431256f5463a7821"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ae7bad9f717b59ecc15b0594860e68d" id="r_a3ae7bad9f717b59ecc15b0594860e68d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classfe_1_1Parser_1_1Tracker.html">Tracker</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ae7bad9f717b59ecc15b0594860e68d">tracker</a> (<a class="el" href="structfe_1_1Pos.html">Pos</a> start)</td></tr>
-<tr class="memdesc:a3ae7bad9f717b59ecc15b0594860e68d"><td class="mdescLeft">&#160;</td><td class="mdescRight">As above but start tracking at <code>loc</code>.  <br /></td></tr>
-<tr class="separator:a3ae7bad9f717b59ecc15b0594860e68d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01e44a12cb19d3172293feac4f89bbbc" id="r_a01e44a12cb19d3172293feac4f89bbbc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classfe_1_1Parser_1_1Tracker.html">Tracker</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a01e44a12cb19d3172293feac4f89bbbc">tracker</a> (<a class="el" href="structfe_1_1Pos.html">Pos</a> begin)</td></tr>
+<tr class="memdesc:a01e44a12cb19d3172293feac4f89bbbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">As above but start tracking at <code>begin</code>.  <br /></td></tr>
+<tr class="separator:a01e44a12cb19d3172293feac4f89bbbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a964da822c8e0c743a8e5fce865ca20" id="r_a4a964da822c8e0c743a8e5fce865ca20"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classfe_1_1Parser_1_1Tracker.html">Tracker</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a964da822c8e0c743a8e5fce865ca20">tracker</a> (<a class="el" href="structfe_1_1Loc.html">Loc</a> begin)</td></tr>
+<tr class="separator:a4a964da822c8e0c743a8e5fce865ca20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Shift Token</div></td></tr>
 <tr class="memitem:af07368e3fabbf75a441b4e206fba2aa4" id="r_af07368e3fabbf75a441b4e206fba2aa4"><td class="memItemLeft" align="right" valign="top">Tok&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af07368e3fabbf75a441b4e206fba2aa4">ahead</a> (size_t i=0) const</td></tr>
 <tr class="separator:af07368e3fabbf75a441b4e206fba2aa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -195,7 +197,7 @@ class fe::Parser&lt; Tok, Tag, K, S &gt;</div><p>The blueprint for a <a href="ht
 <div class="line"><span class="keywordflow">if</span> (<span class="keyword">auto</span> tok = <a class="code hl_function" href="#ad7acb49705c085f2ae9e7464f03eb3c0">accept</a>(Tok::Tag:My_Tag)) {</div>
 <div class="line">    do_sth(tok);</div>
 <div class="line">}</div>
-<div class="ttc" id="aclassfe_1_1Parser_html_ad7acb49705c085f2ae9e7464f03eb3c0"><div class="ttname"><a href="#ad7acb49705c085f2ae9e7464f03eb3c0">fe::Parser::accept</a></div><div class="ttdeci">Tok accept(Tag tag)</div><div class="ttdoc">If Parser::ahead() is a tag, consume and return it, otherwise yield std::nullopt.</div><div class="ttdef"><b>Definition</b> <a href="parser_8h_source.html#l00090">parser.h:90</a></div></div>
+<div class="ttc" id="aclassfe_1_1Parser_html_ad7acb49705c085f2ae9e7464f03eb3c0"><div class="ttname"><a href="#ad7acb49705c085f2ae9e7464f03eb3c0">fe::Parser::accept</a></div><div class="ttdeci">Tok accept(Tag tag)</div><div class="ttdoc">If Parser::ahead() is a tag, consume and return it, otherwise yield std::nullopt.</div><div class="ttdef"><b>Definition</b> <a href="parser_8h_source.html#l00091">parser.h:91</a></div></div>
 </div><!-- fragment --> 
 <p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00031">31</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
@@ -226,7 +228,7 @@ template&lt;class Tok , class Tag , size_t K, class S &gt; </div>
 
 <p>If <a class="el" href="#af07368e3fabbf75a441b4e206fba2aa4">Parser::ahead()</a> is a <code>tag</code>, consume and return it, otherwise yield <code>std::nullopt</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00090">90</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00091">91</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
 </div>
 </div>
@@ -256,7 +258,7 @@ template&lt;class Tok , class Tag , size_t K, class S &gt; </div>
 </div><div class="memdoc">
 <p>Get lookahead. </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00079">79</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00080">80</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
 </div>
 </div>
@@ -287,7 +289,7 @@ template&lt;class Tok , class Tag , size_t K, class S &gt; </div>
 
 <p>Consume <a class="el" href="#af07368e3fabbf75a441b4e206fba2aa4">Parser::ahead</a> which must be a <code>tag</code>; asserts otherwise. </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00104">104</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00105">105</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
 </div>
 </div>
@@ -323,7 +325,7 @@ template&lt;class Tok , class Tag , size_t K, class S &gt; </div>
 <p><a class="el" href="#a5d4335bae86e3127fbf5b42fb0fcd3e7" title="Invoke Lexer to retrieve next Token.">Parser::lex</a> <a class="el" href="#af07368e3fabbf75a441b4e206fba2aa4">Parser::ahead()</a> which must be a <code>tag</code>. </p>
 <p>Issue error with <code>ctxt</code> otherwise. </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00097">97</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00098">98</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
 </div>
 </div>
@@ -383,12 +385,12 @@ template&lt;class Tok , class Tag , size_t K, class S &gt; </div>
 
 <p>Invoke <a class="el" href="classfe_1_1Lexer.html" title="The blueprint for a lexer with a buffer of K tokens to peek into the future (Lexer::ahead).">Lexer</a> to retrieve next Token. </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00082">82</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00083">83</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
 </div>
 </div>
 <a id="aea3507b75aa247b9431256f5463a7821" name="aea3507b75aa247b9431256f5463a7821"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aea3507b75aa247b9431256f5463a7821">&#9670;&#160;</a></span>tracker() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aea3507b75aa247b9431256f5463a7821">&#9670;&#160;</a></span>tracker() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -418,8 +420,8 @@ template&lt;class Tok , class Tag , size_t K, class S &gt; </div>
 
 </div>
 </div>
-<a id="a3ae7bad9f717b59ecc15b0594860e68d" name="a3ae7bad9f717b59ecc15b0594860e68d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3ae7bad9f717b59ecc15b0594860e68d">&#9670;&#160;</a></span>tracker() <span class="overload">[2/2]</span></h2>
+<a id="a4a964da822c8e0c743a8e5fce865ca20" name="a4a964da822c8e0c743a8e5fce865ca20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a964da822c8e0c743a8e5fce865ca20">&#9670;&#160;</a></span>tracker() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -432,7 +434,7 @@ template&lt;class Tok , class Tag , size_t K, class S &gt; </div>
         <tr>
           <td class="memname"><a class="el" href="classfe_1_1Parser_1_1Tracker.html">Tracker</a> <a class="el" href="classfe_1_1Parser.html">fe::Parser</a>&lt; Tok, Tag, K, S &gt;::tracker </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structfe_1_1Pos.html">Pos</a></td>          <td class="paramname"><span class="paramname"><em>start</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structfe_1_1Loc.html">Loc</a></td>          <td class="paramname"><span class="paramname"><em>begin</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -443,7 +445,38 @@ template&lt;class Tok , class Tag , size_t K, class S &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>As above but start tracking at <code>loc</code>. </p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00074">74</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+
+<p class="reference">References <a class="el" href="loc_8h_source.html#l00056">fe::Loc::begin</a>.</p>
+
+</div>
+</div>
+<a id="a01e44a12cb19d3172293feac4f89bbbc" name="a01e44a12cb19d3172293feac4f89bbbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01e44a12cb19d3172293feac4f89bbbc">&#9670;&#160;</a></span>tracker() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Tok , class Tag , size_t K, class S &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classfe_1_1Parser_1_1Tracker.html">Tracker</a> <a class="el" href="classfe_1_1Parser.html">fe::Parser</a>&lt; Tok, Tag, K, S &gt;::tracker </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structfe_1_1Pos.html">Pos</a></td>          <td class="paramname"><span class="paramname"><em>begin</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>As above but start tracking at <code>begin</code>. </p>
 
 <p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00073">73</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
@@ -472,7 +505,7 @@ template&lt;class Tok , class Tag , size_t K, class S &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00110">110</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00111">111</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
 </div>
 </div>
@@ -498,7 +531,7 @@ template&lt;class Tok , class Tag , size_t K, class S &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00111">111</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00112">112</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
 </div>
 </div>
