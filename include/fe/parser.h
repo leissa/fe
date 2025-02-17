@@ -39,11 +39,12 @@ protected:
     void init(const std::filesystem::path* path) {
         ahead_.reset();
         for (size_t i = 0; i != K; ++i) ahead_[i] = self().lexer().lex();
-        prev_ = Loc(path, {1, 1});
+        curr_ = Loc(path, {1, 1});
     }
     ///@}
 
-    /// @name Track Loc%ation in Source File
+    /// @name Tracker
+    /// Track Loc%ation in Source File.
     /// Use like this:
     /// ```
     /// auto track  = tracker();
@@ -54,21 +55,22 @@ protected:
     ///@{
     class Tracker {
     public:
-        Tracker(Loc& prev, Pos pos)
-            : prev_(prev)
-            , pos_(pos) {}
+        Tracker(Pos start, Loc& curr)
+            : start_(start)
+            , curr_(curr) {}
 
-        Loc loc() const { return {prev_.path, pos_, prev_.finis}; }
+        Loc loc() const { return {curr_.path, start_, curr_.finis}; }
         Loc operator()() const { return loc(); }
         operator Loc() const { return loc(); }
 
     private:
-        const Loc& prev_;
-        Pos pos_;
+        Pos start_;
+        const Loc& curr_;
     };
 
     /// Factory method to build a Parser::Tracker.
-    Tracker tracker() { return {prev_, ahead().loc().begin}; }
+    Tracker tracker() { return {ahead().loc().begin, curr_}; }
+    Tracker tracker(Loc loc) { return {loc, curr_}; } ///< As above but start tracking at @p loc.
     ///@}
 
     /// @name Shift Token
@@ -79,7 +81,7 @@ protected:
     /// Invoke Lexer to retrieve next Token.
     Tok lex() {
         auto result = ahead();
-        prev_       = result.loc();
+        curr_       = result.loc();
         ahead_.put(self().lexer().lex());
         return result;
     }
@@ -106,7 +108,7 @@ protected:
     ///@}
 
     Ring<Tok, K> ahead_;
-    Loc prev_;
+    Loc curr_;
 };
 
 } // namespace fe
