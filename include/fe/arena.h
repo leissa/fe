@@ -18,11 +18,9 @@ class Arena {
 public:
     static constexpr size_t Default_Page_Size = 1024 * 1024; ///< 1MB.
 
-    /// @name Allocator
     /// An [allocator](https://en.cppreference.com/w/cpp/named_req/Allocator) in order to use this Arena for
     /// [containers](https://en.cppreference.com/w/cpp/named_req/AllocatorAwareContainer).
     /// Construct it via Arena::allocator.
-    ///@{
     template<class T> struct Allocator {
         using value_type = T;
 
@@ -43,21 +41,6 @@ public:
         Arena& arena;
     };
 
-    /// Create Allocator from Arena.
-    template<class T> Allocator<T> allocator() { return Allocator<T>(*this); }
-    ///@}
-
-    /// @name Smart Pointer
-    /// This is a [std::unique_ptr](https://en.cppreference.com/w/cpp/memory/unique_ptr)
-    /// that uses the Arena under the hood
-    /// and whose deleter will *only* invoke the destructor but *not* `delete` anything;
-    /// memory will be released upon destruction of the Arena.
-    ///
-    /// Use like this:
-    /// ```
-    /// auto ptr = arena.mk<Foo>(a, b, c); // new Foo(a, b, c) placed into arena
-    /// ```
-    ///@{
     template<class T> struct Deleter {
         constexpr Deleter() noexcept = default;
         template<class U> constexpr Deleter(const Deleter<U>&) noexcept {}
@@ -65,13 +48,9 @@ public:
     };
 
     template<class T> using Ptr = std::unique_ptr<T, Deleter<T>>;
-    template<class T, class... Args> Ptr<T> mk(Args&&... args) {
-        auto ptr = new (allocate(sizeof(T))) T(std::forward<Args&&>(args)...);
-        return Ptr<T>(ptr, Deleter<T>());
-    }
-    ///@}
+    using State                 = std::pair<size_t, size_t>;
 
-    /// @name Construction/Destruction
+    /// @name Construction
     ///@{
     Arena(size_t page_size = Default_Page_Size)
         : page_size_(page_size) {
@@ -83,6 +62,23 @@ public:
         swap(*this, other);
     }
     Arena& operator=(Arena) = delete;
+
+    /// Create Allocator from Arena.
+    template<class T> Allocator<T> allocator() { return Allocator<T>(*this); }
+
+    /// This is a [std::unique_ptr](https://en.cppreference.com/w/cpp/memory/unique_ptr)
+    /// that uses the Arena under the hood
+    /// and whose Deleter will *only* invoke the destructor but *not* `delete` anything;
+    /// memory will be released upon destruction of the Arena.
+    ///
+    /// Use like this:
+    /// ```
+    /// auto ptr = arena.mk<Foo>(a, b, c); // new Foo(a, b, c) placed into arena
+    /// ```
+    template<class T, class... Args> Ptr<T> mk(Args&&... args) {
+        auto ptr = new (allocate(sizeof(T))) T(std::forward<Args&&>(args)...);
+        return Ptr<T>(ptr, Deleter<T>());
+    }
     ///@}
 
     /// @name Allocate
@@ -111,11 +107,6 @@ public:
 
     /// @name Deallocate
     /// Deallocate memory again in reverse order.
-    ///@{
-    /// Removes @p num_bytes again.
-    void deallocate(size_t num_bytes) { index_ -= num_bytes; }
-
-    /// Goes back to @p state in Arena.
     /// Use like this:
     /// ```
     /// auto state = arena.state();
@@ -123,7 +114,11 @@ public:
     /// if (/* I don't want that */) arena.deallocate(state);
     /// ```
     /// @warning Only use, if you really know what you are doing.
-    using State = std::pair<size_t, size_t>;
+
+    ///@{
+    /// Removes @p num_bytes again.
+    void deallocate(size_t num_bytes) { index_ -= num_bytes; }
+
     State state() const { return {pages_.size(), index_}; }
     void deallocate(State state) {
         if (state.first == pages_.size())
