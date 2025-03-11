@@ -185,6 +185,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- fragment --> <dl class="section warning"><dt>Warning</dt><dd>Only use, if you really know what you are doing. </dd></dl>
 </div></td></tr>
 <tr class="memitem:a3407c0833ee49816fff174780a7589cc" id="r_a3407c0833ee49816fff174780a7589cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3407c0833ee49816fff174780a7589cc">deallocate</a> (size_t num_bytes)</td></tr>
+<tr class="memdesc:a3407c0833ee49816fff174780a7589cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes <code>num_bytes</code> again.  <br /></td></tr>
 <tr class="separator:a3407c0833ee49816fff174780a7589cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5596516d2fa1fb1679b2485b60a9007" id="r_ad5596516d2fa1fb1679b2485b60a9007"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a5e05161e3a767ebfdecbf2cb1e21f6d4">State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5596516d2fa1fb1679b2485b60a9007">state</a> () const</td></tr>
 <tr class="separator:ad5596516d2fa1fb1679b2485b60a9007"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -204,7 +205,7 @@ Friends</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An arena pre-allocates so-called <em>pages</em> of size Arena::page_size_. </p>
-<p>You can use <a class="el" href="#a6021a414b1e4d7d030755c2a64e0329c" title="Get n bytes of fresh memory.">Arena::allocate</a> to obtain memory from this. When a page runs out of memory, the next page will be (pre-)allocated. You cannot directly release memory obtained via this method. Instead, <em>all</em> memory acquired via this <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">Arena</a> will be released as soon as this <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">Arena</a> will be destroyed. As an exception, you can <a class="el" href="#a3407c0833ee49816fff174780a7589cc">Arena::deallocate</a> memory that just as been acquired. </p>
+<p>You can use <a class="el" href="#a6021a414b1e4d7d030755c2a64e0329c" title="Get n bytes of fresh memory.">Arena::allocate</a> to obtain memory from this. When a page runs out of memory, the next page will be (pre-)allocated. You cannot directly release memory obtained via this method. Instead, <em>all</em> memory acquired via this <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">Arena</a> will be released as soon as this <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">Arena</a> will be destroyed. As an exception, you can <a class="el" href="#a3407c0833ee49816fff174780a7589cc" title="Removes num_bytes again.">Arena::deallocate</a> memory that just as been acquired. </p>
 
 <p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00017">17</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
@@ -471,6 +472,7 @@ template&lt;class T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
 <p>Removes <code>num_bytes</code> again. </p>
 
 <p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00120">120</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
