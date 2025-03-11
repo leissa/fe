@@ -301,21 +301,22 @@ $(function(){initNavTree('arena_8h_source.html',''); initResizable(true); });
 </div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        Page()</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>            : size(0) {}</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        Page(<span class="keywordtype">size_t</span> size, <span class="keywordtype">size_t</span> align)</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>            : size(size)</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>            , buffer(new(std::align_val_t(align)) char[size]) {}</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        <span class="keyword">const</span> <span class="keywordtype">size_t</span> size;</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        std::unique_ptr&lt;char[]&gt; buffer;</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    };</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    std::list&lt;Page&gt; pages_;</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="keywordtype">size_t</span> page_size_;</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keywordtype">size_t</span> index_ = 0;</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>};</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>            : size(0)</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>            , buffer(nullptr, <a class="code hl_struct" href="structfe_1_1Arena_1_1Page_1_1Deleter.html">Deleter</a>(0)) {}</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        Page(<span class="keywordtype">size_t</span> size, <span class="keywordtype">size_t</span> align)</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>            : size(size)</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>            , buffer(new(std::align_val_t(align)) char[size], <a class="code hl_struct" href="structfe_1_1Arena_1_1Deleter.html">Deleter</a>(align)) {}</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        <span class="keyword">const</span> <span class="keywordtype">size_t</span> size;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        std::unique_ptr&lt;char[], Deleter&gt; buffer;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    };</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    std::list&lt;Page&gt; pages_;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keywordtype">size_t</span> page_size_;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="keywordtype">size_t</span> index_ = 0;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>};</div>
 </div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>} <span class="comment">// namespace fe</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>} <span class="comment">// namespace fe</span></div>
 </div>
 <div class="ttc" id="aassert_8h_html"><div class="ttname"><a href="assert_8h.html">assert.h</a></div></div>
 <div class="ttc" id="aclassfe_1_1Arena_html"><div class="ttname"><a href="classfe_1_1Arena.html">fe::Arena</a></div><div class="ttdoc">An arena pre-allocates so-called pages of size Arena::page_size_.</div><div class="ttdef"><b>Definition</b> <a href="#l00018">arena.h:18</a></div></div>
