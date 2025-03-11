@@ -2,7 +2,7 @@ var searchData=
 [
   ['size_0',['size',['../classfe_1_1Sym.html#a3b4b33b61bf97b2b95ce0f2536ed6e8d',1,'fe::Sym']]],
   ['start_1',['start',['../classfe_1_1Lexer.html#a0ecd9086f866aa9a8d849620aba195a0',1,'fe::Lexer']]],
-  ['state_2',['state',['../classfe_1_1Arena.html#ad5596516d2fa1fb1679b2485b60a9007',1,'fe::Arena']]],
+  ['state_2',['state',['../classfe_1_1Arena.html#adc11bd44aacf4c22167b1ed08d400077',1,'fe::Arena']]],
   ['str_3',['str',['../classfe_1_1Sym.html#a02b9bc5090c6c46b42cd768b38216d79',1,'fe::Sym']]],
   ['string_4',['String',['../structfe_1_1Sym_1_1String.html#a7145baf09453a5d0eceedcef019992f5',1,'fe::Sym::String::String() noexcept=default'],['../structfe_1_1Sym_1_1String.html#a7c38f0b7baacc28e734d32d24793753d',1,'fe::Sym::String::String(size_t size)']]],
   ['sym_5',['Sym',['../classfe_1_1Sym.html#a01ed88fdb934dd327de3502ac1f57b89',1,'fe::Sym']]],
