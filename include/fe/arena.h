@@ -150,12 +150,13 @@ private:
         };
 
         Page()
-            : size(0) {}
+            : size(0)
+            , buffer(nullptr, Deleter(0)) {}
         Page(size_t size, size_t align)
             : size(size)
-            , buffer(new(std::align_val_t(align)) char[size]) {}
+            , buffer(new(std::align_val_t(align)) char[size], Deleter(align)) {}
         const size_t size;
-        std::unique_ptr<char[]> buffer;
+        std::unique_ptr<char[], Deleter> buffer;
     };
 
     std::list<Page> pages_;
