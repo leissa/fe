@@ -114,8 +114,8 @@ public:
     /// if (/* I don't want that */) arena.deallocate(state);
     /// ```
     /// @warning Only use, if you really know what you are doing.
-
     ///@{
+
     /// Removes @p num_bytes again.
     void deallocate(size_t num_bytes) { index_ -= num_bytes; }
 
