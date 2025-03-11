@@ -26,26 +26,29 @@ public:
         using value_type = T;
 
         Allocator() = delete;
+
         template<class U>
-        Allocator(const Arena::Allocator<U>& allocator) noexcept
+        constexpr Allocator(const Arena::Allocator<U>& allocator) noexcept
             : arena(allocator.arena) {}
-        Allocator(Arena& arena) noexcept
+        constexpr Allocator(Arena& arena) noexcept
             : arena(arena) {}
 
-        [[nodiscard]] T* allocate(size_t num_elems) { return arena.allocate<T>(num_elems); }
+        [[nodiscard]] constexpr T* allocate(size_t num_elems) { return arena.allocate<T>(num_elems); }
 
-        void deallocate(T*, size_t) noexcept {}
+        constexpr void deallocate(T*, size_t) noexcept {}
 
-        template<class U> bool operator==(const Allocator<U>& a) const noexcept { return &arena == &a.arena; }
-        template<class U> bool operator!=(const Allocator<U>& a) const noexcept { return &arena != &a.arena; }
+        template<class U> constexpr bool operator==(const Allocator<U>& a) const noexcept { return &arena == &a.arena; }
+        template<class U> constexpr bool operator!=(const Allocator<U>& a) const noexcept { return &arena != &a.arena; }
 
         Arena& arena;
     };
 
     template<class T> struct Deleter {
         constexpr Deleter() noexcept = default;
-        template<class U> constexpr Deleter(const Deleter<U>&) noexcept {}
-        constexpr void operator()(T* ptr) const /*noexcept(noxecept(ptr->~T()))*/ { ptr->~T(); }
+        template<class U, std::enable_if_t<std::is_convertible_v<U*, T*>, int> = 0>
+        constexpr Deleter(const Deleter<U>&) noexcept {}
+
+        constexpr void operator()(T* ptr) const noexcept(noexcept(ptr->~T())) { ptr->~T(); }
     };
 
     template<class T> using Ptr = std::unique_ptr<T, Deleter<T>>;
@@ -53,11 +56,11 @@ public:
 
     /// @name Construction
     ///@{
+    Arena(const Arena&) = delete;
     Arena(size_t page_size = Default_Page_Size)
         : page_size_(page_size) {
         pages_.emplace_back(Page{});
     }
-    Arena(const Arena&) = delete;
     Arena(Arena&& other) noexcept
         : Arena() {
         swap(*this, other);
@@ -65,7 +68,7 @@ public:
     Arena& operator=(Arena) = delete;
 
     /// Create Allocator from Arena.
-    template<class T> Allocator<T> allocator() { return Allocator<T>(*this); }
+    template<class T> constexpr Allocator<T> allocator() noexcept { return Allocator<T>(*this); }
 
     /// This is a [std::unique_ptr](https://en.cppreference.com/w/cpp/memory/unique_ptr)
     /// that uses the Arena under the hood
@@ -76,7 +79,7 @@ public:
     /// ```
     /// auto ptr = arena.mk<Foo>(a, b, c); // new Foo(a, b, c) placed into arena
     /// ```
-    template<class T, class... Args> Ptr<T> mk(Args&&... args) {
+    template<class T, class... Args> constexpr Ptr<T> mk(Args&&... args) {
         auto ptr = new (allocate<std::remove_const_t<T>>(1)) T(std::forward<Args&&>(args)...);
         return Ptr<T>(ptr, Deleter<T>());
     }
@@ -86,7 +89,7 @@ public:
     ///@{
 
     /// Get @p n bytes of fresh memory.
-    [[nodiscard]] void* allocate(size_t num_bytes, size_t align) {
+    [[nodiscard]] constexpr void* allocate(size_t num_bytes, size_t align) {
         if (num_bytes == 0) return nullptr;
 
         if (index_ + num_bytes > pages_.back().size) {
@@ -101,7 +104,7 @@ public:
         return result;
     }
 
-    template<class T> [[nodiscard]] T* allocate(size_t num_elems) {
+    template<class T> [[nodiscard]] constexpr T* allocate(size_t num_elems) {
         return static_cast<T*>(allocate(num_elems * std::max(sizeof(T), alignof(T)), alignof(T)));
     }
     ///@}
@@ -118,10 +121,10 @@ public:
     ///@{
 
     /// Removes @p num_bytes again.
-    void deallocate(size_t num_bytes) { index_ -= num_bytes; }
+    constexpr void deallocate(size_t num_bytes) noexcept { index_ -= num_bytes; }
+    State state() const noexcept { return {pages_.size(), index_}; }
 
-    State state() const { return {pages_.size(), index_}; }
-    void deallocate(State state) {
+    void deallocate(State state) noexcept {
         if (state.first == pages_.size())
             index_ = state.second; // don't care otherwise
         else
@@ -138,8 +141,11 @@ public:
         // clang-format on
     }
 
+    /// Align @p i to @p a.
+    static constexpr size_t align(size_t i, size_t a) noexcept { return (i + (a - 1)) & ~(a - 1); }
+
 private:
-    constexpr Arena& align(size_t a) noexcept { return index_ = (index_ + (a - 1)) & ~(a - 1), *this; }
+    constexpr Arena& align(size_t a) noexcept { return index_ = align(index_, a), *this; }
 
     struct Page {
         constexpr Page() noexcept = default;
@@ -147,7 +153,7 @@ private:
             : size(size)
             , align(align)
             , buffer((char*)::operator new[](size, std::align_val_t(align))) {}
-        ~Page() {
+        constexpr ~Page() noexcept {
             if (buffer) ::operator delete[](buffer, std::align_val_t(align));
         }
 
