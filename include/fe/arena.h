@@ -53,9 +53,7 @@ public:
     /// @name Construction
     ///@{
     Arena(size_t page_size = Default_Page_Size)
-        : page_size_(page_size) {
-        pages_.emplace_back(page_size);
-    }
+        : page_size_(page_size) {}
     Arena(const Arena&) = delete;
     Arena(Arena&& other) noexcept
         : Arena() {
@@ -76,7 +74,7 @@ public:
     /// auto ptr = arena.mk<Foo>(a, b, c); // new Foo(a, b, c) placed into arena
     /// ```
     template<class T, class... Args> Ptr<T> mk(Args&&... args) {
-        auto ptr = new (allocate(sizeof(T))) T(std::forward<Args&&>(args)...);
+        auto ptr = new (allocate<std::remove_const_t<T>>(1)) T(std::forward<Args&&>(args)...);
         return Ptr<T>(ptr, Deleter<T>());
     }
     ///@}
@@ -84,14 +82,13 @@ public:
     /// @name Allocate
     ///@{
 
-    /// Align next allocate(size_t) to @p a.
-    Arena& align(size_t a) { return index_ = (index_ + (a - 1)) & ~(a - 1), *this; }
-
     /// Get @p n bytes of fresh memory.
-    [[nodiscard]] void* allocate(size_t num_bytes) {
+    [[nodiscard]] void* allocate(size_t num_bytes, size_t align) {
         if (index_ + num_bytes > pages_.back().size) {
-            pages_.emplace_back(std::max(page_size_, num_bytes));
+            pages_.emplace_back(std::max(page_size_, num_bytes), align);
             index_ = 0;
+        } else {
+            this->align(align);
         }
 
         auto result = pages_.back().buffer.get() + index_;
@@ -100,8 +97,7 @@ public:
     }
 
     template<class T> [[nodiscard]] T* allocate(size_t num_elems) {
-        align(alignof(T));
-        return static_cast<T*>(allocate(num_elems * std::max(sizeof(T), alignof(T))));
+        return static_cast<T*>(allocate(num_elems * std::max(sizeof(T), alignof(T)), alignof(T)));
     }
     ///@}
 
@@ -138,10 +134,14 @@ public:
     }
 
 private:
+    Arena& align(size_t a) { return index_ = (index_ + (a - 1)) & ~(a - 1), *this; }
+
     struct Page {
-        Page(size_t size)
+        Page()
+            : size(0) {}
+        Page(size_t size, size_t align)
             : size(size)
-            , buffer(std::make_unique<char[]>(size)) {}
+            , buffer(new(std::align_val_t(align)) char[size]) {}
         const size_t size;
         std::unique_ptr<char[]> buffer;
     };

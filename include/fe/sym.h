@@ -228,7 +228,7 @@ public:
         }
 
         auto state = strings_.state();
-        auto ptr   = (String*)strings_.align(Sym::Short_String_Bytes).allocate(sizeof(String) + s.size() + 1 /*'\0'*/);
+        auto ptr   = (String*)strings_.allocate(sizeof(String) + s.size() + 1 /*'\0'*/, Sym::Short_String_Bytes);
         new (ptr) String(s.size());
         *std::copy(s.begin(), s.end(), ptr->chars) = '\0';
         auto [i, ins]                              = pool_.emplace(ptr);
