@@ -45,7 +45,7 @@ public:
     template<class T> struct Deleter {
         constexpr Deleter() noexcept = default;
         template<class U> constexpr Deleter(const Deleter<U>&) noexcept {}
-        void operator()(T* ptr) { ptr->~T(); }
+        constexpr void operator()(T* ptr) const /*noexcept(noxecept(ptr->~T()))*/ { ptr->~T(); }
     };
 
     template<class T> using Ptr = std::unique_ptr<T, Deleter<T>>;
@@ -92,7 +92,7 @@ public:
             this->align(align);
         }
 
-        auto result = pages_.back().buffer.get() + index_;
+        auto result = pages_.back().buffer + index_;
         index_ += num_bytes;
         return result;
     }
@@ -138,25 +138,18 @@ private:
     Arena& align(size_t a) { return index_ = (index_ + (a - 1)) & ~(a - 1), *this; }
 
     struct Page {
-        struct Deleter {
-            constexpr Deleter(size_t align) noexcept
-                : align(align) {}
-            constexpr Deleter(const Deleter& other) noexcept
-                : align(other.align) {}
-
-            void operator()(char* ptr) { ::operator delete[](ptr, std::align_val_t(align)); }
-
-            size_t align;
-        };
-
         Page()
             : size(0)
-            , buffer(nullptr, Deleter(0)) {}
+            , align(0) {}
         Page(size_t size, size_t align)
             : size(size)
-            , buffer(new(std::align_val_t(align)) char[size], Deleter(align)) {}
+            , align(align)
+            , buffer((char*)::operator new[](size, std::align_val_t(align))) {}
+        ~Page() { ::operator delete[](buffer, std::align_val_t(align)); }
+
         const size_t size;
-        std::unique_ptr<char[], Deleter> buffer;
+        const size_t align;
+        char* buffer;
     };
 
     std::list<Page> pages_;
