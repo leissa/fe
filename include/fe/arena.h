@@ -54,7 +54,9 @@ public:
     /// @name Construction
     ///@{
     Arena(size_t page_size = Default_Page_Size)
-        : page_size_(page_size) {}
+        : page_size_(page_size) {
+        pages_.emplace_back(Page{});
+    }
     Arena(const Arena&) = delete;
     Arena(Arena&& other) noexcept
         : Arena() {
@@ -85,6 +87,8 @@ public:
 
     /// Get @p n bytes of fresh memory.
     [[nodiscard]] void* allocate(size_t num_bytes, size_t align) {
+        if (num_bytes == 0) return nullptr;
+
         if (index_ + num_bytes > pages_.back().size) {
             pages_.emplace_back(std::max(page_size_, num_bytes), align);
             index_ = 0;
@@ -135,21 +139,21 @@ public:
     }
 
 private:
-    Arena& align(size_t a) { return index_ = (index_ + (a - 1)) & ~(a - 1), *this; }
+    constexpr Arena& align(size_t a) noexcept { return index_ = (index_ + (a - 1)) & ~(a - 1), *this; }
 
     struct Page {
-        Page()
-            : size(0)
-            , align(0) {}
+        constexpr Page() noexcept = default;
         Page(size_t size, size_t align)
             : size(size)
             , align(align)
             , buffer((char*)::operator new[](size, std::align_val_t(align))) {}
-        ~Page() { ::operator delete[](buffer, std::align_val_t(align)); }
+        ~Page() {
+            if (buffer) ::operator delete[](buffer, std::align_val_t(align));
+        }
 
-        const size_t size;
-        const size_t align;
-        char* buffer;
+        const size_t size  = 0;
+        const size_t align = 0;
+        char* buffer       = nullptr;
     };
 
     std::list<Page> pages_;
