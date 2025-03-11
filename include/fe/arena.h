@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <list>
 #include <memory>
+#include <new>
 
 #include "fe/assert.h"
 
@@ -137,6 +138,17 @@ private:
     Arena& align(size_t a) { return index_ = (index_ + (a - 1)) & ~(a - 1), *this; }
 
     struct Page {
+        struct Deleter {
+            constexpr Deleter(size_t align) noexcept
+                : align(align) {}
+            constexpr Deleter(const Deleter& other) noexcept
+                : align(other.align) {}
+
+            void operator()(char* ptr) { ::operator delete[](ptr, std::align_val_t(align)); }
+
+            size_t align;
+        };
+
         Page()
             : size(0) {}
         Page(size_t size, size_t align)
