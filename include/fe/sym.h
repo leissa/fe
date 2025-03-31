@@ -133,12 +133,13 @@ public:
     constexpr operator const char*() const noexcept { return c_str(); }
 
     constexpr std::string_view view() const noexcept {
-        if (empty()) return {(const char*)&ptr_, 0};
+        if (empty()) return {std::bit_cast<const char*>(&ptr_), 0};
         // Little endian: 2 a b 0 register: 0ba2
         // Big endian:    a b 0 2 register: ab02
         uintptr_t offset = std::endian::native == std::endian::little ? 1 : 0;
-        if (auto size = ptr_ & Short_String_Mask) return {(const char*)&ptr_ + offset, size};
-        return std::string_view(((const String*)ptr_)->chars, ((const String*)ptr_)->size);
+        if (auto size = ptr_ & Short_String_Mask) return {std::bit_cast<const char*>(&ptr_) + offset, size};
+        auto S = std::bit_cast<const String*>(ptr_);
+        return std::string_view(S->chars, S->size);
     }
     constexpr operator std::string_view() const noexcept { return view(); }
     constexpr std::string_view operator*() const noexcept { return view(); }
@@ -233,9 +234,9 @@ public:
         new (ptr) String(s.size());
         *std::copy(s.begin(), s.end(), ptr->chars) = '\0';
         auto [i, ins]                              = pool_.emplace(ptr);
-        if (ins) return Sym((uintptr_t)ptr);
+        if (ins) return Sym(std::bit_cast<uintptr_t>(ptr));
         strings_.deallocate(state);
-        return Sym((uintptr_t)*i);
+        return Sym(std::bit_cast<uintptr_t>(*i));
     }
     Sym sym(const std::string& s) { return sym((std::string_view)s); }
     /// @p s is a null-terminated C-string.
