@@ -9,7 +9,7 @@ var searchData=
   ['is_5fbit_5fenum_6',['is_bit_enum',['../structfe_1_1is__bit__enum.html',1,'fe']]],
   ['is_5fbit_5fenum_5fv_7',['is_bit_enum_v',['../namespacefe.html#ae103d19a2604571950b51fa886deedce',1,'fe']]],
   ['is_5fvalid234_8',['is_valid234',['../namespacefe_1_1utf8.html#a368b866a5344d3f1a4541cda55469b03',1,'fe::utf8']]],
-  ['isa_9',['isa',['../classfe_1_1RuntimeCast.html#a3a5b6b6c64212ac9ac33635730333bfa',1,'fe::RuntimeCast::isa()'],['../classfe_1_1RuntimeCast.html#a6757eb14f9dfc8155802a0a9c08b85bc',1,'fe::RuntimeCast::isa()'],['../classfe_1_1RuntimeCast.html#a40e2312e4ad37c67c4f495ccb34349ba',1,'fe::RuntimeCast::isa() const'],['../classfe_1_1RuntimeCast.html#aa352b8bb371c5460061ab4e91fbdd5a1',1,'fe::RuntimeCast::isa() const']]],
+  ['isa_9',['isa',['../classfe_1_1RuntimeCast.html#a3a5b6b6c64212ac9ac33635730333bfa',1,'fe::RuntimeCast::isa()'],['../classfe_1_1RuntimeCast.html#a40e2312e4ad37c67c4f495ccb34349ba',1,'fe::RuntimeCast::isa() const']]],
   ['isalnum_10',['isalnum',['../namespacefe_1_1utf8.html#a8c1b42c416615422d2a68f761ba7ce5d',1,'fe::utf8']]],
   ['isalpha_11',['isalpha',['../namespacefe_1_1utf8.html#a81e47205741ccebef31180e62371c335',1,'fe::utf8']]],
   ['isascii_12',['isascii',['../namespacefe_1_1utf8.html#a3da2ce510a2a38c08756d6fcb6d59321',1,'fe::utf8']]],
