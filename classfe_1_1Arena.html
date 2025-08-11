@@ -179,7 +179,7 @@ Public Member Functions</h2></td></tr>
 <p>Use like this: </p><div class="fragment"><div class="line"><span class="keyword">auto</span> <a class="code hl_function" href="#adc11bd44aacf4c22167b1ed08d400077">state</a> = arena.state();</div>
 <div class="line"><span class="keyword">auto</span> ptr   = arena.allocate(n);</div>
 <div class="line"><span class="keywordflow">if</span> (<span class="comment">/* I don&#39;t want that *&amp;zwj;/) arena.deallocate(state);</span></div>
-<div class="ttc" id="aclassfe_1_1Arena_html_adc11bd44aacf4c22167b1ed08d400077"><div class="ttname"><a href="#adc11bd44aacf4c22167b1ed08d400077">fe::Arena::state</a></div><div class="ttdeci">State state() const noexcept</div><div class="ttdef"><b>Definition</b> <a href="arena_8h_source.html#l00125">arena.h:125</a></div></div>
+<div class="ttc" id="aclassfe_1_1Arena_html_adc11bd44aacf4c22167b1ed08d400077"><div class="ttname"><a href="#adc11bd44aacf4c22167b1ed08d400077">fe::Arena::state</a></div><div class="ttdeci">State state() const noexcept</div><div class="ttdef"><b>Definition</b> <a href="arena_8h_source.html#l00139">arena.h:139</a></div></div>
 </div><!-- fragment --> <dl class="section warning"><dt>Warning</dt><dd>Only use, if you really know what you are doing. </dd></dl>
 </div></td></tr>
 <tr class="memitem:a23e2c81675c44591a623732beeb2729b" id="r_a23e2c81675c44591a623732beeb2729b"><td class="memItemLeft" align="right" valign="top">constexpr void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a23e2c81675c44591a623732beeb2729b">deallocate</a> (size_t num_bytes) noexcept</td></tr>
@@ -227,7 +227,7 @@ template&lt;class T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00054">54</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00063">63</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
 </div>
 </div>
@@ -243,7 +243,7 @@ template&lt;class T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00055">55</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00064">64</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
 </div>
 </div>
@@ -296,7 +296,7 @@ template&lt;class T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00060">60</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00069">69</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
 </div>
 </div>
@@ -323,9 +323,9 @@ template&lt;class T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00064">64</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00073">73</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
-<p class="reference">References <a class="el" href="arena_8h_source.html#l00135">swap</a>.</p>
+<p class="reference">References <a class="el" href="arena_8h_source.html#l00149">swap</a>.</p>
 
 </div>
 </div>
@@ -359,9 +359,9 @@ template&lt;class T &gt; </div>
 
 <p>Align <code>i</code> to <code>a</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00145">145</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00159">159</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="arena_8h_source.html#l00092">allocate()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="arena_8h_source.html#l00105">allocate()</a>.</p>
 
 </div>
 </div>
@@ -394,11 +394,11 @@ template&lt;class T &gt; </div>
 
 <p>Get <code>n</code> bytes of fresh memory. </p>
 
-<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00092">92</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00105">105</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
-<p class="reference">References <a class="el" href="arena_8h_source.html#l00145">align()</a>.</p>
+<p class="reference">References <a class="el" href="arena_8h_source.html#l00159">align()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="arena_8h_source.html#l00107">allocate()</a>, <a class="el" href="arena_8h_source.html#l00036">fe::Arena::Allocator&lt; T &gt;::allocate()</a>, <a class="el" href="arena_8h_source.html#l00082">mk()</a>, and <a class="el" href="sym_8h_source.html#l00216">fe::SymPool::sym()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="arena_8h_source.html#l00121">allocate()</a>, <a class="el" href="arena_8h_source.html#l00037">fe::Arena::Allocator&lt; T &gt;::allocate()</a>, <a class="el" href="arena_8h_source.html#l00095">mk()</a>, and <a class="el" href="sym_8h_source.html#l00222">fe::SymPool::sym()</a>.</p>
 
 </div>
 </div>
@@ -427,9 +427,9 @@ template&lt;class T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00107">107</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00121">121</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
-<p class="reference">References <a class="el" href="arena_8h_source.html#l00092">allocate()</a>.</p>
+<p class="reference">References <a class="el" href="arena_8h_source.html#l00105">allocate()</a>.</p>
 
 </div>
 </div>
@@ -460,7 +460,7 @@ template&lt;class T &gt; </div>
 
 <p>Create <a class="el" href="structfe_1_1Arena_1_1Allocator.html" title="An allocator in order to use this Arena for containers.">Allocator</a> from <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">Arena</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00071">71</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00081">81</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
 </div>
 </div>
@@ -489,9 +489,9 @@ template&lt;class T &gt; </div>
 
 <p>Removes <code>num_bytes</code> again. </p>
 
-<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00124">124</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00138">138</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00216">fe::SymPool::sym()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00222">fe::SymPool::sym()</a>.</p>
 
 </div>
 </div>
@@ -518,9 +518,9 @@ template&lt;class T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00127">127</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00141">141</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
-<p class="reference">References <a class="el" href="arena_8h_source.html#l00125">state()</a>.</p>
+<p class="reference">References <a class="el" href="arena_8h_source.html#l00139">state()</a>.</p>
 
 </div>
 </div>
@@ -552,9 +552,9 @@ template&lt;class T , class... Args&gt; </div>
 <p>This is a <a href="https://en.cppreference.com/w/cpp/memory/unique_ptr">std::unique_ptr</a> that uses the <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">Arena</a> under the hood and whose <a class="el" href="structfe_1_1Arena_1_1Deleter.html">Deleter</a> will <em>only</em> invoke the destructor but <em>not</em> <code>delete</code> anything; memory will be released upon destruction of the <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">Arena</a>. </p>
 <p>Use like this: </p><div class="fragment"><div class="line"><span class="keyword">auto</span> ptr = arena.mk&lt;Foo&gt;(a, b, c); <span class="comment">// new Foo(a, b, c) placed into arena</span></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00082">82</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00095">95</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
-<p class="reference">References <a class="el" href="arena_8h_source.html#l00092">allocate()</a>.</p>
+<p class="reference">References <a class="el" href="arena_8h_source.html#l00105">allocate()</a>.</p>
 
 </div>
 </div>
@@ -606,9 +606,9 @@ template&lt;class T , class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00125">125</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00139">139</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="arena_8h_source.html#l00127">deallocate()</a>, and <a class="el" href="sym_8h_source.html#l00216">fe::SymPool::sym()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="arena_8h_source.html#l00141">deallocate()</a>, and <a class="el" href="sym_8h_source.html#l00222">fe::SymPool::sym()</a>.</p>
 
 </div>
 </div>
@@ -640,9 +640,9 @@ template&lt;class T , class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00135">135</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00149">149</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="arena_8h_source.html#l00064">Arena()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="arena_8h_source.html#l00073">Arena()</a>.</p>
 
 </div>
 </div>
