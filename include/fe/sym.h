@@ -52,7 +52,8 @@ public:
         struct Equal {
             constexpr bool operator()(const String* s1, const String* s2) const noexcept {
                 bool res = s1->size == s2->size;
-                for (size_t i = 0, e = s1->size; res && i != e; ++i) res &= s1->chars[i] == s2->chars[i];
+                for (size_t i = 0, e = s1->size; res && i != e; ++i)
+                    res &= s1->chars[i] == s2->chars[i];
                 return res;
             }
         };
@@ -64,7 +65,8 @@ public:
         };
 
 #ifdef FE_ABSL
-        template<class H> friend constexpr H AbslHashValue(H h, const String* string) noexcept {
+        template<class H>
+        friend constexpr H AbslHashValue(H h, const String* string) noexcept {
             return H::combine(std::move(h), std::string_view(string->chars, string->size));
         }
 #endif
@@ -152,7 +154,8 @@ public:
     ///@}
 
 #ifdef FE_ABSL
-    template<class H> friend constexpr H AbslHashValue(H h, Sym sym) noexcept {
+    template<class H>
+    friend constexpr H AbslHashValue(H h, Sym sym) noexcept {
         return H::combine(std::move(h), sym.ptr_);
     }
 #endif
@@ -170,7 +173,8 @@ private:
 #ifndef DOXYGEN
 } // namespace fe
 
-template<> struct std::hash<fe::Sym> {
+template<>
+struct std::hash<fe::Sym> {
     size_t operator()(fe::Sym sym) const noexcept { return std::hash<uintptr_t>()(sym.ptr_); }
 };
 
@@ -181,11 +185,13 @@ namespace fe {
 /// Set/Map is keyed by pointer - which is hashed in SymPool.
 ///@{
 #ifdef FE_ABSL
-template<class V> using SymMap = absl::flat_hash_map<Sym, V>;
-using SymSet                   = absl::flat_hash_set<Sym>;
+template<class V>
+using SymMap = absl::flat_hash_map<Sym, V>;
+using SymSet = absl::flat_hash_set<Sym>;
 #else
-template<class V> using SymMap = std::unordered_map<Sym, V>;
-using SymSet                   = std::unordered_set<Sym>;
+template<class V>
+using SymMap = std::unordered_map<Sym, V>;
+using SymSet = std::unordered_set<Sym>;
 #endif
 ///@}
 
@@ -222,7 +228,8 @@ public:
             // Little endian: 2 a b 0 register: 0ba2
             // Big endian:    a b 0 2 register: ab02
             if constexpr (std::endian::native == std::endian::little)
-                for (uintptr_t i = 0, shift = 8; i != size; ++i, shift += 8) ptr |= (uintptr_t(s[i]) << shift);
+                for (uintptr_t i = 0, shift = 8; i != size; ++i, shift += 8)
+                    ptr |= (uintptr_t(s[i]) << shift);
             else
                 for (uintptr_t i = 0, shift = (Sym::Short_String_Bytes - 1) * 8; i != size; ++i, shift -= 8)
                     ptr |= (uintptr_t(s[i]) << shift);

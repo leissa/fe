@@ -22,7 +22,8 @@ public:
     /// An [allocator](https://en.cppreference.com/w/cpp/named_req/Allocator) in order to use this Arena for
     /// [containers](https://en.cppreference.com/w/cpp/named_req/AllocatorAwareContainer).
     /// Construct it via Arena::allocator.
-    template<class T> struct Allocator {
+    template<class T>
+    struct Allocator {
         using value_type = T;
 
         Allocator() = delete;
@@ -37,13 +38,20 @@ public:
 
         constexpr void deallocate(T*, size_t) noexcept {}
 
-        template<class U> constexpr bool operator==(const Allocator<U>& a) const noexcept { return &arena == &a.arena; }
-        template<class U> constexpr bool operator!=(const Allocator<U>& a) const noexcept { return &arena != &a.arena; }
+        template<class U>
+        constexpr bool operator==(const Allocator<U>& a) const noexcept {
+            return &arena == &a.arena;
+        }
+        template<class U>
+        constexpr bool operator!=(const Allocator<U>& a) const noexcept {
+            return &arena != &a.arena;
+        }
 
         Arena& arena;
     };
 
-    template<class T> struct Deleter {
+    template<class T>
+    struct Deleter {
         constexpr Deleter() noexcept = default;
         template<class U, std::enable_if_t<std::is_convertible_v<U*, T*>, int> = 0>
         constexpr Deleter(const Deleter<U>&) noexcept {}
@@ -51,8 +59,9 @@ public:
         constexpr void operator()(T* ptr) const noexcept(noexcept(ptr->~T())) { ptr->~T(); }
     };
 
-    template<class T> using Ptr = std::unique_ptr<T, Deleter<T>>;
-    using State                 = std::pair<size_t, size_t>;
+    template<class T>
+    using Ptr   = std::unique_ptr<T, Deleter<T>>;
+    using State = std::pair<size_t, size_t>;
 
     /// @name Construction
     ///@{
@@ -68,7 +77,10 @@ public:
     Arena& operator=(Arena) = delete;
 
     /// Create Allocator from Arena.
-    template<class T> constexpr Allocator<T> allocator() noexcept { return Allocator<T>(*this); }
+    template<class T>
+    constexpr Allocator<T> allocator() noexcept {
+        return Allocator<T>(*this);
+    }
 
     /// This is a [std::unique_ptr](https://en.cppreference.com/w/cpp/memory/unique_ptr)
     /// that uses the Arena under the hood
@@ -79,7 +91,8 @@ public:
     /// ```
     /// auto ptr = arena.mk<Foo>(a, b, c); // new Foo(a, b, c) placed into arena
     /// ```
-    template<class T, class... Args> constexpr Ptr<T> mk(Args&&... args) {
+    template<class T, class... Args>
+    constexpr Ptr<T> mk(Args&&... args) {
         auto ptr = new (allocate<std::remove_const_t<T>>(1)) T(std::forward<Args>(args)...);
         return Ptr<T>(ptr, Deleter<T>());
     }
@@ -104,7 +117,8 @@ public:
         return result;
     }
 
-    template<class T> [[nodiscard]] constexpr T* allocate(size_t num_elems) {
+    template<class T>
+    [[nodiscard]] constexpr T* allocate(size_t num_elems) {
         return static_cast<T*>(allocate(num_elems * std::max(sizeof(T), alignof(T)), alignof(T)));
     }
     ///@}

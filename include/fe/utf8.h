@@ -125,8 +125,12 @@ inline bool isbdigit(char32_t c) { return isrange(c, '0', '1'); } ///< Is binary
 /// Is @p c in any of the remaining arguments?
 ///@{
 inline bool _any(char32_t c, char32_t d) { return c == d; }
-template<class... T> inline bool _any(char32_t c, char32_t d, T... args) { return c == d || _any(c, args...); }
-template<class... T> inline auto any(T... args) {
+template<class... T>
+inline bool _any(char32_t c, char32_t d, T... args) {
+    return c == d || _any(c, args...);
+}
+template<class... T>
+inline auto any(T... args) {
     return [=](char32_t c) { return _any(c, args...); };
 }
 ///@}

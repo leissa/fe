@@ -12,7 +12,8 @@ concept Nodeable = requires(T n) {
 
 /// Inherit from this class using [CRTP](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern),
 /// for some nice `dynamic_cast`-style wrappers.
-template<class B> class RuntimeCast {
+template<class B>
+class RuntimeCast {
 public:
     // clang-format off
     /// `static_cast` with debug check.

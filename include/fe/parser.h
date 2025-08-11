@@ -38,7 +38,8 @@ protected:
     ///@{
     void init(const std::filesystem::path* path) {
         ahead_.reset();
-        for (size_t i = 0; i != K; ++i) ahead_[i] = self().lexer().lex();
+        for (size_t i = 0; i != K; ++i)
+            ahead_[i] = self().lexer().lex();
         curr_ = Loc(path, {1, 1});
     }
     ///@}

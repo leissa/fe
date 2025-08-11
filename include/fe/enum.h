@@ -8,8 +8,10 @@ namespace fe {
 
 /// @name is_enum
 ///@{
-template<typename T> struct is_bit_enum : std::false_type {};
-template<class T> inline constexpr bool is_bit_enum_v = is_bit_enum<T>::value;
+template<typename T>
+struct is_bit_enum : std::false_type {};
+template<class T>
+inline constexpr bool is_bit_enum_v = is_bit_enum<T>::value;
 template<class E>
 concept BitEnum = std::is_enum_v<E> && is_bit_enum_v<E>;
 ///@}

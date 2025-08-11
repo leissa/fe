@@ -25,8 +25,10 @@ using namespace ::fmt;
 /// template<> struct std::formatter<T> : fe::ostream_formatter {};
 /// ```
 /// @sa [Stack Overflow](https://stackoverflow.com/a/75738462).
-template<class Char> struct basic_ostream_formatter : format::formatter<std::basic_string_view<Char>, Char> {
-    template<class T, class O> O format(const T& value, format::basic_format_context<O, Char>& ctx) const {
+template<class Char>
+struct basic_ostream_formatter : format::formatter<std::basic_string_view<Char>, Char> {
+    template<class T, class O>
+    O format(const T& value, format::basic_format_context<O, Char>& ctx) const {
         std::basic_stringstream<Char> ss;
         ss << value;
 #if defined(_LIBCPP_VERSION) && _LIBCPP_VERSION < 170000
@@ -90,7 +92,8 @@ public:
     // clang-format on
 
     friend std::ostream& operator<<(std::ostream& os, Tab tab) {
-        for (size_t i = 0; i != tab.indent_; ++i) os << tab.tab_;
+        for (size_t i = 0; i != tab.indent_; ++i)
+            os << tab.tab_;
         return os;
     }
 
@@ -102,9 +105,14 @@ private:
 } // namespace fe
 
 #ifndef DOXYGEN
-template<> struct fe::format::formatter<fe::Pos> : fe::ostream_formatter {};
-template<> struct fe::format::formatter<fe::Loc> : fe::ostream_formatter {};
-template<> struct fe::format::formatter<fe::Sym> : fe::ostream_formatter {};
-template<> struct fe::format::formatter<fe::Tab> : fe::ostream_formatter {};
-template<> struct fe::format::formatter<fe::utf8::Char32> : fe::ostream_formatter {};
+template<>
+struct fe::format::formatter<fe::Pos> : fe::ostream_formatter {};
+template<>
+struct fe::format::formatter<fe::Loc> : fe::ostream_formatter {};
+template<>
+struct fe::format::formatter<fe::Sym> : fe::ostream_formatter {};
+template<>
+struct fe::format::formatter<fe::Tab> : fe::ostream_formatter {};
+template<>
+struct fe::format::formatter<fe::utf8::Char32> : fe::ostream_formatter {};
 #endif

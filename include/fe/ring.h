@@ -11,7 +11,8 @@
 namespace fe {
 
 /// A ring buffer with @p N elements.
-template<class T, size_t N> class Ring {
+template<class T, size_t N>
+class Ring {
 public:
     /// @name Construction
     ///@{
@@ -65,7 +66,8 @@ private:
 };
 
 /// Specialization if `N == 1` - doesn't need a ring.
-template<class T> class Ring<T, 1> {
+template<class T>
+class Ring<T, 1> {
 public:
     /// @name Construction
     ///@{
@@ -99,7 +101,7 @@ public:
     void reset() {}
     T put(T item) {
         auto res = item_;
-        item_ = item;
+        item_    = item;
         return res;
     }
     ///@}
@@ -114,7 +116,8 @@ private:
 };
 
 /// Specialization if `N == 2`; doesn't need a ring, we just copy.
-template<class T> class Ring<T, 2> {
+template<class T>
+class Ring<T, 2> {
 public:
     /// @name Construction
     ///@{
@@ -146,7 +149,7 @@ public:
     ///@{
     void reset() {}
     T put(T item) {
-        auto res = array_[0];
+        auto res  = array_[0];
         array_[0] = array_[1];
         array_[1] = item;
         return res;

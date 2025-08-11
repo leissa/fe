@@ -11,7 +11,8 @@ namespace fe {
 
 /// The blueprint for a lexer with a buffer of @p K tokens to peek into the future (Lexer::ahead).
 /// You can "overide" Lexer::next via CRTP (@p S is the child).
-template<size_t K, class S> class Lexer {
+template<size_t K, class S>
+class Lexer {
 private:
     S& self() { return *static_cast<S*>(this); }
     const S& self() const { return *static_cast<const S*>(this); }
@@ -21,7 +22,8 @@ public:
         : istream_(istream)
         , loc_(path, {0, 0})
         , peek_(1, 1) {
-        for (size_t i = 0; i != K; ++i) ahead_[i] = utf8::decode(istream_);
+        for (size_t i = 0; i != K; ++i)
+            ahead_[i] = utf8::decode(istream_);
         accept(utf8::BOM); // eat UTF-8 BOM, if present
         assert(peek_.col == 1);
     }
@@ -68,7 +70,8 @@ protected:
 
     /// @returns `true` if @p pred holds.
     /// In this case invoke Lexer::next() and append to Lexer::str_, if @p append.
-    template<Append append = Append::On, class Pred> bool accept(Pred pred) {
+    template<Append append = Append::On, class Pred>
+    bool accept(Pred pred) {
         if (pred(ahead())) {
             auto c = self().next();
             if constexpr (append != Append::Off) {
