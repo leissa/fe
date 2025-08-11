@@ -80,7 +80,7 @@ public:
     /// auto ptr = arena.mk<Foo>(a, b, c); // new Foo(a, b, c) placed into arena
     /// ```
     template<class T, class... Args> constexpr Ptr<T> mk(Args&&... args) {
-        auto ptr = new (allocate<std::remove_const_t<T>>(1)) T(std::forward<Args&&>(args)...);
+        auto ptr = new (allocate<std::remove_const_t<T>>(1)) T(std::forward<Args>(args)...);
         return Ptr<T>(ptr, Deleter<T>());
     }
     ///@}

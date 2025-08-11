@@ -43,10 +43,10 @@ using ostream_formatter = basic_ostream_formatter<char>;
 /// Print to `std::cout`/`std::cerr` via `std::format`; the `*ln` variants conclude with `std::endl`.
 ///@{
 // clang-format off
-template<class... Args> void err  (format::format_string<Args...> fmt, Args&&... args) { std::cerr << format::format(fmt, std::forward<Args&&>(args)...);              }
-template<class... Args> void out  (format::format_string<Args...> fmt, Args&&... args) { std::cout << format::format(fmt, std::forward<Args&&>(args)...);              }
-template<class... Args> void errln(format::format_string<Args...> fmt, Args&&... args) { std::cerr << format::format(fmt, std::forward<Args&&>(args)...) << std::endl; }
-template<class... Args> void outln(format::format_string<Args...> fmt, Args&&... args) { std::cout << format::format(fmt, std::forward<Args&&>(args)...) << std::endl; }
+template<class... Args> void err  (format::format_string<Args...> fmt, Args&&... args) { std::cerr << format::format(fmt, std::forward<Args>(args)...);              }
+template<class... Args> void out  (format::format_string<Args...> fmt, Args&&... args) { std::cout << format::format(fmt, std::forward<Args>(args)...);              }
+template<class... Args> void errln(format::format_string<Args...> fmt, Args&&... args) { std::cerr << format::format(fmt, std::forward<Args>(args)...) << std::endl; }
+template<class... Args> void outln(format::format_string<Args...> fmt, Args&&... args) { std::cout << format::format(fmt, std::forward<Args>(args)...) << std::endl; }
 // clang-format on
 
 /// Keeps track of indentation level during output
