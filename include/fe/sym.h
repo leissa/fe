@@ -17,9 +17,6 @@
 
 #include "fe/arena.h"
 
-static_assert(std::endian::native == std::endian::little || std::endian::native == std::endian::big,
-              "mixed endianess not supported");
-
 namespace fe {
 
 /// A Sym%bol just wraps a pointer to Sym::String, so pass Sym itself around as value.
@@ -47,7 +44,7 @@ public:
             : size(size) {}
 
         size_t size = 0;
-        char chars[]; // This is actually a C-only features, but all C++ compilers support that anyway.
+        char chars[]; // This is actually a C-only feature, but all C++ compilers support that anyway.
 
         struct Equal {
             constexpr bool operator()(const String* s1, const String* s2) const noexcept {
@@ -83,8 +80,8 @@ public:
 
     /// @name Getters
     ///@{
-    constexpr bool empty() const noexcept { return ptr_ == 0; }
-    constexpr size_t size() const noexcept {
+    [[nodiscard]] constexpr bool empty() const noexcept { return ptr_ == 0; }
+    [[nodiscard]] constexpr size_t size() const noexcept {
         if (empty()) return 0;
         if (auto size = ptr_ & Short_String_Mask) return size;
         return ((const String*)ptr_)->size;
@@ -113,28 +110,51 @@ public:
     constexpr auto crend() const noexcept { return rend(); }
     ///@}
 
-    /// @name Comparisons
+    /// @name Comparison: Sym w/ Sym
     ///@{
-    constexpr auto operator<=>(Sym other) const noexcept { return this->view() <=> other.view(); }
-    constexpr bool operator==(Sym other) const noexcept { return this->ptr_ == other.ptr_; }
-    constexpr bool operator!=(Sym other) const noexcept { return this->ptr_ != other.ptr_; }
-    constexpr auto operator<=>(char c) const noexcept {
-        auto s = size();
-        if (s == 0) return std::strong_ordering::less;
-        auto cmp = (*this)[0] <=> c;
-        if (s == 1) return cmp;
-        return cmp == 0 ? std::strong_ordering::greater : cmp;
+    friend constexpr auto operator<=>(Sym s1, Sym s2) noexcept { return s1.view() <=> s2.view(); }
+    friend constexpr bool operator==(Sym s1, Sym s2) noexcept { return s1.ptr_ == s2.ptr_; }
+    ///@}
+
+    /// @name Comparison: Sym w/ char
+    ///@{
+    friend constexpr std::strong_ordering operator<=>(Sym s, char c) noexcept { return cmp<false>(s, c); }
+    friend constexpr std::strong_ordering operator<=>(char c, Sym s) noexcept { return cmp<true>(s, c); }
+    friend constexpr bool operator==(Sym s, char c) noexcept { return (s.size() == 1) && (s[0] == c); }
+    friend constexpr bool operator==(char c, Sym s) noexcept { return (s.size() == 1) && (s[0] == c); }
+    ///@}
+
+    /// @name Comparison: Sym w/ convertible to std::string_view
+    ///@{
+    template<typename T>
+    requires std::is_convertible_v<T, std::string_view>
+    friend constexpr auto operator<=>(Sym lhs, const T& rhs) noexcept {
+        return lhs.view() <=> std::string_view(rhs);
     }
-    constexpr auto operator==(char c) const noexcept { return (*this) <=> c == 0; }
-    constexpr auto operator!=(char c) const noexcept { return (*this) <=> c != 0; }
+    template<typename T>
+    requires std::is_convertible_v<T, std::string_view>
+    friend constexpr auto operator<=>(const T& lhs, Sym rhs) noexcept {
+        return std::string_view(lhs) <=> rhs.view();
+    }
+
+    template<typename T>
+    requires std::is_convertible_v<T, std::string_view>
+    friend constexpr bool operator==(Sym lhs, const T& rhs) noexcept {
+        return lhs.view() == std::string_view(rhs);
+    }
+
+    template<typename T>
+    requires std::is_convertible_v<T, std::string_view>
+    friend constexpr bool operator==(const T& lhs, Sym rhs) noexcept {
+        return std::string_view(lhs) == rhs.view();
+    }
     ///@}
 
     /// @name Conversions
     ///@{
-    constexpr const char* c_str() const noexcept { return view().data(); }
-    constexpr operator const char*() const noexcept { return c_str(); }
+    [[nodiscard]] constexpr const char* c_str() const noexcept { return view().data(); }
 
-    constexpr std::string_view view() const noexcept {
+    [[nodiscard]] constexpr std::string_view view() const noexcept {
         if (empty()) return {std::bit_cast<const char*>(&ptr_), 0};
         // Little endian: 2 a b 0 register: 0ba2
         // Big endian:    a b 0 2 register: ab02
@@ -162,7 +182,35 @@ public:
     friend struct ::std::hash<fe::Sym>;
     friend std::ostream& operator<<(std::ostream& o, Sym sym) { return o << sym.view(); }
 
+    /// @name Heterogeneous lookups for hash tables.
+    ///@{
+    struct Hash {
+        using is_transparent = void;
+        size_t operator()(Sym s) const noexcept { return std::hash<uintptr_t>()(s.ptr_); }
+        size_t operator()(std::string_view v) const noexcept { return std::hash<std::string_view>()(v); }
+    };
+
+    struct Eq {
+        using is_transparent = void;
+        bool operator()(Sym a, Sym b) const noexcept { return a.ptr_ == b.ptr_; }
+        bool operator()(Sym a, std::string_view b) const noexcept { return a.view() == b; }
+        bool operator()(std::string_view a, Sym b) const noexcept { return a == b.view(); }
+    };
+    ///@}
+
 private:
+    template<bool Rev>
+    static constexpr std::strong_ordering cmp(Sym s, char c) noexcept {
+        const auto n = s.size();
+        if (n == 0) return Rev ? std::strong_ordering::greater : std::strong_ordering::less;
+
+        auto cmp = s[0] <=> c;
+        if (cmp != 0) return cmp;
+
+        return (n == 1) ? std::strong_ordering::equal
+                        : (Rev ? std::strong_ordering::less : std::strong_ordering::greater);
+    }
+
     // Little endian: 2 a b 0 register: 0ba2
     // Big endian:    a b 0 2 register: ab02
     uintptr_t ptr_ = 0;
@@ -181,17 +229,18 @@ struct std::hash<fe::Sym> {
 namespace fe {
 #endif
 
-/// @name Sym
+/// @name SymMap/SymSet
 /// Set/Map is keyed by pointer - which is hashed in SymPool.
 ///@{
+///
 #ifdef FE_ABSL
 template<class V>
-using SymMap = absl::flat_hash_map<Sym, V>;
-using SymSet = absl::flat_hash_set<Sym>;
+using SymMap = absl::flat_hash_map<Sym, V, Sym::Hash, Sym::Eq>;
+using SymSet = absl::flat_hash_set<Sym, Sym::Hash, Sym::Eq>;
 #else
 template<class V>
-using SymMap = std::unordered_map<Sym, V>;
-using SymSet = std::unordered_set<Sym>;
+using SymMap = std::unordered_map<Sym, V, Sym::Hash, Sym::Eq>;
+using SymSet = std::unordered_set<Sym, Sym::Hash, Sym::Eq>;
 #endif
 ///@}
 
@@ -247,9 +296,7 @@ public:
     }
     Sym sym(const std::string& s) { return sym((std::string_view)s); }
     /// @p s is a null-terminated C-string.
-    constexpr Sym sym(const char* s) {
-        return s == nullptr || *s == '\0' ? Sym() : sym(std::string_view(s, strlen(s)));
-    }
+    constexpr Sym sym(const char* s) { return s == nullptr ? Sym() : sym(std::string_view(s)); }
     // TODO we can try to fit s in current page and hence eliminate the explicit use of strlen
     ///@}
 
@@ -273,5 +320,11 @@ private:
     std::unordered_set<const String*, String::Hash, String::Equal, Arena::Allocator<const String*>> pool_;
 #endif
 };
+
+static_assert(std::is_trivially_copyable_v<Sym>);
+static_assert(sizeof(uintptr_t) == sizeof(void*), "uintptr_t must match pointer size");
+static_assert(std::has_unique_object_representations_v<uintptr_t>);
+static_assert(std::endian::native == std::endian::little || std::endian::native == std::endian::big,
+              "mixed endianess not supported");
 
 } // namespace fe
