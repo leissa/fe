@@ -154,6 +154,10 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfe_1_1Sym_1_1String_1_1Hash.html">fe::Sym::String::Hash</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfe_1_1Sym_1_1Hash.html">fe::Sym::Hash</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfe_1_1Sym_1_1Eq.html">fe::Sym::Eq</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfe_1_1SymPool.html">fe::SymPool</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hash set where all strings - wrapped in <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol - live in.  <a href="classfe_1_1SymPool.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -165,14 +169,14 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr><td colspan="2"><div class="groupHeader">Sym</div></td></tr>
+<tr><td colspan="2"><div class="groupHeader">SymMap/SymSet</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Set/Map is keyed by pointer - which is hashed in <a class="el" href="classfe_1_1SymPool.html" title="Hash set where all strings - wrapped in Symbol - live in.">SymPool</a>. </p>
 </div></td></tr>
-<tr class="memitem:ad8d5f24c92eec4138c95928cadac52ed" id="r_ad8d5f24c92eec4138c95928cadac52ed"><td class="memTemplParams" colspan="2">template&lt;class V &gt; </td></tr>
-<tr class="memitem:ad8d5f24c92eec4138c95928cadac52ed"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#ad8d5f24c92eec4138c95928cadac52ed">fe::SymMap</a> = std::unordered_map&lt;<a class="el" href="classfe_1_1Sym.html">Sym</a>, V&gt;</td></tr>
-<tr class="separator:ad8d5f24c92eec4138c95928cadac52ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae70d9b11a42f0bd579eafe9f03997412" id="r_ae70d9b11a42f0bd579eafe9f03997412"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe.html#ae70d9b11a42f0bd579eafe9f03997412">fe::SymSet</a> = std::unordered_set&lt;<a class="el" href="classfe_1_1Sym.html">Sym</a>&gt;</td></tr>
-<tr class="separator:ae70d9b11a42f0bd579eafe9f03997412"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11fef75d471024bdbf5cfc3223146f8e" id="r_a11fef75d471024bdbf5cfc3223146f8e"><td class="memTemplParams" colspan="2">template&lt;class V &gt; </td></tr>
+<tr class="memitem:a11fef75d471024bdbf5cfc3223146f8e"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacefe.html#a11fef75d471024bdbf5cfc3223146f8e">fe::SymMap</a> = std::unordered_map&lt;<a class="el" href="classfe_1_1Sym.html">Sym</a>, V, <a class="el" href="structfe_1_1Sym_1_1Hash.html">Sym::Hash</a>, <a class="el" href="structfe_1_1Sym_1_1Eq.html">Sym::Eq</a>&gt;</td></tr>
+<tr class="separator:a11fef75d471024bdbf5cfc3223146f8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc6debb6fc36d12352409c5e46ce4e55" id="r_afc6debb6fc36d12352409c5e46ce4e55"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefe.html#afc6debb6fc36d12352409c5e46ce4e55">fe::SymSet</a> = std::unordered_set&lt;<a class="el" href="classfe_1_1Sym.html">Sym</a>, <a class="el" href="structfe_1_1Sym_1_1Hash.html">Sym::Hash</a>, <a class="el" href="structfe_1_1Sym_1_1Eq.html">Sym::Eq</a>&gt;</td></tr>
+<tr class="separator:afc6debb6fc36d12352409c5e46ce4e55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

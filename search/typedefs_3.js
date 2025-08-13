@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['value_5ftype_0',['value_type',['../structfe_1_1Arena_1_1Allocator.html#ac5c353ec9ecaf89ff9362f8e4d9124f4',1,'fe::Arena::Allocator']]]
+  ['state_0',['State',['../classfe_1_1Arena.html#a5e05161e3a767ebfdecbf2cb1e21f6d4',1,'fe::Arena']]],
+  ['string_1',['String',['../classfe_1_1SymPool.html#a11d53cf665ae00f361fd8d2e4d00d100',1,'fe::SymPool']]],
+  ['symmap_2',['SymMap',['../namespacefe.html#a11fef75d471024bdbf5cfc3223146f8e',1,'fe']]],
+  ['symset_3',['SymSet',['../namespacefe.html#afc6debb6fc36d12352409c5e46ce4e55',1,'fe']]]
 ];
