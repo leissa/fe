@@ -1,23 +1,11 @@
 #pragma once
 
-#ifdef FE_STD_FORMAT_SUPPORT
-#    include <format>
-#else
-#    include <fmt/format.h>
-#endif
+#include <format>
 
 #include "fe/loc.h"
 #include "fe/utf8.h"
 
 namespace fe {
-
-namespace format {
-#ifdef FE_STD_FORMAT_SUPPORT
-using namespace ::std;
-#else
-using namespace ::fmt;
-#endif
-} // namespace format
 
 /// Make types that support ostream operators available for `std::format`.
 /// Use like this:
@@ -26,15 +14,15 @@ using namespace ::fmt;
 /// ```
 /// @sa [Stack Overflow](https://stackoverflow.com/a/75738462).
 template<class Char>
-struct basic_ostream_formatter : format::formatter<std::basic_string_view<Char>, Char> {
+struct basic_ostream_formatter : std::formatter<std::basic_string_view<Char>, Char> {
     template<class T, class O>
-    O format(const T& value, format::basic_format_context<O, Char>& ctx) const {
+    O format(const T& value, std::basic_format_context<O, Char>& ctx) const {
         std::basic_stringstream<Char> ss;
         ss << value;
 #if defined(_LIBCPP_VERSION) && _LIBCPP_VERSION < 170000
         return std::formatter<std::basic_string_view<Char>, Char>::format(ss.str(), ctx);
 #else
-        return format::formatter<std::basic_string_view<Char>, Char>::format(ss.view(), ctx);
+        return std::formatter<std::basic_string_view<Char>, Char>::format(ss.view(), ctx);
 #endif
     }
 };
@@ -45,10 +33,10 @@ using ostream_formatter = basic_ostream_formatter<char>;
 /// Print to `std::cout`/`std::cerr` via `std::format`; the `*ln` variants conclude with `std::endl`.
 ///@{
 // clang-format off
-template<class... Args> void err  (format::format_string<Args...> fmt, Args&&... args) { std::cerr << format::format(fmt, std::forward<Args>(args)...);              }
-template<class... Args> void out  (format::format_string<Args...> fmt, Args&&... args) { std::cout << format::format(fmt, std::forward<Args>(args)...);              }
-template<class... Args> void errln(format::format_string<Args...> fmt, Args&&... args) { std::cerr << format::format(fmt, std::forward<Args>(args)...) << std::endl; }
-template<class... Args> void outln(format::format_string<Args...> fmt, Args&&... args) { std::cout << format::format(fmt, std::forward<Args>(args)...) << std::endl; }
+template<class... Args> void err  (std::format_string<Args...> fmt, Args&&... args) { std::cerr << std::format(fmt, std::forward<Args>(args)...);              }
+template<class... Args> void out  (std::format_string<Args...> fmt, Args&&... args) { std::cout << std::format(fmt, std::forward<Args>(args)...);              }
+template<class... Args> void errln(std::format_string<Args...> fmt, Args&&... args) { std::cerr << std::format(fmt, std::forward<Args>(args)...) << std::endl; }
+template<class... Args> void outln(std::format_string<Args...> fmt, Args&&... args) { std::cout << std::format(fmt, std::forward<Args>(args)...) << std::endl; }
 // clang-format on
 
 /// Keeps track of indentation level during output
@@ -105,14 +93,11 @@ private:
 } // namespace fe
 
 #ifndef DOXYGEN
-template<>
-struct fe::format::formatter<fe::Pos> : fe::ostream_formatter {};
-template<>
-struct fe::format::formatter<fe::Loc> : fe::ostream_formatter {};
-template<>
-struct fe::format::formatter<fe::Sym> : fe::ostream_formatter {};
-template<>
-struct fe::format::formatter<fe::Tab> : fe::ostream_formatter {};
-template<>
-struct fe::format::formatter<fe::utf8::Char32> : fe::ostream_formatter {};
+// clang-format off
+template<> struct std::formatter<fe::Pos> : fe::ostream_formatter {};
+template<> struct std::formatter<fe::Loc> : fe::ostream_formatter {};
+template<> struct std::formatter<fe::Sym> : fe::ostream_formatter {};
+template<> struct std::formatter<fe::Tab> : fe::ostream_formatter {};
+template<> struct std::formatter<fe::utf8::Char32> : fe::ostream_formatter {};
+// clang-format on
 #endif

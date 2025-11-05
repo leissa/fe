@@ -102,7 +102,7 @@ private:
     };
 };
 
-template<> struct fe::format::formatter<Tok> : fe::ostream_formatter {};
+template<> struct std::formatter<Tok> : fe::ostream_formatter {};
 
 template<size_t K = 1> class Lexer : public fe::Lexer<K, Lexer<K>> {
 public:
@@ -186,7 +186,7 @@ template<size_t K> void test_lexer() {
     auto tb = lexer.lex();
     auto tc = lexer.lex();
     auto td = lexer.lex();
-    auto s = fe::format::format("{} {} {} {} {} {} {} {} {} {} {} {} {} {}", t1, t2, t3, t4, t5, t6, t7, t8, t9, t0, ta,
+    auto s = std::format("{} {} {} {} {} {} {} {} {} {} {} {} {} {}", t1, t2, t3, t4, t5, t6, t7, t8, t9, t0, ta,
                                 tb, tc, td);
     CHECK(s == "test abc def if while λ foo « n ; X » <end of file> <end of file>");
 
