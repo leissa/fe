@@ -1,6 +1,5 @@
 var namespacefe =
 [
-    [ "format", "namespacefe_1_1format.html", null ],
     [ "utf8", "namespacefe_1_1utf8.html", "namespacefe_1_1utf8" ],
     [ "Arena", "classfe_1_1Arena.html", "classfe_1_1Arena" ],
     [ "basic_ostream_formatter", "structfe_1_1basic__ostream__formatter.html", "structfe_1_1basic__ostream__formatter" ],
@@ -23,8 +22,8 @@ var namespacefe =
     [ "SymMap", "namespacefe.html#a11fef75d471024bdbf5cfc3223146f8e", null ],
     [ "SymSet", "namespacefe.html#afc6debb6fc36d12352409c5e46ce4e55", null ],
     [ "breakpoint", "namespacefe.html#aa67601e05290c4a15e0d5d5f1f12a4a2", null ],
-    [ "err", "namespacefe.html#a09e9cd2dab128329e4c767edd7f73beb", null ],
-    [ "errln", "namespacefe.html#a954d190530e13452d9528a880c352e68", null ],
+    [ "err", "namespacefe.html#a60893edf9c1ff5e68301f516a54dec11", null ],
+    [ "errln", "namespacefe.html#a240e31424b3ed2b0f844ebfacf3df8e1", null ],
     [ "operator!=", "namespacefe.html#a7416bc7c50d30c606865d7602c2a24fd", null ],
     [ "operator!=", "namespacefe.html#ac9e698e3cdb29d243a5ad870f9bcdae3", null ],
     [ "operator&", "namespacefe.html#affb141a1f7d28f82fe048d473c42208b", null ],
@@ -42,8 +41,8 @@ var namespacefe =
     [ "operator|", "namespacefe.html#ac2b92305568f922f949cf34427503cb4", null ],
     [ "operator|", "namespacefe.html#a792f45c37132212da1d480ad30b98fae", null ],
     [ "operator|", "namespacefe.html#a1bf907aceda9f907ba64301da85968bb", null ],
-    [ "out", "namespacefe.html#a5bee00c0e794dfea578eb681af26416f", null ],
-    [ "outln", "namespacefe.html#ac0087acd738ee00a5c1face97d0ec8cd", null ],
+    [ "out", "namespacefe.html#ad3db74b6b86b3b8fe8b4d885613080cc", null ],
+    [ "outln", "namespacefe.html#a6d9d14e5b70e248c4ab31d8156247dcb", null ],
     [ "unreachable", "namespacefe.html#aff9df682b55afdb0f712e5a0c1ff3a2b", null ],
     [ "is_bit_enum_v", "namespacefe.html#ae103d19a2604571950b51fa886deedce", null ]
 ];

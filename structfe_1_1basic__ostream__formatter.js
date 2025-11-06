@@ -1,4 +1,4 @@
 var structfe_1_1basic__ostream__formatter =
 [
-    [ "format", "structfe_1_1basic__ostream__formatter.html#a7897d511fbbcf27febde968d782ad6a3", null ]
+    [ "format", "structfe_1_1basic__ostream__formatter.html#aa89752e176250523b64ad02bff885000", null ]
 ];
