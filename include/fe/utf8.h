@@ -25,7 +25,7 @@ inline size_t num_bytes(char8_t c) {
 }
 
 /// Append @p b to @p c for converting UTF-8 to UTF-32.
-inline char32_t append(char32_t c, char32_t b) { return (c << 6) | (b & 0b00111111); }
+inline char32_t append(char32_t c, char8_t b) { return (c << 6) | (b & 0b00111111); }
 
 /// Get relevant bits of first UTF-8 byte @p c of a @em multi-byte sequence consisting of @p num bytes.
 inline char32_t first(char32_t c, char32_t num) { return c & (0b00011111 >> (num - 2)); }
@@ -42,7 +42,7 @@ inline char32_t decode(std::istream& is) {
     char32_t result = is.get();
     if (result == EoF) return result;
 
-    switch (auto n = utf8::num_bytes(result)) {
+    switch (auto n = utf8::num_bytes(char8_t(result))) {
         case 0: return Null;
         case 1: return result;
         default:
