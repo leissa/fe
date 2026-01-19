@@ -11,7 +11,7 @@ var searchData=
   ['anew_5ffinis_8',['anew_finis',['../structfe_1_1Loc.html#af86329b830eb174032c7295254ec031b',1,'fe::Loc']]],
   ['any_9',['any',['../namespacefe_1_1utf8.html#a878567e47549cb6104196c7fb77413fa',1,'fe::utf8']]],
   ['append_10',['Append',['../classfe_1_1Lexer.html#a99366b3ab28fff1d6a1013b1007246a6',1,'fe::Lexer']]],
-  ['append_11',['append',['../namespacefe_1_1utf8.html#aa73f03b25b2098b8e139d1d037bd7c97',1,'fe::utf8']]],
+  ['append_11',['append',['../namespacefe_1_1utf8.html#ac6099fcb73cb87ed1423dc86e4413fec',1,'fe::utf8']]],
   ['arena_12',['Arena',['../classfe_1_1Arena.html',1,'fe::Arena'],['../classfe_1_1Arena.html#a31a9b29bc955003c0df7f4103bc434c1',1,'fe::Arena::Arena(const Arena &amp;)=delete'],['../classfe_1_1Arena.html#a6954c6cb8a60224261e98798a7cd5fda',1,'fe::Arena::Arena(size_t page_size=Default_Page_Size)'],['../classfe_1_1Arena.html#a35374c3e8e92a4510a78d2d51d24f5ec',1,'fe::Arena::Arena(Arena &amp;&amp;other) noexcept']]],
   ['arena_13',['arena',['../structfe_1_1Arena_1_1Allocator.html#af082bf4fe39e52f719e67aaca844f4f5',1,'fe::Arena::Allocator']]],
   ['arena_2eh_14',['arena.h',['../arena_8h.html',1,'']]],

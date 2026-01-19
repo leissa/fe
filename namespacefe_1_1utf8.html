@@ -135,9 +135,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a6decf030f56d34b82146f21e502dcee9" id="r_a6decf030f56d34b82146f21e502dcee9"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6decf030f56d34b82146f21e502dcee9">num_bytes</a> (char8_t c)</td></tr>
 <tr class="memdesc:a6decf030f56d34b82146f21e502dcee9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the expected number of bytes for an UTF-8 char sequence by inspecting the first byte.  <br /></td></tr>
 <tr class="separator:a6decf030f56d34b82146f21e502dcee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa73f03b25b2098b8e139d1d037bd7c97" id="r_aa73f03b25b2098b8e139d1d037bd7c97"><td class="memItemLeft" align="right" valign="top">char32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa73f03b25b2098b8e139d1d037bd7c97">append</a> (char32_t c, char32_t b)</td></tr>
-<tr class="memdesc:aa73f03b25b2098b8e139d1d037bd7c97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append <code>b</code> to <code>c</code> for converting UTF-8 to UTF-32.  <br /></td></tr>
-<tr class="separator:aa73f03b25b2098b8e139d1d037bd7c97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6099fcb73cb87ed1423dc86e4413fec" id="r_ac6099fcb73cb87ed1423dc86e4413fec"><td class="memItemLeft" align="right" valign="top">char32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6099fcb73cb87ed1423dc86e4413fec">append</a> (char32_t c, char8_t b)</td></tr>
+<tr class="memdesc:ac6099fcb73cb87ed1423dc86e4413fec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append <code>b</code> to <code>c</code> for converting UTF-8 to UTF-32.  <br /></td></tr>
+<tr class="separator:ac6099fcb73cb87ed1423dc86e4413fec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8b8a7ebfb35f84b56defdde79becd08" id="r_ab8b8a7ebfb35f84b56defdde79becd08"><td class="memItemLeft" align="right" valign="top">char32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab8b8a7ebfb35f84b56defdde79becd08">first</a> (char32_t c, char32_t num)</td></tr>
 <tr class="memdesc:ab8b8a7ebfb35f84b56defdde79becd08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get relevant bits of first UTF-8 byte <code>c</code> of a <em>multi-byte</em> sequence consisting of <code>num</code> bytes.  <br /></td></tr>
 <tr class="separator:ab8b8a7ebfb35f84b56defdde79becd08"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -328,8 +328,8 @@ template&lt;class... T&gt; </div>
 
 </div>
 </div>
-<a id="aa73f03b25b2098b8e139d1d037bd7c97" name="aa73f03b25b2098b8e139d1d037bd7c97"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa73f03b25b2098b8e139d1d037bd7c97">&#9670;&#160;</a></span>append()</h2>
+<a id="ac6099fcb73cb87ed1423dc86e4413fec" name="ac6099fcb73cb87ed1423dc86e4413fec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6099fcb73cb87ed1423dc86e4413fec">&#9670;&#160;</a></span>append()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -345,7 +345,7 @@ template&lt;class... T&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char32_t</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+          <td class="paramtype">char8_t</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
