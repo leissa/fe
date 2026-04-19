@@ -1,5 +1,6 @@
 var classfe_1_1Arena =
 [
+    [ "MemoryResource", "classfe_1_1Arena_1_1MemoryResource.html", "classfe_1_1Arena_1_1MemoryResource" ],
     [ "Allocator", "structfe_1_1Arena_1_1Allocator.html", "structfe_1_1Arena_1_1Allocator" ],
     [ "Deleter", "structfe_1_1Arena_1_1Deleter.html", "structfe_1_1Arena_1_1Deleter" ],
     [ "Ptr", "classfe_1_1Arena.html#a9ec4e56220ef5a3d2d80bfcd3653bbdc", null ],
@@ -15,6 +16,8 @@ var classfe_1_1Arena =
     [ "deallocate", "classfe_1_1Arena.html#a27c2f6b322adf7b4db01b10c6871e1f7", null ],
     [ "mk", "classfe_1_1Arena.html#aba49d689fc2975bea37eaccc5410de8b", null ],
     [ "operator=", "classfe_1_1Arena.html#a9029ff76c05dab0854198435aff06419", null ],
+    [ "resource", "classfe_1_1Arena.html#aa1f1c16b55f19577e56f47927b1db684", null ],
+    [ "resource", "classfe_1_1Arena.html#a4ebf61d33a87088a351197f7adcf39d4", null ],
     [ "state", "classfe_1_1Arena.html#adc11bd44aacf4c22167b1ed08d400077", null ],
     [ "swap", "classfe_1_1Arena.html#a8f9ae98bbf9b30287b975cf8c5ae86c9", null ],
     [ "Default_Page_Size", "classfe_1_1Arena.html#acf8db82af7c5e70594460ffffeaaedc6", null ]

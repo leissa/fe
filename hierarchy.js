@@ -17,6 +17,9 @@ var hierarchy =
     [ "fe::Sym::String::Hash", "structfe_1_1Sym_1_1String_1_1Hash.html", null ],
     [ "fe::Lexer&lt; K, S &gt;", "classfe_1_1Lexer.html", null ],
     [ "fe::Loc", "structfe_1_1Loc.html", null ],
+    [ "std::pmr::memory_resource", "classstd_1_1pmr_1_1memory__resource.html", [
+      [ "fe::Arena::MemoryResource", "classfe_1_1Arena_1_1MemoryResource.html", null ]
+    ] ],
     [ "fe::Parser&lt; Tok, Tag, K, S &gt;", "classfe_1_1Parser.html", null ],
     [ "fe::Pos", "structfe_1_1Pos.html", null ],
     [ "fe::Ring&lt; T, N &gt;", "classfe_1_1Ring.html", null ],

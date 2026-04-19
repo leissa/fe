@@ -5,7 +5,10 @@ var searchData=
   ['default_5fpage_5fsize_2',['Default_Page_Size',['../classfe_1_1Arena.html#acf8db82af7c5e70594460ffffeaaedc6',1,'fe::Arena']]],
   ['deleter_3',['Deleter',['../structfe_1_1Arena_1_1Deleter.html',1,'fe::Arena::Deleter&lt; T &gt;'],['../structfe_1_1Arena_1_1Deleter.html#a4f115196981ec080d075fd09f8fce52e',1,'fe::Arena::Deleter::Deleter() noexcept=default'],['../structfe_1_1Arena_1_1Deleter.html#acb74633b0f9c12116865339f08659d8d',1,'fe::Arena::Deleter::Deleter(const Deleter&lt; U &gt; &amp;) noexcept']]],
   ['directly_20include_20fe_20in_20your_20source_20tree_4',['Option #2: Directly include FE in your Source Tree',['../index.html#autotoc_md6',1,'']]],
-  ['driver_5',['Driver',['../structfe_1_1Driver.html',1,'fe']]],
-  ['driver_2eh_6',['driver.h',['../driver_8h.html',1,'']]],
-  ['dump_7',['dump',['../structfe_1_1Pos.html#a9a6685af4e76850af36627fd7f9a0978',1,'fe::Pos::dump()'],['../structfe_1_1Loc.html#a0531b0fe2bb2304752a1d58b80647365',1,'fe::Loc::dump()']]]
+  ['do_5fallocate_5',['do_allocate',['../classfe_1_1Arena_1_1MemoryResource.html#a8e71a597b41a12d7a3a66c588b065e1e',1,'fe::Arena::MemoryResource']]],
+  ['do_5fdeallocate_6',['do_deallocate',['../classfe_1_1Arena_1_1MemoryResource.html#a8612aaa7c927034b57091ee96f4f85da',1,'fe::Arena::MemoryResource']]],
+  ['do_5fis_5fequal_7',['do_is_equal',['../classfe_1_1Arena_1_1MemoryResource.html#a670b91798198a06fce1a2bb3625a9b01',1,'fe::Arena::MemoryResource']]],
+  ['driver_8',['Driver',['../structfe_1_1Driver.html',1,'fe']]],
+  ['driver_2eh_9',['driver.h',['../driver_8h.html',1,'']]],
+  ['dump_10',['dump',['../structfe_1_1Pos.html#a9a6685af4e76850af36627fd7f9a0978',1,'fe::Pos::dump()'],['../structfe_1_1Loc.html#a0531b0fe2bb2304752a1d58b80647365',1,'fe::Loc::dump()']]]
 ];
