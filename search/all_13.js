@@ -5,7 +5,7 @@ var searchData=
   ['size_2',['size',['../structfe_1_1Sym_1_1String.html#aa0db4d8f8fc3944406f4ff41891100c0',1,'fe::Sym::String::size'],['../classfe_1_1Sym.html#a35a3c9b2d1a8576e2c79ad9c5582df69',1,'fe::Sym::size()']]],
   ['source_20tree_3',['Option #2: Directly include FE in your Source Tree',['../index.html#autotoc_md6',1,'']]],
   ['start_4',['start',['../classfe_1_1Lexer.html#a0ecd9086f866aa9a8d849620aba195a0',1,'fe::Lexer']]],
-  ['started_20now_5',['Get Started Now!',['../index.html#autotoc_md2',1,'']]],
+  ['started_20now_5',['🚀 Get Started Now!',['../index.html#autotoc_md2',1,'']]],
   ['state_6',['State',['../classfe_1_1Arena.html#a5e05161e3a767ebfdecbf2cb1e21f6d4',1,'fe::Arena']]],
   ['state_7',['state',['../classfe_1_1Arena.html#adc11bd44aacf4c22167b1ed08d400077',1,'fe::Arena']]],
   ['str_8',['str',['../classfe_1_1Sym.html#a924bef149f5053cf6dbc79740f48f02d',1,'fe::Sym']]],

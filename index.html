@@ -111,20 +111,51 @@ $(function(){initNavTree('index.html','',''); });
   <div class="headertitle"><div class="title">FE </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="toc"><h3>Table of Contents</h3>
+<ul>
+  <li class="level1">
+    <a href="#autotoc_md1">💡 What is FE? </a>
+  </li>
+  <li class="level1">
+    <a href="#autotoc_md2">🚀 Get Started Now! </a>
+  </li>
+  <li class="level1">
+    <a href="#autotoc_md3">✅ Features </a>
+  </li>
+  <li class="level1">
+    <a href="#autotoc_md4">🛠️ Building </a>
+    <ul>
+      <li class="level2">
+        <a href="#autotoc_md5">Option #1: Include FE as Submodule (Recommended) </a>
+      </li>
+      <li class="level2">
+        <a href="#autotoc_md6">Option #2: Directly include FE in your Source Tree </a>
+      </li>
+    </ul>
+  </li>
+  <li class="level1">
+    <a href="#autotoc_md7">🔨 Other Projects using FE </a>
+  </li>
+  <li class="level1">
+    <a href="#autotoc_md8">⚖️ License </a>
+  </li>
+</ul>
+</div>
 <div class="textblock"><p><a class="anchor" id="md__2home_2runner_2work_2fe_2fe_2docs_2README"></a></p>
-<p><a href="https://github.com/leissa/fe/actions/workflows/doxygen.yml"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/doxygen.yml?logo=gitbook&amp;logoColor=white&amp;label=docs&amp;link=https%3A%2F%2Fleissa.github.io%2Ffe%2F&amp;link=https%3A%2F%2Fgithub.com%2Fleissa%2Ffe%2Factions%2Fworkflows%2Fdoxygen.yml" alt="docs" class="inline"/></a> <a href="https://github.com/leissa/fe/actions/workflows/linux.yml"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/linux.yml?logo=linux&amp;logoColor=white&amp;label=linux&amp;link=https%3A%2F%2Fgithub.com%2Fleissa%2Ffe%2Factions%2Fworkflows%2Flinux.yml" alt="linux" class="inline"/></a> <a href="https://github.com/leissa/fe/actions/workflows/macos.yml"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/macos.yml?logo=apple&amp;logoColor=white&amp;label=macos&amp;link=https%3A%2F%2Fgithub.com%2Fleissa%2Ffe%2Factions%2Fworkflows%2Fmacos.yml" alt="macos" class="inline"/></a> <a href="https://github.com/leissa/fe/actions/workflows/windows.yml"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/windows.yml?logo=windows&amp;logoColor=white&amp;label=windows&amp;link=https%3A%2F%2Fgithub.com%2Fleissa%2Ffe%2Factions%2Fworkflows%2Fwindows.yml" alt="windows" class="inline"/></a></p>
+<p><a href="https://github.com/leissa/fe/fork"><img src="https://img.shields.io/github/forks/leissa/fe" alt="Forks" class="inline"/></a> <a href="https://github.com/leissa/fe/stargazers"><img src="https://img.shields.io/github/stars/leissa/fe" alt="Stars" class="inline"/></a></p>
+<p><a href="https://github.com/leissa/fe/actions/workflows/linux.yml"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/linux.yml?style=flat-square&amp;logo=linux&amp;label=linux&amp;logoColor=white&amp;branch=main" alt="Linux" class="inline"/></a> <a href="https://github.com/leissa/fe/actions/workflows/windows.yml"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/windows.yml?label=⊞%20windows&amp;branch=main" alt="Windows" class="inline"/></a> <a href="https://github.com/leissa/fe/actions/workflows/macos.yml"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/macos.yml?style=flat-square&amp;logo=apple&amp;label=macos&amp;branch=main" alt="macOS" class="inline"/></a> <a href="https://github.com/leissa/fe/actions/workflows/doxygen.yml"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/doxygen.yml?style=flat-square&amp;logo=gitbook&amp;logoColor=white&amp;label=doxygen&amp;branch=main" alt="Doxygen" class="inline"/></a></p>
 <p>A header-only C++ library for writing compiler/interpreter frontends.</p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
-What is FE?</h1>
+💡 What is FE?</h1>
 <p>FE provides a set of utilities that helps you writing your own compiler or interpreter frontend. FE is <b>not</b> a lexer or parser generator. Instead, it will give you the blueprint to easily hand-write your own lexer and parser.</p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
-Get Started Now!</h1>
+🚀 Get Started Now!</h1>
 <p>Based on the toy language <em><a href="https://github.com/leissa/let">Let</a></em>, either</p><ul>
 <li>create a <a href="https://github.com/new?template_owner=leissa&amp;template_name=let">new repository from a template</a>, or</li>
 <li><a href="https://github.com/leissa/let/fork">fork</a> it.</li>
 </ul>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
-Features</h1>
+✅ Features</h1>
 <ul>
 <li><a class="el" href="classfe_1_1Arena.html" title="fe::Arena">Arena</a> allocator for efficient memory management.</li>
 <li>Efficient <a class="el" href="classfe_1_1SymPool.html" title="fe::SymPool">symbol pool</a> that internalizes C and C++ strings into <a class="el" href="classfe_1_1Sym.html" title="fe::Sym">symbols</a>. Checking for equality/inequality is only a pointer comparisons!</li>
@@ -135,7 +166,7 @@ Features</h1>
 <li>You need at least C++-20.</li>
 </ul>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
-Building</h1>
+🛠️ Building</h1>
 <p>FE optionally supports <a href="https://abseil.io/">Abseil</a>'s excellent <a href="https://abseil.io/docs/cpp/guides/container">hash containers</a>. In order to enable Abseil support, you have to define <span class="tt">FE_ABSL</span>. Otherwise, FE will fall back to the hash containers of the C++ standard library.</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
 Option #1: Include FE as Submodule (Recommended)</h2>
@@ -173,13 +204,16 @@ Option #2: Directly include FE in your Source Tree</h2>
 </div><!-- fragment --> </li>
 </ol>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
-Other Projects using FE</h1>
+🔨 Other Projects using FE</h1>
 <ul>
 <li><a href="https://github.com/leissa/let">Let</a>: A simple demo language that builds upon FE</li>
 <li><a href="https://github.com/leissa/graphtool">GraphTool</a>: A small tool that reads a subset from Graphviz' DOT language and calculates several dominance-related properties</li>
 <li><a href="https://anydsl.github.io/MimIR/">MimIR</a>: MimIR is my intermediate representation</li>
-<li><a href="https://github.com/leissa/sql">SQL</a>: Small and simple SQL parser </li>
+<li><a href="https://github.com/leissa/sql">SQL</a>: Small and simple SQL parser</li>
 </ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
+⚖️ License</h1>
+<p>FE is licensed under the <a href="https://github.com/leissa/fe/blob/main/LICENSE.TXT">MIT License</a>. </p>
 </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->

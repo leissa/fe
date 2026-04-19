@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['fe_0',['FE',['../index.html',1,'FE'],['../index.html#autotoc_md7',1,'Other Projects using FE'],['../index.html#autotoc_md1',1,'What is FE?']]],
+  ['fe_0',['FE',['../index.html#autotoc_md1',1,'💡 What is FE?'],['../index.html#autotoc_md7',1,'🔨 Other Projects using FE'],['../index.html',1,'FE']]],
   ['fe_1',['fe',['../namespacefe.html',1,'']]],
   ['fe_20as_20submodule_20recommended_2',['Option #1: Include FE as Submodule (Recommended)',['../index.html#autotoc_md5',1,'']]],
   ['fe_20in_20your_20source_20tree_3',['Option #2: Directly include FE in your Source Tree',['../index.html#autotoc_md6',1,'']]],
   ['fe_3a_3autf8_4',['utf8',['../namespacefe_1_1utf8.html',1,'fe']]],
-  ['features_5',['Features',['../index.html#autotoc_md3',1,'']]],
+  ['features_5',['✅ Features',['../index.html#autotoc_md3',1,'']]],
   ['finis_6',['finis',['../structfe_1_1Loc.html#a19c742b2f7de9b42ce45d92d3210a3ea',1,'fe::Loc']]],
   ['first_7',['first',['../namespacefe_1_1utf8.html#ab8b8a7ebfb35f84b56defdde79becd08',1,'fe::utf8']]],
   ['format_8',['format',['../structfe_1_1basic__ostream__formatter.html#aa89752e176250523b64ad02bff885000',1,'fe::basic_ostream_formatter']]],

@@ -25,14 +25,15 @@
 var NAVTREE =
 [
   [ "FE", "index.html", [
-    [ "What is FE?", "index.html#autotoc_md1", null ],
-    [ "Get Started Now!", "index.html#autotoc_md2", null ],
-    [ "Features", "index.html#autotoc_md3", null ],
-    [ "Building", "index.html#autotoc_md4", [
+    [ "💡 What is FE?", "index.html#autotoc_md1", null ],
+    [ "🚀 Get Started Now!", "index.html#autotoc_md2", null ],
+    [ "✅ Features", "index.html#autotoc_md3", null ],
+    [ "🛠️ Building", "index.html#autotoc_md4", [
       [ "Option #1: Include FE as Submodule (Recommended)", "index.html#autotoc_md5", null ],
       [ "Option #2: Directly include FE in your Source Tree", "index.html#autotoc_md6", null ]
     ] ],
-    [ "Other Projects using FE", "index.html#autotoc_md7", null ],
+    [ "🔨 Other Projects using FE", "index.html#autotoc_md7", null ],
+    [ "⚖️ License", "index.html#autotoc_md8", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [

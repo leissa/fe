@@ -5,7 +5,7 @@ var searchData=
   ['include_20fe_20in_20your_20source_20tree_2',['Option #2: Directly include FE in your Source Tree',['../index.html#autotoc_md6',1,'']]],
   ['indent_3',['indent',['../classfe_1_1Tab.html#a5c0704c9f1bb1c99fb827f5fb863384e',1,'fe::Tab']]],
   ['init_4',['init',['../classfe_1_1Parser.html#aff4aefd0e9b228d67489e4aa3232fdeb',1,'fe::Parser']]],
-  ['is_20fe_5',['What is FE?',['../index.html#autotoc_md1',1,'']]],
+  ['is_20fe_5',['💡 What is FE?',['../index.html#autotoc_md1',1,'']]],
   ['is_5fbit_5fenum_6',['is_bit_enum',['../structfe_1_1is__bit__enum.html',1,'fe']]],
   ['is_5fbit_5fenum_5fv_7',['is_bit_enum_v',['../namespacefe.html#ae103d19a2604571950b51fa886deedce',1,'fe']]],
   ['is_5fscalar_5fvalue_8',['is_scalar_value',['../namespacefe_1_1utf8.html#afe7f0c0e9ec6321af26dcd75f2e3d72d',1,'fe::utf8']]],

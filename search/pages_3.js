@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['building_0',['Building',['../index.html#autotoc_md4',1,'']]]
+  ['building_0',['🛠️ Building',['../index.html#autotoc_md4',1,'']]]
 ];

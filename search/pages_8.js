@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['now_0',['Get Started Now!',['../index.html#autotoc_md2',1,'']]]
+  ['license_0',['⚖️ License',['../index.html#autotoc_md8',1,'']]]
 ];

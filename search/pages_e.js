@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['using_20fe_0',['Other Projects using FE',['../index.html#autotoc_md7',1,'']]]
+  ['tree_0',['Option #2: Directly include FE in your Source Tree',['../index.html#autotoc_md6',1,'']]]
 ];

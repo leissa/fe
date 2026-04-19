@@ -26,7 +26,7 @@ var searchData=
   ['option_201_3a_20include_20fe_20as_20submodule_20recommended_23',['Option #1: Include FE as Submodule (Recommended)',['../index.html#autotoc_md5',1,'']]],
   ['option_202_3a_20directly_20include_20fe_20in_20your_20source_20tree_24',['Option #2: Directly include FE in your Source Tree',['../index.html#autotoc_md6',1,'']]],
   ['ostream_5fformatter_25',['ostream_formatter',['../namespacefe.html#a923ce058163e2041744a84793de679c0',1,'fe']]],
-  ['other_20projects_20using_20fe_26',['Other Projects using FE',['../index.html#autotoc_md7',1,'']]],
+  ['other_20projects_20using_20fe_26',['🔨 Other Projects using FE',['../index.html#autotoc_md7',1,'']]],
   ['out_27',['out',['../namespacefe.html#ad3db74b6b86b3b8fe8b4d885613080cc',1,'fe']]],
   ['outln_28',['outln',['../namespacefe.html#a6d9d14e5b70e248c4ab31d8156247dcb',1,'fe']]]
 ];

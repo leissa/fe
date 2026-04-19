@@ -7,5 +7,5 @@ var searchData=
   ['bitenum_4',['BitEnum',['../conceptfe_1_1BitEnum.html',1,'fe']]],
   ['bom_5',['BOM',['../namespacefe_1_1utf8.html#a262057ce9cd9138f8dd21b84c7379b1c',1,'fe::utf8']]],
   ['breakpoint_6',['breakpoint',['../namespacefe.html#aa67601e05290c4a15e0d5d5f1f12a4a2',1,'fe']]],
-  ['building_7',['Building',['../index.html#autotoc_md4',1,'']]]
+  ['building_7',['🛠️ Building',['../index.html#autotoc_md4',1,'']]]
 ];
