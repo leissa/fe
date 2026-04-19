@@ -4,7 +4,9 @@
 [![Windows](https://img.shields.io/github/actions/workflow/status/leissa/fe/windows.yml?style=flat-square&label=windows&branch=main)](https://github.com/leissa/fe/actions/workflows/windows.yml)
 [![macOS](https://img.shields.io/github/actions/workflow/status/leissa/fe/macos.yml?style=flat-square&logo=apple&label=macos&branch=main)](https://github.com/leissa/fe/actions/workflows/macos.yml)
 [![Doxygen](https://img.shields.io/github/actions/workflow/status/leissa/fe/doxygen.yml?style=flat-square&logo=gitbook&logoColor=white&label=doxygen&branch=main)](https://github.com/leissa/fe/actions/workflows/doxygen.yml)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](../LICENSE)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square&logo=opensourceinitiative&logoColor=white?label=⊞%20windows)](../LICENSE)
+
+[TOC]
 
 **FE** is a header-only C++20 toolkit for writing hand-rolled compiler and interpreter frontends.
 It does not generate lexers or parsers for you; instead, it gives you the reusable pieces that make handwritten frontends pleasant to build and maintain.
