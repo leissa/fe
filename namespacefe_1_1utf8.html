@@ -185,6 +185,9 @@ Variables</h2></td></tr>
 <tr class="memitem:a958f5b14010ee32136a35e5534a205ce" id="r_a958f5b14010ee32136a35e5534a205ce"><td class="memItemLeft">static constexpr char32_t&#160;</td><td class="memItemRight"><a class="el" href="#a958f5b14010ee32136a35e5534a205ce">EoF</a> = (char32_t)std::istream::traits_type::eof()</td></tr>
 <tr class="memdesc:a958f5b14010ee32136a35e5534a205ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">End of File.  <br /></td></tr>
 <tr class="memitem:aea7687cddcfc751ce19ef5be406dc67c" id="r_aea7687cddcfc751ce19ef5be406dc67c"><td class="memItemLeft">static constexpr char32_t&#160;</td><td class="memItemRight"><a class="el" href="#aea7687cddcfc751ce19ef5be406dc67c">Null</a> = 0</td></tr>
+<tr class="memdesc:aea7687cddcfc751ce19ef5be406dc67c"><td class="mdescLeft">&#160;</td><td class="mdescRight">U+0000 NULL.  <br /></td></tr>
+<tr class="memitem:a12b7d1cbb7960728a558b5bb26255b3d" id="r_a12b7d1cbb7960728a558b5bb26255b3d"><td class="memItemLeft">static constexpr char32_t&#160;</td><td class="memItemRight"><a class="el" href="#a12b7d1cbb7960728a558b5bb26255b3d">Invalid</a> = 0x110000</td></tr>
+<tr class="memdesc:a12b7d1cbb7960728a558b5bb26255b3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invalid UTF-8 sequence.  <br /></td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="a1442e9842927f4391294b6da7c1ab4f8" name="a1442e9842927f4391294b6da7c1ab4f8"></a>
@@ -214,9 +217,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00143">143</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00144">144</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00145">_any()</a>, and <a class="el" href="utf8_8h_source.html#l00149">any()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00146">_any()</a>, and <a class="el" href="utf8_8h_source.html#l00150">any()</a>.</p>
 
 </div>
 </div>
@@ -254,9 +257,9 @@ template&lt;class... T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00145">145</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00146">146</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00143">_any()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00144">_any()</a>.</p>
 
 </div>
 </div>
@@ -285,9 +288,9 @@ template&lt;class... T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00149">149</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00150">150</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00143">_any()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00144">_any()</a>.</p>
 
 </div>
 </div>
@@ -320,9 +323,9 @@ template&lt;class... T&gt; </div>
 
 <p>Append <code class="param">b</code> to <code class="param">c</code> for converting UTF-8 to UTF-32. </p>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00028">28</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00029">29</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00055">decode()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00056">decode()</a>.</p>
 
 </div>
 </div>
@@ -350,11 +353,11 @@ template&lt;class... T&gt; </div>
 </div><div class="memdoc">
 
 <p>Decodes the next sequence of bytes from <code class="param">is</code> as UTF-32. </p>
-<dl class="section return"><dt>Returns</dt><dd>Null on error. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Invalid on error. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00055">55</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00056">56</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00028">append()</a>, <a class="el" href="utf8_8h_source.html#l00014">EoF</a>, <a class="el" href="utf8_8h_source.html#l00031">first()</a>, <a class="el" href="utf8_8h_source.html#l00045">is_scalar_value()</a>, <a class="el" href="utf8_8h_source.html#l00049">is_valid234()</a>, <a class="el" href="utf8_8h_source.html#l00034">min_code_point()</a>, <a class="el" href="utf8_8h_source.html#l00015">Null</a>, and <a class="el" href="utf8_8h_source.html#l00019">num_bytes()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00029">append()</a>, <a class="el" href="utf8_8h_source.html#l00014">EoF</a>, <a class="el" href="utf8_8h_source.html#l00032">first()</a>, <a class="el" href="utf8_8h_source.html#l00016">Invalid</a>, <a class="el" href="utf8_8h_source.html#l00046">is_scalar_value()</a>, <a class="el" href="utf8_8h_source.html#l00050">is_valid234()</a>, <a class="el" href="utf8_8h_source.html#l00035">min_code_point()</a>, and <a class="el" href="utf8_8h_source.html#l00020">num_bytes()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00042">fe::Lexer&lt; K, S &gt;::next()</a>.</p>
 
@@ -390,9 +393,9 @@ template&lt;class... T&gt; </div>
 <p>Encodes the UTF-32 char <code class="param">c32</code> as UTF-8 and writes the sequence of bytes to <code class="param">os</code>. </p>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">false</span> on error. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00086">86</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00087">87</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00100">fe::utf8::Char32::operator&lt;&lt;</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00101">fe::utf8::Char32::operator&lt;&lt;</a>.</p>
 
 </div>
 </div>
@@ -425,9 +428,9 @@ template&lt;class... T&gt; </div>
 
 <p>Get relevant bits of first UTF-8 byte <code class="param">c</code> of a <em>multi-byte</em> sequence consisting of <code class="param">num</code> bytes. </p>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00031">31</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00032">32</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00055">decode()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00056">decode()</a>.</p>
 
 </div>
 </div>
@@ -456,9 +459,9 @@ template&lt;class... T&gt; </div>
 
 <p>Is <code class="param">c</code> a valid Unicode scalar value? </p>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00045">45</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00046">46</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00055">decode()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00056">decode()</a>.</p>
 
 </div>
 </div>
@@ -488,9 +491,9 @@ template&lt;class... T&gt; </div>
 <p>Is the 2nd, 3rd, or 4th byte of an UTF-8 byte sequence valid? </p>
 <dl class="section return"><dt>Returns</dt><dd>the extracted <span class="tt">char8_t</span> or <span class="tt">char8_t(-1)</span> if invalid. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00049">49</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00050">50</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00055">decode()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00056">decode()</a>.</p>
 
 </div>
 </div>
@@ -517,7 +520,7 @@ template&lt;class... T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00115">115</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00116">116</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -544,7 +547,7 @@ template&lt;class... T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00116">116</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00117">117</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -571,7 +574,7 @@ template&lt;class... T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00127">127</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00128">128</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -600,9 +603,9 @@ template&lt;class... T&gt; </div>
 
 <p>Is binary digit? </p>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00136">136</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00137">137</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00132">isrange()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00133">isrange()</a>.</p>
 
 </div>
 </div>
@@ -629,7 +632,7 @@ template&lt;class... T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00117">117</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00118">118</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -656,7 +659,7 @@ template&lt;class... T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00118">118</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00119">119</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -683,7 +686,7 @@ template&lt;class... T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00119">119</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00120">120</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -710,7 +713,7 @@ template&lt;class... T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00120">120</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00121">121</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -737,7 +740,7 @@ template&lt;class... T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00121">121</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00122">122</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -766,9 +769,9 @@ template&lt;class... T&gt; </div>
 
 <p>Is octal digit? </p>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00135">135</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00136">136</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00132">isrange()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00133">isrange()</a>.</p>
 
 </div>
 </div>
@@ -795,7 +798,7 @@ template&lt;class... T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00122">122</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00123">123</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -822,7 +825,7 @@ template&lt;class... T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00123">123</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00124">124</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -853,9 +856,9 @@ template&lt;class... T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00133">133</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00134">134</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00132">isrange()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00133">isrange()</a>.</p>
 
 </div>
 </div>
@@ -893,9 +896,9 @@ template&lt;class... T&gt; </div>
 
 <p>Is <code class="param">c</code> within [begin, finis]? </p>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00132">132</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00133">133</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00136">isbdigit()</a>, <a class="el" href="utf8_8h_source.html#l00135">isodigit()</a>, and <a class="el" href="utf8_8h_source.html#l00133">isrange()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00137">isbdigit()</a>, <a class="el" href="utf8_8h_source.html#l00136">isodigit()</a>, and <a class="el" href="utf8_8h_source.html#l00134">isrange()</a>.</p>
 
 </div>
 </div>
@@ -922,7 +925,7 @@ template&lt;class... T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00124">124</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00125">125</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -949,7 +952,7 @@ template&lt;class... T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00125">125</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00126">126</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -976,7 +979,7 @@ template&lt;class... T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00126">126</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00127">127</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>
@@ -1005,9 +1008,9 @@ template&lt;class... T&gt; </div>
 
 <p>Minimum Unicode scalar value representable in an UTF-8 sequence of <code class="param">num</code> bytes. </p>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00034">34</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00035">35</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00055">decode()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00056">decode()</a>.</p>
 
 </div>
 </div>
@@ -1037,9 +1040,9 @@ template&lt;class... T&gt; </div>
 <p>Returns the expected number of bytes for an UTF-8 char sequence by inspecting the first byte. </p>
 <p>Retuns <code>0</code> if invalid. </p>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00019">19</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00020">20</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00055">decode()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00056">decode()</a>.</p>
 
 </div>
 </div>
@@ -1066,7 +1069,7 @@ template&lt;class... T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00128">128</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00129">129</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00074">fe::Lexer&lt; K, S &gt;::accept()</a>.</p>
 
@@ -1095,7 +1098,7 @@ template&lt;class... T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00129">129</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00130">130</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00074">fe::Lexer&lt; K, S &gt;::accept()</a>.</p>
 
@@ -1154,7 +1157,35 @@ template&lt;class... T&gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00014">14</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00055">decode()</a>, and <a class="el" href="lexer_8h_source.html#l00042">fe::Lexer&lt; K, S &gt;::next()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00056">decode()</a>, and <a class="el" href="lexer_8h_source.html#l00042">fe::Lexer&lt; K, S &gt;::next()</a>.</p>
+
+</div>
+</div>
+<a id="a12b7d1cbb7960728a558b5bb26255b3d" name="a12b7d1cbb7960728a558b5bb26255b3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12b7d1cbb7960728a558b5bb26255b3d">&#9670;&#160;</a></span>Invalid</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char32_t fe::utf8::Invalid = 0x110000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Invalid UTF-8 sequence. </p>
+
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00016">16</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00056">decode()</a>.</p>
 
 </div>
 </div>
@@ -1204,9 +1235,9 @@ template&lt;class... T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00015">15</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p>U+0000 NULL. </p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00055">decode()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00015">15</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
 </div>
 </div>

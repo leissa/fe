@@ -33,6 +33,7 @@ var namespacefe_1_1utf8 =
     [ "toupper", "namespacefe_1_1utf8.html#a6f47692e931db3f19ee1fcc516d72f9c", null ],
     [ "BOM", "namespacefe_1_1utf8.html#a262057ce9cd9138f8dd21b84c7379b1c", null ],
     [ "EoF", "namespacefe_1_1utf8.html#a958f5b14010ee32136a35e5534a205ce", null ],
+    [ "Invalid", "namespacefe_1_1utf8.html#a12b7d1cbb7960728a558b5bb26255b3d", null ],
     [ "Max", "namespacefe_1_1utf8.html#a753d178a1e977540ac8cd44fe4390a58", null ],
     [ "Null", "namespacefe_1_1utf8.html#aea7687cddcfc751ce19ef5be406dc67c", null ]
 ];
