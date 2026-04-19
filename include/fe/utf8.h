@@ -30,6 +30,20 @@ inline char32_t append(char32_t c, char8_t b) { return (c << 6) | (b & 0b0011111
 /// Get relevant bits of first UTF-8 byte @p c of a @em multi-byte sequence consisting of @p num bytes.
 inline char32_t first(char32_t c, char32_t num) { return c & (0b00011111 >> (num - 2)); }
 
+/// Minimum Unicode scalar value representable in an UTF-8 sequence of @p num bytes.
+inline char32_t min_code_point(size_t num) {
+    switch (num) {
+        case 1: return 0x000000;
+        case 2: return 0x000080;
+        case 3: return 0x000800;
+        case 4: return 0x010000;
+        default: return 0x110000;
+    }
+}
+
+/// Is @p c a valid Unicode scalar value?
+inline bool is_scalar_value(char32_t c) { return c <= 0x10ffff && !(0xd800 <= c && c <= 0xdfff); }
+
 /// Is the 2nd, 3rd, or 4th byte of an UTF-8 byte sequence valid?
 /// @returns the extracted `char8_t` or `char8_t(-1)` if invalid.
 inline char8_t is_valid234(char8_t c) {
@@ -53,6 +67,8 @@ inline char32_t decode(std::istream& is) {
                     result = utf8::append(result, x);
                 else
                     return 0;
+
+            if (result < utf8::min_code_point(n) || !utf8::is_scalar_value(result)) return Null;
     }
 
     return result;
