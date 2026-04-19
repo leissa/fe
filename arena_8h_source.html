@@ -318,53 +318,54 @@ $(function(){initNavTree('arena_8h_source.html','',''); });
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="classfe_1_1Arena.html#a27c2f6b322adf7b4db01b10c6871e1f7">  170</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classfe_1_1Arena.html#a27c2f6b322adf7b4db01b10c6871e1f7">deallocate</a>(<a class="code hl_typedef" href="classfe_1_1Arena.html#a5e05161e3a767ebfdecbf2cb1e21f6d4">State</a> <a class="code hl_function" href="classfe_1_1Arena.html#adc11bd44aacf4c22167b1ed08d400077">state</a>) <span class="keyword">noexcept</span> {</div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>        assert(<a class="code hl_function" href="classfe_1_1Arena.html#adc11bd44aacf4c22167b1ed08d400077">state</a>.first &gt; 0);</div>
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        assert(<a class="code hl_function" href="classfe_1_1Arena.html#adc11bd44aacf4c22167b1ed08d400077">state</a>.first &lt;= pages_.size());</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>        <span class="keywordflow">while</span> (pages_.size() &gt; <a class="code hl_function" href="classfe_1_1Arena.html#adc11bd44aacf4c22167b1ed08d400077">state</a>.first) pages_.pop_back();</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>        assert(<a class="code hl_function" href="classfe_1_1Arena.html#adc11bd44aacf4c22167b1ed08d400077">state</a>.second &lt;= pages_.back().size);</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>        index_ = <a class="code hl_function" href="classfe_1_1Arena.html#adc11bd44aacf4c22167b1ed08d400077">state</a>.second;</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    }<span class="comment"></span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>        <span class="keywordflow">while</span> (pages_.size() &gt; <a class="code hl_function" href="classfe_1_1Arena.html#adc11bd44aacf4c22167b1ed08d400077">state</a>.first)</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>            pages_.pop_back();</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>        assert(<a class="code hl_function" href="classfe_1_1Arena.html#adc11bd44aacf4c22167b1ed08d400077">state</a>.second &lt;= pages_.back().size);</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>        index_ = <a class="code hl_function" href="classfe_1_1Arena.html#adc11bd44aacf4c22167b1ed08d400077">state</a>.second;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    }<span class="comment"></span></div>
 </div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="comment">    ///@}</span></div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
-<div class="foldopen" id="foldopen00179" data-start="{" data-end="}">
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno"><a class="line" href="classfe_1_1Arena.html#a8f9ae98bbf9b30287b975cf8c5ae86c9">  179</a></span>    <span class="keyword">friend</span> <span class="keywordtype">void</span> <a class="code hl_friend" href="classfe_1_1Arena.html#a8f9ae98bbf9b30287b975cf8c5ae86c9">swap</a>(<a class="code hl_function" href="classfe_1_1Arena.html#a31a9b29bc955003c0df7f4103bc434c1">Arena</a>&amp; a1, <a class="code hl_function" href="classfe_1_1Arena.html#a31a9b29bc955003c0df7f4103bc434c1">Arena</a>&amp; a2) <span class="keyword">noexcept</span> {</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        <span class="keyword">using </span>std::swap;</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        <span class="comment">// clang-format off</span></div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        <a class="code hl_friend" href="classfe_1_1Arena.html#a8f9ae98bbf9b30287b975cf8c5ae86c9">swap</a>(a1.pages_,     a2.pages_);</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        <a class="code hl_friend" href="classfe_1_1Arena.html#a8f9ae98bbf9b30287b975cf8c5ae86c9">swap</a>(a1.page_size_, a2.page_size_);</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        <a class="code hl_friend" href="classfe_1_1Arena.html#a8f9ae98bbf9b30287b975cf8c5ae86c9">swap</a>(a1.index_,     a2.index_);</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        <span class="comment">// clang-format on</span></div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    }</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="comment">    ///@}</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
+<div class="foldopen" id="foldopen00180" data-start="{" data-end="}">
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="classfe_1_1Arena.html#a8f9ae98bbf9b30287b975cf8c5ae86c9">  180</a></span>    <span class="keyword">friend</span> <span class="keywordtype">void</span> <a class="code hl_friend" href="classfe_1_1Arena.html#a8f9ae98bbf9b30287b975cf8c5ae86c9">swap</a>(<a class="code hl_function" href="classfe_1_1Arena.html#a31a9b29bc955003c0df7f4103bc434c1">Arena</a>&amp; a1, <a class="code hl_function" href="classfe_1_1Arena.html#a31a9b29bc955003c0df7f4103bc434c1">Arena</a>&amp; a2) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        <span class="keyword">using </span>std::swap;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        <span class="comment">// clang-format off</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        <a class="code hl_friend" href="classfe_1_1Arena.html#a8f9ae98bbf9b30287b975cf8c5ae86c9">swap</a>(a1.pages_,     a2.pages_);</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        <a class="code hl_friend" href="classfe_1_1Arena.html#a8f9ae98bbf9b30287b975cf8c5ae86c9">swap</a>(a1.page_size_, a2.page_size_);</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        <a class="code hl_friend" href="classfe_1_1Arena.html#a8f9ae98bbf9b30287b975cf8c5ae86c9">swap</a>(a1.index_,     a2.index_);</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        <span class="comment">// clang-format on</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    }</div>
 </div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span><span class="comment"></span> </div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="comment">    /// Align @p i to @p a.</span></div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="classfe_1_1Arena.html#a39c2aa635a1803d5dbd92312bdc7d298">  189</a></span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">size_t</span> <a class="code hl_function" href="classfe_1_1Arena.html#a39c2aa635a1803d5dbd92312bdc7d298">align</a>(<span class="keywordtype">size_t</span> i, <span class="keywordtype">size_t</span> a) <span class="keyword">noexcept</span> { <span class="keywordflow">return</span> (i + (a - 1)) &amp; ~(a - 1); }</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <span class="keyword">constexpr</span> <a class="code hl_class" href="classfe_1_1Arena.html">Arena</a>&amp; <a class="code hl_function" href="classfe_1_1Arena.html#a39c2aa635a1803d5dbd92312bdc7d298">align</a>(<span class="keywordtype">size_t</span> a) <span class="keyword">noexcept</span> { <span class="keywordflow">return</span> index_ = <a class="code hl_function" href="classfe_1_1Arena.html#a39c2aa635a1803d5dbd92312bdc7d298">align</a>(index_, a), *<span class="keyword">this</span>; }</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="keyword">struct </span>Page {</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        <span class="keyword">constexpr</span> Page() noexcept = default;</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        Page(<span class="keywordtype">size_t</span> size, <span class="keywordtype">size_t</span> align)</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>            : size(size)</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>            , align(align)</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>            , buffer((<span class="keywordtype">char</span>*)::operator new[](size, std::align_val_t(align))) {}</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        <span class="keyword">constexpr</span> ~Page() noexcept {</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>            <span class="keywordflow">if</span> (buffer) ::operator <span class="keyword">delete</span>[](buffer, std::align_val_t(align));</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        }</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        <span class="keyword">const</span> <span class="keywordtype">size_t</span> size  = 0;</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        <span class="keyword">const</span> <span class="keywordtype">size_t</span> align = 0;</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        <span class="keywordtype">char</span>* buffer       = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    };</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    std::list&lt;Page&gt; pages_;</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keywordtype">size_t</span> page_size_;</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    <span class="keywordtype">size_t</span> index_ = 0;</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <a class="code hl_class" href="classfe_1_1Arena_1_1MemoryResource.html">MemoryResource</a> resource_{*<span class="keyword">this</span>};</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>};</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="comment"></span> </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="comment">    /// Align @p i to @p a.</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="classfe_1_1Arena.html#a39c2aa635a1803d5dbd92312bdc7d298">  190</a></span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">size_t</span> <a class="code hl_function" href="classfe_1_1Arena.html#a39c2aa635a1803d5dbd92312bdc7d298">align</a>(<span class="keywordtype">size_t</span> i, <span class="keywordtype">size_t</span> a) <span class="keyword">noexcept</span> { <span class="keywordflow">return</span> (i + (a - 1)) &amp; ~(a - 1); }</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keyword">constexpr</span> <a class="code hl_class" href="classfe_1_1Arena.html">Arena</a>&amp; <a class="code hl_function" href="classfe_1_1Arena.html#a39c2aa635a1803d5dbd92312bdc7d298">align</a>(<span class="keywordtype">size_t</span> a) <span class="keyword">noexcept</span> { <span class="keywordflow">return</span> index_ = <a class="code hl_function" href="classfe_1_1Arena.html#a39c2aa635a1803d5dbd92312bdc7d298">align</a>(index_, a), *<span class="keyword">this</span>; }</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="keyword">struct </span>Page {</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        <span class="keyword">constexpr</span> Page() noexcept = default;</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        Page(<span class="keywordtype">size_t</span> size, <span class="keywordtype">size_t</span> align)</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>            : size(size)</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>            , align(align)</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>            , buffer((<span class="keywordtype">char</span>*)::operator new[](size, std::align_val_t(align))) {}</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>        <span class="keyword">constexpr</span> ~Page() noexcept {</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>            <span class="keywordflow">if</span> (buffer) ::operator <span class="keyword">delete</span>[](buffer, std::align_val_t(align));</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        }</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        <span class="keyword">const</span> <span class="keywordtype">size_t</span> size  = 0;</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        <span class="keyword">const</span> <span class="keywordtype">size_t</span> align = 0;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        <span class="keywordtype">char</span>* buffer       = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    };</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    std::list&lt;Page&gt; pages_;</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    <span class="keywordtype">size_t</span> page_size_;</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="keywordtype">size_t</span> index_ = 0;</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <a class="code hl_class" href="classfe_1_1Arena_1_1MemoryResource.html">MemoryResource</a> resource_{*<span class="keyword">this</span>};</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>};</div>
 </div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>} <span class="comment">// namespace fe</span></div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>} <span class="comment">// namespace fe</span></div>
 </div>
 <div class="ttc" id="aassert_8h_html"><div class="ttname"><a href="assert_8h.html">assert.h</a></div></div>
 <div class="ttc" id="aclassfe_1_1Arena_1_1MemoryResource_html"><div class="ttname"><a href="classfe_1_1Arena_1_1MemoryResource.html">fe::Arena::MemoryResource</a></div><div class="ttdoc">A memory resource bridge in order to use this Arena for pmr containers.</div><div class="ttdef"><b>Definition</b> <a href="#l00028">arena.h:28</a></div></div>
@@ -378,11 +379,11 @@ $(function(){initNavTree('arena_8h_source.html','',''); });
 <div class="ttc" id="aclassfe_1_1Arena_html_a31a9b29bc955003c0df7f4103bc434c1"><div class="ttname"><a href="classfe_1_1Arena.html#a31a9b29bc955003c0df7f4103bc434c1">fe::Arena::Arena</a></div><div class="ttdeci">Arena(const Arena &amp;)=delete</div></div>
 <div class="ttc" id="aclassfe_1_1Arena_html_a35374c3e8e92a4510a78d2d51d24f5ec"><div class="ttname"><a href="classfe_1_1Arena.html#a35374c3e8e92a4510a78d2d51d24f5ec">fe::Arena::Arena</a></div><div class="ttdeci">Arena(Arena &amp;&amp;other) noexcept</div><div class="ttdef"><b>Definition</b> <a href="#l00096">arena.h:96</a></div></div>
 <div class="ttc" id="aclassfe_1_1Arena_html_a36af29114a9b1e9b2907783d2b312b29"><div class="ttname"><a href="classfe_1_1Arena.html#a36af29114a9b1e9b2907783d2b312b29">fe::Arena::allocate</a></div><div class="ttdeci">constexpr void * allocate(size_t num_bytes, size_t align)</div><div class="ttdoc">Get n bytes of fresh memory.</div><div class="ttdef"><b>Definition</b> <a href="#l00131">arena.h:131</a></div></div>
-<div class="ttc" id="aclassfe_1_1Arena_html_a39c2aa635a1803d5dbd92312bdc7d298"><div class="ttname"><a href="classfe_1_1Arena.html#a39c2aa635a1803d5dbd92312bdc7d298">fe::Arena::align</a></div><div class="ttdeci">static constexpr size_t align(size_t i, size_t a) noexcept</div><div class="ttdoc">Align i to a.</div><div class="ttdef"><b>Definition</b> <a href="#l00189">arena.h:189</a></div></div>
+<div class="ttc" id="aclassfe_1_1Arena_html_a39c2aa635a1803d5dbd92312bdc7d298"><div class="ttname"><a href="classfe_1_1Arena.html#a39c2aa635a1803d5dbd92312bdc7d298">fe::Arena::align</a></div><div class="ttdeci">static constexpr size_t align(size_t i, size_t a) noexcept</div><div class="ttdoc">Align i to a.</div><div class="ttdef"><b>Definition</b> <a href="#l00190">arena.h:190</a></div></div>
 <div class="ttc" id="aclassfe_1_1Arena_html_a4ebf61d33a87088a351197f7adcf39d4"><div class="ttname"><a href="classfe_1_1Arena.html#a4ebf61d33a87088a351197f7adcf39d4">fe::Arena::resource</a></div><div class="ttdeci">std::pmr::memory_resource * resource() noexcept</div><div class="ttdef"><b>Definition</b> <a href="#l00108">arena.h:108</a></div></div>
 <div class="ttc" id="aclassfe_1_1Arena_html_a5e05161e3a767ebfdecbf2cb1e21f6d4"><div class="ttname"><a href="classfe_1_1Arena.html#a5e05161e3a767ebfdecbf2cb1e21f6d4">fe::Arena::State</a></div><div class="ttdeci">std::pair&lt; size_t, size_t &gt; State</div><div class="ttdef"><b>Definition</b> <a href="#l00087">arena.h:87</a></div></div>
 <div class="ttc" id="aclassfe_1_1Arena_html_a6954c6cb8a60224261e98798a7cd5fda"><div class="ttname"><a href="classfe_1_1Arena.html#a6954c6cb8a60224261e98798a7cd5fda">fe::Arena::Arena</a></div><div class="ttdeci">Arena(size_t page_size=Default_Page_Size)</div><div class="ttdef"><b>Definition</b> <a href="#l00092">arena.h:92</a></div></div>
-<div class="ttc" id="aclassfe_1_1Arena_html_a8f9ae98bbf9b30287b975cf8c5ae86c9"><div class="ttname"><a href="classfe_1_1Arena.html#a8f9ae98bbf9b30287b975cf8c5ae86c9">fe::Arena::swap</a></div><div class="ttdeci">friend void swap(Arena &amp;a1, Arena &amp;a2) noexcept</div><div class="ttdef"><b>Definition</b> <a href="#l00179">arena.h:179</a></div></div>
+<div class="ttc" id="aclassfe_1_1Arena_html_a8f9ae98bbf9b30287b975cf8c5ae86c9"><div class="ttname"><a href="classfe_1_1Arena.html#a8f9ae98bbf9b30287b975cf8c5ae86c9">fe::Arena::swap</a></div><div class="ttdeci">friend void swap(Arena &amp;a1, Arena &amp;a2) noexcept</div><div class="ttdef"><b>Definition</b> <a href="#l00180">arena.h:180</a></div></div>
 <div class="ttc" id="aclassfe_1_1Arena_html_a9029ff76c05dab0854198435aff06419"><div class="ttname"><a href="classfe_1_1Arena.html#a9029ff76c05dab0854198435aff06419">fe::Arena::operator=</a></div><div class="ttdeci">Arena &amp; operator=(Arena)=delete</div></div>
 <div class="ttc" id="aclassfe_1_1Arena_html_a9ec4e56220ef5a3d2d80bfcd3653bbdc"><div class="ttname"><a href="classfe_1_1Arena.html#a9ec4e56220ef5a3d2d80bfcd3653bbdc">fe::Arena::Ptr</a></div><div class="ttdeci">std::unique_ptr&lt; T, Deleter&lt; T &gt; &gt; Ptr</div><div class="ttdef"><b>Definition</b> <a href="#l00086">arena.h:86</a></div></div>
 <div class="ttc" id="aclassfe_1_1Arena_html_aa1f1c16b55f19577e56f47927b1db684"><div class="ttname"><a href="classfe_1_1Arena.html#aa1f1c16b55f19577e56f47927b1db684">fe::Arena::resource</a></div><div class="ttdeci">const std::pmr::memory_resource * resource() const noexcept</div><div class="ttdef"><b>Definition</b> <a href="#l00109">arena.h:109</a></div></div>
