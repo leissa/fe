@@ -1,94 +1,97 @@
 # FE
 
-[![Forks](https://img.shields.io/github/forks/leissa/fe)](https://github.com/leissa/fe/fork)
-[![Stars](https://img.shields.io/github/stars/leissa/fe)](https://github.com/leissa/fe/stargazers)
-
-[TOC]
-
 [![Linux](https://img.shields.io/github/actions/workflow/status/leissa/fe/linux.yml?style=flat-square&logo=linux&label=linux&logoColor=white&branch=main)](https://github.com/leissa/fe/actions/workflows/linux.yml)
-[![Windows](https://img.shields.io/github/actions/workflow/status/leissa/fe/windows.yml?label=⊞%20windows&branch=main)](https://github.com/leissa/fe/actions/workflows/windows.yml)
+[![Windows](https://img.shields.io/github/actions/workflow/status/leissa/fe/windows.yml?style=flat-square&label=windows&branch=main)](https://github.com/leissa/fe/actions/workflows/windows.yml)
 [![macOS](https://img.shields.io/github/actions/workflow/status/leissa/fe/macos.yml?style=flat-square&logo=apple&label=macos&branch=main)](https://github.com/leissa/fe/actions/workflows/macos.yml)
 [![Doxygen](https://img.shields.io/github/actions/workflow/status/leissa/fe/doxygen.yml?style=flat-square&logo=gitbook&logoColor=white&label=doxygen&branch=main)](https://github.com/leissa/fe/actions/workflows/doxygen.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](../LICENSE)
 
-A header-only C++ library for writing compiler/interpreter frontends.
+**FE** is a header-only C++20 toolkit for writing hand-rolled compiler and interpreter frontends.
+It does not generate lexers or parsers for you; instead, it gives you the reusable pieces that make handwritten frontends pleasant to build and maintain.
 
-## 💡 What is FE?
+## 💡 Why FE?
 
-FE provides a set of utilities that helps you writing your own compiler or interpreter frontend.
-FE is **not** a lexer or parser generator.
-Instead, it will give you the blueprint to easily hand-write your own lexer and parser.
+FE is built around a few small components that compose well:
 
-## 🚀 Get Started Now!
+- `fe::Arena` for arena allocation and arena-backed ownership.
+- `fe::Sym` and `fe::SymPool` for string interning and cheap identifier comparison.
+- `fe::Driver` for diagnostics and shared frontend state.
+- `fe::Pos` and `fe::Loc` for source positions and spans.
+- `fe::Lexer<K, S>` for UTF-8-aware lexing with lookahead and token text accumulation.
+- `fe::Parser<Tok, Tag, K, S>` for recursive-descent style parsing with token lookahead and span tracking.
+- Optional `FE_ABSL` support for Abseil hash containers.
 
-Based on the toy language *[Let](https://github.com/leissa/let)*, either
-* create a [new repository from a template](https://github.com/new?template_owner=leissa&template_name=let), or
-* [fork](https://github.com/leissa/let/fork) it.
+The best end-to-end example in this repository is [`tests/lexer.cpp`](../tests/lexer.cpp).
 
-## ✅ Features
+## 🚀 Quick start
 
-* [Arena](@ref fe::Arena) allocator for efficient memory management.
-* Efficient [symbol pool](@ref fe::SymPool) that internalizes C and C++ strings into [symbols](@ref fe::Sym).
-    Checking for equality/inequality is only a pointer comparisons!
-* Keep track of [source code locations](@ref fe::Loc).
-* Blueprint for a [lexer](@ref fe::Lexer) with [UTF-8](@ref fe::utf8) support.
-* Blueprint for a [parser](@ref fe::Parser).
-* Optional [Abseil](https://abseil.io/) support.
-* You need at least C++-20.
+### CMake
 
-## 🛠️ Building
+Add FE as a subdirectory and link the `fe` interface target:
 
-FE optionally supports [Abseil](https://abseil.io/)'s excellent [hash containers](https://abseil.io/docs/cpp/guides/container).
-In order to enable Abseil support, you have to define `FE_ABSL`.
-Otherwise, FE will fall back to the hash containers of the C++ standard library.
+```cmake
+add_subdirectory(external/fe)
+target_link_libraries(my_compiler PRIVATE fe)
+```
 
-### Option #1: Include FE as Submodule (Recommended)
+If you want Abseil-backed hash containers, enable `FE_ABSL` before adding the subdirectory:
 
-1. Add FE as external submodule to your compiler project:
-    * If your compiler project is already on GitHub, do this:
-        ```sh
-        git submodule add ../../leissa/fe external/fe
-        ```
-    * Otherwise:
-        ```sh
-        git submodule add git@github.com:leissa/fe.git external/fe
-        ```
+```cmake
+set(FE_ABSL ON)
+add_subdirectory(external/fe)
+target_link_libraries(my_compiler PRIVATE fe)
+```
 
-2. Integrate into your build system:
-    * If you use CMake, add something like this to your `CMakeLists.txt`:
-        ```cmake
-        set(FE_ABSL ON) # remove this line, if you don't want to use Abseil
-        add_subdirectory(external/fe)
+### Direct include
 
-        target_link_libraries(my_compiler PUBLIC fe)
-        ```
-    * Otherwise:
-        * Add `external/fe/include` as include directory.
-        * Furthermore, add `-DFE_ABSL` to your `CXXFLAGS`, if you want to use Abseil.
+Since FE is header-only, you can also vendor `include/fe/` directly into your project and add `-DFE_ABSL` if you want Abseil support.
 
-### Option #2: Directly include FE in your Source Tree
+## 🧭 Typical workflow
 
-1. Copy over the headers from FE to your compiler project:
-    ```sh
-    git clone git@github.com:leissa/fe.git
-    mkdir -p my_compiler/include/fe
-    cp -r fe/include/fe/*.h my_compiler/include/fe
-    ```
+1. Define a token type that exposes `tag()` and `loc()`.
+2. Derive your lexer from `fe::Lexer<K, S>`.
+3. Derive your parser from `fe::Parser<Tok, Tag, K, S>`.
+4. Use `fe::Driver` for diagnostics and identifier interning.
+5. Thread `fe::Loc` through tokens and AST nodes for precise error reporting.
 
-2. Integrate into your build system:
+If you want a concrete model to copy from, start with [`tests/lexer.cpp`](../tests/lexer.cpp).
 
-    Since your build system most likely already has `my_compiler/include/` as an include directory, nothing more needs to be done.
-    In addition, add `-DFE_ABSL` to your `CXXFLAGS`, if you want to use Abseil.
-    In the case of CMake, add something like this to your `CMakeLists.txt`:
-    ```cmake
-    target_compile_definitions(my_compiler PUBLIC FE_ABSL)
-    ```
-## 🔨 Other Projects using FE
+## 🛠️ Building and testing FE itself
 
-* [Let](https://github.com/leissa/let): A simple demo language that builds upon FE
-* [GraphTool](https://github.com/leissa/graphtool): A small tool that reads a subset from Graphviz' DOT language and calculates several dominance-related properties
-* [MimIR](https://anydsl.github.io/MimIR/): MimIR is my intermediate representation
-* [SQL](https://github.com/leissa/sql): Small and simple SQL parser
+```sh
+cmake -S . -B build -DBUILD_TESTING=ON
+cmake --build build
+ctest --test-dir build --output-on-failure
+```
+
+Run one discovered test:
+
+```sh
+ctest --test-dir build -R '^Lexer$' --output-on-failure
+```
+
+Or run a doctest case directly:
+
+```sh
+./build/bin/fe-test --test-case=Lexer
+```
+
+## 📚 Building the documentation
+
+```sh
+cmake -S . -B build -DFE_BUILD_DOCS=ON
+cmake --build build --target docs
+```
+
+This requires Doxygen and Graphviz (`dot`).
+
+## 🔨 Related projects
+
+- [Let](https://github.com/leissa/let) - a small demo language built on FE.
+- [GraphTool](https://github.com/leissa/graphtool) - a DOT-language tool using FE-style frontend infrastructure.
+- [MimIR](https://anydsl.github.io/MimIR/) - an intermediate representation project by the author.
+- [SQL](https://github.com/leissa/sql) - a small SQL parser.
 
 ## ⚖️ License
 
-FE is licensed under the [MIT License](https://github.com/leissa/fe/blob/main/LICENSE.TXT).
+FE is licensed under the [MIT License](../LICENSE).
