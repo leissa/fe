@@ -12,11 +12,13 @@ using namespace std::literals;
 TEST_CASE("Arena") {
     fe::Arena arena;
     std::vector<int, fe::Arena::Allocator<int>> v(arena.allocator<int>());
-    for (int i = 0, e = 10000; i != e; ++i) v.emplace_back(i);
+    for (int i = 0, e = 10000; i != e; ++i)
+        v.emplace_back(i);
 
     SUBCASE("pmr containers can use the arena resource directly") {
         std::pmr::vector<int> pv(arena.resource());
-        for (int i = 0, e = 1000; i != e; ++i) pv.emplace_back(i);
+        for (int i = 0, e = 1000; i != e; ++i)
+            pv.emplace_back(i);
         CHECK(pv.front() == 0);
         CHECK(pv.back() == 999);
     }
@@ -145,7 +147,8 @@ TEST_CASE("Sym") {
     CHECK(bc > 'b');
     auto xyz = syms.sym("xyz");
     std::string zyx;
-    for (auto i = xyz.rbegin(), e = xyz.rend(); i != e; ++i) zyx += *i;
+    for (auto i = xyz.rbegin(), e = xyz.rend(); i != e; ++i)
+        zyx += *i;
     CHECK(zyx == "zyx");
     CHECK(xyz.front() == 'x');
     CHECK(xyz.back() == 'z');
@@ -197,7 +200,8 @@ enum class MyEnum : unsigned {
     C = 1 << 2,
 };
 
-template<> struct fe::is_bit_enum<MyEnum> : std::true_type {};
+template<>
+struct fe::is_bit_enum<MyEnum> : std::true_type {};
 using fe::operator&;
 using fe::operator|;
 using fe::operator^;

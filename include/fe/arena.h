@@ -170,7 +170,8 @@ public:
     void deallocate(State state) noexcept {
         assert(state.first > 0);
         assert(state.first <= pages_.size());
-        while (pages_.size() > state.first) pages_.pop_back();
+        while (pages_.size() > state.first)
+            pages_.pop_back();
         assert(state.second <= pages_.back().size);
         index_ = state.second;
     }
