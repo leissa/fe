@@ -22,8 +22,8 @@ namespace fe {
 /// };
 ///
 /// // Your Parser:
-/// if (auto tok = accept(Tok::Tag:My_Tag)) {
-///     do_sth(tok);
+/// if (auto tok = accept(Tok::Tag::My_Tag)) {
+///     do_something(tok);
 /// }
 /// ```
 template<class Tok, class Tag, size_t K, class S>
@@ -45,7 +45,7 @@ protected:
     ///@}
 
     /// @name Tracker
-    /// Track Loc%ation in Source File.
+    /// Track Loc%ation in the source file.
     /// Use like this:
     /// ```
     /// auto track  = tracker();

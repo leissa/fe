@@ -131,7 +131,7 @@ public:
             if (accept(utf8::isspace)) continue;
 
             if (accept('(')) return {loc_, Tok::Tag::D_paren_l};
-            if (accept('(')) return {loc_, Tok::Tag::D_paren_r};
+            if (accept(')')) return {loc_, Tok::Tag::D_paren_r};
             if (accept(U'«')) return {loc_, Tok::Tag::D_quote_l};
             if (accept(U'»')) return {loc_, Tok::Tag::D_quote_r};
 

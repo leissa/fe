@@ -11,7 +11,7 @@ namespace fe {
 
 /// Use/derive from this class for "global" variables that you need all over the place.
 /// Well, there are not really global - that's the point of this class.
-/// Right now, it manages a SymPool (by inherting from it) and offers `std::format`-based diagnostics.
+/// Right now, it manages a SymPool (by inheriting from it) and offers `std::format`-based diagnostics.
 struct Driver : public SymPool {
 public:
     /// @name Diagnostics

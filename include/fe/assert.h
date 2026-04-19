@@ -19,7 +19,7 @@ namespace fe {
 inline void unreachable() { assert(false); }
 #endif
 
-/// Raise breaokpoint in debugger.
+/// Raise a breakpoint in the debugger.
 #if (defined(__clang__) || defined(__GNUC__)) && (defined(__x86_64__) || defined(__i386__))
 inline void breakpoint() { asm("int3"); }
 #else

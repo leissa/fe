@@ -10,7 +10,7 @@
 namespace fe {
 
 /// The blueprint for a lexer with a buffer of @p K tokens to peek into the future (Lexer::ahead).
-/// You can "overide" Lexer::next via CRTP (@p S is the child).
+/// You can "override" Lexer::next via CRTP (@p S is the child).
 template<size_t K, class S>
 class Lexer {
 private:
@@ -59,7 +59,7 @@ protected:
     /// @name Accept
     /// Accept next character in Lexer::istream_, depending on some condition.
     ///@{
-    /// What should happend to the accepted char?
+    /// What should happen to the accepted char?
     /// Normalize identifiers via Append::Lower or Append::Upper for case-insensitive languages like FORTRAN or SQL.
     enum class Append {
         Off,   ///< Do not append accepted char to Lexer::str_.

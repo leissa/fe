@@ -325,6 +325,6 @@ static_assert(std::is_trivially_copyable_v<Sym>);
 static_assert(sizeof(uintptr_t) == sizeof(void*), "uintptr_t must match pointer size");
 static_assert(std::has_unique_object_representations_v<uintptr_t>);
 static_assert(std::endian::native == std::endian::little || std::endian::native == std::endian::big,
-              "mixed endianess not supported");
+              "mixed endianness not supported");
 
 } // namespace fe

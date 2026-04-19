@@ -17,7 +17,7 @@ namespace fe {
 /// When a page runs out of memory, the next page will be (pre-)allocated.
 /// You cannot directly release memory obtained via this method.
 /// Instead, *all* memory acquired via this Arena will be released as soon as this Arena will be destroyed.
-/// As an exception, you can Arena::deallocate memory that just as been acquired.
+/// As an exception, you can Arena::deallocate memory that has just been acquired.
 class Arena {
 public:
     static constexpr size_t Default_Page_Size = 1024 * 1024; ///< 1MB.
