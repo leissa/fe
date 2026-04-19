@@ -13,6 +13,43 @@ TEST_CASE("Arena") {
     fe::Arena arena;
     std::vector<int, fe::Arena::Allocator<int>> v(arena.allocator<int>());
     for (int i = 0, e = 10000; i != e; ++i) v.emplace_back(i);
+
+    SUBCASE("pmr containers can use the arena resource directly") {
+        std::pmr::vector<int> pv(arena.resource());
+        for (int i = 0, e = 1000; i != e; ++i) pv.emplace_back(i);
+        CHECK(pv.front() == 0);
+        CHECK(pv.back() == 999);
+    }
+
+    SUBCASE("allocations that only fit before alignment use a fresh page") {
+        fe::Arena small(64);
+        auto first = small.allocate(57, 1);
+        REQUIRE(first != nullptr);
+        CHECK(small.state() == fe::Arena::State{2, 57});
+
+        auto second = small.allocate(7, 8);
+        REQUIRE(second != nullptr);
+        CHECK(small.state() == fe::Arena::State{3, 7});
+    }
+
+    SUBCASE("restoring state drops newer pages and restores the old offset") {
+        fe::Arena small(64);
+        auto first = small.allocate(60, 1);
+        REQUIRE(first != nullptr);
+        auto checkpoint = small.state();
+        CHECK(checkpoint == fe::Arena::State{2, 60});
+
+        auto second = small.allocate(16, 1);
+        REQUIRE(second != nullptr);
+        CHECK(small.state() == fe::Arena::State{3, 16});
+
+        small.deallocate(checkpoint);
+        CHECK(small.state() == checkpoint);
+
+        auto third = small.allocate(4, 4);
+        REQUIRE(third != nullptr);
+        CHECK(small.state() == fe::Arena::State{2, 64});
+    }
 }
 
 TEST_CASE("Ring") {

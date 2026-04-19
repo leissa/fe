@@ -3,7 +3,10 @@
 #include <algorithm>
 #include <list>
 #include <memory>
+#include <memory_resource>
 #include <new>
+#include <type_traits>
+#include <utility>
 
 #include "fe/assert.h"
 
@@ -18,6 +21,26 @@ namespace fe {
 class Arena {
 public:
     static constexpr size_t Default_Page_Size = 1024 * 1024; ///< 1MB.
+
+    /// A [memory resource](https://en.cppreference.com/w/cpp/memory/memory_resource) bridge in order to use this
+    /// Arena for [pmr containers](https://en.cppreference.com/w/cpp/memory/polymorphic_allocator).
+    /// Access it via Arena::resource.
+    class MemoryResource final : public std::pmr::memory_resource {
+    public:
+        explicit MemoryResource(Arena& arena) noexcept
+            : arena_(arena) {}
+
+    private:
+        void* do_allocate(size_t bytes, size_t alignment) override { return arena_.allocate(bytes, alignment); }
+        void do_deallocate(void*, size_t, size_t) override {}
+        bool do_is_equal(const std::pmr::memory_resource& other) const noexcept override {
+            if (this == &other) return true;
+            auto resource = dynamic_cast<const MemoryResource*>(&other);
+            return resource != nullptr && &arena_ == &resource->arena_;
+        }
+
+        Arena& arena_;
+    };
 
     /// An [allocator](https://en.cppreference.com/w/cpp/named_req/Allocator) in order to use this Arena for
     /// [containers](https://en.cppreference.com/w/cpp/named_req/AllocatorAwareContainer).
@@ -66,9 +89,9 @@ public:
     /// @name Construction
     ///@{
     Arena(const Arena&) = delete;
-    Arena(size_t page_size = Default_Page_Size)
+    explicit Arena(size_t page_size = Default_Page_Size)
         : page_size_(page_size) {
-        pages_.emplace_back(Page{});
+        pages_.emplace_back();
     }
     Arena(Arena&& other) noexcept
         : Arena() {
@@ -81,6 +104,9 @@ public:
     constexpr Allocator<T> allocator() noexcept {
         return Allocator<T>(*this);
     }
+
+    std::pmr::memory_resource* resource() noexcept { return &resource_; }
+    const std::pmr::memory_resource* resource() const noexcept { return &resource_; }
 
     /// This is a [std::unique_ptr](https://en.cppreference.com/w/cpp/memory/unique_ptr)
     /// that uses the Arena under the hood
@@ -104,22 +130,22 @@ public:
     /// Get @p n bytes of fresh memory.
     [[nodiscard]] constexpr void* allocate(size_t num_bytes, size_t align) {
         if (num_bytes == 0) return nullptr;
+        assert(align != 0);
 
-        if (index_ + num_bytes > pages_.back().size) {
+        auto aligned_index = Arena::align(index_, align);
+        if (aligned_index + num_bytes > pages_.back().size) {
             pages_.emplace_back(std::max(page_size_, num_bytes), align);
-            index_ = 0;
-        } else {
-            this->align(align);
+            aligned_index = 0;
         }
 
-        auto result = pages_.back().buffer + index_;
-        index_ += num_bytes;
+        auto result = pages_.back().buffer + aligned_index;
+        index_      = aligned_index + num_bytes;
         return result;
     }
 
     template<class T>
     [[nodiscard]] constexpr T* allocate(size_t num_elems) {
-        return static_cast<T*>(allocate(num_elems * std::max(sizeof(T), alignof(T)), alignof(T)));
+        return static_cast<T*>(allocate(num_elems * sizeof(T), alignof(T)));
     }
     ///@}
 
@@ -135,14 +161,18 @@ public:
     ///@{
 
     /// Removes @p num_bytes again.
-    constexpr void deallocate(size_t num_bytes) noexcept { index_ -= num_bytes; }
-    State state() const noexcept { return {pages_.size(), index_}; }
+    constexpr void deallocate(size_t num_bytes) noexcept {
+        assert(num_bytes <= index_);
+        index_ -= num_bytes;
+    }
+    [[nodiscard]] State state() const noexcept { return {pages_.size(), index_}; }
 
     void deallocate(State state) noexcept {
-        if (state.first == pages_.size())
-            index_ = state.second; // don't care otherwise
-        else
-            index_ = 0;
+        assert(state.first > 0);
+        assert(state.first <= pages_.size());
+        while (pages_.size() > state.first) pages_.pop_back();
+        assert(state.second <= pages_.back().size);
+        index_ = state.second;
     }
     ///@}
 
@@ -179,6 +209,7 @@ private:
     std::list<Page> pages_;
     size_t page_size_;
     size_t index_ = 0;
+    MemoryResource resource_{*this};
 };
 
 } // namespace fe
