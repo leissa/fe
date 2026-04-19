@@ -15,19 +15,17 @@ jobs:
 
     steps:
       - name: Clone recursively
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
-      - name: Install newest g++, valgrind
+      - name: Install Valgrind
         run: |
-          sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test 
           sudo apt-get update
-          sudo apt-get install g++-13 valgrind
-          export CXX=g++-13
+          sudo apt-get install -y valgrind
 
       - name: Configure
-        run: CXX=g++-13 cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{matrix.build-type}} -DBUILD_TESTING=ON -DFE_BUILD_EXAMPLES=ON
+        run: cmake -S ${{github.workspace}} -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{matrix.build-type}} -DBUILD_TESTING=ON
 
       - name: Build
         run: cmake --build ${{github.workspace}}/build -v

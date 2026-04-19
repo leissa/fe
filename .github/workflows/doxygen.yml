@@ -5,6 +5,9 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build and deploy Doxygen documentation
@@ -12,39 +15,28 @@ jobs:
 
     steps:
     - name: Clone recursively
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         submodules: recursive
 
-    - name: Install newest g++, graphviz, texlive
+    - name: Install documentation dependencies
       run: |
-        sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
         sudo apt-get update
-        sudo apt-get install g++-13 graphviz texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
-
-        export CXX=g++-13
+        sudo apt-get install -y ghostscript graphviz texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
 
     - name: Install Doxygen
       run: |
-        wget https://www.doxygen.nl/files/doxygen-1.12.0.linux.bin.tar.gz
-        tar xf doxygen-1.12.0.linux.bin.tar.gz
-
-    - name: Install Ghostscript
-      run: |
-        mkdir -p ${HOME}/.local/bin
-        echo "${HOME}/.local/bin" >> $GITHUB_PATH
-        wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs1000/ghostscript-10.0.0-linux-x86_64.tgz
-        tar xf ghostscript-10.0.0-linux-x86_64.tgz
-        mv ghostscript-10.0.0-linux-x86_64/gs-1000-linux-x86_64 ${HOME}/.local/bin/gs
+        wget https://www.doxygen.nl/files/doxygen-1.16.1.linux.bin.tar.gz
+        tar xf doxygen-1.16.1.linux.bin.tar.gz
 
     - name: Configure
-      run: CXX=g++-13 cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Debug -DFE_BUILD_DOCS=ON -DDOXYGEN_EXECUTABLE=${{github.workspace}}/doxygen-1.12.0/bin/doxygen
+      run: cmake -S ${{github.workspace}} -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Debug -DFE_BUILD_DOCS=ON -DDOXYGEN_EXECUTABLE=${{github.workspace}}/doxygen-1.16.1/bin/doxygen
 
     - name: Build
       run: cmake --build ${{github.workspace}}/build -v --target docs
 
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v4
       if: ${{ github.ref == 'refs/heads/main' }}
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
