@@ -5,19 +5,19 @@ var annotated_dup =
         [ "Char32", "structfe_1_1utf8_1_1Char32.html", "structfe_1_1utf8_1_1Char32" ]
       ] ],
       [ "Arena", "classfe_1_1Arena.html", "classfe_1_1Arena" ],
-      [ "basic_ostream_formatter", "structfe_1_1basic__ostream__formatter.html", "structfe_1_1basic__ostream__formatter" ],
+      [ "RuntimeCast", "classfe_1_1RuntimeCast.html", "classfe_1_1RuntimeCast" ],
       [ "Driver", "structfe_1_1Driver.html", "structfe_1_1Driver" ],
       [ "is_bit_enum", "structfe_1_1is__bit__enum.html", null ],
+      [ "basic_ostream_formatter", "structfe_1_1basic__ostream__formatter.html", "structfe_1_1basic__ostream__formatter" ],
+      [ "Tab", "classfe_1_1Tab.html", "classfe_1_1Tab" ],
       [ "Lexer", "classfe_1_1Lexer.html", "classfe_1_1Lexer" ],
+      [ "Pos", "structfe_1_1Pos.html", "structfe_1_1Pos" ],
       [ "Loc", "structfe_1_1Loc.html", "structfe_1_1Loc" ],
       [ "Parser", "classfe_1_1Parser.html", "classfe_1_1Parser" ],
-      [ "Pos", "structfe_1_1Pos.html", "structfe_1_1Pos" ],
       [ "Ring", "classfe_1_1Ring.html", "classfe_1_1Ring" ],
-      [ "Ring< T, 1 >", "classfe_1_1Ring_3_01T_00_011_01_4.html", "classfe_1_1Ring_3_01T_00_011_01_4" ],
-      [ "Ring< T, 2 >", "classfe_1_1Ring_3_01T_00_012_01_4.html", "classfe_1_1Ring_3_01T_00_012_01_4" ],
-      [ "RuntimeCast", "classfe_1_1RuntimeCast.html", "classfe_1_1RuntimeCast" ],
+      [ "Ring&lt; T, 1 &gt;", "classfe_1_1Ring_3_01T_00_011_01_4.html", "classfe_1_1Ring_3_01T_00_011_01_4" ],
+      [ "Ring&lt; T, 2 &gt;", "classfe_1_1Ring_3_01T_00_012_01_4.html", "classfe_1_1Ring_3_01T_00_012_01_4" ],
       [ "Sym", "classfe_1_1Sym.html", "classfe_1_1Sym" ],
-      [ "SymPool", "classfe_1_1SymPool.html", "classfe_1_1SymPool" ],
-      [ "Tab", "classfe_1_1Tab.html", "classfe_1_1Tab" ]
+      [ "SymPool", "classfe_1_1SymPool.html", "classfe_1_1SymPool" ]
     ] ]
 ];
