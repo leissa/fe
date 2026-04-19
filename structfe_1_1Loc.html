@@ -144,13 +144,13 @@ Public Attributes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-friends" class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
 <tr class="memitem:a5a30861bc59dcb14da3a12945f0863ab" id="r_a5a30861bc59dcb14da3a12945f0863ab"><td class="memItemLeft">std::ostream &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a5a30861bc59dcb14da3a12945f0863ab">operator&lt;&lt;</a> (std::ostream &amp;os, <a class="el" href="#a1bed3b20ab4c477bc6e6726d4ec2d8bb">Loc</a> loc)</td></tr>
-<tr class="memdesc:a5a30861bc59dcb14da3a12945f0863ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write your own implementation or include <a class="el" href="loc_8cpp_8h.html">fe/loc.cpp.h</a> somewhere for a default one.  <br /></td></tr>
+<tr class="memdesc:a5a30861bc59dcb14da3a12945f0863ab"><td class="mdescLeft">&#160;</td><td class="mdescRight"><span class="tt"><a class="el" href="loc_8h.html">fe/loc.h</a></span> only declares the stream output and dump helpers.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="structfe_1_1Loc.html" title="Location in a File.">Loc</a>ation in a File. </p>
 <p>It's only two machine words on a 64 bit arch, so pass around as value. </p><dl class="section warning"><dt>Warning</dt><dd><a class="el" href="#a4055e56d870f6ff028628f7788cd4598">Loc::path</a> is only a pointer and it is your job to guarantee that the underlying <span class="tt">std::filesystem::path</span> outlives this <a class="el" href="structfe_1_1Loc.html" title="Location in a File.">Loc</a>ation. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00033">33</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00035">35</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a1bed3b20ab4c477bc6e6726d4ec2d8bb" name="a1bed3b20ab4c477bc6e6726d4ec2d8bb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1bed3b20ab4c477bc6e6726d4ec2d8bb">&#9670;&#160;</a></span>Loc() <span class="overload">[1/5]</span></h2>
@@ -177,7 +177,7 @@ Friends</h2></td></tr>
 
 <p>Creates an invalid <a class="el" href="structfe_1_1Loc.html" title="Location in a File.">Loc</a>ation. </p>
 
-<p class="reference">Referenced by <a class="el" href="loc_8h_source.html#l00046">anew_begin()</a>, <a class="el" href="loc_8h_source.html#l00047">anew_finis()</a>, <a class="el" href="loc_8h_source.html#l00039">Loc()</a>, <a class="el" href="loc_8h_source.html#l00041">Loc()</a>, <a class="el" href="loc_8h_source.html#l00043">Loc()</a>, <a class="el" href="loc_8h_source.html#l00049">operator+()</a>, <a class="el" href="loc_8h_source.html#l00048">operator+()</a>, <a class="el" href="loc_8cpp_8h_source.html#l00014">operator&lt;&lt;</a>, and <a class="el" href="loc_8h_source.html#l00052">operator==()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="loc_8h_source.html#l00048">anew_begin()</a>, <a class="el" href="loc_8h_source.html#l00049">anew_finis()</a>, <a class="el" href="loc_8h_source.html#l00041">Loc()</a>, <a class="el" href="loc_8h_source.html#l00043">Loc()</a>, <a class="el" href="loc_8h_source.html#l00045">Loc()</a>, <a class="el" href="loc_8h_source.html#l00051">operator+()</a>, <a class="el" href="loc_8h_source.html#l00050">operator+()</a>, <a class="el" href="loc_8cpp_8h_source.html#l00018">operator&lt;&lt;</a>, and <a class="el" href="loc_8h_source.html#l00054">operator==()</a>.</p>
 
 </div>
 </div>
@@ -213,9 +213,9 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00035">35</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00037">37</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
 
-<p class="reference">References <a class="el" href="loc_8h_source.html#l00056">begin</a>, <a class="el" href="loc_8h_source.html#l00057">finis</a>, and <a class="el" href="loc_8h_source.html#l00055">path</a>.</p>
+<p class="reference">References <a class="el" href="loc_8h_source.html#l00058">begin</a>, <a class="el" href="loc_8h_source.html#l00059">finis</a>, and <a class="el" href="loc_8h_source.html#l00057">path</a>.</p>
 
 </div>
 </div>
@@ -246,7 +246,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00039">39</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00041">41</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
 
 <p class="reference">References <a class="el" href="#a1bed3b20ab4c477bc6e6726d4ec2d8bb">Loc()</a>.</p>
 
@@ -279,9 +279,9 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00041">41</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00043">43</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
 
-<p class="reference">References <a class="el" href="loc_8h_source.html#l00056">begin</a>, <a class="el" href="loc_8h_source.html#l00057">finis</a>, and <a class="el" href="#a1bed3b20ab4c477bc6e6726d4ec2d8bb">Loc()</a>.</p>
+<p class="reference">References <a class="el" href="loc_8h_source.html#l00058">begin</a>, <a class="el" href="loc_8h_source.html#l00059">finis</a>, and <a class="el" href="#a1bed3b20ab4c477bc6e6726d4ec2d8bb">Loc()</a>.</p>
 
 </div>
 </div>
@@ -308,7 +308,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00043">43</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00045">45</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
 
 <p class="reference">References <a class="el" href="#a1bed3b20ab4c477bc6e6726d4ec2d8bb">Loc()</a>.</p>
 
@@ -338,9 +338,9 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00046">46</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00048">48</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
 
-<p class="reference">References <a class="el" href="loc_8h_source.html#l00056">begin</a>, <a class="el" href="#a1bed3b20ab4c477bc6e6726d4ec2d8bb">Loc()</a>, and <a class="el" href="loc_8h_source.html#l00055">path</a>.</p>
+<p class="reference">References <a class="el" href="loc_8h_source.html#l00058">begin</a>, <a class="el" href="#a1bed3b20ab4c477bc6e6726d4ec2d8bb">Loc()</a>, and <a class="el" href="loc_8h_source.html#l00057">path</a>.</p>
 
 </div>
 </div>
@@ -367,9 +367,9 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00047">47</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00049">49</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
 
-<p class="reference">References <a class="el" href="loc_8h_source.html#l00057">finis</a>, <a class="el" href="#a1bed3b20ab4c477bc6e6726d4ec2d8bb">Loc()</a>, and <a class="el" href="loc_8h_source.html#l00055">path</a>.</p>
+<p class="reference">References <a class="el" href="loc_8h_source.html#l00059">finis</a>, <a class="el" href="#a1bed3b20ab4c477bc6e6726d4ec2d8bb">Loc()</a>, and <a class="el" href="loc_8h_source.html#l00057">path</a>.</p>
 
 </div>
 </div>
@@ -388,7 +388,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="loc_8cpp_8h_source.html#l00024">24</a> of file <a class="el" href="loc_8cpp_8h_source.html">loc.cpp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="loc_8cpp_8h_source.html#l00028">28</a> of file <a class="el" href="loc_8cpp_8h_source.html">loc.cpp.h</a>.</p>
 
 </div>
 </div>
@@ -417,9 +417,9 @@ Friends</h2></td></tr>
 
 <p>Is a valid <a class="el" href="structfe_1_1Loc.html" title="Location in a File.">Loc</a>ation? </p>
 
-<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00050">50</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00052">52</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
 
-<p class="reference">References <a class="el" href="loc_8h_source.html#l00056">begin</a>.</p>
+<p class="reference">References <a class="el" href="loc_8h_source.html#l00058">begin</a>.</p>
 
 </div>
 </div>
@@ -446,9 +446,9 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00049">49</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00051">51</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
 
-<p class="reference">References <a class="el" href="loc_8h_source.html#l00056">begin</a>, <a class="el" href="loc_8h_source.html#l00057">finis</a>, <a class="el" href="#a1bed3b20ab4c477bc6e6726d4ec2d8bb">Loc()</a>, and <a class="el" href="loc_8h_source.html#l00055">path</a>.</p>
+<p class="reference">References <a class="el" href="loc_8h_source.html#l00058">begin</a>, <a class="el" href="loc_8h_source.html#l00059">finis</a>, <a class="el" href="#a1bed3b20ab4c477bc6e6726d4ec2d8bb">Loc()</a>, and <a class="el" href="loc_8h_source.html#l00057">path</a>.</p>
 
 </div>
 </div>
@@ -475,9 +475,9 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00048">48</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00050">50</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
 
-<p class="reference">References <a class="el" href="loc_8h_source.html#l00056">begin</a>, <a class="el" href="#a1bed3b20ab4c477bc6e6726d4ec2d8bb">Loc()</a>, and <a class="el" href="loc_8h_source.html#l00055">path</a>.</p>
+<p class="reference">References <a class="el" href="loc_8h_source.html#l00058">begin</a>, <a class="el" href="#a1bed3b20ab4c477bc6e6726d4ec2d8bb">Loc()</a>, and <a class="el" href="loc_8h_source.html#l00057">path</a>.</p>
 
 </div>
 </div>
@@ -505,9 +505,9 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 <dl class="section note"><dt>Note</dt><dd><a class="el" href="#a4055e56d870f6ff028628f7788cd4598">Loc::path</a> is only checked via pointer equality. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00052">52</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00054">54</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
 
-<p class="reference">References <a class="el" href="loc_8h_source.html#l00056">begin</a>, <a class="el" href="loc_8h_source.html#l00057">finis</a>, <a class="el" href="#a1bed3b20ab4c477bc6e6726d4ec2d8bb">Loc()</a>, and <a class="el" href="loc_8h_source.html#l00055">path</a>.</p>
+<p class="reference">References <a class="el" href="loc_8h_source.html#l00058">begin</a>, <a class="el" href="loc_8h_source.html#l00059">finis</a>, <a class="el" href="#a1bed3b20ab4c477bc6e6726d4ec2d8bb">Loc()</a>, and <a class="el" href="loc_8h_source.html#l00057">path</a>.</p>
 
 </div>
 </div>
@@ -539,11 +539,12 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Write your own implementation or include <a class="el" href="loc_8cpp_8h.html">fe/loc.cpp.h</a> somewhere for a default one. </p>
+<p><span class="tt"><a class="el" href="loc_8h.html">fe/loc.h</a></span> only declares the stream output and dump helpers. </p>
+<p>Include <span class="tt"><a class="el" href="loc_8cpp_8h.html">fe/loc.cpp.h</a></span> in exactly one translation unit for the default implementation, or provide your own definitions instead. </p>
 
-<p class="definition">Definition at line <a class="el" href="loc_8cpp_8h_source.html#l00014">14</a> of file <a class="el" href="loc_8cpp_8h_source.html">loc.cpp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="loc_8cpp_8h_source.html#l00018">18</a> of file <a class="el" href="loc_8cpp_8h_source.html">loc.cpp.h</a>.</p>
 
-<p class="reference">References <a class="el" href="loc_8h_source.html#l00056">begin</a>, <a class="el" href="loc_8h_source.html#l00057">finis</a>, <a class="el" href="#a1bed3b20ab4c477bc6e6726d4ec2d8bb">Loc()</a>, and <a class="el" href="loc_8h_source.html#l00055">path</a>.</p>
+<p class="reference">References <a class="el" href="loc_8h_source.html#l00058">begin</a>, <a class="el" href="loc_8h_source.html#l00059">finis</a>, <a class="el" href="#a1bed3b20ab4c477bc6e6726d4ec2d8bb">Loc()</a>, and <a class="el" href="loc_8h_source.html#l00057">path</a>.</p>
 
 </div>
 </div>
@@ -560,9 +561,9 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00056">56</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00058">58</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="loc_8h_source.html#l00046">anew_begin()</a>, <a class="el" href="loc_8h_source.html#l00035">Loc()</a>, <a class="el" href="loc_8h_source.html#l00041">Loc()</a>, <a class="el" href="loc_8h_source.html#l00050">operator bool()</a>, <a class="el" href="loc_8h_source.html#l00049">operator+()</a>, <a class="el" href="loc_8h_source.html#l00048">operator+()</a>, <a class="el" href="loc_8cpp_8h_source.html#l00014">operator&lt;&lt;</a>, <a class="el" href="loc_8h_source.html#l00052">operator==()</a>, and <a class="el" href="parser_8h_source.html#l00075">fe::Parser&lt; Tok, Tag, K, S &gt;::tracker()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="loc_8h_source.html#l00048">anew_begin()</a>, <a class="el" href="loc_8h_source.html#l00037">Loc()</a>, <a class="el" href="loc_8h_source.html#l00043">Loc()</a>, <a class="el" href="loc_8h_source.html#l00052">operator bool()</a>, <a class="el" href="loc_8h_source.html#l00051">operator+()</a>, <a class="el" href="loc_8h_source.html#l00050">operator+()</a>, <a class="el" href="loc_8cpp_8h_source.html#l00018">operator&lt;&lt;</a>, <a class="el" href="loc_8h_source.html#l00054">operator==()</a>, and <a class="el" href="parser_8h_source.html#l00075">fe::Parser&lt; Tok, Tag, K, S &gt;::tracker()</a>.</p>
 
 </div>
 </div>
@@ -581,9 +582,9 @@ Friends</h2></td></tr>
 <p>It's called <span class="tt"><a class="el" href="#a19c742b2f7de9b42ce45d92d3210a3ea" title="It&#39;s called finis because it refers to the last character within this Location.">finis</a></span> because it refers to the <b>last</b> character within this <a class="el" href="structfe_1_1Loc.html" title="Location in a File.">Loc</a>ation. </p>
 <p>In the STL the word <span class="tt">end</span> refers to the position of something that is one element <b>past</b> the end. </p>
 
-<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00057">57</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00059">59</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="loc_8h_source.html#l00047">anew_finis()</a>, <a class="el" href="loc_8h_source.html#l00035">Loc()</a>, <a class="el" href="loc_8h_source.html#l00041">Loc()</a>, <a class="el" href="loc_8h_source.html#l00049">operator+()</a>, <a class="el" href="loc_8cpp_8h_source.html#l00014">operator&lt;&lt;</a>, and <a class="el" href="loc_8h_source.html#l00052">operator==()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="loc_8h_source.html#l00049">anew_finis()</a>, <a class="el" href="loc_8h_source.html#l00037">Loc()</a>, <a class="el" href="loc_8h_source.html#l00043">Loc()</a>, <a class="el" href="loc_8h_source.html#l00051">operator+()</a>, <a class="el" href="loc_8cpp_8h_source.html#l00018">operator&lt;&lt;</a>, and <a class="el" href="loc_8h_source.html#l00054">operator==()</a>.</p>
 
 </div>
 </div>
@@ -599,9 +600,9 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00055">55</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00057">57</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="loc_8h_source.html#l00046">anew_begin()</a>, <a class="el" href="loc_8h_source.html#l00047">anew_finis()</a>, <a class="el" href="loc_8h_source.html#l00035">Loc()</a>, <a class="el" href="loc_8h_source.html#l00049">operator+()</a>, <a class="el" href="loc_8h_source.html#l00048">operator+()</a>, <a class="el" href="loc_8cpp_8h_source.html#l00014">operator&lt;&lt;</a>, and <a class="el" href="loc_8h_source.html#l00052">operator==()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="loc_8h_source.html#l00048">anew_begin()</a>, <a class="el" href="loc_8h_source.html#l00049">anew_finis()</a>, <a class="el" href="loc_8h_source.html#l00037">Loc()</a>, <a class="el" href="loc_8h_source.html#l00051">operator+()</a>, <a class="el" href="loc_8h_source.html#l00050">operator+()</a>, <a class="el" href="loc_8cpp_8h_source.html#l00018">operator&lt;&lt;</a>, and <a class="el" href="loc_8h_source.html#l00054">operator==()</a>.</p>
 
 </div>
 </div>

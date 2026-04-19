@@ -136,7 +136,7 @@ Public Attributes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-friends" class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
 <tr class="memitem:a5f6561cf9ba2a53c4863dbadc42c5c61" id="r_a5f6561cf9ba2a53c4863dbadc42c5c61"><td class="memItemLeft">std::ostream &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a5f6561cf9ba2a53c4863dbadc42c5c61">operator&lt;&lt;</a> (std::ostream &amp;os, <a class="el" href="#a5eabfa6ae7547c45d7502fdc503427bd">Pos</a> pos)</td></tr>
-<tr class="memdesc:a5f6561cf9ba2a53c4863dbadc42c5c61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write your own implementation or include <a class="el" href="loc_8cpp_8h.html">fe/loc.cpp.h</a> somewhere for a default one.  <br /></td></tr>
+<tr class="memdesc:a5f6561cf9ba2a53c4863dbadc42c5c61"><td class="mdescLeft">&#160;</td><td class="mdescRight"><span class="tt"><a class="el" href="loc_8h.html">fe/loc.h</a></span> only declares the stream output and dump helpers.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="structfe_1_1Pos.html" title="Position in a source file; pass around as value.">Pos</a>ition in a source file; pass around as value. </p>
@@ -168,7 +168,7 @@ Friends</h2></td></tr>
 
 <p>Creates an invalid <a class="el" href="structfe_1_1Pos.html" title="Position in a source file; pass around as value.">Pos</a>ition. </p>
 
-<p class="reference">Referenced by <a class="el" href="loc_8cpp_8h_source.html#l00006">operator&lt;&lt;</a>, and <a class="el" href="#a38026a3057acc9bb77de0e3951933c03">operator&lt;=&gt;()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="loc_8cpp_8h_source.html#l00010">operator&lt;&lt;</a>, and <a class="el" href="#a38026a3057acc9bb77de0e3951933c03">operator&lt;=&gt;()</a>.</p>
 
 </div>
 </div>
@@ -250,7 +250,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="loc_8cpp_8h_source.html#l00023">23</a> of file <a class="el" href="loc_8cpp_8h_source.html">loc.cpp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="loc_8cpp_8h_source.html#l00027">27</a> of file <a class="el" href="loc_8cpp_8h_source.html">loc.cpp.h</a>.</p>
 
 </div>
 </div>
@@ -340,9 +340,10 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Write your own implementation or include <a class="el" href="loc_8cpp_8h.html">fe/loc.cpp.h</a> somewhere for a default one. </p>
+<p><span class="tt"><a class="el" href="loc_8h.html">fe/loc.h</a></span> only declares the stream output and dump helpers. </p>
+<p>Include <span class="tt"><a class="el" href="loc_8cpp_8h.html">fe/loc.cpp.h</a></span> in exactly one translation unit for the default implementation, or provide your own definitions instead. </p>
 
-<p class="definition">Definition at line <a class="el" href="loc_8cpp_8h_source.html#l00006">6</a> of file <a class="el" href="loc_8cpp_8h_source.html">loc.cpp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="loc_8cpp_8h_source.html#l00010">10</a> of file <a class="el" href="loc_8cpp_8h_source.html">loc.cpp.h</a>.</p>
 
 <p class="reference">References <a class="el" href="loc_8h_source.html#l00023">col</a>, <a class="el" href="#a5eabfa6ae7547c45d7502fdc503427bd">Pos()</a>, and <a class="el" href="loc_8h_source.html#l00022">row</a>.</p>
 
@@ -363,7 +364,7 @@ Friends</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00023">23</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="loc_8cpp_8h_source.html#l00006">operator&lt;&lt;</a>, and <a class="el" href="loc_8h_source.html#l00014">Pos()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="loc_8cpp_8h_source.html#l00010">operator&lt;&lt;</a>, and <a class="el" href="loc_8h_source.html#l00014">Pos()</a>.</p>
 
 </div>
 </div>
@@ -381,7 +382,7 @@ Friends</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00022">22</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="loc_8h_source.html#l00018">operator bool()</a>, <a class="el" href="loc_8cpp_8h_source.html#l00006">operator&lt;&lt;</a>, <a class="el" href="loc_8h_source.html#l00012">Pos()</a>, and <a class="el" href="loc_8h_source.html#l00014">Pos()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="loc_8h_source.html#l00018">operator bool()</a>, <a class="el" href="loc_8cpp_8h_source.html#l00010">operator&lt;&lt;</a>, <a class="el" href="loc_8h_source.html#l00012">Pos()</a>, and <a class="el" href="loc_8h_source.html#l00014">Pos()</a>.</p>
 
 </div>
 </div>
