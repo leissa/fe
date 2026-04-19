@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['recommended_0',['Option #1: Include FE as Submodule (Recommended)',['../index.html#autotoc_md5',1,'']]]
+  ['why_20fe_0',['💡 Why FE?',['../index.html#autotoc_md1',1,'']]],
+  ['workflow_1',['🧭 Typical workflow',['../index.html#autotoc_md5',1,'']]]
 ];

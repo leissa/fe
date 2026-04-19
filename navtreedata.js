@@ -25,15 +25,16 @@
 var NAVTREE =
 [
   [ "FE", "index.html", [
-    [ "💡 What is FE?", "index.html#autotoc_md1", null ],
-    [ "🚀 Get Started Now!", "index.html#autotoc_md2", null ],
-    [ "✅ Features", "index.html#autotoc_md3", null ],
-    [ "🛠️ Building", "index.html#autotoc_md4", [
-      [ "Option #1: Include FE as Submodule (Recommended)", "index.html#autotoc_md5", null ],
-      [ "Option #2: Directly include FE in your Source Tree", "index.html#autotoc_md6", null ]
+    [ "💡 Why FE?", "index.html#autotoc_md1", null ],
+    [ "🚀 Quick start", "index.html#autotoc_md2", [
+      [ "CMake", "index.html#autotoc_md3", null ],
+      [ "Direct include", "index.html#autotoc_md4", null ]
     ] ],
-    [ "🔨 Other Projects using FE", "index.html#autotoc_md7", null ],
-    [ "⚖️ License", "index.html#autotoc_md8", null ],
+    [ "🧭 Typical workflow", "index.html#autotoc_md5", null ],
+    [ "🛠️ Building and testing FE itself", "index.html#autotoc_md6", null ],
+    [ "📚 Building the documentation", "index.html#autotoc_md7", null ],
+    [ "🔨 Related projects", "index.html#autotoc_md8", null ],
+    [ "⚖️ License", "index.html#autotoc_md9", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -71,7 +72,7 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "classfe_1_1Sym.html#a46b4e3d6859821564fa612901a84300e",
-"structfe_1_1Driver.html"
+"structfe_1_1Arena_1_1Deleter.html#ae015df08e188973713e61eb0d212868e"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

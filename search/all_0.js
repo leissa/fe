@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['1_3a_20include_20fe_20as_20submodule_20recommended_0',['Option #1: Include FE as Submodule (Recommended)',['../index.html#autotoc_md5',1,'']]]
+  ['_3a_3astd_3a_3ahash_3c_20fe_3a_3asym_20_3e_0',['hash&lt; fe::Sym &gt;',['../classfe_1_1Sym.html#a4c865acde4de25ac1247eeaac18710b5',1,'fe::Sym']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['now_0',['🚀 Get Started Now!',['../index.html#autotoc_md2',1,'']]]
+  ['related_20projects_0',['🔨 Related projects',['../index.html#autotoc_md8',1,'']]]
 ];

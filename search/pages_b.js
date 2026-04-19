@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['projects_20using_20fe_0',['🔨 Other Projects using FE',['../index.html#autotoc_md7',1,'']]]
+  ['testing_20fe_20itself_0',['🛠️ Building and testing FE itself',['../index.html#autotoc_md6',1,'']]],
+  ['the_20documentation_1',['📚 Building the documentation',['../index.html#autotoc_md7',1,'']]],
+  ['typical_20workflow_2',['🧭 Typical workflow',['../index.html#autotoc_md5',1,'']]]
 ];

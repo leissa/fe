@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['as_20submodule_20recommended_0',['Option #1: Include FE as Submodule (Recommended)',['../index.html#autotoc_md5',1,'']]]
+  ['cmake_0',['CMake',['../index.html#autotoc_md3',1,'']]]
 ];

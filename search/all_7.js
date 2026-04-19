@@ -1,14 +1,12 @@
 var searchData=
 [
-  ['deallocate_0',['deallocate',['../structfe_1_1Arena_1_1Allocator.html#a855ffa4f57672434fefae5fb9f4baa27',1,'fe::Arena::Allocator::deallocate()'],['../classfe_1_1Arena.html#a23e2c81675c44591a623732beeb2729b',1,'fe::Arena::deallocate(size_t num_bytes) noexcept'],['../classfe_1_1Arena.html#a27c2f6b322adf7b4db01b10c6871e1f7',1,'fe::Arena::deallocate(State state) noexcept']]],
-  ['decode_1',['decode',['../namespacefe_1_1utf8.html#a4ca17134ff0be619535e913b53a80e79',1,'fe::utf8']]],
-  ['default_5fpage_5fsize_2',['Default_Page_Size',['../classfe_1_1Arena.html#acf8db82af7c5e70594460ffffeaaedc6',1,'fe::Arena']]],
-  ['deleter_3',['Deleter',['../structfe_1_1Arena_1_1Deleter.html',1,'fe::Arena::Deleter&lt; T &gt;'],['../structfe_1_1Arena_1_1Deleter.html#a4f115196981ec080d075fd09f8fce52e',1,'fe::Arena::Deleter::Deleter() noexcept=default'],['../structfe_1_1Arena_1_1Deleter.html#acb74633b0f9c12116865339f08659d8d',1,'fe::Arena::Deleter::Deleter(const Deleter&lt; U &gt; &amp;) noexcept']]],
-  ['directly_20include_20fe_20in_20your_20source_20tree_4',['Option #2: Directly include FE in your Source Tree',['../index.html#autotoc_md6',1,'']]],
-  ['do_5fallocate_5',['do_allocate',['../classfe_1_1Arena_1_1MemoryResource.html#a8e71a597b41a12d7a3a66c588b065e1e',1,'fe::Arena::MemoryResource']]],
-  ['do_5fdeallocate_6',['do_deallocate',['../classfe_1_1Arena_1_1MemoryResource.html#a8612aaa7c927034b57091ee96f4f85da',1,'fe::Arena::MemoryResource']]],
-  ['do_5fis_5fequal_7',['do_is_equal',['../classfe_1_1Arena_1_1MemoryResource.html#a670b91798198a06fce1a2bb3625a9b01',1,'fe::Arena::MemoryResource']]],
-  ['driver_8',['Driver',['../structfe_1_1Driver.html',1,'fe']]],
-  ['driver_2eh_9',['driver.h',['../driver_8h.html',1,'']]],
-  ['dump_10',['dump',['../structfe_1_1Pos.html#a9a6685af4e76850af36627fd7f9a0978',1,'fe::Pos::dump()'],['../structfe_1_1Loc.html#a0531b0fe2bb2304752a1d58b80647365',1,'fe::Loc::dump()']]]
+  ['fe_0',['FE',['../index.html#autotoc_md1',1,'💡 Why FE?'],['../index.html',1,'FE']]],
+  ['fe_1',['fe',['../namespacefe.html',1,'']]],
+  ['fe_20itself_2',['🛠️ Building and testing FE itself',['../index.html#autotoc_md6',1,'']]],
+  ['fe_3a_3autf8_3',['utf8',['../namespacefe_1_1utf8.html',1,'fe']]],
+  ['finis_4',['finis',['../structfe_1_1Loc.html#a19c742b2f7de9b42ce45d92d3210a3ea',1,'fe::Loc']]],
+  ['first_5',['first',['../namespacefe_1_1utf8.html#ab8b8a7ebfb35f84b56defdde79becd08',1,'fe::utf8']]],
+  ['format_6',['format',['../structfe_1_1basic__ostream__formatter.html#aa89752e176250523b64ad02bff885000',1,'fe::basic_ostream_formatter']]],
+  ['format_2eh_7',['format.h',['../format_8h.html',1,'']]],
+  ['front_8',['front',['../classfe_1_1Ring.html#ab86228fc41dc079697e029f33e59d40f',1,'fe::Ring::front()'],['../classfe_1_1Ring.html#acb2e78a03a337d42be2a354ede5402cd',1,'fe::Ring::front() const'],['../classfe_1_1Ring_3_01T_00_011_01_4.html#a8522e0f2e73e09434da36267fb694002',1,'fe::Ring&lt; T, 1 &gt;::front()'],['../classfe_1_1Ring_3_01T_00_011_01_4.html#a1576a3573f5b1e34e217f45beea6a771',1,'fe::Ring&lt; T, 1 &gt;::front() const'],['../classfe_1_1Ring_3_01T_00_012_01_4.html#a02191e2a152d58a7c297e980e0817be5',1,'fe::Ring&lt; T, 2 &gt;::front()'],['../classfe_1_1Ring_3_01T_00_012_01_4.html#a2a982c2d80c030c60369f1f05d212919',1,'fe::Ring&lt; T, 2 &gt;::front() const'],['../classfe_1_1Sym.html#a24a85f4313c5373da06a74f7a529dc6d',1,'fe::Sym::front()']]]
 ];

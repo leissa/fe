@@ -1,17 +1,12 @@
 var searchData=
 [
-  ['rbegin_0',['rbegin',['../classfe_1_1Sym.html#a91d840fb22a5afcc50e3a70daee67907',1,'fe::Sym']]],
-  ['readme_2emd_1',['README.md',['../README_8md.html',1,'']]],
-  ['recommended_2',['Option #1: Include FE as Submodule (Recommended)',['../index.html#autotoc_md5',1,'']]],
-  ['rend_3',['rend',['../classfe_1_1Sym.html#a1e7ad312b7d4d7f733e2ee47245b3e9b',1,'fe::Sym']]],
-  ['reset_4',['reset',['../classfe_1_1Ring.html#a17df98ab4ef3ce9fd2bb13a911a4ad16',1,'fe::Ring::reset()'],['../classfe_1_1Ring_3_01T_00_011_01_4.html#afa85d5e5922d3b59c79d7ebc33f8bc5b',1,'fe::Ring&lt; T, 1 &gt;::reset()'],['../classfe_1_1Ring_3_01T_00_012_01_4.html#abd21245d7479c1fc29eff7e4030f0f37',1,'fe::Ring&lt; T, 2 &gt;::reset()']]],
-  ['resource_5',['resource',['../classfe_1_1Arena.html#a4ebf61d33a87088a351197f7adcf39d4',1,'fe::Arena::resource() noexcept'],['../classfe_1_1Arena.html#aa1f1c16b55f19577e56f47927b1db684',1,'fe::Arena::resource() const noexcept']]],
-  ['ring_6',['Ring',['../classfe_1_1Ring.html',1,'fe::Ring&lt; T, N &gt;'],['../classfe_1_1Ring.html#ab3a60be69dfbca6f492a48c723daa95c',1,'fe::Ring::Ring(std::initializer_list&lt; T &gt; list)'],['../classfe_1_1Ring.html#a39e40341b203dbc7fae4f52898b51b28',1,'fe::Ring::Ring() noexcept=default'],['../classfe_1_1Ring.html#afcde3aa07bba9d3d3744123dec1602d0',1,'fe::Ring::Ring(const Ring &amp;)=default'],['../classfe_1_1Ring.html#abdcf792fc1968ca81d07db6b1224c369',1,'fe::Ring::Ring(Ring &amp;&amp;other) noexcept'],['../classfe_1_1Ring_3_01T_00_011_01_4.html#ad94b650f9f2f5492360c9138aa38e617',1,'fe::Ring&lt; T, 1 &gt;::Ring(std::initializer_list&lt; T &gt; list)'],['../classfe_1_1Ring_3_01T_00_011_01_4.html#ac1a657a25a9b0d0ee50b4d407e2ae403',1,'fe::Ring&lt; T, 1 &gt;::Ring()=default'],['../classfe_1_1Ring_3_01T_00_011_01_4.html#a54755862d1a832746a7ebd357bce8851',1,'fe::Ring&lt; T, 1 &gt;::Ring(const Ring &amp;)=default'],['../classfe_1_1Ring_3_01T_00_011_01_4.html#a64470b687e90523ac7a9882901f332b5',1,'fe::Ring&lt; T, 1 &gt;::Ring(Ring &amp;&amp;other)'],['../classfe_1_1Ring_3_01T_00_012_01_4.html#aed3ea7b655a522c25c19565dd8021087',1,'fe::Ring&lt; T, 2 &gt;::Ring(std::initializer_list&lt; T &gt; list)'],['../classfe_1_1Ring_3_01T_00_012_01_4.html#a98607b00a2db5a6aee3238b780e716a4',1,'fe::Ring&lt; T, 2 &gt;::Ring() noexcept=default'],['../classfe_1_1Ring_3_01T_00_012_01_4.html#a785492d506750fb8150ac96a09ecbbc7',1,'fe::Ring&lt; T, 2 &gt;::Ring(const Ring &amp;)=default'],['../classfe_1_1Ring_3_01T_00_012_01_4.html#a5c380dbf80ce444404af5eaaf900ed40',1,'fe::Ring&lt; T, 2 &gt;::Ring(Ring &amp;&amp;other) noexcept']]],
-  ['ring_2eh_7',['ring.h',['../ring_8h.html',1,'']]],
-  ['ring_3c_20char32_5ft_2c_20k_20_3e_8',['Ring&lt; char32_t, K &gt;',['../classfe_1_1Ring.html',1,'fe']]],
-  ['ring_3c_20t_2c_201_20_3e_9',['Ring&lt; T, 1 &gt;',['../classfe_1_1Ring_3_01T_00_011_01_4.html',1,'fe']]],
-  ['ring_3c_20t_2c_202_20_3e_10',['Ring&lt; T, 2 &gt;',['../classfe_1_1Ring_3_01T_00_012_01_4.html',1,'fe']]],
-  ['ring_3c_20tok_2c_20k_20_3e_11',['Ring&lt; Tok, K &gt;',['../classfe_1_1Ring.html',1,'fe']]],
-  ['row_12',['row',['../structfe_1_1Pos.html#a989c45fc3d1ce613b90a8ab145c94158',1,'fe::Pos']]],
-  ['runtimecast_13',['RuntimeCast',['../classfe_1_1RuntimeCast.html',1,'fe']]]
+  ['tab_0',['Tab',['../classfe_1_1Tab.html',1,'fe::Tab'],['../classfe_1_1Tab.html#ad4c8eaf1bbcefb808746bddedde9e017',1,'fe::Tab::Tab(const Tab &amp;)=default'],['../classfe_1_1Tab.html#a26e89818605504153a811452694db2ea',1,'fe::Tab::Tab(std::string_view tab={&quot;\\t&quot;}, size_t indent=0)']]],
+  ['tab_1',['tab',['../classfe_1_1Tab.html#aefb32b7f85982a9069518a6c96699033',1,'fe::Tab']]],
+  ['testing_20fe_20itself_2',['🛠️ Building and testing FE itself',['../index.html#autotoc_md6',1,'']]],
+  ['the_20documentation_3',['📚 Building the documentation',['../index.html#autotoc_md7',1,'']]],
+  ['tolower_4',['tolower',['../namespacefe_1_1utf8.html#a50e0192b122a783b81710499f20ae6b5',1,'fe::utf8']]],
+  ['toupper_5',['toupper',['../namespacefe_1_1utf8.html#a6f47692e931db3f19ee1fcc516d72f9c',1,'fe::utf8']]],
+  ['tracker_6',['Tracker',['../classfe_1_1Parser_1_1Tracker.html',1,'fe::Parser&lt; Tok, Tag, K, S &gt;::Tracker'],['../classfe_1_1Parser_1_1Tracker.html#a8b31319b66d8fb1a2911ec78e1b05ccf',1,'fe::Parser::Tracker::Tracker()']]],
+  ['tracker_7',['tracker',['../classfe_1_1Parser.html#aea3507b75aa247b9431256f5463a7821',1,'fe::Parser::tracker()'],['../classfe_1_1Parser.html#a01e44a12cb19d3172293feac4f89bbbc',1,'fe::Parser::tracker(Pos begin)'],['../classfe_1_1Parser.html#a4a964da822c8e0c743a8e5fce865ca20',1,'fe::Parser::tracker(Loc begin)']]],
+  ['typical_20workflow_8',['🧭 Typical workflow',['../index.html#autotoc_md5',1,'']]]
 ];

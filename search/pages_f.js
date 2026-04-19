@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['using_20fe_0',['🔨 Other Projects using FE',['../index.html#autotoc_md7',1,'']]]
+  ['📚_20building_20the_20documentation_0',['📚 Building the documentation',['../index.html#autotoc_md7',1,'']]]
 ];

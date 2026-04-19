@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['directly_20include_20fe_20in_20your_20source_20tree_0',['Option #2: Directly include FE in your Source Tree',['../index.html#autotoc_md6',1,'']]]
+  ['fe_0',['FE',['../index.html#autotoc_md1',1,'💡 Why FE?'],['../index.html',1,'FE']]],
+  ['fe_20itself_1',['🛠️ Building and testing FE itself',['../index.html#autotoc_md6',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['your_20source_20tree_0',['Option #2: Directly include FE in your Source Tree',['../index.html#autotoc_md6',1,'']]]
+  ['🚀_20quick_20start_0',['🚀 Quick start',['../index.html#autotoc_md2',1,'']]]
 ];
