@@ -132,7 +132,7 @@ $(function(){initNavTree('assert_8h_source.html','',''); });
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="namespacefe.html#aff9df682b55afdb0f712e5a0c1ff3a2b">   19</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespacefe.html#aff9df682b55afdb0f712e5a0c1ff3a2b">unreachable</a>() { assert(<span class="keyword">false</span>); }</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment"></span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment">/// Raise breaokpoint in debugger.</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment">/// Raise a breakpoint in the debugger.</span></div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#if (defined(__clang__) || defined(__GNUC__)) &amp;&amp; (defined(__x86_64__) || defined(__i386__))</span></div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespacefe.html#aa67601e05290c4a15e0d5d5f1f12a4a2">breakpoint</a>() { <span class="keyword">asm</span>(<span class="stringliteral">&quot;int3&quot;</span>); }</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#else</span></div>
@@ -152,7 +152,7 @@ $(function(){initNavTree('assert_8h_source.html','',''); });
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#    define assert_unused(x) ((void)(0 &amp;&amp; (x)))</span></div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="anamespacefe_html"><div class="ttname"><a href="namespacefe.html">fe</a></div><div class="ttdef"><b>Definition</b> <a href="arena_8h_source.html#l00013">arena.h:13</a></div></div>
-<div class="ttc" id="anamespacefe_html_aa67601e05290c4a15e0d5d5f1f12a4a2"><div class="ttname"><a href="namespacefe.html#aa67601e05290c4a15e0d5d5f1f12a4a2">fe::breakpoint</a></div><div class="ttdeci">void breakpoint()</div><div class="ttdoc">Raise breaokpoint in debugger.</div><div class="ttdef"><b>Definition</b> <a href="#l00026">assert.h:26</a></div></div>
+<div class="ttc" id="anamespacefe_html_aa67601e05290c4a15e0d5d5f1f12a4a2"><div class="ttname"><a href="namespacefe.html#aa67601e05290c4a15e0d5d5f1f12a4a2">fe::breakpoint</a></div><div class="ttdeci">void breakpoint()</div><div class="ttdoc">Raise a breakpoint in the debugger.</div><div class="ttdef"><b>Definition</b> <a href="#l00026">assert.h:26</a></div></div>
 <div class="ttc" id="anamespacefe_html_aff9df682b55afdb0f712e5a0c1ff3a2b"><div class="ttname"><a href="namespacefe.html#aff9df682b55afdb0f712e5a0c1ff3a2b">fe::unreachable</a></div><div class="ttdeci">void unreachable()</div><div class="ttdef"><b>Definition</b> <a href="#l00019">assert.h:19</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

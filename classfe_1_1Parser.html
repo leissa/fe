@@ -126,7 +126,7 @@ Protected Member Functions</h2></td></tr>
 <tr id="pro-methods-0" class="groupHeader"><td colspan="2"><div class="groupHeader">Construction</div></td></tr>
 <tr class="memitem:aff4aefd0e9b228d67489e4aa3232fdeb" id="r_aff4aefd0e9b228d67489e4aa3232fdeb"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aff4aefd0e9b228d67489e4aa3232fdeb">init</a> (const std::filesystem::path *path)</td></tr>
 <tr id="pro-methods-1" class="groupHeader"><td colspan="2"><div class="groupHeader">Tracker</div></td></tr>
-<tr><td colspan="2" class="ititle"><div class="groupText"><p>Track <a class="el" href="structfe_1_1Loc.html" title="Location in a File.">Loc</a>ation in Source File.</p>
+<tr><td colspan="2" class="ititle"><div class="groupText"><p>Track <a class="el" href="structfe_1_1Loc.html" title="Location in a File.">Loc</a>ation in the source file.</p>
 <p>Use like this: </p><div class="fragment"><div class="line"><span class="keyword">auto</span> track  = <a class="code hl_function" href="#aea3507b75aa247b9431256f5463a7821">tracker</a>();</div>
 <div class="line"><span class="keyword">auto</span> foo    = parse_foo();</div>
 <div class="line"><span class="keyword">auto</span> bar    = parse_bar();</div>
@@ -170,8 +170,8 @@ class fe::Parser&lt; Tok, Tag, K, S &gt;</div><p>The blueprint for a <a href="ht
 <div class="line">};</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Your Parser:</span></div>
-<div class="line"><span class="keywordflow">if</span> (<span class="keyword">auto</span> tok = <a class="code hl_function" href="#ad7acb49705c085f2ae9e7464f03eb3c0">accept</a>(Tok::Tag:My_Tag)) {</div>
-<div class="line">    do_sth(tok);</div>
+<div class="line"><span class="keywordflow">if</span> (<span class="keyword">auto</span> tok = <a class="code hl_function" href="#ad7acb49705c085f2ae9e7464f03eb3c0">accept</a>(Tok::Tag::My_Tag)) {</div>
+<div class="line">    do_something(tok);</div>
 <div class="line">}</div>
 <div class="ttc" id="aclassfe_1_1Parser_html_ad7acb49705c085f2ae9e7464f03eb3c0"><div class="ttname"><a href="#ad7acb49705c085f2ae9e7464f03eb3c0">fe::Parser::accept</a></div><div class="ttdeci">Tok accept(Tag tag)</div><div class="ttdoc">If Parser::ahead() is a tag, consume and return it, otherwise yield std::nullopt.</div><div class="ttdef"><b>Definition</b> <a href="parser_8h_source.html#l00092">parser.h:92</a></div></div>
 </div><!-- fragment --> 

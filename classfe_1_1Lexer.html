@@ -165,7 +165,7 @@ Accept</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;size_t K, class S&gt;<br />
 class fe::Lexer&lt; K, S &gt;</div><p>The blueprint for a lexer with a buffer of <code class="param">K</code> tokens to peek into the future (<a class="el" href="#a574d6f4a890b04a422faa6a549a48687">Lexer::ahead</a>). </p>
-<p>You can "overide" <a class="el" href="#a0bbfc87be21bdd46d883002eb10303c1" title="Get next char32_t in Lexer::istream_ and increase Lexer::loc_.">Lexer::next</a> via CRTP (<code class="param">S</code> is the child). </p>
+<p>You can "override" <a class="el" href="#a0bbfc87be21bdd46d883002eb10303c1" title="Get next char32_t in Lexer::istream_ and increase Lexer::loc_.">Lexer::next</a> via CRTP (<code class="param">S</code> is the child). </p>
 
 <p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00015">15</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
 </div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Member Enumeration Documentation</h2>
@@ -190,7 +190,7 @@ template&lt;size_t K, class S&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>What should happend to the accepted char? Normalize identifiers via <a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6ab75fcdd2d72d9e000beab48622402d93" title="Append accepted char via fe::utf8::tolower` to Lexer::str_.">Append::Lower</a> or <a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6a19de5b94f7b83900d4b296d9fa491aec" title="Append accepted char via fe::utf8::toupper` to Lexer::str_.">Append::Upper</a> for case-insensitive languages like FORTRAN or SQL. </p>
+<p>What should happen to the accepted char? Normalize identifiers via <a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6ab75fcdd2d72d9e000beab48622402d93" title="Append accepted char via fe::utf8::tolower` to Lexer::str_.">Append::Lower</a> or <a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6a19de5b94f7b83900d4b296d9fa491aec" title="Append accepted char via fe::utf8::toupper` to Lexer::str_.">Append::Upper</a> for case-insensitive languages like FORTRAN or SQL. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a99366b3ab28fff1d6a1013b1007246a6ad15305d7a4e34e02489c74a5ef542f36" name="a99366b3ab28fff1d6a1013b1007246a6ad15305d7a4e34e02489c74a5ef542f36"></a>Off&#160;</td><td class="fielddoc"><p>Do not append accepted char to <a class="el" href="#a8038ab296487b12c19dc2d7967e6b5c7">Lexer::str_</a>. </p>
 </td></tr>

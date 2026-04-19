@@ -123,7 +123,7 @@ $(function(){initNavTree('lexer_8h_source.html','',''); });
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacefe.html">fe</a> {</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"></span> </div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">/// The blueprint for a lexer with a buffer of @p K tokens to peek into the future (Lexer::ahead).</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">/// You can &quot;overide&quot; Lexer::next via CRTP (@p S is the child).</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">/// You can &quot;override&quot; Lexer::next via CRTP (@p S is the child).</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">template</span>&lt;<span class="keywordtype">size_t</span> K, <span class="keyword">class</span> S&gt;</div>
 <div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classfe_1_1Lexer.html">   15</a></span><span class="keyword">class </span><a class="code hl_function" href="classfe_1_1Lexer.html#a103bc4fe11808764c96552fb6d7975c0">Lexer</a> {</div>
@@ -179,7 +179,7 @@ $(function(){initNavTree('lexer_8h_source.html','',''); });
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment">    /// @name Accept</span></div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment">    /// Accept next character in Lexer::istream_, depending on some condition.</span></div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">    ///@{</span></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">    /// What should happend to the accepted char?</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">    /// What should happen to the accepted char?</span></div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">    /// Normalize identifiers via Append::Lower or Append::Upper for case-insensitive languages like FORTRAN or SQL.</span></div>
 <div class="foldopen" id="foldopen00064" data-start="{" data-end="};">
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classfe_1_1Lexer.html#a99366b3ab28fff1d6a1013b1007246a6">   64</a></span>    <span class="keyword">enum class</span> <a class="code hl_enumeration" href="classfe_1_1Lexer.html#a99366b3ab28fff1d6a1013b1007246a6">Append</a> {</div>
