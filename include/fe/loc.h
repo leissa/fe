@@ -22,7 +22,9 @@ struct Pos {
     uint16_t row = 0;
     uint16_t col = 0;
 
-    /// Write your own implementation or include fe/loc.cpp.h somewhere for a default one.
+    /// `fe/loc.h` only declares the stream output and dump helpers.
+    /// Include `fe/loc.cpp.h` in exactly one translation unit for the default implementation,
+    /// or provide your own definitions instead.
     friend std::ostream& operator<<(std::ostream& os, Pos pos);
 };
 
@@ -58,7 +60,9 @@ struct Loc {
     ///< It's called `finis` because it refers to the **last** character within this Loc%ation.
     /// In the STL the word `end` refers to the position of something that is one element **past** the end.
 
-    /// Write your own implementation or include fe/loc.cpp.h somewhere for a default one.
+    /// `fe/loc.h` only declares the stream output and dump helpers.
+    /// Include `fe/loc.cpp.h` in exactly one translation unit for the default implementation,
+    /// or provide your own definitions instead.
     friend std::ostream& operator<<(std::ostream& os, Loc loc);
 };
 
