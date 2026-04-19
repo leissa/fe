@@ -1,25 +1,30 @@
 # FE
 
-[![docs](https://img.shields.io/github/actions/workflow/status/leissa/fe/doxygen.yml?logo=gitbook&logoColor=white&label=docs&link=https%3A%2F%2Fleissa.github.io%2Ffe%2F&link=https%3A%2F%2Fgithub.com%2Fleissa%2Ffe%2Factions%2Fworkflows%2Fdoxygen.yml)](https://github.com/leissa/fe/actions/workflows/doxygen.yml)
-[![linux](https://img.shields.io/github/actions/workflow/status/leissa/fe/linux.yml?logo=linux&logoColor=white&label=linux&link=https%3A%2F%2Fgithub.com%2Fleissa%2Ffe%2Factions%2Fworkflows%2Flinux.yml)](https://github.com/leissa/fe/actions/workflows/linux.yml)
-[![macos](https://img.shields.io/github/actions/workflow/status/leissa/fe/macos.yml?logo=apple&logoColor=white&label=macos&link=https%3A%2F%2Fgithub.com%2Fleissa%2Ffe%2Factions%2Fworkflows%2Fmacos.yml)](https://github.com/leissa/fe/actions/workflows/macos.yml)
-[![windows](https://img.shields.io/github/actions/workflow/status/leissa/fe/windows.yml?logo=windows&logoColor=white&label=windows&link=https%3A%2F%2Fgithub.com%2Fleissa%2Ffe%2Factions%2Fworkflows%2Fwindows.yml)](https://github.com/leissa/fe/actions/workflows/windows.yml)
+[![Forks](https://img.shields.io/github/forks/leissa/fe)](https://github.com/leissa/fe/fork)
+[![Stars](https://img.shields.io/github/stars/leissa/fe)](https://github.com/leissa/fe/stargazers)
+
+[TOC]
+
+[![Linux](https://img.shields.io/github/actions/workflow/status/leissa/fe/linux.yml?style=flat-square&logo=linux&label=linux&logoColor=white&branch=main)](https://github.com/leissa/fe/actions/workflows/linux.yml)
+[![Windows](https://img.shields.io/github/actions/workflow/status/leissa/fe/windows.yml?label=⊞%20windows&branch=main)](https://github.com/leissa/fe/actions/workflows/windows.yml)
+[![macOS](https://img.shields.io/github/actions/workflow/status/leissa/fe/macos.yml?style=flat-square&logo=apple&label=macos&branch=main)](https://github.com/leissa/fe/actions/workflows/macos.yml)
+[![Doxygen](https://img.shields.io/github/actions/workflow/status/leissa/fe/doxygen.yml?style=flat-square&logo=gitbook&logoColor=white&label=doxygen&branch=main)](https://github.com/leissa/fe/actions/workflows/doxygen.yml)
 
 A header-only C++ library for writing compiler/interpreter frontends.
 
-## What is FE?
+## 💡 What is FE?
 
 FE provides a set of utilities that helps you writing your own compiler or interpreter frontend.
 FE is **not** a lexer or parser generator.
 Instead, it will give you the blueprint to easily hand-write your own lexer and parser.
 
-## Get Started Now!
+## 🚀 Get Started Now!
 
 Based on the toy language *[Let](https://github.com/leissa/let)*, either
 * create a [new repository from a template](https://github.com/new?template_owner=leissa&template_name=let), or
 * [fork](https://github.com/leissa/let/fork) it.
 
-## Features
+## ✅ Features
 
 * [Arena](@ref fe::Arena) allocator for efficient memory management.
 * Efficient [symbol pool](@ref fe::SymPool) that internalizes C and C++ strings into [symbols](@ref fe::Sym).
@@ -30,7 +35,7 @@ Based on the toy language *[Let](https://github.com/leissa/let)*, either
 * Optional [Abseil](https://abseil.io/) support.
 * You need at least C++-20.
 
-## Building
+## 🛠️ Building
 
 FE optionally supports [Abseil](https://abseil.io/)'s excellent [hash containers](https://abseil.io/docs/cpp/guides/container).
 In order to enable Abseil support, you have to define `FE_ABSL`.
@@ -77,9 +82,13 @@ Otherwise, FE will fall back to the hash containers of the C++ standard library.
     ```cmake
     target_compile_definitions(my_compiler PUBLIC FE_ABSL)
     ```
-## Other Projects using FE
+## 🔨 Other Projects using FE
 
 * [Let](https://github.com/leissa/let): A simple demo language that builds upon FE
 * [GraphTool](https://github.com/leissa/graphtool): A small tool that reads a subset from Graphviz' DOT language and calculates several dominance-related properties
 * [MimIR](https://anydsl.github.io/MimIR/): MimIR is my intermediate representation
 * [SQL](https://github.com/leissa/sql): Small and simple SQL parser
+
+## ⚖️ License
+
+FE is licensed under the [MIT License](https://github.com/leissa/fe/blob/main/LICENSE.TXT).
