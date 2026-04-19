@@ -111,8 +111,41 @@ $(function(){initNavTree('index.html','',''); });
   <div class="headertitle"><div class="title">FE </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="toc"><h3>Table of Contents</h3>
+<ul>
+  <li class="level1">
+    <a href="#autotoc_md1">💡 Why FE? </a>
+  </li>
+  <li class="level1">
+    <a href="#autotoc_md2">🚀 Quick start </a>
+    <ul>
+      <li class="level2">
+        <a href="#autotoc_md3">CMake </a>
+      </li>
+      <li class="level2">
+        <a href="#autotoc_md4">Direct include </a>
+      </li>
+    </ul>
+  </li>
+  <li class="level1">
+    <a href="#autotoc_md5">🧭 Typical workflow </a>
+  </li>
+  <li class="level1">
+    <a href="#autotoc_md6">🛠️ Building and testing FE itself </a>
+  </li>
+  <li class="level1">
+    <a href="#autotoc_md7">📚 Building the documentation </a>
+  </li>
+  <li class="level1">
+    <a href="#autotoc_md8">🔨 Related projects </a>
+  </li>
+  <li class="level1">
+    <a href="#autotoc_md9">⚖️ License </a>
+  </li>
+</ul>
+</div>
 <div class="textblock"><p><a class="anchor" id="md__2home_2runner_2work_2fe_2fe_2docs_2README"></a></p>
-<p><a href="https://github.com/leissa/fe/actions/workflows/linux.yml"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/linux.yml?style=flat-square&amp;logo=linux&amp;label=linux&amp;logoColor=white&amp;branch=main" alt="Linux" class="inline"/></a> <a href="https://github.com/leissa/fe/actions/workflows/windows.yml"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/windows.yml?style=flat-square&amp;label=windows&amp;branch=main" alt="Windows" class="inline"/></a> <a href="https://github.com/leissa/fe/actions/workflows/macos.yml"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/macos.yml?style=flat-square&amp;logo=apple&amp;label=macos&amp;branch=main" alt="macOS" class="inline"/></a> <a href="https://github.com/leissa/fe/actions/workflows/doxygen.yml"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/doxygen.yml?style=flat-square&amp;logo=gitbook&amp;logoColor=white&amp;label=doxygen&amp;branch=main" alt="Doxygen" class="inline"/></a> <a href="../LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="License: MIT" style="pointer-events: none;" class="inline"/></a></p>
+<p><a href="https://github.com/leissa/fe/actions/workflows/linux.yml"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/linux.yml?style=flat-square&amp;logo=linux&amp;label=linux&amp;logoColor=white&amp;branch=main" alt="Linux" class="inline"/></a> <a href="https://github.com/leissa/fe/actions/workflows/windows.yml"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/windows.yml?style=flat-square&amp;label=windows&amp;branch=main" alt="Windows" class="inline"/></a> <a href="https://github.com/leissa/fe/actions/workflows/macos.yml"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/macos.yml?style=flat-square&amp;logo=apple&amp;label=macos&amp;branch=main" alt="macOS" class="inline"/></a> <a href="https://github.com/leissa/fe/actions/workflows/doxygen.yml"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/doxygen.yml?style=flat-square&amp;logo=gitbook&amp;logoColor=white&amp;label=doxygen&amp;branch=main" alt="Doxygen" class="inline"/></a> <a href="../LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square&amp;logo=opensourceinitiative&amp;logoColor=white?label=⊞%20windows" alt="License: MIT" style="pointer-events: none;" class="inline"/></a></p>
 <p><b>FE</b> is a header-only C++20 toolkit for writing hand-rolled compiler and interpreter frontends. It does not generate lexers or parsers for you; instead, it gives you the reusable pieces that make handwritten frontends pleasant to build and maintain.</p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
 💡 Why FE?</h1>
