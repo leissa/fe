@@ -172,25 +172,30 @@ TEST_CASE("utf8") {
     CHECK(fe::utf8::any('a', 'b', 'c')('c'));
     CHECK(fe::utf8::any('a', 'b', 'c')('x') == false);
 
+    SUBCASE("decode preserves U+0000") {
+        std::istringstream nul(std::string("\0", 1));
+        CHECK(fe::utf8::decode(nul) == fe::utf8::Null);
+    }
+
     SUBCASE("decode rejects overlong encodings") {
         std::istringstream overlong2("\xc0\x80");
         std::istringstream overlong3("\xe0\x80\x80");
         std::istringstream overlong4("\xf0\x80\x80\x80");
-        CHECK(fe::utf8::decode(overlong2) == fe::utf8::Null);
-        CHECK(fe::utf8::decode(overlong3) == fe::utf8::Null);
-        CHECK(fe::utf8::decode(overlong4) == fe::utf8::Null);
+        CHECK(fe::utf8::decode(overlong2) == fe::utf8::Invalid);
+        CHECK(fe::utf8::decode(overlong3) == fe::utf8::Invalid);
+        CHECK(fe::utf8::decode(overlong4) == fe::utf8::Invalid);
     }
 
     SUBCASE("decode rejects surrogate code points") {
         std::istringstream surrogate("\xed\xa0\x80");
-        CHECK(fe::utf8::decode(surrogate) == fe::utf8::Null);
+        CHECK(fe::utf8::decode(surrogate) == fe::utf8::Invalid);
     }
 
     SUBCASE("decode rejects values above the Unicode range") {
         std::istringstream too_large("\xf4\x90\x80\x80");
         std::istringstream invalid_lead("\xf5\x80\x80\x80");
-        CHECK(fe::utf8::decode(too_large) == fe::utf8::Null);
-        CHECK(fe::utf8::decode(invalid_lead) == fe::utf8::Null);
+        CHECK(fe::utf8::decode(too_large) == fe::utf8::Invalid);
+        CHECK(fe::utf8::decode(invalid_lead) == fe::utf8::Invalid);
     }
 }
 
