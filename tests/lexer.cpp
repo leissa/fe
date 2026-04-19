@@ -124,7 +124,7 @@ public:
         while (true) {
             this->start();
 
-            if (accept(utf8::Null)) {
+            if (accept(utf8::Invalid)) {
                 std::cerr << "invalid UTF-8 sequence" << std::endl;
                 continue;
             }

@@ -38,7 +38,7 @@ protected:
     }
 
     /// Get next `char32_t` in Lexer::istream_ and increase Lexer::loc_.
-    /// @returns Null on an invalid UTF-8 sequence.
+    /// @returns utf8::Invalid on an invalid UTF-8 sequence.
     char32_t next() {
         loc_.finis = peek_;
         auto res   = ahead_.put(utf8::decode(istream_));

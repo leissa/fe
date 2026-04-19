@@ -9,10 +9,11 @@
 
 namespace fe::utf8 {
 
-static constexpr size_t Max    = 4;      ///< Maximal number of `char8_t`s of an UTF-8 byte sequence.
-static constexpr char32_t BOM  = 0xfeff; ///< [Byte Order Mark](https://en.wikipedia.org/wiki/Byte_order_mark#UTF-8).
-static constexpr char32_t EoF  = (char32_t)std::istream::traits_type::eof(); ///< End of File.
-static constexpr char32_t Null = 0;
+static constexpr size_t Max       = 4;      ///< Maximal number of `char8_t`s of an UTF-8 byte sequence.
+static constexpr char32_t BOM     = 0xfeff; ///< [Byte Order Mark](https://en.wikipedia.org/wiki/Byte_order_mark#UTF-8).
+static constexpr char32_t EoF     = (char32_t)std::istream::traits_type::eof(); ///< End of File.
+static constexpr char32_t Null    = 0;                                          ///< U+0000 NULL.
+static constexpr char32_t Invalid = 0x110000;                                   ///< Invalid UTF-8 sequence.
 
 /// Returns the expected number of bytes for an UTF-8 char sequence by inspecting the first byte.
 /// Retuns @c 0 if invalid.
@@ -51,13 +52,13 @@ inline char8_t is_valid234(char8_t c) {
 }
 
 /// Decodes the next sequence of bytes from @p is as UTF-32.
-/// @returns Null on error.
+/// @returns Invalid on error.
 inline char32_t decode(std::istream& is) {
     char32_t result = is.get();
     if (result == EoF) return result;
 
     switch (auto n = utf8::num_bytes(char8_t(result))) {
-        case 0: return Null;
+        case 0: return Invalid;
         case 1: return result;
         default:
             result = utf8::first(result, n);
@@ -66,9 +67,9 @@ inline char32_t decode(std::istream& is) {
                 if (auto x = is_valid234(is.get()); x != char8_t(-1))
                     result = utf8::append(result, x);
                 else
-                    return 0;
+                    return Invalid;
 
-            if (result < utf8::min_code_point(n) || !utf8::is_scalar_value(result)) return Null;
+            if (result < utf8::min_code_point(n) || !utf8::is_scalar_value(result)) return Invalid;
     }
 
     return result;
