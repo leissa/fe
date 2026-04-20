@@ -8,26 +8,56 @@
 
 [TOC]
 
-**FE** is a header-only C++20 toolkit for writing hand-rolled compiler and interpreter frontends.
-It does not generate lexers or parsers for you; instead, it gives you the reusable pieces that make handwritten frontends pleasant to build and maintain.
+**FE** is a header-only C++20 toolkit for building handwritten compiler and interpreter frontends.
+
+Rather than generating lexers or parsers for you, FE focuses on the infrastructure that every frontend needs anyway: source locations, diagnostics, interning, parsing support, and efficient memory management.
+The goal is simple: keep handwritten frontends lightweight, explicit, and pleasant to maintain.
 
 ## 💡 Why FE?
 
-FE is built around a few small components that compose well:
+FE is a good fit if you want to build:
 
-- `fe::Arena` for arena allocation and arena-backed ownership.
+- a small programming language or DSL,
+- a hand-written recursive-descent parser,
+- a lexer with precise UTF-8-aware source tracking,
+- a frontend with high-quality diagnostics,
+- a prototype compiler or interpreter that should stay easy to evolve.
+
+It is especially useful when you want the flexibility of handwritten code without repeatedly rebuilding the same frontend infrastructure from scratch.
+
+## ✨ Features
+
+Handwritten frontends are often the right choice when you want full control over syntax, diagnostics, recovery, and architecture. FE embraces that style.
+
+It provides a compact set of reusable, well-integrated components:
+
+- `fe::Arena` for fast arena allocation and arena-backed ownership.
 - `fe::Sym` and `fe::SymPool` for string interning and cheap identifier comparison.
 - `fe::Driver` for diagnostics and shared frontend state.
-- `fe::Pos` and `fe::Loc` for source positions and spans.
+- `fe::Pos` and `fe::Loc` for source positions and source spans.
 - `fe::Lexer<K, S>` for UTF-8-aware lexing with lookahead and token text accumulation.
-- `fe::Parser<Tok, Tag, K, S>` for recursive-descent style parsing with token lookahead and span tracking.
-- Optional `FE_ABSL` support for Abseil hash containers.
+- `fe::Parser<Tok, Tag, K, S>` for recursive-descent-style parsing with token lookahead and span tracking.
+- Optional `FE_ABSL` support for [Abseil](https://abseil.io/) hash containers.
 
-The best end-to-end example in this repository is [`tests/lexer.cpp`](../tests/lexer.cpp).
+FE does not try to hide frontend construction behind a generator.
+Instead, it gives you sharp, reusable tools so you can build exactly the frontend you want.
 
-## 🚀 Quick start
+For a complete end-to-end example, see [**Let**](https://github.com/leissa/let), a small toy language built on FE..
 
-### CMake
+## 🚀 Quick Start
+
+The easiest way to get going is through [**Let**](https://github.com/leissa/let).
+
+You can either:
+
+- 📦 create a [new repository from the Let template](https://github.com/new?template_owner=leissa&template_name=let), or
+- 🍴 [fork Let directly](https://github.com/leissa/let/fork).
+
+That gives you a concrete, working example of how FE is intended to be used in practice.
+
+### Integrate into existing Project
+
+#### CMake
 
 Add FE as a subdirectory and link the `fe` interface target:
 
@@ -44,21 +74,32 @@ add_subdirectory(external/fe)
 target_link_libraries(my_compiler PRIVATE fe)
 ```
 
-### Direct include
+#### Direct Vendoring
 
-Since FE is header-only, you can also vendor `include/fe/` directly into your project and add `-DFE_ABSL` if you want Abseil support.
+Because FE is header-only, you can also vendor `include/fe/` directly into your project.
 
-## 🧭 Typical workflow
+If you want Abseil support in that setup, compile with:
 
-1. Define a token type that exposes `tag()` and `loc()`.
-2. Derive your lexer from `fe::Lexer<K, S>`.
-3. Derive your parser from `fe::Parser<Tok, Tag, K, S>`.
-4. Use `fe::Driver` for diagnostics and identifier interning.
+```sh
+-DFE_ABSL
+```
+
+## 🧭 Typical Workflow
+
+A typical FE-based frontend looks roughly like this:
+
+1. Define a token type exposing `tag()` and `loc()`.
+2. Implement your lexer by deriving from `fe::Lexer<K, S>`.
+3. Implement your parser by deriving from `fe::Parser<Tok, Tag, K, S>`.
+4. Use `fe::Driver` to centralize diagnostics and shared state.
 5. Thread `fe::Loc` through tokens and AST nodes for precise error reporting.
+6. Use `fe::Arena` and symbol interning where allocation cost and identifier handling matter.
 
 If you want a concrete model to copy from, start with [`tests/lexer.cpp`](../tests/lexer.cpp).
 
-## 🛠️ Building and testing FE itself
+## 🛠️ Building and Testing
+
+To configure, build, and run the test suite:
 
 ```sh
 cmake -S . -B build -DBUILD_TESTING=ON
@@ -66,19 +107,21 @@ cmake --build build
 ctest --test-dir build --output-on-failure
 ```
 
-Run one discovered test:
+To run one discovered test:
 
 ```sh
 ctest --test-dir build -R '^Lexer$' --output-on-failure
 ```
 
-Or run a doctest case directly:
+To run a doctest case directly:
 
 ```sh
 ./build/bin/fe-test --test-case=Lexer
 ```
 
-## 📚 Building the documentation
+## 📚 Building the Documentation
+
+To build the documentation:
 
 ```sh
 cmake -S . -B build -DFE_BUILD_DOCS=ON
@@ -87,11 +130,13 @@ cmake --build build --target docs
 
 This requires Doxygen and Graphviz (`dot`).
 
-## 🔨 Related projects
+## 🔨 Related Projects
+
+A few projects that use or reflect the same frontend philosophy:
 
 - [Let](https://github.com/leissa/let) - a small demo language built on FE.
-- [GraphTool](https://github.com/leissa/graphtool) - a DOT-language tool using FE-style frontend infrastructure.
 - [MimIR](https://anydsl.github.io/MimIR/) - an intermediate representation project by the author.
+- [GraphTool](https://github.com/leissa/graphtool) - a DOT-language tool using FE-style frontend infrastructure.
 - [SQL](https://github.com/leissa/sql) - a small SQL parser.
 
 ## ⚖️ License
