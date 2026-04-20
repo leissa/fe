@@ -46,7 +46,7 @@ jobs:
           tar -C "${{ github.workspace }}/.cache" -xf "${RUNNER_TEMP}/${archive}"
 
       - name: Configure
-        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Debug -DMIM_BUILD_DOCS=ON -DDOXYGEN_EXECUTABLE=${{ env.DOXYGEN_CACHE_DIR }}/bin/doxygen
+        run: cmake -S ${{github.workspace}} -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Debug -DFE_BUILD_DOCS=ON -DDOXYGEN_EXECUTABLE=${{ env.DOXYGEN_CACHE_DIR }}/bin/doxygen
 
       - name: Build
         run: cmake --build ${{github.workspace}}/build -v --target docs
