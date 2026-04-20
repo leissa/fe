@@ -26,15 +26,18 @@ var NAVTREE =
 [
   [ "FE", "index.html", [
     [ "💡 Why FE?", "index.html#autotoc_md1", null ],
-    [ "🚀 Quick start", "index.html#autotoc_md2", [
-      [ "CMake", "index.html#autotoc_md3", null ],
-      [ "Direct include", "index.html#autotoc_md4", null ]
+    [ "✨ Features", "index.html#autotoc_md2", null ],
+    [ "🚀 Quick Start", "index.html#autotoc_md3", [
+      [ "Integrate into existing Project", "index.html#autotoc_md4", [
+        [ "CMake", "index.html#autotoc_md5", null ],
+        [ "Direct Vendoring", "index.html#autotoc_md6", null ]
+      ] ]
     ] ],
-    [ "🧭 Typical workflow", "index.html#autotoc_md5", null ],
-    [ "🛠️ Building and testing FE itself", "index.html#autotoc_md6", null ],
-    [ "📚 Building the documentation", "index.html#autotoc_md7", null ],
-    [ "🔨 Related projects", "index.html#autotoc_md8", null ],
-    [ "⚖️ License", "index.html#autotoc_md9", null ],
+    [ "🧭 Typical Workflow", "index.html#autotoc_md7", null ],
+    [ "🛠️ Building and Testing", "index.html#autotoc_md8", null ],
+    [ "📚 Building the Documentation", "index.html#autotoc_md9", null ],
+    [ "🔨 Related Projects", "index.html#autotoc_md10", null ],
+    [ "⚖️ License", "index.html#autotoc_md11", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -72,7 +75,7 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "classfe_1_1Sym.html#a46b4e3d6859821564fa612901a84300e",
-"structfe_1_1Arena_1_1Deleter.html#ae015df08e188973713e61eb0d212868e"
+"structfe_1_1Arena_1_1Deleter.html#acb74633b0f9c12116865339f08659d8d"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

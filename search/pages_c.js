@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['why_20fe_0',['💡 Why FE?',['../index.html#autotoc_md1',1,'']]],
-  ['workflow_1',['🧭 Typical workflow',['../index.html#autotoc_md5',1,'']]]
+  ['testing_0',['🛠️ Building and Testing',['../index.html#autotoc_md8',1,'']]],
+  ['the_20documentation_1',['📚 Building the Documentation',['../index.html#autotoc_md9',1,'']]],
+  ['typical_20workflow_2',['🧭 Typical Workflow',['../index.html#autotoc_md7',1,'']]]
 ];

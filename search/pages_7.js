@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['projects_0',['🔨 Related projects',['../index.html#autotoc_md8',1,'']]]
+  ['license_0',['⚖️ License',['../index.html#autotoc_md11',1,'']]]
 ];

@@ -2,7 +2,7 @@ var searchData=
 [
   ['rbegin_0',['rbegin',['../classfe_1_1Sym.html#a91d840fb22a5afcc50e3a70daee67907',1,'fe::Sym']]],
   ['readme_2emd_1',['README.md',['../README_8md.html',1,'']]],
-  ['related_20projects_2',['🔨 Related projects',['../index.html#autotoc_md8',1,'']]],
+  ['related_20projects_2',['🔨 Related Projects',['../index.html#autotoc_md10',1,'']]],
   ['rend_3',['rend',['../classfe_1_1Sym.html#a1e7ad312b7d4d7f733e2ee47245b3e9b',1,'fe::Sym']]],
   ['reset_4',['reset',['../classfe_1_1Ring.html#a17df98ab4ef3ce9fd2bb13a911a4ad16',1,'fe::Ring::reset()'],['../classfe_1_1Ring_3_01T_00_011_01_4.html#afa85d5e5922d3b59c79d7ebc33f8bc5b',1,'fe::Ring&lt; T, 1 &gt;::reset()'],['../classfe_1_1Ring_3_01T_00_012_01_4.html#abd21245d7479c1fc29eff7e4030f0f37',1,'fe::Ring&lt; T, 2 &gt;::reset()']]],
   ['resource_5',['resource',['../classfe_1_1Arena.html#a4ebf61d33a87088a351197f7adcf39d4',1,'fe::Arena::resource() noexcept'],['../classfe_1_1Arena.html#aa1f1c16b55f19577e56f47927b1db684',1,'fe::Arena::resource() const noexcept']]],

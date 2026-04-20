@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['direct_20include_0',['Direct include',['../index.html#autotoc_md4',1,'']]],
-  ['documentation_1',['📚 Building the documentation',['../index.html#autotoc_md7',1,'']]]
+  ['direct_20vendoring_0',['Direct Vendoring',['../index.html#autotoc_md6',1,'']]],
+  ['documentation_1',['📚 Building the Documentation',['../index.html#autotoc_md9',1,'']]]
 ];

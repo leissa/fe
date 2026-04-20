@@ -7,7 +7,7 @@ var searchData=
   ['allocate_4',['allocate',['../structfe_1_1Arena_1_1Allocator.html#a48f417a90b63fa70c6c2d44c4bb18ba5',1,'fe::Arena::Allocator::allocate()'],['../classfe_1_1Arena.html#a36af29114a9b1e9b2907783d2b312b29',1,'fe::Arena::allocate(size_t num_bytes, size_t align)'],['../classfe_1_1Arena.html#aaaec30029e98b1f428d5e69639bbb3bc',1,'fe::Arena::allocate(size_t num_elems)']]],
   ['allocator_5',['Allocator',['../structfe_1_1Arena_1_1Allocator.html',1,'fe::Arena::Allocator&lt; T &gt;'],['../structfe_1_1Arena_1_1Allocator.html#a7b5428de2d5645150018b0726b9aeb02',1,'fe::Arena::Allocator::Allocator()=delete'],['../structfe_1_1Arena_1_1Allocator.html#aa2b65962d7819a6f5354d900e5a3449b',1,'fe::Arena::Allocator::Allocator(const Arena::Allocator&lt; U &gt; &amp;allocator) noexcept'],['../structfe_1_1Arena_1_1Allocator.html#ad05417fdfb99bb1a524efddbdc767cef',1,'fe::Arena::Allocator::Allocator(Arena &amp;arena) noexcept']]],
   ['allocator_6',['allocator',['../classfe_1_1Arena.html#ac8360c39f4dd203fdb8cf21c53d5626f',1,'fe::Arena']]],
-  ['and_20testing_20fe_20itself_7',['🛠️ Building and testing FE itself',['../index.html#autotoc_md6',1,'']]],
+  ['and_20testing_7',['🛠️ Building and Testing',['../index.html#autotoc_md8',1,'']]],
   ['anew_5fbegin_8',['anew_begin',['../structfe_1_1Loc.html#ab2672068ce5be21d43df1b88a1b0e750',1,'fe::Loc']]],
   ['anew_5ffinis_9',['anew_finis',['../structfe_1_1Loc.html#af86329b830eb174032c7295254ec031b',1,'fe::Loc']]],
   ['any_10',['any',['../namespacefe_1_1utf8.html#a878567e47549cb6104196c7fb77413fa',1,'fe::utf8']]],

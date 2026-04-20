@@ -2,8 +2,8 @@ var searchData=
 [
   ['fe_0',['FE',['../index.html#autotoc_md1',1,'💡 Why FE?'],['../index.html',1,'FE']]],
   ['fe_1',['fe',['../namespacefe.html',1,'']]],
-  ['fe_20itself_2',['🛠️ Building and testing FE itself',['../index.html#autotoc_md6',1,'']]],
-  ['fe_3a_3autf8_3',['utf8',['../namespacefe_1_1utf8.html',1,'fe']]],
+  ['fe_3a_3autf8_2',['utf8',['../namespacefe_1_1utf8.html',1,'fe']]],
+  ['features_3',['✨ Features',['../index.html#autotoc_md2',1,'']]],
   ['finis_4',['finis',['../structfe_1_1Loc.html#a19c742b2f7de9b42ce45d92d3210a3ea',1,'fe::Loc']]],
   ['first_5',['first',['../namespacefe_1_1utf8.html#ab8b8a7ebfb35f84b56defdde79becd08',1,'fe::utf8']]],
   ['format_6',['format',['../structfe_1_1basic__ostream__formatter.html#aa89752e176250523b64ad02bff885000',1,'fe::basic_ostream_formatter']]],

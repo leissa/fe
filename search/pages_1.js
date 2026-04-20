@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['building_20and_20testing_20fe_20itself_0',['🛠️ Building and testing FE itself',['../index.html#autotoc_md6',1,'']]],
-  ['building_20the_20documentation_1',['📚 Building the documentation',['../index.html#autotoc_md7',1,'']]]
+  ['building_20and_20testing_0',['🛠️ Building and Testing',['../index.html#autotoc_md8',1,'']]],
+  ['building_20the_20documentation_1',['📚 Building the Documentation',['../index.html#autotoc_md9',1,'']]]
 ];

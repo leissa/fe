@@ -117,53 +117,84 @@ $(function(){initNavTree('index.html','',''); });
     <a href="#autotoc_md1">💡 Why FE? </a>
   </li>
   <li class="level1">
-    <a href="#autotoc_md2">🚀 Quick start </a>
+    <a href="#autotoc_md2">✨ Features </a>
+  </li>
+  <li class="level1">
+    <a href="#autotoc_md3">🚀 Quick Start </a>
     <ul>
       <li class="level2">
-        <a href="#autotoc_md3">CMake </a>
-      </li>
-      <li class="level2">
-        <a href="#autotoc_md4">Direct include </a>
+        <a href="#autotoc_md4">Integrate into existing Project </a>
+        <ul>
+          <li class="level3">
+            <a href="#autotoc_md5">CMake </a>
+          </li>
+          <li class="level3">
+            <a href="#autotoc_md6">Direct Vendoring </a>
+          </li>
+        </ul>
       </li>
     </ul>
   </li>
   <li class="level1">
-    <a href="#autotoc_md5">🧭 Typical workflow </a>
+    <a href="#autotoc_md7">🧭 Typical Workflow </a>
   </li>
   <li class="level1">
-    <a href="#autotoc_md6">🛠️ Building and testing FE itself </a>
+    <a href="#autotoc_md8">🛠️ Building and Testing </a>
   </li>
   <li class="level1">
-    <a href="#autotoc_md7">📚 Building the documentation </a>
+    <a href="#autotoc_md9">📚 Building the Documentation </a>
   </li>
   <li class="level1">
-    <a href="#autotoc_md8">🔨 Related projects </a>
+    <a href="#autotoc_md10">🔨 Related Projects </a>
   </li>
   <li class="level1">
-    <a href="#autotoc_md9">⚖️ License </a>
+    <a href="#autotoc_md11">⚖️ License </a>
   </li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md__2home_2runner_2work_2fe_2fe_2docs_2README"></a></p>
 <p><a href="https://github.com/leissa/fe/actions/workflows/linux.yml"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/linux.yml?style=flat-square&amp;logo=linux&amp;label=linux&amp;logoColor=white&amp;branch=main" alt="Linux" class="inline"/></a> <a href="https://github.com/leissa/fe/actions/workflows/windows.yml"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/windows.yml?style=flat-square&amp;label=⊞%20windows&amp;branch=main" alt="Windows" class="inline"/></a> <a href="https://github.com/leissa/fe/actions/workflows/macos.yml"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/macos.yml?style=flat-square&amp;logo=apple&amp;label=macos&amp;branch=main" alt="macOS" class="inline"/></a> <a href="https://github.com/leissa/fe/actions/workflows/doxygen.yml"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/doxygen.yml?style=flat-square&amp;logo=gitbook&amp;logoColor=white&amp;label=doxygen&amp;branch=main" alt="Doxygen" class="inline"/></a> <a href="../LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square&amp;logo=opensourceinitiative&amp;logoColor=white" alt="License: MIT" style="pointer-events: none;" class="inline"/></a></p>
-<p><b>FE</b> is a header-only C++20 toolkit for writing hand-rolled compiler and interpreter frontends. It does not generate lexers or parsers for you; instead, it gives you the reusable pieces that make handwritten frontends pleasant to build and maintain.</p>
+<p><b>FE</b> is a header-only C++20 toolkit for building handwritten compiler and interpreter frontends.</p>
+<p>Rather than generating lexers or parsers for you, FE focuses on the infrastructure that every frontend needs anyway: source locations, diagnostics, interning, parsing support, and efficient memory management. The goal is simple: keep handwritten frontends lightweight, explicit, and pleasant to maintain.</p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
 💡 Why FE?</h1>
-<p>FE is built around a few small components that compose well:</p>
+<p>FE is a good fit if you want to build:</p>
 <ul>
-<li><span class="tt"><a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">fe::Arena</a></span> for arena allocation and arena-backed ownership.</li>
+<li>a small programming language or DSL,</li>
+<li>a hand-written recursive-descent parser,</li>
+<li>a lexer with precise UTF-8-aware source tracking,</li>
+<li>a frontend with high-quality diagnostics,</li>
+<li>a prototype compiler or interpreter that should stay easy to evolve.</li>
+</ul>
+<p>It is especially useful when you want the flexibility of handwritten code without repeatedly rebuilding the same frontend infrastructure from scratch.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+✨ Features</h1>
+<p>Handwritten frontends are often the right choice when you want full control over syntax, diagnostics, recovery, and architecture. FE embraces that style.</p>
+<p>It provides a compact set of reusable, well-integrated components:</p>
+<ul>
+<li><span class="tt"><a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">fe::Arena</a></span> for fast arena allocation and arena-backed ownership.</li>
 <li><span class="tt"><a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">fe::Sym</a></span> and <span class="tt"><a class="el" href="classfe_1_1SymPool.html" title="Hash set where all strings - wrapped in Symbol - live in.">fe::SymPool</a></span> for string interning and cheap identifier comparison.</li>
 <li><span class="tt"><a class="el" href="structfe_1_1Driver.html" title="Use/derive from this class for &quot;global&quot; variables that you need all over the place.">fe::Driver</a></span> for diagnostics and shared frontend state.</li>
-<li><span class="tt"><a class="el" href="structfe_1_1Pos.html" title="Position in a source file; pass around as value.">fe::Pos</a></span> and <span class="tt"><a class="el" href="structfe_1_1Loc.html" title="Location in a File.">fe::Loc</a></span> for source positions and spans.</li>
+<li><span class="tt"><a class="el" href="structfe_1_1Pos.html" title="Position in a source file; pass around as value.">fe::Pos</a></span> and <span class="tt"><a class="el" href="structfe_1_1Loc.html" title="Location in a File.">fe::Loc</a></span> for source positions and source spans.</li>
 <li><span class="tt"><a class="el" href="classfe_1_1Lexer.html" title="The blueprint for a lexer with a buffer of K tokens to peek into the future (Lexer::ahead).">fe::Lexer</a>&lt;K, S&gt;</span> for UTF-8-aware lexing with lookahead and token text accumulation.</li>
-<li><span class="tt"><a class="el" href="classfe_1_1Parser.html" title="The blueprint for a recursive descent/ ascent parser using a K lookahead of Tokens.">fe::Parser</a>&lt;Tok, Tag, K, S&gt;</span> for recursive-descent style parsing with token lookahead and span tracking.</li>
-<li>Optional <span class="tt">FE_ABSL</span> support for Abseil hash containers.</li>
+<li><span class="tt"><a class="el" href="classfe_1_1Parser.html" title="The blueprint for a recursive descent/ ascent parser using a K lookahead of Tokens.">fe::Parser</a>&lt;Tok, Tag, K, S&gt;</span> for recursive-descent-style parsing with token lookahead and span tracking.</li>
+<li>Optional <span class="tt">FE_ABSL</span> support for <a href="https://abseil.io/">Abseil</a> hash containers.</li>
 </ul>
-<p>The best end-to-end example in this repository is <a href="../tests/lexer.cpp"><span class="tt">tests/lexer.cpp</span></a>.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
-🚀 Quick start</h1>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
-CMake</h2>
+<p>FE does not try to hide frontend construction behind a generator. Instead, it gives you sharp, reusable tools so you can build exactly the frontend you want.</p>
+<p>For a complete end-to-end example, see <a href="https://github.com/leissa/let"><b>Let</b></a>, a small toy language built on FE..</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
+🚀 Quick Start</h1>
+<p>The easiest way to get going is through <a href="https://github.com/leissa/let"><b>Let</b></a>.</p>
+<p>You can either:</p>
+<ul>
+<li>📦 create a <a href="https://github.com/new?template_owner=leissa&amp;template_name=let">new repository from the Let template</a>, or</li>
+<li>🍴 <a href="https://github.com/leissa/let/fork">fork Let directly</a>.</li>
+</ul>
+<p>That gives you a concrete, working example of how FE is intended to be used in practice.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
+Integrate into existing Project</h2>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
+CMake</h3>
 <p>Add FE as a subdirectory and link the <span class="tt"><a class="el" href="namespacefe.html" title="Default Pos/Loc stream output and dump helpers.">fe</a></span> interface target:</p>
 <div class="fragment"><div class="line">add_subdirectory(external/fe)</div>
 <div class="line">target_link_libraries(my_compiler PRIVATE fe)</div>
@@ -171,42 +202,49 @@ CMake</h2>
 <div class="fragment"><div class="line">set(FE_ABSL ON)</div>
 <div class="line">add_subdirectory(external/fe)</div>
 <div class="line">target_link_libraries(my_compiler PRIVATE fe)</div>
-</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
-Direct include</h2>
-<p>Since FE is header-only, you can also vendor <span class="tt">include/fe/</span> directly into your project and add <span class="tt">-DFE_ABSL</span> if you want Abseil support.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
-🧭 Typical workflow</h1>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
+Direct Vendoring</h3>
+<p>Because FE is header-only, you can also vendor <span class="tt">include/fe/</span> directly into your project.</p>
+<p>If you want Abseil support in that setup, compile with:</p>
+<div class="fragment"><div class="line">-DFE_ABSL</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
+🧭 Typical Workflow</h1>
+<p>A typical FE-based frontend looks roughly like this:</p>
 <ol type="1">
-<li>Define a token type that exposes <span class="tt">tag()</span> and <span class="tt">loc()</span>.</li>
-<li>Derive your lexer from <span class="tt"><a class="el" href="classfe_1_1Lexer.html" title="The blueprint for a lexer with a buffer of K tokens to peek into the future (Lexer::ahead).">fe::Lexer</a>&lt;K, S&gt;</span>.</li>
-<li>Derive your parser from <span class="tt"><a class="el" href="classfe_1_1Parser.html" title="The blueprint for a recursive descent/ ascent parser using a K lookahead of Tokens.">fe::Parser</a>&lt;Tok, Tag, K, S&gt;</span>.</li>
-<li>Use <span class="tt"><a class="el" href="structfe_1_1Driver.html" title="Use/derive from this class for &quot;global&quot; variables that you need all over the place.">fe::Driver</a></span> for diagnostics and identifier interning.</li>
+<li>Define a token type exposing <span class="tt">tag()</span> and <span class="tt">loc()</span>.</li>
+<li>Implement your lexer by deriving from <span class="tt"><a class="el" href="classfe_1_1Lexer.html" title="The blueprint for a lexer with a buffer of K tokens to peek into the future (Lexer::ahead).">fe::Lexer</a>&lt;K, S&gt;</span>.</li>
+<li>Implement your parser by deriving from <span class="tt"><a class="el" href="classfe_1_1Parser.html" title="The blueprint for a recursive descent/ ascent parser using a K lookahead of Tokens.">fe::Parser</a>&lt;Tok, Tag, K, S&gt;</span>.</li>
+<li>Use <span class="tt"><a class="el" href="structfe_1_1Driver.html" title="Use/derive from this class for &quot;global&quot; variables that you need all over the place.">fe::Driver</a></span> to centralize diagnostics and shared state.</li>
 <li>Thread <span class="tt"><a class="el" href="structfe_1_1Loc.html" title="Location in a File.">fe::Loc</a></span> through tokens and AST nodes for precise error reporting.</li>
+<li>Use <span class="tt"><a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">fe::Arena</a></span> and symbol interning where allocation cost and identifier handling matter.</li>
 </ol>
 <p>If you want a concrete model to copy from, start with <a href="../tests/lexer.cpp"><span class="tt">tests/lexer.cpp</span></a>.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
-🛠️ Building and testing FE itself</h1>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
+🛠️ Building and Testing</h1>
+<p>To configure, build, and run the test suite:</p>
 <div class="fragment"><div class="line">cmake -S . -B build -DBUILD_TESTING=ON</div>
 <div class="line">cmake --build build</div>
 <div class="line">ctest --test-dir build --output-on-failure</div>
-</div><!-- fragment --><p>Run one discovered test:</p>
+</div><!-- fragment --><p>To run one discovered test:</p>
 <div class="fragment"><div class="line">ctest --test-dir build -R &#39;^Lexer$&#39; --output-on-failure</div>
-</div><!-- fragment --><p>Or run a doctest case directly:</p>
+</div><!-- fragment --><p>To run a doctest case directly:</p>
 <div class="fragment"><div class="line">./build/bin/fe-test --test-case=Lexer</div>
-</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
-📚 Building the documentation</h1>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
+📚 Building the Documentation</h1>
+<p>To build the documentation:</p>
 <div class="fragment"><div class="line">cmake -S . -B build -DFE_BUILD_DOCS=ON</div>
 <div class="line">cmake --build build --target docs</div>
 </div><!-- fragment --><p>This requires Doxygen and Graphviz (<span class="tt">dot</span>).</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
-🔨 Related projects</h1>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
+🔨 Related Projects</h1>
+<p>A few projects that use or reflect the same frontend philosophy:</p>
 <ul>
 <li><a href="https://github.com/leissa/let">Let</a> - a small demo language built on FE.</li>
-<li><a href="https://github.com/leissa/graphtool">GraphTool</a> - a DOT-language tool using FE-style frontend infrastructure.</li>
 <li><a href="https://anydsl.github.io/MimIR/">MimIR</a> - an intermediate representation project by the author.</li>
+<li><a href="https://github.com/leissa/graphtool">GraphTool</a> - a DOT-language tool using FE-style frontend infrastructure.</li>
 <li><a href="https://github.com/leissa/sql">SQL</a> - a small SQL parser.</li>
 </ul>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
 ⚖️ License</h1>
 <p>FE is licensed under the <a href="../LICENSE">MIT License</a>. </p>
 </div></div><!-- PageDoc -->
