@@ -97,7 +97,7 @@ install(
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     include(CTest)
     if(BUILD_TESTING)
-        add_subdirectory(external/doctest)
+        add_subdirectory(submodules/doctest)
         add_subdirectory(tests)
     endif()
 endif()

@@ -9,5 +9,5 @@ target_link_libraries(fe-test
         fe
         doctest::doctest
 )
-include(../external/doctest/scripts/cmake/doctest.cmake)
+include(../submodules/doctest/scripts/cmake/doctest.cmake)
 doctest_discover_tests(fe-test)

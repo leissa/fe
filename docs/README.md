@@ -63,7 +63,7 @@ That gives you a concrete, working example of how FE is intended to be used in p
 Add FE as a subdirectory and link the `fe` interface target:
 
 ```cmake
-add_subdirectory(external/fe)
+add_subdirectory(submodules/fe)
 target_link_libraries(my_compiler PRIVATE fe)
 ```
 
@@ -71,7 +71,7 @@ If you want Abseil-backed hash containers, enable `FE_ABSL` before adding the su
 
 ```cmake
 set(FE_ABSL ON)
-add_subdirectory(external/fe)
+add_subdirectory(submodules/fe)
 target_link_libraries(my_compiler PRIVATE fe)
 ```
 
