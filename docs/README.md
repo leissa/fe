@@ -5,6 +5,7 @@
 [![macOS](https://img.shields.io/github/actions/workflow/status/leissa/fe/macos.yml?style=flat-square&logo=apple&label=macos&branch=main)](https://github.com/leissa/fe/actions/workflows/macos.yml)
 [![Doxygen](https://img.shields.io/github/actions/workflow/status/leissa/fe/doxygen.yml?style=flat-square&logo=gitbook&logoColor=white&label=doxygen&branch=main)](https://github.com/leissa/fe/actions/workflows/doxygen.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square&logo=opensourceinitiative&logoColor=white)](../LICENSE)
+![GitHub Release](https://img.shields.io/github/v/release/leissa/fe?style=flat-square&logo=starship)
 
 [TOC]
 
