@@ -5,6 +5,7 @@
 #include <fe/enum.h>
 #include <fe/ring.h>
 #include <fe/sym.h>
+#include <fe/term.h>
 #include <fe/utf8.h>
 
 using namespace std::literals;
@@ -216,4 +217,32 @@ TEST_CASE("enum") {
     static_assert((MyEnum::A & MyEnum::B) == 0);
     static_assert((MyEnum::A | MyEnum::B) == 3);
     static_assert((MyEnum::A ^ MyEnum::A) == 0);
+}
+
+TEST_CASE("term") {
+    struct ModeGuard {
+        ~ModeGuard() { fe::term::set_mode(old_); }
+        fe::term::Mode old_ = fe::term::mode();
+    } guard;
+
+    SUBCASE("auto mode suppresses colors for non-terminal streams") {
+        std::ostringstream oss;
+        fe::term::set_mode(fe::term::Mode::Auto);
+        oss << fe::term::FG::Red << "x" << fe::term::FG::Reset;
+        CHECK(oss.str() == "x");
+    }
+
+    SUBCASE("always mode emits ANSI sequences") {
+        std::ostringstream oss;
+        fe::term::set_mode(fe::term::Mode::Always);
+        oss << fe::term::FG::Red << "x" << fe::term::FG::Reset;
+        CHECK(oss.str() == "\033[31mx\033[39m");
+    }
+
+    SUBCASE("never mode suppresses colors") {
+        std::ostringstream oss;
+        fe::term::set_mode(fe::term::Mode::Never);
+        oss << fe::term::FG::Green << "x" << fe::term::FG::Reset;
+        CHECK(oss.str() == "x");
+    }
 }
