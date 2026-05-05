@@ -23,7 +23,7 @@ static constexpr char32_t Invalid = 0x110000;     ///< Sentinel returned by @ref
 
 /// Returns the expected number of bytes for an UTF-8 char sequence by inspecting the first byte.
 /// Retuns @c 0 if invalid.
-inline size_t num_bytes(char8_t c) {
+constexpr size_t num_bytes(char8_t c) noexcept {
     if ((c & char8_t(0b10000000)) == char8_t(0b00000000)) return 1;
     if ((c & char8_t(0b11100000)) == char8_t(0b11000000)) return 2;
     if ((c & char8_t(0b11110000)) == char8_t(0b11100000)) return 3;
@@ -32,13 +32,13 @@ inline size_t num_bytes(char8_t c) {
 }
 
 /// Append @p b to @p c for converting UTF-8 to UTF-32.
-inline char32_t append(char32_t c, char8_t b) { return (c << 6) | (b & 0b00111111); }
+constexpr char32_t append(char32_t c, char8_t b) noexcept { return (c << 6) | (b & 0b00111111); }
 
 /// Get relevant bits of first UTF-8 byte @p c of a @em multi-byte sequence consisting of @p num bytes.
-inline char32_t first(char32_t c, char32_t num) { return c & (0b00011111 >> (num - 2)); }
+constexpr char32_t first(char32_t c, char32_t num) noexcept { return c & (0b00011111 >> (num - 2)); }
 
 /// Minimum Unicode scalar value representable in an UTF-8 sequence of @p num bytes.
-inline char32_t min_code_point(size_t num) {
+constexpr char32_t min_code_point(size_t num) noexcept {
     switch (num) {
         case 1: return 0x000000;
         case 2: return 0x000080;
@@ -49,11 +49,11 @@ inline char32_t min_code_point(size_t num) {
 }
 
 /// Is @p c a valid Unicode scalar value?
-inline bool is_scalar_value(char32_t c) { return c <= 0x10ffff && !(0xd800 <= c && c <= 0xdfff); }
+constexpr bool is_scalar_value(char32_t c) noexcept { return c <= 0x10ffff && !(0xd800 <= c && c <= 0xdfff); }
 
 /// Is the 2nd, 3rd, or 4th byte of an UTF-8 byte sequence valid?
 /// @returns the extracted `char8_t` or `char8_t(-1)` if invalid.
-inline char8_t is_valid234(char8_t c) {
+constexpr char8_t is_valid234(char8_t c) noexcept {
     return (c & char8_t(0b11000000)) == char8_t(0b10000000) ? (c & char8_t(0b00111111)) : char8_t(-1);
 }
 
@@ -122,28 +122,28 @@ struct Char32 {
 /// neither representable as `unsigned char` nor equal to `EOF`.
 ///@{
 // clang-format off
-inline bool isalnum (char32_t c) { return (c & ~0xFF) == 0 ? std::isalnum (c) : false; }
-inline bool isalpha (char32_t c) { return (c & ~0xFF) == 0 ? std::isalpha (c) : false; }
-inline bool isblank (char32_t c) { return (c & ~0xFF) == 0 ? std::isblank (c) : false; }
-inline bool iscntrl (char32_t c) { return (c & ~0xFF) == 0 ? std::iscntrl (c) : false; }
-inline bool isdigit (char32_t c) { return (c & ~0xFF) == 0 ? std::isdigit (c) : false; }
-inline bool isgraph (char32_t c) { return (c & ~0xFF) == 0 ? std::isgraph (c) : false; }
-inline bool islower (char32_t c) { return (c & ~0xFF) == 0 ? std::islower (c) : false; }
-inline bool isprint (char32_t c) { return (c & ~0xFF) == 0 ? std::isprint (c) : false; }
-inline bool ispunct (char32_t c) { return (c & ~0xFF) == 0 ? std::ispunct (c) : false; }
-inline bool isspace (char32_t c) { return (c & ~0xFF) == 0 ? std::isspace (c) : false; }
-inline bool isupper (char32_t c) { return (c & ~0xFF) == 0 ? std::isupper (c) : false; }
-inline bool isxdigit(char32_t c) { return (c & ~0xFF) == 0 ? std::isxdigit(c) : false; }
-inline bool isascii (char32_t c) { return c <= 0x7F; }
-inline char32_t tolower(char32_t c) { return (c & ~0xFF) == 0 ? std::tolower(c) : c; }
-inline char32_t toupper(char32_t c) { return (c & ~0xFF) == 0 ? std::toupper(c) : c; }
+inline bool isalnum (char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::isalnum (c) : false; }
+inline bool isalpha (char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::isalpha (c) : false; }
+inline bool isblank (char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::isblank (c) : false; }
+inline bool iscntrl (char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::iscntrl (c) : false; }
+inline bool isdigit (char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::isdigit (c) : false; }
+inline bool isgraph (char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::isgraph (c) : false; }
+inline bool islower (char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::islower (c) : false; }
+inline bool isprint (char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::isprint (c) : false; }
+inline bool ispunct (char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::ispunct (c) : false; }
+inline bool isspace (char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::isspace (c) : false; }
+inline bool isupper (char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::isupper (c) : false; }
+inline bool isxdigit(char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::isxdigit(c) : false; }
+inline bool isascii (char32_t c) noexcept { return c <= 0x7F; }
+inline char32_t tolower(char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::tolower(c) : c; }
+inline char32_t toupper(char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::toupper(c) : c; }
 
 /// Is @p c within [begin, finis]?
-inline bool isrange(char32_t c, char32_t begin, char32_t finis) { return begin <= c && c <= finis; }
-inline auto isrange(char32_t begin, char32_t finis) { return [=](char32_t c) { return isrange(c, begin, finis); }; }
+constexpr bool isrange(char32_t c, char32_t begin, char32_t finis) noexcept { return begin <= c && c <= finis; }
+constexpr auto isrange(char32_t begin, char32_t finis) noexcept { return [=](char32_t c) { return isrange(c, begin, finis); }; }
 
-inline bool isodigit(char32_t c) { return isrange(c, '0', '7'); } ///< Is octal digit?
-inline bool isbdigit(char32_t c) { return isrange(c, '0', '1'); } ///< Is binary digit?
+constexpr bool isodigit(char32_t c) noexcept { return isrange(c, '0', '7'); } ///< Is octal digit?
+constexpr bool isbdigit(char32_t c) noexcept { return isrange(c, '0', '1'); } ///< Is binary digit?
 // clang-format on
 ///@}
 
