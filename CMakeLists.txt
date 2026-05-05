@@ -35,6 +35,7 @@ target_sources(fe
             include/fe/parser.h
             include/fe/ring.h
             include/fe/sym.h
+            include/fe/term.h
             include/fe/utf8.h
 )
 target_include_directories(fe INTERFACE $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
