@@ -66,12 +66,12 @@ enum class Stream {
     Stderr,
 };
 
-constexpr bool env_set(const char* name) noexcept {
+inline bool env_set(const char* name) noexcept {
     auto* value = std::getenv(name);
     return value && *value != '\0';
 }
 
-constexpr bool env_is(const char* name, const char* expected) noexcept {
+inline bool env_is(const char* name, const char* expected) noexcept {
     auto* value = std::getenv(name);
     return value && std::strcmp(value, expected) == 0;
 }
