@@ -10,7 +10,7 @@
 [![Doxygen](https://img.shields.io/github/actions/workflow/status/leissa/fe/doxygen.yml?style=flat-square&logo=gitbook&logoColor=white&label=doxygen&branch=main)](https://github.com/leissa/fe/actions/workflows/doxygen.yml)
 [![Documentation](https://img.shields.io/badge/docs-main-green?style=flat-square&logo=gitbook&logoColor=white)](https://mimir.github.io)
 
-[![C++23](https://img.shields.io/badge/C%2B%2B-23-blue?style=flat-square&logo=cplusplus)](https://en.wikipedia.org/wiki/C%2B%2B#Standardization)
+[![C++20](https://img.shields.io/badge/C%2B%2B-20-blue?style=flat-square&logo=cplusplus)](https://en.wikipedia.org/wiki/C%2B%2B#Standardization)
 [![License](https://img.shields.io/github/license/leissa/fe?style=flat-square&color=yellowgreen&logo=opensourceinitiative&logoColor=white)](https://github.com/leissa/fe/blob/main/LICENSE.TXT)
 
 [TOC]
