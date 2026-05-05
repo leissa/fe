@@ -80,10 +80,25 @@ inline std::atomic<Mode>& current_mode() {
     return mode;
 }
 
+inline std::streambuf* stdout_rdbuf() {
+    static std::streambuf* buf = std::cout.rdbuf();
+    return buf;
+}
+
+inline std::streambuf* stderr_rdbuf() {
+    static std::streambuf* buf = std::cerr.rdbuf();
+    return buf;
+}
+
+inline std::streambuf* clog_rdbuf() {
+    static std::streambuf* buf = std::clog.rdbuf();
+    return buf;
+}
+
 inline Stream stream(std::ostream& os) {
-    if (&os == &std::cout || os.rdbuf() == std::cout.rdbuf()) return Stream::Stdout;
-    if (&os == &std::cerr || &os == &std::clog || os.rdbuf() == std::cerr.rdbuf() || os.rdbuf() == std::clog.rdbuf())
-        return Stream::Stderr;
+    auto* const buf = os.rdbuf();
+    if (buf == stdout_rdbuf()) return Stream::Stdout;
+    if (buf == stderr_rdbuf() || buf == clog_rdbuf()) return Stream::Stderr;
     return Stream::Unknown;
 }
 
