@@ -16,14 +16,27 @@
 
 #include "fe/assert.h"
 
+/// Lightweight stream-based terminal colors for diagnostics and CLI output.
+///
+/// Include `fe/term.h` and stream a @ref fe::term::FG value into an `std::ostream`:
+/// ```
+/// std::cerr << fe::term::FG::Red << "error: " << fe::term::FG::Reset << "unexpected token\n";
+/// ```
+///
+/// The current behavior is controlled via @ref fe::term::Mode and can be overridden with
+/// @ref fe::term::set_mode. In @ref fe::term::Mode::Auto, colors are emitted only for terminal
+/// streams. FE also respects the common environment conventions `NO_COLOR`, `CLICOLOR=0`, and
+/// `CLICOLOR_FORCE` (unless it is set to `0`).
 namespace fe::term {
 
+/// Controls whether color escape sequences are emitted.
 enum class Mode {
     Auto,
     Never,
     Always,
 };
 
+/// Foreground colors that can be streamed into an `std::ostream`.
 enum class FG {
     Black,
     Red,
@@ -135,10 +148,13 @@ inline std::string_view sgr(FG color) {
 
 } // namespace detail
 
+/// Returns the current terminal color mode.
 inline Mode mode() { return detail::current_mode().load(std::memory_order_relaxed); }
 
+/// Overrides the current terminal color mode.
 inline void set_mode(Mode mode) { detail::current_mode().store(mode, std::memory_order_relaxed); }
 
+/// Streams the ANSI escape sequence for @p color when colors are enabled for @p os.
 inline std::ostream& operator<<(std::ostream& os, FG color) {
     if (detail::use_color(os)) os << detail::sgr(color);
     return os;

@@ -36,6 +36,7 @@ It provides a compact set of reusable, well-integrated components:
 - `fe::Sym` and `fe::SymPool` for string interning and cheap identifier comparison.
 - `fe::Driver` for diagnostics and shared frontend state.
 - `fe::Pos` and `fe::Loc` for source positions and source spans.
+- `fe::term` for lightweight terminal colors in diagnostics and CLI output.
 - `fe::Lexer<K, S>` for UTF-8-aware lexing with lookahead and token text accumulation.
 - `fe::Parser<Tok, Tag, K, S>` for recursive-descent-style parsing with token lookahead and span tracking.
 - Optional `FE_ABSL` support for [Abseil](https://abseil.io/) hash containers.
