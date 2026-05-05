@@ -7,13 +7,19 @@
 
 #include "fe/assert.h"
 
+/// UTF-8 helpers for decoding byte streams, encoding `char32_t` values, and running
+/// ASCII-style character classification on `char32_t`.
+///
+/// The central entry points are @ref decode and @ref encode. Decoding returns
+/// sentinel values such as @ref EoF and @ref Invalid instead of throwing.
 namespace fe::utf8 {
 
-static constexpr size_t Max       = 4;      ///< Maximal number of `char8_t`s of an UTF-8 byte sequence.
-static constexpr char32_t BOM     = 0xfeff; ///< [Byte Order Mark](https://en.wikipedia.org/wiki/Byte_order_mark#UTF-8).
-static constexpr char32_t EoF     = (char32_t)std::istream::traits_type::eof(); ///< End of File.
-static constexpr char32_t Null    = 0;                                          ///< U+0000 NULL.
-static constexpr char32_t Invalid = 0x110000;                                   ///< Invalid UTF-8 sequence.
+static constexpr size_t Max   = 4;      ///< Maximal number of `char8_t`s of an UTF-8 byte sequence.
+static constexpr char32_t BOM = 0xfeff; ///< [Byte Order Mark](https://en.wikipedia.org/wiki/Byte_order_mark#UTF-8).
+static constexpr char32_t EoF
+    = (char32_t)std::istream::traits_type::eof(); ///< End of stream sentinel returned by @ref decode.
+static constexpr char32_t Null    = 0;            ///< U+0000 NULL returned unchanged by @ref decode.
+static constexpr char32_t Invalid = 0x110000;     ///< Sentinel returned by @ref decode for malformed UTF-8.
 
 /// Returns the expected number of bytes for an UTF-8 char sequence by inspecting the first byte.
 /// Retuns @c 0 if invalid.
@@ -51,8 +57,10 @@ inline char8_t is_valid234(char8_t c) {
     return (c & char8_t(0b11000000)) == char8_t(0b10000000) ? (c & char8_t(0b00111111)) : char8_t(-1);
 }
 
-/// Decodes the next sequence of bytes from @p is as UTF-32.
-/// @returns Invalid on error.
+/// Decodes the next UTF-8 sequence from @p is into a single `char32_t`.
+///
+/// Returns @ref EoF when the stream is exhausted and @ref Invalid for malformed,
+/// overlong, surrogate, or otherwise non-scalar encodings.
 inline char32_t decode(std::istream& is) {
     char32_t result = is.get();
     if (result == EoF) return result;
@@ -82,8 +90,9 @@ std::ostream& ao(std::ostream& os, char32_t c32, char32_t a = 0b00111111, char32
 }
 } // namespace
 
-/// Encodes the UTF-32 char @p c32 as UTF-8 and writes the sequence of bytes to @p os.
-/// @returns `false` on error.
+/// Encodes @p c32 as UTF-8 and writes the resulting bytes to @p os.
+///
+/// Returns `false` when @p c32 is outside the encodable range.
 inline bool encode(std::ostream& os, char32_t c32) {
     // clang-format off
     if (c32 <= 0x00007f) {          ao(os, c32      , 0b11111111, 0b00000000);                              return true; }
@@ -93,7 +102,7 @@ inline bool encode(std::ostream& os, char32_t c32) {
     // clang-format on
     return false;
 }
-/// Wrapper for `char32_t` which has a friend ostream operator.
+/// Wrapper for `char32_t` with an `operator<<` that writes UTF-8.
 struct Char32 {
     Char32(char32_t c)
         : c(c) {}
@@ -139,7 +148,7 @@ inline bool isbdigit(char32_t c) { return isrange(c, '0', '1'); } ///< Is binary
 ///@}
 
 /// @name any
-/// Is @p c in any of the remaining arguments?
+/// Build a predicate that checks whether a code point matches any of the given values.
 ///@{
 inline bool _any(char32_t c, char32_t d) { return c == d; }
 template<class... T>
