@@ -133,8 +133,14 @@ inline bool is_terminal(Stream stream) {
 #else
 inline bool is_terminal(Stream stream) {
     switch (stream) {
-        case Stream::Stdout: return ::isatty(STDOUT_FILENO) != 0;
-        case Stream::Stderr: return ::isatty(STDERR_FILENO) != 0;
+        case Stream::Stdout: {
+            static bool stdout_is_terminal = ::isatty(STDOUT_FILENO) != 0;
+            return stdout_is_terminal;
+        }
+        case Stream::Stderr: {
+            static bool stderr_is_terminal = ::isatty(STDERR_FILENO) != 0;
+            return stderr_is_terminal;
+        }
         default: return false;
     }
 }
