@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['🧭_20typical_20workflow_0',['🧭 Typical Workflow',['../index.html#autotoc_md7',1,'']]]
+  ['🚀_20quick_20start_0',['🚀 Quick Start',['../index.html#autotoc_md3',1,'']]]
 ];

@@ -12,5 +12,6 @@ var dir_fb87ea66e879fc34aa3bf8f21b7c38f7 =
     [ "parser.h", "parser_8h.html", "parser_8h" ],
     [ "ring.h", "ring_8h.html", "ring_8h" ],
     [ "sym.h", "sym_8h.html", "sym_8h" ],
+    [ "term.h", "term_8h.html", "term_8h" ],
     [ "utf8.h", "utf8_8h.html", "utf8_8h" ]
 ];

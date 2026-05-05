@@ -52,10 +52,12 @@ var menudata={children:[
 {text:"m",url:"namespacemembers_func.html#index_m"},
 {text:"n",url:"namespacemembers_func.html#index_n"},
 {text:"o",url:"namespacemembers_func.html#index_o"},
+{text:"s",url:"namespacemembers_func.html#index_s"},
 {text:"t",url:"namespacemembers_func.html#index_t"},
 {text:"u",url:"namespacemembers_func.html#index_u"}]},
 {text:"Variables",url:"namespacemembers_vars.html"},
-{text:"Typedefs",url:"namespacemembers_type.html"}]}]},
+{text:"Typedefs",url:"namespacemembers_type.html"},
+{text:"Enumerations",url:"namespacemembers_enum.html"}]}]},
 {text:"Concepts",url:"concepts.html"},
 {text:"Classes",url:"annotated.html",children:[
 {text:"Class List",url:"annotated.html"},

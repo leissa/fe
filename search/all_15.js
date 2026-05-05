@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['warn_0',['warn',['../structfe_1_1Driver.html#a7df49a423aa2092dcd2f74dfa4694f68',1,'fe::Driver']]],
-  ['why_20fe_1',['💡 Why FE?',['../index.html#autotoc_md1',1,'']]],
-  ['workflow_2',['🧭 Typical Workflow',['../index.html#autotoc_md7',1,'']]]
+  ['value_5ftype_0',['value_type',['../structfe_1_1Arena_1_1Allocator.html#ac5c353ec9ecaf89ff9362f8e4d9124f4',1,'fe::Arena::Allocator']]],
+  ['vendoring_1',['Direct Vendoring',['../index.html#autotoc_md6',1,'']]],
+  ['view_2',['view',['../classfe_1_1Sym.html#ae4042d6fd11e3d25c511c2feb031ad2a',1,'fe::Sym']]]
 ];

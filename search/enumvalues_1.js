@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['off_0',['Off',['../classfe_1_1Lexer.html#a99366b3ab28fff1d6a1013b1007246a6ad15305d7a4e34e02489c74a5ef542f36',1,'fe::Lexer']]],
-  ['on_1',['On',['../classfe_1_1Lexer.html#a99366b3ab28fff1d6a1013b1007246a6a521c36a31c2762741cf0f8890cbe05e3',1,'fe::Lexer']]]
+  ['black_0',['Black',['../namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ae90dfb84e30edf611e326eeb04d680de',1,'fe::term']]],
+  ['blue_1',['Blue',['../namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a9594eec95be70e7b1710f730fdda33d9',1,'fe::term']]]
 ];

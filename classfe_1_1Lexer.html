@@ -202,9 +202,9 @@ template&lt;size_t K, class S&gt; </div>
 </td></tr>
 <tr><td class="fieldname"><a id="a99366b3ab28fff1d6a1013b1007246a6a521c36a31c2762741cf0f8890cbe05e3" name="a99366b3ab28fff1d6a1013b1007246a6a521c36a31c2762741cf0f8890cbe05e3"></a>On&#160;</td><td class="fielddoc"><p><a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6">Append</a> accepted char as is to <a class="el" href="#a8038ab296487b12c19dc2d7967e6b5c7">Lexer::str_</a>. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a99366b3ab28fff1d6a1013b1007246a6ab75fcdd2d72d9e000beab48622402d93" name="a99366b3ab28fff1d6a1013b1007246a6ab75fcdd2d72d9e000beab48622402d93"></a>Lower&#160;</td><td class="fielddoc"><p><a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6">Append</a> accepted char via <a class="el" href="namespacefe_1_1utf8.html#a50e0192b122a783b81710499f20ae6b5">fe::utf8::tolower</a>` to <a class="el" href="#a8038ab296487b12c19dc2d7967e6b5c7">Lexer::str_</a>. </p>
+<tr><td class="fieldname"><a id="a99366b3ab28fff1d6a1013b1007246a6ab75fcdd2d72d9e000beab48622402d93" name="a99366b3ab28fff1d6a1013b1007246a6ab75fcdd2d72d9e000beab48622402d93"></a>Lower&#160;</td><td class="fielddoc"><p><a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6">Append</a> accepted char via <a class="el" href="namespacefe_1_1utf8.html#a2dc258776e743dd1204f68bfe2baed2b">fe::utf8::tolower</a>` to <a class="el" href="#a8038ab296487b12c19dc2d7967e6b5c7">Lexer::str_</a>. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a99366b3ab28fff1d6a1013b1007246a6a19de5b94f7b83900d4b296d9fa491aec" name="a99366b3ab28fff1d6a1013b1007246a6a19de5b94f7b83900d4b296d9fa491aec"></a>Upper&#160;</td><td class="fielddoc"><p><a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6">Append</a> accepted char via <a class="el" href="namespacefe_1_1utf8.html#a6f47692e931db3f19ee1fcc516d72f9c">fe::utf8::toupper</a>` to <a class="el" href="#a8038ab296487b12c19dc2d7967e6b5c7">Lexer::str_</a>. </p>
+<tr><td class="fieldname"><a id="a99366b3ab28fff1d6a1013b1007246a6a19de5b94f7b83900d4b296d9fa491aec" name="a99366b3ab28fff1d6a1013b1007246a6a19de5b94f7b83900d4b296d9fa491aec"></a>Upper&#160;</td><td class="fielddoc"><p><a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6">Append</a> accepted char via <a class="el" href="namespacefe_1_1utf8.html#a7907975b61b06db27b14fe2a912f8f8c">fe::utf8::toupper</a>` to <a class="el" href="#a8038ab296487b12c19dc2d7967e6b5c7">Lexer::str_</a>. </p>
 </td></tr>
 </table>
 
@@ -378,7 +378,7 @@ template&lt;<a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6">Append</a> a
 
 <p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00074">74</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
 
-<p class="reference">References <a class="el" href="lexer_8h_source.html#l00032">ahead()</a>, <a class="el" href="lexer_8h_source.html#l00067">Lower</a>, <a class="el" href="lexer_8h_source.html#l00065">Off</a>, <a class="el" href="lexer_8h_source.html#l00098">str_</a>, <a class="el" href="utf8_8h_source.html#l00129">fe::utf8::tolower()</a>, <a class="el" href="utf8_8h_source.html#l00130">fe::utf8::toupper()</a>, and <a class="el" href="lexer_8h_source.html#l00068">Upper</a>.</p>
+<p class="reference">References <a class="el" href="lexer_8h_source.html#l00032">ahead()</a>, <a class="el" href="lexer_8h_source.html#l00067">Lower</a>, <a class="el" href="lexer_8h_source.html#l00065">Off</a>, <a class="el" href="lexer_8h_source.html#l00098">str_</a>, <a class="el" href="utf8_8h_source.html#l00138">fe::utf8::tolower()</a>, <a class="el" href="utf8_8h_source.html#l00139">fe::utf8::toupper()</a>, and <a class="el" href="lexer_8h_source.html#l00068">Upper</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00089">accept()</a>, <a class="el" href="lexer_8h_source.html#l00088">accept()</a>, and <a class="el" href="lexer_8h_source.html#l00090">accept()</a>.</p>
 
@@ -443,11 +443,11 @@ template&lt;size_t K, class S&gt; </div>
 </div><div class="memdoc">
 
 <p>Get next <span class="tt">char32_t</span> in <a class="el" href="#ab8dab537ecbc5e97ad064e286201fd14">Lexer::istream_</a> and increase <a class="el" href="#a142d42503cc2dbeb8c496b66d47e75c7" title="Location of the token we are currently constructing within Lexer::str_,.">Lexer::loc_</a>. </p>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="namespacefe_1_1utf8.html#a12b7d1cbb7960728a558b5bb26255b3d" title="Invalid UTF-8 sequence.">utf8::Invalid</a> on an invalid UTF-8 sequence. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="namespacefe_1_1utf8.html#a12b7d1cbb7960728a558b5bb26255b3d" title="Sentinel returned by decode for malformed UTF-8.">utf8::Invalid</a> on an invalid UTF-8 sequence. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00042">42</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
 
-<p class="reference">References <a class="el" href="lexer_8h_source.html#l00095">ahead_</a>, <a class="el" href="utf8_8h_source.html#l00013">fe::utf8::BOM</a>, <a class="el" href="utf8_8h_source.html#l00056">fe::utf8::decode()</a>, <a class="el" href="utf8_8h_source.html#l00014">fe::utf8::EoF</a>, <a class="el" href="lexer_8h_source.html#l00094">istream_</a>, <a class="el" href="lexer_8h_source.html#l00096">loc_</a>, and <a class="el" href="lexer_8h_source.html#l00097">peek_</a>.</p>
+<p class="reference">References <a class="el" href="lexer_8h_source.html#l00095">ahead_</a>, <a class="el" href="utf8_8h_source.html#l00018">fe::utf8::BOM</a>, <a class="el" href="utf8_8h_source.html#l00064">fe::utf8::decode()</a>, <a class="el" href="utf8_8h_source.html#l00020">fe::utf8::EoF</a>, <a class="el" href="lexer_8h_source.html#l00094">istream_</a>, <a class="el" href="lexer_8h_source.html#l00096">loc_</a>, and <a class="el" href="lexer_8h_source.html#l00097">peek_</a>.</p>
 
 </div>
 </div>
