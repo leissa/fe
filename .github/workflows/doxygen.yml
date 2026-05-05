@@ -5,6 +5,10 @@ on:
   pull_request:
     branches: [ main ]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   DOXYGEN_TAG: Release_1_16_1
   DOXYGEN_VERSION: 1.16.1
@@ -16,16 +20,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Clone recursively
-        uses: actions/checkout@v3
-        with:
-          submodules: recursive
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Install graphviz, ghostscript, texlive
+      - name: Install Graphviz
         run: |
-          sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
           sudo apt-get update
-          sudo apt-get install graphviz ghostscript texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
+          sudo apt-get install -y --no-install-recommends graphviz
 
       - name: Restore Doxygen cache
         id: cache-doxygen
@@ -46,7 +47,7 @@ jobs:
           tar -C "${{ github.workspace }}/.cache" -xf "${RUNNER_TEMP}/${archive}"
 
       - name: Configure
-        run: cmake -S ${{github.workspace}} -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Debug -DFE_BUILD_DOCS=ON -DDOXYGEN_EXECUTABLE=${{ env.DOXYGEN_CACHE_DIR }}/bin/doxygen
+        run: cmake -S ${{github.workspace}} -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTING=OFF -DFE_BUILD_DOCS=ON -DDOXYGEN_EXECUTABLE=${{ env.DOXYGEN_CACHE_DIR }}/bin/doxygen
 
       - name: Build
         run: cmake --build ${{github.workspace}}/build -v --target docs
