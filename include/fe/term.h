@@ -30,8 +30,9 @@
 /// ```
 ///
 /// The current behavior is controlled via @ref fe::term::Mode and can be overridden with
-/// @ref fe::term::set_mode. In @ref fe::term::Mode::Auto, colors are emitted only for terminal
-/// streams. FE also respects the common environment conventions `NO_COLOR`, `CLICOLOR=0`, and
+/// @ref fe::term::set_mode. In @ref fe::term::Mode::Auto, colors are emitted only for
+/// `std::cout`, `std::cerr`, `std::clog`, or streams sharing those buffers when they refer to
+/// terminals. FE also respects the common environment conventions `NO_COLOR`, `CLICOLOR=0`, and
 /// `CLICOLOR_FORCE` (unless it is set to `0`).
 namespace fe::term {
 
