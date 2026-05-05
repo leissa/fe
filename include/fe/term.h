@@ -21,6 +21,7 @@
 #endif
 
 #include "fe/assert.h"
+#include "fe/format.h"
 
 /// Lightweight stream-based terminal colors for diagnostics and CLI output.
 ///
@@ -189,3 +190,7 @@ inline std::ostream& operator<<(std::ostream& os, FG color) {
 }
 
 } // namespace fe::term
+
+#ifndef DOXYGEN
+template<> struct std::formatter<fe::term::FG> : fe::ostream_formatter {};
+#endif
