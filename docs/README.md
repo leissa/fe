@@ -8,7 +8,7 @@
 [![Windows](https://img.shields.io/github/actions/workflow/status/leissa/fe/windows.yml?style=flat-square&label=⊞%20windows&branch=main)](https://github.com/leissa/fe/actions/workflows/windows.yml)
 [![macOS](https://img.shields.io/github/actions/workflow/status/leissa/fe/macos.yml?style=flat-square&logo=apple&label=macos&branch=main)](https://github.com/leissa/fe/actions/workflows/macos.yml)
 [![Doxygen](https://img.shields.io/github/actions/workflow/status/leissa/fe/doxygen.yml?style=flat-square&logo=gitbook&logoColor=white&label=doxygen&branch=main)](https://github.com/leissa/fe/actions/workflows/doxygen.yml)
-[![Documentation](https://img.shields.io/badge/docs-main-green?style=flat-square&logo=gitbook&logoColor=white)](https://mimir.github.io)
+[![Documentation](https://img.shields.io/badge/docs-main-green?style=flat-square&logo=gitbook&logoColor=white)](https://leissa.github.io/fe)
 
 [![C++20](https://img.shields.io/badge/C%2B%2B-20-blue?style=flat-square&logo=cplusplus)](https://en.wikipedia.org/wiki/C%2B%2B#Standardization)
 [![License](https://img.shields.io/github/license/leissa/fe?style=flat-square&color=yellowgreen&logo=opensourceinitiative&logoColor=white)](https://github.com/leissa/fe/blob/main/LICENSE.TXT)
