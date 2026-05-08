@@ -66,44 +66,44 @@ enum class Stream {
     Stderr,
 };
 
-inline bool env_set(const char* name) {
+inline bool env_set(const char* name) noexcept {
     auto* value = std::getenv(name);
     return value && *value != '\0';
 }
 
-inline bool env_is(const char* name, const char* expected) {
+inline bool env_is(const char* name, const char* expected) noexcept {
     auto* value = std::getenv(name);
     return value && std::strcmp(value, expected) == 0;
 }
 
-inline Mode default_mode() {
+inline Mode default_mode() noexcept {
     if (env_set("NO_COLOR")) return Mode::Never;
     if (env_set("CLICOLOR_FORCE") && !env_is("CLICOLOR_FORCE", "0")) return Mode::Always;
     if (env_is("CLICOLOR", "0")) return Mode::Never;
     return Mode::Auto;
 }
 
-inline std::atomic<Mode>& current_mode() {
+inline std::atomic<Mode>& current_mode() noexcept {
     static std::atomic<Mode> mode(default_mode());
     return mode;
 }
 
-inline std::streambuf* stdout_rdbuf() {
+inline std::streambuf* stdout_rdbuf() noexcept {
     static std::streambuf* buf = std::cout.rdbuf();
     return buf;
 }
 
-inline std::streambuf* stderr_rdbuf() {
+inline std::streambuf* stderr_rdbuf() noexcept {
     static std::streambuf* buf = std::cerr.rdbuf();
     return buf;
 }
 
-inline std::streambuf* clog_rdbuf() {
+inline std::streambuf* clog_rdbuf() noexcept {
     static std::streambuf* buf = std::clog.rdbuf();
     return buf;
 }
 
-inline Stream stream(std::ostream& os) {
+inline Stream stream(std::ostream& os) noexcept {
     auto* const buf = os.rdbuf();
     if (buf == stdout_rdbuf()) return Stream::Stdout;
     if (buf == stderr_rdbuf() || buf == clog_rdbuf()) return Stream::Stderr;
@@ -111,15 +111,17 @@ inline Stream stream(std::ostream& os) {
 }
 
 #ifdef _WIN32
-inline bool enable_vt(HANDLE handle) {
+inline bool enable_vt(HANDLE handle) noexcept {
+    if (handle == INVALID_HANDLE_VALUE) return false;
+
     DWORD mode = 0;
     if (!GetConsoleMode(handle, &mode)) return false;
     if (mode & ENABLE_VIRTUAL_TERMINAL_PROCESSING) return true;
     return SetConsoleMode(handle, mode | ENABLE_VIRTUAL_TERMINAL_PROCESSING) != 0;
 }
 
-inline bool is_terminal(Stream stream) {
-    switch (stream) {
+inline bool is_terminal(Stream s) noexcept {
+    switch (s) {
         case Stream::Stdout: {
             static bool stdout_is_terminal = enable_vt(GetStdHandle(STD_OUTPUT_HANDLE));
             return stdout_is_terminal;
@@ -132,8 +134,8 @@ inline bool is_terminal(Stream stream) {
     }
 }
 #else
-inline bool is_terminal(Stream stream) {
-    switch (stream) {
+inline bool is_terminal(Stream s) noexcept {
+    switch (s) {
         case Stream::Stdout: {
             static bool stdout_is_terminal = ::isatty(STDOUT_FILENO) != 0;
             return stdout_is_terminal;
@@ -147,7 +149,7 @@ inline bool is_terminal(Stream stream) {
 }
 #endif
 
-inline bool use_color(std::ostream& os) {
+inline bool use_color(std::ostream& os) noexcept {
     // clang-format off
     switch (current_mode().load(std::memory_order_relaxed)) {
         case Mode::Always: return true;
@@ -158,7 +160,7 @@ inline bool use_color(std::ostream& os) {
     // clang-format on
 }
 
-inline std::string_view sgr(FG color) {
+constexpr std::string_view sgr(FG color) noexcept {
     // clang-format off
     switch (color) {
         case FG::Black:   return "\033[30m";
@@ -178,19 +180,23 @@ inline std::string_view sgr(FG color) {
 } // namespace detail
 
 /// Returns the current terminal color mode.
-inline Mode mode() { return detail::current_mode().load(std::memory_order_relaxed); }
+inline Mode mode() noexcept { return detail::current_mode().load(std::memory_order_relaxed); }
 
 /// Overrides the current terminal color mode.
-inline void set_mode(Mode mode) { detail::current_mode().store(mode, std::memory_order_relaxed); }
+inline void set_mode(Mode m) noexcept { detail::current_mode().store(m, std::memory_order_relaxed); }
 
 /// Streams the ANSI escape sequence for @p color when colors are enabled for @p os.
 inline std::ostream& operator<<(std::ostream& os, FG color) {
-    if (detail::use_color(os)) os << detail::sgr(color);
+    if (detail::use_color(os)) {
+        auto esc = detail::sgr(color);
+        os.write(esc.data(), esc.size());
+    }
     return os;
 }
 
 } // namespace fe::term
 
 #ifndef DOXYGEN
-template<> struct std::formatter<fe::term::FG> : fe::ostream_formatter {};
+template<>
+struct std::formatter<fe::term::FG> : fe::ostream_formatter {};
 #endif

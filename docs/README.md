@@ -1,14 +1,17 @@
 # FE
 
+[![Stars](https://img.shields.io/github/stars/leissa/fe)](https://github.com/leissa/fe/stargazers)
+[![Forks](https://img.shields.io/github/forks/leissa/fe)](https://github.com/leissa/fe/fork)
+
 [![GitHub Release](https://img.shields.io/github/v/release/leissa/fe?style=flat-square&logo=starship)](https://github.com/leissa/fe/releases)
 [![Linux](https://img.shields.io/github/actions/workflow/status/leissa/fe/linux.yml?style=flat-square&logo=linux&label=linux&logoColor=white&branch=main)](https://github.com/leissa/fe/actions/workflows/linux.yml)
 [![Windows](https://img.shields.io/github/actions/workflow/status/leissa/fe/windows.yml?style=flat-square&label=⊞%20windows&branch=main)](https://github.com/leissa/fe/actions/workflows/windows.yml)
 [![macOS](https://img.shields.io/github/actions/workflow/status/leissa/fe/macos.yml?style=flat-square&logo=apple&label=macos&branch=main)](https://github.com/leissa/fe/actions/workflows/macos.yml)
 [![Doxygen](https://img.shields.io/github/actions/workflow/status/leissa/fe/doxygen.yml?style=flat-square&logo=gitbook&logoColor=white&label=doxygen&branch=main)](https://github.com/leissa/fe/actions/workflows/doxygen.yml)
-[![Documentation](https://img.shields.io/badge/docs-master-green?style=flat-square&logo=gitbook&logoColor=white)](https://leissa.github.io/fe)
+[![Documentation](https://img.shields.io/badge/docs-main-green?style=flat-square&logo=gitbook&logoColor=white)](https://leissa.github.io/fe)
 
 [![C++23](https://img.shields.io/badge/C%2B%2B-23-blue?style=flat-square&logo=cplusplus)](https://en.wikipedia.org/wiki/C%2B%2B#Standardization)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square&logo=opensourceinitiative&logoColor=white&color=yellowgreen)](../LICENSE)
+[![License: MIT](https://img.shields.io/github/license/leissa/fe?style=flat-square&color=yellowgreen&logo=opensourceinitiative&logoColor=white)](https://github.com/leissa/fe/blob/main/LICENSE.TXT)
 
 [TOC]
 
