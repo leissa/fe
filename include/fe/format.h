@@ -54,18 +54,6 @@ public:
     constexpr std::string_view tab() const noexcept { return tab_; }
     ///@}
 
-    /// @name Setters
-    ///@{
-    Tab& operator=(size_t indent) {
-        indent_ = indent;
-        return *this;
-    }
-    Tab& operator=(std::string tab) {
-        tab_ = tab;
-        return *this;
-    }
-    ///@}
-
     // clang-format off
     /// @name Creates a new Tab
     ///@{
