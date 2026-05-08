@@ -123,7 +123,7 @@ private:
 template<class F> StreamFn(F) -> StreamFn<F>;
 
 /// Join elements of @p range with @p sep.
-/// Use as a `std::format` argument: `std::format("{}", fe::join(v, ", "))`.
+/// Use as a `std::format` or `operator<<` argument: `std::format("{}", fe::join(v, ", "))`.
 /// The @p range must outlive the returned object.
 template<std::ranges::input_range R>
 class Join {
@@ -134,6 +134,14 @@ public:
 
     const R& range() const { return range_; }
     std::string_view sep() const { return sep_; }
+
+    friend std::ostream& operator<<(std::ostream& os, const Join& j) {
+        for (std::string_view curr_sep; const auto& elem : j.range_) {
+            os << curr_sep << elem;
+            curr_sep = j.sep_;
+        }
+        return os;
+    }
 
 private:
     const R& range_;
