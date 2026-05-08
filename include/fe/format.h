@@ -49,8 +49,8 @@ public:
 
     /// @name Getters
     ///@{
-    size_t indent() const { return indent_; }
-    std::string_view tab() const { return tab_; }
+    constexpr size_t indent() const noexcept { return indent_; }
+    constexpr std::string_view tab() const noexcept { return tab_; }
     ///@}
 
     /// @name Setters
@@ -66,16 +66,22 @@ public:
     ///@}
 
     // clang-format off
-    /// @name Indent/Dedent
+    /// @name Creates a new Tab
     ///@{
-    Tab& operator++() {                      ++indent_; return *this; }
-    Tab& operator--() { assert(indent_ > 0); --indent_; return *this; }
-    Tab& operator+=(size_t indent) {                      indent_ += indent; return *this; }
-    Tab& operator-=(size_t indent) { assert(indent_ > 0); indent_ -= indent; return *this; }
-    Tab  operator++(int) {                      auto res = *this; ++indent_; return res; }
-    Tab  operator--(int) { assert(indent_ > 0); auto res = *this; --indent_; return res; }
-    Tab  operator+(size_t indent) const {                      return {tab_, indent_ + indent}; }
-    Tab  operator-(size_t indent) const { assert(indent_ > 0); return {tab_, indent_ - indent}; }
+    [[nodiscard]] constexpr Tab operator++(int) noexcept {                      return {tab_, indent_++}; }
+    [[nodiscard]] constexpr Tab operator--(int) noexcept { assert(indent_ > 0); return {tab_, indent_--}; }
+    [[nodiscard]] constexpr Tab operator+(size_t indent) const noexcept {                      return {tab_, indent_ + indent}; }
+    [[nodiscard]] constexpr Tab operator-(size_t indent) const noexcept { assert(indent_ > 0); return {tab_, indent_ - indent}; }
+    ///@}
+
+    /// @name Modifies this Tab
+    ///@{
+    constexpr Tab& operator++() noexcept {                      ++indent_; return *this; }
+    constexpr Tab& operator--() noexcept { assert(indent_ > 0); --indent_; return *this; }
+    constexpr Tab& operator+=(size_t indent) noexcept {                      indent_ += indent; return *this; }
+    constexpr Tab& operator-=(size_t indent) noexcept { assert(indent_ > 0); indent_ -= indent; return *this; }
+    constexpr Tab& operator=(size_t indent) noexcept { indent_ = indent; return *this; }
+    constexpr Tab& operator=(std::string_view tab) noexcept { tab_ = tab; return *this; }
     ///@}
     // clang-format on
 
