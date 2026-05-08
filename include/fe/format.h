@@ -57,10 +57,10 @@ public:
     // clang-format off
     /// @name Creates a new Tab
     ///@{
-    [[nodiscard]] constexpr Tab operator++(int) noexcept {                      return {tab_, indent_++}; }
-    [[nodiscard]] constexpr Tab operator--(int) noexcept { assert(indent_ > 0); return {tab_, indent_--}; }
-    [[nodiscard]] constexpr Tab operator+(size_t indent) const noexcept {                      return {tab_, indent_ + indent}; }
-    [[nodiscard]] constexpr Tab operator-(size_t indent) const noexcept { assert(indent_ > 0); return {tab_, indent_ - indent}; }
+    [[nodiscard]] Tab operator++(int) noexcept {                      return {tab_, indent_++}; }
+    [[nodiscard]] Tab operator--(int) noexcept { assert(indent_ > 0); return {tab_, indent_--}; }
+    [[nodiscard]] Tab operator+(size_t indent) const noexcept {                      return {tab_, indent_ + indent}; }
+    [[nodiscard]] Tab operator-(size_t indent) const noexcept { assert(indent_ > 0); return {tab_, indent_ - indent}; }
     ///@}
 
     /// @name Modifies this Tab
