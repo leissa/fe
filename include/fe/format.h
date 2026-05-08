@@ -1,6 +1,11 @@
 #pragma once
 
+#include <concepts>
 #include <format>
+#include <functional>
+#include <ostream>
+#include <ranges>
+#include <utility>
 
 #include "fe/loc.h"
 #include "fe/utf8.h"
@@ -19,11 +24,7 @@ struct basic_ostream_formatter : std::formatter<std::basic_string_view<Char>, Ch
     O format(const T& value, std::basic_format_context<O, Char>& ctx) const {
         std::basic_stringstream<Char> ss;
         ss << value;
-#if defined(_LIBCPP_VERSION) && _LIBCPP_VERSION < 170000
-        return std::formatter<std::basic_string_view<Char>, Char>::format(ss.str(), ctx);
-#else
         return std::formatter<std::basic_string_view<Char>, Char>::format(ss.view(), ctx);
-#endif
     }
 };
 
@@ -85,14 +86,96 @@ public:
         return os;
     }
 
+    /// @name Formatted Output
+    /// Wrap `std::format` to prefix the formatted string with the current indentation.
+    ///@{
+    // clang-format off
+    template<class... Args> std::ostream& print  (std::ostream& os, std::format_string<Args...> fmt, Args&&... args) const { return  os << *this  << std::format(fmt, std::forward<Args>(args)...);                }
+    template<class... Args> std::ostream& println(std::ostream& os, std::format_string<Args...> fmt, Args&&... args) const { return (os << *this  << std::format(fmt, std::forward<Args>(args)...)) << std::endl;  }
+    template<class... Args> std::ostream& lnprint(std::ostream& os, std::format_string<Args...> fmt, Args&&... args) const { return  os << std::endl << *this << std::format(fmt, std::forward<Args>(args)...);     }
+    // clang-format on
+    ///@}
+
 private:
     std::string_view tab_;
     size_t indent_ = 0;
 };
 
+/// Wrap a callable `f(std::ostream&) -> std::ostream&` so it streams via `operator<<` and `std::format`.
+/// Useful for inline ad-hoc formatting:
+/// ```
+/// auto greet = fe::StreamFn{[](std::ostream& os) -> std::ostream& { return os << "hi"; }};
+/// std::cout  << greet;
+/// std::format("{}", greet);
+/// ```
+template<class F>
+    requires std::invocable<const F&, std::ostream&>
+class StreamFn {
+public:
+    constexpr StreamFn(F f)
+        : f_(std::move(f)) {}
+
+    friend std::ostream& operator<<(std::ostream& os, const StreamFn& s) {
+        if constexpr (std::is_void_v<std::invoke_result_t<const F&, std::ostream&>>)
+            return std::invoke(s.f_, os), os;
+        else
+            return std::invoke(s.f_, os);
+    }
+
+private:
+    F f_;
+};
+
+template<class F> StreamFn(F) -> StreamFn<F>;
+
+/// Join elements of @p range with @p sep.
+/// Use as a `std::format` argument: `std::format("{}", fe::join(v, ", "))`.
+/// The @p range must outlive the returned object.
+template<std::ranges::input_range R>
+class Join {
+public:
+    Join(const R& range, std::string_view sep)
+        : range_(range)
+        , sep_(sep) {}
+
+    const R& range() const { return range_; }
+    std::string_view sep() const { return sep_; }
+
+private:
+    const R& range_;
+    std::string_view sep_;
+};
+
+template<class R> Join(const R&, std::string_view) -> Join<R>;
+
+template<std::ranges::input_range R>
+Join<R> join(const R& range, std::string_view sep) {
+    return Join<R>(range, sep);
+}
+
 } // namespace fe
 
 #ifndef DOXYGEN
+template<class F>
+struct std::formatter<fe::StreamFn<F>> : fe::ostream_formatter {};
+
+template<class R>
+struct std::formatter<fe::Join<R>> {
+    constexpr auto parse(std::format_parse_context& ctx) { return ctx.begin(); }
+
+    template<class FormatContext>
+    auto format(const fe::Join<R>& j, FormatContext& ctx) const {
+        auto out   = ctx.out();
+        bool first = true;
+        for (const auto& elem : j.range()) {
+            if (!first) out = std::format_to(out, "{}", j.sep());
+            out   = std::format_to(out, "{}", elem);
+            first = false;
+        }
+        return out;
+    }
+};
+
 // clang-format off
 template<> struct std::formatter<fe::Pos> : fe::ostream_formatter {};
 template<> struct std::formatter<fe::Loc> : fe::ostream_formatter {};
