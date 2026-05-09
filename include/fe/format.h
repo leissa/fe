@@ -7,6 +7,7 @@
 #include <ostream>
 #include <ranges>
 #include <sstream>
+#include <string_view>
 #include <utility>
 
 #include "fe/loc.h"
@@ -68,7 +69,9 @@ public:
     Tab(const Tab&) = default;
     Tab(std::string_view tab = {"\t"}, int indent = 0)
         : tab_(tab)
-        , indent_(indent) {}
+        , indent_(indent) {
+        assert(indent >= 0);
+    }
 
     static Tab spaces() { return Tab(std::string_view("    ")); }
     ///@}
@@ -82,16 +85,17 @@ public:
     // clang-format off
     /// @name Creates a new Tab
     ///@{
-    [[nodiscard]] Tab operator+(int indent) const noexcept {                      return {tab_, indent_ + indent}; }
-    [[nodiscard]] Tab operator-(int indent) const noexcept { assert(indent_ > 0); return {tab_, indent_ - indent}; }
+    ///
+    [[nodiscard]] Tab operator+(int indent) const noexcept { assert(indent >= 0);                      return {tab_, indent_ + indent}; }
+    [[nodiscard]] Tab operator-(int indent) const noexcept { assert(indent >= 0 && indent_ >= indent); return {tab_, indent_ - indent}; }
     ///@}
 
     /// @name Modifies this Tab
     ///@{
     constexpr Tab& operator++() noexcept {                      ++indent_; return *this; }
     constexpr Tab& operator--() noexcept { assert(indent_ > 0); --indent_; return *this; }
-    constexpr Tab& operator+=(int indent) noexcept {                      indent_ += indent; return *this; }
-    constexpr Tab& operator-=(int indent) noexcept { assert(indent_ > 0); indent_ -= indent; return *this; }
+    constexpr Tab& operator+=(int indent) noexcept { assert(indent >= 0);                      indent_ += indent; return *this; }
+    constexpr Tab& operator-=(int indent) noexcept { assert(indent >= 0 && indent_ >= indent); indent_ -= indent; return *this; }
     ///@}
     // clang-format on
 
@@ -151,7 +155,7 @@ struct std::formatter<fe::StreamFn<F>> : fe::ostream_formatter {};
 
 template<class R>
 struct std::formatter<fe::Join<R>> {
-    using elem_t = std::remove_cvref_t<std::ranges::range_reference_t<R>>;
+    using elem_t = std::remove_cvref_t<std::ranges::range_reference_t<std::views::all_t<R>>>;
     std::formatter<elem_t> elem_fmt;
 
     constexpr auto parse(std::format_parse_context& ctx) { return elem_fmt.parse(ctx); }
