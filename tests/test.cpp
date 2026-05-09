@@ -213,10 +213,10 @@ using fe::operator|;
 using fe::operator^;
 
 TEST_CASE("enum") {
-    static_assert((MyEnum::A & MyEnum::A) == 1);
-    static_assert((MyEnum::A & MyEnum::B) == 0);
-    static_assert((MyEnum::A | MyEnum::B) == 3);
-    static_assert((MyEnum::A ^ MyEnum::A) == 0);
+    static_assert(fe::to_underlying(MyEnum::A & MyEnum::A) == 1);
+    static_assert(fe::to_underlying(MyEnum::A & MyEnum::B) == 0);
+    static_assert(fe::to_underlying(MyEnum::A | MyEnum::B) == 3);
+    static_assert(fe::to_underlying(MyEnum::A ^ MyEnum::A) == 0);
 }
 
 TEST_CASE("term") {
