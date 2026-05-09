@@ -193,7 +193,7 @@ template<> struct std::formatter<fe::utf8::Char32> : fe::ostream_formatter {};
 #    define assertf(condition, ...)                                                \
         do {                                                                       \
             if (!(condition)) {                                                    \
-                std::cerr << std::format("{}:{}: assertion:\n", __FILE__, __LINE__); \
+                std::cerr << std::format("{}:{}: assertion:", __FILE__, __LINE__) << '\n'; \
                 std::cerr << std::format(__VA_ARGS__) << '\n';                     \
                 fe::breakpoint();                                                  \
             }                                                                      \
