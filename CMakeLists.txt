@@ -43,7 +43,7 @@ target_compile_features(fe INTERFACE cxx_std_23)
 
 if(MSVC)
     target_compile_definitions(fe INTERFACE _CTYPE_DISABLE_MACROS)
-    target_compile_options(fe INTERFACE /utf-8 /wd4146 /wd4245)
+    target_compile_options(fe INTERFACE /utf-8 /wd4146 /wd4245 /Zc:preprocessor)
 endif()
 
 option(FE_ABSL "If ON, use abseil containers, otherwise use std contaienrs" OFF)
