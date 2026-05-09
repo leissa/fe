@@ -168,6 +168,22 @@ struct std::formatter<fe::Join<R>> {
     }
 };
 
+#ifdef NDEBUG
+#    define assertf(condition, ...)  \
+        do {                         \
+            (void)sizeof(condition); \
+        } while (false)
+#else
+#    define assertf(condition, ...)                                                \
+        do {                                                                       \
+            if (!(condition)) {                                                    \
+                std::println(std::cerr, "{}:{}: assertion: ", __FILE__, __LINE__); \
+                std::println(std::cerr, __VA_ARGS__);                              \
+                fe::breakpoint();                                                  \
+            }                                                                      \
+        } while (false)
+#endif
+
 // clang-format off
 template<> struct std::formatter<fe::Pos> : fe::ostream_formatter {};
 template<> struct std::formatter<fe::Loc> : fe::ostream_formatter {};
