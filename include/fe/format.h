@@ -66,7 +66,7 @@ public:
     /// @name Construction
     ///@{
     Tab(const Tab&) = default;
-    Tab(std::string_view tab = {"\t"}, size_t indent = 0)
+    Tab(std::string_view tab = {"\t"}, int indent = 0)
         : tab_(tab)
         , indent_(indent) {}
 
@@ -75,47 +75,35 @@ public:
 
     /// @name Getters
     ///@{
-    constexpr size_t indent() const noexcept { return indent_; }
+    constexpr int indent() const noexcept { return indent_; }
     constexpr std::string_view tab() const noexcept { return tab_; }
     ///@}
 
     // clang-format off
     /// @name Creates a new Tab
     ///@{
-    [[nodiscard]] Tab operator++(int) noexcept {                      return {tab_, indent_++}; }
-    [[nodiscard]] Tab operator--(int) noexcept { assert(indent_ > 0); return {tab_, indent_--}; }
-    [[nodiscard]] Tab operator+(size_t indent) const noexcept {                      return {tab_, indent_ + indent}; }
-    [[nodiscard]] Tab operator-(size_t indent) const noexcept { assert(indent_ > 0); return {tab_, indent_ - indent}; }
+    [[nodiscard]] Tab operator+(int indent) const noexcept {                      return {tab_, indent_ + indent}; }
+    [[nodiscard]] Tab operator-(int indent) const noexcept { assert(indent_ > 0); return {tab_, indent_ - indent}; }
     ///@}
 
     /// @name Modifies this Tab
     ///@{
     constexpr Tab& operator++() noexcept {                      ++indent_; return *this; }
     constexpr Tab& operator--() noexcept { assert(indent_ > 0); --indent_; return *this; }
-    constexpr Tab& operator+=(size_t indent) noexcept {                      indent_ += indent; return *this; }
-    constexpr Tab& operator-=(size_t indent) noexcept { assert(indent_ > 0); indent_ -= indent; return *this; }
+    constexpr Tab& operator+=(int indent) noexcept {                      indent_ += indent; return *this; }
+    constexpr Tab& operator-=(int indent) noexcept { assert(indent_ > 0); indent_ -= indent; return *this; }
     ///@}
     // clang-format on
 
     friend std::ostream& operator<<(std::ostream& os, Tab tab) {
-        for (size_t i = 0; i != tab.indent_; ++i)
+        for (int i = 0; i != tab.indent_; ++i)
             os << tab.tab_;
         return os;
     }
 
-    /// @name Formatted Output
-    /// Wrap `std::format` to prefix the formatted string with the current indentation.
-    ///@{
-    // clang-format off
-    template<class... Args> std::ostream& print  (std::ostream& os, std::format_string<Args...> fmt, Args&&... args) const { return  os << *this  << std::format(fmt, std::forward<Args>(args)...);                }
-    template<class... Args> std::ostream& println(std::ostream& os, std::format_string<Args...> fmt, Args&&... args) const { return (os << *this  << std::format(fmt, std::forward<Args>(args)...)) << std::endl;  }
-    template<class... Args> std::ostream& lnprint(std::ostream& os, std::format_string<Args...> fmt, Args&&... args) const { return  os << std::endl << *this << std::format(fmt, std::forward<Args>(args)...);     }
-    // clang-format on
-    ///@}
-
 private:
     std::string_view tab_;
-    size_t indent_ = 0;
+    int indent_ = 0;
 };
 
 template<class T, class CharT = char>
