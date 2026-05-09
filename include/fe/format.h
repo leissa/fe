@@ -14,6 +14,29 @@
 
 namespace fe {
 
+/// Wrap a callable `f(std::ostream&) -> std::ostream&` so it streams via `operator<<` and `std::format`.
+/// Useful for inline ad-hoc formatting:
+/// ```
+/// auto greet = fe::StreamFn{[](std::ostream& os) { os << "hi"; }};
+/// std::cout << greet;
+/// std::format("{}", greet);
+/// ```
+template<class F>
+requires std::invocable<const F&, std::ostream&>
+class StreamFn {
+public:
+    constexpr StreamFn(F f)
+        : f_(std::move(f)) {}
+
+    friend std::ostream& operator<<(std::ostream& os, const StreamFn& s) { return std::invoke(s.f_, os), os; }
+
+private:
+    F f_;
+};
+
+template<class F>
+StreamFn(F) -> StreamFn<F>;
+
 /// Make types that support ostream operators available for `std::format`.
 /// Use like this:
 /// ```
@@ -90,34 +113,6 @@ private:
     size_t indent_ = 0;
 };
 
-/// Wrap a callable `f(std::ostream&) -> std::ostream&` so it streams via `operator<<` and `std::format`.
-/// Useful for inline ad-hoc formatting:
-/// ```
-/// auto greet = fe::StreamFn{[](std::ostream& os) -> std::ostream& { return os << "hi"; }};
-/// std::cout  << greet;
-/// std::format("{}", greet);
-/// ```
-template<class F>
-requires std::invocable<const F&, std::ostream&>
-class StreamFn {
-public:
-    constexpr StreamFn(F f)
-        : f_(std::move(f)) {}
-
-    friend std::ostream& operator<<(std::ostream& os, const StreamFn& s) {
-        if constexpr (std::is_void_v<std::invoke_result_t<const F&, std::ostream&>>)
-            return std::invoke(s.f_, os), os;
-        else
-            return std::invoke(s.f_, os);
-    }
-
-private:
-    F f_;
-};
-
-template<class F>
-StreamFn(F) -> StreamFn<F>;
-
 template<class T, class CharT = char>
 concept Formattable
     = requires(std::basic_format_context<std::back_insert_iterator<std::basic_string<CharT>>, CharT>& ctx, T const& v) {
@@ -126,20 +121,21 @@ concept Formattable
 
 /// Join elements of @p range with @p sep.
 /// Use as a `std::format` or `operator<<` argument: `std::format("{}", fe::join(v, ", "))`.
-/// The @p range must outlive the returned object.
 template<std::ranges::input_range R>
 requires Formattable<std::remove_cvref_t<std::ranges::range_reference_t<R>>>
 class Join {
 public:
-    Join(const R& range, std::string_view sep = {", "})
-        : range_(range)
+    using View = std::views::all_t<R>;
+
+    Join(R&& range, std::string_view sep = ", ")
+        : range_(std::views::all(std::forward<R>(range)))
         , sep_(sep) {}
 
-    const R& range() const { return range_; }
+    const auto& range() const { return range_; }
     std::string_view sep() const { return sep_; }
 
     friend std::ostream& operator<<(std::ostream& os, const Join& j) {
-        for (std::string_view sep = {}; const auto& elem : j.range_) {
+        for (std::string_view sep{}; const auto& elem : j.range_) {
             os << sep << elem;
             sep = j.sep_;
         }
@@ -147,12 +143,12 @@ public:
     }
 
 private:
-    const R& range_;
+    View range_;
     std::string_view sep_;
 };
 
 template<class R>
-Join(const R&, std::string_view) -> Join<R>;
+Join(R&&, std::string_view = ", ") -> Join<R>;
 
 } // namespace fe
 
@@ -170,7 +166,7 @@ struct std::formatter<fe::Join<R>> {
     template<class FormatContext>
     auto format(const fe::Join<R>& j, FormatContext& ctx) const {
         auto out = ctx.out();
-        for (std::string_view sep = {}; auto const& elem : j.range()) {
+        for (std::string_view sep = {}; const auto& elem : j.range()) {
             out = std::ranges::copy(sep, out).out;
             out = elem_fmt.format(elem, ctx);
             sep = j.sep();
