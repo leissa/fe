@@ -186,18 +186,17 @@ template<> struct std::formatter<fe::utf8::Char32> : fe::ostream_formatter {};
 #endif
 
 #ifdef NDEBUG
-#    define assertf(condition, ...)                  \
-        do {                                         \
-            (void)sizeof(condition);                 \
-            __VA_OPT__((void)sizeof((__VA_ARGS__));) \
+#    define assertf(condition, ...)  \
+        do {                         \
+            (void)sizeof(condition); \
         } while (false)
 #else
-#    define assertf(condition, ...)                                                                    \
-        do {                                                                                           \
-            if (!(condition)) {                                                                        \
-                std::print(std::cerr, "{}:{}: assertion `{}` failed", __FILE__, __LINE__, #condition); \
-                std::println(std::cerr __VA_OPT__(, ": " __VA_ARGS__));                                \
-                fe::breakpoint();                                                                      \
-            }                                                                                          \
+#    define assertf(condition, ...)                                                                      \
+        do {                                                                                             \
+            if (!(condition)) {                                                                          \
+                std::println(std::cerr, "{}:{}: assertion `{}` failed", __FILE__, __LINE__, #condition); \
+                std::println(std::cerr __VA_ARGS__);                                                     \
+                fe::breakpoint();                                                                        \
+            }                                                                                            \
         } while (false)
 #endif
