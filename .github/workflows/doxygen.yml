@@ -25,7 +25,7 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Install Graphviz
+      - name: Install Graphviz, gcc-14, g++-14
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends graphviz
@@ -49,7 +49,7 @@ jobs:
           tar -C "${{ github.workspace }}/.cache" -xf "${RUNNER_TEMP}/${archive}"
 
       - name: Configure
-        run: cmake -S ${{github.workspace}} -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTING=OFF -DFE_BUILD_DOCS=ON -DDOXYGEN_EXECUTABLE=${{ env.DOXYGEN_CACHE_DIR }}/bin/doxygen
+        run: CC=gcc-14 CXX=g++-14 cmake -S ${{github.workspace}} -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTING=OFF -DFE_BUILD_DOCS=ON -DDOXYGEN_EXECUTABLE=${{ env.DOXYGEN_CACHE_DIR }}/bin/doxygen
 
       - name: Build
         run: cmake --build ${{github.workspace}}/build -v --target docs
