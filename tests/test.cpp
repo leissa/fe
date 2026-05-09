@@ -208,9 +208,6 @@ enum class MyEnum : unsigned {
 
 template<>
 struct fe::is_bit_enum<MyEnum> : std::true_type {};
-using fe::operator&;
-using fe::operator|;
-using fe::operator^;
 
 TEST_CASE("enum") {
     static_assert(fe::to_underlying(MyEnum::A & MyEnum::A) == 1);
