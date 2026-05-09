@@ -154,11 +154,6 @@ private:
 template<class R>
 Join(const R&, std::string_view) -> Join<R>;
 
-template<std::ranges::input_range R>
-Join<R> join(const R& range, std::string_view sep) {
-    return Join<R>(range, sep);
-}
-
 } // namespace fe
 
 #ifndef DOXYGEN
