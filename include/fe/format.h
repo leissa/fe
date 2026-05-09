@@ -1,10 +1,12 @@
 #pragma once
 
 #include <concepts>
+
 #include <format>
 #include <functional>
 #include <ostream>
 #include <ranges>
+#include <sstream>
 #include <utility>
 
 #include "fe/loc.h"
@@ -20,11 +22,11 @@ namespace fe {
 /// @sa [Stack Overflow](https://stackoverflow.com/a/75738462).
 template<class Char>
 struct basic_ostream_formatter : std::formatter<std::basic_string_view<Char>, Char> {
-    template<class T, class O>
-    O format(const T& value, std::basic_format_context<O, Char>& ctx) const {
+    template<class T, class FormatContext>
+    auto format(T const& value, FormatContext& ctx) const {
         std::basic_stringstream<Char> ss;
         ss << value;
-        return std::formatter<std::basic_string_view<Char>, Char>::format(ss.view(), ctx);
+        return std::formatter<std::basic_string_view<Char>, Char>::format(ss.str(), ctx);
     }
 };
 
@@ -33,10 +35,15 @@ using ostream_formatter = basic_ostream_formatter<char>;
 /// Keeps track of indentation level during output
 class Tab {
 public:
+    /// @name Construction
+    ///@{
     Tab(const Tab&) = default;
     Tab(std::string_view tab = {"\t"}, size_t indent = 0)
         : tab_(tab)
         , indent_(indent) {}
+
+    static Tab spaces() { return Tab(std::string_view("    ")); }
+    ///@}
 
     /// @name Getters
     ///@{
@@ -59,8 +66,6 @@ public:
     constexpr Tab& operator--() noexcept { assert(indent_ > 0); --indent_; return *this; }
     constexpr Tab& operator+=(size_t indent) noexcept {                      indent_ += indent; return *this; }
     constexpr Tab& operator-=(size_t indent) noexcept { assert(indent_ > 0); indent_ -= indent; return *this; }
-    constexpr Tab& operator=(size_t indent) noexcept { indent_ = indent; return *this; }
-    constexpr Tab& operator=(std::string_view tab) noexcept { tab_ = tab; return *this; }
     ///@}
     // clang-format on
 
@@ -93,7 +98,7 @@ private:
 /// std::format("{}", greet);
 /// ```
 template<class F>
-    requires std::invocable<const F&, std::ostream&>
+requires std::invocable<const F&, std::ostream&>
 class StreamFn {
 public:
     constexpr StreamFn(F f)
@@ -110,12 +115,20 @@ private:
     F f_;
 };
 
-template<class F> StreamFn(F) -> StreamFn<F>;
+template<class F>
+StreamFn(F) -> StreamFn<F>;
+
+template<class T, class CharT = char>
+concept Formattable
+    = requires(std::basic_format_context<std::back_insert_iterator<std::basic_string<CharT>>, CharT>& ctx, T const& v) {
+          std::formatter<std::remove_cvref_t<T>, CharT>{}.format(v, ctx);
+      };
 
 /// Join elements of @p range with @p sep.
 /// Use as a `std::format` or `operator<<` argument: `std::format("{}", fe::join(v, ", "))`.
 /// The @p range must outlive the returned object.
 template<std::ranges::input_range R>
+requires Formattable<std::remove_cvref_t<std::ranges::range_reference_t<R>>>
 class Join {
 public:
     Join(const R& range, std::string_view sep)
@@ -126,9 +139,9 @@ public:
     std::string_view sep() const { return sep_; }
 
     friend std::ostream& operator<<(std::ostream& os, const Join& j) {
-        for (std::string_view curr_sep; const auto& elem : j.range_) {
-            os << curr_sep << elem;
-            curr_sep = j.sep_;
+        for (std::string_view sep = {}; const auto& elem : j.range_) {
+            os << sep << elem;
+            sep = j.sep_;
         }
         return os;
     }
@@ -138,7 +151,8 @@ private:
     std::string_view sep_;
 };
 
-template<class R> Join(const R&, std::string_view) -> Join<R>;
+template<class R>
+Join(const R&, std::string_view) -> Join<R>;
 
 template<std::ranges::input_range R>
 Join<R> join(const R& range, std::string_view sep) {
@@ -153,20 +167,31 @@ struct std::formatter<fe::StreamFn<F>> : fe::ostream_formatter {};
 
 template<class R>
 struct std::formatter<fe::Join<R>> {
-    constexpr auto parse(std::format_parse_context& ctx) { return ctx.begin(); }
+    using elem_t = std::remove_cvref_t<std::ranges::range_reference_t<R>>;
+    std::formatter<elem_t> elem_fmt;
+
+    constexpr auto parse(std::format_parse_context& ctx) { return elem_fmt.parse(ctx); }
 
     template<class FormatContext>
     auto format(const fe::Join<R>& j, FormatContext& ctx) const {
-        auto out   = ctx.out();
-        bool first = true;
-        for (const auto& elem : j.range()) {
-            if (!first) out = std::format_to(out, "{}", j.sep());
-            out   = std::format_to(out, "{}", elem);
-            first = false;
+        auto out = ctx.out();
+        for (std::string_view sep = {}; auto const& elem : j.range()) {
+            out = std::ranges::copy(sep, out).out;
+            out = elem_fmt.format(elem, ctx);
+            sep = j.sep();
         }
         return out;
     }
 };
+
+// clang-format off
+template<> struct std::formatter<fe::Pos> : fe::ostream_formatter {};
+template<> struct std::formatter<fe::Loc> : fe::ostream_formatter {};
+template<> struct std::formatter<fe::Sym> : fe::ostream_formatter {};
+template<> struct std::formatter<fe::Tab> : fe::ostream_formatter {};
+template<> struct std::formatter<fe::utf8::Char32> : fe::ostream_formatter {};
+// clang-format on
+#endif
 
 #ifdef NDEBUG
 #    define assertf(condition, ...)  \
@@ -182,13 +207,4 @@ struct std::formatter<fe::Join<R>> {
                 fe::breakpoint();                                                  \
             }                                                                      \
         } while (false)
-#endif
-
-// clang-format off
-template<> struct std::formatter<fe::Pos> : fe::ostream_formatter {};
-template<> struct std::formatter<fe::Loc> : fe::ostream_formatter {};
-template<> struct std::formatter<fe::Sym> : fe::ostream_formatter {};
-template<> struct std::formatter<fe::Tab> : fe::ostream_formatter {};
-template<> struct std::formatter<fe::utf8::Char32> : fe::ostream_formatter {};
-// clang-format on
 #endif
