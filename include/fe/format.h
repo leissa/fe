@@ -6,6 +6,7 @@
 #include <functional>
 #include <iostream>
 #include <ostream>
+#include <print>
 #include <ranges>
 #include <sstream>
 #include <string_view>
@@ -185,17 +186,18 @@ template<> struct std::formatter<fe::utf8::Char32> : fe::ostream_formatter {};
 #endif
 
 #ifdef NDEBUG
-#    define assertf(condition, ...)  \
-        do {                         \
-            (void)sizeof(condition); \
+#    define assertf(condition, ...)                  \
+        do {                                         \
+            (void)sizeof(condition);                 \
+            __VA_OPT__((void)sizeof((__VA_ARGS__));) \
         } while (false)
 #else
-#    define assertf(condition, ...)                                                \
-        do {                                                                       \
-            if (!(condition)) {                                                    \
-                std::cerr << std::format("{}:{}: assertion:", __FILE__, __LINE__) << '\n'; \
-                std::cerr << std::format(__VA_ARGS__) << '\n';                     \
-                fe::breakpoint();                                                  \
-            }                                                                      \
+#    define assertf(condition, ...)                                                                    \
+        do {                                                                                           \
+            if (!(condition)) {                                                                        \
+                std::print(std::cerr, "{}:{}: assertion `{}` failed", __FILE__, __LINE__, #condition); \
+                std::println(std::cerr __VA_OPT__(, ": " __VA_ARGS__));                                \
+                fe::breakpoint();                                                                      \
+            }                                                                                          \
         } while (false)
 #endif
