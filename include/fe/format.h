@@ -4,6 +4,7 @@
 
 #include <format>
 #include <functional>
+#include <iostream>
 #include <ostream>
 #include <ranges>
 #include <sstream>
@@ -117,7 +118,7 @@ concept Formattable
       };
 
 /// Join elements of @p range with @p sep.
-/// Use as a `std::format` or `operator<<` argument: `std::format("{}", fe::join(v, ", "))`.
+/// Use as a `std::format` or `operator<<` argument: `std::format("{}", fe::Join(v, ", "))`.
 template<std::ranges::input_range R>
 requires Formattable<std::remove_cvref_t<std::ranges::range_reference_t<std::views::all_t<R>>>>
 class Join {
@@ -165,7 +166,9 @@ struct std::formatter<fe::Join<R>> {
         auto out = ctx.out();
         for (std::string_view sep = {}; const auto& elem : j.range()) {
             out = std::ranges::copy(sep, out).out;
+            ctx.advance_to(out);
             out = elem_fmt.format(elem, ctx);
+            ctx.advance_to(out);
             sep = j.sep();
         }
         return out;
@@ -190,8 +193,8 @@ template<> struct std::formatter<fe::utf8::Char32> : fe::ostream_formatter {};
 #    define assertf(condition, ...)                                                \
         do {                                                                       \
             if (!(condition)) {                                                    \
-                std::println(std::cerr, "{}:{}: assertion: ", __FILE__, __LINE__); \
-                std::println(std::cerr, __VA_ARGS__);                              \
+                std::cerr << std::format("{}:{}: assertion:\n", __FILE__, __LINE__); \
+                std::cerr << std::format(__VA_ARGS__) << '\n';                     \
                 fe::breakpoint();                                                  \
             }                                                                      \
         } while (false)
