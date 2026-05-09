@@ -23,7 +23,6 @@ template<typename E>
 concept BitEnum = std::is_enum_v<E> && is_bit_enum<E>::value;
 
 template<fe::BitEnum E> constexpr auto to_underlying(E e) noexcept { return static_cast<std::underlying_type_t<E>>(e); }
-template<fe::BitEnum E> constexpr bool has_flag(E value, E flag) noexcept { return (value & flag) == flag; }
 
 } // namespace fe
 
@@ -35,4 +34,9 @@ template<fe::BitEnum E> constexpr E operator~(E a) noexcept { return static_cast
 template<fe::BitEnum E> constexpr E& operator|=(E& a, E b) noexcept { return a = (a | b); }
 template<fe::BitEnum E> constexpr E& operator&=(E& a, E b) noexcept { return a = (a & b); }
 template<fe::BitEnum E> constexpr E& operator^=(E& a, E b) noexcept { return a = (a ^ b); }
+
+namespace fe {
+template<fe::BitEnum E> constexpr bool has_flag(E value, E flag) noexcept { return (value & flag) == flag; }
+} // namespace fe
+
 // clang-format on
