@@ -195,7 +195,7 @@ template<> struct std::formatter<fe::utf8::Char32> : fe::ostream_formatter {};
         do {                                                                                             \
             if (!(condition)) {                                                                          \
                 std::println(std::cerr, "{}:{}: assertion `{}` failed", __FILE__, __LINE__, #condition); \
-                std::println(std::cerr __VA_ARGS__);                                                     \
+                std::println(std::cerr, __VA_ARGS__);                                                    \
                 fe::breakpoint();                                                                        \
             }                                                                                            \
         } while (false)
