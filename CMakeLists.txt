@@ -39,7 +39,7 @@ target_sources(fe
             include/fe/utf8.h
 )
 target_include_directories(fe INTERFACE $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
-target_compile_features(fe INTERFACE cxx_std_20)
+target_compile_features(fe INTERFACE cxx_std_23)
 
 if(MSVC)
     target_compile_definitions(fe INTERFACE _CTYPE_DISABLE_MACROS)

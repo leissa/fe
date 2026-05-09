@@ -208,15 +208,12 @@ enum class MyEnum : unsigned {
 
 template<>
 struct fe::is_bit_enum<MyEnum> : std::true_type {};
-using fe::operator&;
-using fe::operator|;
-using fe::operator^;
 
 TEST_CASE("enum") {
-    static_assert((MyEnum::A & MyEnum::A) == 1);
-    static_assert((MyEnum::A & MyEnum::B) == 0);
-    static_assert((MyEnum::A | MyEnum::B) == 3);
-    static_assert((MyEnum::A ^ MyEnum::A) == 0);
+    static_assert(fe::to_underlying(MyEnum::A & MyEnum::A) == 1);
+    static_assert(fe::to_underlying(MyEnum::A & MyEnum::B) == 0);
+    static_assert(fe::to_underlying(MyEnum::A | MyEnum::B) == 3);
+    static_assert(fe::to_underlying(MyEnum::A ^ MyEnum::A) == 0);
 }
 
 TEST_CASE("term") {
@@ -245,4 +242,15 @@ TEST_CASE("term") {
         oss << fe::term::FG::Green << "x" << fe::term::FG::Reset;
         CHECK(oss.str() == "x");
     }
+}
+
+TEST_CASE("format") {
+    std::vector<int> v0;
+    std::vector<int> v1 = {23};
+    std::vector<int> v2 = {23, 42};
+    std::vector<int> v3 = {23, 42, 17};
+    CHECK(std::format("{}", fe::Join(v0)) == "");
+    CHECK(std::format("{}", fe::Join(v1)) == "23");
+    CHECK(std::format("{}", fe::Join(v2)) == "23, 42");
+    CHECK(std::format("{}", fe::Join(v3)) == "23, 42, 17");
 }
