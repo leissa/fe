@@ -197,15 +197,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                                           \</div>
-<div class="line">    if (!(condition)) {                                                                        \</div>
-<div class="line">        std::print(std::cerr, <span class="stringliteral">&quot;{}:{}: assertion `{}` failed&quot;</span>, __FILE__, __LINE__, #condition); \</div>
-<div class="line">        std::println(std::cerr __VA_OPT__(, <span class="stringliteral">&quot;: &quot;</span> __VA_ARGS__));                                \</div>
-<div class="line">        fe::breakpoint();                                                                      \</div>
-<div class="line">    }                                                                                          \</div>
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                                             \</div>
+<div class="line">    if (!(condition)) {                                                                          \</div>
+<div class="line">        std::println(std::cerr, <span class="stringliteral">&quot;{}:{}: assertion `{}` failed&quot;</span>, __FILE__, __LINE__, #condition); \</div>
+<div class="line">        std::println(std::cerr __VA_ARGS__);                                                     \</div>
+<div class="line">        fe::breakpoint();                                                                        \</div>
+<div class="line">    }                                                                                            \</div>
 <div class="line">} <span class="keywordflow">while</span> (<span class="keyword">false</span>)</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00195">195</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00194">194</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>

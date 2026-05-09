@@ -324,23 +324,22 @@ $(function(){initNavTree('format_8h_source.html','',''); });
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="preprocessor">#ifdef NDEBUG</span></div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="preprocessor">#    define assertf(condition, ...)                  \</span></div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span><span class="preprocessor">        do {                                         \</span></div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="preprocessor">            (void)sizeof(condition);                 \</span></div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="preprocessor">            __VA_OPT__((void)sizeof((__VA_ARGS__));) \</span></div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="preprocessor">        } while (false)</span></div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="preprocessor">#else</span></div>
-<div class="foldopen" id="foldopen00195" data-start="" data-end="">
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="format_8h.html#a7bc6143638d489bb640260462bf07777">  195</a></span><span class="preprocessor">#    define assertf(condition, ...)                                                                    \</span></div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="preprocessor">        do {                                                                                           \</span></div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span><span class="preprocessor">            if (!(condition)) {                                                                        \</span></div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="preprocessor">                std::print(std::cerr, &quot;{}:{}: assertion `{}` failed&quot;, __FILE__, __LINE__, #condition); \</span></div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="preprocessor">                std::println(std::cerr __VA_OPT__(, &quot;: &quot; __VA_ARGS__));                                \</span></div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="preprocessor">                fe::breakpoint();                                                                      \</span></div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="preprocessor">            }                                                                                          \</span></div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span><span class="preprocessor">        } while (false)</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="preprocessor">#    define assertf(condition, ...)  \</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span><span class="preprocessor">        do {                         \</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="preprocessor">            (void)sizeof(condition); \</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="preprocessor">        } while (false)</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="preprocessor">#else</span></div>
+<div class="foldopen" id="foldopen00194" data-start="" data-end="">
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno"><a class="line" href="format_8h.html#a7bc6143638d489bb640260462bf07777">  194</a></span><span class="preprocessor">#    define assertf(condition, ...)                                                                      \</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="preprocessor">        do {                                                                                             \</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="preprocessor">            if (!(condition)) {                                                                          \</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span><span class="preprocessor">                std::println(std::cerr, &quot;{}:{}: assertion `{}` failed&quot;, __FILE__, __LINE__, #condition); \</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="preprocessor">                std::println(std::cerr __VA_ARGS__);                                                     \</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="preprocessor">                fe::breakpoint();                                                                        \</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="preprocessor">            }                                                                                            \</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="preprocessor">        } while (false)</span></div>
 </div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclassfe_1_1Join_html"><div class="ttname"><a href="classfe_1_1Join.html">fe::Join</a></div><div class="ttdoc">Join elements of range with sep.</div><div class="ttdef"><b>Definition</b> <a href="#l00125">format.h:125</a></div></div>
 <div class="ttc" id="aclassfe_1_1Join_html_a13ae95390cd5b2d9fcc32513071b707d"><div class="ttname"><a href="classfe_1_1Join.html#a13ae95390cd5b2d9fcc32513071b707d">fe::Join::range</a></div><div class="ttdeci">const auto &amp; range() const</div><div class="ttdef"><b>Definition</b> <a href="#l00133">format.h:133</a></div></div>
 <div class="ttc" id="aclassfe_1_1Join_html_a1b2d2b4827668cebaa09e7a30ef509dc"><div class="ttname"><a href="classfe_1_1Join.html#a1b2d2b4827668cebaa09e7a30ef509dc">fe::Join::sep</a></div><div class="ttdeci">std::string_view sep() const</div><div class="ttdef"><b>Definition</b> <a href="#l00134">format.h:134</a></div></div>
