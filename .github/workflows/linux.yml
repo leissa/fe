@@ -22,7 +22,7 @@ jobs:
       - name: Install Valgrind, gcc-14, g++-14
         run: |
           sudo apt-get update
-          sudo apt-get install -y valgrind gcc-14, g++-14
+          sudo apt-get install -y valgrind gcc-14 g++-14
 
       - name: Configure
         run: CC=gcc-14 CXX=g++-14 cmake -S ${{github.workspace}} -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{matrix.build-type}} -DBUILD_TESTING=ON

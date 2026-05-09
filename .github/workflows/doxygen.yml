@@ -28,7 +28,7 @@ jobs:
       - name: Install Graphviz, gcc-14, g++-14
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends graphviz
+          sudo apt-get install -y --no-install-recommends graphviz gcc-14 g++-14
 
       - name: Restore Doxygen cache
         id: cache-doxygen
