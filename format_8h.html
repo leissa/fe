@@ -200,7 +200,7 @@ Functions</h2></td></tr>
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                                             \</div>
 <div class="line">    if (!(condition)) {                                                                          \</div>
 <div class="line">        std::println(std::cerr, <span class="stringliteral">&quot;{}:{}: assertion `{}` failed&quot;</span>, __FILE__, __LINE__, #condition); \</div>
-<div class="line">        std::println(std::cerr __VA_ARGS__);                                                     \</div>
+<div class="line">        std::println(std::cerr, __VA_ARGS__);                                                    \</div>
 <div class="line">        fe::breakpoint();                                                                        \</div>
 <div class="line">    }                                                                                            \</div>
 <div class="line">} <span class="keywordflow">while</span> (<span class="keyword">false</span>)</div>
