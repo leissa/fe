@@ -131,7 +131,7 @@ template<std::ranges::input_range R>
 requires Formattable<std::remove_cvref_t<std::ranges::range_reference_t<R>>>
 class Join {
 public:
-    Join(const R& range, std::string_view sep)
+    Join(const R& range, std::string_view sep = {", "})
         : range_(range)
         , sep_(sep) {}
 
