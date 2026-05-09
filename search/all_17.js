@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['yellow_0',['Yellow',['../namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a51e6cd92b6c45f9affdc158ecca2b8b8',1,'fe::term']]]
+  ['warn_0',['warn',['../structfe_1_1Driver.html#a7df49a423aa2092dcd2f74dfa4694f68',1,'fe::Driver']]],
+  ['why_20fe_1',['💡 Why FE?',['../index.html#autotoc_md1',1,'']]],
+  ['workflow_2',['🧭 Typical Workflow',['../index.html#autotoc_md7',1,'']]]
 ];

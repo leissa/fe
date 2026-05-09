@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['next_0',['next',['../classfe_1_1Lexer.html#a0bbfc87be21bdd46d883002eb10303c1',1,'fe::Lexer']]],
-  ['note_1',['note',['../structfe_1_1Driver.html#a897b0a14fe5cc91d50005de4039d20cf',1,'fe::Driver']]],
-  ['num_5fbytes_2',['num_bytes',['../namespacefe_1_1utf8.html#a3bfd6112606e85a56fcc227b127e6c4a',1,'fe::utf8']]],
-  ['num_5ferrors_3',['num_errors',['../structfe_1_1Driver.html#aa48333257f240659d2496f47e991680d',1,'fe::Driver']]],
-  ['num_5fwarnings_4',['num_warnings',['../structfe_1_1Driver.html#a1d5029604845d7fab9162f43e07cb9a0',1,'fe::Driver']]]
+  ['lex_0',['lex',['../classfe_1_1Parser.html#a5d4335bae86e3127fbf5b42fb0fcd3e7',1,'fe::Parser']]],
+  ['lexer_1',['Lexer',['../classfe_1_1Lexer.html#a103bc4fe11808764c96552fb6d7975c0',1,'fe::Lexer']]],
+  ['loc_2',['Loc',['../structfe_1_1Loc.html#a1bed3b20ab4c477bc6e6726d4ec2d8bb',1,'fe::Loc::Loc()=default'],['../structfe_1_1Loc.html#a3bfe5de956408815c560e7df3f97c7a6',1,'fe::Loc::Loc(const std::filesystem::path *path, Pos begin, Pos finis)'],['../structfe_1_1Loc.html#a6b21664894bdc5270854916db327e73a',1,'fe::Loc::Loc(const std::filesystem::path *file, Pos pos)'],['../structfe_1_1Loc.html#a03e8e51708b80dc81e3dbe95f9eed33a',1,'fe::Loc::Loc(Pos begin, Pos finis)'],['../structfe_1_1Loc.html#a982a519842b0aba797a40523b74f7c7d',1,'fe::Loc::Loc(Pos pos)']]],
+  ['loc_3',['loc',['../classfe_1_1Parser_1_1Tracker.html#aed3db922e0970ec52d171663427e35e2',1,'fe::Parser::Tracker']]]
 ];

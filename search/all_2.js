@@ -20,5 +20,6 @@ var searchData=
   ['as_17',['as',['../classfe_1_1RuntimeCast.html#a1f2d655724345f4b4e0bc4540ea78554',1,'fe::RuntimeCast::as()'],['../classfe_1_1RuntimeCast.html#af077f6cb9aef8502e4c76674a3a2666d',1,'fe::RuntimeCast::as() const']]],
   ['assert_2eh_18',['assert.h',['../assert_8h.html',1,'']]],
   ['assert_5funused_19',['assert_unused',['../assert_8h.html#a1bf507325593e1ed7b3acc75596bd525',1,'assert.h']]],
-  ['auto_20',['Auto',['../namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb',1,'fe::term']]]
+  ['assertf_20',['assertf',['../format_8h.html#a7bc6143638d489bb640260462bf07777',1,'format.h']]],
+  ['auto_21',['Auto',['../namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb',1,'fe::term']]]
 ];

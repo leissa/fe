@@ -15,6 +15,7 @@ var hierarchy =
     ] ],
     [ "fe::Sym::Hash", "structfe_1_1Sym_1_1Hash.html", null ],
     [ "fe::Sym::String::Hash", "structfe_1_1Sym_1_1String_1_1Hash.html", null ],
+    [ "fe::Join&lt; R &gt;", "classfe_1_1Join.html", null ],
     [ "fe::Lexer&lt; K, S &gt;", "classfe_1_1Lexer.html", null ],
     [ "fe::Loc", "structfe_1_1Loc.html", null ],
     [ "std::pmr::memory_resource", "classstd_1_1pmr_1_1memory__resource.html", [
@@ -26,6 +27,7 @@ var hierarchy =
     [ "fe::Ring&lt; T, 1 &gt;", "classfe_1_1Ring_3_01T_00_011_01_4.html", null ],
     [ "fe::Ring&lt; T, 2 &gt;", "classfe_1_1Ring_3_01T_00_012_01_4.html", null ],
     [ "fe::RuntimeCast&lt; B &gt;", "classfe_1_1RuntimeCast.html", null ],
+    [ "fe::StreamFn&lt; F &gt;", "classfe_1_1StreamFn.html", null ],
     [ "fe::Sym::String", "structfe_1_1Sym_1_1String.html", null ],
     [ "fe::Sym", "classfe_1_1Sym.html", null ],
     [ "fe::SymPool", "classfe_1_1SymPool.html", [
