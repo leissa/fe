@@ -28,7 +28,12 @@ public:
     constexpr StreamFn(F f)
         : f_(std::move(f)) {}
 
-    friend std::ostream& operator<<(std::ostream& os, const StreamFn& s) { return std::invoke(s.f_, os), os; }
+    friend std::ostream& operator<<(std::ostream& os, StreamFn const& s) {
+        if constexpr (std::same_as<std::invoke_result_t<F const&, std::ostream&>, std::ostream&>)
+            return std::invoke(s.f_, os);
+        else
+            return std::invoke(s.f_, os), os;
+    }
 
 private:
     F f_;
@@ -49,7 +54,7 @@ struct basic_ostream_formatter : std::formatter<std::basic_string_view<Char>, Ch
     auto format(T const& value, FormatContext& ctx) const {
         std::basic_stringstream<Char> ss;
         ss << value;
-        return std::formatter<std::basic_string_view<Char>, Char>::format(ss.str(), ctx);
+        return std::formatter<std::basic_string_view<Char>, Char>::format(ss.view(), ctx);
     }
 };
 
@@ -122,7 +127,7 @@ concept Formattable
 /// Join elements of @p range with @p sep.
 /// Use as a `std::format` or `operator<<` argument: `std::format("{}", fe::join(v, ", "))`.
 template<std::ranges::input_range R>
-requires Formattable<std::remove_cvref_t<std::ranges::range_reference_t<R>>>
+requires Formattable<std::remove_cvref_t<std::ranges::range_reference_t<std::views::all_t<R>>>>
 class Join {
 public:
     using View = std::views::all_t<R>;
