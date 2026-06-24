@@ -2,13 +2,15 @@
 
 ## Build, test, and formatting
 
-This repository is a CMake-based **header-only C++20 library**. The main local workflow is:
+This repository is a CMake-based **header-only C++23 library** (`target_compile_features(fe INTERFACE cxx_std_23)`). The main local workflow is:
 
 ```sh
 cmake -S . -B build -DBUILD_TESTING=ON
 cmake --build build
 ctest --test-dir build --output-on-failure
 ```
+
+Tests need the bundled submodules. If configure fails on a missing `submodules/doctest`, run `git submodule update --init --recursive` first.
 
 Run a single discovered test with CTest:
 
@@ -39,6 +41,14 @@ pre-commit run --all-files
 
 That runs `clang-format` plus the configured whitespace/YAML hooks. There is no separate CMake lint target.
 
+## Build options & toolchain
+
+- Requires **C++23** (`cxx_std_23` in `CMakeLists.txt`).
+- `FE_ABSL` (default `OFF`): switches `SymMap`/`SymSet` and friends from `std` to Abseil containers.
+- `FE_BUILD_DOCS` (default `OFF`): build Doxygen docs (requires Doxygen + Graphviz `dot`).
+- `BUILD_TESTING` (CTest default `ON`): builds the only executable, `fe-test`.
+- MSVC: `CMakeLists.txt` adds `/utf-8 /wd4146 /wd4245` and `_CTYPE_DISABLE_MACROS`. Keep new headers MSVC-clean; UTF-8 source handling is assumed.
+
 ## High-level architecture
 
 `fe` is exported as a CMake `INTERFACE` target and the public library lives entirely in `include/fe/`. There is no `src/` directory for library implementation; tests build the only executable (`fe-test`).
@@ -52,6 +62,8 @@ The library is organized around a few reusable frontend-building blocks that are
 - `fe::Ring` is the fixed-size lookahead buffer used by the lexer/parser blueprints.
 - `fe::Lexer<K, S>` is a CRTP base that handles UTF-8 decoding, character lookahead, token text accumulation, and source location tracking.
 - `fe::Parser<Tok, Tag, K, S>` is a CRTP base that wraps a lexer with token lookahead, `accept`/`expect`/`eat`, and `Tracker` helpers for building node spans.
+
+Support headers: `assert.h` (`assert`/`assertf`/`unreachable`), `cast.h` (checked/dynamic casts), `enum.h` (bit-flag enum ops), `format.h` (`ostream_formatter`, `std::format` glue), `term.h` (terminal/ANSI color), `utf8.h` (UTF-8 decode primitives).
 
 `tests/lexer.cpp` is the best end-to-end example of intended use: define a token type with `tag()` and `loc()`, derive a concrete lexer/parser from the CRTP bases, use `fe::Driver` for identifier interning and diagnostics, and let locations flow through tokens for error reporting.
 
