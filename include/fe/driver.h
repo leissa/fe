@@ -6,6 +6,7 @@
 #include <fe/format.h>
 #include <fe/loc.h>
 #include <fe/sym.h>
+#include <fe/term.h>
 
 namespace fe {
 
@@ -17,9 +18,9 @@ public:
     /// @name Diagnostics
     ///@{
     // clang-format off
-    template<class... Args> static void note(Loc loc, std::format_string<Args...> fmt, Args&&... args) {                  std::cerr << loc << ": note: "    << std::format(fmt, std::forward<Args>(args)...) << std::endl; }
-    template<class... Args>        void warn(Loc loc, std::format_string<Args...> fmt, Args&&... args) { ++num_warnings_; std::cerr << loc << ": warning: " << std::format(fmt, std::forward<Args>(args)...) << std::endl; }
-    template<class... Args>        void err (Loc loc, std::format_string<Args...> fmt, Args&&... args) { ++num_errors_;   std::cerr << loc << ": error: "   << std::format(fmt, std::forward<Args>(args)...) << std::endl; }
+    template<class... Args> static void note(Loc loc, std::format_string<Args...> fmt, Args&&... args) {                  std::cerr << loc << ": " << term::FG::Cyan    << "note: "    << term::FG::Reset << std::format(fmt, std::forward<Args>(args)...) << std::endl; }
+    template<class... Args>        void warn(Loc loc, std::format_string<Args...> fmt, Args&&... args) { ++num_warnings_; std::cerr << loc << ": " << term::FG::Magenta << "warning: " << term::FG::Reset << std::format(fmt, std::forward<Args>(args)...) << std::endl; }
+    template<class... Args>        void err (Loc loc, std::format_string<Args...> fmt, Args&&... args) { ++num_errors_;   std::cerr << loc << ": " << term::FG::Red     << "error: "   << term::FG::Reset << std::format(fmt, std::forward<Args>(args)...) << std::endl; }
     // clang-format on
 
     unsigned num_errors() const { return num_errors_; }

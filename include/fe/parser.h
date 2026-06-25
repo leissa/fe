@@ -8,7 +8,7 @@ namespace fe {
 /// The blueprint for a [recursive descent](https://en.wikipedia.org/wiki/Recursive_descent_parser)/
 /// [ascent parser](https://en.wikipedia.org/wiki/Recursive_ascent_parser) using a @p K lookahead of `Tok`ens.
 /// Parser::accept and Parser::expect indicate failure by constructing a @p Tok%en with its default constructor.
-/// Provide a conversion operator to `bool` to check for an error:
+/// Hence, @p Tok must be default-constructible *and* testable as a `bool` (to check for that failure):
 /// ```
 /// class Tok {
 /// public:
@@ -16,8 +16,9 @@ namespace fe {
 ///         Nil,
 ///         // ...
 ///     };
+///     Tok() {} // default constructor yields the "failure" token
 ///     // ...
-///     explicit bool operator() const { return tag_ != Tag::Nil; }
+///     explicit operator bool() const { return tag_ != Tag::Nil; }
 ///     // ...
 /// };
 ///
@@ -27,7 +28,8 @@ namespace fe {
 /// }
 /// ```
 template<class Tok, class Tag, size_t K, class S>
-requires(std::is_convertible_v<Tok, bool> || std::is_constructible_v<bool, Tok>) || std::is_default_constructible_v<Tok>
+requires std::is_default_constructible_v<Tok>
+      && (std::is_convertible_v<Tok, bool> || std::is_constructible_v<bool, Tok>)
 class Parser {
 private:
     S& self() { return *static_cast<S*>(this); }

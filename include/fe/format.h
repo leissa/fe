@@ -185,6 +185,10 @@ template<> struct std::formatter<fe::utf8::Char32> : fe::ostream_formatter {};
 // clang-format on
 #endif
 
+/// Like `assert`, but with a `std::format`-style message: `assertf(p != nullptr, "bad ptr {}", id)`.
+/// @note A message is *required* - at least a format-string argument must follow @p condition.
+/// For a bare assertion without a message just use vanilla `assert`. (Supporting zero message args here would
+/// need a surprising amount of preprocessor hackery, especially on MSVC, and isn't worth it.)
 #ifdef NDEBUG
 #    define assertf(condition, ...)  \
         do {                         \

@@ -133,8 +133,6 @@ TEST_CASE("Sym") {
     CHECK(syms.sym("abcdefghi") == syms.sym("abcdefghi"s));
     CHECK(syms.sym("abcdefghij") == syms.sym("abcdefghij"s));
 
-    auto abc = syms.sym("abc");
-    auto x   = syms.sym("");
     auto b   = syms.sym("b");
     auto bc  = syms.sym("bc");
     CHECK(b == 'b');

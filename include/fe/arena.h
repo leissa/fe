@@ -61,14 +61,13 @@ public:
 
         constexpr void deallocate(T*, size_t) noexcept {}
 
-        template<class U>
-        constexpr bool operator==(const Allocator<U>& a) const noexcept {
-            return &arena == &a.arena;
-        }
-        template<class U>
-        constexpr bool operator!=(const Allocator<U>& a) const noexcept {
-            return &arena != &a.arena;
-        }
+        /// All Arena::Allocator%s compare equal.
+        /// Allocator equality denotes deallocation-compatibility, and Arena::Allocator::deallocate is a no-op,
+        /// so storage from any instance can be "freed" through any other.
+        /// This also keeps allocator-aware container `swap` (e.g. in SymPool::swap) well-defined without requiring
+        /// `propagate_on_container_swap`, which we cannot enable here because `arena` is a non-rebindable reference.
+        template<class U> constexpr bool operator==(const Allocator<U>&) const noexcept { return true; }
+        template<class U> constexpr bool operator!=(const Allocator<U>&) const noexcept { return false; }
 
         Arena& arena;
     };
@@ -128,6 +127,11 @@ public:
     ///@{
 
     /// Get @p n bytes of fresh memory.
+    /// @note When a fresh page is allocated, its base is only aligned to the @p align of the allocation that
+    /// triggered it. A *later* allocation in the same page that requests a *larger* alignment has its offset
+    /// aligned but may still be under-aligned relative to its request. This is a non-issue for the default
+    /// (max-aligned) page size and for arenas with uniform alignment; only tiny custom arenas mixing alignments
+    /// can hit it.
     [[nodiscard]] constexpr void* allocate(size_t num_bytes, size_t align) {
         if (num_bytes == 0) return nullptr;
         assert(align != 0);

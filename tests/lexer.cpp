@@ -167,7 +167,132 @@ private:
     fe::Driver& driver_;
 };
 
-class Parser : public fe::Parser<Tok, Tok::Tag, 1, Parser> {};
+/// Minimal precedence-climbing expression parser, mirroring the intended `fe::Parser` usage in the
+/// sister `let` project: derive via CRTP, expose `lexer()`, provide `syntax_err`, drive the parse with
+/// the inherited `tracker`/`ahead`/`accept`/`expect`/`eat`/`lex` helpers.
+/// `parse` returns the expression as an s-expression string so precedence/associativity are easy to check.
+template<size_t K = 1>
+class Parser : public fe::Parser<Tok, Tok::Tag, K, Parser<K>> {
+public:
+    using Super = fe::Parser<Tok, Tok::Tag, K, Parser<K>>;
+    using Super::accept;
+    using Super::ahead;
+    using Super::curr_;
+    using Super::eat;
+    using Super::expect;
+    using Super::lex;
+    using Super::tracker;
+
+    Parser(fe::Driver& driver, std::istream& istream, const std::filesystem::path* path = nullptr)
+        : driver_(driver)
+        , lexer_(driver, istream, path) {
+        this->init(path); // fill lookahead; must run after lexer_ is constructed
+    }
+
+    Lexer<K>& lexer() { return lexer_; }
+    fe::Driver& driver() { return driver_; }
+
+    /// Parse one whole expression and return {s-expression string, its Loc}.
+    std::pair<std::string, Loc> parse() {
+        auto track = tracker();
+        auto str   = parse_expr("expression", Tok::Bot);
+        expect(Tok::Tag::EoF, "expression");
+        return {str, track.loc()};
+    }
+
+    void syntax_err(Tok::Tag tag, std::string_view ctxt) {
+        driver_.err(ahead().loc(), "expected '{}' while parsing {}", Tok::tag2str(tag), ctxt);
+    }
+
+private:
+    // clang-format off
+    static Tok::Prec bin_prec(Tok::Tag t) {
+        switch (t) {
+            case Tok::O_add: case Tok::O_sub: return Tok::Add;
+            case Tok::O_mul: case Tok::O_div: return Tok::Mul;
+            case Tok::O_ass:                  return Tok::Ass;
+            default:                          return Tok::Err;
+        }
+    }
+    // clang-format on
+    static bool left_assoc(Tok::Tag t) { return t != Tok::O_ass; } // '=' is right-associative
+
+    std::string parse_primary(std::string_view ctxt) {
+        if (auto tok = accept(Tok::Tag::M_id)) return tok.to_string();
+        if (auto tok = accept(Tok::Tag::M_lit)) return tok.to_string();
+        if (accept(Tok::Tag::D_paren_l)) {
+            auto str = parse_expr("parenthesized expression", Tok::Bot);
+            expect(Tok::Tag::D_paren_r, "parenthesized expression");
+            return str;
+        }
+        syntax_err(Tok::Tag::M_id, ctxt);
+        return "<error>";
+    }
+
+    std::string parse_expr(std::string_view ctxt, Tok::Prec curr_prec) {
+        auto lhs = parse_primary(ctxt);
+        while (true) {
+            auto tag  = ahead().tag();
+            auto prec = bin_prec(tag);
+            if (prec <= curr_prec) break;
+            auto op   = lex(); // consume the operator
+            auto next = left_assoc(tag) ? prec : Tok::Prec(prec - 1);
+            auto rhs  = parse_expr("right-hand side", next);
+            lhs       = std::format("({} {} {})", op.to_string(), lhs, rhs);
+        }
+        return lhs;
+    }
+
+    friend Super;
+    fe::Driver& driver_;
+    Lexer<K> lexer_;
+};
+
+template<size_t K>
+void test_parser() {
+    auto parse = [](std::string_view src) {
+        fe::Driver drv;
+        std::istringstream is{std::string(src)};
+        Parser<K> parser(drv, is);
+        auto [str, loc] = parser.parse();
+        return std::tuple{str, loc, drv.num_errors()};
+    };
+
+    // precedence
+    CHECK(std::get<0>(parse("a + b * c")) == "(+ a (* b c))");
+    CHECK(std::get<0>(parse("a * b + c")) == "(+ (* a b) c)");
+    // left associativity of +,-,*,/
+    CHECK(std::get<0>(parse("a - b - c")) == "(- (- a b) c)");
+    CHECK(std::get<0>(parse("a / b / c")) == "(/ (/ a b) c)");
+    // right associativity of '='
+    CHECK(std::get<0>(parse("a = b = c")) == "(= a (= b c))");
+    // parentheses override precedence
+    CHECK(std::get<0>(parse("(a + b) * c")) == "(* (+ a b) c)");
+    // literals
+    CHECK(std::get<0>(parse("1 + 2 * 3")) == "(+ 1 (* 2 3))");
+
+    // no errors on the well-formed inputs above
+    CHECK(std::get<2>(parse("a + b * c")) == 0);
+
+    // Tracker spans from the first to the last token of the expression.
+    {
+        auto [str, loc, errs] = parse("a + b");
+        CHECK(str == "(+ a b)");
+        CHECK(errs == 0);
+        CHECK(loc == Loc({1, 1}, {1, 5}));
+    }
+
+    // expect() reports a syntax error on a missing ')'
+    CHECK(std::get<2>(parse("(a + b")) == 1);
+    // parse_primary reports an error when no primary is found
+    CHECK(std::get<2>(parse("a +")) == 1);
+}
+
+TEST_CASE("Parser") {
+    test_parser<1>();
+    test_parser<2>();
+    test_parser<3>();
+}
 
 template<size_t K>
 void test_lexer() {

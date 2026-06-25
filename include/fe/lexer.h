@@ -24,7 +24,10 @@ public:
         , peek_(1, 1) {
         for (size_t i = 0; i != K; ++i)
             ahead_[i] = utf8::decode(istream_);
-        accept(utf8::BOM); // eat UTF-8 BOM, if present
+        // Eat UTF-8 BOM, if present.
+        // Call the base Lexer::next directly (not self().next() via accept): the derived S is not yet
+        // constructed here, so dispatching into a CRTP override of next would be undefined behavior.
+        if (ahead() == utf8::BOM) Lexer::next();
         assert(peek_.col == 1);
     }
 

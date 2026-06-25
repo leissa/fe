@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cassert>
+#include <cstdlib>
 
 namespace fe {
 
@@ -16,7 +17,10 @@ namespace fe {
     __assume(false);
 }
 #else                   // ???
-inline void unreachable() { assert(false); }
+[[noreturn]] inline void unreachable() {
+    assert(false);
+    std::abort();
+}
 #endif
 
 /// Raise a breakpoint in the debugger.

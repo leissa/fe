@@ -152,8 +152,13 @@ public:
 
     /// @name Conversions
     ///@{
+    /// @warning For a *short* Sym%bol (small-string-optimized, see Sym::view) the returned pointer aliases this
+    /// Sym%bol's internal `ptr_`. It is therefore only valid as long as *this* Sym%bol object lives - it dangles
+    /// for a temporary (e.g. `pool.sym("ab").c_str()`). Use Sym::str if the string must outlive the Sym%bol.
     [[nodiscard]] constexpr const char* c_str() const noexcept { return view().data(); }
 
+    /// @note For a short Sym%bol (size fits into Sym::Short_String_Bytes) the characters are stored inline within
+    /// this object's `ptr_`, so the returned view points into *this* Sym%bol and dangles once it dies; see Sym::c_str.
     [[nodiscard]] constexpr std::string_view view() const noexcept {
         if (empty()) return {std::bit_cast<const char*>(&ptr_), 0};
         // Little endian: 2 a b 0 register: 0ba2

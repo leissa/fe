@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cassert>
 #include <type_traits>
 
 namespace fe {
@@ -36,7 +37,13 @@ template<fe::BitEnum E> constexpr E& operator&=(E& a, E b) noexcept { return a =
 template<fe::BitEnum E> constexpr E& operator^=(E& a, E b) noexcept { return a = (a ^ b); }
 
 namespace fe {
-template<fe::BitEnum E> constexpr bool has_flag(E value, E flag) noexcept { return (value & flag) == flag; }
+/// @note @p flag must have at least one bit set; `has_flag(value, E{})` would be vacuously `true`.
+/// `flag` is a runtime value, so this is a runtime `assert` rather than a `static_assert`
+/// (in a `constexpr` evaluation a zero @p flag turns it into a compile-time error all the same).
+template<fe::BitEnum E> constexpr bool has_flag(E value, E flag) noexcept {
+    assert(to_underlying(flag) != 0 && "flag must have at least one bit set");
+    return (value & flag) == flag;
+}
 } // namespace fe
 
 // clang-format on
