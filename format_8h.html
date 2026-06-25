@@ -139,7 +139,7 @@ Include dependency graph for format.h:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="format_8h__dep__incl.svg" width="328" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="format_8h__dep__incl.svg" width="232" height="183"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="format_8h_source.html">Go to the source code of this file.</a></p>
@@ -166,6 +166,7 @@ Concepts</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a7bc6143638d489bb640260462bf07777" id="r_a7bc6143638d489bb640260462bf07777"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a7bc6143638d489bb640260462bf07777">assertf</a>(condition, ...)</td></tr>
+<tr class="memdesc:a7bc6143638d489bb640260462bf07777"><td class="mdescLeft">&#160;</td><td class="mdescRight">Like <span class="tt">assert</span>, but with a <span class="tt">std::format</span>-style message: <span class="tt"><a class="el" href="#a7bc6143638d489bb640260462bf07777" title="Like assert, but with a std::format-style message: assertf(p != nullptr, &quot;bad ptr {}...">assertf</a>(p != nullptr, "bad ptr {}", id)</span>.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -205,7 +206,10 @@ Functions</h2></td></tr>
 <div class="line">    }                                                                                            \</div>
 <div class="line">} <span class="keywordflow">while</span> (<span class="keyword">false</span>)</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00194">194</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p>Like <span class="tt">assert</span>, but with a <span class="tt">std::format</span>-style message: <span class="tt"><a class="el" href="#a7bc6143638d489bb640260462bf07777" title="Like assert, but with a std::format-style message: assertf(p != nullptr, &quot;bad ptr {}...">assertf</a>(p != nullptr, "bad ptr {}", id)</span>. </p>
+<dl class="section note"><dt>Note</dt><dd>A message is <em>required</em> - at least a format-string argument must follow <code class="param">condition</code>. For a bare assertion without a message just use vanilla <span class="tt">assert</span>. (Supporting zero message args here would need a surprising amount of preprocessor hackery, especially on MSVC, and isn't worth it.) </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00198">198</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>

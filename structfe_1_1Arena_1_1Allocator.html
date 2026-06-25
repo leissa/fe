@@ -135,10 +135,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad05417fdfb99bb1a524efddbdc767cef" id="r_ad05417fdfb99bb1a524efddbdc767cef"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#ad05417fdfb99bb1a524efddbdc767cef">Allocator</a> (<a class="el" href="classfe_1_1Arena.html#a31a9b29bc955003c0df7f4103bc434c1">Arena</a> &amp;<a class="el" href="#af082bf4fe39e52f719e67aaca844f4f5">arena</a>) noexcept</td></tr>
 <tr class="memitem:a48f417a90b63fa70c6c2d44c4bb18ba5" id="r_a48f417a90b63fa70c6c2d44c4bb18ba5"><td class="memItemLeft">constexpr T *&#160;</td><td class="memItemRight"><a class="el" href="#a48f417a90b63fa70c6c2d44c4bb18ba5">allocate</a> (size_t num_elems)</td></tr>
 <tr class="memitem:a855ffa4f57672434fefae5fb9f4baa27" id="r_a855ffa4f57672434fefae5fb9f4baa27"><td class="memItemLeft">constexpr void&#160;</td><td class="memItemRight"><a class="el" href="#a855ffa4f57672434fefae5fb9f4baa27">deallocate</a> (T *, size_t) noexcept</td></tr>
-<tr class="memitem:a72fa466b3549d0503ce94abab5d79d76" id="r_a72fa466b3549d0503ce94abab5d79d76"><td class="memTemplParams" colspan="2">template&lt;class U&gt; </td></tr>
-<tr class="memitem:a72fa466b3549d0503ce94abab5d79d76 template"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a72fa466b3549d0503ce94abab5d79d76">operator==</a> (const <a class="el" href="#a7b5428de2d5645150018b0726b9aeb02">Allocator</a>&lt; U &gt; &amp;a) const noexcept</td></tr>
-<tr class="memitem:a42dca0883fdcf767bf5146f859c24082" id="r_a42dca0883fdcf767bf5146f859c24082"><td class="memTemplParams" colspan="2">template&lt;class U&gt; </td></tr>
-<tr class="memitem:a42dca0883fdcf767bf5146f859c24082 template"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a42dca0883fdcf767bf5146f859c24082">operator!=</a> (const <a class="el" href="#a7b5428de2d5645150018b0726b9aeb02">Allocator</a>&lt; U &gt; &amp;a) const noexcept</td></tr>
+<tr class="memitem:a1ceb3c1e151546d105f7cf3eb53c8533" id="r_a1ceb3c1e151546d105f7cf3eb53c8533"><td class="memTemplParams" colspan="2">template&lt;class U&gt; </td></tr>
+<tr class="memitem:a1ceb3c1e151546d105f7cf3eb53c8533 template"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a1ceb3c1e151546d105f7cf3eb53c8533">operator==</a> (const <a class="el" href="#a7b5428de2d5645150018b0726b9aeb02">Allocator</a>&lt; U &gt; &amp;) const noexcept</td></tr>
+<tr class="memdesc:a1ceb3c1e151546d105f7cf3eb53c8533"><td class="mdescLeft">&#160;</td><td class="mdescRight">All <a class="el" href="structfe_1_1Arena_1_1Allocator.html" title="An allocator in order to use this Arena for containers.">Arena::Allocator</a>s compare equal.  <br /></td></tr>
+<tr class="memitem:a0518fe399d6419245555f5ba819befef" id="r_a0518fe399d6419245555f5ba819befef"><td class="memTemplParams" colspan="2">template&lt;class U&gt; </td></tr>
+<tr class="memitem:a0518fe399d6419245555f5ba819befef template"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a0518fe399d6419245555f5ba819befef">operator!=</a> (const <a class="el" href="#a7b5428de2d5645150018b0726b9aeb02">Allocator</a>&lt; U &gt; &amp;) const noexcept</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -195,7 +196,7 @@ template&lt;class T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="arena_8h_source.html#l00069">operator!=()</a>, and <a class="el" href="arena_8h_source.html#l00065">operator==()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="arena_8h_source.html#l00070">operator!=()</a>, and <a class="el" href="arena_8h_source.html#l00069">operator==()</a>.</p>
 
 </div>
 </div>
@@ -228,7 +229,7 @@ template&lt;class U&gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00055">55</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
-<p class="reference">References <a class="el" href="arena_8h_source.html#l00104">fe::Arena::allocator()</a>.</p>
+<p class="reference">References <a class="el" href="arena_8h_source.html#l00103">fe::Arena::allocator()</a>.</p>
 
 </div>
 </div>
@@ -259,7 +260,7 @@ template&lt;class T&gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00057">57</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
-<p class="reference">References <a class="el" href="classfe_1_1Arena.html#a31a9b29bc955003c0df7f4103bc434c1">fe::Arena::Arena()</a>, and <a class="el" href="arena_8h_source.html#l00073">arena</a>.</p>
+<p class="reference">References <a class="el" href="classfe_1_1Arena.html#a31a9b29bc955003c0df7f4103bc434c1">fe::Arena::Arena()</a>, and <a class="el" href="arena_8h_source.html#l00072">arena</a>.</p>
 
 </div>
 </div>
@@ -291,7 +292,7 @@ template&lt;class T&gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00060">60</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
-<p class="reference">References <a class="el" href="arena_8h_source.html#l00073">arena</a>.</p>
+<p class="reference">References <a class="el" href="arena_8h_source.html#l00072">arena</a>.</p>
 
 </div>
 </div>
@@ -328,8 +329,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="a42dca0883fdcf767bf5146f859c24082" name="a42dca0883fdcf767bf5146f859c24082"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a42dca0883fdcf767bf5146f859c24082">&#9670;&#160;</a></span>operator!=()</h2>
+<a id="a0518fe399d6419245555f5ba819befef" name="a0518fe399d6419245555f5ba819befef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0518fe399d6419245555f5ba819befef">&#9670;&#160;</a></span>operator!=()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -344,7 +345,7 @@ template&lt;class U&gt; </div>
         <tr>
           <td class="memname">bool <a class="el" href="structfe_1_1Arena_1_1Allocator.html">fe::Arena::Allocator</a>&lt; T &gt;::operator!= </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="#a7b5428de2d5645150018b0726b9aeb02">Allocator</a>&lt; U &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>a</em></span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="#a7b5428de2d5645150018b0726b9aeb02">Allocator</a>&lt; U &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -355,14 +356,14 @@ template&lt;class U&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00069">69</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00070">70</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
-<p class="reference">References <a class="el" href="#a7b5428de2d5645150018b0726b9aeb02">Allocator()</a>, and <a class="el" href="arena_8h_source.html#l00073">arena</a>.</p>
+<p class="reference">References <a class="el" href="#a7b5428de2d5645150018b0726b9aeb02">Allocator()</a>.</p>
 
 </div>
 </div>
-<a id="a72fa466b3549d0503ce94abab5d79d76" name="a72fa466b3549d0503ce94abab5d79d76"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a72fa466b3549d0503ce94abab5d79d76">&#9670;&#160;</a></span>operator==()</h2>
+<a id="a1ceb3c1e151546d105f7cf3eb53c8533" name="a1ceb3c1e151546d105f7cf3eb53c8533"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ceb3c1e151546d105f7cf3eb53c8533">&#9670;&#160;</a></span>operator==()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -377,7 +378,7 @@ template&lt;class U&gt; </div>
         <tr>
           <td class="memname">bool <a class="el" href="structfe_1_1Arena_1_1Allocator.html">fe::Arena::Allocator</a>&lt; T &gt;::operator== </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="#a7b5428de2d5645150018b0726b9aeb02">Allocator</a>&lt; U &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>a</em></span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="#a7b5428de2d5645150018b0726b9aeb02">Allocator</a>&lt; U &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -388,9 +389,12 @@ template&lt;class U&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00065">65</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
+<p>All <a class="el" href="structfe_1_1Arena_1_1Allocator.html" title="An allocator in order to use this Arena for containers.">Arena::Allocator</a>s compare equal. </p>
+<p><a class="el" href="structfe_1_1Arena_1_1Allocator.html" title="An allocator in order to use this Arena for containers.">Allocator</a> equality denotes deallocation-compatibility, and <a class="el" href="#a855ffa4f57672434fefae5fb9f4baa27">Arena::Allocator::deallocate</a> is a no-op, so storage from any instance can be "freed" through any other. This also keeps allocator-aware container <span class="tt"><a class="el" href="classfe_1_1Arena.html#a8f9ae98bbf9b30287b975cf8c5ae86c9">swap</a></span> (e.g. in <a class="el" href="classfe_1_1SymPool.html#af464c4610c22df4db7d81a1e15f852be">SymPool::swap</a>) well-defined without requiring <span class="tt">propagate_on_container_swap</span>, which we cannot enable here because <span class="tt"><a class="el" href="#af082bf4fe39e52f719e67aaca844f4f5">arena</a></span> is a non-rebindable reference. </p>
 
-<p class="reference">References <a class="el" href="#a7b5428de2d5645150018b0726b9aeb02">Allocator()</a>, and <a class="el" href="arena_8h_source.html#l00073">arena</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00069">69</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
+
+<p class="reference">References <a class="el" href="#a7b5428de2d5645150018b0726b9aeb02">Allocator()</a>.</p>
 
 </div>
 </div>
@@ -409,9 +413,9 @@ template&lt;class T&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00073">73</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00072">72</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="arena_8h_source.html#l00060">allocate()</a>, <a class="el" href="arena_8h_source.html#l00057">Allocator()</a>, <a class="el" href="arena_8h_source.html#l00069">operator!=()</a>, and <a class="el" href="arena_8h_source.html#l00065">operator==()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="arena_8h_source.html#l00060">allocate()</a>, and <a class="el" href="arena_8h_source.html#l00057">Allocator()</a>.</p>
 
 </div>
 </div>
