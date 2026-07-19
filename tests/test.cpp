@@ -240,6 +240,34 @@ TEST_CASE("term") {
         oss << fe::term::FG::Green << "x" << fe::term::FG::Reset;
         CHECK(oss.str() == "x");
     }
+
+    SUBCASE("always mode emits ANSI sequences via std::format") {
+        fe::term::set_mode(fe::term::Mode::Always);
+        CHECK(std::format("{}x{}", fe::term::FG::Red, fe::term::FG::Reset) == "\033[31mx\033[39m");
+    }
+
+    SUBCASE("auto mode suppresses colors via std::format") {
+        fe::term::set_mode(fe::term::Mode::Auto);
+        CHECK(std::format("{}x{}", fe::term::FG::Red, fe::term::FG::Reset) == "x");
+    }
+
+    SUBCASE("resolve_mode decides auto mode based on the given stream") {
+        std::ostringstream oss;
+        fe::term::set_mode(fe::term::Mode::Auto);
+        fe::term::resolve_mode(oss); // not a terminal
+        CHECK(fe::term::mode() == fe::term::Mode::Never);
+        CHECK(std::format("{}x{}", fe::term::FG::Red, fe::term::FG::Reset) == "x");
+    }
+
+    SUBCASE("resolve_mode leaves explicit modes untouched") {
+        fe::term::set_mode(fe::term::Mode::Always);
+        fe::term::resolve_mode();
+        CHECK(fe::term::mode() == fe::term::Mode::Always);
+
+        fe::term::set_mode(fe::term::Mode::Never);
+        fe::term::resolve_mode();
+        CHECK(fe::term::mode() == fe::term::Mode::Never);
+    }
 }
 
 TEST_CASE("format") {

@@ -35,6 +35,12 @@
 /// `std::cout`, `std::cerr`, `std::clog`, or streams sharing those buffers when they refer to
 /// terminals. FE also respects the common environment conventions `NO_COLOR`, `CLICOLOR=0`, and
 /// `CLICOLOR_FORCE` (unless it is set to `0`).
+///
+/// Note that a `std::formatter` never sees the destination stream - it formats into a detached buffer.
+/// Hence, embedding a @ref fe::term::FG value in a `std::format`/`std::print` format string resolves
+/// @ref fe::term::Mode::Auto to "no color".
+/// If you emit colors this way, call @ref fe::term::resolve_mode once at startup to decide
+/// @ref fe::term::Mode::Auto up front based on a representative stream.
 namespace fe::term {
 
 /// Controls whether color escape sequences are emitted.
@@ -184,6 +190,18 @@ inline Mode mode() noexcept { return detail::current_mode().load(std::memory_ord
 
 /// Overrides the current terminal color mode.
 inline void set_mode(Mode m) noexcept { detail::current_mode().store(m, std::memory_order_relaxed); }
+
+/// Resolves Mode::Auto to Mode::Always or Mode::Never, depending on whether @p os refers to a terminal.
+/// A `std::formatter` cannot see its destination stream, so FG values embedded in a
+/// `std::format`/`std::print` format string never detect a terminal in Mode::Auto.
+/// Call this once at startup to make formatted output colored as well; explicit modes are left untouched:
+/// ```
+/// fe::term::resolve_mode(); // decide based on stderr
+/// std::print(std::cerr, "{}error:{} ...", fe::term::FG::Red, fe::term::FG::Reset);
+/// ```
+inline void resolve_mode(std::ostream& os = std::cerr) noexcept {
+    if (mode() == Mode::Auto) set_mode(detail::is_terminal(detail::stream(os)) ? Mode::Always : Mode::Never);
+}
 
 /// Streams the ANSI escape sequence for @p color when colors are enabled for @p os.
 inline std::ostream& operator<<(std::ostream& os, FG color) {
