@@ -274,12 +274,13 @@ void test_parser() {
     // no errors on the well-formed inputs above
     CHECK(std::get<2>(parse("a + b * c")) == 0);
 
-    // Tracker spans from the first to the last token of the expression.
+    // Tracker spans from the first to the last *consumed* token - parse() also consumes EoF,
+    // which sits one past the last character.
     {
         auto [str, loc, errs] = parse("a + b");
         CHECK(str == "(+ a b)");
         CHECK(errs == 0);
-        CHECK(loc == Loc({1, 1}, {1, 5}));
+        CHECK(loc == Loc({1, 1}, {1, 6}));
     }
 
     // expect() reports a syntax error on a missing ')'
@@ -331,8 +332,8 @@ void test_lexer() {
     CHECK(t0.loc() == Loc({2, 15}, {2, 15})); // ;
     CHECK(ta.loc() == Loc({2, 17}, {2, 17})); // X
     CHECK(tb.loc() == Loc({2, 18}, {2, 18})); // »
-    CHECK(tc.loc() == Loc({2, 20}, {2, 20})); // <end of file>
-    CHECK(td.loc() == Loc({2, 20}, {2, 20})); // <end of file>
+    CHECK(tc.loc() == Loc({2, 21}, {2, 21})); // <end of file> - one past the last character
+    CHECK(td.loc() == Loc({2, 21}, {2, 21})); // <end of file>
     // clang-format on
 }
 

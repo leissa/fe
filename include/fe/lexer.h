@@ -27,9 +27,6 @@ public:
         // Drop a UTF-8 BOM without going through next()'s position bookkeeping:
         // the BOM is zero-width, so the first real character still starts at 1:1.
         if (ahead() == utf8::BOM) ahead_.put(utf8::decode(istream_));
-        // next() pre-positions peek_ when a '\n' *becomes* the front char;
-        // mirror that when the stream *starts* with a '\n'.
-        if (ahead() == U'\n') peek_ = {2, 0};
     }
 
 protected:
@@ -42,17 +39,19 @@ protected:
     }
 
     /// Get next `char32_t` in Lexer::istream_ and increase Lexer::loc_.
+    /// Lexer::peek_ advances past the *consumed* character:
+    /// consuming a `'\n'` moves it to the first column of the next row,
+    /// while EoF and a BOM are zero-width.
     /// @returns utf8::Invalid on an invalid UTF-8 sequence.
     char32_t next() {
         loc_.finis = peek_;
         auto res   = ahead_.put(utf8::decode(istream_));
-        auto c     = ahead_.front(); // char of the peek location
 
-        if (c == '\n') {
+        if (res == U'\n') {
             ++peek_.row;
-            peek_.col = 0;
-        } else if (c == utf8::EoF || c == utf8::BOM) {
-            /* do nothing */
+            peek_.col = 1;
+        } else if (res == utf8::EoF || res == utf8::BOM) {
+            /* zero-width: do nothing */
         } else {
             ++peek_.col;
         }
@@ -98,7 +97,8 @@ protected:
     std::istream& istream_;
     Ring<char32_t, K> ahead_;
     Loc loc_;  ///< Loc%ation of the token we are currently constructing within Lexer::str_,
-    Pos peek_; ///< Pos%ition of ahead_::first;
+    Pos peek_; ///< Pos%ition of the next character to be consumed (Lexer::ahead());
+               ///< once the stream is exhausted, it sits one past the last character.
     std::string str_;
 };
 

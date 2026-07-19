@@ -7,6 +7,7 @@
 namespace fe {
 
 /// Pos%ition in a source file; pass around as value.
+/// We are only using `uint16_t` for row/col because this allows us to have sizeof(Loc) == 16.
 struct Pos {
     Pos() = default; ///< Creates an invalid Pos%ition.
     Pos(uint16_t row)
