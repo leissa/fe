@@ -19,5 +19,6 @@ var term_8h =
     ] ],
     [ "fe::term::mode", "namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf", null ],
     [ "fe::term::operator<<", "namespacefe_1_1term.html#ac0ce9f4aeb844ed9e5cf41dce8dacf8a", null ],
+    [ "fe::term::resolve_mode", "namespacefe_1_1term.html#a787158fdb940cfa7e778863bde8f34e8", null ],
     [ "fe::term::set_mode", "namespacefe_1_1term.html#aea69c469efc3010ca40cb1873ff6bec6", null ]
 ];

@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"pages.html":[],
 "parser_8h.html":[11,0,1,9],
 "parser_8h_source.html":[11,0,1,9],
 "ring_8h.html":[11,0,1,10],
