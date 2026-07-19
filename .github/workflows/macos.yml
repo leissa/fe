@@ -35,3 +35,29 @@ jobs:
 
       - name: Test
         run: ctest --test-dir ${{github.workspace}}/build --output-on-failure
+
+  # Apple clang has no LeakSanitizer; leak checking runs on Linux (LSan + Valgrind).
+  sanitize:
+    name: ASan+UBSan
+    runs-on: macos-15
+
+    steps:
+      - name: Clone recursively
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Configure
+        run: >
+          CC=clang CXX=clang++ cmake -S ${{github.workspace}} -B ${{github.workspace}}/build
+          -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTING=ON
+          -DCMAKE_CXX_FLAGS="-fsanitize=address,undefined -fno-sanitize-recover=all -fno-omit-frame-pointer"
+          -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address,undefined"
+
+      - name: Build
+        run: cmake --build ${{github.workspace}}/build -v
+
+      - name: Test
+        run: ctest --test-dir ${{github.workspace}}/build --output-on-failure
+        env:
+          UBSAN_OPTIONS: print_stacktrace=1
