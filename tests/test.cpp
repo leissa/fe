@@ -35,6 +35,66 @@ TEST_CASE("Arena") {
         CHECK(small.state() == fe::Arena::State{3, 7});
     }
 
+    SUBCASE("mk constructs in the arena and Ptr only destructs") {
+        struct Probe {
+            Probe(int& live)
+                : live(live) {
+                ++live;
+            }
+            ~Probe() { --live; }
+            int& live;
+        };
+
+        int live = 0;
+        {
+            auto probe = arena.mk<Probe>(live);
+            CHECK(live == 1);
+        }
+        CHECK(live == 0);
+    }
+
+    SUBCASE("Ptr<Derived> converts to Ptr<Base>") {
+        struct Base {
+            virtual ~Base() = default;
+        };
+        struct Derived : Base {
+            Derived(int& live)
+                : live(live) {
+                ++live;
+            }
+            ~Derived() override { --live; }
+            int& live;
+        };
+
+        int live = 0;
+        {
+            fe::Arena::Ptr<Base> base = arena.mk<Derived>(live);
+            CHECK(live == 1);
+        }
+        CHECK(live == 0);
+    }
+
+    SUBCASE("zero-byte allocations yield nullptr") { CHECK(arena.allocate(0, 1) == nullptr); }
+
+    SUBCASE("align rounds up to the requested alignment") {
+        CHECK(fe::Arena::align(0, 8) == 0);
+        CHECK(fe::Arena::align(1, 8) == 8);
+        CHECK(fe::Arena::align(8, 8) == 8);
+        CHECK(fe::Arena::align(9, 8) == 16);
+        CHECK(fe::Arena::align(15, 4) == 16);
+    }
+
+    SUBCASE("moving an Arena keeps its allocations alive") {
+        fe::Arena a;
+        auto p = a.allocate<int>(1);
+        *p     = 42;
+
+        fe::Arena b(std::move(a));
+        CHECK(*p == 42);
+        CHECK(a.state() == fe::Arena::State{1, 0}); // moved-from Arena is freshly usable again
+        CHECK(a.allocate<int>(1) != nullptr);
+    }
+
     SUBCASE("restoring state drops newer pages and restores the old offset") {
         fe::Arena small(64);
         auto first = small.allocate(60, 1);
@@ -106,6 +166,42 @@ TEST_CASE("Ring") {
     CHECK(ring3[0] == 3);
     CHECK(ring3[1] == 4);
     CHECK(ring3[2] == 5);
+
+    SUBCASE("initializer_list construction") {
+        fe::Ring<int, 1> r1{7};
+        CHECK(r1.front() == 7);
+
+        fe::Ring<int, 2> r2{1, 2};
+        CHECK(r2[0] == 1);
+        CHECK(r2[1] == 2);
+
+        fe::Ring<int, 3> r3{1, 2, 3};
+        CHECK(r3[0] == 1);
+        CHECK(r3[1] == 2);
+        CHECK(r3[2] == 3);
+    }
+
+    SUBCASE("reset rewinds to the physical start") {
+        fe::Ring<int, 3> r3{1, 2, 3};
+        r3.put(4); // array is now {4, 2, 3} with first_ == 1
+        CHECK(r3.front() == 2);
+        r3.reset();
+        CHECK(r3.front() == 4);
+        CHECK(r3[1] == 2);
+        CHECK(r3[2] == 3);
+    }
+
+    SUBCASE("move and swap") {
+        fe::Ring<int, 3> a{1, 2, 3};
+        fe::Ring<int, 3> b{4, 5, 6};
+        swap(a, b);
+        CHECK(a[0] == 4);
+        CHECK(b[0] == 1);
+
+        auto c = std::move(a);
+        CHECK(c[0] == 4);
+        CHECK(c[2] == 6);
+    }
 }
 
 TEST_CASE("Sym") {
@@ -133,8 +229,8 @@ TEST_CASE("Sym") {
     CHECK(syms.sym("abcdefghi") == syms.sym("abcdefghi"s));
     CHECK(syms.sym("abcdefghij") == syms.sym("abcdefghij"s));
 
-    auto b   = syms.sym("b");
-    auto bc  = syms.sym("bc");
+    auto b  = syms.sym("b");
+    auto bc = syms.sym("bc");
     CHECK(b == 'b');
     CHECK(b != 'a');
     CHECK(b <= 'b');
@@ -156,6 +252,58 @@ TEST_CASE("Sym") {
     CHECK(empty.empty());
     CHECK(empty.size() == 0);
     CHECK(!empty);
+
+    SUBCASE("empty symbol from empty inputs") {
+        CHECK(syms.sym("") == fe::Sym());
+        CHECK(syms.sym(std::string()) == fe::Sym());
+        CHECK(syms.sym(std::string_view()) == fe::Sym());
+        CHECK(syms.sym((const char*)nullptr) == fe::Sym());
+        CHECK(syms.sym("").view() == std::string_view());
+    }
+
+    SUBCASE("long symbols are interned once") {
+        auto s1 = syms.sym("this-is-a-rather-long-symbol");
+        auto s2 = syms.sym("this-is-a-rather-long-symbol"s);
+        CHECK(s1 == s2);
+        CHECK(s1.c_str() == s2.c_str()); // same interned storage
+        CHECK(s1.c_str()[s1.size()] == '\0');
+        CHECK(s1.str() == "this-is-a-rather-long-symbol"s);
+    }
+
+    SUBCASE("comparison with strings and string_views") {
+        auto abc = syms.sym("abc");
+        CHECK(abc == "abc"sv);
+        CHECK(abc == "abc"s);
+        CHECK("abc"sv == abc);
+        CHECK(abc < "abd"sv);
+        CHECK(abc > "abb"sv);
+        CHECK(syms.sym("a") < syms.sym("b"));
+        CHECK(syms.sym("ab") < syms.sym("b"));
+        CHECK(syms.sym("ab") < syms.sym("abc"));
+    }
+
+    SUBCASE("SymMap/SymSet lookup with interned symbols") {
+        fe::SymMap<int> map;
+        map[syms.sym("key")] = 42;
+        auto it              = map.find(syms.sym("key"));
+        REQUIRE(it != map.end());
+        CHECK(it->second == 42);
+        CHECK(!map.contains(syms.sym("missing")));
+
+        fe::SymSet set;
+        set.insert(syms.sym("elem"));
+        CHECK(set.contains(syms.sym("elem")));
+        CHECK(!set.contains(fe::Sym()));
+    }
+
+    SUBCASE("moving a SymPool keeps interned symbols valid") {
+        fe::SymPool p1;
+        auto sym = p1.sym("a-rather-long-symbol-name");
+
+        fe::SymPool p2(std::move(p1));
+        CHECK(p2.sym("a-rather-long-symbol-name") == sym);
+        CHECK(sym.view() == "a-rather-long-symbol-name"sv);
+    }
 }
 
 TEST_CASE("utf8") {
@@ -196,6 +344,58 @@ TEST_CASE("utf8") {
         CHECK(fe::utf8::decode(too_large) == fe::utf8::Invalid);
         CHECK(fe::utf8::decode(invalid_lead) == fe::utf8::Invalid);
     }
+
+    SUBCASE("decode rejects truncated sequences") {
+        std::istringstream trunc2("\xc3");
+        std::istringstream trunc3("\xe2\x82");
+        CHECK(fe::utf8::decode(trunc2) == fe::utf8::Invalid);
+        CHECK(fe::utf8::decode(trunc3) == fe::utf8::Invalid);
+    }
+
+    SUBCASE("num_bytes inspects the lead byte") {
+        CHECK(fe::utf8::num_bytes('a') == 1);
+        CHECK(fe::utf8::num_bytes(0xc3) == 2);
+        CHECK(fe::utf8::num_bytes(0xe2) == 3);
+        CHECK(fe::utf8::num_bytes(0xf0) == 4);
+        CHECK(fe::utf8::num_bytes(0x80) == 0); // continuation byte
+        CHECK(fe::utf8::num_bytes(0xff) == 0);
+    }
+
+    SUBCASE("encode rejects out-of-range code points") {
+        std::ostringstream oss2;
+        CHECK(!fe::utf8::encode(oss2, char32_t(0x110000)));
+        CHECK(oss2.str().empty());
+    }
+
+    SUBCASE("encode/decode roundtrip") {
+        for (char32_t c : {U'$', U'¢', U'ह', U'€', U'𐍈', char32_t(0x10ffff)}) {
+            std::ostringstream os;
+            REQUIRE(fe::utf8::encode(os, c));
+            std::istringstream is(os.str());
+            CHECK(fe::utf8::decode(is) == c);
+        }
+    }
+
+    SUBCASE("classification and case folding") {
+        CHECK(fe::utf8::isascii('a'));
+        CHECK(!fe::utf8::isascii(U'λ'));
+        CHECK(fe::utf8::isrange(U'5', '0', '9'));
+        CHECK(fe::utf8::isrange('0', '9')(U'5'));
+        CHECK(!fe::utf8::isrange('0', '9')(U'a'));
+        CHECK(fe::utf8::isodigit('7'));
+        CHECK(!fe::utf8::isodigit('8'));
+        CHECK(fe::utf8::isbdigit('1'));
+        CHECK(!fe::utf8::isbdigit('2'));
+        CHECK(fe::utf8::tolower(U'A') == U'a');
+        CHECK(fe::utf8::toupper(U'a') == U'A');
+        CHECK(fe::utf8::tolower(U'Λ') == U'Λ'); // non-ASCII passes through unchanged
+        CHECK(fe::utf8::toupper(U'λ') == U'λ');
+    }
+
+    SUBCASE("Char32 streams as UTF-8") {
+        CHECK(std::format("{}", fe::utf8::Char32(U'λ')) == "λ");
+        CHECK(std::format("{}", fe::utf8::Char32('a')) == "a");
+    }
 }
 
 enum class MyEnum : unsigned {
@@ -212,6 +412,17 @@ TEST_CASE("enum") {
     static_assert(fe::to_underlying(MyEnum::A & MyEnum::B) == 0);
     static_assert(fe::to_underlying(MyEnum::A | MyEnum::B) == 3);
     static_assert(fe::to_underlying(MyEnum::A ^ MyEnum::A) == 0);
+    static_assert(fe::to_underlying(~MyEnum::A & (MyEnum::A | MyEnum::B)) == 2);
+    static_assert(fe::has_flag(MyEnum::A | MyEnum::B, MyEnum::A));
+    static_assert(!fe::has_flag(MyEnum::A | MyEnum::B, MyEnum::C));
+
+    auto e = MyEnum::A;
+    e |= MyEnum::B;
+    CHECK(fe::to_underlying(e) == 3);
+    e &= MyEnum::B;
+    CHECK(fe::to_underlying(e) == 2);
+    e ^= MyEnum::B | MyEnum::C;
+    CHECK(fe::to_underlying(e) == 4);
 }
 
 TEST_CASE("term") {
@@ -279,4 +490,47 @@ TEST_CASE("format") {
     CHECK(std::format("{}", fe::Join(v1)) == "23");
     CHECK(std::format("{}", fe::Join(v2)) == "23, 42");
     CHECK(std::format("{}", fe::Join(v3)) == "23, 42, 17");
+
+    SUBCASE("Join with custom separator and format spec") {
+        CHECK(std::format("{}", fe::Join(v2, " | ")) == "23 | 42");
+        CHECK(std::format("{:#x}", fe::Join(v2)) == "0x17, 0x2a"); // spec applies to each element
+        CHECK(std::format("{}", fe::Join(v0, " | ")) == "");
+
+        std::ostringstream oss;
+        oss << fe::Join(v3, "-");
+        CHECK(oss.str() == "23-42-17");
+    }
+
+    SUBCASE("StreamFn") {
+        auto chained = fe::StreamFn([](std::ostream& os) -> std::ostream& { return os << "hi"; });
+        auto plain   = fe::StreamFn([](std::ostream& os) { os << "ho"; });
+
+        std::ostringstream oss;
+        oss << chained << ' ' << plain;
+        CHECK(oss.str() == "hi ho");
+        CHECK(std::format("{} {}", chained, plain) == "hi ho");
+    }
+
+    SUBCASE("Tab") {
+        fe::Tab tab;
+        CHECK(tab.indent() == 0);
+        CHECK(std::format("{}|", tab) == "|");
+
+        ++tab;
+        CHECK(std::format("{}|", tab) == "\t|");
+
+        tab += 2;
+        CHECK(tab.indent() == 3);
+        --tab;
+        tab -= 1;
+        CHECK(tab.indent() == 1);
+
+        auto more = tab + 2; // creates a new Tab
+        CHECK(more.indent() == 3);
+        CHECK(tab.indent() == 1);
+        CHECK((more - 3).indent() == 0);
+
+        auto spaces = ++fe::Tab::spaces();
+        CHECK(std::format("{}|", spaces) == "    |");
+    }
 }

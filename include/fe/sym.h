@@ -187,19 +187,18 @@ public:
     friend struct ::std::hash<fe::Sym>;
     friend std::ostream& operator<<(std::ostream& o, Sym sym) { return o << sym.view(); }
 
-    /// @name Heterogeneous lookups for hash tables.
+    /// @name Hash/Eq for hash tables.
+    /// Both work on the interned pointer, so they are O(1).
+    /// @note There is deliberately *no* heterogeneous (`std::string_view`) lookup:
+    /// a content-based hash would be inconsistent with the pointer-based one.
+    /// Intern via SymPool::sym first, then look up with the resulting Sym.
     ///@{
     struct Hash {
-        using is_transparent = void;
         size_t operator()(Sym s) const noexcept { return std::hash<uintptr_t>()(s.ptr_); }
-        size_t operator()(std::string_view v) const noexcept { return std::hash<std::string_view>()(v); }
     };
 
     struct Eq {
-        using is_transparent = void;
         bool operator()(Sym a, Sym b) const noexcept { return a.ptr_ == b.ptr_; }
-        bool operator()(Sym a, std::string_view b) const noexcept { return a.view() == b; }
-        bool operator()(std::string_view a, Sym b) const noexcept { return a == b.view(); }
     };
     ///@}
 

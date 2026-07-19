@@ -24,11 +24,12 @@ public:
         , peek_(1, 1) {
         for (size_t i = 0; i != K; ++i)
             ahead_[i] = utf8::decode(istream_);
-        // Eat UTF-8 BOM, if present.
-        // Call the base Lexer::next directly (not self().next() via accept): the derived S is not yet
-        // constructed here, so dispatching into a CRTP override of next would be undefined behavior.
-        if (ahead() == utf8::BOM) Lexer::next();
-        assert(peek_.col == 1);
+        // Drop a UTF-8 BOM without going through next()'s position bookkeeping:
+        // the BOM is zero-width, so the first real character still starts at 1:1.
+        if (ahead() == utf8::BOM) ahead_.put(utf8::decode(istream_));
+        // next() pre-positions peek_ when a '\n' *becomes* the front char;
+        // mirror that when the stream *starts* with a '\n'.
+        if (ahead() == U'\n') peek_ = {2, 0};
     }
 
 protected:

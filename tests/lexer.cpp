@@ -298,7 +298,7 @@ template<size_t K>
 void test_lexer() {
     fe::Driver drv;
     std::istringstream is(" test  abc    def if  \nwhile λ foo «n; X»  ");
-    Lexer lexer(drv, is);
+    Lexer<K> lexer(drv, is);
 
     auto t1 = lexer.lex();
     auto t2 = lexer.lex();
@@ -340,4 +340,74 @@ TEST_CASE("Lexer") {
     test_lexer<1>();
     test_lexer<2>();
     test_lexer<3>();
+}
+
+template<size_t K>
+void test_bom() {
+    SUBCASE("UTF-8 BOM is eaten and zero-width") {
+        fe::Driver drv;
+        std::istringstream is("\xEF\xBB\xBFtest");
+        Lexer<K> lexer(drv, is);
+
+        auto tok = lexer.lex();
+        CHECK(tok.to_string() == "test");
+        CHECK(tok.loc() == Loc({1, 1}, {1, 4})); // BOM does not count towards the column
+        CHECK(lexer.lex().tag() == Tok::Tag::EoF);
+    }
+
+    SUBCASE("stream starting with a newline") {
+        fe::Driver drv;
+        std::istringstream is("\nwhile");
+        Lexer<K> lexer(drv, is);
+
+        auto tok = lexer.lex();
+        CHECK(tok.to_string() == "while");
+        CHECK(tok.loc() == Loc({2, 1}, {2, 5}));
+    }
+
+    SUBCASE("empty stream") {
+        fe::Driver drv;
+        std::istringstream is("");
+        Lexer<K> lexer(drv, is);
+
+        auto tok = lexer.lex();
+        CHECK(tok.tag() == Tok::Tag::EoF);
+        CHECK(tok.loc() == Loc({1, 1}, {1, 1}));
+    }
+}
+
+TEST_CASE("Lexer stream starts") {
+    test_bom<1>();
+    test_bom<2>();
+    test_bom<3>();
+}
+
+/// Minimal lexer to exercise the Lexer::Append policies of fe::Lexer::accept.
+class FoldLexer : public fe::Lexer<1, FoldLexer> {
+public:
+    using Super  = fe::Lexer<1, FoldLexer>;
+    using Append = Super::Append;
+    using Super::accept;
+    using Super::str_;
+
+    FoldLexer(std::istream& istream)
+        : Super(istream) {}
+
+    template<Append append>
+    std::string lex_word() {
+        while (accept<Append::Off>(utf8::isspace)) {}
+        this->start();
+        while (accept<append>(utf8::isalpha)) {}
+        return str_;
+    }
+};
+
+TEST_CASE("Lexer Append policies") {
+    std::istringstream is("MiXeD MiXeD MiXeD MiXeD");
+    FoldLexer lexer(is);
+
+    CHECK(lexer.lex_word<FoldLexer::Append::On>() == "MiXeD");
+    CHECK(lexer.lex_word<FoldLexer::Append::Lower>() == "mixed");
+    CHECK(lexer.lex_word<FoldLexer::Append::Upper>() == "MIXED");
+    CHECK(lexer.lex_word<FoldLexer::Append::Off>() == "");
 }

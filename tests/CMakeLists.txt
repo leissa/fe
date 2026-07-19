@@ -1,7 +1,9 @@
 add_executable(fe-test)
 target_sources(fe-test
     PRIVATE
+        cast.cpp
         lexer.cpp
+        loc.cpp
         test.cpp
 )
 target_link_libraries(fe-test

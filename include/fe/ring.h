@@ -16,7 +16,10 @@ class Ring {
 public:
     /// @name Construction
     ///@{
-    Ring(std::initializer_list<T> list) { std::copy(list.begin(), list.end(), array_); }
+    Ring(std::initializer_list<T> list) {
+        assert(list.size() == N);
+        std::copy(list.begin(), list.end(), array_.begin());
+    }
     Ring() noexcept   = default;
     Ring(const Ring&) = default;
     Ring(Ring&& other) noexcept
@@ -121,7 +124,10 @@ class Ring<T, 2> {
 public:
     /// @name Construction
     ///@{
-    Ring(std::initializer_list<T> list) { std::copy(list.begin(), list.end(), array_); }
+    Ring(std::initializer_list<T> list) {
+        assert(list.size() == 2);
+        std::copy(list.begin(), list.end(), array_.begin());
+    }
     Ring() noexcept   = default;
     Ring(const Ring&) = default;
     Ring(Ring&& other) noexcept
