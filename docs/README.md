@@ -11,7 +11,7 @@
 [![Doxygen](https://img.shields.io/github/actions/workflow/status/leissa/fe/doxygen.yml?style=flat-square&logo=doxygen&logoSize=auto&label=&labelColor=555&branch=main)](https://github.com/leissa/fe/actions/workflows/doxygen.yml?query=branch%3Amain)
 [![Linux](https://img.shields.io/github/actions/workflow/status/leissa/fe/linux.yml?style=flat-square&logo=linux&label=Linux&logoColor=white&branch=main)](https://github.com/leissa/fe/actions/workflows/linux.yml?query=branch%3Amain)
 [![macOS](https://img.shields.io/github/actions/workflow/status/leissa/fe/macos.yml?style=flat-square&logo=apple&label=macOS&branch=main)](https://github.com/leissa/fe/actions/workflows/macos.yml?query=branch%3Amain)
-[![Windows](https://img.shields.io/github/actions/workflow/status/leissa/fe/windows.yml?style=flat-square&label=⊞%20Windows&branch=main)](https://github.com/mimir/mimir/actions/workflows/windows.yml?query=branch%3Amain)
+[![Windows](https://img.shields.io/github/actions/workflow/status/leissa/fe/windows.yml?style=flat-square&label=⊞%20Windows&branch=main)](https://github.com/leissa/fe/actions/workflows/windows.yml?query=branch%3Amain)
 
 [TOC]
 

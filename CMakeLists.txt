@@ -46,7 +46,7 @@ if(MSVC)
     target_compile_options(fe INTERFACE /utf-8 /wd4146 /wd4245)
 endif()
 
-option(FE_ABSL "If ON, use abseil containers, otherwise use std contaienrs" OFF)
+option(FE_ABSL "If ON, use abseil containers, otherwise use std containers" OFF)
 if(FE_ABSL)
     target_compile_definitions(fe INTERFACE FE_ABSL)
     target_link_libraries(fe

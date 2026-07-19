@@ -83,17 +83,18 @@ inline char32_t decode(std::istream& is) {
     return result;
 }
 
-namespace {
+namespace detail {
 // and, or
-std::ostream& ao(std::ostream& os, char32_t c32, char32_t a = 0b00111111, char32_t o = 0b10000000) {
+inline std::ostream& ao(std::ostream& os, char32_t c32, char32_t a = 0b00111111, char32_t o = 0b10000000) {
     return os << char((c32 & a) | o);
 }
-} // namespace
+} // namespace detail
 
 /// Encodes @p c32 as UTF-8 and writes the resulting bytes to @p os.
 ///
 /// Returns `false` when @p c32 is outside the encodable range.
 inline bool encode(std::ostream& os, char32_t c32) {
+    using detail::ao;
     // clang-format off
     if (c32 <= 0x00007f) {          ao(os, c32      , 0b11111111, 0b00000000);                              return true; }
     if (c32 <= 0x0007ff) {       ao(ao(os, c32 >>  6, 0b00011111, 0b11000000),                        c32); return true; }
