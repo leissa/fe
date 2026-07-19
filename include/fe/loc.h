@@ -7,7 +7,11 @@
 namespace fe {
 
 /// Pos%ition in a source file; pass around as value.
-/// We are only using `uint16_t` for row/col because this allows us to have sizeof(Loc) == 16.
+/// We are only using `uint16_t` for row/col because this allows us to have `sizeof(Loc) == 16`:
+/// two machine words, which common 64 bit calling conventions (x86-64 System V, AArch64)
+/// still pass and return in registers - with `uint32_t`, every Loc would go through memory instead.
+/// @warning Rows/cols beyond 65535 wrap around - and row 0 doubles as the "invalid" sentinel,
+/// so Pos%itions in such files silently degrade to invalid/wrong ones.
 struct Pos {
     Pos() = default; ///< Creates an invalid Pos%ition.
     Pos(uint16_t row)
@@ -66,5 +70,8 @@ struct Loc {
     /// or provide your own definitions instead.
     friend std::ostream& operator<<(std::ostream& os, Loc loc);
 };
+
+// Keep Loc at two machine words so it is passed/returned in registers (see Pos).
+static_assert(sizeof(void*) != 8 || sizeof(Loc) == 16, "Loc should stay two machine words");
 
 } // namespace fe
