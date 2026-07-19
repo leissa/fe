@@ -1,8 +1,10 @@
 # FE repository instructions
 
+`fe` is a CMake-based, **header-only C++ library** of reusable building blocks for writing language frontends (arena allocation, string interning, source locations, UTF-8 lexer/parser CRTP bases, diagnostics). It is typically consumed as a git submodule (a checkout may live under e.g. `submodules/fe`).
+
 ## Build, test, and formatting
 
-This repository is a CMake-based **header-only C++23 library** (`target_compile_features(fe INTERFACE cxx_std_23)`). The main local workflow is:
+The main local workflow is:
 
 ```sh
 cmake -S . -B build -DBUILD_TESTING=ON
@@ -43,7 +45,7 @@ That runs `clang-format` plus the configured whitespace/YAML hooks. There is no 
 
 ## Build options & toolchain
 
-- Requires **C++23** (`cxx_std_23` in `CMakeLists.txt`).
+- The library requires **C++23** (`target_compile_features(fe INTERFACE cxx_std_23)` in `CMakeLists.txt`). The prose elsewhere may say C++20 — trust the CMake setting.
 - `FE_ABSL` (default `OFF`): switches `SymMap`/`SymSet` and friends from `std` to Abseil containers.
 - `FE_BUILD_DOCS` (default `OFF`): build Doxygen docs (requires Doxygen + Graphviz `dot`).
 - `BUILD_TESTING` (CTest default `ON`): builds the only executable, `fe-test`.
@@ -55,13 +57,13 @@ That runs `clang-format` plus the configured whitespace/YAML hooks. There is no 
 
 The library is organized around a few reusable frontend-building blocks that are designed to be composed:
 
-- `fe::Arena` provides arena allocation, an STL allocator adapter, and arena-backed `unique_ptr` support for AST-style ownership.
-- `fe::Sym` and `fe::SymPool` intern strings so identifiers can be compared cheaply by pointer after interning.
-- `fe::Driver` is the shared frontend context: it inherits `SymPool` and centralizes diagnostics and error/warning counts.
-- `fe::Pos` and `fe::Loc` track source positions/locations and are threaded through lexers, parsers, and diagnostics.
-- `fe::Ring` is the fixed-size lookahead buffer used by the lexer/parser blueprints.
-- `fe::Lexer<K, S>` is a CRTP base that handles UTF-8 decoding, character lookahead, token text accumulation, and source location tracking.
-- `fe::Parser<Tok, Tag, K, S>` is a CRTP base that wraps a lexer with token lookahead, `accept`/`expect`/`eat`, and `Tracker` helpers for building node spans.
+- `fe::Arena` (`arena.h`) provides arena allocation, an STL allocator adapter, and arena-backed `unique_ptr` support for AST-style ownership.
+- `fe::Sym` and `fe::SymPool` (`sym.h`) intern strings so identifiers can be compared cheaply by pointer after interning.
+- `fe::Driver` (`driver.h`) is the shared frontend context: it inherits `SymPool` and centralizes diagnostics and error/warning counts.
+- `fe::Pos` and `fe::Loc` (`loc.h`, `loc.cpp.h`) track source positions/locations and are threaded through lexers, parsers, and diagnostics.
+- `fe::Ring` (`ring.h`) is the fixed-size lookahead buffer used by the lexer/parser blueprints.
+- `fe::Lexer<K, S>` (`lexer.h`) is a CRTP base that handles UTF-8 decoding, character lookahead, token text accumulation, and source location tracking.
+- `fe::Parser<Tok, Tag, K, S>` (`parser.h`) is a CRTP base that wraps a lexer with token lookahead, `accept`/`expect`/`eat`, and `Tracker` helpers for building node spans.
 
 Support headers: `assert.h` (`assert`/`assertf`/`unreachable`), `cast.h` (checked/dynamic casts), `enum.h` (bit-flag enum ops), `format.h` (`ostream_formatter`, `std::format` glue), `term.h` (terminal/ANSI color), `utf8.h` (UTF-8 decode primitives).
 
