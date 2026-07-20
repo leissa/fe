@@ -51,7 +51,7 @@ It provides a compact set of reusable, well-integrated components:
 FE does not try to hide frontend construction behind a generator.
 Instead, it gives you sharp, reusable tools so you can build exactly the frontend you want.
 
-For a complete end-to-end example, see [**Let**](https://github.com/leissa/let), a small toy language built on FE..
+For a complete end-to-end example, see [**Let**](https://github.com/leissa/let), a small toy language built on FE.
 
 ## 🚀 Quick Start
 
@@ -147,6 +147,11 @@ A few projects that use or reflect the same frontend philosophy:
 - [MimIR](https://anydsl.github.io/MimIR/) - an intermediate representation project by the author.
 - [GraphTool](https://github.com/leissa/graphtool) - a DOT-language tool using FE-style frontend infrastructure.
 - [SQL](https://github.com/leissa/sql) - a small SQL parser.
+
+## 🤝 Contributing
+
+Issues and pull requests are welcome - whether that's a bug report, a new frontend building block, or a documentation fix.
+If you're unsure where to start, open an issue to discuss the idea first.
 
 ## ⚖️ License
 
