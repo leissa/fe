@@ -9,8 +9,9 @@ var searchData=
   ['chars_6',['chars',['../structfe_1_1Sym_1_1String.html#a86ac99bc1a5ae5670498ab589c5f0c39',1,'fe::Sym::String']]],
   ['cmake_7',['CMake',['../index.html#autotoc_md5',1,'']]],
   ['col_8',['col',['../structfe_1_1Pos.html#a1adde7ab9d0f30f4aeae62e76289da31',1,'fe::Pos']]],
-  ['crbegin_9',['crbegin',['../classfe_1_1Sym.html#a5d5f386e69be60f34a1f34b1c04d5416',1,'fe::Sym']]],
-  ['crend_10',['crend',['../classfe_1_1Sym.html#a8644db50ad05ef62b82cc05f1688bc80',1,'fe::Sym']]],
-  ['curr_5f_11',['curr_',['../classfe_1_1Parser.html#a69e76d15919fd71e0ee0f1e491c974f8',1,'fe::Parser']]],
-  ['cyan_12',['Cyan',['../namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a023c239d2f2538f140a20e72c7b73f20',1,'fe::term']]]
+  ['contributing_9',['🤝 Contributing',['../index.html#autotoc_md11',1,'']]],
+  ['crbegin_10',['crbegin',['../classfe_1_1Sym.html#a5d5f386e69be60f34a1f34b1c04d5416',1,'fe::Sym']]],
+  ['crend_11',['crend',['../classfe_1_1Sym.html#a8644db50ad05ef62b82cc05f1688bc80',1,'fe::Sym']]],
+  ['curr_5f_12',['curr_',['../classfe_1_1Parser.html#a69e76d15919fd71e0ee0f1e491c974f8',1,'fe::Parser']]],
+  ['cyan_13',['Cyan',['../namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a023c239d2f2538f140a20e72c7b73f20',1,'fe::term']]]
 ];

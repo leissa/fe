@@ -37,7 +37,8 @@ var NAVTREE =
     [ "🛠️ Building and Testing", "index.html#autotoc_md8", null ],
     [ "📚 Building the Documentation", "index.html#autotoc_md9", null ],
     [ "🔨 Related Projects", "index.html#autotoc_md10", null ],
-    [ "⚖️ License", "index.html#autotoc_md11", null ],
+    [ "🤝 Contributing", "index.html#autotoc_md11", null ],
+    [ "⚖️ License", "index.html#autotoc_md12", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -77,7 +78,7 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "classfe_1_1Sym.html#a24ee71544ed6aebf2b24ef3f1b52d877",
-"pages.html"
+"namespaces.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';
