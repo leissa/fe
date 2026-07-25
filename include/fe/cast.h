@@ -1,6 +1,9 @@
 #pragma once
 
 #include <cassert>
+#include <format>
+#include <stdexcept>
+#include <utility>
 
 namespace fe {
 
@@ -33,6 +36,26 @@ public:
     template<class T> const T*  as() const { return const_cast<RuntimeCast*>(this)->template  as<T   >(); } ///< `const` version.
     template<class T> const T* isa() const { return const_cast<RuntimeCast*>(this)->template isa<T   >(); } ///< `const` version.
     // clang-format on
+
+    /// Like as() but - instead of merely asserting via isa() in `Debug` builds - throws a `std::logic_error` with a
+    /// formatted message when the cast fails.
+    /// @p fmt / @p args describe what was expected: a plain string works, as does a format string plus arguments.
+    /// If `B` is `std::formattable`, the offending object is appended to the message.
+    template<class T, class... Args>
+    T* expect(std::format_string<Args...> fmt, Args&&... args) {
+        if (auto res = isa<T>()) return res;
+        auto what = std::format(fmt, std::forward<Args>(args)...);
+        if constexpr (std::formattable<const B*, char>)
+            throw std::logic_error(std::format("expected {}, but got '{}'", what, static_cast<const B*>(this)));
+        else
+            throw std::logic_error("expected " + what);
+    }
+
+    /// `const` version.
+    template<class T, class... Args>
+    const T* expect(std::format_string<Args...> fmt, Args&&... args) const {
+        return const_cast<RuntimeCast*>(this)->template expect<T>(fmt, std::forward<Args>(args)...);
+    }
 };
 
 } // namespace fe
