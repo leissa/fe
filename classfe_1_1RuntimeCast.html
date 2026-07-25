@@ -135,12 +135,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a40e2312e4ad37c67c4f495ccb34349ba" id="r_a40e2312e4ad37c67c4f495ccb34349ba"><td class="memTemplParams" colspan="2">template&lt;class T&gt; </td></tr>
 <tr class="memitem:a40e2312e4ad37c67c4f495ccb34349ba template"><td class="memItemLeft">const T *&#160;</td><td class="memItemRight"><a class="el" href="#a40e2312e4ad37c67c4f495ccb34349ba">isa</a> () const</td></tr>
 <tr class="memdesc:a40e2312e4ad37c67c4f495ccb34349ba"><td class="mdescLeft">&#160;</td><td class="mdescRight"><span class="tt">const</span> version.  <br /></td></tr>
+<tr class="memitem:a97f66212ac0a03ef6624224cf353be56" id="r_a97f66212ac0a03ef6624224cf353be56"><td class="memTemplParams" colspan="2">template&lt;class T, class... Args&gt; </td></tr>
+<tr class="memitem:a97f66212ac0a03ef6624224cf353be56 template"><td class="memItemLeft">T *&#160;</td><td class="memItemRight"><a class="el" href="#a97f66212ac0a03ef6624224cf353be56">expect</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:a97f66212ac0a03ef6624224cf353be56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Like <a class="el" href="#a1f2d655724345f4b4e0bc4540ea78554" title="static_cast with debug check.">as()</a> but - instead of merely asserting via <a class="el" href="#a3a5b6b6c64212ac9ac33635730333bfa" title="dynamic_cast.">isa()</a> in <span class="tt">Debug</span> builds - throws a <span class="tt">std::logic_error</span> with a formatted message when the cast fails.  <br /></td></tr>
+<tr class="memitem:a3a9f9a465d191723aef6da3a3f81bddc" id="r_a3a9f9a465d191723aef6da3a3f81bddc"><td class="memTemplParams" colspan="2">template&lt;class T, class... Args&gt; </td></tr>
+<tr class="memitem:a3a9f9a465d191723aef6da3a3f81bddc template"><td class="memItemLeft">const T *&#160;</td><td class="memItemRight"><a class="el" href="#a3a9f9a465d191723aef6da3a3f81bddc">expect</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args) const</td></tr>
+<tr class="memdesc:a3a9f9a465d191723aef6da3a3f81bddc"><td class="mdescLeft">&#160;</td><td class="mdescRight"><span class="tt">const</span> version.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class B&gt;<br />
 class fe::RuntimeCast&lt; B &gt;</div><p>Inherit from this class using <a href="https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern">CRTP</a>, for some nice <span class="tt">dynamic_cast</span>-style wrappers. </p>
 
-<p class="definition">Definition at line <a class="el" href="cast_8h_source.html#l00016">16</a> of file <a class="el" href="cast_8h_source.html">cast.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cast_8h_source.html#l00019">19</a> of file <a class="el" href="cast_8h_source.html">cast.h</a>.</p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a1f2d655724345f4b4e0bc4540ea78554" name="a1f2d655724345f4b4e0bc4540ea78554"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1f2d655724345f4b4e0bc4540ea78554">&#9670;&#160;</a></span>as() <span class="overload">[1/2]</span></h2>
@@ -171,11 +177,11 @@ template&lt;class T&gt; </div>
 
 <p><span class="tt">static_cast</span> with debug check. </p>
 
-<p class="definition">Definition at line <a class="el" href="cast_8h_source.html#l00020">20</a> of file <a class="el" href="cast_8h_source.html">cast.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cast_8h_source.html#l00023">23</a> of file <a class="el" href="cast_8h_source.html">cast.h</a>.</p>
 
-<p class="reference">References <a class="el" href="cast_8h_source.html#l00025">isa()</a>.</p>
+<p class="reference">References <a class="el" href="cast_8h_source.html#l00028">isa()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cast_8h_source.html#l00033">as()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cast_8h_source.html#l00036">as()</a>.</p>
 
 </div>
 </div>
@@ -208,9 +214,90 @@ template&lt;class T&gt; </div>
 
 <p><span class="tt">const</span> version. </p>
 
-<p class="definition">Definition at line <a class="el" href="cast_8h_source.html#l00033">33</a> of file <a class="el" href="cast_8h_source.html">cast.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cast_8h_source.html#l00036">36</a> of file <a class="el" href="cast_8h_source.html">cast.h</a>.</p>
 
-<p class="reference">References <a class="el" href="cast_8h_source.html#l00020">as()</a>.</p>
+<p class="reference">References <a class="el" href="cast_8h_source.html#l00023">as()</a>.</p>
+
+</div>
+</div>
+<a id="a97f66212ac0a03ef6624224cf353be56" name="a97f66212ac0a03ef6624224cf353be56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97f66212ac0a03ef6624224cf353be56">&#9670;&#160;</a></span>expect() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class B&gt; </div>
+<div class="memtemplate">
+template&lt;class T, class... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T * <a class="el" href="classfe_1_1RuntimeCast.html">fe::RuntimeCast</a>&lt; B &gt;::expect </td>
+          <td>(</td>
+          <td class="paramtype">std::format_string&lt; Args... &gt;</td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Like <a class="el" href="#a1f2d655724345f4b4e0bc4540ea78554" title="static_cast with debug check.">as()</a> but - instead of merely asserting via <a class="el" href="#a3a5b6b6c64212ac9ac33635730333bfa" title="dynamic_cast.">isa()</a> in <span class="tt">Debug</span> builds - throws a <span class="tt">std::logic_error</span> with a formatted message when the cast fails. </p>
+<p><code class="param">fmt</code> / <code class="param">args</code> describe what was expected: a plain string works, as does a format string plus arguments. If <span class="tt">B</span> is <span class="tt">std::formattable</span>, the offending object is appended to the message. </p>
+
+<p class="definition">Definition at line <a class="el" href="cast_8h_source.html#l00045">45</a> of file <a class="el" href="cast_8h_source.html">cast.h</a>.</p>
+
+<p class="reference">References <a class="el" href="cast_8h_source.html#l00028">isa()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="cast_8h_source.html#l00056">expect()</a>.</p>
+
+</div>
+</div>
+<a id="a3a9f9a465d191723aef6da3a3f81bddc" name="a3a9f9a465d191723aef6da3a3f81bddc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a9f9a465d191723aef6da3a3f81bddc">&#9670;&#160;</a></span>expect() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class B&gt; </div>
+<div class="memtemplate">
+template&lt;class T, class... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const T * <a class="el" href="classfe_1_1RuntimeCast.html">fe::RuntimeCast</a>&lt; B &gt;::expect </td>
+          <td>(</td>
+          <td class="paramtype">std::format_string&lt; Args... &gt;</td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><span class="tt">const</span> version. </p>
+
+<p class="definition">Definition at line <a class="el" href="cast_8h_source.html#l00056">56</a> of file <a class="el" href="cast_8h_source.html">cast.h</a>.</p>
+
+<p class="reference">References <a class="el" href="cast_8h_source.html#l00045">expect()</a>.</p>
 
 </div>
 </div>
@@ -244,9 +331,9 @@ template&lt;class T&gt; </div>
 <p><span class="tt">dynamic_cast</span>. </p>
 <p>If <code class="param">T</code> isa <a class="el" href="conceptfe_1_1Nodeable.html">fe::Nodeable</a>, it will use <span class="tt">node()</span>, otherwise a <span class="tt">dynamic_cast</span>. </p>
 
-<p class="definition">Definition at line <a class="el" href="cast_8h_source.html#l00025">25</a> of file <a class="el" href="cast_8h_source.html">cast.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cast_8h_source.html#l00028">28</a> of file <a class="el" href="cast_8h_source.html">cast.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cast_8h_source.html#l00020">as()</a>, and <a class="el" href="cast_8h_source.html#l00034">isa()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cast_8h_source.html#l00023">as()</a>, <a class="el" href="cast_8h_source.html#l00045">expect()</a>, and <a class="el" href="cast_8h_source.html#l00037">isa()</a>.</p>
 
 </div>
 </div>
@@ -279,9 +366,9 @@ template&lt;class T&gt; </div>
 
 <p><span class="tt">const</span> version. </p>
 
-<p class="definition">Definition at line <a class="el" href="cast_8h_source.html#l00034">34</a> of file <a class="el" href="cast_8h_source.html">cast.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cast_8h_source.html#l00037">37</a> of file <a class="el" href="cast_8h_source.html">cast.h</a>.</p>
 
-<p class="reference">References <a class="el" href="cast_8h_source.html#l00025">isa()</a>.</p>
+<p class="reference">References <a class="el" href="cast_8h_source.html#l00028">isa()</a>.</p>
 
 </div>
 </div>
