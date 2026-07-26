@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"namespacemembers.html":[9,1,0],
 "namespacemembers_enum.html":[9,1,4],
 "namespacemembers_func.html":[9,1,1],
 "namespacemembers_type.html":[9,1,3],

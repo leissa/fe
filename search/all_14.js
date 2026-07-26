@@ -5,10 +5,11 @@ var searchData=
   ['term_2eh_2',['term.h',['../term_8h.html',1,'']]],
   ['testing_3',['🛠️ Building and Testing',['../index.html#autotoc_md8',1,'']]],
   ['the_20documentation_4',['📚 Building the Documentation',['../index.html#autotoc_md9',1,'']]],
-  ['to_5funderlying_5',['to_underlying',['../namespacefe.html#a1f98d7865fd23c1d29648fb9f6239ce3',1,'fe']]],
-  ['tolower_6',['tolower',['../namespacefe_1_1utf8.html#a2dc258776e743dd1204f68bfe2baed2b',1,'fe::utf8']]],
-  ['toupper_7',['toupper',['../namespacefe_1_1utf8.html#a7907975b61b06db27b14fe2a912f8f8c',1,'fe::utf8']]],
-  ['tracker_8',['Tracker',['../classfe_1_1Parser_1_1Tracker.html',1,'fe::Parser&lt; Tok, Tag, K, S &gt;::Tracker'],['../classfe_1_1Parser_1_1Tracker.html#a8b31319b66d8fb1a2911ec78e1b05ccf',1,'fe::Parser::Tracker::Tracker()']]],
-  ['tracker_9',['tracker',['../classfe_1_1Parser.html#aea3507b75aa247b9431256f5463a7821',1,'fe::Parser::tracker()'],['../classfe_1_1Parser.html#a01e44a12cb19d3172293feac4f89bbbc',1,'fe::Parser::tracker(Pos begin)'],['../classfe_1_1Parser.html#a4a964da822c8e0c743a8e5fce865ca20',1,'fe::Parser::tracker(Loc begin)']]],
-  ['typical_20workflow_10',['🧭 Typical Workflow',['../index.html#autotoc_md7',1,'']]]
+  ['throwf_5',['throwf',['../namespacefe.html#a90e0f8ec6bf736dde22be99a5cfde6ca',1,'fe']]],
+  ['to_5funderlying_6',['to_underlying',['../namespacefe.html#a1f98d7865fd23c1d29648fb9f6239ce3',1,'fe']]],
+  ['tolower_7',['tolower',['../namespacefe_1_1utf8.html#a2dc258776e743dd1204f68bfe2baed2b',1,'fe::utf8']]],
+  ['toupper_8',['toupper',['../namespacefe_1_1utf8.html#a7907975b61b06db27b14fe2a912f8f8c',1,'fe::utf8']]],
+  ['tracker_9',['Tracker',['../classfe_1_1Parser_1_1Tracker.html',1,'fe::Parser&lt; Tok, Tag, K, S &gt;::Tracker'],['../classfe_1_1Parser_1_1Tracker.html#a8b31319b66d8fb1a2911ec78e1b05ccf',1,'fe::Parser::Tracker::Tracker()']]],
+  ['tracker_10',['tracker',['../classfe_1_1Parser.html#aea3507b75aa247b9431256f5463a7821',1,'fe::Parser::tracker()'],['../classfe_1_1Parser.html#a01e44a12cb19d3172293feac4f89bbbc',1,'fe::Parser::tracker(Pos begin)'],['../classfe_1_1Parser.html#a4a964da822c8e0c743a8e5fce865ca20',1,'fe::Parser::tracker(Loc begin)']]],
+  ['typical_20workflow_11',['🧭 Typical Workflow',['../index.html#autotoc_md7',1,'']]]
 ];

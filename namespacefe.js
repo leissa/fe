@@ -53,6 +53,7 @@ var namespacefe =
     [ "operator<<", "namespacefe.html#a41708329df0d5918fc77eb3a9ee89b16", null ],
     [ "operator<<", "namespacefe.html#abe367a0891e516099018c33db02746cc", null ],
     [ "StreamFn", "namespacefe.html#a653a3eb512f7610b2449a4546f7e335d", null ],
+    [ "throwf", "namespacefe.html#a90e0f8ec6bf736dde22be99a5cfde6ca", null ],
     [ "to_underlying", "namespacefe.html#a1f98d7865fd23c1d29648fb9f6239ce3", null ],
     [ "unreachable", "namespacefe.html#aff9df682b55afdb0f712e5a0c1ff3a2b", null ]
 ];

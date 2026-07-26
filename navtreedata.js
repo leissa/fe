@@ -78,7 +78,7 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "classfe_1_1Sym.html#a20d21940d48a8d6f9fc362938d67af85",
-"namespacemembers_enum.html"
+"namespacemembers.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

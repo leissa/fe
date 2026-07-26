@@ -180,6 +180,9 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a90e0f8ec6bf736dde22be99a5cfde6ca" id="r_a90e0f8ec6bf736dde22be99a5cfde6ca"><td class="memTemplParams" colspan="2">template&lt;class T = std::logic_error, class... Args&gt; </td></tr>
+<tr class="memitem:a90e0f8ec6bf736dde22be99a5cfde6ca template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a90e0f8ec6bf736dde22be99a5cfde6ca">throwf</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:a90e0f8ec6bf736dde22be99a5cfde6ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throws a <span class="tt">T</span> (a <span class="tt">std::logic_error</span> by default) whose message is <span class="tt">std::format(fmt, args...)</span>.  <br /></td></tr>
 <tr class="memitem:aff9df682b55afdb0f712e5a0c1ff3a2b" id="r_aff9df682b55afdb0f712e5a0c1ff3a2b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aff9df682b55afdb0f712e5a0c1ff3a2b">unreachable</a> ()</td></tr>
 <tr class="memitem:aa67601e05290c4a15e0d5d5f1f12a4a2" id="r_aa67601e05290c4a15e0d5d5f1f12a4a2"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa67601e05290c4a15e0d5d5f1f12a4a2">breakpoint</a> ()</td></tr>
 <tr class="memdesc:aa67601e05290c4a15e0d5d5f1f12a4a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raise a breakpoint in the debugger.  <br /></td></tr>
@@ -282,7 +285,7 @@ template&lt;class V&gt; </div>
 
 <p>Raise a breakpoint in the debugger. </p>
 
-<p class="definition">Definition at line <a class="el" href="assert_8h_source.html#l00030">30</a> of file <a class="el" href="assert_8h_source.html">assert.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="assert_8h_source.html#l00040">40</a> of file <a class="el" href="assert_8h_source.html">assert.h</a>.</p>
 
 </div>
 </div>
@@ -412,6 +415,36 @@ template&lt;class F&gt; </div>
 
 </div>
 </div>
+<a id="a90e0f8ec6bf736dde22be99a5cfde6ca" name="a90e0f8ec6bf736dde22be99a5cfde6ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90e0f8ec6bf736dde22be99a5cfde6ca">&#9670;&#160;</a></span>throwf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T = std::logic_error, class... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void fe::throwf </td>
+          <td>(</td>
+          <td class="paramtype">std::format_string&lt; Args... &gt;</td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Throws a <span class="tt">T</span> (a <span class="tt">std::logic_error</span> by default) whose message is <span class="tt">std::format(fmt, args...)</span>. </p>
+<p>Use this for unrecoverable errors that should surface as a proper exception with a formatted message. </p>
+
+<p class="definition">Definition at line <a class="el" href="assert_8h_source.html#l00014">14</a> of file <a class="el" href="assert_8h_source.html">assert.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="cast_8h_source.html#l00046">fe::RuntimeCast&lt; B &gt;::expect()</a>.</p>
+
+</div>
+</div>
 <a id="a1f98d7865fd23c1d29648fb9f6239ce3" name="a1f98d7865fd23c1d29648fb9f6239ce3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1f98d7865fd23c1d29648fb9f6239ce3">&#9670;&#160;</a></span>to_underlying()</h2>
 
@@ -467,7 +500,7 @@ template&lt;<a class="el" href="conceptfe_1_1BitEnum.html">fe::BitEnum</a> E&gt;
 </div><div class="memdoc">
 <dl class="section see"><dt>See also</dt><dd><a href="https://stackoverflow.com/a/65258501">https://stackoverflow.com/a/65258501</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="assert_8h_source.html#l00020">20</a> of file <a class="el" href="assert_8h_source.html">assert.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="assert_8h_source.html#l00030">30</a> of file <a class="el" href="assert_8h_source.html">assert.h</a>.</p>
 
 </div>
 </div>

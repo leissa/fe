@@ -118,15 +118,18 @@ $(function(){initNavTree('assert_8h.html','',''); });
 <div class="contents">
 <div class="textblock"><code>#include &lt;cassert&gt;</code><br />
 <code>#include &lt;cstdlib&gt;</code><br />
+<code>#include &lt;format&gt;</code><br />
+<code>#include &lt;stdexcept&gt;</code><br />
+<code>#include &lt;utility&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for assert.h:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="assert_8h__incl.svg" width="171" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="assert_8h__incl.svg" width="458" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="assert_8h__dep__incl.svg" width="523" height="476"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="assert_8h__dep__incl.svg" width="631" height="476"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="assert_8h_source.html">Go to the source code of this file.</a></p>
@@ -141,6 +144,9 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a90e0f8ec6bf736dde22be99a5cfde6ca" id="r_a90e0f8ec6bf736dde22be99a5cfde6ca"><td class="memTemplParams" colspan="2">template&lt;class T = std::logic_error, class... Args&gt; </td></tr>
+<tr class="memitem:a90e0f8ec6bf736dde22be99a5cfde6ca template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a90e0f8ec6bf736dde22be99a5cfde6ca">fe::throwf</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:a90e0f8ec6bf736dde22be99a5cfde6ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throws a <span class="tt">T</span> (a <span class="tt">std::logic_error</span> by default) whose message is <span class="tt">std::format(fmt, args...)</span>.  <br /></td></tr>
 <tr class="memitem:aff9df682b55afdb0f712e5a0c1ff3a2b" id="r_aff9df682b55afdb0f712e5a0c1ff3a2b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#aff9df682b55afdb0f712e5a0c1ff3a2b">fe::unreachable</a> ()</td></tr>
 <tr class="memitem:aa67601e05290c4a15e0d5d5f1f12a4a2" id="r_aa67601e05290c4a15e0d5d5f1f12a4a2"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#aa67601e05290c4a15e0d5d5f1f12a4a2">fe::breakpoint</a> ()</td></tr>
 <tr class="memdesc:aa67601e05290c4a15e0d5d5f1f12a4a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raise a breakpoint in the debugger.  <br /></td></tr>
@@ -162,7 +168,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">assert(x)</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="assert_8h_source.html#l00039">39</a> of file <a class="el" href="assert_8h_source.html">assert.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="assert_8h_source.html#l00049">49</a> of file <a class="el" href="assert_8h_source.html">assert.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00111">fe::utf8::Char32::operator&lt;&lt;</a>, <a class="el" href="ring_8h_source.html#l00092">fe::Ring&lt; T, 1 &gt;::operator[]()</a>, <a class="el" href="ring_8h_source.html#l00096">fe::Ring&lt; T, 1 &gt;::operator[]()</a>, <a class="el" href="ring_8h_source.html#l00144">fe::Ring&lt; T, 2 &gt;::operator[]()</a>, and <a class="el" href="ring_8h_source.html#l00148">fe::Ring&lt; T, 2 &gt;::operator[]()</a>.</p>
 

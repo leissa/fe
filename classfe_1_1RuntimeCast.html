@@ -146,7 +146,7 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class B&gt;<br />
 class fe::RuntimeCast&lt; B &gt;</div><p>Inherit from this class using <a href="https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern">CRTP</a>, for some nice <span class="tt">dynamic_cast</span>-style wrappers. </p>
 
-<p class="definition">Definition at line <a class="el" href="cast_8h_source.html#l00019">19</a> of file <a class="el" href="cast_8h_source.html">cast.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cast_8h_source.html#l00020">20</a> of file <a class="el" href="cast_8h_source.html">cast.h</a>.</p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a1f2d655724345f4b4e0bc4540ea78554" name="a1f2d655724345f4b4e0bc4540ea78554"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1f2d655724345f4b4e0bc4540ea78554">&#9670;&#160;</a></span>as() <span class="overload">[1/2]</span></h2>
@@ -177,11 +177,11 @@ template&lt;class T&gt; </div>
 
 <p><span class="tt">static_cast</span> with debug check. </p>
 
-<p class="definition">Definition at line <a class="el" href="cast_8h_source.html#l00023">23</a> of file <a class="el" href="cast_8h_source.html">cast.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cast_8h_source.html#l00024">24</a> of file <a class="el" href="cast_8h_source.html">cast.h</a>.</p>
 
-<p class="reference">References <a class="el" href="cast_8h_source.html#l00028">isa()</a>.</p>
+<p class="reference">References <a class="el" href="cast_8h_source.html#l00029">isa()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cast_8h_source.html#l00036">as()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cast_8h_source.html#l00037">as()</a>.</p>
 
 </div>
 </div>
@@ -214,9 +214,9 @@ template&lt;class T&gt; </div>
 
 <p><span class="tt">const</span> version. </p>
 
-<p class="definition">Definition at line <a class="el" href="cast_8h_source.html#l00036">36</a> of file <a class="el" href="cast_8h_source.html">cast.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cast_8h_source.html#l00037">37</a> of file <a class="el" href="cast_8h_source.html">cast.h</a>.</p>
 
-<p class="reference">References <a class="el" href="cast_8h_source.html#l00023">as()</a>.</p>
+<p class="reference">References <a class="el" href="cast_8h_source.html#l00024">as()</a>.</p>
 
 </div>
 </div>
@@ -254,11 +254,11 @@ template&lt;class T, class... Args&gt; </div>
 <p>Like <a class="el" href="#a1f2d655724345f4b4e0bc4540ea78554" title="static_cast with debug check.">as()</a> but - instead of merely asserting via <a class="el" href="#a3a5b6b6c64212ac9ac33635730333bfa" title="dynamic_cast.">isa()</a> in <span class="tt">Debug</span> builds - throws a <span class="tt">std::logic_error</span> with a formatted message when the cast fails. </p>
 <p><code class="param">fmt</code> / <code class="param">args</code> describe what was expected: a plain string works, as does a format string plus arguments. If <span class="tt">B</span> is <span class="tt">std::formattable</span>, the offending object is appended to the message. </p>
 
-<p class="definition">Definition at line <a class="el" href="cast_8h_source.html#l00045">45</a> of file <a class="el" href="cast_8h_source.html">cast.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cast_8h_source.html#l00046">46</a> of file <a class="el" href="cast_8h_source.html">cast.h</a>.</p>
 
-<p class="reference">References <a class="el" href="cast_8h_source.html#l00028">isa()</a>.</p>
+<p class="reference">References <a class="el" href="cast_8h_source.html#l00029">isa()</a>, and <a class="el" href="assert_8h_source.html#l00014">fe::throwf()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cast_8h_source.html#l00056">expect()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cast_8h_source.html#l00057">expect()</a>.</p>
 
 </div>
 </div>
@@ -295,9 +295,9 @@ template&lt;class T, class... Args&gt; </div>
 
 <p><span class="tt">const</span> version. </p>
 
-<p class="definition">Definition at line <a class="el" href="cast_8h_source.html#l00056">56</a> of file <a class="el" href="cast_8h_source.html">cast.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cast_8h_source.html#l00057">57</a> of file <a class="el" href="cast_8h_source.html">cast.h</a>.</p>
 
-<p class="reference">References <a class="el" href="cast_8h_source.html#l00045">expect()</a>.</p>
+<p class="reference">References <a class="el" href="cast_8h_source.html#l00046">expect()</a>.</p>
 
 </div>
 </div>
@@ -331,9 +331,9 @@ template&lt;class T&gt; </div>
 <p><span class="tt">dynamic_cast</span>. </p>
 <p>If <code class="param">T</code> isa <a class="el" href="conceptfe_1_1Nodeable.html">fe::Nodeable</a>, it will use <span class="tt">node()</span>, otherwise a <span class="tt">dynamic_cast</span>. </p>
 
-<p class="definition">Definition at line <a class="el" href="cast_8h_source.html#l00028">28</a> of file <a class="el" href="cast_8h_source.html">cast.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cast_8h_source.html#l00029">29</a> of file <a class="el" href="cast_8h_source.html">cast.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cast_8h_source.html#l00023">as()</a>, <a class="el" href="cast_8h_source.html#l00045">expect()</a>, and <a class="el" href="cast_8h_source.html#l00037">isa()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cast_8h_source.html#l00024">as()</a>, <a class="el" href="cast_8h_source.html#l00046">expect()</a>, and <a class="el" href="cast_8h_source.html#l00038">isa()</a>.</p>
 
 </div>
 </div>
@@ -366,9 +366,9 @@ template&lt;class T&gt; </div>
 
 <p><span class="tt">const</span> version. </p>
 
-<p class="definition">Definition at line <a class="el" href="cast_8h_source.html#l00037">37</a> of file <a class="el" href="cast_8h_source.html">cast.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cast_8h_source.html#l00038">38</a> of file <a class="el" href="cast_8h_source.html">cast.h</a>.</p>
 
-<p class="reference">References <a class="el" href="cast_8h_source.html#l00028">isa()</a>.</p>
+<p class="reference">References <a class="el" href="cast_8h_source.html#l00029">isa()</a>.</p>
 
 </div>
 </div>
