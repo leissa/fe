@@ -2,8 +2,9 @@
 
 #include <cassert>
 #include <format>
-#include <stdexcept>
 #include <utility>
+
+#include <fe/assert.h>
 
 namespace fe {
 
@@ -46,9 +47,9 @@ public:
         if (auto res = isa<T>()) return res;
         auto what = std::format(fmt, std::forward<Args>(args)...);
         if constexpr (std::formattable<const B*, char>)
-            throw std::logic_error(std::format("expected {}, but got '{}'", what, static_cast<const B*>(this)));
+            throwf("expected {}, but got '{}'", what, static_cast<const B*>(this));
         else
-            throw std::logic_error("expected " + what);
+            throwf("expected {}", what);
     }
 
     /// `const` version.

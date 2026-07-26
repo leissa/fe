@@ -2,8 +2,18 @@
 
 #include <cassert>
 #include <cstdlib>
+#include <format>
+#include <stdexcept>
+#include <utility>
 
 namespace fe {
+
+/// Throws a `T` (a `std::logic_error` by default) whose message is `std::format(fmt, args...)`.
+/// Use this for unrecoverable errors that should surface as a proper exception with a formatted message.
+template<class T = std::logic_error, class... Args>
+[[noreturn]] void throwf(std::format_string<Args...> fmt, Args&&... args) {
+    throw T("error: " + std::format(fmt, std::forward<Args>(args)...));
+}
 
 /// @sa https://stackoverflow.com/a/65258501
 #ifdef __GNUC__ // GCC 4.8+, Clang, Intel and other compilers compatible with GCC (-std=c++0x or above)
