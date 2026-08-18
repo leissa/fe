@@ -1,6 +1,8 @@
 #pragma once
 
 #include <cassert>
+#include <concepts>
+
 #include <format>
 #include <utility>
 
@@ -12,6 +14,14 @@ template<class T>
 concept Nodeable = requires(T n) {
     T::Node;
     n.node();
+};
+
+/// Like Nodeable, but for a class that spans a *set* of node kinds instead of a single one.
+/// Such a class declares `static constexpr bool isa_node(<node type>)` to decide membership.
+/// This keeps RuntimeCast::isa from falling back to a `dynamic_cast` for abstract bases that merely group nodes.
+template<class T>
+concept NodeSetable = requires(T n) {
+    { T::isa_node(n.node()) } -> std::convertible_to<bool>;
 };
 
 /// Inherit from this class using [CRTP](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern),
@@ -29,6 +39,8 @@ public:
     T* isa() {
         if constexpr (Nodeable<T>) {
             return static_cast<B*>(this)->node() == T::Node ? static_cast<T*>(this) : nullptr;
+        } else if constexpr (NodeSetable<T>) {
+            return T::isa_node(static_cast<B*>(this)->node()) ? static_cast<T*>(this) : nullptr;
         } else {
             return dynamic_cast<T*>(static_cast<B*>(this));
         }
