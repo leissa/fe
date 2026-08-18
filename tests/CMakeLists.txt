@@ -2,6 +2,7 @@ add_executable(fe-test)
 target_sources(fe-test
     PRIVATE
         cast.cpp
+        hash.cpp
         lexer.cpp
         loc.cpp
         test.cpp

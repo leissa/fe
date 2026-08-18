@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.24 FATAL_ERROR)
 
-project(fe VERSION 0.10.2)
+project(fe VERSION 0.11.0)
 
 include(CMakePackageConfigHelpers)
 include(CheckIncludeFileCXX)
@@ -28,6 +28,7 @@ target_sources(fe
             include/fe/cast.h
             include/fe/enum.h
             include/fe/driver.h
+            include/fe/hash.h
             include/fe/format.h
             include/fe/lexer.h
             include/fe/loc.h

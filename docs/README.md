@@ -44,6 +44,7 @@ It provides a compact set of reusable, well-integrated components:
 - `fe::Pos` and `fe::Loc` for source positions and source spans.
 - `fe::term` for lightweight terminal colors in diagnostics and CLI output.
 - `fe::utf8` for lightweight UTF-8 handling.
+- `fe::hash` and friends for cheap, `constexpr` hash mixing/combining.
 - `fe::Lexer<K, S>` for UTF-8-aware lexing with lookahead and token text accumulation.
 - `fe::Parser<Tok, Tag, K, S>` for recursive-descent-style parsing with token lookahead and span tracking.
 - Optional `FE_ABSL` support for [Abseil](https://abseil.io/) hash containers.
