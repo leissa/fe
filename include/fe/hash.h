@@ -57,7 +57,7 @@ constexpr size_t hash(size_t h) noexcept {
 // clang-format off
 /// FNV-1 [magic numbers](http://www.isthe.com/chongo/tech/comp/fnv/index.html#FNV-var) for `sizeof(size_t)`.
 inline constexpr size_t fnv1_offset = sizeof(size_t) == 4 ? size_t(UINT32_C(2166136261)) : size_t(UINT64_C(14695981039346656037));
-inline constexpr size_t fnv1_prime  = sizeof(size_t) == 4 ? size_t(UINT32_C(  16777619)) : size_t(UINT64_C(         1099511628211));
+inline constexpr size_t fnv1_prime  = sizeof(size_t) == 4 ? size_t(UINT32_C(  16777619)) : size_t(UINT64_C(       1099511628211));
 // clang-format on
 
 /// Seeds a hash chain with the FNV-1 offset basis.
