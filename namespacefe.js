@@ -42,6 +42,7 @@ var namespacefe =
     [ "Sym", "classfe_1_1Sym.html", "classfe_1_1Sym" ],
     [ "SymPool", "classfe_1_1SymPool.html", "classfe_1_1SymPool" ],
     [ "Nodeable", "conceptfe_1_1Nodeable.html", null ],
+    [ "NodeSetable", "conceptfe_1_1NodeSetable.html", null ],
     [ "BitEnum", "conceptfe_1_1BitEnum.html", null ],
     [ "Formattable", "conceptfe_1_1Formattable.html", null ],
     [ "ostream_formatter", "namespacefe.html#a923ce058163e2041744a84793de679c0", null ],
