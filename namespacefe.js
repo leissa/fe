@@ -50,11 +50,19 @@ var namespacefe =
     [ "SymSet", "namespacefe.html#afc6debb6fc36d12352409c5e46ce4e55", null ],
     [ "breakpoint", "namespacefe.html#aa67601e05290c4a15e0d5d5f1f12a4a2", null ],
     [ "has_flag", "namespacefe.html#a97781f8fc269084dfd887ae2b0a475cc", null ],
+    [ "hash", "namespacefe.html#a11d6f3c09be860709bc513577982fbaa", null ],
+    [ "hash_begin", "namespacefe.html#a490ea31d86af5baf49d5f00a09298f14", null ],
+    [ "hash_begin", "namespacefe.html#ac131b22cfcf0e569e4adc1bf67583358", null ],
+    [ "hash_combine", "namespacefe.html#abf157d266c33cbe9981f19021fbf6264", null ],
     [ "Join", "namespacefe.html#afdda5f81a682643effc4dd73321bc737", null ],
+    [ "murmur3", "namespacefe.html#a89ce852a3e2d3ecde80f0ed8f81a501b", null ],
     [ "operator<<", "namespacefe.html#a41708329df0d5918fc77eb3a9ee89b16", null ],
     [ "operator<<", "namespacefe.html#abe367a0891e516099018c33db02746cc", null ],
+    [ "splitmix64", "namespacefe.html#acc1eed83d44fa0a6d3888d77d1065692", null ],
     [ "StreamFn", "namespacefe.html#a653a3eb512f7610b2449a4546f7e335d", null ],
     [ "throwf", "namespacefe.html#a90e0f8ec6bf736dde22be99a5cfde6ca", null ],
     [ "to_underlying", "namespacefe.html#a1f98d7865fd23c1d29648fb9f6239ce3", null ],
-    [ "unreachable", "namespacefe.html#aff9df682b55afdb0f712e5a0c1ff3a2b", null ]
+    [ "unreachable", "namespacefe.html#aff9df682b55afdb0f712e5a0c1ff3a2b", null ],
+    [ "fnv1_offset", "namespacefe.html#a23eca58148a59f1a33c1fa3d47e78a4f", null ],
+    [ "fnv1_prime", "namespacefe.html#a58095bbcff6b7ff77b3e6592838e079e", null ]
 ];

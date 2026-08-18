@@ -46,7 +46,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">FE<span id="projectnumber">&#160;0.10.2</span>
+   <div id="projectname">FE<span id="projectnumber">&#160;0.11.0</span>
    </div>
    <div id="projectbrief">Header-only C++ frontend library</div>
   </td>
@@ -184,6 +184,7 @@ $(function(){initNavTree('index.html','',''); });
 <li><span class="tt"><a class="el" href="structfe_1_1Pos.html" title="Position in a source file; pass around as value.">fe::Pos</a></span> and <span class="tt"><a class="el" href="structfe_1_1Loc.html" title="Location in a File.">fe::Loc</a></span> for source positions and source spans.</li>
 <li><span class="tt"><a class="el" href="namespacefe_1_1term.html" title="Lightweight stream-based terminal colors for diagnostics and CLI output.">fe::term</a></span> for lightweight terminal colors in diagnostics and CLI output.</li>
 <li><span class="tt"><a class="el" href="namespacefe_1_1utf8.html" title="UTF-8 helpers for decoding byte streams, encoding char32_t values, and running ASCII-style character ...">fe::utf8</a></span> for lightweight UTF-8 handling.</li>
+<li><span class="tt"><a class="el" href="namespacefe.html#a11d6f3c09be860709bc513577982fbaa" title="Mixes h with murmur3 or splitmix64 - whichever matches sizeof(size_t).">fe::hash</a></span> and friends for cheap, <span class="tt">constexpr</span> hash mixing/combining.</li>
 <li><span class="tt"><a class="el" href="classfe_1_1Lexer.html" title="The blueprint for a lexer with a buffer of K tokens to peek into the future (Lexer::ahead).">fe::Lexer</a>&lt;K, S&gt;</span> for UTF-8-aware lexing with lookahead and token text accumulation.</li>
 <li><span class="tt"><a class="el" href="classfe_1_1Parser.html" title="The blueprint for a recursive descent/ ascent parser using a K lookahead of Tokens.">fe::Parser</a>&lt;Tok, Tag, K, S&gt;</span> for recursive-descent-style parsing with token lookahead and span tracking.</li>
 <li>Optional <span class="tt">FE_ABSL</span> support for <a href="https://abseil.io/">Abseil</a> hash containers.</li>

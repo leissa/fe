@@ -46,7 +46,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">FE<span id="projectnumber">&#160;0.10.2</span>
+   <div id="projectname">FE<span id="projectnumber">&#160;0.11.0</span>
    </div>
    <div id="projectbrief">Header-only C++ frontend library</div>
   </td>
@@ -209,6 +209,37 @@ Functions</h2></td></tr>
 </div><!-- fragment --> </div></td></tr>
 <tr class="memitem:a1f98d7865fd23c1d29648fb9f6239ce3" id="r_a1f98d7865fd23c1d29648fb9f6239ce3"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="conceptfe_1_1BitEnum.html">fe::BitEnum</a> E&gt; </td></tr>
 <tr class="memitem:a1f98d7865fd23c1d29648fb9f6239ce3 template"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#a1f98d7865fd23c1d29648fb9f6239ce3">to_underlying</a> (E e) noexcept</td></tr>
+<tr id="func-members-1" class="groupHeader"><td colspan="2"><div class="groupHeader">Bit Mixers</div></td></tr>
+<tr><td colspan="2" class="ititle"><div class="groupText"><p>These finalizers scramble a single word.</p>
+<p>They are bijective, i.e., they don't introduce any collisions on their own - they merely spread the input bits. </p>
+</div></td></tr>
+<tr class="memitem:a89ce852a3e2d3ecde80f0ed8f81a501b" id="r_a89ce852a3e2d3ecde80f0ed8f81a501b"><td class="memItemLeft">constexpr uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a89ce852a3e2d3ecde80f0ed8f81a501b">murmur3</a> (uint32_t h) noexcept</td></tr>
+<tr class="memdesc:a89ce852a3e2d3ecde80f0ed8f81a501b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a href="https://en.wikipedia.org/wiki/MurmurHash">MurmurHash3</a>'s 32-bit finalizer <span class="tt">fmix32</span>.  <br /></td></tr>
+<tr class="memitem:acc1eed83d44fa0a6d3888d77d1065692" id="r_acc1eed83d44fa0a6d3888d77d1065692"><td class="memItemLeft">constexpr uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#acc1eed83d44fa0a6d3888d77d1065692">splitmix64</a> (uint64_t h) noexcept</td></tr>
+<tr class="memdesc:acc1eed83d44fa0a6d3888d77d1065692"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a href="https://prng.di.unimi.it/splitmix64.c">SplitMix64</a>'s 64-bit finalizer.  <br /></td></tr>
+<tr class="memitem:a11d6f3c09be860709bc513577982fbaa" id="r_a11d6f3c09be860709bc513577982fbaa"><td class="memItemLeft">constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="#a11d6f3c09be860709bc513577982fbaa">hash</a> (size_t h) noexcept</td></tr>
+<tr class="memdesc:a11d6f3c09be860709bc513577982fbaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mixes <code class="param">h</code> with murmur3 or splitmix64 - whichever matches <span class="tt">sizeof(size_t)</span>.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-member-group" class="groupheader"><a id="member-group" name="member-group"></a>
+FNV-1 Hash</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p>See <a href="https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function#FNV-1_hash">Wikipedia</a>.</p>
+<p>Use hash_begin to seed a hash chain and hash_combine to fold in one value after another: </p><div class="fragment"><div class="line"><span class="keyword">auto</span> h = <a class="code hl_function" href="#a490ea31d86af5baf49d5f00a09298f14">fe::hash_begin</a>(x);</div>
+<div class="line"><span class="keywordflow">for</span> (<span class="keyword">auto</span> elem : elems) h = <a class="code hl_function" href="#abf157d266c33cbe9981f19021fbf6264">fe::hash_combine</a>(h, elem);</div>
+<div class="ttc" id="anamespacefe_html_a490ea31d86af5baf49d5f00a09298f14"><div class="ttname"><a href="#a490ea31d86af5baf49d5f00a09298f14">fe::hash_begin</a></div><div class="ttdeci">constexpr size_t hash_begin() noexcept</div><div class="ttdoc">Seeds a hash chain with the FNV-1 offset basis.</div><div class="ttdef"><b>Definition</b> <a href="hash_8h_source.html#l00064">hash.h:64</a></div></div>
+<div class="ttc" id="anamespacefe_html_abf157d266c33cbe9981f19021fbf6264"><div class="ttname"><a href="#abf157d266c33cbe9981f19021fbf6264">fe::hash_combine</a></div><div class="ttdeci">constexpr size_t hash_combine(size_t seed, T v) noexcept</div><div class="ttdoc">Mixes v into seed word-wise, reusing the FNV-1 prime as multiplier.</div><div class="ttdef"><b>Definition</b> <a href="hash_8h_source.html#l00068">hash.h:68</a></div></div>
+</div><!-- fragment --> <dl class="section note"><dt>Note</dt><dd>These hashes are <em>not</em> stable: they differ between 32- and 64-bit builds and may change between fe releases. Never serialize them and never rely on the iteration order they induce. </dd></dl>
+</td></tr>
+<tr class="memitem:a23eca58148a59f1a33c1fa3d47e78a4f" id="r_a23eca58148a59f1a33c1fa3d47e78a4f"><td class="memItemLeft">constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="#a23eca58148a59f1a33c1fa3d47e78a4f">fnv1_offset</a> = sizeof(size_t) == 4 ? size_t(UINT32_C(2166136261)) : size_t(UINT64_C(14695981039346656037))</td></tr>
+<tr class="memdesc:a23eca58148a59f1a33c1fa3d47e78a4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">FNV-1 <a href="http://www.isthe.com/chongo/tech/comp/fnv/index.html#FNV-var">magic numbers</a> for <span class="tt">sizeof(size_t)</span>.  <br /></td></tr>
+<tr class="memitem:a58095bbcff6b7ff77b3e6592838e079e" id="r_a58095bbcff6b7ff77b3e6592838e079e"><td class="memItemLeft">constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="#a58095bbcff6b7ff77b3e6592838e079e">fnv1_prime</a> = sizeof(size_t) == 4 ? size_t(UINT32_C( 16777619)) : size_t(UINT64_C( 1099511628211))</td></tr>
+<tr class="memitem:a490ea31d86af5baf49d5f00a09298f14" id="r_a490ea31d86af5baf49d5f00a09298f14"><td class="memItemLeft">constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="#a490ea31d86af5baf49d5f00a09298f14">hash_begin</a> () noexcept</td></tr>
+<tr class="memdesc:a490ea31d86af5baf49d5f00a09298f14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seeds a hash chain with the FNV-1 offset basis.  <br /></td></tr>
+<tr class="memitem:abf157d266c33cbe9981f19021fbf6264" id="r_abf157d266c33cbe9981f19021fbf6264"><td class="memTemplParams" colspan="2">template&lt;std::integral T&gt; </td></tr>
+<tr class="memitem:abf157d266c33cbe9981f19021fbf6264 template"><td class="memItemLeft">constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="#abf157d266c33cbe9981f19021fbf6264">hash_combine</a> (size_t seed, T v) noexcept</td></tr>
+<tr class="memdesc:abf157d266c33cbe9981f19021fbf6264"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mixes <code class="param">v</code> into <code class="param">seed</code> word-wise, reusing the FNV-1 prime as multiplier.  <br /></td></tr>
+<tr class="memitem:ac131b22cfcf0e569e4adc1bf67583358" id="r_ac131b22cfcf0e569e4adc1bf67583358"><td class="memTemplParams" colspan="2">template&lt;std::integral T&gt; </td></tr>
+<tr class="memitem:ac131b22cfcf0e569e4adc1bf67583358 template"><td class="memItemLeft">constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="#ac131b22cfcf0e569e4adc1bf67583358">hash_begin</a> (T v) noexcept</td></tr>
+<tr class="memdesc:ac131b22cfcf0e569e4adc1bf67583358"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shorthand for <span class="tt">hash_combine(hash_begin(), v)</span>.  <br /></td></tr>
 </table>
 <a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
 <a id="a923ce058163e2041744a84793de679c0" name="a923ce058163e2041744a84793de679c0"></a>
@@ -327,6 +358,144 @@ template&lt;<a class="el" href="conceptfe_1_1BitEnum.html">fe::BitEnum</a> E&gt;
 
 </div>
 </div>
+<a id="a11d6f3c09be860709bc513577982fbaa" name="a11d6f3c09be860709bc513577982fbaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11d6f3c09be860709bc513577982fbaa">&#9670;&#160;</a></span>hash()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t fe::hash </td>
+          <td>(</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>h</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Mixes <code class="param">h</code> with murmur3 or splitmix64 - whichever matches <span class="tt">sizeof(size_t)</span>. </p>
+
+<p class="definition">Definition at line <a class="el" href="hash_8h_source.html#l00037">37</a> of file <a class="el" href="hash_8h_source.html">hash.h</a>.</p>
+
+<p class="reference">References <a class="el" href="hash_8h_source.html#l00017">murmur3()</a>, and <a class="el" href="hash_8h_source.html#l00027">splitmix64()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="hash_8h_source.html#l00068">hash_combine()</a>.</p>
+
+</div>
+</div>
+<a id="a490ea31d86af5baf49d5f00a09298f14" name="a490ea31d86af5baf49d5f00a09298f14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a490ea31d86af5baf49d5f00a09298f14">&#9670;&#160;</a></span>hash_begin() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t fe::hash_begin </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Seeds a hash chain with the FNV-1 offset basis. </p>
+
+<p class="definition">Definition at line <a class="el" href="hash_8h_source.html#l00064">64</a> of file <a class="el" href="hash_8h_source.html">hash.h</a>.</p>
+
+<p class="reference">References <a class="el" href="hash_8h_source.html#l00059">fnv1_offset</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="hash_8h_source.html#l00074">hash_begin()</a>.</p>
+
+</div>
+</div>
+<a id="ac131b22cfcf0e569e4adc1bf67583358" name="ac131b22cfcf0e569e4adc1bf67583358"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac131b22cfcf0e569e4adc1bf67583358">&#9670;&#160;</a></span>hash_begin() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;std::integral T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t fe::hash_begin </td>
+          <td>(</td>
+          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>v</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Shorthand for <span class="tt">hash_combine(hash_begin(), v)</span>. </p>
+
+<p class="definition">Definition at line <a class="el" href="hash_8h_source.html#l00074">74</a> of file <a class="el" href="hash_8h_source.html">hash.h</a>.</p>
+
+<p class="reference">References <a class="el" href="hash_8h_source.html#l00064">hash_begin()</a>, and <a class="el" href="hash_8h_source.html#l00068">hash_combine()</a>.</p>
+
+</div>
+</div>
+<a id="abf157d266c33cbe9981f19021fbf6264" name="abf157d266c33cbe9981f19021fbf6264"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf157d266c33cbe9981f19021fbf6264">&#9670;&#160;</a></span>hash_combine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;std::integral T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t fe::hash_combine </td>
+          <td>(</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>seed</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>v</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Mixes <code class="param">v</code> into <code class="param">seed</code> word-wise, reusing the FNV-1 prime as multiplier. </p>
+
+<p class="definition">Definition at line <a class="el" href="hash_8h_source.html#l00068">68</a> of file <a class="el" href="hash_8h_source.html">hash.h</a>.</p>
+
+<p class="reference">References <a class="el" href="hash_8h_source.html#l00060">fnv1_prime</a>, and <a class="el" href="hash_8h_source.html#l00037">hash()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="hash_8h_source.html#l00074">hash_begin()</a>.</p>
+
+</div>
+</div>
 <a id="afdda5f81a682643effc4dd73321bc737" name="afdda5f81a682643effc4dd73321bc737"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afdda5f81a682643effc4dd73321bc737">&#9670;&#160;</a></span>Join()</h2>
 
@@ -347,6 +516,37 @@ template&lt;class R&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a89ce852a3e2d3ecde80f0ed8f81a501b" name="a89ce852a3e2d3ecde80f0ed8f81a501b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89ce852a3e2d3ecde80f0ed8f81a501b">&#9670;&#160;</a></span>murmur3()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t fe::murmur3 </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>h</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a href="https://en.wikipedia.org/wiki/MurmurHash">MurmurHash3</a>'s 32-bit finalizer <span class="tt">fmix32</span>. </p>
+
+<p class="definition">Definition at line <a class="el" href="hash_8h_source.html#l00017">17</a> of file <a class="el" href="hash_8h_source.html">hash.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="hash_8h_source.html#l00037">hash()</a>.</p>
 
 </div>
 </div>
@@ -395,6 +595,37 @@ template&lt;class R&gt; </div>
 <p>Include <span class="tt"><a class="el" href="loc_8cpp_8h.html">fe/loc.cpp.h</a></span> in exactly one translation unit for the default implementation, or provide your own definitions instead. </p>
 
 <p class="definition">Definition at line <a class="el" href="loc_8cpp_8h_source.html#l00010">10</a> of file <a class="el" href="loc_8cpp_8h_source.html">loc.cpp.h</a>.</p>
+
+</div>
+</div>
+<a id="acc1eed83d44fa0a6d3888d77d1065692" name="acc1eed83d44fa0a6d3888d77d1065692"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc1eed83d44fa0a6d3888d77d1065692">&#9670;&#160;</a></span>splitmix64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t fe::splitmix64 </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t</td>          <td class="paramname"><span class="paramname"><em>h</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a href="https://prng.di.unimi.it/splitmix64.c">SplitMix64</a>'s 64-bit finalizer. </p>
+
+<p class="definition">Definition at line <a class="el" href="hash_8h_source.html#l00027">27</a> of file <a class="el" href="hash_8h_source.html">hash.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="hash_8h_source.html#l00037">hash()</a>.</p>
 
 </div>
 </div>
@@ -503,6 +734,61 @@ template&lt;<a class="el" href="conceptfe_1_1BitEnum.html">fe::BitEnum</a> E&gt;
 <dl class="section see"><dt>See also</dt><dd><a href="https://stackoverflow.com/a/65258501">https://stackoverflow.com/a/65258501</a> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="assert_8h_source.html#l00030">30</a> of file <a class="el" href="assert_8h_source.html">assert.h</a>.</p>
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variable Documentation</h2>
+<a id="a23eca58148a59f1a33c1fa3d47e78a4f" name="a23eca58148a59f1a33c1fa3d47e78a4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23eca58148a59f1a33c1fa3d47e78a4f">&#9670;&#160;</a></span>fnv1_offset</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t fe::fnv1_offset = sizeof(size_t) == 4 ? size_t(UINT32_C(2166136261)) : size_t(UINT64_C(14695981039346656037))</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>FNV-1 <a href="http://www.isthe.com/chongo/tech/comp/fnv/index.html#FNV-var">magic numbers</a> for <span class="tt">sizeof(size_t)</span>. </p>
+
+<p class="definition">Definition at line <a class="el" href="hash_8h_source.html#l00059">59</a> of file <a class="el" href="hash_8h_source.html">hash.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="hash_8h_source.html#l00064">hash_begin()</a>.</p>
+
+</div>
+</div>
+<a id="a58095bbcff6b7ff77b3e6592838e079e" name="a58095bbcff6b7ff77b3e6592838e079e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58095bbcff6b7ff77b3e6592838e079e">&#9670;&#160;</a></span>fnv1_prime</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t fe::fnv1_prime = sizeof(size_t) == 4 ? size_t(UINT32_C( 16777619)) : size_t(UINT64_C( 1099511628211))</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="hash_8h_source.html#l00060">60</a> of file <a class="el" href="hash_8h_source.html">hash.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="hash_8h_source.html#l00068">hash_combine()</a>.</p>
 
 </div>
 </div>

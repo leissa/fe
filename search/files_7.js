@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['readme_2emd_0',['README.md',['../README_8md.html',1,'']]],
-  ['ring_2eh_1',['ring.h',['../ring_8h.html',1,'']]]
+  ['parser_2eh_0',['parser.h',['../parser_8h.html',1,'']]]
 ];

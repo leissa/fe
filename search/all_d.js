@@ -7,5 +7,6 @@ var searchData=
   ['min_5fcode_5fpoint_4',['min_code_point',['../namespacefe_1_1utf8.html#a6660a5ce2b492de5ef72a34c329aacba',1,'fe::utf8']]],
   ['mk_5',['mk',['../classfe_1_1Arena.html#aba49d689fc2975bea37eaccc5410de8b',1,'fe::Arena']]],
   ['mode_6',['Mode',['../namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087',1,'fe::term']]],
-  ['mode_7',['mode',['../namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf',1,'fe::term']]]
+  ['mode_7',['mode',['../namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf',1,'fe::term']]],
+  ['murmur3_8',['murmur3',['../namespacefe.html#a89ce852a3e2d3ecde80f0ed8f81a501b',1,'fe']]]
 ];

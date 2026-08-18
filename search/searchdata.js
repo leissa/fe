@@ -3,7 +3,7 @@ var indexSectionsWithContent =
   0: ":_abcdefghijlmnopqrstuvwy⚖✨💡📚🔨🚀🛠🤝🧭",
   1: "abcdehijlmprst",
   2: "f",
-  3: "acdeflprstu",
+  3: "acdefhlprstu",
   4: "_abcdefhijlmnoprstuvw",
   5: "abcdefilmnprs",
   6: "opsv",
