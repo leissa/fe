@@ -41,6 +41,9 @@
 /// @ref fe::term::Mode::Auto to "no color".
 /// If you emit colors this way, call @ref fe::term::resolve_mode once at startup to decide
 /// @ref fe::term::Mode::Auto up front based on a representative stream.
+///
+/// Use @ref fe::term::use_color to branch on whether color will actually be emitted, e.g. to keep a
+/// plain-text fallback in sync with the colored rendering.
 namespace fe::term {
 
 /// Controls whether color escape sequences are emitted.
@@ -155,17 +158,6 @@ inline bool is_terminal(Stream s) noexcept {
 }
 #endif
 
-inline bool use_color(std::ostream& os) noexcept {
-    // clang-format off
-    switch (current_mode().load(std::memory_order_relaxed)) {
-        case Mode::Always: return true;
-        case Mode::Never:  return false;
-        case Mode::Auto:   return is_terminal(stream(os));
-        default: fe::unreachable();
-    }
-    // clang-format on
-}
-
 constexpr std::string_view sgr(FG color) noexcept {
     // clang-format off
     switch (color) {
@@ -188,6 +180,22 @@ constexpr std::string_view sgr(FG color) noexcept {
 /// Returns the current terminal color mode.
 inline Mode mode() noexcept { return detail::current_mode().load(std::memory_order_relaxed); }
 
+/// Whether color escape sequences are emitted for @p os right now.
+/// In Mode::Auto this is decided by whether @p os refers to a terminal, so a detached buffer
+/// (anything a `std::formatter` writes into) yields `false`; see @ref resolve_mode.
+/// Use this to keep a plain-text fallback in sync with what @ref operator<<(std::ostream&, FG) will emit,
+/// e.g. to spell out a marker only when it cannot be conveyed by color.
+inline bool use_color(std::ostream& os) noexcept {
+    // clang-format off
+    switch (mode()) {
+        case Mode::Always: return true;
+        case Mode::Never:  return false;
+        case Mode::Auto:   return detail::is_terminal(detail::stream(os));
+        default: fe::unreachable();
+    }
+    // clang-format on
+}
+
 /// Overrides the current terminal color mode.
 inline void set_mode(Mode m) noexcept { detail::current_mode().store(m, std::memory_order_relaxed); }
 
@@ -205,7 +213,7 @@ inline void resolve_mode(std::ostream& os = std::cerr) noexcept {
 
 /// Streams the ANSI escape sequence for @p color when colors are enabled for @p os.
 inline std::ostream& operator<<(std::ostream& os, FG color) {
-    if (detail::use_color(os)) {
+    if (use_color(os)) {
         auto esc = detail::sgr(color);
         os.write(esc.data(), esc.size());
     }

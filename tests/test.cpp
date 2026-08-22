@@ -479,6 +479,17 @@ TEST_CASE("term") {
         fe::term::resolve_mode();
         CHECK(fe::term::mode() == fe::term::Mode::Never);
     }
+
+    // use_color is the very predicate operator<< branches on, so the two must never disagree:
+    // a caller pairing a plain-text fallback with color would otherwise emit both or neither.
+    SUBCASE("use_color agrees with what operator<< emits") {
+        for (auto mode : {fe::term::Mode::Always, fe::term::Mode::Never, fe::term::Mode::Auto}) {
+            std::ostringstream oss;
+            fe::term::set_mode(mode);
+            oss << fe::term::FG::Red;
+            CHECK(fe::term::use_color(oss) == !oss.str().empty());
+        }
+    }
 }
 
 TEST_CASE("format") {
