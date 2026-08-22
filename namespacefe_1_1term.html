@@ -158,6 +158,8 @@ Enumerations</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a028b5b02dd0708554eccc7b26a7501cf" id="r_a028b5b02dd0708554eccc7b26a7501cf"><td class="memItemLeft"><a class="el" href="#a36d4d673e10a305ff30ec08d94c8f087">Mode</a>&#160;</td><td class="memItemRight"><a class="el" href="#a028b5b02dd0708554eccc7b26a7501cf">mode</a> () noexcept</td></tr>
 <tr class="memdesc:a028b5b02dd0708554eccc7b26a7501cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current terminal color mode.  <br /></td></tr>
+<tr class="memitem:ad2b84bd3b2fb301332ef7cae1fcd7b69" id="r_ad2b84bd3b2fb301332ef7cae1fcd7b69"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ad2b84bd3b2fb301332ef7cae1fcd7b69">use_color</a> (std::ostream &amp;os) noexcept</td></tr>
+<tr class="memdesc:ad2b84bd3b2fb301332ef7cae1fcd7b69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether color escape sequences are emitted for <code class="param">os</code> right now.  <br /></td></tr>
 <tr class="memitem:aea69c469efc3010ca40cb1873ff6bec6" id="r_aea69c469efc3010ca40cb1873ff6bec6"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aea69c469efc3010ca40cb1873ff6bec6">set_mode</a> (<a class="el" href="#a36d4d673e10a305ff30ec08d94c8f087">Mode</a> m) noexcept</td></tr>
 <tr class="memdesc:aea69c469efc3010ca40cb1873ff6bec6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overrides the current terminal color mode.  <br /></td></tr>
 <tr class="memitem:a787158fdb940cfa7e778863bde8f34e8" id="r_a787158fdb940cfa7e778863bde8f34e8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a787158fdb940cfa7e778863bde8f34e8">resolve_mode</a> (std::ostream &amp;os=std::cerr) noexcept</td></tr>
@@ -168,10 +170,11 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Lightweight stream-based terminal colors for diagnostics and CLI output. </p>
 <p>Include <span class="tt"><a class="el" href="term_8h.html">fe/term.h</a></span> and stream a <a class="el" href="#a316a3298d89062fe9e7dbb1581c75148" title="fe::term::FG">fe::term::FG</a> value into an <span class="tt">std::ostream</span>: </p><div class="fragment"><div class="line">std::cerr &lt;&lt; <a class="code hl_enumvalue" href="#a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47">fe::term::FG::Red</a> &lt;&lt; <span class="stringliteral">&quot;error: &quot;</span> &lt;&lt; <a class="code hl_enumvalue" href="#a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d">fe::term::FG::Reset</a> &lt;&lt; <span class="stringliteral">&quot;unexpected token\n&quot;</span>;</div>
-<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d"><div class="ttname"><a href="#a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d">fe::term::FG::Reset</a></div><div class="ttdeci">@ Reset</div><div class="ttdef"><b>Definition</b> <a href="term_8h_source.html#l00064">term.h:64</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47"><div class="ttname"><a href="#a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47">fe::term::FG::Red</a></div><div class="ttdeci">@ Red</div><div class="ttdef"><b>Definition</b> <a href="term_8h_source.html#l00056">term.h:56</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d"><div class="ttname"><a href="#a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d">fe::term::FG::Reset</a></div><div class="ttdeci">@ Reset</div><div class="ttdef"><b>Definition</b> <a href="term_8h_source.html#l00067">term.h:67</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47"><div class="ttname"><a href="#a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47">fe::term::FG::Red</a></div><div class="ttdeci">@ Red</div><div class="ttdef"><b>Definition</b> <a href="term_8h_source.html#l00059">term.h:59</a></div></div>
 </div><!-- fragment --><p>The current behavior is controlled via <a class="el" href="#a36d4d673e10a305ff30ec08d94c8f087" title="fe::term::Mode">fe::term::Mode</a> and can be overridden with <a class="el" href="#aea69c469efc3010ca40cb1873ff6bec6" title="fe::term::set_mode">fe::term::set_mode</a>. In <a class="el" href="#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb" title="fe::term::Mode::Auto">fe::term::Mode::Auto</a>, colors are emitted only for <span class="tt">std::cout</span>, <span class="tt">std::cerr</span>, <span class="tt">std::clog</span>, or streams sharing those buffers when they refer to terminals. FE also respects the common environment conventions <span class="tt">NO_COLOR</span>, <span class="tt">CLICOLOR=0</span>, and <span class="tt">CLICOLOR_FORCE</span> (unless it is set to <span class="tt">0</span>).</p>
-<p>Note that a <span class="tt">std::formatter</span> never sees the destination stream - it formats into a detached buffer. Hence, embedding a <a class="el" href="#a316a3298d89062fe9e7dbb1581c75148" title="fe::term::FG">fe::term::FG</a> value in a <span class="tt">std::format</span>/<span class="tt">std::print</span> format string resolves <a class="el" href="#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb" title="fe::term::Mode::Auto">fe::term::Mode::Auto</a> to "no color". If you emit colors this way, call <a class="el" href="#a787158fdb940cfa7e778863bde8f34e8" title="fe::term::resolve_mode">fe::term::resolve_mode</a> once at startup to decide <a class="el" href="#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb" title="fe::term::Mode::Auto">fe::term::Mode::Auto</a> up front based on a representative stream. </p>
+<p>Note that a <span class="tt">std::formatter</span> never sees the destination stream - it formats into a detached buffer. Hence, embedding a <a class="el" href="#a316a3298d89062fe9e7dbb1581c75148" title="fe::term::FG">fe::term::FG</a> value in a <span class="tt">std::format</span>/<span class="tt">std::print</span> format string resolves <a class="el" href="#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb" title="fe::term::Mode::Auto">fe::term::Mode::Auto</a> to "no color". If you emit colors this way, call <a class="el" href="#a787158fdb940cfa7e778863bde8f34e8" title="fe::term::resolve_mode">fe::term::resolve_mode</a> once at startup to decide <a class="el" href="#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb" title="fe::term::Mode::Auto">fe::term::Mode::Auto</a> up front based on a representative stream.</p>
+<p>Use <a class="el" href="#ad2b84bd3b2fb301332ef7cae1fcd7b69" title="fe::term::use_color">fe::term::use_color</a> to branch on whether color will actually be emitted, e.g. to keep a plain-text fallback in sync with the colored rendering. </p>
 </div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
 <a id="a316a3298d89062fe9e7dbb1581c75148" name="a316a3298d89062fe9e7dbb1581c75148"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a316a3298d89062fe9e7dbb1581c75148">&#9670;&#160;</a></span>FG</h2>
@@ -207,7 +210,7 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d" name="a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d"></a>Reset&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00054">54</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00057">57</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
 </div>
 </div>
@@ -238,7 +241,7 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="a36d4d673e10a305ff30ec08d94c8f087a68eec46437c384d8dad18d5464ebc35c" name="a36d4d673e10a305ff30ec08d94c8f087a68eec46437c384d8dad18d5464ebc35c"></a>Always&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00047">47</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00050">50</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
 </div>
 </div>
@@ -268,9 +271,9 @@ Functions</h2></td></tr>
 
 <p>Returns the current terminal color mode. </p>
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00189">189</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00181">181</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="term_8h_source.html#l00202">resolve_mode()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="term_8h_source.html#l00210">resolve_mode()</a>, and <a class="el" href="term_8h_source.html#l00188">use_color()</a>.</p>
 
 </div>
 </div>
@@ -303,7 +306,9 @@ Functions</h2></td></tr>
 
 <p>Streams the ANSI escape sequence for <code class="param">color</code> when colors are enabled for <code class="param">os</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00207">207</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00215">215</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+
+<p class="reference">References <a class="el" href="term_8h_source.html#l00188">use_color()</a>.</p>
 
 </div>
 </div>
@@ -333,11 +338,11 @@ Functions</h2></td></tr>
 <p>Resolves <a class="el" href="#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb">Mode::Auto</a> to <a class="el" href="#a36d4d673e10a305ff30ec08d94c8f087a68eec46437c384d8dad18d5464ebc35c">Mode::Always</a> or <a class="el" href="#a36d4d673e10a305ff30ec08d94c8f087a6e7b34fa59e1bd229b207892956dc41c">Mode::Never</a>, depending on whether <code class="param">os</code> refers to a terminal. </p>
 <p>A <span class="tt">std::formatter</span> cannot see its destination stream, so <a class="el" href="#a316a3298d89062fe9e7dbb1581c75148" title="Foreground colors that can be streamed into an std::ostream.">FG</a> values embedded in a <span class="tt">std::format</span>/<span class="tt">std::print</span> format string never detect a terminal in <a class="el" href="#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb">Mode::Auto</a>. Call this once at startup to make formatted output colored as well; explicit modes are left untouched: </p><div class="fragment"><div class="line"><a class="code hl_function" href="#a787158fdb940cfa7e778863bde8f34e8">fe::term::resolve_mode</a>(); <span class="comment">// decide based on stderr</span></div>
 <div class="line">std::print(std::cerr, <span class="stringliteral">&quot;{}error:{} ...&quot;</span>, <a class="code hl_enumvalue" href="#a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47">fe::term::FG::Red</a>, <a class="code hl_enumvalue" href="#a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d">fe::term::FG::Reset</a>);</div>
-<div class="ttc" id="anamespacefe_1_1term_html_a787158fdb940cfa7e778863bde8f34e8"><div class="ttname"><a href="#a787158fdb940cfa7e778863bde8f34e8">fe::term::resolve_mode</a></div><div class="ttdeci">void resolve_mode(std::ostream &amp;os=std::cerr) noexcept</div><div class="ttdoc">Resolves Mode::Auto to Mode::Always or Mode::Never, depending on whether os refers to a terminal.</div><div class="ttdef"><b>Definition</b> <a href="term_8h_source.html#l00202">term.h:202</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a787158fdb940cfa7e778863bde8f34e8"><div class="ttname"><a href="#a787158fdb940cfa7e778863bde8f34e8">fe::term::resolve_mode</a></div><div class="ttdeci">void resolve_mode(std::ostream &amp;os=std::cerr) noexcept</div><div class="ttdoc">Resolves Mode::Auto to Mode::Always or Mode::Never, depending on whether os refers to a terminal.</div><div class="ttdef"><b>Definition</b> <a href="term_8h_source.html#l00210">term.h:210</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00202">202</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00210">210</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
-<p class="reference">References <a class="el" href="term_8h_source.html#l00050">Always</a>, <a class="el" href="term_8h_source.html#l00048">Auto</a>, <a class="el" href="term_8h_source.html#l00189">mode()</a>, <a class="el" href="term_8h_source.html#l00049">Never</a>, and <a class="el" href="term_8h_source.html#l00192">set_mode()</a>.</p>
+<p class="reference">References <a class="el" href="term_8h_source.html#l00053">Always</a>, <a class="el" href="term_8h_source.html#l00051">Auto</a>, <a class="el" href="term_8h_source.html#l00181">mode()</a>, <a class="el" href="term_8h_source.html#l00052">Never</a>, and <a class="el" href="term_8h_source.html#l00200">set_mode()</a>.</p>
 
 </div>
 </div>
@@ -366,9 +371,43 @@ Functions</h2></td></tr>
 
 <p>Overrides the current terminal color mode. </p>
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00192">192</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00200">200</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="term_8h_source.html#l00202">resolve_mode()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="term_8h_source.html#l00210">resolve_mode()</a>.</p>
+
+</div>
+</div>
+<a id="ad2b84bd3b2fb301332ef7cae1fcd7b69" name="ad2b84bd3b2fb301332ef7cae1fcd7b69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2b84bd3b2fb301332ef7cae1fcd7b69">&#9670;&#160;</a></span>use_color()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fe::term::use_color </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>os</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether color escape sequences are emitted for <code class="param">os</code> right now. </p>
+<p>In <a class="el" href="#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb">Mode::Auto</a> this is decided by whether <code class="param">os</code> refers to a terminal, so a detached buffer (anything a <span class="tt">std::formatter</span> writes into) yields <span class="tt">false</span>; see <a class="el" href="#a787158fdb940cfa7e778863bde8f34e8" title="resolve_mode">resolve_mode</a>. Use this to keep a plain-text fallback in sync with what <a class="el" href="#ac0ce9f4aeb844ed9e5cf41dce8dacf8a" title="operator&lt;&lt;(std::ostream&amp;, FG)">operator&lt;&lt;(std::ostream&amp;, FG)</a> will emit, e.g. to spell out a marker only when it cannot be conveyed by color. </p>
+
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00188">188</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+
+<p class="reference">References <a class="el" href="term_8h_source.html#l00053">Always</a>, <a class="el" href="term_8h_source.html#l00051">Auto</a>, <a class="el" href="term_8h_source.html#l00181">mode()</a>, <a class="el" href="term_8h_source.html#l00052">Never</a>, and <a class="el" href="assert_8h_source.html#l00030">fe::unreachable()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="term_8h_source.html#l00215">operator&lt;&lt;()</a>.</p>
 
 </div>
 </div>
