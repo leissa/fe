@@ -4,6 +4,7 @@
 
 #include <istream>
 #include <ostream>
+#include <string_view>
 
 #include "fe/assert.h"
 
@@ -81,6 +82,19 @@ inline char32_t decode(std::istream& is) {
     }
 
     return result;
+}
+
+/// Number of UTF-8 code points in @p str.
+/// @note Pos::col counts code points - Lexer::next advances it per decoded `char32_t` - so a byte offset is the
+/// wrong unit for anything that has to line up under a column.
+/// An invalid lead byte counts as one code point, so this never stalls on malformed input.
+inline size_t num_code_points(std::string_view str) noexcept {
+    size_t res = 0;
+    for (size_t i = 0, e = str.size(); i != e; ++res) {
+        auto n = utf8::num_bytes(char8_t(str[i]));
+        i += n == 0 ? 1 : n;
+    }
+    return res;
 }
 
 namespace detail {

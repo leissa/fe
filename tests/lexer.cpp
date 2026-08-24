@@ -403,6 +403,19 @@ public:
     }
 };
 
+TEST_CASE("utf8::num_code_points") {
+    CHECK(utf8::num_code_points("") == 0);
+    CHECK(utf8::num_code_points("abc") == 3);
+    CHECK(utf8::num_code_points("λ") == 1);      // 2 bytes
+    CHECK(utf8::num_code_points("→") == 1);      // 3 bytes
+    CHECK(utf8::num_code_points("𝔽") == 1);      // 4 bytes
+    CHECK(utf8::num_code_points("«3; x»") == 6); // two 2-byte code points plus four ASCII
+    // an invalid lead byte counts as one and still advances
+    CHECK(utf8::num_code_points("\xff"
+                                "a")
+          == 2);
+}
+
 TEST_CASE("Lexer Append policies") {
     std::istringstream is("MiXeD MiXeD MiXeD MiXeD");
     FoldLexer lexer(is);
