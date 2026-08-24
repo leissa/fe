@@ -35,7 +35,6 @@ target_sources(fe
             include/fe/loc.cpp.h
             include/fe/parser.h
             include/fe/ring.h
-            include/fe/snippet.h
             include/fe/sym.h
             include/fe/term.h
             include/fe/utf8.h
