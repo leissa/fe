@@ -100,16 +100,12 @@ IfMacros:
   - KJ_IF_MAYBE
 IncludeBlocks: Regroup
 IncludeCategories:
-  - Regex:           '<c.*[^.][^h]>'
-    Priority:        1
-  - Regex:           '<.*[^.][^h]>'
-    Priority:        2
-  - Regex:           '<.*>'
-    Priority:        3
-  - Regex:           '"thorin/[[:alnum:]]+\.h"'
-    Priority:        4
-  - Regex:           '"thorin/[[:alnum:]]+/.*"'
-    Priority:        5
+  - Regex: "<c[[:alnum:]_]+>"
+    Priority: 1
+  - Regex: "<[[:alnum:]_]+>"
+    Priority: 2
+  - Regex: "<.*>"
+    Priority: 3
 IncludeIsMainRegex: "(XXX)?$"
 IncludeIsMainSourceRegex: ""
 IndentAccessModifiers: false
