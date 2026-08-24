@@ -38,11 +38,11 @@ private:
 protected:
     /// @name Construction
     ///@{
-    void init(const std::filesystem::path* path) {
+    void init() {
         ahead_.reset();
         for (size_t i = 0; i != K; ++i)
             ahead_[i] = self().lexer().lex();
-        curr_ = Loc(path, {1, 1});
+        curr_ = ahead().loc().anew_begin();
     }
     ///@}
 
@@ -62,7 +62,7 @@ protected:
             : start_(start)
             , curr_(curr) {}
 
-        Loc loc() const { return {curr_.path, start_, curr_.finis}; }
+        Loc loc() const { return {curr_.path, start_, curr_.end}; }
         Loc operator()() const { return loc(); }
         operator Loc() const { return loc(); }
 

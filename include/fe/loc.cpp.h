@@ -8,17 +8,16 @@
 namespace fe {
 
 std::ostream& operator<<(std::ostream& os, Pos pos) {
-    if (pos.row) {
-        if (pos.col) return os << pos.row << ':' << pos.col;
-        return os << pos.row;
-    }
+    if (pos) return os << pos.off;
     return os << "<unknown position>";
 }
 
+// A Pos is a byte offset, so this cannot spell out a row and column - `@` marks the raw offsets as such.
+// Stream `SrcMap::at(loc)` instead wherever a human reads the result.
 std::ostream& operator<<(std::ostream& os, Loc loc) {
     if (loc) {
-        os << (loc.path ? loc.path->string() : "<unknown file>") << ':' << loc.begin;
-        if (loc.begin != loc.finis) os << '-' << loc.finis;
+        os << (loc.path ? loc.path->string() : "<unknown file>") << '@' << loc.begin;
+        if (loc.begin != loc.end) os << '-' << loc.end;
         return os;
     }
     return os << "<unknown location>";
