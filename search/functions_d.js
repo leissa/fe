@@ -5,7 +5,7 @@ var searchData=
   ['operator_20std_3a_3astring_2',['string',['../classfe_1_1Sym.html#ad4431e8655643fa0dde8661623eeaad8',1,'fe::Sym']]],
   ['operator_20std_3a_3astring_5fview_3',['string_view',['../classfe_1_1Sym.html#aff35eb138b2e717c637d41d1b17eba26',1,'fe::Sym']]],
   ['operator_21_3d_4',['operator!=',['../structfe_1_1Arena_1_1Allocator.html#a0518fe399d6419245555f5ba819befef',1,'fe::Arena::Allocator']]],
-  ['operator_26_5',['operator&amp;',['../enum_8h.html#a165b6b6d610c67f5ba3aeddb07511754',1,'enum.h']]],
+  ['operator_26_5',['operator&amp;',['../structfe_1_1Loc.html#a9387b31f9a8d2649ce4cd9e1f99dc143',1,'fe::Loc::operator&amp;()'],['../enum_8h.html#a165b6b6d610c67f5ba3aeddb07511754',1,'operator&amp;(E a, E b) noexcept:&#160;enum.h']]],
   ['operator_26_3d_6',['operator&amp;=',['../enum_8h.html#a64b5d7a76fc2fa9e858c99d25ca3a51e',1,'enum.h']]],
   ['operator_28_29_7',['operator()',['../structfe_1_1Arena_1_1Deleter.html#ae015df08e188973713e61eb0d212868e',1,'fe::Arena::Deleter::operator()()'],['../classfe_1_1Parser_1_1Tracker.html#a7f8e04eb3d2c9efe41ee7f28f54c7893',1,'fe::Parser::Tracker::operator()()'],['../structfe_1_1Sym_1_1String_1_1Equal.html#af9c0ac7f4270ed9cc631e9d74be7efbc',1,'fe::Sym::String::Equal::operator()()'],['../structfe_1_1Sym_1_1String_1_1Hash.html#af474868e0bcd44bb6054960daa944bc1',1,'fe::Sym::String::Hash::operator()()'],['../structfe_1_1Sym_1_1Hash.html#a8a788e26a4b73238a48fd958464939b0',1,'fe::Sym::Hash::operator()()'],['../structfe_1_1Sym_1_1Eq.html#a3f0c935dee3fb9dc4145b5131407e290',1,'fe::Sym::Eq::operator()()']]],
   ['operator_2a_8',['operator*',['../classfe_1_1Sym.html#a24ee71544ed6aebf2b24ef3f1b52d877',1,'fe::Sym']]],
