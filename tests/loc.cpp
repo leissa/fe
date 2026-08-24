@@ -35,6 +35,27 @@ TEST_CASE("Loc") {
         CHECK(loc + Loc(&path, {7, 8}, {9, 10}) == Loc(&path, {1, 2}, {9, 10}));
     }
 
+    SUBCASE("operator& intersects") {
+        std::filesystem::path other("other.let");
+
+        // Overlapping, nested and touching spans all yield the shared part.
+        CHECK((Loc(&path, {1, 1}, {1, 9}) & Loc(&path, {1, 5}, {1, 20})) == Loc(&path, {1, 5}, {1, 9}));
+        CHECK((Loc(&path, {1, 5}, {1, 20}) & Loc(&path, {1, 1}, {1, 9})) == Loc(&path, {1, 5}, {1, 9}));
+        CHECK((Loc(&path, {1, 1}, {9, 9}) & Loc(&path, {2, 1}, {3, 1})) == Loc(&path, {2, 1}, {3, 1}));
+        CHECK((Loc(&path, {1, 1}, {1, 5}) & Loc(&path, {1, 5}, {1, 9})) == Loc(&path, {1, 5}, {1, 5}));
+
+        // Disjoint, different file, or either side invalid: no overlap.
+        CHECK(!(Loc(&path, {1, 1}, {1, 4}) & Loc(&path, {1, 5}, {1, 9})));
+        CHECK(!(Loc(&path, {1, 1}, {1, 9}) & Loc(&other, {1, 1}, {1, 9})));
+        CHECK(!(Loc(&path, {1, 1}, {1, 9}) & Loc()));
+        CHECK(!(Loc() & Loc()));
+
+        // Dual to operator+: the hull of two spans contains their overlap.
+        auto a = Loc(&path, {1, 1}, {1, 9});
+        auto b = Loc(&path, {1, 5}, {1, 20});
+        CHECK(((a + b) & (a & b)) == (a & b));
+    }
+
     SUBCASE("equality compares paths by pointer") {
         std::filesystem::path same("test.let");
         CHECK(Loc(&path, {1, 2}) == Loc(&path, {1, 2}));

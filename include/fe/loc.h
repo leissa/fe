@@ -1,5 +1,6 @@
 #pragma once
 
+#include <algorithm>
 #include <filesystem>
 
 #include "fe/sym.h"
@@ -53,7 +54,17 @@ struct Loc {
     Loc anew_begin() const { return {path, begin, begin}; }
     Loc anew_finis() const { return {path, finis, finis}; }
     Loc operator+(Pos pos) const { return {path, begin, pos}; }
-    Loc operator+(Loc loc) const { return {path, begin, loc.finis}; }
+    Loc operator+(Loc loc) const { return {path, begin, loc.finis}; } ///< The hull of both Loc%ations.
+
+    /// The overlap of both Loc%ations - invalid if they are disjoint or sit in different files.
+    /// Dual to operator+; since an invalid Loc is falsy, `if (a & b)` also reads as "do they overlap?".
+    /// @note Loc::path is only compared via pointer equality, so two Loc%ations in the same file
+    /// reached through different `std::filesystem::path` objects never overlap.
+    Loc operator&(Loc loc) const {
+        if (path != loc.path || loc.begin > finis || begin > loc.finis) return {};
+        return {path, std::max(begin, loc.begin), std::min(finis, loc.finis)};
+    }
+
     explicit operator bool() const { return (bool)begin; } ///< Is a valid Loc%ation?
     /// @note Loc::path is only checked via pointer equality.
     bool operator==(Loc other) const { return begin == other.begin && finis == other.finis && path == other.path; }
