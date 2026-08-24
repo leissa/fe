@@ -119,6 +119,23 @@ TEST_CASE("SrcFile") {
         CHECK(file.prev(Pos(17)) == Pos(15)); // λ occupies [15, 17)
         CHECK(file.prev(Pos(0)) == Pos(0));
     }
+
+    SUBCASE("malformed UTF-8 resolves the way utf8::decode reads it") {
+        // A lone continuation byte is its own invalid code point - not part of the `a` before it.
+        auto bad = fe::SrcFile("bad.let", "a\x80"
+                                          "\x80"
+                                          "b");
+        CHECK(bad.prev(Pos(2)) == Pos(1));
+        CHECK(bad.prev(Pos(3)) == Pos(2));
+        CHECK(bad.col(Pos(3)) == 4);
+
+        // A truncated lead byte does not swallow what follows it.
+        auto trunc = fe::SrcFile("trunc.let", "\xc2"
+                                              "ab");
+        CHECK(trunc.col(Pos(1)) == 2);
+        CHECK(trunc.col(Pos(2)) == 3);
+        CHECK(trunc.prev(Pos(2)) == Pos(1));
+    }
 }
 
 TEST_CASE("SrcMap") {
@@ -140,6 +157,11 @@ TEST_CASE("SrcMap") {
     std::filesystem::path other("other.let");
     CHECK(std::format("{}", map.at(Loc(&other, Pos(4), Pos(9)))) == "other.let@4-9");
     CHECK(std::format("{}", map.at(Loc())) == "<unknown location>");
+
+    // So do offsets that this file cannot resolve: better a raw range than a plausible-looking 0:0.
+    CHECK(std::format("{}", map.at(Loc(file->path(), Pos(4), Pos(9999)))) == "test.let@4-9999");
+    CHECK(std::format("{}", map.at(Loc(file->path(), Pos(9), Pos(4)))) == "test.let@9-4");
+    CHECK(std::format("{}", map.at(Loc(file->path(), Pos(4), Pos()))) == "test.let@4-<unknown position>");
 }
 
 TEST_CASE("Driver") {

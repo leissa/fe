@@ -114,14 +114,12 @@ inline char32_t decode(std::string_view str, size_t& i) noexcept {
 
 /// Number of UTF-8 code points in @p str.
 /// @note A column is counted in code points, so this is what turns a byte offset into one.
-/// An invalid lead byte counts as one code point, so this never stalls on malformed input,
+/// Counts via @ref decode, so a malformed sequence resynchronizes the same way the lexer does
 /// and a @p str truncated mid-sequence counts its final partial one.
 inline size_t num_code_points(std::string_view str) noexcept {
     size_t res = 0;
-    for (size_t i = 0, e = str.size(); i < e; ++res) {
-        auto n = utf8::num_bytes(char8_t(str[i]));
-        i += n == 0 ? 1 : n;
-    }
+    for (size_t i = 0, e = str.size(); i < e; ++res)
+        decode(str, i);
     return res;
 }
 

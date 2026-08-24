@@ -66,9 +66,18 @@ public:
 
     /// Start of the last code point before @p pos - the character a half-open Loc::end points *past*.
     Pos prev(Pos pos) const {
-        auto i = std::min<size_t>(pos.off, buf_.size());
-        while (i != 0 && (char8_t(buf_[--i]) & 0b11000000) == 0b10000000) {}
-        return Pos((uint32_t)i);
+        auto end = std::min<size_t>(pos.off, buf_.size());
+        if (end == 0) return Pos(0);
+
+        auto i = end - 1;
+        while (i != 0 && (char8_t(buf_[i]) & 0b11000000) == 0b10000000)
+            --i;
+
+        // Only trust the backward scan if that candidate really decodes up to `end`:
+        // utf8::decode resynchronizes malformed input byte by byte and this must not disagree.
+        auto j = i;
+        utf8::decode(buf_, j);
+        return Pos((uint32_t)(j == end ? i : end - 1));
     }
     ///@}
 
@@ -136,7 +145,7 @@ public:
     /// The trailing position is the *last* character of @p loc - not the one Loc::end points past.
     std::ostream& stream(std::ostream& os, Loc loc) const {
         auto file = lookup(loc);
-        if (!file || !loc) return os << loc;
+        if (!file || !file->contains(loc.begin) || !file->contains(loc.end) || loc.end < loc.begin) return os << loc;
 
         auto stream_pos = [&](Pos pos) { os << file->row(pos) << ':' << file->col(pos); };
         os << file->path()->string() << ':';
