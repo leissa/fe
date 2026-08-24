@@ -7,6 +7,7 @@ var searchData=
   ['note_4',['note',['../structfe_1_1Driver.html#a897b0a14fe5cc91d50005de4039d20cf',1,'fe::Driver']]],
   ['null_5',['Null',['../namespacefe_1_1utf8.html#aea7687cddcfc751ce19ef5be406dc67c',1,'fe::utf8']]],
   ['num_5fbytes_6',['num_bytes',['../namespacefe_1_1utf8.html#a3bfd6112606e85a56fcc227b127e6c4a',1,'fe::utf8']]],
-  ['num_5ferrors_7',['num_errors',['../structfe_1_1Driver.html#aa48333257f240659d2496f47e991680d',1,'fe::Driver']]],
-  ['num_5fwarnings_8',['num_warnings',['../structfe_1_1Driver.html#a1d5029604845d7fab9162f43e07cb9a0',1,'fe::Driver']]]
+  ['num_5fcode_5fpoints_7',['num_code_points',['../namespacefe_1_1utf8.html#ada5a7d0de6f0f46d41e672c29127daaf',1,'fe::utf8']]],
+  ['num_5ferrors_8',['num_errors',['../structfe_1_1Driver.html#aa48333257f240659d2496f47e991680d',1,'fe::Driver']]],
+  ['num_5fwarnings_9',['num_warnings',['../structfe_1_1Driver.html#a1d5029604845d7fab9162f43e07cb9a0',1,'fe::Driver']]]
 ];

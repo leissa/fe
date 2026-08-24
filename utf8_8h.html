@@ -120,11 +120,12 @@ $(function(){initNavTree('utf8_8h.html','',''); });
 <div class="textblock"><code>#include &lt;cctype&gt;</code><br />
 <code>#include &lt;istream&gt;</code><br />
 <code>#include &lt;ostream&gt;</code><br />
+<code>#include &lt;string_view&gt;</code><br />
 <code>#include &quot;<a class="el" href="assert_8h_source.html">fe/assert.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for utf8.h:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="utf8_8h__incl.svg" width="572" height="183"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="utf8_8h__incl.svg" width="100%" height="437"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -161,6 +162,8 @@ Functions</h2></td></tr>
 <tr class="memdesc:a5541c302f6e3dac03bf537cb08daf301"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the 2nd, 3rd, or 4th byte of an UTF-8 byte sequence valid?  <br /></td></tr>
 <tr class="memitem:a4ca17134ff0be619535e913b53a80e79" id="r_a4ca17134ff0be619535e913b53a80e79"><td class="memItemLeft">char32_t&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1utf8.html#a4ca17134ff0be619535e913b53a80e79">fe::utf8::decode</a> (std::istream &amp;is)</td></tr>
 <tr class="memdesc:a4ca17134ff0be619535e913b53a80e79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decodes the next UTF-8 sequence from <code class="param">is</code> into a single <span class="tt">char32_t</span>.  <br /></td></tr>
+<tr class="memitem:ada5a7d0de6f0f46d41e672c29127daaf" id="r_ada5a7d0de6f0f46d41e672c29127daaf"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1utf8.html#ada5a7d0de6f0f46d41e672c29127daaf">fe::utf8::num_code_points</a> (std::string_view str) noexcept</td></tr>
+<tr class="memdesc:ada5a7d0de6f0f46d41e672c29127daaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of UTF-8 code points in <code class="param">str</code>.  <br /></td></tr>
 <tr class="memitem:a50c98a6d25495ac66c1a30e1ba83da99" id="r_a50c98a6d25495ac66c1a30e1ba83da99"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1utf8.html#a50c98a6d25495ac66c1a30e1ba83da99">fe::utf8::encode</a> (std::ostream &amp;os, char32_t c32)</td></tr>
 <tr class="memdesc:a50c98a6d25495ac66c1a30e1ba83da99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes <code class="param">c32</code> as UTF-8 and writes the resulting bytes to <code class="param">os</code>.  <br /></td></tr>
 <tr id="func-members-0" class="groupHeader"><td colspan="2"><div class="groupHeader">Wrappers</div></td></tr>

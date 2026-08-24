@@ -29,6 +29,7 @@ var namespacefe_1_1utf8 =
     [ "isxdigit", "namespacefe_1_1utf8.html#a508776758a043af7871049a6ada71571", null ],
     [ "min_code_point", "namespacefe_1_1utf8.html#a6660a5ce2b492de5ef72a34c329aacba", null ],
     [ "num_bytes", "namespacefe_1_1utf8.html#a3bfd6112606e85a56fcc227b127e6c4a", null ],
+    [ "num_code_points", "namespacefe_1_1utf8.html#ada5a7d0de6f0f46d41e672c29127daaf", null ],
     [ "tolower", "namespacefe_1_1utf8.html#a2dc258776e743dd1204f68bfe2baed2b", null ],
     [ "toupper", "namespacefe_1_1utf8.html#a7907975b61b06db27b14fe2a912f8f8c", null ],
     [ "BOM", "namespacefe_1_1utf8.html#a262057ce9cd9138f8dd21b84c7379b1c", null ],
