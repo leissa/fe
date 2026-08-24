@@ -118,9 +118,6 @@ $(function(){initNavTree('namespacefe.html','',''); });
   <div class="headertitle"><div class="title">fe Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>Renders the source a <a class="el" href="structfe_1_1Loc.html" title="Location in a File.">Loc</a> points at underneath a diagnostic, the way clang and rustc do:  
-<a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
@@ -160,8 +157,6 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialization if <span class="tt">N == 1</span> - doesn't need a ring.  <a href="classfe_1_1Ring_3_01T_00_011_01_4.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Ring_3C_20T_2C_202_20_3E" id="r_Ring_3C_20T_2C_202_20_3E"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Ring_3_01T_00_012_01_4.html">Ring&lt; T, 2 &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialization if <span class="tt">N == 2</span>; doesn't need a ring, we just copy.  <a href="classfe_1_1Ring_3_01T_00_012_01_4.html#details">More...</a><br /></td></tr>
-<tr class="memitem:Src" id="r_Src"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Src.html">Src</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The source lines a diagnostic refers to, read on demand and memoized per file.  <a href="classfe_1_1Src.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Sym" id="r_Sym"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Sym.html">Sym</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol just wraps a pointer to <a class="el" href="structfe_1_1Sym_1_1String.html">Sym::String</a>, so pass <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a> itself around as value.  <a href="classfe_1_1Sym.html#details">More...</a><br /></td></tr>
 <tr class="memitem:SymPool" id="r_SymPool"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1SymPool.html">SymPool</a></td></tr>
@@ -201,8 +196,6 @@ Functions</h2></td></tr>
 <tr class="memitem:afdda5f81a682643effc4dd73321bc737 template"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#afdda5f81a682643effc4dd73321bc737">Join</a> (R &amp;&amp;, std::string_view=&quot;, &quot;) -&gt; Join&lt; R &gt;</td></tr>
 <tr class="memitem:abe367a0891e516099018c33db02746cc" id="r_abe367a0891e516099018c33db02746cc"><td class="memItemLeft">std::ostream &amp;&#160;</td><td class="memItemRight"><a class="el" href="#abe367a0891e516099018c33db02746cc">operator&lt;&lt;</a> (std::ostream &amp;os, <a class="el" href="structfe_1_1Pos.html">Pos</a> pos)</td></tr>
 <tr class="memitem:a41708329df0d5918fc77eb3a9ee89b16" id="r_a41708329df0d5918fc77eb3a9ee89b16"><td class="memItemLeft">std::ostream &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a41708329df0d5918fc77eb3a9ee89b16">operator&lt;&lt;</a> (std::ostream &amp;os, <a class="el" href="structfe_1_1Loc.html">Loc</a> loc)</td></tr>
-<tr class="memitem:aa27a76b0de090ac0363ac3d6ad63cefd" id="r_aa27a76b0de090ac0363ac3d6ad63cefd"><td class="memItemLeft">std::ostream &amp;&#160;</td><td class="memItemRight"><a class="el" href="#aa27a76b0de090ac0363ac3d6ad63cefd">snippet</a> (std::ostream &amp;os, <a class="el" href="structfe_1_1Loc.html">Loc</a> loc, std::string_view line, <a class="el" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148">term::FG</a> caret=<a class="el" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47">term::FG::Red</a>, int gutter=5)</td></tr>
-<tr class="memdesc:aa27a76b0de090ac0363ac3d6ad63cefd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Streams <code class="param">line</code>, then a caret run underlining the columns <code class="param">loc</code> spans.  <br /></td></tr>
 <tr id="func-members-0" class="groupHeader"><td colspan="2"><div class="groupHeader">Bit operations for enum classs</div></td></tr>
 <tr><td colspan="2" class="ititle"><div class="groupText"><p>Provides all kind of bit and comparison operators for an <span class="tt">enum class</span> <code class="param">E</code>.</p>
 <p>Use like this: </p><div class="fragment"><div class="line"><span class="keyword">enum class</span> MyEnum : <span class="keywordtype">unsigned</span> {</div>
@@ -248,12 +241,7 @@ FNV-1 Hash</h2></td></tr>
 <tr class="memitem:ac131b22cfcf0e569e4adc1bf67583358 template"><td class="memItemLeft">constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="#ac131b22cfcf0e569e4adc1bf67583358">hash_begin</a> (T v) noexcept</td></tr>
 <tr class="memdesc:ac131b22cfcf0e569e4adc1bf67583358"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shorthand for <span class="tt">hash_combine(hash_begin(), v)</span>.  <br /></td></tr>
 </table>
-<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Renders the source a <a class="el" href="structfe_1_1Loc.html" title="Location in a File.">Loc</a> points at underneath a diagnostic, the way clang and rustc do: </p>
-<div class="fragment"><div class="line">3 | let n = <span class="keywordtype">id</span> 3;</div>
-<div class="line">  |         ^^^^</div>
-</div><!-- fragment --><p> <a class="el" href="#aa27a76b0de090ac0363ac3d6ad63cefd" title="fe::snippet">fe::snippet</a> draws one, <a class="el" href="classfe_1_1Src.html" title="fe::Src">fe::Src</a> supplies the lines to draw. </p>
-</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
+<a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
 <a id="a923ce058163e2041744a84793de679c0" name="a923ce058163e2041744a84793de679c0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a923ce058163e2041744a84793de679c0">&#9670;&#160;</a></span>ostream_formatter</h2>
 
@@ -607,57 +595,6 @@ template&lt;class R&gt; </div>
 <p>Include <span class="tt"><a class="el" href="loc_8cpp_8h.html">fe/loc.cpp.h</a></span> in exactly one translation unit for the default implementation, or provide your own definitions instead. </p>
 
 <p class="definition">Definition at line <a class="el" href="loc_8cpp_8h_source.html#l00010">10</a> of file <a class="el" href="loc_8cpp_8h_source.html">loc.cpp.h</a>.</p>
-
-</div>
-</div>
-<a id="aa27a76b0de090ac0363ac3d6ad63cefd" name="aa27a76b0de090ac0363ac3d6ad63cefd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa27a76b0de090ac0363ac3d6ad63cefd">&#9670;&#160;</a></span>snippet()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::ostream &amp; fe::snippet </td>
-          <td>(</td>
-          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>os</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structfe_1_1Loc.html">Loc</a></td>          <td class="paramname"><span class="paramname"><em>loc</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::string_view</td>          <td class="paramname"><span class="paramname"><em>line</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148">term::FG</a></td>          <td class="paramname"><span class="paramname"><em>caret</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47">term::FG::Red</a></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>gutter</em></span><span class="paramdefsep"> = </span><span class="paramdefval">5</span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Streams <code class="param">line</code>, then a caret run underlining the columns <code class="param">loc</code> spans. </p>
-<p>Both sit behind a gutter of width <code class="param">gutter</code> holding the row number. Does nothing if <code class="param">line</code> is empty or <code class="param">loc</code> has no column, since then there is nothing to point at. A <code class="param">loc</code> spanning several rows underlines the remainder of its first one. </p>
-
-<p class="definition">Definition at line <a class="el" href="snippet_8h_source.html#l00037">37</a> of file <a class="el" href="snippet_8h_source.html">snippet.h</a>.</p>
-
-<p class="reference">References <a class="el" href="loc_8h_source.html#l00074">fe::Loc::begin</a>, <a class="el" href="loc_8h_source.html#l00029">fe::Pos::col</a>, <a class="el" href="loc_8h_source.html#l00075">fe::Loc::finis</a>, <a class="el" href="term_8h_source.html#l00065">fe::term::Gray</a>, <a class="el" href="utf8_8h_source.html#l00027">fe::utf8::num_bytes()</a>, <a class="el" href="utf8_8h_source.html#l00091">fe::utf8::num_code_points()</a>, <a class="el" href="term_8h_source.html#l00059">fe::term::Red</a>, <a class="el" href="term_8h_source.html#l00067">fe::term::Reset</a>, and <a class="el" href="loc_8h_source.html#l00028">fe::Pos::row</a>.</p>
 
 </div>
 </div>

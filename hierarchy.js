@@ -27,7 +27,6 @@ var hierarchy =
     [ "fe::Ring&lt; T, 1 &gt;", "classfe_1_1Ring_3_01T_00_011_01_4.html", null ],
     [ "fe::Ring&lt; T, 2 &gt;", "classfe_1_1Ring_3_01T_00_012_01_4.html", null ],
     [ "fe::RuntimeCast&lt; B &gt;", "classfe_1_1RuntimeCast.html", null ],
-    [ "fe::Src", "classfe_1_1Src.html", null ],
     [ "fe::StreamFn&lt; F &gt;", "classfe_1_1StreamFn.html", null ],
     [ "fe::Sym::String", "structfe_1_1Sym_1_1String.html", null ],
     [ "fe::Sym", "classfe_1_1Sym.html", null ],
