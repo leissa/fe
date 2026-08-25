@@ -29,6 +29,16 @@ public:
         : Lexer(src.buf(), &src) {}
 
 protected:
+    /// Delegate here to funnel both of the above into a single ctor of your own.
+    Lexer(std::string_view buf, const Src* src)
+        : buf_(buf)
+        , src_(src) {
+        if (buf_.starts_with(utf8::Bom)) cursor_ = utf8::Bom.size();
+        for (size_t i = 0; i != K; ++i)
+            ahead_[i] = decode();
+        start();
+    }
+
     /// A decoded code point together with the byte range it occupies.
     struct Ahead {
         char32_t c = utf8::EoF;
@@ -96,15 +106,6 @@ protected:
     std::string str_;
 
 private:
-    Lexer(std::string_view buf, const Src* src)
-        : buf_(buf)
-        , src_(src) {
-        if (buf_.starts_with(utf8::Bom)) cursor_ = utf8::Bom.size();
-        for (size_t i = 0; i != K; ++i)
-            ahead_[i] = decode();
-        start();
-    }
-
     Ahead decode() {
         auto begin = cursor_;
         auto c     = utf8::decode(buf_, cursor_);
