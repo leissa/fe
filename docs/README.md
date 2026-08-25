@@ -42,6 +42,7 @@ It provides a compact set of reusable, well-integrated components:
 - `fe::Sym` and `fe::SymPool` for string interning and cheap identifier comparison.
 - `fe::Driver` for diagnostics and shared frontend state.
 - `fe::Pos` and `fe::Loc` for source positions and source spans.
+- `fe::Src` and `fe::SrcMap` for owning source text and resolving a position back to `path:row:col`.
 - `fe::term` for lightweight terminal colors in diagnostics and CLI output.
 - `fe::utf8` for lightweight UTF-8 handling.
 - `fe::hash` and friends for cheap, `constexpr` hash mixing/combining.
@@ -102,8 +103,9 @@ A typical FE-based frontend looks roughly like this:
 2. Implement your lexer by deriving from `fe::Lexer<K, S>`.
 3. Implement your parser by deriving from `fe::Parser<Tok, Tag, K, S>`.
 4. Use `fe::Driver` to centralize diagnostics and shared state.
-5. Thread `fe::Loc` through tokens and AST nodes for precise error reporting.
-6. Use `fe::Arena` and symbol interning where allocation cost and identifier handling matter.
+5. Register each source file with `fe::Driver::src()` so a `fe::Loc` can resolve itself to `path:row:col`.
+6. Thread `fe::Loc` through tokens and AST nodes for precise error reporting.
+7. Use `fe::Arena` and symbol interning where allocation cost and identifier handling matter.
 
 If you want a concrete model to copy from, start with [`tests/lexer.cpp`](../tests/lexer.cpp).
 

@@ -80,5 +80,39 @@ Support headers: `assert.h` (`assert`/`assertf`/`unreachable`), `cast.h` (checke
 - Non-empty symbols should be created through `SymPool::sym` / `Driver::sym`, not by constructing `Sym` manually. Use `SymMap` / `SymSet` aliases instead of concrete hash container types, especially because `FE_ABSL` switches those aliases to Abseil containers.
 - Diagnostics are `std::format`-based and go through `fe::Driver::{note,warn,err}`. Follow that pattern rather than inventing separate reporting helpers.
 - If a type already has `operator<<`, expose it to `std::format` with `template<> struct std::formatter<T> : fe::ostream_formatter {};`.
-- Derived lexers typically pull CRTP base helpers into scope with `using` declarations (`ahead`, `accept`, `next`, `loc_`, `peek_`, `str_`), matching the pattern in `tests/lexer.cpp`.
+- Derived lexers typically pull CRTP base helpers into scope with `using` declarations (`ahead`, `accept`, `next`, `loc_`, `peek`, `str_`), matching the pattern in `tests/lexer.cpp`.
 - `fe/loc.h` only declares `operator<<` for `Pos` and `Loc`; include `fe/loc.cpp.h` in exactly one translation unit when you want the default streaming implementation. That header pulls in `fe/src.h`, since `Src` is only forward-declared in `fe/loc.h`.
+
+## Comments
+
+Doxygen comments (`///`, `/** ... */`) on the public API in `include/fe/` are documentation, not commentary: they are expected and exempt from the rules below.
+Prefer one sentence per line over column-filling wraps there, so diffs stay readable.
+Everything else - comments inside function bodies, in tests, in CMake - follows these rules.
+
+Comments are scarce. The default is **no comment**.
+
+Comment only when the code itself cannot reasonably express the information.
+
+- Comment **why**, not what the code does.
+- Prefer a better name, structure, or API over a comment.
+- Keep comments to **one short sentence**, normally one line.
+- A comment should convey one fact only: an invariant, non-obvious constraint, algorithmic reason, or important external reference.
+- Do not explain the implementation, summarize a function, or provide a narrative of its control flow.
+- Match the comment density and brevity of the surrounding code. **Never increase comment density.**
+- Do not add documentation-style prose, introductions, conclusions, or motivational/explanatory language.
+- Do not use rhetorical contrasts such as `"X" -> "Y"`, `"instead of X"`, or `"from X to Y"` to explain an optimization.
+- Do not add comments describing the change itself ("now handles X", "renamed from Y"); that belongs in the commit message.
+- Do not add banner or section-header comments.
+- Do not add a comment if deleting it would leave the code equally correct and understandable.
+- A comment that restates the code is worse than no comment:
+  ```cpp
+  vec.push_back(x); // BAD: "put x into the vector"
+  ```
+
+**Hard limit:** Do not write multi-line comments unless the user explicitly asks for documentation or the comment is required to document a non-obvious invariant that cannot be stated briefly.
+
+Before adding a comment, ask:
+1. Is this information necessary?
+2. Is it already apparent from the code or names?
+3. Can it be expressed in one short sentence?
+If the answer to 1 or 3 is no, do not add the comment.
