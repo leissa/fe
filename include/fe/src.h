@@ -3,27 +3,47 @@
 #include <cstdint>
 
 #include <algorithm>
-#include <deque>
 #include <filesystem>
 #include <fstream>
 #include <iterator>
-#include <ostream>
 #include <string>
 #include <string_view>
+#include <system_error>
 #include <utility>
 #include <vector>
 
-#include "fe/format.h"
+#ifdef FE_ABSL
+#    include <absl/container/node_hash_map.h>
+#else
+#    include <unordered_map>
+#endif
+
 #include "fe/loc.h"
 #include "fe/utf8.h"
 
 namespace fe {
 
+/// Hashes a `std::filesystem::path` - consistent with its `operator==`, which compares lexically.
+struct PathHash {
+    size_t operator()(const std::filesystem::path& path) const noexcept { return std::filesystem::hash_value(path); }
+};
+
+/// Maps a `std::filesystem::path` to @p V.
+/// @warning Node-based on purpose: fe::SrcMap stores its Src%s in here and a Loc points to one,
+/// so the values must never move.
+#ifdef FE_ABSL
+template<class V>
+using PathMap = absl::node_hash_map<std::filesystem::path, V, PathHash>;
+#else
+template<class V>
+using PathMap = std::unordered_map<std::filesystem::path, V, PathHash>;
+#endif
+
 /// The content of one source file together with the offsets its rows start at.
 /// This is what turns a Pos back into the row/column a human wants to read.
-class SrcFile {
+class Src {
 public:
-    SrcFile(std::filesystem::path path, std::string buf)
+    Src(std::filesystem::path path, std::string buf)
         : path_(std::move(path))
         , buf_(std::move(buf)) {
         rows_.emplace_back(0);
@@ -33,7 +53,7 @@ public:
 
     /// @name Getters
     ///@{
-    const std::filesystem::path* path() const { return &path_; }
+    const std::filesystem::path& path() const { return path_; }
     std::string_view buf() const { return buf_; }
     uint32_t num_rows() const { return (uint32_t)rows_.size(); }
     Pos begin() const { return Pos(0); }
@@ -90,26 +110,30 @@ private:
     std::vector<uint32_t> rows_; ///< Offset each row starts at; `rows_.front() == 0`.
 };
 
-/// Owns the text - and the `std::filesystem::path` - of every file a Loc may point into.
-/// Keep one in your Driver: a Loc is only as good as the SrcMap that can still resolve it.
+/// Interns the text - and the `std::filesystem::path` - of every file a Loc may point into.
+/// Keep one in your Driver: a Loc is only as good as the SrcMap that keeps its Src alive.
+/// Each file lives here exactly once, so Loc::src identifies it by pointer - see SrcMap::key.
 class SrcMap {
 public:
     /// @name Register a File
     ///@{
     /// Registers @p path with @p buf as its content and reports whether it is fresh.
-    /// A @p path equivalent to an already registered one yields that entry instead.
-    std::pair<const SrcFile*, bool> add(std::filesystem::path path, std::string buf) {
-        if (auto file = lookup(path)) return {file, false};
-        return {&files_.emplace_back(std::move(path), std::move(buf)), true};
+    /// A @p path with the same SrcMap::key as an already registered one yields that entry instead.
+    std::pair<const Src*, bool> add(std::filesystem::path path, std::string buf) {
+        auto k          = key(path);
+        auto [i, fresh] = path2src_.try_emplace(std::move(k), std::move(path), std::move(buf));
+        return {&i->second, fresh};
     }
 
     /// As above, but reads the content from @p path.
-    /// @returns a `nullptr` SrcFile if @p path cannot be opened.
-    std::pair<const SrcFile*, bool> add(std::filesystem::path path) {
-        if (auto file = lookup(path)) return {file, false};
+    /// @returns a `nullptr` Src if @p path cannot be opened.
+    std::pair<const Src*, bool> add(std::filesystem::path path) {
+        auto k = key(path);
+        if (auto i = path2src_.find(k); i != path2src_.end()) return {&i->second, false};
         auto ifs = std::ifstream(path, std::ios::binary);
         if (!ifs) return {nullptr, false};
-        return {&files_.emplace_back(std::move(path), slurp(ifs)), true};
+        auto [i, fresh] = path2src_.try_emplace(std::move(k), std::move(path), slurp(ifs));
+        return {&i->second, fresh};
     }
 
     /// Reads all of @p is into a `std::string`.
@@ -119,62 +143,33 @@ public:
     ///@}
 
     /// @name Lookup
-    /// Both yield `nullptr` if the file has not been registered.
     ///@{
-    /// @note Compares lexically first, so this also works for a @p path that does not exist on disk.
-    const SrcFile* lookup(const std::filesystem::path& path) const {
-        std::error_code ignore;
-        for (const auto& file : files_)
-            if (*file.path() == path || (std::filesystem::equivalent(*file.path(), path, ignore) && !ignore))
-                return &file;
-        return nullptr;
+    /// @returns `nullptr` if @p path has not been registered.
+    /// @note Compares SrcMap::key%s, so a @p path that merely *spells* a registered file
+    /// differently still finds it.
+    const Src* lookup(const std::filesystem::path& path) const {
+        auto i = path2src_.find(key(path));
+        return i == path2src_.end() ? nullptr : &i->second;
     }
 
-    /// @note Loc::path is owned by this SrcMap, so this compares pointers - no `fs::equivalent`.
-    const SrcFile* lookup(Loc loc) const {
-        if (loc.path)
-            for (const auto& file : files_)
-                if (file.path() == loc.path) return &file;
-        return nullptr;
+    /// The key @p path is interned under - absolute, symlink-free, and normalized.
+    /// This is where "do these two paths name the same file?" is decided - once, upon SrcMap::add -
+    /// so that every comparison afterwards is a plain Loc::src pointer comparison.
+    /// @note Resolves symlinks and `.`/`..` as far as @p path exists on disk and normalizes the rest
+    /// lexically. A relative @p path is resolved against the current working directory *now*.
+    static std::filesystem::path key(const std::filesystem::path& path) {
+        std::error_code ec;
+        // Absolute first: weakly_canonical only resolves the prefix of `path` that exists on disk,
+        // and whether `foo` has such a prefix at all depends on it being spelled `./foo` or not.
+        auto abs = std::filesystem::absolute(path, ec);
+        if (ec) return path.lexically_normal();
+        auto res = std::filesystem::weakly_canonical(abs, ec);
+        return ec ? abs.lexically_normal() : res;
     }
-    ///@}
-
-    /// @name Render a Loc
-    ///@{
-    /// Streams @p loc as `file:row:col-row:col`, falling back to Loc%'s raw offsets if it cannot be resolved.
-    /// The trailing position is the *last* character of @p loc - not the one Loc::end points past.
-    std::ostream& stream(std::ostream& os, Loc loc) const {
-        auto file = lookup(loc);
-        if (!file || !file->contains(loc.begin) || !file->contains(loc.end) || loc.end < loc.begin) return os << loc;
-
-        auto stream_pos = [&](Pos pos) {
-            auto [row, col] = file->rowcol(pos);
-            os << row << ':' << col;
-        };
-        os << file->path()->string() << ':';
-        stream_pos(loc.begin);
-        if (auto last = file->prev(loc.end); loc.begin < last) os << '-', stream_pos(last);
-        return os;
-    }
-
-    /// Wraps @p loc together with this SrcMap so that it streams/formats as `file:row:col-row:col`.
-    struct At {
-        const SrcMap& map;
-        Loc loc;
-
-        friend std::ostream& operator<<(std::ostream& os, At at) { return at.map.stream(os, at.loc); }
-    };
-
-    At at(Loc loc) const { return {*this, loc}; }
     ///@}
 
 private:
-    std::deque<SrcFile> files_; ///< A `std::deque` so that SrcFile::path stays put.
+    PathMap<Src> path2src_; ///< Keyed by SrcMap::key; node-based, so a Src never moves.
 };
 
 } // namespace fe
-
-#ifndef DOXYGEN
-template<>
-struct std::formatter<fe::SrcMap::At> : fe::ostream_formatter {};
-#endif

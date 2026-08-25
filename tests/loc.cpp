@@ -21,117 +21,118 @@ TEST_CASE("Pos") {
 }
 
 TEST_CASE("Loc") {
-    std::filesystem::path path("test.let");
+    auto src = fe::Src("test.let", "");
 
     CHECK(!Loc());
     CHECK(Loc(Pos(0), Pos(4)));
 
     SUBCASE("anew, size and operator+") {
-        Loc loc(&path, Pos(2), Pos(9));
+        Loc loc(&src, Pos(2), Pos(9));
         CHECK(loc.size() == 7);
-        CHECK(loc.anew_begin() == Loc(&path, Pos(2)));
-        CHECK(loc.anew_end() == Loc(&path, Pos(9)));
-        CHECK(loc + Pos(20) == Loc(&path, Pos(2), Pos(20)));
-        CHECK(loc + Loc(&path, Pos(30), Pos(40)) == Loc(&path, Pos(2), Pos(40)));
+        CHECK(loc.anew_begin() == Loc(&src, Pos(2)));
+        CHECK(loc.anew_end() == Loc(&src, Pos(9)));
+        CHECK(loc + Pos(20) == Loc(&src, Pos(2), Pos(20)));
+        CHECK(loc + Loc(&src, Pos(30), Pos(40)) == Loc(&src, Pos(2), Pos(40)));
     }
 
     SUBCASE("operator& intersects") {
-        std::filesystem::path other("other.let");
+        auto other = fe::Src("other.let", "");
 
         // Overlapping and nested ranges yield the shared part.
-        CHECK((Loc(&path, Pos(1), Pos(9)) & Loc(&path, Pos(5), Pos(20))) == Loc(&path, Pos(5), Pos(9)));
-        CHECK((Loc(&path, Pos(5), Pos(20)) & Loc(&path, Pos(1), Pos(9))) == Loc(&path, Pos(5), Pos(9)));
-        CHECK((Loc(&path, Pos(1), Pos(99)) & Loc(&path, Pos(20), Pos(30))) == Loc(&path, Pos(20), Pos(30)));
+        CHECK((Loc(&src, Pos(1), Pos(9)) & Loc(&src, Pos(5), Pos(20))) == Loc(&src, Pos(5), Pos(9)));
+        CHECK((Loc(&src, Pos(5), Pos(20)) & Loc(&src, Pos(1), Pos(9))) == Loc(&src, Pos(5), Pos(9)));
+        CHECK((Loc(&src, Pos(1), Pos(99)) & Loc(&src, Pos(20), Pos(30))) == Loc(&src, Pos(20), Pos(30)));
 
         // Touching, disjoint, different file, empty, or either side invalid: no overlap.
-        CHECK(!(Loc(&path, Pos(1), Pos(5)) & Loc(&path, Pos(5), Pos(9))));
-        CHECK(!(Loc(&path, Pos(1), Pos(4)) & Loc(&path, Pos(5), Pos(9))));
-        CHECK(!(Loc(&path, Pos(1), Pos(9)) & Loc(&other, Pos(1), Pos(9))));
-        CHECK(!(Loc(&path, Pos(5)) & Loc(&path, Pos(1), Pos(9))));
-        CHECK(!(Loc(&path, Pos(1), Pos(9)) & Loc()));
+        CHECK(!(Loc(&src, Pos(1), Pos(5)) & Loc(&src, Pos(5), Pos(9))));
+        CHECK(!(Loc(&src, Pos(1), Pos(4)) & Loc(&src, Pos(5), Pos(9))));
+        CHECK(!(Loc(&src, Pos(1), Pos(9)) & Loc(&other, Pos(1), Pos(9))));
+        CHECK(!(Loc(&src, Pos(5)) & Loc(&src, Pos(1), Pos(9))));
+        CHECK(!(Loc(&src, Pos(1), Pos(9)) & Loc()));
         CHECK(!(Loc() & Loc()));
 
         // Dual to operator+: the hull of two ranges contains their overlap.
-        auto a = Loc(&path, Pos(1), Pos(9));
-        auto b = Loc(&path, Pos(5), Pos(20));
+        auto a = Loc(&src, Pos(1), Pos(9));
+        auto b = Loc(&src, Pos(5), Pos(20));
         CHECK(((a + b) & (a & b)) == (a & b));
     }
 
-    SUBCASE("equality compares paths by pointer") {
-        std::filesystem::path same("test.let");
-        CHECK(Loc(&path, Pos(2)) == Loc(&path, Pos(2)));
-        CHECK(Loc(&path, Pos(2)) != Loc(&same, Pos(2)));
-        CHECK(Loc(Pos(2), Pos(2)) != Loc(&path, Pos(2)));
+    SUBCASE("equality compares sources by pointer") {
+        auto same = fe::Src("test.let", "");
+        CHECK(Loc(&src, Pos(2)) == Loc(&src, Pos(2)));
+        CHECK(Loc(&src, Pos(2)) != Loc(&same, Pos(2)));
+        CHECK(Loc(Pos(2), Pos(2)) != Loc(&src, Pos(2)));
     }
 
     SUBCASE("stream output falls back to raw offsets") {
-        CHECK(std::format("{}", Loc(&path, Pos(2), Pos(9))) == "test.let@2-9");
-        CHECK(std::format("{}", Loc(&path, Pos(2))) == "test.let@2");
+        // `src` is empty, so it has no row/column for any of these - see TEST_CASE("SrcMap").
+        CHECK(std::format("{}", Loc(&src, Pos(2), Pos(9))) == "test.let@2-9");
+        CHECK(std::format("{}", Loc(&src, Pos(2))) == "test.let@2");
         CHECK(std::format("{}", Loc(Pos(2), Pos(2))) == "<unknown file>@2");
         CHECK(std::format("{}", Loc()) == "<unknown location>");
     }
 }
 
-TEST_CASE("SrcFile") {
-    auto file = fe::SrcFile("test.let", "let x = 1;\nlet λ = «2»;\r\n\nlast");
+TEST_CASE("Src") {
+    auto src = fe::Src("test.let", "let x = 1;\nlet λ = «2»;\r\n\nlast");
     // Row 2 starts at offset 11; λ occupies [15, 17), « [20, 22) and » [23, 25).
 
-    CHECK(file.num_rows() == 4);
-    CHECK(file.begin() == Pos(0));
-    CHECK(file.end() == Pos(file.buf().size()));
+    CHECK(src.num_rows() == 4);
+    CHECK(src.begin() == Pos(0));
+    CHECK(src.end() == Pos(src.buf().size()));
 
     SUBCASE("rows and columns") {
-        CHECK(file.row(Pos(0)) == 1);
-        CHECK(file.col(Pos(0)) == 1);
-        CHECK(file.row(Pos(9)) == 1);
-        CHECK(file.col(Pos(9)) == 10);
-        CHECK(file.row(Pos(11)) == 2);
-        CHECK(file.col(Pos(11)) == 1);
+        CHECK(src.row(Pos(0)) == 1);
+        CHECK(src.col(Pos(0)) == 1);
+        CHECK(src.row(Pos(9)) == 1);
+        CHECK(src.col(Pos(9)) == 10);
+        CHECK(src.row(Pos(11)) == 2);
+        CHECK(src.col(Pos(11)) == 1);
 
         // A column counts code points, not bytes: `λ`, `«` and `»` are two bytes each.
-        CHECK(file.col(Pos(15)) == 5);  // λ
-        CHECK(file.col(Pos(17)) == 6);  // ' '
-        CHECK(file.col(Pos(20)) == 9);  // «
-        CHECK(file.col(Pos(23)) == 11); // »
-        CHECK(file.row(Pos(23)) == 2);
+        CHECK(src.col(Pos(15)) == 5);  // λ
+        CHECK(src.col(Pos(17)) == 6);  // ' '
+        CHECK(src.col(Pos(20)) == 9);  // «
+        CHECK(src.col(Pos(23)) == 11); // »
+        CHECK(src.row(Pos(23)) == 2);
 
         // The lexer only ever hands out code point boundaries; an interior byte still resolves,
         // counting the partial sequence as one code point.
-        CHECK(file.col(Pos(16)) == 6);
+        CHECK(src.col(Pos(16)) == 6);
 
-        CHECK(file.row(Pos()) == 0);
-        CHECK(file.col(Pos()) == 0);
-        CHECK(file.row(file.end()) == 4);
-        CHECK(file.row(Pos(9999)) == 0);
+        CHECK(src.row(Pos()) == 0);
+        CHECK(src.col(Pos()) == 0);
+        CHECK(src.row(src.end()) == 4);
+        CHECK(src.row(Pos(9999)) == 0);
     }
 
     SUBCASE("lines drop their terminator") {
-        CHECK(file.line(1) == "let x = 1;");
-        CHECK(file.line(2) == "let λ = «2»;"); // \r\n
-        CHECK(file.line(3) == "");
-        CHECK(file.line(4) == "last");
-        CHECK(file.line(0) == "");
-        CHECK(file.line(5) == "");
+        CHECK(src.line(1) == "let x = 1;");
+        CHECK(src.line(2) == "let λ = «2»;"); // \r\n
+        CHECK(src.line(3) == "");
+        CHECK(src.line(4) == "last");
+        CHECK(src.line(0) == "");
+        CHECK(src.line(5) == "");
     }
 
     SUBCASE("prev steps back one whole code point") {
-        CHECK(file.prev(Pos(1)) == Pos(0));
-        CHECK(file.prev(Pos(17)) == Pos(15)); // λ occupies [15, 17)
-        CHECK(file.prev(Pos(0)) == Pos(0));
+        CHECK(src.prev(Pos(1)) == Pos(0));
+        CHECK(src.prev(Pos(17)) == Pos(15)); // λ occupies [15, 17)
+        CHECK(src.prev(Pos(0)) == Pos(0));
     }
 
     SUBCASE("malformed UTF-8 resolves the way utf8::decode reads it") {
         // A lone continuation byte is its own invalid code point - not part of the `a` before it.
-        auto bad = fe::SrcFile("bad.let", "a\x80"
-                                          "\x80"
-                                          "b");
+        auto bad = fe::Src("bad.let", "a\x80"
+                                      "\x80"
+                                      "b");
         CHECK(bad.prev(Pos(2)) == Pos(1));
         CHECK(bad.prev(Pos(3)) == Pos(2));
         CHECK(bad.col(Pos(3)) == 4);
 
         // A truncated lead byte does not swallow what follows it.
-        auto trunc = fe::SrcFile("trunc.let", "\xc2"
-                                              "ab");
+        auto trunc = fe::Src("trunc.let", "\xc2"
+                                          "ab");
         CHECK(trunc.col(Pos(1)) == 2);
         CHECK(trunc.col(Pos(2)) == 3);
         CHECK(trunc.prev(Pos(2)) == Pos(1));
@@ -140,29 +141,41 @@ TEST_CASE("SrcFile") {
 
 TEST_CASE("SrcMap") {
     fe::SrcMap map;
-    auto [file, fresh] = map.add("test.let", "let x = 1;\nlet y = 2;");
+    auto [src, fresh] = map.add("test.let", "let x = 1;\nlet y = 2;");
     CHECK(fresh);
-    CHECK(map.add("test.let", "whatever") == std::pair(file, false));
-    CHECK(map.lookup(Loc(file->path(), Pos(0))) == file);
-    CHECK(map.lookup(Loc()) == nullptr);
+    CHECK(map.add("test.let", "whatever") == std::pair(src, false));
+    CHECK(map.lookup("test.let") == src);
+    CHECK(map.lookup("other.let") == nullptr);
     CHECK(map.add("nonexistent.let").first == nullptr);
 
-    // A resolvable Loc renders as `file:row:col-row:col`; the trailing position is the *last*
+    // Different spellings of the same file share one Src - that is what makes Loc::src
+    // comparable by pointer. The path a Src reports back is the one it was registered with.
+    CHECK(map.lookup("./test.let") == src);
+    CHECK(map.lookup("sub/../test.let") == src);
+    CHECK(map.add("./test.let", "whatever") == std::pair(src, false));
+    CHECK(src->path() == "test.let");
+
+    // The same file spelled two ways is also one entry if it really sits on disk - the branch where
+    // SrcMap::key has to consult the file system. Everything Loc::src compares rests on this.
+    auto self           = std::filesystem::path(__FILE__);
+    auto [me, me_fresh] = map.add(self);
+    CHECK(me_fresh);
+    CHECK(me->buf().starts_with("#include"));
+    CHECK(map.lookup(self.parent_path() / "." / self.filename()) == me);
+    CHECK(map.lookup(self.parent_path() / "nonexistent" / ".." / self.filename()) == me);
+
+    // A Loc resolves through its Src as `path:row:col-row:col`; the trailing position is the *last*
     // character - not the one Loc::end points past.
-    CHECK(std::format("{}", map.at(Loc(file->path(), Pos(4), Pos(9)))) == "test.let:1:5-1:9");
-    CHECK(std::format("{}", map.at(Loc(file->path(), Pos(4), Pos(5)))) == "test.let:1:5");
-    CHECK(std::format("{}", map.at(Loc(file->path(), Pos(4)))) == "test.let:1:5");
-    CHECK(std::format("{}", map.at(Loc(file->path(), Pos(4), Pos(15)))) == "test.let:1:5-2:4");
+    CHECK(std::format("{}", Loc(src, Pos(4), Pos(9))) == "test.let:1:5-1:9");
+    CHECK(std::format("{}", Loc(src, Pos(4), Pos(5))) == "test.let:1:5");
+    CHECK(std::format("{}", Loc(src, Pos(4))) == "test.let:1:5");
+    CHECK(std::format("{}", Loc(src, Pos(4), Pos(15))) == "test.let:1:5-2:4");
 
-    // An unregistered file has no rows to report, so this degrades to Loc's own output.
-    std::filesystem::path other("other.let");
-    CHECK(std::format("{}", map.at(Loc(&other, Pos(4), Pos(9)))) == "other.let@4-9");
-    CHECK(std::format("{}", map.at(Loc())) == "<unknown location>");
-
-    // So do offsets that this file cannot resolve: better a raw range than a plausible-looking 0:0.
-    CHECK(std::format("{}", map.at(Loc(file->path(), Pos(4), Pos(9999)))) == "test.let@4-9999");
-    CHECK(std::format("{}", map.at(Loc(file->path(), Pos(9), Pos(4)))) == "test.let@9-4");
-    CHECK(std::format("{}", map.at(Loc(file->path(), Pos(4), Pos()))) == "test.let@4-<unknown position>");
+    // Offsets its Src cannot resolve degrade to raw offsets: better a raw range than a
+    // plausible-looking 0:0.
+    CHECK(std::format("{}", Loc(src, Pos(4), Pos(9999))) == "test.let@4-9999");
+    CHECK(std::format("{}", Loc(src, Pos(9), Pos(4))) == "test.let@9-4");
+    CHECK(std::format("{}", Loc(src, Pos(4), Pos())) == "test.let@4-<unknown position>");
 }
 
 TEST_CASE("Driver") {
@@ -184,15 +197,14 @@ TEST_CASE("Driver") {
     } capture;
 
     fe::Driver drv;
-    auto [file, _] = drv.src().add("test.let", "let x = 1;\nlet y = 2;\nlet z = 3;");
-    auto path      = file->path();
+    auto [src, _] = drv.src().add("test.let", "let x = 1;\nlet y = 2;\nlet z = 3;");
 
     CHECK(drv.num_errors() == 0);
     CHECK(drv.num_warnings() == 0);
 
-    drv.err(Loc(path, Pos(4), Pos(5)), "expected '{}'", ';');
-    drv.warn(Loc(path, Pos(15), Pos(16)), "unused variable '{}'", "x");
-    drv.note(Loc(path, Pos(26), Pos(27)), "declared here");
+    drv.err(Loc(src, Pos(4), Pos(5)), "expected '{}'", ';');
+    drv.warn(Loc(src, Pos(15), Pos(16)), "unused variable '{}'", "x");
+    drv.note(Loc(src, Pos(26), Pos(27)), "declared here");
 
     CHECK(drv.num_errors() == 1);
     CHECK(drv.num_warnings() == 1);

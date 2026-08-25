@@ -62,7 +62,7 @@ protected:
             : start_(start)
             , curr_(curr) {}
 
-        Loc loc() const { return {curr_.path, start_, curr_.end}; }
+        Loc loc() const { return {curr_.src, start_, curr_.end}; }
         Loc operator()() const { return loc(); }
         operator Loc() const { return loc(); }
 

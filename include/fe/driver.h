@@ -17,7 +17,7 @@ namespace fe {
 struct Driver : public SymPool {
 public:
     /// @name Source Files
-    /// Register every file you lex here: a Loc is only as good as the SrcMap that can still resolve it.
+    /// Register every file you lex here: a Loc is only as good as the SrcMap that keeps its Src alive.
     ///@{
     SrcMap& src() { return src_; }
     const SrcMap& src() const { return src_; }
@@ -26,9 +26,9 @@ public:
     /// @name Diagnostics
     ///@{
     // clang-format off
-    template<class... Args> void note(Loc loc, std::format_string<Args...> fmt, Args&&... args) const {                  std::cerr << src_.at(loc) << ": " << term::FG::Cyan    << "note: "    << term::FG::Reset << std::format(fmt, std::forward<Args>(args)...) << std::endl; }
-    template<class... Args> void warn(Loc loc, std::format_string<Args...> fmt, Args&&... args)       { ++num_warnings_; std::cerr << src_.at(loc) << ": " << term::FG::Magenta << "warning: " << term::FG::Reset << std::format(fmt, std::forward<Args>(args)...) << std::endl; }
-    template<class... Args> void err (Loc loc, std::format_string<Args...> fmt, Args&&... args)       { ++num_errors_;   std::cerr << src_.at(loc) << ": " << term::FG::Red     << "error: "   << term::FG::Reset << std::format(fmt, std::forward<Args>(args)...) << std::endl; }
+    template<class... Args> void note(Loc loc, std::format_string<Args...> fmt, Args&&... args) const {                  std::cerr << loc << ": " << term::FG::Cyan    << "note: "    << term::FG::Reset << std::format(fmt, std::forward<Args>(args)...) << std::endl; }
+    template<class... Args> void warn(Loc loc, std::format_string<Args...> fmt, Args&&... args)       { ++num_warnings_; std::cerr << loc << ": " << term::FG::Magenta << "warning: " << term::FG::Reset << std::format(fmt, std::forward<Args>(args)...) << std::endl; }
+    template<class... Args> void err (Loc loc, std::format_string<Args...> fmt, Args&&... args)       { ++num_errors_;   std::cerr << loc << ": " << term::FG::Red     << "error: "   << term::FG::Reset << std::format(fmt, std::forward<Args>(args)...) << std::endl; }
     // clang-format on
 
     unsigned num_errors() const { return num_errors_; }

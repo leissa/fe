@@ -116,8 +116,8 @@ public:
     using fe::Lexer<K, Lexer<K>>::peek;
     using fe::Lexer<K, Lexer<K>>::str_;
 
-    Lexer(fe::Driver& driver, std::string_view buf, const std::filesystem::path* path = nullptr)
-        : fe::Lexer<K, Lexer<K>>(buf, path)
+    Lexer(fe::Driver& driver, std::string_view buf, const fe::Src* src = nullptr)
+        : fe::Lexer<K, Lexer<K>>(buf, src)
         , driver_(driver) {}
 
     Tok lex() {
@@ -183,9 +183,9 @@ public:
     using Super::lex;
     using Super::tracker;
 
-    Parser(fe::Driver& driver, std::string_view buf, const std::filesystem::path* path = nullptr)
+    Parser(fe::Driver& driver, std::string_view buf, const fe::Src* src = nullptr)
         : driver_(driver)
-        , lexer_(driver, buf, path) {
+        , lexer_(driver, buf, src) {
         this->init(); // fill lookahead; must run after lexer_ is constructed
     }
 

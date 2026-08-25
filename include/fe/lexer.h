@@ -2,7 +2,6 @@
 
 #include <cstddef>
 
-#include <filesystem>
 #include <string>
 #include <string_view>
 
@@ -23,9 +22,9 @@ private:
     const S& self() const { return *static_cast<const S*>(this); }
 
 public:
-    Lexer(std::string_view buf, const std::filesystem::path* path = nullptr)
+    Lexer(std::string_view buf, const Src* src = nullptr)
         : buf_(buf)
-        , path_(path) {
+        , src_(src) {
         if (buf_.starts_with(utf8::Bom)) cursor_ = utf8::Bom.size();
         for (size_t i = 0; i != K; ++i)
             ahead_[i] = decode();
@@ -42,7 +41,7 @@ protected:
     char32_t ahead(size_t i = 0) const { return ahead_[i].c; }
 
     /// Loc%ation of the next character to be consumed (Lexer::ahead()); empty once the stream is exhausted.
-    Loc peek() const { return {path_, ahead_[0].begin, ahead_[0].end}; }
+    Loc peek() const { return {src_, ahead_[0].begin, ahead_[0].end}; }
 
     /// Invoke before assembling the next token.
     void start() {
@@ -93,7 +92,7 @@ protected:
     ///@}
 
     std::string_view buf_;
-    const std::filesystem::path* path_;
+    const Src* src_;
     size_t cursor_ = 0; ///< Byte offset of the first not yet decoded character.
     Ring<Ahead, K> ahead_;
     Loc loc_; ///< Loc%ation of the token we are currently constructing within Lexer::str_,
