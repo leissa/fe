@@ -40,7 +40,7 @@ protected:
 
     char32_t ahead(size_t i = 0) const { return ahead_[i].c; }
 
-    /// Loc%ation of the next character to be consumed (Lexer::ahead()); empty once the stream is exhausted.
+    /// Loc%ation of the next character to be consumed (Lexer::ahead()); empty once the buffer is exhausted.
     Loc peek() const { return {src_, ahead_[0].begin, ahead_[0].end}; }
 
     /// Invoke before assembling the next token.

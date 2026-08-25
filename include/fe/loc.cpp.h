@@ -13,9 +13,7 @@ std::ostream& operator<<(std::ostream& os, Pos pos) {
     return os << "<unknown position>";
 }
 
-// Spells out `path:row:col-row:col` - the trailing position being the *last* character of `loc`, not the
-// one Loc::end points past. Only Loc::src knows about rows and columns, so a Loc without one - or with
-// offsets it cannot resolve - degrades to its raw offsets, which `@` marks as such.
+// The trailing position is the *last* character of `loc`, not the one Loc::end points past.
 std::ostream& operator<<(std::ostream& os, Loc loc) {
     if (!loc) return os << "<unknown location>";
     auto src = loc.src;

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cassert>
 #include <cstdint>
 
 #include <algorithm>
@@ -23,7 +24,10 @@ struct Pos {
 
     constexpr explicit operator bool() const { return off != Invalid; } ///< Is a valid Pos%ition?
     constexpr auto operator<=>(const Pos&) const = default;
-    constexpr Pos operator+(uint32_t n) const { return Pos(off + n); }
+    constexpr Pos operator+(uint32_t n) const {
+        assert(*this && (uint64_t)off + n < Invalid);
+        return Pos(off + n);
+    }
     void dump() const;
 
     uint32_t off = Invalid;
@@ -55,7 +59,10 @@ struct Loc {
 
     constexpr Loc anew_begin() const { return {src, begin, begin}; }
     constexpr Loc anew_end() const { return {src, end, end}; }
-    constexpr uint32_t size() const { return end.off - begin.off; }
+    constexpr uint32_t size() const {
+        assert((bool)begin == (bool)end && begin <= end);
+        return end.off - begin.off;
+    }
     constexpr Loc operator+(Pos pos) const { return {src, begin, pos}; }
     constexpr Loc operator+(Loc loc) const { return {src, begin, loc.end}; } ///< The hull of both Loc%ations.
 

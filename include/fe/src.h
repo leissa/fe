@@ -46,6 +46,7 @@ public:
     Src(std::filesystem::path path, std::string buf)
         : path_(std::move(path))
         , buf_(std::move(buf)) {
+        if (buf_.starts_with(utf8::Bom)) bom_ = (uint32_t)utf8::Bom.size();
         rows_.emplace_back(0);
         for (uint32_t i = 0, e = (uint32_t)buf_.size(); i != e; ++i)
             if (buf_[i] == '\n') rows_.emplace_back(i + 1);
@@ -64,20 +65,22 @@ public:
     /// @name Resolve a Pos
     ///@{
     /// 1-based row and column @p pos sits at, or `{0, 0}` if @p pos does not belong to this file.
-    /// The column counts code points, not bytes.
+    /// The column counts code points, not bytes, and a leading utf8::Bom occupies none.
     std::pair<uint32_t, uint32_t> rowcol(Pos pos) const {
         if (!contains(pos)) return {0, 0};
-        auto row = (uint32_t)(std::ranges::upper_bound(rows_, pos.off) - rows_.begin());
-        return {row, (uint32_t)utf8::num_code_points(sub(rows_[row - 1], pos.off)) + 1};
+        auto row   = (uint32_t)(std::ranges::upper_bound(rows_, pos.off) - rows_.begin());
+        auto begin = row == 1 ? std::min(bom_, pos.off) : rows_[row - 1];
+        return {row, (uint32_t)utf8::num_code_points(sub(begin, pos.off)) + 1};
     }
 
     uint32_t row(Pos pos) const { return rowcol(pos).first; }
     uint32_t col(Pos pos) const { return rowcol(pos).second; }
 
-    /// Text of the 1-based @p row without its line terminator; empty if @p row is out of range.
+    /// Text of the 1-based @p row without its line terminator - or a leading utf8::Bom;
+    /// empty if @p row is out of range.
     std::string_view line(uint32_t row) const {
         if (row == 0 || row > rows_.size()) return {};
-        auto begin = rows_[row - 1];
+        auto begin = row == 1 ? bom_ : rows_[row - 1];
         auto end   = row == rows_.size() ? (uint32_t)buf_.size() : rows_[row] - 1;
         if (end > begin && buf_[end - 1] == '\r') --end;
         return sub(begin, end);
@@ -108,6 +111,7 @@ private:
     std::filesystem::path path_;
     std::string buf_;
     std::vector<uint32_t> rows_; ///< Offset each row starts at; `rows_.front() == 0`.
+    uint32_t bom_ = 0;           ///< Byte size of a leading utf8::Bom, which is not a column.
 };
 
 /// Interns the text - and the `std::filesystem::path` - of every file a Loc may point into.

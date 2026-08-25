@@ -137,6 +137,15 @@ TEST_CASE("Src") {
         CHECK(trunc.col(Pos(2)) == 3);
         CHECK(trunc.prev(Pos(2)) == Pos(1));
     }
+
+    SUBCASE("a leading BOM is no column") {
+        auto bom = fe::Src("bom.let", "\xEF\xBB\xBF"
+                                      "let x = 1;\ny");
+        CHECK(bom.col(Pos(3)) == 1); // where the lexer starts - see TEST_CASE("Lexer")
+        CHECK(bom.col(Pos(4)) == 2);
+        CHECK(bom.rowcol(Pos(14)) == std::pair(2u, 1u));
+        CHECK(bom.line(1) == "let x = 1;");
+    }
 }
 
 TEST_CASE("SrcMap") {
