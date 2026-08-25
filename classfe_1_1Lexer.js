@@ -11,7 +11,8 @@ var classfe_1_1Lexer =
       [ "Lower", "classfe_1_1Lexer.html#a99366b3ab28fff1d6a1013b1007246a6ab75fcdd2d72d9e000beab48622402d93", null ],
       [ "Upper", "classfe_1_1Lexer.html#a99366b3ab28fff1d6a1013b1007246a6a19de5b94f7b83900d4b296d9fa491aec", null ]
     ] ],
-    [ "Lexer", "classfe_1_1Lexer.html#a31312b3dceb3a3f2bdffaef3d928a220", null ],
+    [ "Lexer", "classfe_1_1Lexer.html#a278891a635d9f4c7ff1d789302fbfeb6", null ],
+    [ "Lexer", "classfe_1_1Lexer.html#a02cec6b71642819b66f0b275aadeba61", null ],
     [ "accept", "classfe_1_1Lexer.html#a440e792690fe68c243429847b2ab2659", null ],
     [ "accept", "classfe_1_1Lexer.html#aff112fcbcf92e4dbb66ec7285abbdc3a", null ],
     [ "accept", "classfe_1_1Lexer.html#a0961016fffdf2e6e70dae5a9e8553cad", null ],
