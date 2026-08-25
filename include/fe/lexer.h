@@ -7,6 +7,7 @@
 
 #include "fe/loc.h"
 #include "fe/ring.h"
+#include "fe/src.h"
 #include "fe/utf8.h"
 
 namespace fe {
@@ -22,14 +23,10 @@ private:
     const S& self() const { return *static_cast<const S*>(this); }
 
 public:
-    Lexer(std::string_view buf, const Src* src = nullptr)
-        : buf_(buf)
-        , src_(src) {
-        if (buf_.starts_with(utf8::Bom)) cursor_ = utf8::Bom.size();
-        for (size_t i = 0; i != K; ++i)
-            ahead_[i] = decode();
-        start();
-    }
+    Lexer(std::string_view buf)
+        : Lexer(buf, nullptr) {}
+    Lexer(const Src& src)
+        : Lexer(src.buf(), &src) {}
 
 protected:
     /// A decoded code point together with the byte range it occupies.
@@ -99,6 +96,15 @@ protected:
     std::string str_;
 
 private:
+    Lexer(std::string_view buf, const Src* src)
+        : buf_(buf)
+        , src_(src) {
+        if (buf_.starts_with(utf8::Bom)) cursor_ = utf8::Bom.size();
+        for (size_t i = 0; i != K; ++i)
+            ahead_[i] = decode();
+        start();
+    }
+
     Ahead decode() {
         auto begin = cursor_;
         auto c     = utf8::decode(buf_, cursor_);
