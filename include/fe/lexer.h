@@ -1,7 +1,9 @@
 #pragma once
 
-#include <filesystem>
-#include <istream>
+#include <cstddef>
+
+#include <string>
+#include <string_view>
 
 #include "fe/loc.h"
 #include "fe/ring.h"
@@ -11,6 +13,8 @@ namespace fe {
 
 /// The blueprint for a lexer with a buffer of @p K tokens to peek into the future (Lexer::ahead).
 /// You can "override" Lexer::next via CRTP (@p S is the child).
+/// The whole source has to sit in @p buf: a Pos is an index into it, so there is nothing left to
+/// keep track of - Lexer::next just hands out the byte range the code point it consumed occupied.
 template<size_t K, class S>
 class Lexer {
 private:
@@ -18,49 +22,42 @@ private:
     const S& self() const { return *static_cast<const S*>(this); }
 
 public:
-    Lexer(std::istream& istream, const std::filesystem::path* path = nullptr)
-        : istream_(istream)
-        , loc_(path, {0, 0})
-        , peek_(1, 1) {
+    Lexer(std::string_view buf, const Src* src = nullptr)
+        : buf_(buf)
+        , src_(src) {
+        if (buf_.starts_with(utf8::Bom)) cursor_ = utf8::Bom.size();
         for (size_t i = 0; i != K; ++i)
-            ahead_[i] = utf8::decode(istream_);
-        // Drop a UTF-8 BOM without going through next()'s position bookkeeping:
-        // the BOM is zero-width, so the first real character still starts at 1:1.
-        if (ahead() == utf8::BOM) ahead_.put(utf8::decode(istream_));
+            ahead_[i] = decode();
+        start();
     }
 
 protected:
-    char32_t ahead(size_t i = 0) const { return ahead_[i]; }
+    /// A decoded code point together with the byte range it occupies.
+    struct Ahead {
+        char32_t c = utf8::EoF;
+        Pos begin, end;
+    };
+
+    char32_t ahead(size_t i = 0) const { return ahead_[i].c; }
+
+    /// Loc%ation of the next character to be consumed (Lexer::ahead()); empty once the buffer is exhausted.
+    Loc peek() const { return {src_, ahead_[0].begin, ahead_[0].end}; }
 
     /// Invoke before assembling the next token.
     void start() {
-        loc_.begin = peek_;
+        loc_ = peek().anew_begin();
         str_.clear();
     }
 
-    /// Get next `char32_t` in Lexer::istream_ and increase Lexer::loc_.
-    /// Lexer::peek_ advances past the *consumed* character:
-    /// consuming a `'\n'` moves it to the first column of the next row,
-    /// while EoF and a BOM are zero-width.
+    /// Get next `char32_t` in Lexer::buf_ and extend Lexer::loc_ to cover it.
     /// @returns utf8::Invalid on an invalid UTF-8 sequence.
     char32_t next() {
-        loc_.finis = peek_;
-        auto res   = ahead_.put(utf8::decode(istream_));
-
-        if (res == U'\n') {
-            ++peek_.row;
-            peek_.col = 1;
-        } else if (res == utf8::EoF || res == utf8::BOM) {
-            /* zero-width: do nothing */
-        } else {
-            ++peek_.col;
-        }
-
-        return res;
+        loc_.end = ahead_[0].end;
+        return ahead_.put(decode()).c;
     }
 
     /// @name Accept
-    /// Accept next character in Lexer::istream_, depending on some condition.
+    /// Accept next character in Lexer::buf_, depending on some condition.
     ///@{
     /// What should happen to the accepted char?
     /// Normalize identifiers via Append::Lower or Append::Upper for case-insensitive languages like FORTRAN or SQL.
@@ -94,12 +91,19 @@ protected:
     // clang-format on
     ///@}
 
-    std::istream& istream_;
-    Ring<char32_t, K> ahead_;
-    Loc loc_;  ///< Loc%ation of the token we are currently constructing within Lexer::str_,
-    Pos peek_; ///< Pos%ition of the next character to be consumed (Lexer::ahead());
-               ///< once the stream is exhausted, it sits one past the last character.
+    std::string_view buf_;
+    const Src* src_;
+    size_t cursor_ = 0; ///< Byte offset of the first not yet decoded character.
+    Ring<Ahead, K> ahead_;
+    Loc loc_; ///< Loc%ation of the token we are currently constructing within Lexer::str_,
     std::string str_;
+
+private:
+    Ahead decode() {
+        auto begin = cursor_;
+        auto c     = utf8::decode(buf_, cursor_);
+        return {c, Pos((uint32_t)begin), Pos((uint32_t)cursor_)};
+    }
 };
 
 } // namespace fe

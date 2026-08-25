@@ -113,11 +113,11 @@ public:
     using fe::Lexer<K, Lexer<K>>::next;
 
     using fe::Lexer<K, Lexer<K>>::loc_;
-    using fe::Lexer<K, Lexer<K>>::peek_;
+    using fe::Lexer<K, Lexer<K>>::peek;
     using fe::Lexer<K, Lexer<K>>::str_;
 
-    Lexer(fe::Driver& driver, std::istream& istream, const std::filesystem::path* path = nullptr)
-        : fe::Lexer<K, Lexer<K>>(istream, path)
+    Lexer(fe::Driver& driver, std::string_view buf, const fe::Src* src = nullptr)
+        : fe::Lexer<K, Lexer<K>>(buf, src)
         , driver_(driver) {}
 
     Tok lex() {
@@ -158,7 +158,7 @@ public:
                 return {loc_, u};
             }
 
-            driver_.err(peek_, "invalid input character: ''{}'", utf8::Char32(ahead()));
+            driver_.err(peek(), "invalid input character: ''{}'", utf8::Char32(ahead()));
             next();
         }
     }
@@ -183,10 +183,10 @@ public:
     using Super::lex;
     using Super::tracker;
 
-    Parser(fe::Driver& driver, std::istream& istream, const std::filesystem::path* path = nullptr)
+    Parser(fe::Driver& driver, std::string_view buf, const fe::Src* src = nullptr)
         : driver_(driver)
-        , lexer_(driver, istream, path) {
-        this->init(path); // fill lookahead; must run after lexer_ is constructed
+        , lexer_(driver, buf, src) {
+        this->init(); // fill lookahead; must run after lexer_ is constructed
     }
 
     Lexer<K>& lexer() { return lexer_; }
@@ -252,8 +252,7 @@ template<size_t K>
 void test_parser() {
     auto parse = [](std::string_view src) {
         fe::Driver drv;
-        std::istringstream is{std::string(src)};
-        Parser<K> parser(drv, is);
+        Parser<K> parser(drv, src);
         auto [str, loc] = parser.parse();
         return std::tuple{str, loc, drv.num_errors()};
     };
@@ -275,12 +274,12 @@ void test_parser() {
     CHECK(std::get<2>(parse("a + b * c")) == 0);
 
     // Tracker spans from the first to the last *consumed* token - parse() also consumes EoF,
-    // which sits one past the last character.
+    // which is the empty Loc at the end of the buffer.
     {
         auto [str, loc, errs] = parse("a + b");
         CHECK(str == "(+ a b)");
         CHECK(errs == 0);
-        CHECK(loc == Loc({1, 1}, {1, 6}));
+        CHECK(loc == Loc(Pos(0), Pos(5)));
     }
 
     // expect() reports a syntax error on a missing ')'
@@ -298,8 +297,7 @@ TEST_CASE("Parser") {
 template<size_t K>
 void test_lexer() {
     fe::Driver drv;
-    std::istringstream is(" test  abc    def if  \nwhile λ foo «n; X»  ");
-    Lexer<K> lexer(drv, is);
+    Lexer<K> lexer(drv, " test  abc    def if  \nwhile λ foo «n; X»  ");
 
     auto t1 = lexer.lex();
     auto t2 = lexer.lex();
@@ -319,21 +317,22 @@ void test_lexer() {
                           tc, td);
     CHECK(s == "test abc def if while λ foo « n ; X » <end of file> <end of file>");
 
+    // A Loc is a half-open byte range, so a multi-byte code point spans more than one offset.
     // clang-format off
-    CHECK(t1.loc() == Loc({1,  2}, {1,  5})); // test
-    CHECK(t2.loc() == Loc({1,  8}, {1, 10})); // abc
-    CHECK(t3.loc() == Loc({1, 15}, {1, 17})); // def
-    CHECK(t4.loc() == Loc({1, 19}, {1, 20})); // if
-    CHECK(t5.loc() == Loc({2,  1}, {2,  5})); // while
-    CHECK(t6.loc() == Loc({2,  7}, {2,  7})); // λ
-    CHECK(t7.loc() == Loc({2,  9}, {2, 11})); // foo
-    CHECK(t8.loc() == Loc({2, 13}, {2, 13})); // «
-    CHECK(t9.loc() == Loc({2, 14}, {2, 14})); // n
-    CHECK(t0.loc() == Loc({2, 15}, {2, 15})); // ;
-    CHECK(ta.loc() == Loc({2, 17}, {2, 17})); // X
-    CHECK(tb.loc() == Loc({2, 18}, {2, 18})); // »
-    CHECK(tc.loc() == Loc({2, 21}, {2, 21})); // <end of file> - one past the last character
-    CHECK(td.loc() == Loc({2, 21}, {2, 21})); // <end of file>
+    CHECK(t1.loc() == Loc(Pos( 1), Pos( 5))); // test
+    CHECK(t2.loc() == Loc(Pos( 7), Pos(10))); // abc
+    CHECK(t3.loc() == Loc(Pos(14), Pos(17))); // def
+    CHECK(t4.loc() == Loc(Pos(18), Pos(20))); // if
+    CHECK(t5.loc() == Loc(Pos(23), Pos(28))); // while
+    CHECK(t6.loc() == Loc(Pos(29), Pos(31))); // λ - 2 bytes
+    CHECK(t7.loc() == Loc(Pos(32), Pos(35))); // foo
+    CHECK(t8.loc() == Loc(Pos(36), Pos(38))); // « - 2 bytes
+    CHECK(t9.loc() == Loc(Pos(38), Pos(39))); // n
+    CHECK(t0.loc() == Loc(Pos(39), Pos(40))); // ;
+    CHECK(ta.loc() == Loc(Pos(41), Pos(42))); // X
+    CHECK(tb.loc() == Loc(Pos(42), Pos(44))); // » - 2 bytes
+    CHECK(tc.loc() == Loc(Pos(46), Pos(46))); // <end of file> - empty, at the end of the buffer
+    CHECK(td.loc() == Loc(Pos(46), Pos(46))); // <end of file>
     // clang-format on
 }
 
@@ -345,39 +344,36 @@ TEST_CASE("Lexer") {
 
 template<size_t K>
 void test_bom() {
-    SUBCASE("UTF-8 BOM is eaten and zero-width") {
+    SUBCASE("UTF-8 BOM is skipped") {
         fe::Driver drv;
-        std::istringstream is("\xEF\xBB\xBFtest");
-        Lexer<K> lexer(drv, is);
+        Lexer<K> lexer(drv, "\xEF\xBB\xBFtest");
 
         auto tok = lexer.lex();
         CHECK(tok.to_string() == "test");
-        CHECK(tok.loc() == Loc({1, 1}, {1, 4})); // BOM does not count towards the column
+        CHECK(tok.loc() == Loc(Pos(3), Pos(7))); // the BOM still occupies its 3 bytes
         CHECK(lexer.lex().tag() == Tok::Tag::EoF);
     }
 
-    SUBCASE("stream starting with a newline") {
+    SUBCASE("buffer starting with a newline") {
         fe::Driver drv;
-        std::istringstream is("\nwhile");
-        Lexer<K> lexer(drv, is);
+        Lexer<K> lexer(drv, "\nwhile");
 
         auto tok = lexer.lex();
         CHECK(tok.to_string() == "while");
-        CHECK(tok.loc() == Loc({2, 1}, {2, 5}));
+        CHECK(tok.loc() == Loc(Pos(1), Pos(6)));
     }
 
-    SUBCASE("empty stream") {
+    SUBCASE("empty buffer") {
         fe::Driver drv;
-        std::istringstream is("");
-        Lexer<K> lexer(drv, is);
+        Lexer<K> lexer(drv, "");
 
         auto tok = lexer.lex();
         CHECK(tok.tag() == Tok::Tag::EoF);
-        CHECK(tok.loc() == Loc({1, 1}, {1, 1}));
+        CHECK(tok.loc() == Loc(Pos(0), Pos(0)));
     }
 }
 
-TEST_CASE("Lexer stream starts") {
+TEST_CASE("Lexer buffer starts") {
     test_bom<1>();
     test_bom<2>();
     test_bom<3>();
@@ -391,8 +387,8 @@ public:
     using Super::accept;
     using Super::str_;
 
-    FoldLexer(std::istream& istream)
-        : Super(istream) {}
+    FoldLexer(std::string_view buf)
+        : Super(buf) {}
 
     template<Append append>
     std::string lex_word() {
@@ -414,11 +410,13 @@ TEST_CASE("utf8::num_code_points") {
     CHECK(utf8::num_code_points("\xff"
                                 "a")
           == 2);
+    // a str truncated mid-sequence counts its final partial code point instead of running off the end
+    CHECK(utf8::num_code_points(std::string_view("λ").substr(0, 1)) == 1);
+    CHECK(utf8::num_code_points(std::string_view("aλ").substr(0, 2)) == 2);
 }
 
 TEST_CASE("Lexer Append policies") {
-    std::istringstream is("MiXeD MiXeD MiXeD MiXeD");
-    FoldLexer lexer(is);
+    FoldLexer lexer("MiXeD MiXeD MiXeD MiXeD");
 
     CHECK(lexer.lex_word<FoldLexer::Append::On>() == "MiXeD");
     CHECK(lexer.lex_word<FoldLexer::Append::Lower>() == "mixed");

@@ -17,6 +17,7 @@ namespace fe::utf8 {
 
 static constexpr size_t Max   = 4;      ///< Maximal number of `char8_t`s of an UTF-8 byte sequence.
 static constexpr char32_t BOM = 0xfeff; ///< [Byte Order Mark](https://en.wikipedia.org/wiki/Byte_order_mark#UTF-8).
+static constexpr std::string_view Bom = "\xef\xbb\xbf"; ///< @ref BOM as UTF-8 bytes.
 static constexpr char32_t EoF
     = (char32_t)std::istream::traits_type::eof(); ///< End of stream sentinel returned by @ref decode.
 static constexpr char32_t Null    = 0;            ///< U+0000 NULL returned unchanged by @ref decode.
@@ -84,16 +85,41 @@ inline char32_t decode(std::istream& is) {
     return result;
 }
 
+/// Decodes the UTF-8 sequence at @p i in @p str and advances @p i past it.
+///
+/// Returns @ref EoF at the end of @p str - leaving @p i alone - and @ref Invalid for malformed,
+/// overlong, surrogate, or otherwise non-scalar encodings.
+/// @note An @ref Invalid sequence advances @p i by a *single* byte, so the next @ref decode resynchronizes
+/// instead of swallowing bytes that may well start a valid sequence themselves.
+inline char32_t decode(std::string_view str, size_t& i) noexcept {
+    if (i >= str.size()) return EoF;
+
+    char32_t result = char8_t(str[i]);
+    auto n          = utf8::num_bytes(char8_t(result));
+    if (n == 0 || i + n > str.size()) return ++i, Invalid;
+    if (n == 1) return ++i, result;
+
+    result = utf8::first(result, n);
+    for (size_t j = 1; j != n; ++j) {
+        auto x = is_valid234(char8_t(str[i + j]));
+        if (x == char8_t(-1)) return ++i, Invalid;
+        result = utf8::append(result, x);
+    }
+
+    if (result < utf8::min_code_point(n) || !utf8::is_scalar_value(result)) return ++i, Invalid;
+
+    i += n;
+    return result;
+}
+
 /// Number of UTF-8 code points in @p str.
-/// @note Pos::col counts code points - Lexer::next advances it per decoded `char32_t` - so a byte offset is the
-/// wrong unit for anything that has to line up under a column.
-/// An invalid lead byte counts as one code point, so this never stalls on malformed input.
+/// @note A column is counted in code points, so this is what turns a byte offset into one.
+/// Counts via @ref decode, so a malformed sequence resynchronizes the same way the lexer does
+/// and a @p str truncated mid-sequence counts its final partial one.
 inline size_t num_code_points(std::string_view str) noexcept {
     size_t res = 0;
-    for (size_t i = 0, e = str.size(); i != e; ++res) {
-        auto n = utf8::num_bytes(char8_t(str[i]));
-        i += n == 0 ? 1 : n;
-    }
+    for (size_t i = 0, e = str.size(); i < e; ++res)
+        decode(str, i);
     return res;
 }
 

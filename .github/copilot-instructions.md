@@ -61,6 +61,7 @@ The library is organized around a few reusable frontend-building blocks that are
 - `fe::Sym` and `fe::SymPool` (`sym.h`) intern strings so identifiers can be compared cheaply by pointer after interning.
 - `fe::Driver` (`driver.h`) is the shared frontend context: it inherits `SymPool` and centralizes diagnostics and error/warning counts.
 - `fe::Pos` and `fe::Loc` (`loc.h`, `loc.cpp.h`) track source positions/locations and are threaded through lexers, parsers, and diagnostics.
+- `fe::Src` and `fe::SrcMap` (`src.h`) own the text of each source file and turn a `Pos` back into a row/column. A `Loc` borrows a `const Src*`, which is how it renders itself as `path:row:col`.
 - `fe::Ring` (`ring.h`) is the fixed-size lookahead buffer used by the lexer/parser blueprints.
 - `fe::Lexer<K, S>` (`lexer.h`) is a CRTP base that handles UTF-8 decoding, character lookahead, token text accumulation, and source location tracking.
 - `fe::Parser<Tok, Tag, K, S>` (`parser.h`) is a CRTP base that wraps a lexer with token lookahead, `accept`/`expect`/`eat`, and `Tracker` helpers for building node spans.
@@ -73,9 +74,45 @@ Support headers: `assert.h` (`assert`/`assertf`/`unreachable`), `cast.h` (checke
 
 - Keep library code header-only unless you are intentionally changing the project structure. Public headers are listed explicitly in `CMakeLists.txt` and installed from `include/fe/`.
 - Default-constructed values are meaningful sentinels across the API: `Tok{}` means parse failure, `Sym{}` is the empty symbol, and default `Pos`/`Loc` are invalid. `Parser::accept` and `Parser::expect` rely on this pattern.
-- `Loc::finis` is **inclusive** (the last character in the span), not one-past-the-end. `Loc::path` is a borrowed pointer, so the referenced `std::filesystem::path` must outlive the `Loc`.
+- `Loc::end` is **exclusive** (the byte one past the span), just like an STL iterator. `Loc::src` is a borrowed `const Src*`, so the `Src` must outlive the `Loc`; a `SrcMap` owns one for you.
+- `SrcMap` interns paths under `SrcMap::key` (absolute, symlink-free, normalized), so one file yields exactly one `Src`. That is what lets `Loc` compare files by pointer - do not hand a `Loc` a `Src` that some other `SrcMap` (or nobody) owns.
+- A `Loc` renders itself: `operator<<`/`std::format` spell out `path:row:col-row:col` via `Loc::src`, falling back to `path@begin-end` when it has no `Src` or the offsets do not fit. Diagnostics just pass the `Loc`.
 - Non-empty symbols should be created through `SymPool::sym` / `Driver::sym`, not by constructing `Sym` manually. Use `SymMap` / `SymSet` aliases instead of concrete hash container types, especially because `FE_ABSL` switches those aliases to Abseil containers.
 - Diagnostics are `std::format`-based and go through `fe::Driver::{note,warn,err}`. Follow that pattern rather than inventing separate reporting helpers.
 - If a type already has `operator<<`, expose it to `std::format` with `template<> struct std::formatter<T> : fe::ostream_formatter {};`.
-- Derived lexers typically pull CRTP base helpers into scope with `using` declarations (`ahead`, `accept`, `next`, `loc_`, `peek_`, `str_`), matching the pattern in `tests/lexer.cpp`.
-- `fe/loc.h` only declares `operator<<` for `Pos` and `Loc`; include `fe/loc.cpp.h` in exactly one translation unit when you want the default streaming implementation.
+- Derived lexers typically pull CRTP base helpers into scope with `using` declarations (`ahead`, `accept`, `next`, `loc_`, `peek`, `str_`), matching the pattern in `tests/lexer.cpp`.
+- `fe/loc.h` only declares `operator<<` for `Pos` and `Loc`; include `fe/loc.cpp.h` in exactly one translation unit when you want the default streaming implementation. That header pulls in `fe/src.h`, since `Src` is only forward-declared in `fe/loc.h`.
+
+## Comments
+
+Doxygen comments (`///`, `/** ... */`) on the public API in `include/fe/` are documentation, not commentary: they are expected and exempt from the rules below.
+Prefer one sentence per line over column-filling wraps there, so diffs stay readable.
+Everything else - comments inside function bodies, in tests, in CMake - follows these rules.
+
+Comments are scarce. The default is **no comment**.
+
+Comment only when the code itself cannot reasonably express the information.
+
+- Comment **why**, not what the code does.
+- Prefer a better name, structure, or API over a comment.
+- Keep comments to **one short sentence**, normally one line.
+- A comment should convey one fact only: an invariant, non-obvious constraint, algorithmic reason, or important external reference.
+- Do not explain the implementation, summarize a function, or provide a narrative of its control flow.
+- Match the comment density and brevity of the surrounding code. **Never increase comment density.**
+- Do not add documentation-style prose, introductions, conclusions, or motivational/explanatory language.
+- Do not use rhetorical contrasts such as `"X" -> "Y"`, `"instead of X"`, or `"from X to Y"` to explain an optimization.
+- Do not add comments describing the change itself ("now handles X", "renamed from Y"); that belongs in the commit message.
+- Do not add banner or section-header comments.
+- Do not add a comment if deleting it would leave the code equally correct and understandable.
+- A comment that restates the code is worse than no comment:
+  ```cpp
+  vec.push_back(x); // BAD: "put x into the vector"
+  ```
+
+**Hard limit:** Do not write multi-line comments unless the user explicitly asks for documentation or the comment is required to document a non-obvious invariant that cannot be stated briefly.
+
+Before adding a comment, ask:
+1. Is this information necessary?
+2. Is it already apparent from the code or names?
+3. Can it be expressed in one short sentence?
+If the answer to 1 or 3 is no, do not add the comment.
