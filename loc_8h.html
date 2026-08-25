@@ -115,8 +115,10 @@ $(function(){initNavTree('loc_8h.html','',''); });
   <div class="headertitle"><div class="title">loc.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
-<code>#include &lt;filesystem&gt;</code><br />
+<div class="textblock"><code>#include &lt;cassert&gt;</code><br />
+<code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;iosfwd&gt;</code><br />
 <code>#include &quot;<a class="el" href="sym_8h_source.html">fe/sym.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for loc.h:</div>
@@ -126,7 +128,7 @@ Include dependency graph for loc.h:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="loc_8h__dep__incl.svg" width="454" height="256"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="loc_8h__dep__incl.svg" width="498" height="256"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="loc_8h_source.html">Go to the source code of this file.</a></p>
@@ -134,9 +136,9 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:fe_3A_3APos" id="r_fe_3A_3APos"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1Pos.html">fe::Pos</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structfe_1_1Pos.html" title="Position in a source file; pass around as value.">Pos</a>ition in a source file; pass around as value.  <a href="structfe_1_1Pos.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Byte offset into a <a class="el" href="classfe_1_1Src.html" title="The content of one source file together with the offsets its rows start at.">Src</a>; pass around as value.  <a href="structfe_1_1Pos.html#details">More...</a><br /></td></tr>
 <tr class="memitem:fe_3A_3ALoc" id="r_fe_3A_3ALoc"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1Loc.html">fe::Loc</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structfe_1_1Loc.html" title="Location in a File.">Loc</a>ation in a File.  <a href="structfe_1_1Loc.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a>ation within a <a class="el" href="classfe_1_1Src.html" title="The content of one source file together with the offsets its rows start at.">Src</a>: the half-open byte range <span class="tt">[<a class="el" href="structfe_1_1Loc.html#a7cda6af5faf94e9a9da31b95ba7f60c2">Loc::begin</a>, <a class="el" href="structfe_1_1Loc.html#acc3b4ccefa545189fe46e06f1770f78b" title="It&#39;s called end because - just like an STL iterator - it refers to the byte one past the last one wit...">Loc::end</a>)</span>.  <a href="structfe_1_1Loc.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>

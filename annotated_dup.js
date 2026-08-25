@@ -19,6 +19,9 @@ var annotated_dup =
       [ "Ring", "classfe_1_1Ring.html", "classfe_1_1Ring" ],
       [ "Ring&lt; T, 1 &gt;", "classfe_1_1Ring_3_01T_00_011_01_4.html", "classfe_1_1Ring_3_01T_00_011_01_4" ],
       [ "Ring&lt; T, 2 &gt;", "classfe_1_1Ring_3_01T_00_012_01_4.html", "classfe_1_1Ring_3_01T_00_012_01_4" ],
+      [ "PathHash", "structfe_1_1PathHash.html", "structfe_1_1PathHash" ],
+      [ "Src", "classfe_1_1Src.html", "classfe_1_1Src" ],
+      [ "SrcMap", "classfe_1_1SrcMap.html", "classfe_1_1SrcMap" ],
       [ "Sym", "classfe_1_1Sym.html", "classfe_1_1Sym" ],
       [ "SymPool", "classfe_1_1SymPool.html", "classfe_1_1SymPool" ]
     ] ]

@@ -1,7 +1,7 @@
 var searchData=
 [
   ['deallocate_0',['deallocate',['../structfe_1_1Arena_1_1Allocator.html#a855ffa4f57672434fefae5fb9f4baa27',1,'fe::Arena::Allocator::deallocate()'],['../classfe_1_1Arena.html#a23e2c81675c44591a623732beeb2729b',1,'fe::Arena::deallocate(size_t num_bytes) noexcept'],['../classfe_1_1Arena.html#a27c2f6b322adf7b4db01b10c6871e1f7',1,'fe::Arena::deallocate(State state) noexcept']]],
-  ['decode_1',['decode',['../namespacefe_1_1utf8.html#a4ca17134ff0be619535e913b53a80e79',1,'fe::utf8']]],
+  ['decode_1',['decode',['../namespacefe_1_1utf8.html#a4ca17134ff0be619535e913b53a80e79',1,'fe::utf8::decode(std::istream &amp;is)'],['../namespacefe_1_1utf8.html#a7411b5c6d9f361e3a039bfb6fa673ec1',1,'fe::utf8::decode(std::string_view str, size_t &amp;i) noexcept']]],
   ['default_5fpage_5fsize_2',['Default_Page_Size',['../classfe_1_1Arena.html#acf8db82af7c5e70594460ffffeaaedc6',1,'fe::Arena']]],
   ['deleter_3',['Deleter',['../structfe_1_1Arena_1_1Deleter.html',1,'fe::Arena::Deleter&lt; T &gt;'],['../structfe_1_1Arena_1_1Deleter.html#a4f115196981ec080d075fd09f8fce52e',1,'fe::Arena::Deleter::Deleter() noexcept=default'],['../structfe_1_1Arena_1_1Deleter.html#acb74633b0f9c12116865339f08659d8d',1,'fe::Arena::Deleter::Deleter(const Deleter&lt; U &gt; &amp;) noexcept']]],
   ['direct_20vendoring_4',['Direct Vendoring',['../index.html#autotoc_md6',1,'']]],

@@ -146,9 +146,9 @@ Classes</h2></td></tr>
 <tr class="memitem:Lexer" id="r_Lexer"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Lexer.html">Lexer</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The blueprint for a lexer with a buffer of <code class="param">K</code> tokens to peek into the future (<a class="el" href="classfe_1_1Lexer.html#a574d6f4a890b04a422faa6a549a48687">Lexer::ahead</a>).  <a href="classfe_1_1Lexer.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Pos" id="r_Pos"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1Pos.html">Pos</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structfe_1_1Pos.html" title="Position in a source file; pass around as value.">Pos</a>ition in a source file; pass around as value.  <a href="structfe_1_1Pos.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Byte offset into a <a class="el" href="classfe_1_1Src.html" title="The content of one source file together with the offsets its rows start at.">Src</a>; pass around as value.  <a href="structfe_1_1Pos.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Loc" id="r_Loc"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1Loc.html">Loc</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structfe_1_1Loc.html" title="Location in a File.">Loc</a>ation in a File.  <a href="structfe_1_1Loc.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a>ation within a <a class="el" href="classfe_1_1Src.html" title="The content of one source file together with the offsets its rows start at.">Src</a>: the half-open byte range <span class="tt">[<a class="el" href="structfe_1_1Loc.html#a7cda6af5faf94e9a9da31b95ba7f60c2">Loc::begin</a>, <a class="el" href="structfe_1_1Loc.html#acc3b4ccefa545189fe46e06f1770f78b" title="It&#39;s called end because - just like an STL iterator - it refers to the byte one past the last one wit...">Loc::end</a>)</span>.  <a href="structfe_1_1Loc.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Parser" id="r_Parser"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Parser.html">Parser</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The blueprint for a <a href="https://en.wikipedia.org/wiki/Recursive_descent_parser">recursive descent</a>/ <a href="https://en.wikipedia.org/wiki/Recursive_ascent_parser">ascent parser</a> using a <code class="param">K</code> lookahead of <span class="tt">Tok</span>ens.  <a href="classfe_1_1Parser.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Ring" id="r_Ring"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Ring.html">Ring</a></td></tr>
@@ -157,6 +157,12 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialization if <span class="tt">N == 1</span> - doesn't need a ring.  <a href="classfe_1_1Ring_3_01T_00_011_01_4.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Ring_3C_20T_2C_202_20_3E" id="r_Ring_3C_20T_2C_202_20_3E"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Ring_3_01T_00_012_01_4.html">Ring&lt; T, 2 &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialization if <span class="tt">N == 2</span>; doesn't need a ring, we just copy.  <a href="classfe_1_1Ring_3_01T_00_012_01_4.html#details">More...</a><br /></td></tr>
+<tr class="memitem:PathHash" id="r_PathHash"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1PathHash.html">PathHash</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hashes a <span class="tt">std::filesystem::path</span> - consistent with its <span class="tt">operator==</span>, which compares lexically.  <a href="structfe_1_1PathHash.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Src" id="r_Src"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Src.html">Src</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The content of one source file together with the offsets its rows start at.  <a href="classfe_1_1Src.html#details">More...</a><br /></td></tr>
+<tr class="memitem:SrcMap" id="r_SrcMap"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1SrcMap.html">SrcMap</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interns the text - and the <span class="tt">std::filesystem::path</span> - of every file a <a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a> may point into.  <a href="classfe_1_1SrcMap.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Sym" id="r_Sym"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Sym.html">Sym</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol just wraps a pointer to <a class="el" href="structfe_1_1Sym_1_1String.html">Sym::String</a>, so pass <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a> itself around as value.  <a href="classfe_1_1Sym.html#details">More...</a><br /></td></tr>
 <tr class="memitem:SymPool" id="r_SymPool"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1SymPool.html">SymPool</a></td></tr>
@@ -173,6 +179,9 @@ Concepts</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:a923ce058163e2041744a84793de679c0" id="r_a923ce058163e2041744a84793de679c0"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a923ce058163e2041744a84793de679c0">ostream_formatter</a> = <a class="el" href="structfe_1_1basic__ostream__formatter.html">basic_ostream_formatter</a>&lt;char&gt;</td></tr>
+<tr class="memitem:abd33b4214fdd0afae828ffb1c5fc9f9e" id="r_abd33b4214fdd0afae828ffb1c5fc9f9e"><td class="memTemplParams" colspan="2">template&lt;class V&gt; </td></tr>
+<tr class="memitem:abd33b4214fdd0afae828ffb1c5fc9f9e template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#abd33b4214fdd0afae828ffb1c5fc9f9e">PathMap</a> = std::unordered_map&lt;std::filesystem::path, V, <a class="el" href="structfe_1_1PathHash.html">PathHash</a>&gt;</td></tr>
+<tr class="memdesc:abd33b4214fdd0afae828ffb1c5fc9f9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps a <span class="tt">std::filesystem::path</span> to <code class="param">V</code>.  <br /></td></tr>
 <tr id="typedef-members-0" class="groupHeader"><td colspan="2"><div class="groupHeader">SymMap/SymSet</div></td></tr>
 <tr><td colspan="2" class="ititle"><div class="groupText"><p>Set/Map is keyed by pointer - which is hashed in <a class="el" href="classfe_1_1SymPool.html" title="Hash set where all strings - wrapped in Symbol - live in.">SymPool</a>. </p>
 </div></td></tr>
@@ -255,6 +264,27 @@ FNV-1 Hash</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00064">64</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+
+</div>
+</div>
+<a id="abd33b4214fdd0afae828ffb1c5fc9f9e" name="abd33b4214fdd0afae828ffb1c5fc9f9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd33b4214fdd0afae828ffb1c5fc9f9e">&#9670;&#160;</a></span>PathMap</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class V&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#abd33b4214fdd0afae828ffb1c5fc9f9e">fe::PathMap</a> = std::unordered_map&lt;std::filesystem::path, V, <a class="el" href="structfe_1_1PathHash.html">PathHash</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Maps a <span class="tt">std::filesystem::path</span> to <code class="param">V</code>. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Node-based on purpose: <a class="el" href="classfe_1_1SrcMap.html" title="Interns the text - and the std::filesystem::path - of every file a Loc may point into.">fe::SrcMap</a> stores its <a class="el" href="classfe_1_1Src.html" title="The content of one source file together with the offsets its rows start at.">Src</a>s in here and a <a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a> points to one, so the values must never move. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="src_8h_source.html#l00039">39</a> of file <a class="el" href="src_8h_source.html">src.h</a>.</p>
 
 </div>
 </div>
@@ -568,9 +598,9 @@ template&lt;class R&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Include <span class="tt"><a class="el" href="loc_8cpp_8h.html">fe/loc.cpp.h</a></span> in exactly one translation unit for the default implementation, or provide your own definitions instead. </p>
+<p><span class="tt"><a class="el" href="loc_8h.html">fe/loc.h</a></span> only declares the stream output and dump helpers. Include <span class="tt"><a class="el" href="loc_8cpp_8h.html">fe/loc.cpp.h</a></span> in exactly one translation unit for the default implementation, or provide your own definitions instead. </p>
 
-<p class="definition">Definition at line <a class="el" href="loc_8cpp_8h_source.html#l00018">18</a> of file <a class="el" href="loc_8cpp_8h_source.html">loc.cpp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="loc_8cpp_8h_source.html#l00017">17</a> of file <a class="el" href="loc_8cpp_8h_source.html">loc.cpp.h</a>.</p>
 
 </div>
 </div>
@@ -594,7 +624,7 @@ template&lt;class R&gt; </div>
 </div><div class="memdoc">
 <p>Include <span class="tt"><a class="el" href="loc_8cpp_8h.html">fe/loc.cpp.h</a></span> in exactly one translation unit for the default implementation, or provide your own definitions instead. </p>
 
-<p class="definition">Definition at line <a class="el" href="loc_8cpp_8h_source.html#l00010">10</a> of file <a class="el" href="loc_8cpp_8h_source.html">loc.cpp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="loc_8cpp_8h_source.html#l00011">11</a> of file <a class="el" href="loc_8cpp_8h_source.html">loc.cpp.h</a>.</p>
 
 </div>
 </div>

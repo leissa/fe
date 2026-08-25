@@ -112,46 +112,50 @@ $(function(){initNavTree('structfe_1_1Pos.html','','structfe_1_1Pos-members'); }
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="#friends">Friends</a> &#124;
 <a href="structfe_1_1Pos-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">fe::Pos Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="structfe_1_1Pos.html" title="Position in a source file; pass around as value.">Pos</a>ition in a source file; pass around as value.  
+<p>Byte offset into a <a class="el" href="classfe_1_1Src.html" title="The content of one source file together with the offsets its rows start at.">Src</a>; pass around as value.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="loc_8h_source.html">fe/loc.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5eabfa6ae7547c45d7502fdc503427bd" id="r_a5eabfa6ae7547c45d7502fdc503427bd"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a5eabfa6ae7547c45d7502fdc503427bd">Pos</a> ()=default</td></tr>
-<tr class="memdesc:a5eabfa6ae7547c45d7502fdc503427bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an invalid <a class="el" href="structfe_1_1Pos.html" title="Position in a source file; pass around as value.">Pos</a>ition.  <br /></td></tr>
-<tr class="memitem:a2f5a03e5db4071ac152db6f830c17732" id="r_a2f5a03e5db4071ac152db6f830c17732"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a2f5a03e5db4071ac152db6f830c17732">Pos</a> (uint16_t <a class="el" href="#a989c45fc3d1ce613b90a8ab145c94158">row</a>)</td></tr>
-<tr class="memitem:a54c10d1c6f371ef318b340c1090a904a" id="r_a54c10d1c6f371ef318b340c1090a904a"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a54c10d1c6f371ef318b340c1090a904a">Pos</a> (uint16_t <a class="el" href="#a989c45fc3d1ce613b90a8ab145c94158">row</a>, uint16_t <a class="el" href="#a1adde7ab9d0f30f4aeae62e76289da31">col</a>)</td></tr>
-<tr class="memitem:a6b95864d39d3bb4e00816d65ec6d052c" id="r_a6b95864d39d3bb4e00816d65ec6d052c"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a6b95864d39d3bb4e00816d65ec6d052c">operator bool</a> () const</td></tr>
-<tr class="memdesc:a6b95864d39d3bb4e00816d65ec6d052c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is a valid <a class="el" href="structfe_1_1Pos.html" title="Position in a source file; pass around as value.">Pos</a>ition?  <br /></td></tr>
-<tr class="memitem:a38026a3057acc9bb77de0e3951933c03" id="r_a38026a3057acc9bb77de0e3951933c03"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#a38026a3057acc9bb77de0e3951933c03">operator&lt;=&gt;</a> (const <a class="el" href="#a5eabfa6ae7547c45d7502fdc503427bd">Pos</a> &amp;) const =default</td></tr>
+<tr class="memitem:ad554a8f481e4c0ef6b94fa3a764b3670" id="r_ad554a8f481e4c0ef6b94fa3a764b3670"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#ad554a8f481e4c0ef6b94fa3a764b3670">Pos</a> ()=default</td></tr>
+<tr class="memdesc:ad554a8f481e4c0ef6b94fa3a764b3670"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an invalid <a class="el" href="structfe_1_1Pos.html" title="Byte offset into a Src; pass around as value.">Pos</a>ition.  <br /></td></tr>
+<tr class="memitem:ac2e0190896cd8fb66af3274c5892203e" id="r_ac2e0190896cd8fb66af3274c5892203e"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#ac2e0190896cd8fb66af3274c5892203e">Pos</a> (uint32_t <a class="el" href="#a055b58d719423ee4aa8928a927970f99">off</a>)</td></tr>
+<tr class="memitem:a46b4925b94d29c02c9584baab42a0401" id="r_a46b4925b94d29c02c9584baab42a0401"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#a46b4925b94d29c02c9584baab42a0401">operator bool</a> () const</td></tr>
+<tr class="memdesc:a46b4925b94d29c02c9584baab42a0401"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is a valid <a class="el" href="structfe_1_1Pos.html" title="Byte offset into a Src; pass around as value.">Pos</a>ition?  <br /></td></tr>
+<tr class="memitem:a8a56ab19db9d221c912ea23af973449b" id="r_a8a56ab19db9d221c912ea23af973449b"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#a8a56ab19db9d221c912ea23af973449b">operator&lt;=&gt;</a> (const <a class="el" href="#ad554a8f481e4c0ef6b94fa3a764b3670">Pos</a> &amp;) const =default</td></tr>
+<tr class="memitem:a640b75ac976ba1789f7f47a961734d24" id="r_a640b75ac976ba1789f7f47a961734d24"><td class="memItemLeft">constexpr <a class="el" href="#ad554a8f481e4c0ef6b94fa3a764b3670">Pos</a>&#160;</td><td class="memItemRight"><a class="el" href="#a640b75ac976ba1789f7f47a961734d24">operator+</a> (uint32_t n) const</td></tr>
 <tr class="memitem:a9a6685af4e76850af36627fd7f9a0978" id="r_a9a6685af4e76850af36627fd7f9a0978"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9a6685af4e76850af36627fd7f9a0978">dump</a> () const</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a989c45fc3d1ce613b90a8ab145c94158" id="r_a989c45fc3d1ce613b90a8ab145c94158"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#a989c45fc3d1ce613b90a8ab145c94158">row</a> = 0</td></tr>
-<tr class="memitem:a1adde7ab9d0f30f4aeae62e76289da31" id="r_a1adde7ab9d0f30f4aeae62e76289da31"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#a1adde7ab9d0f30f4aeae62e76289da31">col</a> = 0</td></tr>
+<tr class="memitem:a055b58d719423ee4aa8928a927970f99" id="r_a055b58d719423ee4aa8928a927970f99"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a055b58d719423ee4aa8928a927970f99">off</a> = <a class="el" href="#a16e3b89c05cd157b2f0886421b09ac76">Invalid</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a16e3b89c05cd157b2f0886421b09ac76" id="r_a16e3b89c05cd157b2f0886421b09ac76"><td class="memItemLeft">static constexpr uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a16e3b89c05cd157b2f0886421b09ac76">Invalid</a> = uint32_t(-1)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-friends" class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
-<tr class="memitem:a5f6561cf9ba2a53c4863dbadc42c5c61" id="r_a5f6561cf9ba2a53c4863dbadc42c5c61"><td class="memItemLeft">std::ostream &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a5f6561cf9ba2a53c4863dbadc42c5c61">operator&lt;&lt;</a> (std::ostream &amp;os, <a class="el" href="#a5eabfa6ae7547c45d7502fdc503427bd">Pos</a> pos)</td></tr>
+<tr class="memitem:a5f6561cf9ba2a53c4863dbadc42c5c61" id="r_a5f6561cf9ba2a53c4863dbadc42c5c61"><td class="memItemLeft">std::ostream &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a5f6561cf9ba2a53c4863dbadc42c5c61">operator&lt;&lt;</a> (std::ostream &amp;os, <a class="el" href="#ad554a8f481e4c0ef6b94fa3a764b3670">Pos</a> pos)</td></tr>
 <tr class="memdesc:a5f6561cf9ba2a53c4863dbadc42c5c61"><td class="mdescLeft">&#160;</td><td class="mdescRight"><span class="tt"><a class="el" href="loc_8h.html">fe/loc.h</a></span> only declares the stream output and dump helpers.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="structfe_1_1Pos.html" title="Position in a source file; pass around as value.">Pos</a>ition in a source file; pass around as value. </p>
-<p>We are only using <span class="tt">uint16_t</span> for row/col because this allows us to have <span class="tt">sizeof(Loc) == 16</span>: two machine words, which common 64 bit calling conventions (x86-64 System V, AArch64) still pass and return in registers - with <span class="tt">uint32_t</span>, every <a class="el" href="structfe_1_1Loc.html" title="Location in a File.">Loc</a> would go through memory instead. </p><dl class="section warning"><dt>Warning</dt><dd>Rows/cols beyond 65535 wrap around - and row 0 doubles as the "invalid" sentinel, so <a class="el" href="structfe_1_1Pos.html" title="Position in a source file; pass around as value.">Pos</a>itions in such files silently degrade to invalid/wrong ones. </dd></dl>
+<div class="textblock"><p>Byte offset into a <a class="el" href="classfe_1_1Src.html" title="The content of one source file together with the offsets its rows start at.">Src</a>; pass around as value. </p>
+<p>A <a class="el" href="structfe_1_1Pos.html" title="Byte offset into a Src; pass around as value.">Pos</a>ition is just an index - <a class="el" href="classfe_1_1Src.html" title="The content of one source file together with the offsets its rows start at.">fe::Src</a> turns it back into the row/column a human wants to read. </p><dl class="section warning"><dt>Warning</dt><dd>Files beyond 4GiB wrap around, and the largest offset doubles as the "invalid" sentinel. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00016">16</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00018">18</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a5eabfa6ae7547c45d7502fdc503427bd" name="a5eabfa6ae7547c45d7502fdc503427bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5eabfa6ae7547c45d7502fdc503427bd">&#9670;&#160;</a></span>Pos() <span class="overload">[1/3]</span></h2>
+<a id="ad554a8f481e4c0ef6b94fa3a764b3670" name="ad554a8f481e4c0ef6b94fa3a764b3670"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad554a8f481e4c0ef6b94fa3a764b3670">&#9670;&#160;</a></span>Pos() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -168,19 +172,19 @@ Friends</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel default">default</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Creates an invalid <a class="el" href="structfe_1_1Pos.html" title="Position in a source file; pass around as value.">Pos</a>ition. </p>
+<p>Creates an invalid <a class="el" href="structfe_1_1Pos.html" title="Byte offset into a Src; pass around as value.">Pos</a>ition. </p>
 
-<p class="reference">Referenced by <a class="el" href="loc_8cpp_8h_source.html#l00010">operator&lt;&lt;</a>, and <a class="el" href="#a38026a3057acc9bb77de0e3951933c03">operator&lt;=&gt;()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="loc_8h_source.html#l00027">operator+()</a>, <a class="el" href="loc_8cpp_8h_source.html#l00011">operator&lt;&lt;</a>, and <a class="el" href="#a8a56ab19db9d221c912ea23af973449b">operator&lt;=&gt;()</a>.</p>
 
 </div>
 </div>
-<a id="a2f5a03e5db4071ac152db6f830c17732" name="a2f5a03e5db4071ac152db6f830c17732"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2f5a03e5db4071ac152db6f830c17732">&#9670;&#160;</a></span>Pos() <span class="overload">[2/3]</span></h2>
+<a id="ac2e0190896cd8fb66af3274c5892203e" name="ac2e0190896cd8fb66af3274c5892203e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2e0190896cd8fb66af3274c5892203e">&#9670;&#160;</a></span>Pos() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -191,53 +195,20 @@ Friends</h2></td></tr>
         <tr>
           <td class="memname">fe::Pos::Pos </td>
           <td>(</td>
-          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>row</em></span></td><td>)</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>off</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel explicit">explicit</span><span class="mlabel constexpr">constexpr</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00018">18</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00022">22</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
 
-<p class="reference">References <a class="el" href="loc_8h_source.html#l00028">row</a>.</p>
-
-</div>
-</div>
-<a id="a54c10d1c6f371ef318b340c1090a904a" name="a54c10d1c6f371ef318b340c1090a904a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a54c10d1c6f371ef318b340c1090a904a">&#9670;&#160;</a></span>Pos() <span class="overload">[3/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">fe::Pos::Pos </td>
-          <td>(</td>
-          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>row</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>col</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00020">20</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
-
-<p class="reference">References <a class="el" href="loc_8h_source.html#l00029">col</a>, and <a class="el" href="loc_8h_source.html#l00028">row</a>.</p>
+<p class="reference">References <a class="el" href="loc_8h_source.html#l00033">off</a>.</p>
 
 </div>
 </div>
@@ -257,12 +228,12 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="loc_8cpp_8h_source.html#l00027">27</a> of file <a class="el" href="loc_8cpp_8h_source.html">loc.cpp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="loc_8cpp_8h_source.html#l00037">37</a> of file <a class="el" href="loc_8cpp_8h_source.html">loc.cpp.h</a>.</p>
 
 </div>
 </div>
-<a id="a6b95864d39d3bb4e00816d65ec6d052c" name="a6b95864d39d3bb4e00816d65ec6d052c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6b95864d39d3bb4e00816d65ec6d052c">&#9670;&#160;</a></span>operator bool()</h2>
+<a id="a46b4925b94d29c02c9584baab42a0401" name="a46b4925b94d29c02c9584baab42a0401"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46b4925b94d29c02c9584baab42a0401">&#9670;&#160;</a></span>operator bool()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -279,21 +250,50 @@ Friends</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel explicit">explicit</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel explicit">explicit</span><span class="mlabel constexpr">constexpr</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Is a valid <a class="el" href="structfe_1_1Pos.html" title="Position in a source file; pass around as value.">Pos</a>ition? </p>
+<p>Is a valid <a class="el" href="structfe_1_1Pos.html" title="Byte offset into a Src; pass around as value.">Pos</a>ition? </p>
 
-<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00024">24</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00025">25</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
 
-<p class="reference">References <a class="el" href="loc_8h_source.html#l00028">row</a>.</p>
+<p class="reference">References <a class="el" href="loc_8h_source.html#l00019">Invalid</a>, and <a class="el" href="loc_8h_source.html#l00033">off</a>.</p>
 
 </div>
 </div>
-<a id="a38026a3057acc9bb77de0e3951933c03" name="a38026a3057acc9bb77de0e3951933c03"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a38026a3057acc9bb77de0e3951933c03">&#9670;&#160;</a></span>operator&lt;=&gt;()</h2>
+<a id="a640b75ac976ba1789f7f47a961734d24" name="a640b75ac976ba1789f7f47a961734d24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a640b75ac976ba1789f7f47a961734d24">&#9670;&#160;</a></span>operator+()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ad554a8f481e4c0ef6b94fa3a764b3670">Pos</a> fe::Pos::operator+ </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00027">27</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
+
+<p class="reference">References <a class="el" href="loc_8h_source.html#l00019">Invalid</a>, <a class="el" href="loc_8h_source.html#l00033">off</a>, and <a class="el" href="#ad554a8f481e4c0ef6b94fa3a764b3670">Pos()</a>.</p>
+
+</div>
+</div>
+<a id="a8a56ab19db9d221c912ea23af973449b" name="a8a56ab19db9d221c912ea23af973449b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a56ab19db9d221c912ea23af973449b">&#9670;&#160;</a></span>operator&lt;=&gt;()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -304,18 +304,18 @@ Friends</h2></td></tr>
         <tr>
           <td class="memname">auto fe::Pos::operator&lt;=&gt; </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="#a5eabfa6ae7547c45d7502fdc503427bd">Pos</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="#ad554a8f481e4c0ef6b94fa3a764b3670">Pos</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel default">default</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#a5eabfa6ae7547c45d7502fdc503427bd">Pos()</a>.</p>
+<p class="reference">References <a class="el" href="#ad554a8f481e4c0ef6b94fa3a764b3670">Pos()</a>.</p>
 
 </div>
 </div>
@@ -337,7 +337,7 @@ Friends</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="#a5eabfa6ae7547c45d7502fdc503427bd">Pos</a></td>          <td class="paramname"><span class="paramname"><em>pos</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="#ad554a8f481e4c0ef6b94fa3a764b3670">Pos</a></td>          <td class="paramname"><span class="paramname"><em>pos</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -350,46 +350,54 @@ Friends</h2></td></tr>
 <p><span class="tt"><a class="el" href="loc_8h.html">fe/loc.h</a></span> only declares the stream output and dump helpers. </p>
 <p>Include <span class="tt"><a class="el" href="loc_8cpp_8h.html">fe/loc.cpp.h</a></span> in exactly one translation unit for the default implementation, or provide your own definitions instead. </p>
 
-<p class="definition">Definition at line <a class="el" href="loc_8cpp_8h_source.html#l00010">10</a> of file <a class="el" href="loc_8cpp_8h_source.html">loc.cpp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="loc_8cpp_8h_source.html#l00011">11</a> of file <a class="el" href="loc_8cpp_8h_source.html">loc.cpp.h</a>.</p>
 
-<p class="reference">References <a class="el" href="loc_8h_source.html#l00029">col</a>, <a class="el" href="#a5eabfa6ae7547c45d7502fdc503427bd">Pos()</a>, and <a class="el" href="loc_8h_source.html#l00028">row</a>.</p>
+<p class="reference">References <a class="el" href="loc_8h_source.html#l00033">off</a>, and <a class="el" href="#ad554a8f481e4c0ef6b94fa3a764b3670">Pos()</a>.</p>
 
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="a1adde7ab9d0f30f4aeae62e76289da31" name="a1adde7ab9d0f30f4aeae62e76289da31"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1adde7ab9d0f30f4aeae62e76289da31">&#9670;&#160;</a></span>col</h2>
+<a id="a16e3b89c05cd157b2f0886421b09ac76" name="a16e3b89c05cd157b2f0886421b09ac76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16e3b89c05cd157b2f0886421b09ac76">&#9670;&#160;</a></span>Invalid</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t fe::Pos::Invalid = uint32_t(-1)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00019">19</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="loc_8h_source.html#l00025">operator bool()</a>, and <a class="el" href="loc_8h_source.html#l00027">operator+()</a>.</p>
+
+</div>
+</div>
+<a id="a055b58d719423ee4aa8928a927970f99" name="a055b58d719423ee4aa8928a927970f99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a055b58d719423ee4aa8928a927970f99">&#9670;&#160;</a></span>off</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint16_t fe::Pos::col = 0</td>
+          <td class="memname">uint32_t fe::Pos::off = <a class="el" href="#a16e3b89c05cd157b2f0886421b09ac76">Invalid</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00029">29</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00033">33</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="loc_8cpp_8h_source.html#l00010">operator&lt;&lt;</a>, and <a class="el" href="loc_8h_source.html#l00020">Pos()</a>.</p>
-
-</div>
-</div>
-<a id="a989c45fc3d1ce613b90a8ab145c94158" name="a989c45fc3d1ce613b90a8ab145c94158"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a989c45fc3d1ce613b90a8ab145c94158">&#9670;&#160;</a></span>row</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint16_t fe::Pos::row = 0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="loc_8h_source.html#l00028">28</a> of file <a class="el" href="loc_8h_source.html">loc.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="loc_8h_source.html#l00024">operator bool()</a>, <a class="el" href="loc_8cpp_8h_source.html#l00010">operator&lt;&lt;</a>, <a class="el" href="loc_8h_source.html#l00018">Pos()</a>, and <a class="el" href="loc_8h_source.html#l00020">Pos()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="src_8h_source.html#l00062">fe::Src::contains()</a>, <a class="el" href="loc_8h_source.html#l00025">operator bool()</a>, <a class="el" href="loc_8h_source.html#l00027">operator+()</a>, <a class="el" href="loc_8cpp_8h_source.html#l00011">operator&lt;&lt;</a>, <a class="el" href="loc_8h_source.html#l00022">Pos()</a>, <a class="el" href="src_8h_source.html#l00090">fe::Src::prev()</a>, and <a class="el" href="src_8h_source.html#l00069">fe::Src::rowcol()</a>.</p>
 
 </div>
 </div>

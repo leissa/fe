@@ -1,16 +1,12 @@
 var searchData=
 [
-  ['sep_0',['sep',['../classfe_1_1Join.html#a1b2d2b4827668cebaa09e7a30ef509dc',1,'fe::Join']]],
-  ['set_5fmode_1',['set_mode',['../namespacefe_1_1term.html#aea69c469efc3010ca40cb1873ff6bec6',1,'fe::term']]],
-  ['size_2',['size',['../classfe_1_1Sym.html#a35a3c9b2d1a8576e2c79ad9c5582df69',1,'fe::Sym']]],
-  ['spaces_3',['spaces',['../classfe_1_1Tab.html#a0d9fb5ef60f6ad70f2ada1ea353cbde9',1,'fe::Tab']]],
-  ['splitmix64_4',['splitmix64',['../namespacefe.html#acc1eed83d44fa0a6d3888d77d1065692',1,'fe']]],
-  ['start_5',['start',['../classfe_1_1Lexer.html#a0ecd9086f866aa9a8d849620aba195a0',1,'fe::Lexer']]],
-  ['state_6',['state',['../classfe_1_1Arena.html#adc11bd44aacf4c22167b1ed08d400077',1,'fe::Arena']]],
-  ['str_7',['str',['../classfe_1_1Sym.html#a924bef149f5053cf6dbc79740f48f02d',1,'fe::Sym']]],
-  ['streamfn_8',['StreamFn',['../classfe_1_1StreamFn.html#a68d490240269c9a6d0347bd071fc0867',1,'fe::StreamFn::StreamFn()'],['../namespacefe.html#a653a3eb512f7610b2449a4546f7e335d',1,'fe::StreamFn()']]],
-  ['string_9',['String',['../structfe_1_1Sym_1_1String.html#a551bd30c8aceef146168764ee45238c4',1,'fe::Sym::String::String() noexcept=default'],['../structfe_1_1Sym_1_1String.html#a53744c058aad60d3cd8adee02bdeedbc',1,'fe::Sym::String::String(size_t size) noexcept']]],
-  ['sym_10',['Sym',['../classfe_1_1Sym.html#a3b4417ab3002f28d1e4f340711a8d094',1,'fe::Sym']]],
-  ['sym_11',['sym',['../classfe_1_1SymPool.html#a1a7c3278db18ad72926b06c1e757b865',1,'fe::SymPool::sym(std::string_view s)'],['../classfe_1_1SymPool.html#aaa85e3916fd52036699bd97f6376d398',1,'fe::SymPool::sym(const std::string &amp;s)'],['../classfe_1_1SymPool.html#aebce9967a8092fbb2d851c2f400745a1',1,'fe::SymPool::sym(const char *s)']]],
-  ['sympool_12',['SymPool',['../classfe_1_1SymPool.html#a9446b07a54c8892bc6135608d0321af7',1,'fe::SymPool::SymPool(const SymPool &amp;)=delete'],['../classfe_1_1SymPool.html#ad760b218bdbfd83a596a4482be8df1a4',1,'fe::SymPool::SymPool() noexcept'],['../classfe_1_1SymPool.html#ab59d67329468787346189016e67794b2',1,'fe::SymPool::SymPool(SymPool &amp;&amp;other) noexcept']]]
+  ['range_0',['range',['../classfe_1_1Join.html#a13ae95390cd5b2d9fcc32513071b707d',1,'fe::Join']]],
+  ['rbegin_1',['rbegin',['../classfe_1_1Sym.html#a91d840fb22a5afcc50e3a70daee67907',1,'fe::Sym']]],
+  ['rend_2',['rend',['../classfe_1_1Sym.html#a1e7ad312b7d4d7f733e2ee47245b3e9b',1,'fe::Sym']]],
+  ['reset_3',['reset',['../classfe_1_1Ring.html#a17df98ab4ef3ce9fd2bb13a911a4ad16',1,'fe::Ring::reset()'],['../classfe_1_1Ring_3_01T_00_011_01_4.html#afa85d5e5922d3b59c79d7ebc33f8bc5b',1,'fe::Ring&lt; T, 1 &gt;::reset()'],['../classfe_1_1Ring_3_01T_00_012_01_4.html#abd21245d7479c1fc29eff7e4030f0f37',1,'fe::Ring&lt; T, 2 &gt;::reset()']]],
+  ['resolve_5fmode_4',['resolve_mode',['../namespacefe_1_1term.html#a787158fdb940cfa7e778863bde8f34e8',1,'fe::term']]],
+  ['resource_5',['resource',['../classfe_1_1Arena.html#a4ebf61d33a87088a351197f7adcf39d4',1,'fe::Arena::resource() noexcept'],['../classfe_1_1Arena.html#aa1f1c16b55f19577e56f47927b1db684',1,'fe::Arena::resource() const noexcept']]],
+  ['ring_6',['Ring',['../classfe_1_1Ring.html#ab3a60be69dfbca6f492a48c723daa95c',1,'fe::Ring::Ring(std::initializer_list&lt; T &gt; list)'],['../classfe_1_1Ring.html#a39e40341b203dbc7fae4f52898b51b28',1,'fe::Ring::Ring() noexcept=default'],['../classfe_1_1Ring.html#afcde3aa07bba9d3d3744123dec1602d0',1,'fe::Ring::Ring(const Ring &amp;)=default'],['../classfe_1_1Ring.html#abdcf792fc1968ca81d07db6b1224c369',1,'fe::Ring::Ring(Ring &amp;&amp;other) noexcept'],['../classfe_1_1Ring_3_01T_00_011_01_4.html#ad94b650f9f2f5492360c9138aa38e617',1,'fe::Ring&lt; T, 1 &gt;::Ring(std::initializer_list&lt; T &gt; list)'],['../classfe_1_1Ring_3_01T_00_011_01_4.html#ac1a657a25a9b0d0ee50b4d407e2ae403',1,'fe::Ring&lt; T, 1 &gt;::Ring()=default'],['../classfe_1_1Ring_3_01T_00_011_01_4.html#a54755862d1a832746a7ebd357bce8851',1,'fe::Ring&lt; T, 1 &gt;::Ring(const Ring &amp;)=default'],['../classfe_1_1Ring_3_01T_00_011_01_4.html#a64470b687e90523ac7a9882901f332b5',1,'fe::Ring&lt; T, 1 &gt;::Ring(Ring &amp;&amp;other)'],['../classfe_1_1Ring_3_01T_00_012_01_4.html#aed3ea7b655a522c25c19565dd8021087',1,'fe::Ring&lt; T, 2 &gt;::Ring(std::initializer_list&lt; T &gt; list)'],['../classfe_1_1Ring_3_01T_00_012_01_4.html#a98607b00a2db5a6aee3238b780e716a4',1,'fe::Ring&lt; T, 2 &gt;::Ring() noexcept=default'],['../classfe_1_1Ring_3_01T_00_012_01_4.html#a785492d506750fb8150ac96a09ecbbc7',1,'fe::Ring&lt; T, 2 &gt;::Ring(const Ring &amp;)=default'],['../classfe_1_1Ring_3_01T_00_012_01_4.html#a5c380dbf80ce444404af5eaaf900ed40',1,'fe::Ring&lt; T, 2 &gt;::Ring(Ring &amp;&amp;other) noexcept']]],
+  ['row_7',['row',['../classfe_1_1Src.html#ae5999ab785d5dfbe58ac84eb3ffc4988',1,'fe::Src']]],
+  ['rowcol_8',['rowcol',['../classfe_1_1Src.html#ae73eecf9ba170e53ae615cf58486af41',1,'fe::Src']]]
 ];

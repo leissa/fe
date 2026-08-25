@@ -130,7 +130,7 @@ Include dependency graph for utf8.h:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="utf8_8h__dep__incl.svg" width="232" height="256"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="utf8_8h__dep__incl.svg" width="308" height="256"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="utf8_8h_source.html">Go to the source code of this file.</a></p>
@@ -162,6 +162,8 @@ Functions</h2></td></tr>
 <tr class="memdesc:a5541c302f6e3dac03bf537cb08daf301"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the 2nd, 3rd, or 4th byte of an UTF-8 byte sequence valid?  <br /></td></tr>
 <tr class="memitem:a4ca17134ff0be619535e913b53a80e79" id="r_a4ca17134ff0be619535e913b53a80e79"><td class="memItemLeft">char32_t&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1utf8.html#a4ca17134ff0be619535e913b53a80e79">fe::utf8::decode</a> (std::istream &amp;is)</td></tr>
 <tr class="memdesc:a4ca17134ff0be619535e913b53a80e79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decodes the next UTF-8 sequence from <code class="param">is</code> into a single <span class="tt">char32_t</span>.  <br /></td></tr>
+<tr class="memitem:a7411b5c6d9f361e3a039bfb6fa673ec1" id="r_a7411b5c6d9f361e3a039bfb6fa673ec1"><td class="memItemLeft">char32_t&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1utf8.html#a7411b5c6d9f361e3a039bfb6fa673ec1">fe::utf8::decode</a> (std::string_view str, size_t &amp;i) noexcept</td></tr>
+<tr class="memdesc:a7411b5c6d9f361e3a039bfb6fa673ec1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decodes the UTF-8 sequence at <code class="param">i</code> in <code class="param">str</code> and advances <code class="param">i</code> past it.  <br /></td></tr>
 <tr class="memitem:ada5a7d0de6f0f46d41e672c29127daaf" id="r_ada5a7d0de6f0f46d41e672c29127daaf"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1utf8.html#ada5a7d0de6f0f46d41e672c29127daaf">fe::utf8::num_code_points</a> (std::string_view str) noexcept</td></tr>
 <tr class="memdesc:ada5a7d0de6f0f46d41e672c29127daaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of UTF-8 code points in <code class="param">str</code>.  <br /></td></tr>
 <tr class="memitem:a50c98a6d25495ac66c1a30e1ba83da99" id="r_a50c98a6d25495ac66c1a30e1ba83da99"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1utf8.html#a50c98a6d25495ac66c1a30e1ba83da99">fe::utf8::encode</a> (std::ostream &amp;os, char32_t c32)</td></tr>
@@ -209,6 +211,8 @@ Variables</h2></td></tr>
 <tr class="memdesc:a753d178a1e977540ac8cd44fe4390a58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximal number of <span class="tt">char8_t</span>s of an UTF-8 byte sequence.  <br /></td></tr>
 <tr class="memitem:a262057ce9cd9138f8dd21b84c7379b1c" id="r_a262057ce9cd9138f8dd21b84c7379b1c"><td class="memItemLeft">static constexpr char32_t&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1utf8.html#a262057ce9cd9138f8dd21b84c7379b1c">fe::utf8::BOM</a> = 0xfeff</td></tr>
 <tr class="memdesc:a262057ce9cd9138f8dd21b84c7379b1c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a href="https://en.wikipedia.org/wiki/Byte_order_mark#UTF-8">Byte Order Mark</a>.  <br /></td></tr>
+<tr class="memitem:a2e8ce90548abc90ddd7184e4379aebe0" id="r_a2e8ce90548abc90ddd7184e4379aebe0"><td class="memItemLeft">static constexpr std::string_view&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1utf8.html#a2e8ce90548abc90ddd7184e4379aebe0">fe::utf8::Bom</a> = &quot;\xef\xbb\xbf&quot;</td></tr>
+<tr class="memdesc:a2e8ce90548abc90ddd7184e4379aebe0"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="namespacefe_1_1utf8.html#a262057ce9cd9138f8dd21b84c7379b1c" title="BOM">BOM</a> as UTF-8 bytes.  <br /></td></tr>
 <tr class="memitem:a958f5b14010ee32136a35e5534a205ce" id="r_a958f5b14010ee32136a35e5534a205ce"><td class="memItemLeft">static constexpr char32_t&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1utf8.html#a958f5b14010ee32136a35e5534a205ce">fe::utf8::EoF</a> = (char32_t)std::istream::traits_type::eof()</td></tr>
 <tr class="memdesc:a958f5b14010ee32136a35e5534a205ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">End of stream sentinel returned by <a class="el" href="namespacefe_1_1utf8.html#a4ca17134ff0be619535e913b53a80e79" title="decode">decode</a>.  <br /></td></tr>
 <tr class="memitem:aea7687cddcfc751ce19ef5be406dc67c" id="r_aea7687cddcfc751ce19ef5be406dc67c"><td class="memItemLeft">static constexpr char32_t&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1utf8.html#aea7687cddcfc751ce19ef5be406dc67c">fe::utf8::Null</a> = 0</td></tr>

@@ -115,8 +115,9 @@ $(function(){initNavTree('lexer_8h.html','',''); });
   <div class="headertitle"><div class="title">lexer.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;filesystem&gt;</code><br />
-<code>#include &lt;istream&gt;</code><br />
+<div class="textblock"><code>#include &lt;cstddef&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;string_view&gt;</code><br />
 <code>#include &quot;<a class="el" href="loc_8h_source.html">fe/loc.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ring_8h_source.html">fe/ring.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="utf8_8h_source.html">fe/utf8.h</a>&quot;</code><br />
@@ -132,11 +133,53 @@ Include dependency graph for lexer.h:</div>
 Classes</h2></td></tr>
 <tr class="memitem:fe_3A_3ALexer_3C_20K_2C_20S_20_3E" id="r_fe_3A_3ALexer_3C_20K_2C_20S_20_3E"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Lexer.html">fe::Lexer&lt; K, S &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The blueprint for a lexer with a buffer of <code class="param">K</code> tokens to peek into the future (<a class="el" href="classfe_1_1Lexer.html#a574d6f4a890b04a422faa6a549a48687">Lexer::ahead</a>).  <a href="classfe_1_1Lexer.html#details">More...</a><br /></td></tr>
+<tr class="memitem:fe_3A_3ALexer_3C_20K_2C_20S_20_3E_3A_3AAhead_5Fstructfe_5F1_5F1Lexer_5F1_5F1Ahead" id="r_fe_3A_3ALexer_3C_20K_2C_20S_20_3E_3A_3AAhead_5Fstructfe_5F1_5F1Lexer_5F1_5F1Ahead"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Lexer.html#structfe_1_1Lexer_1_1Ahead">fe::Lexer&lt; K, S &gt;::Ahead</a></td></tr>
+<tr class="memdesc:structfe_1_1Lexer_1_1Ahead"><td class="mdescLeft">&#160;</td><td class="mdescRight">A decoded code point together with the byte range it occupies.  <a href="classfe_1_1Lexer.html#structfe_1_1Lexer_1_1Ahead">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:fe" id="r_fe"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html">fe</a></td></tr>
 </table>
+<hr/><h2 id="header-inline_5Fclasses" class="groupheader">Class Documentation</h2>
+<a name="structfe_1_1Lexer_1_1Ahead" id="structfe_1_1Lexer_1_1Ahead"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#structfe_1_1Lexer_1_1Ahead">&#9670;&#160;</a></span>fe::Lexer::Ahead</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct fe::Lexer::Ahead</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="textblock"><div class="compoundTemplParams">template&lt;size_t K, class S&gt;<br />
+struct fe::Lexer&lt; K, S &gt;::Ahead</div><p>A decoded code point together with the byte range it occupies. </p>
+
+<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00036">36</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
+</div><table class="fieldtable">
+<tr><th colspan="3">Class Members</th></tr>
+<tr><td class="fieldtype">
+<a id="af4c2ef1fbadc69195f0af79c58df65d2" name="af4c2ef1fbadc69195f0af79c58df65d2"></a><a class="el" href="structfe_1_1Pos.html">Pos</a></td>
+<td class="fieldname">
+begin</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a355f4607e9e67494b56b5a46a5c02f73" name="a355f4607e9e67494b56b5a46a5c02f73"></a>char32_t</td>
+<td class="fieldname">
+c = <a class="el" href="namespacefe_1_1utf8.html#a958f5b14010ee32136a35e5534a205ce">utf8::EoF</a></td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a75c38908c899331e27a2a0824512e126" name="a75c38908c899331e27a2a0824512e126"></a><a class="el" href="structfe_1_1Pos.html">Pos</a></td>
+<td class="fieldname">
+end</td>
+<td class="fielddoc">
+</td></tr>
+</table>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

@@ -1,7 +1,7 @@
 var searchData=
 [
   ['indent_0',['indent',['../classfe_1_1Tab.html#a70bd0da6867a9618d9942a808a201fca',1,'fe::Tab']]],
-  ['init_1',['init',['../classfe_1_1Parser.html#aff4aefd0e9b228d67489e4aa3232fdeb',1,'fe::Parser']]],
+  ['init_1',['init',['../classfe_1_1Parser.html#a10134258cf3c7fc081c4740ed22405cb',1,'fe::Parser']]],
   ['is_5fscalar_5fvalue_2',['is_scalar_value',['../namespacefe_1_1utf8.html#ad2faf4bb9f5b75fdac7d4dbb743541f5',1,'fe::utf8']]],
   ['is_5fvalid234_3',['is_valid234',['../namespacefe_1_1utf8.html#a5541c302f6e3dac03bf537cb08daf301',1,'fe::utf8']]],
   ['isa_4',['isa',['../classfe_1_1RuntimeCast.html#a3a5b6b6c64212ac9ac33635730333bfa',1,'fe::RuntimeCast::isa()'],['../classfe_1_1RuntimeCast.html#a40e2312e4ad37c67c4f495ccb34349ba',1,'fe::RuntimeCast::isa() const']]],

@@ -129,9 +129,9 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr id="pro-methods-0" class="groupHeader"><td colspan="2"><div class="groupHeader">Construction</div></td></tr>
-<tr class="memitem:aff4aefd0e9b228d67489e4aa3232fdeb" id="r_aff4aefd0e9b228d67489e4aa3232fdeb"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aff4aefd0e9b228d67489e4aa3232fdeb">init</a> (const std::filesystem::path *path)</td></tr>
+<tr class="memitem:a10134258cf3c7fc081c4740ed22405cb" id="r_a10134258cf3c7fc081c4740ed22405cb"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a10134258cf3c7fc081c4740ed22405cb">init</a> ()</td></tr>
 <tr id="pro-methods-1" class="groupHeader"><td colspan="2"><div class="groupHeader">Tracker</div></td></tr>
-<tr><td colspan="2" class="ititle"><div class="groupText"><p>Track <a class="el" href="structfe_1_1Loc.html" title="Location in a File.">Loc</a>ation in the source file.</p>
+<tr><td colspan="2" class="ititle"><div class="groupText"><p>Track <a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a>ation in the source file.</p>
 <p>Use like this: </p><div class="fragment"><div class="line"><span class="keyword">auto</span> track  = <a class="code hl_function" href="#aea3507b75aa247b9431256f5463a7821">tracker</a>();</div>
 <div class="line"><span class="keyword">auto</span> foo    = parse_foo();</div>
 <div class="line"><span class="keyword">auto</span> bar    = parse_bar();</div>
@@ -246,7 +246,7 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 
 <p class="reference">References <a class="el" href="parser_8h_source.html#l00114">ahead_</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00094">accept()</a>, <a class="el" href="parser_8h_source.html#l00108">eat()</a>, <a class="el" href="parser_8h_source.html#l00101">expect()</a>, <a class="el" href="parser_8h_source.html#l00086">lex()</a>, and <a class="el" href="parser_8h_source.html#l00075">tracker()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00094">accept()</a>, <a class="el" href="parser_8h_source.html#l00108">eat()</a>, <a class="el" href="parser_8h_source.html#l00101">expect()</a>, <a class="el" href="parser_8h_source.html#l00041">init()</a>, <a class="el" href="parser_8h_source.html#l00086">lex()</a>, and <a class="el" href="parser_8h_source.html#l00075">tracker()</a>.</p>
 
 </div>
 </div>
@@ -321,8 +321,8 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 
 </div>
 </div>
-<a id="aff4aefd0e9b228d67489e4aa3232fdeb" name="aff4aefd0e9b228d67489e4aa3232fdeb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff4aefd0e9b228d67489e4aa3232fdeb">&#9670;&#160;</a></span>init()</h2>
+<a id="a10134258cf3c7fc081c4740ed22405cb" name="a10134258cf3c7fc081c4740ed22405cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10134258cf3c7fc081c4740ed22405cb">&#9670;&#160;</a></span>init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -335,7 +335,7 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="classfe_1_1Parser.html">fe::Parser</a>&lt; Tok, Tag, K, S &gt;::init </td>
           <td>(</td>
-          <td class="paramtype">const std::filesystem::path *</td>          <td class="paramname"><span class="paramname"><em>path</em></span></td><td>)</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -348,7 +348,7 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00041">41</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">References <a class="el" href="parser_8h_source.html#l00114">ahead_</a>, and <a class="el" href="parser_8h_source.html#l00115">curr_</a>.</p>
+<p class="reference">References <a class="el" href="parser_8h_source.html#l00083">ahead()</a>, <a class="el" href="parser_8h_source.html#l00114">ahead_</a>, and <a class="el" href="parser_8h_source.html#l00115">curr_</a>.</p>
 
 </div>
 </div>
@@ -447,7 +447,7 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00077">77</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">References <a class="el" href="loc_8h_source.html#l00074">fe::Loc::begin</a>, and <a class="el" href="parser_8h_source.html#l00115">curr_</a>.</p>
+<p class="reference">References <a class="el" href="loc_8h_source.html#l00087">fe::Loc::begin</a>, and <a class="el" href="parser_8h_source.html#l00115">curr_</a>.</p>
 
 </div>
 </div>

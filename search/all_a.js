@@ -1,10 +1,10 @@
 var searchData=
 [
   ['indent_0',['indent',['../classfe_1_1Tab.html#a70bd0da6867a9618d9942a808a201fca',1,'fe::Tab']]],
-  ['init_1',['init',['../classfe_1_1Parser.html#aff4aefd0e9b228d67489e4aa3232fdeb',1,'fe::Parser']]],
+  ['init_1',['init',['../classfe_1_1Parser.html#a10134258cf3c7fc081c4740ed22405cb',1,'fe::Parser']]],
   ['integrate_20into_20existing_20project_2',['Integrate into existing Project',['../index.html#autotoc_md4',1,'']]],
   ['into_20existing_20project_3',['Integrate into existing Project',['../index.html#autotoc_md4',1,'']]],
-  ['invalid_4',['Invalid',['../namespacefe_1_1utf8.html#a12b7d1cbb7960728a558b5bb26255b3d',1,'fe::utf8']]],
+  ['invalid_4',['Invalid',['../structfe_1_1Pos.html#a16e3b89c05cd157b2f0886421b09ac76',1,'fe::Pos::Invalid'],['../namespacefe_1_1utf8.html#a12b7d1cbb7960728a558b5bb26255b3d',1,'fe::utf8::Invalid']]],
   ['is_5fbit_5fenum_5',['is_bit_enum',['../structfe_1_1is__bit__enum.html',1,'fe']]],
   ['is_5fscalar_5fvalue_6',['is_scalar_value',['../namespacefe_1_1utf8.html#ad2faf4bb9f5b75fdac7d4dbb743541f5',1,'fe::utf8']]],
   ['is_5fvalid234_7',['is_valid234',['../namespacefe_1_1utf8.html#a5541c302f6e3dac03bf537cb08daf301',1,'fe::utf8']]],
@@ -23,7 +23,6 @@ var searchData=
   ['ispunct_20',['ispunct',['../namespacefe_1_1utf8.html#a93b679fe754982802a0a3163beaf5857',1,'fe::utf8']]],
   ['isrange_21',['isrange',['../namespacefe_1_1utf8.html#ac5545b37232e0a17c78fd4f53d888e13',1,'fe::utf8::isrange(char32_t c, char32_t begin, char32_t finis) noexcept'],['../namespacefe_1_1utf8.html#a1dc530016223bbd3b70578c1045101e9',1,'fe::utf8::isrange(char32_t begin, char32_t finis) noexcept']]],
   ['isspace_22',['isspace',['../namespacefe_1_1utf8.html#ae73e646b50448236b4eccacd7d798839',1,'fe::utf8']]],
-  ['istream_5f_23',['istream_',['../classfe_1_1Lexer.html#ab8dab537ecbc5e97ad064e286201fd14',1,'fe::Lexer']]],
-  ['isupper_24',['isupper',['../namespacefe_1_1utf8.html#a7681ccacf336d09b0580dad0503f911a',1,'fe::utf8']]],
-  ['isxdigit_25',['isxdigit',['../namespacefe_1_1utf8.html#a508776758a043af7871049a6ada71571',1,'fe::utf8']]]
+  ['isupper_23',['isupper',['../namespacefe_1_1utf8.html#a7681ccacf336d09b0580dad0503f911a',1,'fe::utf8']]],
+  ['isxdigit_24',['isxdigit',['../namespacefe_1_1utf8.html#a508776758a043af7871049a6ada71571',1,'fe::utf8']]]
 ];
