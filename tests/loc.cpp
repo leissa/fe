@@ -143,8 +143,9 @@ TEST_CASE("SrcMap") {
     auto [file, fresh] = map.add("test.let", "let x = 1;\nlet y = 2;");
     CHECK(fresh);
     CHECK(map.add("test.let", "whatever") == std::pair(file, false));
-    CHECK(map.lookup(file->path()) == file);
+    CHECK(map.lookup(Loc(file->path(), Pos(0))) == file);
     CHECK(map.lookup(Loc()) == nullptr);
+    CHECK(map.add("nonexistent.let").first == nullptr);
 
     // A resolvable Loc renders as `file:row:col-row:col`; the trailing position is the *last*
     // character - not the one Loc::end points past.

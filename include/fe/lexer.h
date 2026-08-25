@@ -29,11 +29,8 @@ public:
         if (buf_.starts_with(utf8::Bom)) cursor_ = utf8::Bom.size();
         for (size_t i = 0; i != K; ++i)
             ahead_[i] = decode();
-        loc_ = peek().anew_begin();
+        start();
     }
-
-    const std::filesystem::path* path() const { return path_; }
-    std::string_view buf() const { return buf_; }
 
 protected:
     /// A decoded code point together with the byte range it occupies.

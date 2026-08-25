@@ -43,17 +43,16 @@ public:
 
     /// @name Resolve a Pos
     ///@{
-    /// 1-based row @p pos sits in, or `0` if @p pos does not belong to this file.
-    uint32_t row(Pos pos) const {
-        if (!contains(pos)) return 0;
-        return (uint32_t)(std::ranges::upper_bound(rows_, pos.off) - rows_.begin());
+    /// 1-based row and column @p pos sits at, or `{0, 0}` if @p pos does not belong to this file.
+    /// The column counts code points, not bytes.
+    std::pair<uint32_t, uint32_t> rowcol(Pos pos) const {
+        if (!contains(pos)) return {0, 0};
+        auto row = (uint32_t)(std::ranges::upper_bound(rows_, pos.off) - rows_.begin());
+        return {row, (uint32_t)utf8::num_code_points(sub(rows_[row - 1], pos.off)) + 1};
     }
 
-    /// 1-based column of @p pos counted in code points, or `0` if @p pos does not belong to this file.
-    uint32_t col(Pos pos) const {
-        if (auto r = row(pos)) return (uint32_t)utf8::num_code_points(sub(rows_[r - 1], pos.off)) + 1;
-        return 0;
-    }
+    uint32_t row(Pos pos) const { return rowcol(pos).first; }
+    uint32_t col(Pos pos) const { return rowcol(pos).second; }
 
     /// Text of the 1-based @p row without its line terminator; empty if @p row is out of range.
     std::string_view line(uint32_t row) const {
@@ -70,7 +69,7 @@ public:
         if (end == 0) return Pos(0);
 
         auto i = end - 1;
-        while (i != 0 && (char8_t(buf_[i]) & 0b11000000) == 0b10000000)
+        while (i != 0 && utf8::is_valid234(char8_t(buf_[i])) != char8_t(-1))
             --i;
 
         // Only trust the backward scan if that candidate really decodes up to `end`:
@@ -104,11 +103,13 @@ public:
         return {&files_.emplace_back(std::move(path), std::move(buf)), true};
     }
 
-    /// As above, but reads the content from @p path; the content stays empty if it cannot be read.
+    /// As above, but reads the content from @p path.
+    /// @returns a `nullptr` SrcFile if @p path cannot be opened.
     std::pair<const SrcFile*, bool> add(std::filesystem::path path) {
         if (auto file = lookup(path)) return {file, false};
         auto ifs = std::ifstream(path, std::ios::binary);
-        return add(std::move(path), slurp(ifs));
+        if (!ifs) return {nullptr, false};
+        return {&files_.emplace_back(std::move(path), slurp(ifs)), true};
     }
 
     /// Reads all of @p is into a `std::string`.
@@ -118,15 +119,8 @@ public:
     ///@}
 
     /// @name Lookup
-    /// All of these yield `nullptr` if the file has not been registered.
+    /// Both yield `nullptr` if the file has not been registered.
     ///@{
-    const SrcFile* lookup(const std::filesystem::path* path) const {
-        if (path)
-            for (const auto& file : files_)
-                if (file.path() == path) return &file;
-        return nullptr;
-    }
-
     /// @note Compares lexically first, so this also works for a @p path that does not exist on disk.
     const SrcFile* lookup(const std::filesystem::path& path) const {
         std::error_code ignore;
@@ -136,7 +130,13 @@ public:
         return nullptr;
     }
 
-    const SrcFile* lookup(Loc loc) const { return lookup(loc.path); }
+    /// @note Loc::path is owned by this SrcMap, so this compares pointers - no `fs::equivalent`.
+    const SrcFile* lookup(Loc loc) const {
+        if (loc.path)
+            for (const auto& file : files_)
+                if (file.path() == loc.path) return &file;
+        return nullptr;
+    }
     ///@}
 
     /// @name Render a Loc
@@ -147,7 +147,10 @@ public:
         auto file = lookup(loc);
         if (!file || !file->contains(loc.begin) || !file->contains(loc.end) || loc.end < loc.begin) return os << loc;
 
-        auto stream_pos = [&](Pos pos) { os << file->row(pos) << ':' << file->col(pos); };
+        auto stream_pos = [&](Pos pos) {
+            auto [row, col] = file->rowcol(pos);
+            os << row << ':' << col;
+        };
         os << file->path()->string() << ':';
         stream_pos(loc.begin);
         if (auto last = file->prev(loc.end); loc.begin < last) os << '-', stream_pos(last);
