@@ -2,6 +2,7 @@ var hierarchy =
 [
     [ "fe::Lexer&lt; K, S &gt;::Ahead", "classfe_1_1Lexer.html#structfe_1_1Lexer_1_1Ahead", null ],
     [ "fe::Arena::Allocator&lt; T &gt;", "structfe_1_1Arena_1_1Allocator.html", null ],
+    [ "fe::Parser&lt; Tok, Tag, K, S &gt;::Anchor", "classfe_1_1Parser_1_1Anchor.html", null ],
     [ "fe::Arena", "classfe_1_1Arena.html", null ],
     [ "fe::utf8::Char32", "structfe_1_1utf8_1_1Char32.html", null ],
     [ "fe::Arena::Deleter&lt; T &gt;", "structfe_1_1Arena_1_1Deleter.html", null ],
