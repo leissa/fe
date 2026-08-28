@@ -1,6 +1,7 @@
 #pragma once
 
 #include <algorithm>
+#include <format>
 #include <vector>
 
 #include "fe/loc.h"
@@ -104,6 +105,14 @@ protected:
     Tok expect(Tag tag, std::string_view ctxt) {
         if (ahead().tag() == tag) return lex();
         self().syntax_err(tag, ctxt);
+        return {};
+    }
+
+    /// As above but builds the context via std::format.
+    template<class... Args>
+    Tok expect(Tag tag, std::format_string<Args...> fmt, Args&&... args) {
+        if (ahead().tag() == tag) return lex();
+        self().syntax_err(tag, std::format(fmt, std::forward<Args>(args)...));
         return {};
     }
 
