@@ -20,6 +20,9 @@ var hierarchy =
     [ "fe::Join&lt; R &gt;", "classfe_1_1Join.html", null ],
     [ "fe::Lexer&lt; K, S &gt;", "classfe_1_1Lexer.html", null ],
     [ "fe::Loc", "structfe_1_1Loc.html", null ],
+    [ "std::logic_error", null, [
+      [ "fe::sys::CmdNotFound", "classfe_1_1sys_1_1CmdNotFound.html", null ]
+    ] ],
     [ "std::pmr::memory_resource", "classstd_1_1pmr_1_1memory__resource.html", [
       [ "fe::Arena::MemoryResource", "classfe_1_1Arena_1_1MemoryResource.html", null ]
     ] ],

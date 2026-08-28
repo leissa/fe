@@ -1,5 +1,12 @@
 var namespacefe =
 [
+    [ "dl", "namespacefe_1_1dl.html", [
+      [ "close", "namespacefe_1_1dl.html#a06893ca1a7701c45fb627831247dbc4c", null ],
+      [ "get", "namespacefe_1_1dl.html#a0ed7d0d7ed093b7ed9aabdcb29e06f40", null ],
+      [ "open", "namespacefe_1_1dl.html#aecc9eedf6d19099de2e520cda44af8e7", null ],
+      [ "extension", "namespacefe_1_1dl.html#a90a43bf1410ff386651d4d4e40ead244", null ]
+    ] ],
+    [ "sys", "namespacefe_1_1sys.html", "namespacefe_1_1sys" ],
     [ "term", "namespacefe_1_1term.html", [
       [ "FG", "namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148", [
         [ "Black", "namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ae90dfb84e30edf611e326eeb04d680de", null ],
@@ -62,9 +69,8 @@ var namespacefe =
     [ "hash_combine", "namespacefe.html#abf157d266c33cbe9981f19021fbf6264", null ],
     [ "Join", "namespacefe.html#afdda5f81a682643effc4dd73321bc737", null ],
     [ "murmur3", "namespacefe.html#a89ce852a3e2d3ecde80f0ed8f81a501b", null ],
-    [ "operator<<", "namespacefe.html#a41708329df0d5918fc77eb3a9ee89b16", null ],
-    [ "operator<<", "namespacefe.html#abe367a0891e516099018c33db02746cc", null ],
     [ "splitmix64", "namespacefe.html#acc1eed83d44fa0a6d3888d77d1065692", null ],
+    [ "stream_snippet", "namespacefe.html#acc13d332567b40d97c26c65b3480239b", null ],
     [ "StreamFn", "namespacefe.html#a653a3eb512f7610b2449a4546f7e335d", null ],
     [ "throwf", "namespacefe.html#a90e0f8ec6bf736dde22be99a5cfde6ca", null ],
     [ "to_underlying", "namespacefe.html#a1f98d7865fd23c1d29648fb9f6239ce3", null ],

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['view_0',['view',['../classfe_1_1Sym.html#ae4042d6fd11e3d25c511c2feb031ad2a',1,'fe::Sym']]]
+  ['unreachable_0',['unreachable',['../namespacefe.html#aff9df682b55afdb0f712e5a0c1ff3a2b',1,'fe']]],
+  ['use_5fcolor_1',['use_color',['../namespacefe_1_1term.html#ad2b84bd3b2fb301332ef7cae1fcd7b69',1,'fe::term']]]
 ];

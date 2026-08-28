@@ -160,7 +160,7 @@ $(function(){initNavTree('index.html','',''); });
 <p><a href="https://github.com/leissa/fe/stargazers"><img src="https://img.shields.io/github/stars/leissa/fe" alt="Stars" class="inline"/></a> <a href="https://github.com/leissa/fe/fork"><img src="https://img.shields.io/github/forks/leissa/fe" alt="Forks" class="inline"/></a></p>
 <p><a href="https://github.com/leissa/fe/releases"><img src="https://img.shields.io/github/v/release/leissa/fe?style=flat-square&amp;logo=starship&amp;color=blue&amp;label=Release" alt="GitHub Release" class="inline"/></a> <a href="https://leissa.github.io/fe"><img src="https://img.shields.io/badge/Docs-main-blue?style=flat-square&amp;logo=gitbook&amp;logoColor=white" alt="Documentation" class="inline"/></a> <a href="https://en.wikipedia.org/wiki/C%2B%2B#Standardization"><img src="https://img.shields.io/badge/C%2B%2B-23-blue?style=flat-square&amp;logo=cplusplus" alt="C++23" class="inline"/></a> <a href="https://github.com/leissa/fe/blob/main/LICENSE"><img src="https://img.shields.io/github/license/leissa/fe?style=flat-square&amp;color=blue&amp;logo=opensourceinitiative&amp;logoColor=white&amp;label=License" alt="License" class="inline"/></a></p>
 <p><a href="https://github.com/leissa/fe/actions/workflows/doxygen.yml?query=branch%3Amain"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/doxygen.yml?style=flat-square&amp;logo=doxygen&amp;logoSize=auto&amp;label=&amp;labelColor=555&amp;branch=main" alt="Doxygen" class="inline"/></a> <a href="https://github.com/leissa/fe/actions/workflows/linux.yml?query=branch%3Amain"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/linux.yml?style=flat-square&amp;logo=linux&amp;label=Linux&amp;logoColor=white&amp;branch=main" alt="Linux" class="inline"/></a> <a href="https://github.com/leissa/fe/actions/workflows/macos.yml?query=branch%3Amain"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/macos.yml?style=flat-square&amp;logo=apple&amp;label=macOS&amp;branch=main" alt="macOS" class="inline"/></a> <a href="https://github.com/leissa/fe/actions/workflows/windows.yml?query=branch%3Amain"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/windows.yml?style=flat-square&amp;label=⊞%20Windows&amp;branch=main" alt="Windows" class="inline"/></a></p>
-<p><b>FE</b> is a header-only C++23 toolkit for building handwritten compiler and interpreter frontends.</p>
+<p><b>FE</b> is a C++23 toolkit for building handwritten compiler and interpreter frontends. It is header-only by default; the handful of components that need a translation unit of their own come with <span class="tt">FE_LIB</span>.</p>
 <p>Rather than generating lexers or parsers for you, FE focuses on the infrastructure that every frontend needs anyway: source locations, diagnostics, interning, parsing support, and efficient memory management. The goal is simple: keep handwritten frontends lightweight, explicit, and pleasant to maintain.</p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
 💡 Why FE?</h1>
@@ -183,11 +183,14 @@ $(function(){initNavTree('index.html','',''); });
 <li><span class="tt"><a class="el" href="structfe_1_1Driver.html" title="Use/derive from this class for &quot;global&quot; variables that you need all over the place.">fe::Driver</a></span> for diagnostics and shared frontend state.</li>
 <li><span class="tt"><a class="el" href="structfe_1_1Pos.html" title="Byte offset into a Src; pass around as value.">fe::Pos</a></span> and <span class="tt"><a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">fe::Loc</a></span> for source positions and source spans.</li>
 <li><span class="tt"><a class="el" href="classfe_1_1Src.html" title="The content of one source file together with the offsets its rows start at.">fe::Src</a></span> and <span class="tt"><a class="el" href="classfe_1_1SrcMap.html" title="Interns the text - and the std::filesystem::path - of every file a Loc may point into.">fe::SrcMap</a></span> for owning source text and resolving a position back to <span class="tt">path:row:col</span>.</li>
+<li><span class="tt"><a class="el" href="namespacefe.html#acc13d332567b40d97c26c65b3480239b" title="Streams every source row loc spans, each underlining the columns loc covers on it.">fe::stream_snippet</a></span> for the underlined source excerpt below a diagnostic.</li>
 <li><span class="tt"><a class="el" href="namespacefe_1_1term.html" title="Lightweight stream-based terminal colors for diagnostics and CLI output.">fe::term</a></span> for lightweight terminal colors in diagnostics and CLI output.</li>
 <li><span class="tt"><a class="el" href="namespacefe_1_1utf8.html" title="UTF-8 helpers for decoding byte streams, encoding char32_t values, and running ASCII-style character ...">fe::utf8</a></span> for lightweight UTF-8 handling.</li>
 <li><span class="tt"><a class="el" href="namespacefe.html#a11d6f3c09be860709bc513577982fbaa" title="Mixes h with murmur3 or splitmix64 - whichever matches sizeof(size_t).">fe::hash</a></span> and friends for cheap, <span class="tt">constexpr</span> hash mixing/combining.</li>
 <li><span class="tt"><a class="el" href="classfe_1_1Lexer.html" title="The blueprint for a lexer with a buffer of K tokens to peek into the future (Lexer::ahead).">fe::Lexer</a>&lt;K, S&gt;</span> for UTF-8-aware lexing with lookahead and token text accumulation.</li>
 <li><span class="tt"><a class="el" href="classfe_1_1Parser.html" title="The blueprint for a recursive descent/ ascent parser using a K lookahead of Tokens.">fe::Parser</a>&lt;Tok, Tag, K, S&gt;</span> for recursive-descent-style parsing with token lookahead, span tracking, and anchor-based error recovery.</li>
+<li><span class="tt"><a class="el" href="classfe_1_1Restore.html" title="RAII guard that restores ref to its current value at the end of the scope.">fe::Restore</a></span> for RAII save/restore of a variable across a scope.</li>
+<li><span class="tt"><a class="el" href="namespacefe_1_1dl.html">fe::dl</a></span> and <span class="tt"><a class="el" href="namespacefe_1_1sys.html">fe::sys</a></span> for loading dynamic libraries and locating/running external commands.</li>
 <li>Optional <span class="tt">FE_ABSL</span> support for <a href="https://abseil.io/">Abseil</a> hash containers.</li>
 </ul>
 <p>FE does not try to hide frontend construction behind a generator. Instead, it gives you sharp, reusable tools so you can build exactly the frontend you want.</p>
@@ -205,16 +208,18 @@ $(function(){initNavTree('index.html','',''); });
 Integrate into existing Project</h2>
 <h3 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
 CMake</h3>
-<p>Add FE as a subdirectory and link the <span class="tt"><a class="el" href="namespacefe.html">fe</a></span> interface target:</p>
+<p>Add FE as a subdirectory and link the <span class="tt"><a class="el" href="namespacefe.html">fe</a></span> target:</p>
 <div class="fragment"><div class="line">add_subdirectory(submodules/fe)</div>
 <div class="line">target_link_libraries(my_compiler PRIVATE fe)</div>
-</div><!-- fragment --><p>If you want Abseil-backed hash containers, enable <span class="tt">FE_ABSL</span> before adding the subdirectory:</p>
-<div class="fragment"><div class="line">set(FE_ABSL ON)</div>
+</div><!-- fragment --><p>Set any of the options below <em>before</em> adding the subdirectory:</p>
+<div class="fragment"><div class="line">set(FE_LIB  ON) # build fe as a static library instead of an interface one</div>
+<div class="line">set(FE_ABSL ON) # use Abseil-backed hash containers</div>
 <div class="line">add_subdirectory(submodules/fe)</div>
 <div class="line">target_link_libraries(my_compiler PRIVATE fe)</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
+</div><!-- fragment --><p><span class="tt">FE_LIB</span> compiles <span class="tt">src/fe/</span> along with the headers. You need it for <span class="tt"><a class="el" href="namespacefe_1_1dl.html">fe::dl</a></span>, <span class="tt"><a class="el" href="namespacefe_1_1sys.html">fe::sys</a></span>, <span class="tt"><a class="el" href="namespacefe.html#acc13d332567b40d97c26c65b3480239b" title="Streams every source row loc spans, each underlining the columns loc covers on it.">fe::stream_snippet</a></span>, and the default <span class="tt">operator&lt;&lt;</span>/<span class="tt">dump</span> of <span class="tt"><a class="el" href="structfe_1_1Pos.html" title="Byte offset into a Src; pass around as value.">fe::Pos</a></span>/<span class="tt"><a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">fe::Loc</a></span> - <span class="tt"><a class="el" href="loc_8h.html">fe/loc.h</a></span> merely declares those, so a link error for <span class="tt">operator&lt;&lt;(std::ostream&amp;, <a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">fe::Loc</a>)</span> means you either want <span class="tt">FE_LIB</span> or your own rendering.</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
 Direct Vendoring</h3>
-<p>Because FE is header-only, you can also vendor <span class="tt">include/fe/</span> directly into your project.</p>
+<p>You can also vendor <span class="tt">include/fe/</span> directly into your project and add the <span class="tt">src/fe/*.cpp</span> you need to your build - <span class="tt"><a class="el" href="namespacefe_1_1dl.html">fe::dl</a></span> additionally wants <span class="tt">${CMAKE_DL_LIBS}</span>.</p>
 <p>If you want Abseil support in that setup, compile with:</p>
 <div class="fragment"><div class="line">-DFE_ABSL</div>
 </div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
@@ -236,7 +241,8 @@ Direct Vendoring</h3>
 <div class="fragment"><div class="line">cmake -S . -B build -DBUILD_TESTING=ON</div>
 <div class="line">cmake --build build</div>
 <div class="line">ctest --test-dir build --output-on-failure</div>
-</div><!-- fragment --><p>To run one discovered test:</p>
+</div><!-- fragment --><p>A standalone <span class="tt">BUILD_TESTING</span> build enables <span class="tt">FE_LIB</span>, as the tests rely on the default <span class="tt"><a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">fe::Loc</a></span> rendering.</p>
+<p>To run one discovered test:</p>
 <div class="fragment"><div class="line">ctest --test-dir build -R &#39;^Lexer$&#39; --output-on-failure</div>
 </div><!-- fragment --><p>To run a doctest case directly:</p>
 <div class="fragment"><div class="line">./build/bin/fe-test --test-case=Lexer</div>

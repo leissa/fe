@@ -121,6 +121,8 @@ $(function(){initNavTree('namespacefe.html','',''); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
+<tr class="memitem:dl" id="r_dl"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1dl.html">dl</a></td></tr>
+<tr class="memitem:sys" id="r_sys"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1sys.html">sys</a></td></tr>
 <tr class="memitem:term" id="r_term"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1term.html">term</a></td></tr>
 <tr class="memdesc:namespacefe_1_1term"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lightweight stream-based terminal colors for diagnostics and CLI output. <br /></td></tr>
 <tr class="memitem:utf8" id="r_utf8"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1utf8.html">utf8</a></td></tr>
@@ -205,8 +207,8 @@ Functions</h2></td></tr>
 <tr class="memitem:a653a3eb512f7610b2449a4546f7e335d template"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a653a3eb512f7610b2449a4546f7e335d">StreamFn</a> (F) -&gt; StreamFn&lt; F &gt;</td></tr>
 <tr class="memitem:afdda5f81a682643effc4dd73321bc737" id="r_afdda5f81a682643effc4dd73321bc737"><td class="memTemplParams" colspan="2">template&lt;class R&gt; </td></tr>
 <tr class="memitem:afdda5f81a682643effc4dd73321bc737 template"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#afdda5f81a682643effc4dd73321bc737">Join</a> (R &amp;&amp;, std::string_view=&quot;, &quot;) -&gt; Join&lt; R &gt;</td></tr>
-<tr class="memitem:abe367a0891e516099018c33db02746cc" id="r_abe367a0891e516099018c33db02746cc"><td class="memItemLeft">std::ostream &amp;&#160;</td><td class="memItemRight"><a class="el" href="#abe367a0891e516099018c33db02746cc">operator&lt;&lt;</a> (std::ostream &amp;os, <a class="el" href="structfe_1_1Pos.html">Pos</a> pos)</td></tr>
-<tr class="memitem:a41708329df0d5918fc77eb3a9ee89b16" id="r_a41708329df0d5918fc77eb3a9ee89b16"><td class="memItemLeft">std::ostream &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a41708329df0d5918fc77eb3a9ee89b16">operator&lt;&lt;</a> (std::ostream &amp;os, <a class="el" href="structfe_1_1Loc.html">Loc</a> loc)</td></tr>
+<tr class="memitem:acc13d332567b40d97c26c65b3480239b" id="r_acc13d332567b40d97c26c65b3480239b"><td class="memItemLeft">std::ostream &amp;&#160;</td><td class="memItemRight"><a class="el" href="#acc13d332567b40d97c26c65b3480239b">stream_snippet</a> (std::ostream &amp;os, <a class="el" href="structfe_1_1Loc.html">Loc</a> loc, <a class="el" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148">term::FG</a> color=<a class="el" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47">term::FG::Red</a>, uint32_t gutter=5, uint32_t max_rows=8)</td></tr>
+<tr class="memdesc:acc13d332567b40d97c26c65b3480239b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Streams every source row <code class="param">loc</code> spans, each underlining the columns <code class="param">loc</code> covers on it.  <br /></td></tr>
 <tr id="func-members-0" class="groupHeader"><td colspan="2"><div class="groupHeader">Bit operations for enum classs</div></td></tr>
 <tr><td colspan="2" class="ititle"><div class="groupText"><p>Provides all kind of bit and comparison operators for an <span class="tt">enum class</span> <code class="param">E</code>.</p>
 <p>Use like this: </p><div class="fragment"><div class="line"><span class="keyword">enum class</span> MyEnum : <span class="keywordtype">unsigned</span> {</div>
@@ -582,54 +584,6 @@ template&lt;class R&gt; </div>
 
 </div>
 </div>
-<a id="a41708329df0d5918fc77eb3a9ee89b16" name="a41708329df0d5918fc77eb3a9ee89b16"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a41708329df0d5918fc77eb3a9ee89b16">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::ostream &amp; fe::operator&lt;&lt; </td>
-          <td>(</td>
-          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>os</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structfe_1_1Loc.html">Loc</a></td>          <td class="paramname"><span class="paramname"><em>loc</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p><span class="tt"><a class="el" href="loc_8h.html">fe/loc.h</a></span> only declares the stream output and dump helpers. Include <span class="tt"><a class="el" href="loc_8cpp_8h.html">fe/loc.cpp.h</a></span> in exactly one translation unit for the default implementation, or provide your own definitions instead. </p>
-
-<p class="definition">Definition at line <a class="el" href="loc_8cpp_8h_source.html#l00017">17</a> of file <a class="el" href="loc_8cpp_8h_source.html">loc.cpp.h</a>.</p>
-
-</div>
-</div>
-<a id="abe367a0891e516099018c33db02746cc" name="abe367a0891e516099018c33db02746cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abe367a0891e516099018c33db02746cc">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::ostream &amp; fe::operator&lt;&lt; </td>
-          <td>(</td>
-          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>os</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structfe_1_1Pos.html">Pos</a></td>          <td class="paramname"><span class="paramname"><em>pos</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Include <span class="tt"><a class="el" href="loc_8cpp_8h.html">fe/loc.cpp.h</a></span> in exactly one translation unit for the default implementation, or provide your own definitions instead. </p>
-
-<p class="definition">Definition at line <a class="el" href="loc_8cpp_8h_source.html#l00011">11</a> of file <a class="el" href="loc_8cpp_8h_source.html">loc.cpp.h</a>.</p>
-
-</div>
-</div>
 <a id="acc1eed83d44fa0a6d3888d77d1065692" name="acc1eed83d44fa0a6d3888d77d1065692"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acc1eed83d44fa0a6d3888d77d1065692">&#9670;&#160;</a></span>splitmix64()</h2>
 
@@ -658,6 +612,49 @@ template&lt;class R&gt; </div>
 <p class="definition">Definition at line <a class="el" href="hash_8h_source.html#l00027">27</a> of file <a class="el" href="hash_8h_source.html">hash.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="hash_8h_source.html#l00037">hash()</a>.</p>
+
+</div>
+</div>
+<a id="acc13d332567b40d97c26c65b3480239b" name="acc13d332567b40d97c26c65b3480239b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc13d332567b40d97c26c65b3480239b">&#9670;&#160;</a></span>stream_snippet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; fe::stream_snippet </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>os</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structfe_1_1Loc.html">Loc</a></td>          <td class="paramname"><span class="paramname"><em>loc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148">term::FG</a></td>          <td class="paramname"><span class="paramname"><em>color</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47">term::FG::Red</a></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>gutter</em></span><span class="paramdefsep"> = </span><span class="paramdefval">5</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>max_rows</em></span><span class="paramdefsep"> = </span><span class="paramdefval">8</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Streams every source row <code class="param">loc</code> spans, each underlining the columns <code class="param">loc</code> covers on it. </p>
+<p>Streams nothing if <code class="param">loc</code> has no <a class="el" href="structfe_1_1Loc.html#ab2a0fdae3c2b089dffa7772cfb711764">Loc::src</a> or does not resolve within it. <code class="param">gutter</code> is the width of the line-number column; <code class="param">max_rows</code> is the number of rows streamed before the middle is elided - <span class="tt">0</span> elides nothing. </p>
+
+<p class="reference">References <a class="el" href="term_8h_source.html#l00059">fe::term::Red</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="driver_8h_source.html#l00036">fe::Driver::diag()</a>.</p>
 
 </div>
 </div>

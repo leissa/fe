@@ -1,6 +1,9 @@
 var annotated_dup =
 [
     [ "fe", "namespacefe.html", [
+      [ "sys", "namespacefe_1_1sys.html", [
+        [ "CmdNotFound", "classfe_1_1sys_1_1CmdNotFound.html", "classfe_1_1sys_1_1CmdNotFound" ]
+      ] ],
       [ "utf8", "namespacefe_1_1utf8.html", [
         [ "Char32", "structfe_1_1utf8_1_1Char32.html", "structfe_1_1utf8_1_1Char32" ]
       ] ],

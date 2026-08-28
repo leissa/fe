@@ -1,5 +1,11 @@
 var searchData=
 [
-  ['unreachable_0',['unreachable',['../namespacefe.html#aff9df682b55afdb0f712e5a0c1ff3a2b',1,'fe']]],
-  ['use_5fcolor_1',['use_color',['../namespacefe_1_1term.html#ad2b84bd3b2fb301332ef7cae1fcd7b69',1,'fe::term']]]
+  ['tab_0',['Tab',['../classfe_1_1Tab.html#ad4c8eaf1bbcefb808746bddedde9e017',1,'fe::Tab::Tab(const Tab &amp;)=default'],['../classfe_1_1Tab.html#a3c41de2ecfa9f5b6af004aa2da4b208b',1,'fe::Tab::Tab(std::string_view tab={&quot;\\t&quot;}, int indent=0)']]],
+  ['tab_1',['tab',['../classfe_1_1Tab.html#a074fb56e9717dbfd38f14b50910861e2',1,'fe::Tab']]],
+  ['throwf_2',['throwf',['../namespacefe.html#a90e0f8ec6bf736dde22be99a5cfde6ca',1,'fe']]],
+  ['to_5funderlying_3',['to_underlying',['../namespacefe.html#a1f98d7865fd23c1d29648fb9f6239ce3',1,'fe']]],
+  ['tolower_4',['tolower',['../namespacefe_1_1utf8.html#a2dc258776e743dd1204f68bfe2baed2b',1,'fe::utf8']]],
+  ['toupper_5',['toupper',['../namespacefe_1_1utf8.html#a7907975b61b06db27b14fe2a912f8f8c',1,'fe::utf8']]],
+  ['tracker_6',['Tracker',['../classfe_1_1Parser_1_1Tracker.html#a8b31319b66d8fb1a2911ec78e1b05ccf',1,'fe::Parser::Tracker']]],
+  ['tracker_7',['tracker',['../classfe_1_1Parser.html#aea3507b75aa247b9431256f5463a7821',1,'fe::Parser::tracker()'],['../classfe_1_1Parser.html#a01e44a12cb19d3172293feac4f89bbbc',1,'fe::Parser::tracker(Pos begin)'],['../classfe_1_1Parser.html#a4a964da822c8e0c743a8e5fce865ca20',1,'fe::Parser::tracker(Loc begin)']]]
 ];
