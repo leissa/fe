@@ -25,6 +25,7 @@ var hierarchy =
     [ "fe::Parser&lt; Tok, Tag, K, S &gt;", "classfe_1_1Parser.html", null ],
     [ "fe::PathHash", "structfe_1_1PathHash.html", null ],
     [ "fe::Pos", "structfe_1_1Pos.html", null ],
+    [ "fe::Restore&lt; T &gt;", "classfe_1_1Restore.html", null ],
     [ "fe::Ring&lt; T, N &gt;", "classfe_1_1Ring.html", null ],
     [ "fe::Ring&lt; T, 1 &gt;", "classfe_1_1Ring_3_01T_00_011_01_4.html", null ],
     [ "fe::Ring&lt; T, 2 &gt;", "classfe_1_1Ring_3_01T_00_012_01_4.html", null ],

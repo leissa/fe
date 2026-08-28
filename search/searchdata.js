@@ -1,10 +1,10 @@
 var indexSectionsWithContent =
 {
-  0: ":_abcdefghijklmnopqrstuvwy⚖✨💡📚🔨🚀🛠🤝🧭",
+  0: ":_abcdefghijklmnopqrstuvwy~⚖✨💡📚🔨🚀🛠🤝🧭",
   1: "abcdehijlmprst",
   2: "f",
   3: "acdefhlprstu",
-  4: "_abcdefhijklmnoprstuvw",
+  4: "_abcdefhijklmnoprstuvw~",
   5: "abcdefilmnos",
   6: "opsv",
   7: "afm",
