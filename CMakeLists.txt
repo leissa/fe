@@ -34,6 +34,7 @@ target_sources(fe
             include/fe/loc.h
             include/fe/loc.cpp.h
             include/fe/parser.h
+            include/fe/restore.h
             include/fe/ring.h
             include/fe/src.h
             include/fe/sym.h
