@@ -17,7 +17,7 @@ namespace fe::utf8 {
 
 static constexpr size_t Max   = 4;      ///< Maximal number of `char8_t`s of an UTF-8 byte sequence.
 static constexpr char32_t BOM = 0xfeff; ///< [Byte Order Mark](https://en.wikipedia.org/wiki/Byte_order_mark#UTF-8).
-static constexpr std::string_view Bom = "\xef\xbb\xbf"; ///< @ref BOM as UTF-8 bytes.
+static constexpr std::string_view Bom = "\xef\xbb\xbf"; ///< BOM as UTF-8 bytes.
 static constexpr char32_t EoF
     = (char32_t)std::istream::traits_type::eof(); ///< End of stream sentinel returned by @ref decode.
 static constexpr char32_t Null    = 0;            ///< U+0000 NULL returned unchanged by @ref decode.

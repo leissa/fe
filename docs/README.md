@@ -47,7 +47,7 @@ It provides a compact set of reusable, well-integrated components:
 - `fe::utf8` for lightweight UTF-8 handling.
 - `fe::hash` and friends for cheap, `constexpr` hash mixing/combining.
 - `fe::Lexer<K, S>` for UTF-8-aware lexing with lookahead and token text accumulation.
-- `fe::Parser<Tok, Tag, K, S>` for recursive-descent-style parsing with token lookahead and span tracking.
+- `fe::Parser<Tok, Tag, K, S>` for recursive-descent-style parsing with token lookahead, span tracking, and anchor-based error recovery.
 - Optional `FE_ABSL` support for [Abseil](https://abseil.io/) hash containers.
 
 FE does not try to hide frontend construction behind a generator.

@@ -180,10 +180,12 @@ public:
     using Super = fe::Parser<Tok, Tok::Tag, K, Parser<K>>;
     using Super::accept;
     using Super::ahead;
+    using Super::anchor;
     using Super::curr_;
     using Super::eat;
     using Super::expect;
     using Super::lex;
+    using Super::recover;
     using Super::tracker;
 
     Parser(fe::Driver& driver, std::string_view buf)
@@ -212,6 +214,10 @@ public:
         driver_.err(ahead().loc(), "expected '{}' while parsing {}", Tok::tag2str(tag), ctxt);
     }
 
+    void unanchored_err(Tok tok, std::string_view ctxt) {
+        driver_.err(tok.loc(), "ignoring unmatched '{}' while parsing {}", tok, ctxt);
+    }
+
 private:
     // clang-format off
     static Tok::Prec bin_prec(Tok::Tag t) {
@@ -229,7 +235,8 @@ private:
         if (auto tok = accept(Tok::Tag::M_id)) return tok.to_string();
         if (auto tok = accept(Tok::Tag::M_lit)) return tok.to_string();
         if (accept(Tok::Tag::D_paren_l)) {
-            auto str = parse_expr("parenthesized expression", Tok::Bot);
+            auto anchor = this->anchor(Tok::Tag::D_paren_r);
+            auto str    = parse_expr("parenthesized expression", Tok::Bot);
             expect(Tok::Tag::D_paren_r, "parenthesized expression");
             return str;
         }
@@ -238,8 +245,10 @@ private:
     }
 
     std::string parse_expr(std::string_view ctxt, Tok::Prec curr_prec) {
+        recover(Tok::Tag::D_paren_r, ctxt);
         auto lhs = parse_primary(ctxt);
         while (true) {
+            recover(Tok::Tag::D_paren_r, ctxt);
             auto tag  = ahead().tag();
             auto prec = bin_prec(tag);
             if (prec <= curr_prec) break;
@@ -294,6 +303,20 @@ void test_parser() {
     CHECK(std::get<2>(parse("(a + b")) == 1);
     // parse_primary reports an error when no primary is found
     CHECK(std::get<2>(parse("a +")) == 1);
+
+    // an unanchored ')' is skipped and reported - the parser carries on instead of bailing out
+    {
+        auto [str, loc, errs] = parse("a + b) + c");
+        CHECK(str == "(+ (+ a b) c)");
+        CHECK(errs == 1);
+    }
+    {
+        auto [str, loc, errs] = parse("(a + b)) * c");
+        CHECK(str == "(* (+ a b) c)");
+        CHECK(errs == 1);
+    }
+    // ... whereas an anchored ')' still terminates the parenthesized expression
+    CHECK(std::get<2>(parse("(a + b) * c")) == 0);
 }
 
 TEST_CASE("Parser") {

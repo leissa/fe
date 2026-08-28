@@ -1,5 +1,8 @@
 #pragma once
 
+#include <algorithm>
+#include <vector>
+
 #include "fe/loc.h"
 #include "fe/ring.h"
 
@@ -111,8 +114,54 @@ protected:
     }
     ///@}
 
+    /// @name Anchor
+    /// An *anchor* is a @p Tag that an enclosing context is waiting for.
+    /// E.g., while parsing a parenthesized expression, `)` is anchored:
+    /// a nested parser must not swallow it but bail out, so the enclosing context can Parser::expect it.
+    /// A `)` that is *not* anchored, however, is simply bogus and Parser::recover discards it.
+    ///@{
+
+    /// RAII helper that anchors a @p Tag for its lifetime; use Parser::anchor to build one.
+    class Anchor {
+    public:
+        Anchor(const Anchor&)            = delete;
+        Anchor& operator=(const Anchor&) = delete;
+
+        Anchor(std::vector<Tag>& anchors, Tag tag)
+            : anchors_(anchors) {
+            anchors_.emplace_back(tag);
+        }
+        ~Anchor() { anchors_.pop_back(); }
+
+    private:
+        std::vector<Tag>& anchors_;
+    };
+
+    /// Factory method to build a Parser::Anchor.
+    /// Use like this:
+    /// ```
+    /// if (accept(Tag::D_paren_l)) {
+    ///     auto anchor = this->anchor(Tag::D_paren_r);
+    ///     auto expr   = parse_expr();
+    ///     expect(Tag::D_paren_r, "parenthesized expression");
+    /// }
+    /// ```
+    [[nodiscard]] Anchor anchor(Tag tag) { return {anchors_, tag}; }
+
+    /// Is @p tag anchored by an enclosing context?
+    bool anchored(Tag tag) const { return std::ranges::find(anchors_, tag) != anchors_.end(); }
+
+    /// Parser::lex all @p tag Tok%ens that are not Parser::anchored and report each one as `S::unanchored_err`.
+    /// This turns an otherwise fatal Tok%en into a mere error message and keeps the current parser going.
+    void recover(Tag tag, std::string_view ctxt) {
+        while (ahead().tag() == tag && !anchored(tag))
+            self().unanchored_err(lex(), ctxt);
+    }
+    ///@}
+
     Ring<Tok, K> ahead_;
     Loc curr_;
+    std::vector<Tag> anchors_;
 };
 
 } // namespace fe
