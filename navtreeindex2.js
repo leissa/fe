@@ -1,5 +1,7 @@
 var NAVTREEINDEX2 =
 {
+"functions_w.html":[11,3,0,19],
+"functions_~.html":[11,3,0,20],
 "globals.html":[12,1,0],
 "globals_defs.html":[12,1,2],
 "globals_func.html":[12,1,1],
@@ -247,7 +249,5 @@ var NAVTREEINDEX2 =
 "structfe_1_1Sym_1_1String.html#aa0db4d8f8fc3944406f4ff41891100c0":[9,0,0,21,0,5],
 "structfe_1_1Sym_1_1String.html#aa0db4d8f8fc3944406f4ff41891100c0":[11,0,0,20,0,5],
 "structfe_1_1Sym_1_1String_1_1Equal.html":[9,0,0,21,0,0],
-"structfe_1_1Sym_1_1String_1_1Equal.html":[11,0,0,20,0,0],
-"structfe_1_1Sym_1_1String_1_1Equal.html#af9c0ac7f4270ed9cc631e9d74be7efbc":[9,0,0,21,0,0,0],
-"structfe_1_1Sym_1_1String_1_1Equal.html#af9c0ac7f4270ed9cc631e9d74be7efbc":[11,0,0,20,0,0,0]
+"structfe_1_1Sym_1_1String_1_1Equal.html":[11,0,0,20,0,0]
 };
