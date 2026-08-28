@@ -116,7 +116,7 @@ $(function(){initNavTree('classfe_1_1Parser_1_1Anchor.html','','classfe_1_1Parse
 </div><!--header-->
 <div class="contents">
 
-<p>RAII helper that anchors a <code class="param">Tag</code> for its lifetime; use <a class="el" href="classfe_1_1Parser.html#abb77f69879ac8c534434df81bf1b33a4" title="Factory method to build a Parser::Anchor.">Parser::anchor</a> to build one.  
+<p>RAII helper that anchors a <code class="param">Tag</code> for its lifetime; use <a class="el" href="classfe_1_1Parser.html#a84c58172ec87e752cf1bc40c8f4dca56" title="Factory method to build a Parser::Anchor.">Parser::anchor</a> to build one.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="parser_8h_source.html">fe/parser.h</a>&gt;</code></p>
@@ -125,12 +125,13 @@ $(function(){initNavTree('classfe_1_1Parser_1_1Anchor.html','','classfe_1_1Parse
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aa773e7f91dbe52b6dd8961a4812c77aa" id="r_aa773e7f91dbe52b6dd8961a4812c77aa"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aa773e7f91dbe52b6dd8961a4812c77aa">Anchor</a> (const Anchor &amp;)=delete</td></tr>
 <tr class="memitem:a5779c2788e14625638a8d4dc77fee0f2" id="r_a5779c2788e14625638a8d4dc77fee0f2"><td class="memItemLeft"><a class="el" href="#aa773e7f91dbe52b6dd8961a4812c77aa">Anchor</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a5779c2788e14625638a8d4dc77fee0f2">operator=</a> (const <a class="el" href="#aa773e7f91dbe52b6dd8961a4812c77aa">Anchor</a> &amp;)=delete</td></tr>
-<tr class="memitem:ac8178b780f631d49659ef3357327425d" id="r_ac8178b780f631d49659ef3357327425d"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ac8178b780f631d49659ef3357327425d">Anchor</a> (std::vector&lt; Tag &gt; &amp;anchors, Tag tag)</td></tr>
+<tr class="memitem:add60112939dd0324c99605ac01377166" id="r_add60112939dd0324c99605ac01377166"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#add60112939dd0324c99605ac01377166">Anchor</a> (<a class="el" href="classfe_1_1Parser.html">Parser</a> &amp;parser, Tag tag, std::string_view ctxt={})</td></tr>
 <tr class="memitem:ae2569d59dc583ab803e8680522f963b1" id="r_ae2569d59dc583ab803e8680522f963b1"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ae2569d59dc583ab803e8680522f963b1">~Anchor</a> ()</td></tr>
+<tr class="memdesc:ae2569d59dc583ab803e8680522f963b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the anchor again and - unless constructed without a <code class="param">ctxt</code> - <a class="el" href="classfe_1_1Parser.html#ab01ccf1dc21df6abc1df96282174e9f4" title="Parser::lex Parser::ahead() which must be a tag.">Parser::expect</a>s <code class="param">tag</code>.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class Tok, class Tag, size_t K, class S&gt;<br />
-class fe::Parser&lt; Tok, Tag, K, S &gt;::Anchor</div><p>RAII helper that anchors a <code class="param">Tag</code> for its lifetime; use <a class="el" href="classfe_1_1Parser.html#abb77f69879ac8c534434df81bf1b33a4" title="Factory method to build a Parser::Anchor.">Parser::anchor</a> to build one. </p>
+class fe::Parser&lt; Tok, Tag, K, S &gt;::Anchor</div><p>RAII helper that anchors a <code class="param">Tag</code> for its lifetime; use <a class="el" href="classfe_1_1Parser.html#a84c58172ec87e752cf1bc40c8f4dca56" title="Factory method to build a Parser::Anchor.">Parser::anchor</a> to build one. </p>
 
 <p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00125">125</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -165,8 +166,8 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 
 </div>
 </div>
-<a id="ac8178b780f631d49659ef3357327425d" name="ac8178b780f631d49659ef3357327425d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac8178b780f631d49659ef3357327425d">&#9670;&#160;</a></span>Anchor() <span class="overload">[2/2]</span></h2>
+<a id="add60112939dd0324c99605ac01377166" name="add60112939dd0324c99605ac01377166"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add60112939dd0324c99605ac01377166">&#9670;&#160;</a></span>Anchor() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -179,12 +180,17 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="classfe_1_1Parser.html">fe::Parser</a>&lt; Tok, Tag, K, S &gt;::Anchor::Anchor </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; Tag &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>anchors</em></span>, </td>
+          <td class="paramtype"><a class="el" href="classfe_1_1Parser.html">Parser</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>parser</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Tag</td>          <td class="paramname"><span class="paramname"><em>tag</em></span>&#160;)</td>
+          <td class="paramtype">Tag</td>          <td class="paramname"><span class="paramname"><em>tag</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string_view</td>          <td class="paramname"><span class="paramname"><em>ctxt</em></span><span class="paramdefsep"> = </span><span class="paramdefval">{}</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -223,7 +229,9 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00134">134</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p>Removes the anchor again and - unless constructed without a <code class="param">ctxt</code> - <a class="el" href="classfe_1_1Parser.html#ab01ccf1dc21df6abc1df96282174e9f4" title="Parser::lex Parser::ahead() which must be a tag.">Parser::expect</a>s <code class="param">tag</code>. </p>
+
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00138">138</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
 </div>
 </div>
