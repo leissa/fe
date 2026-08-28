@@ -3,7 +3,7 @@ var searchData=
   ['range_0',['range',['../classfe_1_1Join.html#a13ae95390cd5b2d9fcc32513071b707d',1,'fe::Join']]],
   ['rbegin_1',['rbegin',['../classfe_1_1Sym.html#a91d840fb22a5afcc50e3a70daee67907',1,'fe::Sym']]],
   ['readme_2emd_2',['README.md',['../README_8md.html',1,'']]],
-  ['recover_3',['recover',['../classfe_1_1Parser.html#afdfceb8db1545f1cfb8e6a4d2acf92ec',1,'fe::Parser']]],
+  ['recover_3',['recover',['../classfe_1_1Parser.html#a41e9d9c41ad8485c8cd8f45405953e43',1,'fe::Parser::recover(P pred, std::string_view ctxt)'],['../classfe_1_1Parser.html#afdfceb8db1545f1cfb8e6a4d2acf92ec',1,'fe::Parser::recover(Tag tag, std::string_view ctxt)']]],
   ['red_4',['Red',['../namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47',1,'fe::term']]],
   ['related_20projects_5',['🔨 Related Projects',['../index.html#autotoc_md10',1,'']]],
   ['rend_6',['rend',['../classfe_1_1Sym.html#a1e7ad312b7d4d7f733e2ee47245b3e9b',1,'fe::Sym']]],

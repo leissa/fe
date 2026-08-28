@@ -12,11 +12,12 @@ var classfe_1_1Parser =
     [ "expect", "classfe_1_1Parser.html#ab01ccf1dc21df6abc1df96282174e9f4", null ],
     [ "init", "classfe_1_1Parser.html#a10134258cf3c7fc081c4740ed22405cb", null ],
     [ "lex", "classfe_1_1Parser.html#a5d4335bae86e3127fbf5b42fb0fcd3e7", null ],
+    [ "recover", "classfe_1_1Parser.html#a41e9d9c41ad8485c8cd8f45405953e43", null ],
     [ "recover", "classfe_1_1Parser.html#afdfceb8db1545f1cfb8e6a4d2acf92ec", null ],
     [ "tracker", "classfe_1_1Parser.html#aea3507b75aa247b9431256f5463a7821", null ],
     [ "tracker", "classfe_1_1Parser.html#a4a964da822c8e0c743a8e5fce865ca20", null ],
     [ "tracker", "classfe_1_1Parser.html#a01e44a12cb19d3172293feac4f89bbbc", null ],
     [ "ahead_", "classfe_1_1Parser.html#a63a4e949bb44bcc9249b8ff2023b7fbc", null ],
-    [ "anchors_", "classfe_1_1Parser.html#a9e26f6d1c55efbc12f0be9bacf965310", null ],
+    [ "anchors_", "classfe_1_1Parser.html#a58f69ff8307dc2d26b598aba613a6637", null ],
     [ "curr_", "classfe_1_1Parser.html#a69e76d15919fd71e0ee0f1e491c974f8", null ]
 ];

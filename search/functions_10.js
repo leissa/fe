@@ -2,7 +2,7 @@ var searchData=
 [
   ['range_0',['range',['../classfe_1_1Join.html#a13ae95390cd5b2d9fcc32513071b707d',1,'fe::Join']]],
   ['rbegin_1',['rbegin',['../classfe_1_1Sym.html#a91d840fb22a5afcc50e3a70daee67907',1,'fe::Sym']]],
-  ['recover_2',['recover',['../classfe_1_1Parser.html#afdfceb8db1545f1cfb8e6a4d2acf92ec',1,'fe::Parser']]],
+  ['recover_2',['recover',['../classfe_1_1Parser.html#a41e9d9c41ad8485c8cd8f45405953e43',1,'fe::Parser::recover(P pred, std::string_view ctxt)'],['../classfe_1_1Parser.html#afdfceb8db1545f1cfb8e6a4d2acf92ec',1,'fe::Parser::recover(Tag tag, std::string_view ctxt)']]],
   ['rend_3',['rend',['../classfe_1_1Sym.html#a1e7ad312b7d4d7f733e2ee47245b3e9b',1,'fe::Sym']]],
   ['reset_4',['reset',['../classfe_1_1Ring.html#a17df98ab4ef3ce9fd2bb13a911a4ad16',1,'fe::Ring::reset()'],['../classfe_1_1Ring_3_01T_00_011_01_4.html#afa85d5e5922d3b59c79d7ebc33f8bc5b',1,'fe::Ring&lt; T, 1 &gt;::reset()'],['../classfe_1_1Ring_3_01T_00_012_01_4.html#abd21245d7479c1fc29eff7e4030f0f37',1,'fe::Ring&lt; T, 2 &gt;::reset()']]],
   ['resolve_5fmode_5',['resolve_mode',['../namespacefe_1_1term.html#a787158fdb940cfa7e778863bde8f34e8',1,'fe::term']]],
