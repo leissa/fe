@@ -33,8 +33,7 @@ struct Pos {
     uint32_t off = Invalid;
 
     /// `fe/loc.h` only declares the stream output and dump helpers.
-    /// Include `fe/loc.cpp.h` in exactly one translation unit for the default implementation,
-    /// or provide your own definitions instead.
+    /// Link against a `FE_LIB` build of fe for the default implementation, or provide your own.
     friend std::ostream& operator<<(std::ostream& os, Pos pos);
 };
 
@@ -91,8 +90,7 @@ struct Loc {
 
     /// Streams as `path:row:col-row:col`, resolved through Loc::src - or as raw offsets if it has none.
     /// `fe/loc.h` only declares the stream output and dump helpers.
-    /// Include `fe/loc.cpp.h` in exactly one translation unit for the default implementation,
-    /// or provide your own definitions instead.
+    /// Link against a `FE_LIB` build of fe for the default implementation, or provide your own.
     friend std::ostream& operator<<(std::ostream& os, Loc loc);
 };
 

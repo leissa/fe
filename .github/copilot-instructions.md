@@ -1,6 +1,8 @@
 # FE repository instructions
 
-`fe` is a CMake-based, **header-only C++ library** of reusable building blocks for writing language frontends (arena allocation, string interning, source locations, UTF-8 lexer/parser CRTP bases, diagnostics). It is typically consumed as a git submodule (a checkout may live under e.g. `submodules/fe`).
+`fe` is a CMake-based C++ library of reusable building blocks for writing language frontends (arena allocation, string interning, source locations, UTF-8 lexer/parser CRTP bases, diagnostics).
+It is **header-only by default**; `FE_LIB=ON` additionally compiles the handful of components that cannot be (see below).
+It is typically consumed as a git submodule (a checkout may live under e.g. `submodules/fe`).
 
 ## Build, test, and formatting
 
@@ -14,74 +16,77 @@ ctest --test-dir build --output-on-failure
 
 Tests need the bundled submodules. If configure fails on a missing `submodules/doctest`, run `git submodule update --init --recursive` first.
 
-Run a single discovered test with CTest:
+Run a single test either through CTest (`ctest --test-dir build -R '^Lexer$' --output-on-failure`) or directly from the test binary (`./build/bin/fe-test --test-case=Lexer`).
 
-```sh
-ctest --test-dir build -R '^Lexer$' --output-on-failure
-```
-
-Or run a single doctest case directly from the test binary:
-
-```sh
-./build/bin/fe-test --test-case=Lexer
-```
-
-Documentation is optional and built through the `docs` target:
+Documentation is optional and built through the `docs` target; `FE_BUILD_DOCS` requires Doxygen and Graphviz (`dot`):
 
 ```sh
 cmake -S . -B build -DFE_BUILD_DOCS=ON
 cmake --build build --target docs
 ```
 
-`FE_BUILD_DOCS` requires Doxygen and Graphviz (`dot`).
+Formatting/lint-style checks are defined in `.pre-commit-config.yaml` and run via `pre-commit run --all-files`: `clang-format` (see `.clang-format`) plus the configured whitespace/YAML hooks. There is no separate CMake lint target.
 
-Formatting/lint-style checks are defined in `.pre-commit-config.yaml`:
-
-```sh
-pre-commit run --all-files
-```
-
-That runs `clang-format` plus the configured whitespace/YAML hooks. There is no separate CMake lint target.
+CI (`.github/workflows/`) builds Linux (gcc-14 and clang, Debug and Release), macOS, and Windows, and runs `fe-test` under Valgrind as well as ASan/LSan/UBSan.
+A change is only done when it is leak- and UB-clean, not merely when `ctest` passes.
 
 ## Build options & toolchain
 
-- The library requires **C++23** (`target_compile_features(fe INTERFACE cxx_std_23)` in `CMakeLists.txt`). The prose elsewhere may say C++20 — trust the CMake setting.
-- `FE_ABSL` (default `OFF`): switches `SymMap`/`SymSet` and friends from `std` to Abseil containers.
+- The library requires **C++23** (`target_compile_features` in `CMakeLists.txt`).
+- `FE_LIB` (default `OFF`): makes `fe` a `STATIC` library instead of an `INTERFACE` one and adds the sources under `src/fe/`. A standalone `BUILD_TESTING` build forces it ON, because the tests rely on the default `Loc` rendering.
+- `FE_ABSL` (default `OFF`): switches `SymMap`/`SymSet`/`PathMap` and friends from `std` to Abseil containers.
 - `FE_BUILD_DOCS` (default `OFF`): build Doxygen docs (requires Doxygen + Graphviz `dot`).
 - `BUILD_TESTING` (CTest default `ON`): builds the only executable, `fe-test`.
 - MSVC: `CMakeLists.txt` adds `/utf-8 /wd4146 /wd4245` and `_CTYPE_DISABLE_MACROS`. Keep new headers MSVC-clean; UTF-8 source handling is assumed.
 
 ## High-level architecture
 
-`fe` is exported as a CMake `INTERFACE` target and the public library lives entirely in `include/fe/`. There is no `src/` directory for library implementation; tests build the only executable (`fe-test`).
+The public API lives entirely in `include/fe/`; `fe` is exported as an `INTERFACE` target, or - with `FE_LIB=ON` - as a `STATIC` one that also compiles `src/fe/`. Tests build the only executable (`fe-test`).
 
 The library is organized around a few reusable frontend-building blocks that are designed to be composed:
 
 - `fe::Arena` (`arena.h`) provides arena allocation, an STL allocator adapter, and arena-backed `unique_ptr` support for AST-style ownership.
 - `fe::Sym` and `fe::SymPool` (`sym.h`) intern strings so identifiers can be compared cheaply by pointer after interning.
-- `fe::Driver` (`driver.h`) is the shared frontend context: it inherits `SymPool` and centralizes diagnostics and error/warning counts.
-- `fe::Pos` and `fe::Loc` (`loc.h`, `loc.cpp.h`) track source positions/locations and are threaded through lexers, parsers, and diagnostics.
+- `fe::Driver` (`driver.h`) is the shared frontend context: it inherits `SymPool`, owns the `SrcMap` (`Driver::src`), and offers the `std::format`-based diagnostics plus their error/warning counts and layout knobs.
+- `fe::Pos` and `fe::Loc` (`loc.h`) track source positions/locations and are threaded through lexers, parsers, and diagnostics.
 - `fe::Src` and `fe::SrcMap` (`src.h`) own the text of each source file and turn a `Pos` back into a row/column. A `Loc` borrows a `const Src*`, which is how it renders itself as `path:row:col`.
 - `fe::Ring` (`ring.h`) is the fixed-size lookahead buffer used by the lexer/parser blueprints.
-- `fe::Lexer<K, S>` (`lexer.h`) is a CRTP base that handles UTF-8 decoding, character lookahead, token text accumulation, and source location tracking.
-- `fe::Parser<Tok, Tag, K, S>` (`parser.h`) is a CRTP base that wraps a lexer with token lookahead, `accept`/`expect`/`eat`, and `Tracker` helpers for building node spans.
+- `fe::Lexer<K, S>` (`lexer.h`) is a CRTP base that handles UTF-8 decoding, character lookahead, token text accumulation (`str_`), and source location tracking (`loc_`).
+- `fe::Parser<Tok, Tag, K, S>` (`parser.h`) is a CRTP base that wraps a lexer with token lookahead, `accept`/`expect`/`eat`, `Tracker` helpers for building node spans, and the anchor-based error recovery described below.
 
-Support headers: `assert.h` (`assert`/`assertf`/`unreachable`), `cast.h` (checked/dynamic casts), `enum.h` (bit-flag enum ops), `format.h` (`ostream_formatter`, `std::format` glue), `hash.h` (`constexpr` hash mixing/combining), `term.h` (terminal/ANSI color), `utf8.h` (UTF-8 decode primitives).
+Support headers: `assert.h` (`assert`/`assertf`/`unreachable`), `cast.h` (checked/dynamic casts), `enum.h` (bit-flag enum ops), `format.h` (`ostream_formatter`, `std::format` glue), `hash.h` (`constexpr` hash mixing/combining), `restore.h` (`fe::Restore`, an RAII guard that restores a reference at end of scope), `term.h` (terminal/ANSI color), `utf8.h` (UTF-8 decode primitives).
+
+`FE_LIB` adds the components that need a translation unit of their own: the default `Pos`/`Loc` streaming and `dump` (`loc.h`), `fe::stream_snippet` (`snippet.h`), `fe::dl` (`dl.h`, dynamic library loading), and `fe::sys` (`sys.h`, locating and running external commands).
 
 `tests/lexer.cpp` is the best end-to-end example of intended use: define a token type with `tag()` and `loc()`, derive a concrete lexer/parser from the CRTP bases, use `fe::Driver` for identifier interning and diagnostics, and let locations flow through tokens for error reporting.
 
 ## Key conventions
 
-- Keep library code header-only unless you are intentionally changing the project structure. Public headers are listed explicitly in `CMakeLists.txt` and installed from `include/fe/`.
+- Keep library code header-only unless it genuinely cannot be; then declare it in `include/fe/` and implement it in `src/fe/` behind `FE_LIB`. Public headers are listed explicitly in `CMakeLists.txt` and installed from `include/fe/`.
 - Default-constructed values are meaningful sentinels across the API: `Tok{}` means parse failure, `Sym{}` is the empty symbol, and default `Pos`/`Loc` are invalid. `Parser::accept` and `Parser::expect` rely on this pattern.
 - `Loc::end` is **exclusive** (the byte one past the span), just like an STL iterator. `Loc::src` is a borrowed `const Src*`, so the `Src` must outlive the `Loc`; a `SrcMap` owns one for you.
+- `Loc` is kept at two machine words (`static_assert` in `loc.h`) so it stays a value passed in registers - do not grow it.
 - `SrcMap` interns paths under `SrcMap::key` (absolute, symlink-free, normalized), so one file yields exactly one `Src`. That is what lets `Loc` compare files by pointer - do not hand a `Loc` a `Src` that some other `SrcMap` (or nobody) owns.
-- A `Loc` renders itself: `operator<<`/`std::format` spell out `path:row:col-row:col` via `Loc::src`, falling back to `path@begin-end` when it has no `Src` or the offsets do not fit. Diagnostics just pass the `Loc`.
+- A `Loc` renders itself: `operator<<`/`std::format` spell out `path:row:col-row:col` via `Loc::src`, falling back to `path@begin-end` when it has no `Src` or the offsets do not resolve within it. Diagnostics just pass the `Loc`.
 - Non-empty symbols should be created through `SymPool::sym` / `Driver::sym`, not by constructing `Sym` manually. Use `SymMap` / `SymSet` aliases instead of concrete hash container types, especially because `FE_ABSL` switches those aliases to Abseil containers.
 - Diagnostics are `std::format`-based and go through `fe::Driver::{note,warn,err}`. Follow that pattern rather than inventing separate reporting helpers.
 - If a type already has `operator<<`, expose it to `std::format` with `template<> struct std::formatter<T> : fe::ostream_formatter {};`.
-- Derived lexers typically pull CRTP base helpers into scope with `using` declarations (`ahead`, `accept`, `next`, `loc_`, `peek`, `str_`), matching the pattern in `tests/lexer.cpp`.
-- `fe/loc.h` only declares `operator<<` for `Pos` and `Loc`; include `fe/loc.cpp.h` in exactly one translation unit when you want the default streaming implementation. That header pulls in `fe/src.h`, since `Src` is only forward-declared in `fe/loc.h`.
+- Derived lexers/parsers pull the CRTP base helpers they use into scope with `using` declarations (`ahead`, `accept`, `next`, `loc_`, `peek`, `str_` for the lexer; `accept`, `anchor`, `eat`, `expect`, `lex`, `recover`, `tracker` for the parser), matching the pattern in `tests/lexer.cpp`.
+- `fe/loc.h` only declares `operator<<` for `Pos` and `Loc`: link against an `FE_LIB` build for the default rendering, or define them yourself. The same split applies to `fe::stream_snippet`, which `fe::Driver` puts under every diagnostic.
+
+## Parser contract
+
+`fe::Parser` never reports anything itself; the derived class `S` must provide (and `friend` the base if they are private):
+
+- `Lexer& lexer()` - where `Parser::lex` pulls the next token from.
+- `void syntax_err(Tag, std::string_view ctxt)` - `Parser::expect` did not find its `Tag`.
+- `void unanchored_err(Tok, std::string_view ctxt)` - `Parser::recover` discarded this token.
+
+Error recovery is anchor-based: an *anchor* is a `Tag` an enclosing context is still waiting for.
+`Parser::anchor(tag, ctxt)` returns an RAII `Anchor` that anchors `tag` for the scope and - if given a `ctxt` - `expect`s it at the end of that scope; omit `ctxt` to merely anchor.
+`Parser::recover` then discards only tokens that are *not* anchored, so a nested parser bails out instead of swallowing a token its caller needs.
+Prefer this over hand-rolled skip loops, and keep `expect`/`anchor` context strings noun phrases ("parenthesized expression"): they end up inside the message `syntax_err` builds.
+Both take a `std::format_string` overload; use it instead of formatting the context yourself.
 
 ## Comments
 

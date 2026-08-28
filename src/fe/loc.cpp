@@ -1,9 +1,7 @@
-#pragma once
-// Default `Pos`/`Loc` stream output and dump helpers.
-// Include this header in exactly one translation unit, or provide your own definitions instead.
-
-#include "fe/format.h"
 #include "fe/loc.h"
+
+#include <iostream>
+
 #include "fe/src.h" // Loc::src is only forward-declared in fe/loc.h
 
 namespace fe {

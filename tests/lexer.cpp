@@ -3,7 +3,6 @@
 #include <doctest/doctest.h>
 #include <fe/driver.h>
 #include <fe/lexer.h>
-#include <fe/loc.cpp.h>
 #include <fe/parser.h>
 
 using fe::Loc;

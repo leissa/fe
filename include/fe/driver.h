@@ -5,6 +5,7 @@
 
 #include <fe/format.h>
 #include <fe/loc.h>
+#include <fe/snippet.h>
 #include <fe/src.h>
 #include <fe/sym.h>
 #include <fe/term.h>
@@ -24,15 +25,28 @@ public:
     ///@}
 
     /// @name Diagnostics
+    /// A diagnostic is the header line `loc: tag: msg` followed by the source snippet @p loc points at.
     ///@{
     // clang-format off
-    template<class... Args> void note(Loc loc, std::format_string<Args...> fmt, Args&&... args) const {                  std::cerr << loc << ": " << term::FG::Cyan    << "note: "    << term::FG::Reset << std::format(fmt, std::forward<Args>(args)...) << std::endl; }
-    template<class... Args> void warn(Loc loc, std::format_string<Args...> fmt, Args&&... args)       { ++num_warnings_; std::cerr << loc << ": " << term::FG::Magenta << "warning: " << term::FG::Reset << std::format(fmt, std::forward<Args>(args)...) << std::endl; }
-    template<class... Args> void err (Loc loc, std::format_string<Args...> fmt, Args&&... args)       { ++num_errors_;   std::cerr << loc << ": " << term::FG::Red     << "error: "   << term::FG::Reset << std::format(fmt, std::forward<Args>(args)...) << std::endl; }
+    template<class... Args> void note(Loc loc, std::format_string<Args...> fmt, Args&&... args) const {                  diag(loc, term::FG::Cyan,    "note",    std::format(fmt, std::forward<Args>(args)...)); }
+    template<class... Args> void warn(Loc loc, std::format_string<Args...> fmt, Args&&... args)       { ++num_warnings_; diag(loc, term::FG::Magenta, "warning", std::format(fmt, std::forward<Args>(args)...)); }
+    template<class... Args> void err (Loc loc, std::format_string<Args...> fmt, Args&&... args)       { ++num_errors_;   diag(loc, term::FG::Red,     "error",   std::format(fmt, std::forward<Args>(args)...)); }
     // clang-format on
+
+    void diag(Loc loc, term::FG color, std::string_view tag, std::string_view msg) const {
+        std::cerr << loc << ": " << color << tag << ": " << term::FG::Reset << msg << std::endl;
+        if (!no_snippet) stream_snippet(std::cerr, loc, color, gutter, max_rows);
+    }
 
     unsigned num_errors() const { return num_errors_; }
     unsigned num_warnings() const { return num_warnings_; }
+    ///@}
+
+    /// @name Diagnostic Layout
+    ///@{
+    uint32_t gutter   = 5;     ///< Width of the line-number column.
+    uint32_t max_rows = 8;     ///< Rows a snippet streams before eliding its middle; `0` elides nothing.
+    bool no_snippet   = false; ///< If `true`, only the header line is streamed.
     ///@}
 
 private:

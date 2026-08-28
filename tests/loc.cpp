@@ -4,6 +4,7 @@
 #include <fe/driver.h>
 #include <fe/format.h>
 #include <fe/loc.h>
+#include <fe/snippet.h>
 #include <fe/src.h>
 
 using fe::Loc;
@@ -15,7 +16,7 @@ TEST_CASE("Pos") {
     CHECK(Pos(3) < Pos(4));
     CHECK(Pos(3) + 4 == Pos(7));
 
-    // Default operator<< from fe/loc.cpp.h (included once in lexer.cpp).
+    // Default operator<< from a FE_LIB build.
     CHECK(std::format("{}", Pos(3)) == "3");
     CHECK(std::format("{}", Pos()) == "<unknown position>");
 }
@@ -219,9 +220,49 @@ TEST_CASE("Driver") {
     CHECK(drv.num_warnings() == 1);
     CHECK(capture.oss.str()
           == "test.let:1:5: error: expected ';'\n"
+             "    1 | let x = 1;\n"
+             "      |     ^\n"
              "test.let:2:5: warning: unused variable 'x'\n"
-             "test.let:3:5: note: declared here\n");
+             "    2 | let y = 2;\n"
+             "      |     ^\n"
+             "test.let:3:5: note: declared here\n"
+             "    3 | let z = 3;\n"
+             "      |     ^\n");
+
+    drv.no_snippet = true;
+    capture.oss.str("");
+    drv.note(Loc(src, Pos(4), Pos(5)), "just the header line");
+    CHECK(capture.oss.str() == "test.let:1:5: note: just the header line\n");
 
     // Driver inherits SymPool.
     CHECK(drv.sym("foo") == drv.sym("foo"));
+}
+
+TEST_CASE("snippet") {
+    auto mode = fe::term::mode();
+    fe::term::set_mode(fe::term::Mode::Never);
+
+    auto src = fe::Src("test.let", "let x = 1;\nlet y = 2;\nlet z = 3;\nlet w = 4;\n");
+    auto str = [&](Loc loc, uint32_t max_rows) {
+        std::ostringstream oss;
+        fe::stream_snippet(oss, loc, fe::term::FG::Red, 5, max_rows);
+        return oss.str();
+    };
+
+    CHECK(str(Loc(), 0).empty());               // no Src to resolve against
+    CHECK(str(Loc(Pos(0), Pos(3)), 0).empty()); // ditto
+
+    CHECK(str(Loc(&src, Pos(4), Pos(5)), 0)
+          == "    1 | let x = 1;\n"
+             "      |     ^\n");
+
+    // A Loc spanning more rows than `max_rows` elides its middle.
+    CHECK(str(Loc(&src, Pos(4), Pos(37)), 2)
+          == "    1 | let x = 1;\n"
+             "      |     ^^^^^^\n"
+             "  ... |\n"
+             "    4 | let w = 4;\n"
+             "      | ^^^^\n");
+
+    fe::term::set_mode(mode);
 }

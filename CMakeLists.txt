@@ -15,10 +15,35 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
-add_library(fe INTERFACE)
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+    include(CTest) # defines BUILD_TESTING
+    if(BUILD_TESTING)
+        set(FE_LIB ON) # the tests rely on the default Loc rendering
+    endif()
+endif()
+
+# fe::dl, fe::sys, the default Pos/Loc rendering and fe::stream_snippet need a translation unit of their own.
+option(FE_LIB "If ON, build fe as a static library including the components that are not header-only." OFF)
+
+if(FE_LIB)
+    add_library(fe STATIC)
+    set(FE_SCOPE PUBLIC)
+    set_target_properties(fe PROPERTIES POSITION_INDEPENDENT_CODE ON)
+    target_sources(fe
+        PRIVATE
+            src/fe/dl.cpp
+            src/fe/loc.cpp
+            src/fe/snippet.cpp
+            src/fe/sys.cpp
+    )
+    target_link_libraries(fe PRIVATE ${CMAKE_DL_LIBS})
+else()
+    add_library(fe INTERFACE)
+    set(FE_SCOPE INTERFACE)
+endif()
 
 target_sources(fe
-    INTERFACE
+    ${FE_SCOPE}
         FILE_SET headers
         BASE_DIRS include
         TYPE HEADERS
@@ -26,34 +51,36 @@ target_sources(fe
             include/fe/arena.h
             include/fe/assert.h
             include/fe/cast.h
+            include/fe/dl.h
             include/fe/enum.h
             include/fe/driver.h
             include/fe/hash.h
             include/fe/format.h
             include/fe/lexer.h
             include/fe/loc.h
-            include/fe/loc.cpp.h
             include/fe/parser.h
             include/fe/restore.h
             include/fe/ring.h
+            include/fe/snippet.h
             include/fe/src.h
             include/fe/sym.h
+            include/fe/sys.h
             include/fe/term.h
             include/fe/utf8.h
 )
-target_include_directories(fe INTERFACE $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
-target_compile_features(fe INTERFACE cxx_std_23)
+target_include_directories(fe ${FE_SCOPE} $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+target_compile_features(fe ${FE_SCOPE} cxx_std_23)
 
 if(MSVC)
-    target_compile_definitions(fe INTERFACE _CTYPE_DISABLE_MACROS)
-    target_compile_options(fe INTERFACE /utf-8 /wd4146 /wd4245)
+    target_compile_definitions(fe ${FE_SCOPE} _CTYPE_DISABLE_MACROS)
+    target_compile_options(fe ${FE_SCOPE} /utf-8 /wd4146 /wd4245)
 endif()
 
 option(FE_ABSL "If ON, use abseil containers, otherwise use std containers" OFF)
 if(FE_ABSL)
-    target_compile_definitions(fe INTERFACE FE_ABSL)
+    target_compile_definitions(fe ${FE_SCOPE} FE_ABSL)
     target_link_libraries(fe
-        INTERFACE
+        ${FE_SCOPE}
             absl::flat_hash_map absl::flat_hash_set
             absl::node_hash_map absl::node_hash_set
     )
@@ -98,12 +125,9 @@ install(
     FILES_MATCHING PATTERN "*.h"
 )
 
-if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-    include(CTest)
-    if(BUILD_TESTING)
-        add_subdirectory(submodules/doctest)
-        add_subdirectory(tests)
-    endif()
+if(BUILD_TESTING AND CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+    add_subdirectory(submodules/doctest)
+    add_subdirectory(tests)
 endif()
 
 option(FE_BUILD_DOCS "If ON, documentation will be built (requires Doxygen)." OFF)

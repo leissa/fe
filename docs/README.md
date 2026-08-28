@@ -15,7 +15,8 @@
 
 [TOC]
 
-**FE** is a header-only C++23 toolkit for building handwritten compiler and interpreter frontends.
+**FE** is a C++23 toolkit for building handwritten compiler and interpreter frontends.
+It is header-only by default; the handful of components that need a translation unit of their own come with `FE_LIB`.
 
 Rather than generating lexers or parsers for you, FE focuses on the infrastructure that every frontend needs anyway: source locations, diagnostics, interning, parsing support, and efficient memory management.
 The goal is simple: keep handwritten frontends lightweight, explicit, and pleasant to maintain.
@@ -43,11 +44,14 @@ It provides a compact set of reusable, well-integrated components:
 - `fe::Driver` for diagnostics and shared frontend state.
 - `fe::Pos` and `fe::Loc` for source positions and source spans.
 - `fe::Src` and `fe::SrcMap` for owning source text and resolving a position back to `path:row:col`.
+- `fe::stream_snippet` for the underlined source excerpt below a diagnostic.
 - `fe::term` for lightweight terminal colors in diagnostics and CLI output.
 - `fe::utf8` for lightweight UTF-8 handling.
 - `fe::hash` and friends for cheap, `constexpr` hash mixing/combining.
 - `fe::Lexer<K, S>` for UTF-8-aware lexing with lookahead and token text accumulation.
 - `fe::Parser<Tok, Tag, K, S>` for recursive-descent-style parsing with token lookahead, span tracking, and anchor-based error recovery.
+- `fe::Restore` for RAII save/restore of a variable across a scope.
+- `fe::dl` and `fe::sys` for loading dynamic libraries and locating/running external commands.
 - Optional `FE_ABSL` support for [Abseil](https://abseil.io/) hash containers.
 
 FE does not try to hide frontend construction behind a generator.
@@ -70,24 +74,28 @@ That gives you a concrete, working example of how FE is intended to be used in p
 
 #### CMake
 
-Add FE as a subdirectory and link the `fe` interface target:
+Add FE as a subdirectory and link the `fe` target:
 
 ```cmake
 add_subdirectory(submodules/fe)
 target_link_libraries(my_compiler PRIVATE fe)
 ```
 
-If you want Abseil-backed hash containers, enable `FE_ABSL` before adding the subdirectory:
+Set any of the options below *before* adding the subdirectory:
 
 ```cmake
-set(FE_ABSL ON)
+set(FE_LIB  ON) # build fe as a static library instead of an interface one
+set(FE_ABSL ON) # use Abseil-backed hash containers
 add_subdirectory(submodules/fe)
 target_link_libraries(my_compiler PRIVATE fe)
 ```
+
+`FE_LIB` compiles `src/fe/` along with the headers.
+You need it for `fe::dl`, `fe::sys`, `fe::stream_snippet`, and the default `operator<<`/`dump` of `fe::Pos`/`fe::Loc` - `fe/loc.h` merely declares those, so a link error for `operator<<(std::ostream&, fe::Loc)` means you either want `FE_LIB` or your own rendering.
 
 #### Direct Vendoring
 
-Because FE is header-only, you can also vendor `include/fe/` directly into your project.
+You can also vendor `include/fe/` directly into your project and add the `src/fe/*.cpp` you need to your build - `fe::dl` additionally wants `${CMAKE_DL_LIBS}`.
 
 If you want Abseil support in that setup, compile with:
 
@@ -118,6 +126,8 @@ cmake -S . -B build -DBUILD_TESTING=ON
 cmake --build build
 ctest --test-dir build --output-on-failure
 ```
+
+A standalone `BUILD_TESTING` build enables `FE_LIB`, as the tests rely on the default `fe::Loc` rendering.
 
 To run one discovered test:
 
