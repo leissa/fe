@@ -31,6 +31,16 @@ namespace fe {
 ///     do_something(tok);
 /// }
 /// ```
+/// The Parser itself does not report anything; @p S must provide the Lexer to pull from and the diagnostics:
+/// ```
+/// class MyParser : public fe::Parser<Tok, Tok::Tag, K, MyParser> {
+///     Lexer& lexer();                                  ///< Parser::lex pulls the next Tok%en from here.
+///     void syntax_err(Tag, std::string_view ctxt);     ///< Parser::expect did not find its Tag.
+///     void unanchored_err(Tok, std::string_view ctxt); ///< Parser::recover discarded this Tok%en.
+///
+///     friend fe::Parser<Tok, Tok::Tag, K, MyParser>;   ///< Otherwise, these may be private.
+/// };
+/// ```
 template<class Tok, class Tag, size_t K, class S>
 requires std::is_default_constructible_v<Tok>
       && (std::is_convertible_v<Tok, bool> || std::is_constructible_v<bool, Tok>)
@@ -136,10 +146,10 @@ protected:
         Anchor(const Anchor&)            = delete;
         Anchor& operator=(const Anchor&) = delete;
 
-        Anchor(Parser& parser, Tag tag, std::string_view ctxt = {})
+        Anchor(Parser& parser, Tag tag, std::string ctxt = {})
             : parser_(parser)
             , tag_(tag)
-            , ctxt_(ctxt) {
+            , ctxt_(std::move(ctxt)) {
             parser_.anchors_.emplace_back(tag);
         }
 
@@ -152,7 +162,7 @@ protected:
     private:
         Parser& parser_;
         Tag tag_;
-        std::string_view ctxt_;
+        std::string ctxt_;
     };
 
     /// Factory method to build a Parser::Anchor.
@@ -164,7 +174,13 @@ protected:
     ///     return parse_expr();
     /// }
     /// ```
-    [[nodiscard]] Anchor anchor(Tag tag, std::string_view ctxt = {}) { return {*this, tag, ctxt}; }
+    [[nodiscard]] Anchor anchor(Tag tag, std::string_view ctxt = {}) { return {*this, tag, std::string(ctxt)}; }
+
+    /// As above but builds @p ctxt via std::format.
+    template<class... Args>
+    [[nodiscard]] Anchor anchor(Tag tag, std::format_string<Args...> fmt, Args&&... args) {
+        return {*this, tag, std::format(fmt, std::forward<Args>(args)...)};
+    }
 
     /// Is @p tag anchored by an enclosing context?
     bool anchored(Tag tag) const { return std::ranges::find(anchors_, tag) != anchors_.end(); }
