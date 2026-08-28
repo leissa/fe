@@ -26,19 +26,22 @@ var NAVTREE =
 [
   [ "FE", "index.html", [
     [ "💡 Why FE?", "index.html#autotoc_md1", null ],
-    [ "✨ Features", "index.html#autotoc_md2", null ],
-    [ "🚀 Quick Start", "index.html#autotoc_md3", [
-      [ "Integrate into existing Project", "index.html#autotoc_md4", [
-        [ "CMake", "index.html#autotoc_md5", null ],
-        [ "Direct Vendoring", "index.html#autotoc_md6", null ]
+    [ "✨ Features", "index.html#autotoc_md2", [
+      [ "Header-only", "index.html#autotoc_md3", null ],
+      [ "Requires <span class=\"tt\">FE_LIB</span>", "index.html#requires-fe_lib", null ]
+    ] ],
+    [ "🚀 Quick Start", "index.html#autotoc_md4", [
+      [ "Integrate into existing Project", "index.html#autotoc_md5", [
+        [ "CMake", "index.html#autotoc_md6", null ],
+        [ "Direct Vendoring", "index.html#autotoc_md7", null ]
       ] ]
     ] ],
-    [ "🧭 Typical Workflow", "index.html#autotoc_md7", null ],
-    [ "🛠️ Building and Testing", "index.html#autotoc_md8", null ],
-    [ "📚 Building the Documentation", "index.html#autotoc_md9", null ],
-    [ "🔨 Related Projects", "index.html#autotoc_md10", null ],
-    [ "🤝 Contributing", "index.html#autotoc_md11", null ],
-    [ "⚖️ License", "index.html#autotoc_md12", null ],
+    [ "🧭 Typical Workflow", "index.html#autotoc_md8", null ],
+    [ "🛠️ Building and Testing", "index.html#autotoc_md9", null ],
+    [ "📚 Building the Documentation", "index.html#autotoc_md10", null ],
+    [ "🔨 Related Projects", "index.html#autotoc_md11", null ],
+    [ "🤝 Contributing", "index.html#autotoc_md12", null ],
+    [ "⚖️ License", "index.html#autotoc_md13", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -79,7 +82,7 @@ var NAVTREEINDEX =
 "annotated.html",
 "classfe_1_1Ring_3_01T_00_011_01_4.html#a1576a3573f5b1e34e217f45beea6a771",
 "enum_8h.html#a6d5ff498e337573172c3f886624dd528",
-"structfe_1_1Loc.html#a0531b0fe2bb2304752a1d58b80647365"
+"structfe_1_1Loc.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

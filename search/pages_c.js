@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['testing_0',['🛠️ Building and Testing',['../index.html#autotoc_md8',1,'']]],
-  ['the_20documentation_1',['📚 Building the Documentation',['../index.html#autotoc_md9',1,'']]],
-  ['typical_20workflow_2',['🧭 Typical Workflow',['../index.html#autotoc_md7',1,'']]]
+  ['related_20projects_0',['🔨 Related Projects',['../index.html#autotoc_md11',1,'']]],
+  ['requires_20fe_5flib_1',['Requires &lt;span class=&quot;tt&quot;&gt;FE_LIB&lt;/span&gt;',['../index.html#requires-fe_lib',1,'']]]
 ];

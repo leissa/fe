@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['✨_20features_0',['✨ Features',['../index.html#autotoc_md2',1,'']]]
+  ['why_20fe_0',['💡 Why FE?',['../index.html#autotoc_md1',1,'']]],
+  ['workflow_1',['🧭 Typical Workflow',['../index.html#autotoc_md8',1,'']]]
 ];

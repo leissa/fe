@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['cmake_0',['CMake',['../index.html#autotoc_md5',1,'']]],
-  ['contributing_1',['🤝 Contributing',['../index.html#autotoc_md11',1,'']]]
+  ['cmake_0',['CMake',['../index.html#autotoc_md6',1,'']]],
+  ['contributing_1',['🤝 Contributing',['../index.html#autotoc_md12',1,'']]]
 ];

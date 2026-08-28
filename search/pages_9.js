@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['quick_20start_0',['🚀 Quick Start',['../index.html#autotoc_md3',1,'']]]
+  ['only_0',['Header-only',['../index.html#autotoc_md3',1,'']]]
 ];

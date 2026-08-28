@@ -16,7 +16,7 @@ var searchData=
   ['src_2eh_13',['src.h',['../src_8h.html',1,'']]],
   ['src_5f_14',['src_',['../classfe_1_1Lexer.html#a73ae2eae3990ed437d4ed041b3fb5e8b',1,'fe::Lexer']]],
   ['srcmap_15',['SrcMap',['../classfe_1_1SrcMap.html',1,'fe']]],
-  ['start_16',['🚀 Quick Start',['../index.html#autotoc_md3',1,'']]],
+  ['start_16',['🚀 Quick Start',['../index.html#autotoc_md4',1,'']]],
   ['start_17',['start',['../structfe_1_1Profiler_1_1Span.html#a07250141fbbe9ab07f8746f0cdbdadb8',1,'fe::Profiler::Span::start'],['../classfe_1_1Lexer.html#a0ecd9086f866aa9a8d849620aba195a0',1,'fe::Lexer::start()'],['../classfe_1_1Profiler.html#ab61d4b5a3f4c1435b31f65e755c6ca0f',1,'fe::Profiler::start()']]],
   ['state_18',['State',['../classfe_1_1Arena.html#a5e05161e3a767ebfdecbf2cb1e21f6d4',1,'fe::Arena']]],
   ['state_19',['state',['../classfe_1_1Arena.html#adc11bd44aacf4c22167b1ed08d400077',1,'fe::Arena']]],

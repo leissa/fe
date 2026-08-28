@@ -11,7 +11,7 @@ var indexSectionsWithContent =
   8: "abcglmnoruy",
   9: ":os",
   10: "a",
-  11: "abcdefilpqrstvw⚖✨💡📚🔨🚀🛠🤝🧭",
+  11: "abcdefhilopqrstvw⚖✨💡📚🔨🚀🛠🤝🧭",
   12: "bfn"
 };
 
