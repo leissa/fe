@@ -290,7 +290,7 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 
 <p>Factory method to build a <a class="el" href="classfe_1_1Parser_1_1Anchor.html" title="RAII helper that anchors a Tag for its lifetime; use Parser::anchor to build one.">Parser::Anchor</a>. </p>
 <p>Use like this: </p><div class="fragment"><div class="line"><span class="keywordflow">if</span> (<a class="code hl_function" href="#ad7acb49705c085f2ae9e7464f03eb3c0">accept</a>(Tag::D_paren_l)) {</div>
-<div class="line">    <span class="keyword">auto</span> <a class="code hl_function" href="#abb77f69879ac8c534434df81bf1b33a4">anchor</a> = this-&gt;<a class="code hl_function" href="#abb77f69879ac8c534434df81bf1b33a4">anchor</a>(Tag::D_paren_r);</div>
+<div class="line">    <span class="keyword">auto</span> _      = this-&gt;<a class="code hl_function" href="#abb77f69879ac8c534434df81bf1b33a4">anchor</a>(Tag::D_paren_r);</div>
 <div class="line">    <span class="keyword">auto</span> expr   = parse_expr();</div>
 <div class="line">    <a class="code hl_function" href="#ab01ccf1dc21df6abc1df96282174e9f4">expect</a>(Tag::D_paren_r, <span class="stringliteral">&quot;parenthesized expression&quot;</span>);</div>
 <div class="line">}</div>
