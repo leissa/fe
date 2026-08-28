@@ -1,7 +1,7 @@
 # FE repository instructions
 
 `fe` is a CMake-based C++ library of reusable building blocks for writing language frontends (arena allocation, string interning, source locations, UTF-8 lexer/parser CRTP bases, diagnostics).
-It is **header-only by default**; `FE_LIB=ON` additionally compiles the handful of components that cannot be (see below).
+It is **header-only by default**; `FE_LIB=ON` additionally builds `fe-lib` with the handful of components that cannot be (see below).
 It is typically consumed as a git submodule (a checkout may live under e.g. `submodules/fe`).
 
 ## Build, test, and formatting
@@ -33,7 +33,7 @@ A change is only done when it is leak- and UB-clean, not merely when `ctest` pas
 ## Build options & toolchain
 
 - The library requires **C++23** (`target_compile_features` in `CMakeLists.txt`).
-- `FE_LIB` (default `OFF`): makes `fe` a `STATIC` library instead of an `INTERFACE` one and adds the sources under `src/fe/`. A standalone `BUILD_TESTING` build forces it ON, because the tests rely on the default `Loc` rendering.
+- `FE_LIB` (default `OFF`): additionally builds `fe-lib`, an `OBJECT` library over `src/fe/`. A standalone `BUILD_TESTING` build forces it ON, because the tests rely on the default `Loc` rendering.
 - `FE_ABSL` (default `OFF`): switches `SymMap`/`SymSet`/`PathMap` and friends from `std` to Abseil containers.
 - `FE_BUILD_DOCS` (default `OFF`): build Doxygen docs (requires Doxygen + Graphviz `dot`).
 - `BUILD_TESTING` (CTest default `ON`): builds the only executable, `fe-test`.
@@ -41,7 +41,7 @@ A change is only done when it is leak- and UB-clean, not merely when `ctest` pas
 
 ## High-level architecture
 
-The public API lives entirely in `include/fe/`; `fe` is exported as an `INTERFACE` target, or - with `FE_LIB=ON` - as a `STATIC` one that also compiles `src/fe/`. Tests build the only executable (`fe-test`).
+The public API lives entirely in `include/fe/`. `fe` is always an `INTERFACE` target carrying the header usage requirements; `FE_LIB=ON` adds `fe-lib`, an `OBJECT` library over `src/fe/` that links `fe` publicly. Tests build the only executable (`fe-test`).
 
 The library is organized around a few reusable frontend-building blocks that are designed to be composed:
 
@@ -56,13 +56,14 @@ The library is organized around a few reusable frontend-building blocks that are
 
 Support headers: `assert.h` (`assert`/`assertf`/`unreachable`), `cast.h` (checked/dynamic casts), `enum.h` (bit-flag enum ops), `format.h` (`ostream_formatter`, `std::format` glue), `hash.h` (`constexpr` hash mixing/combining), `restore.h` (`fe::Restore`, an RAII guard that restores a reference at end of scope), `term.h` (terminal/ANSI color), `utf8.h` (UTF-8 decode primitives).
 
-`FE_LIB` adds the components that need a translation unit of their own: the default `Pos`/`Loc` streaming and `dump` (`loc.h`), `fe::stream_snippet` (`snippet.h`), `fe::dl` (`dl.h`, dynamic library loading), and `fe::sys` (`sys.h`, locating and running external commands).
+`fe-lib` holds the components that need a translation unit of their own: the default `Pos`/`Loc` streaming and `dump` (`loc.h`), `fe::stream_snippet` (`snippet.h`), `fe::dl` (`dl.h`, dynamic library loading), `fe::sys` (`sys.h`, locating and running external commands), and `fe::Profiler` (`profile.h`, nested wall-clock spans reported as a flat table, a tree, or Chrome Trace JSON).
+It is an `OBJECT` library on purpose: link it into exactly one shared library of yours and every other consumer resolves those symbols there instead of carrying a copy.
 
 `tests/lexer.cpp` is the best end-to-end example of intended use: define a token type with `tag()` and `loc()`, derive a concrete lexer/parser from the CRTP bases, use `fe::Driver` for identifier interning and diagnostics, and let locations flow through tokens for error reporting.
 
 ## Key conventions
 
-- Keep library code header-only unless it genuinely cannot be; then declare it in `include/fe/` and implement it in `src/fe/` behind `FE_LIB`. Public headers are listed explicitly in `CMakeLists.txt` and installed from `include/fe/`.
+- Keep library code header-only unless it genuinely cannot be; then declare it in `include/fe/` and implement it in `src/fe/`, which is what `fe-lib` compiles. Public headers are listed explicitly in `CMakeLists.txt` and installed from `include/fe/`.
 - Default-constructed values are meaningful sentinels across the API: `Tok{}` means parse failure, `Sym{}` is the empty symbol, and default `Pos`/`Loc` are invalid. `Parser::accept` and `Parser::expect` rely on this pattern.
 - `Loc::end` is **exclusive** (the byte one past the span), just like an STL iterator. `Loc::src` is a borrowed `const Src*`, so the `Src` must outlive the `Loc`; a `SrcMap` owns one for you.
 - `Loc` is kept at two machine words (`static_assert` in `loc.h`) so it stays a value passed in registers - do not grow it.
@@ -72,7 +73,7 @@ Support headers: `assert.h` (`assert`/`assertf`/`unreachable`), `cast.h` (checke
 - Diagnostics are `std::format`-based and go through `fe::Driver::{note,warn,err}`. Follow that pattern rather than inventing separate reporting helpers.
 - If a type already has `operator<<`, expose it to `std::format` with `template<> struct std::formatter<T> : fe::ostream_formatter {};`.
 - Derived lexers/parsers pull the CRTP base helpers they use into scope with `using` declarations (`ahead`, `accept`, `next`, `loc_`, `peek`, `str_` for the lexer; `accept`, `anchor`, `eat`, `expect`, `lex`, `recover`, `tracker` for the parser), matching the pattern in `tests/lexer.cpp`.
-- `fe/loc.h` only declares `operator<<` for `Pos` and `Loc`: link against an `FE_LIB` build for the default rendering, or define them yourself. The same split applies to `fe::stream_snippet`, which `fe::Driver` puts under every diagnostic.
+- `fe/loc.h` only declares `operator<<` for `Pos` and `Loc`: link `fe-lib` for the default rendering, or define them yourself. The same split applies to `fe::stream_snippet`, which `fe::Driver` puts under every diagnostic.
 
 ## Parser contract
 

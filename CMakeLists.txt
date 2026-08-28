@@ -23,27 +23,12 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 endif()
 
 # fe::dl, fe::sys, the default Pos/Loc rendering and fe::stream_snippet need a translation unit of their own.
-option(FE_LIB "If ON, build fe as a static library including the components that are not header-only." OFF)
+option(FE_LIB "If ON, additionally build fe-lib with the components that are not header-only." OFF)
 
-if(FE_LIB)
-    add_library(fe STATIC)
-    set(FE_SCOPE PUBLIC)
-    set_target_properties(fe PROPERTIES POSITION_INDEPENDENT_CODE ON)
-    target_sources(fe
-        PRIVATE
-            src/fe/dl.cpp
-            src/fe/loc.cpp
-            src/fe/snippet.cpp
-            src/fe/sys.cpp
-    )
-    target_link_libraries(fe PRIVATE ${CMAKE_DL_LIBS})
-else()
-    add_library(fe INTERFACE)
-    set(FE_SCOPE INTERFACE)
-endif()
+add_library(fe INTERFACE)
 
 target_sources(fe
-    ${FE_SCOPE}
+    INTERFACE
         FILE_SET headers
         BASE_DIRS include
         TYPE HEADERS
@@ -59,6 +44,7 @@ target_sources(fe
             include/fe/lexer.h
             include/fe/loc.h
             include/fe/parser.h
+            include/fe/profile.h
             include/fe/restore.h
             include/fe/ring.h
             include/fe/snippet.h
@@ -68,22 +54,43 @@ target_sources(fe
             include/fe/term.h
             include/fe/utf8.h
 )
-target_include_directories(fe ${FE_SCOPE} $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
-target_compile_features(fe ${FE_SCOPE} cxx_std_23)
+target_include_directories(fe INTERFACE $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+target_compile_features(fe INTERFACE cxx_std_23)
 
 if(MSVC)
-    target_compile_definitions(fe ${FE_SCOPE} _CTYPE_DISABLE_MACROS)
-    target_compile_options(fe ${FE_SCOPE} /utf-8 /wd4146 /wd4245)
+    target_compile_definitions(fe INTERFACE _CTYPE_DISABLE_MACROS)
+    target_compile_options(fe INTERFACE /utf-8 /wd4146 /wd4245)
 endif()
 
 option(FE_ABSL "If ON, use abseil containers, otherwise use std containers" OFF)
 if(FE_ABSL)
-    target_compile_definitions(fe ${FE_SCOPE} FE_ABSL)
+    target_compile_definitions(fe INTERFACE FE_ABSL)
     target_link_libraries(fe
-        ${FE_SCOPE}
+        INTERFACE
             absl::flat_hash_map absl::flat_hash_set
             absl::node_hash_map absl::node_hash_set
     )
+endif()
+
+# An OBJECT library so that a consumer can compile it into one shared library of its own;
+# every other consumer then resolves these symbols there instead of carrying a copy.
+if(FE_LIB)
+    add_library(fe-lib OBJECT)
+    target_sources(fe-lib
+        PRIVATE
+            src/fe/dl.cpp
+            src/fe/loc.cpp
+            src/fe/profile.cpp
+            src/fe/snippet.cpp
+            src/fe/sys.cpp
+    )
+    target_link_libraries(fe-lib
+        PUBLIC
+            fe
+        PRIVATE
+            ${CMAKE_DL_LIBS}
+    )
+    set_target_properties(fe-lib PROPERTIES POSITION_INDEPENDENT_CODE ON)
 endif()
 
 set(targets_export_name "fe-targets")
@@ -107,6 +114,13 @@ install(
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
+if(FE_LIB)
+    install(
+        TARGETS fe-lib
+        EXPORT ${targets_export_name}
+        OBJECTS DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    )
+endif()
 install(
     FILES
         "${CMAKE_CURRENT_BINARY_DIR}/cmake/fe-config.cmake"
