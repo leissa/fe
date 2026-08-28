@@ -11,6 +11,7 @@ var dir_fb87ea66e879fc34aa3bf8f21b7c38f7 =
     [ "lexer.h", "lexer_8h.html", "lexer_8h" ],
     [ "loc.h", "loc_8h.html", "loc_8h" ],
     [ "parser.h", "parser_8h.html", "parser_8h" ],
+    [ "profile.h", "profile_8h.html", "profile_8h" ],
     [ "restore.h", "restore_8h.html", "restore_8h" ],
     [ "ring.h", "ring_8h.html", "ring_8h" ],
     [ "snippet.h", "snippet_8h.html", "snippet_8h" ],

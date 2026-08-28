@@ -44,6 +44,7 @@ var namespacefe =
     [ "Pos", "structfe_1_1Pos.html", "structfe_1_1Pos" ],
     [ "Loc", "structfe_1_1Loc.html", "structfe_1_1Loc" ],
     [ "Parser", "classfe_1_1Parser.html", "classfe_1_1Parser" ],
+    [ "Profiler", "classfe_1_1Profiler.html", "classfe_1_1Profiler" ],
     [ "Restore", "classfe_1_1Restore.html", "classfe_1_1Restore" ],
     [ "Ring", "classfe_1_1Ring.html", "classfe_1_1Ring" ],
     [ "Ring&lt; T, 1 &gt;", "classfe_1_1Ring_3_01T_00_011_01_4.html", "classfe_1_1Ring_3_01T_00_011_01_4" ],

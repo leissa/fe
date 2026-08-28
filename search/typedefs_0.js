@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ostream_5fformatter_0',['ostream_formatter',['../namespacefe.html#a923ce058163e2041744a84793de679c0',1,'fe']]]
+  ['clock_0',['Clock',['../classfe_1_1Profiler.html#ad6595b90c24f40995c1ebbb6f462bf52',1,'fe::Profiler']]]
 ];

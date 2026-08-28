@@ -11,5 +11,6 @@ var searchData=
   ['toupper_8',['toupper',['../namespacefe_1_1utf8.html#a7907975b61b06db27b14fe2a912f8f8c',1,'fe::utf8']]],
   ['tracker_9',['Tracker',['../classfe_1_1Parser_1_1Tracker.html',1,'fe::Parser&lt; Tok, Tag, K, S &gt;::Tracker'],['../classfe_1_1Parser_1_1Tracker.html#a8b31319b66d8fb1a2911ec78e1b05ccf',1,'fe::Parser::Tracker::Tracker()']]],
   ['tracker_10',['tracker',['../classfe_1_1Parser.html#aea3507b75aa247b9431256f5463a7821',1,'fe::Parser::tracker()'],['../classfe_1_1Parser.html#a01e44a12cb19d3172293feac4f89bbbc',1,'fe::Parser::tracker(Pos begin)'],['../classfe_1_1Parser.html#a4a964da822c8e0c743a8e5fce865ca20',1,'fe::Parser::tracker(Loc begin)']]],
-  ['typical_20workflow_11',['🧭 Typical Workflow',['../index.html#autotoc_md7',1,'']]]
+  ['tree_11',['tree',['../classfe_1_1Profiler.html#a26364a91c8c0f82aee60bdc8e1aa55d1',1,'fe::Profiler']]],
+  ['typical_20workflow_12',['🧭 Typical Workflow',['../index.html#autotoc_md7',1,'']]]
 ];
