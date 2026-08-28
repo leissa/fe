@@ -1,8 +1,10 @@
 #pragma once
 
+#include <concepts>
+
 #include <algorithm>
+#include <deque>
 #include <format>
-#include <vector>
 
 #include "fe/loc.h"
 #include "fe/ring.h"
@@ -183,19 +185,27 @@ protected:
     }
 
     /// Is @p tag anchored by an enclosing context?
-    bool anchored(Tag tag) const { return std::ranges::find(anchors_, tag) != anchors_.end(); }
+    /// Scans the innermost anchor first, but *any* enclosing context counts.
+    bool anchored(Tag tag) const { return std::find(anchors_.rbegin(), anchors_.rend(), tag) != anchors_.rend(); }
 
-    /// Parser::lex all @p tag Tok%ens that are not Parser::anchored and report each one as `S::unanchored_err`.
+    /// Parser::lex all Tok%ens whose Tag satisfies @p pred and that are not Parser::anchored;
+    /// report each one as `S::unanchored_err`.
     /// This turns an otherwise fatal Tok%en into a mere error message and keeps the current parser going.
-    void recover(Tag tag, std::string_view ctxt) {
-        while (ahead().tag() == tag && !anchored(tag))
+    template<std::predicate<Tag> P>
+    void recover(P pred, std::string_view ctxt) {
+        while (pred(ahead().tag()) && !anchored(ahead().tag()))
             self().unanchored_err(lex(), ctxt);
+    }
+
+    /// As above but only recovers from @p tag.
+    void recover(Tag tag, std::string_view ctxt) {
+        recover([tag](Tag t) { return t == tag; }, ctxt);
     }
     ///@}
 
     Ring<Tok, K> ahead_;
     Loc curr_;
-    std::vector<Tag> anchors_;
+    std::deque<Tag> anchors_;
 };
 
 } // namespace fe
