@@ -39,20 +39,46 @@ Handwritten frontends are often the right choice when you want full control over
 
 It provides a compact set of reusable, well-integrated components:
 
+### Header-only
+
 - `fe::Arena` for fast arena allocation and arena-backed ownership.
 - `fe::Sym` and `fe::SymPool` for string interning and cheap identifier comparison.
 - `fe::Driver` for diagnostics and shared frontend state.
 - `fe::Pos` and `fe::Loc` for source positions and source spans.
 - `fe::Src` and `fe::SrcMap` for owning source text and resolving a position back to `path:row:col`.
-- `fe::stream_snippet` for the underlined source excerpt below a diagnostic.
 - `fe::term` for lightweight terminal colors in diagnostics and CLI output.
 - `fe::utf8` for lightweight UTF-8 handling.
 - `fe::hash` and friends for cheap, `constexpr` hash mixing/combining.
 - `fe::Lexer<K, S>` for UTF-8-aware lexing with lookahead and token text accumulation.
 - `fe::Parser<Tok, Tag, K, S>` for recursive-descent-style parsing with token lookahead, span tracking, and anchor-based error recovery.
 - `fe::Restore` for RAII save/restore of a variable across a scope.
-- `fe::dl` and `fe::sys` for loading dynamic libraries and locating/running external commands.
 - Optional `FE_ABSL` support for [Abseil](https://abseil.io/) hash containers.
+
+### Requires `FE_LIB`
+
+These need a translation unit of their own and hence live in `src/fe/`:
+
+- `fe::stream_snippet` for the underlined source excerpt below a diagnostic.
+- `fe::dl` and `fe::sys` for loading dynamic libraries and locating/running external commands.
+- `fe::Profiler` for nested wall-clock spans reported as a flat table, a tree, or Chrome Trace JSON.
+- The default `operator<<`/`dump` of `fe::Pos`/`fe::Loc`.
+
+`fe/loc.h` merely *declares* these.
+So in a header-only setup you have to hand-roll your own rendering - as a hidden friend, it must be defined in namespace `fe`:
+
+```cpp
+namespace fe {
+
+std::ostream& operator<<(std::ostream& os, Loc loc) { /* ... */ }
+std::ostream& operator<<(std::ostream& os, Pos pos) { /* ... */ }
+
+void Loc::dump() const { std::cout << *this << std::endl; }
+void Pos::dump() const { std::cout << *this << std::endl; }
+
+} // namespace fe
+```
+
+Otherwise you will run into a link error for `operator<<(std::ostream&, fe::Loc)` and friends.
 
 FE does not try to hide frontend construction behind a generator.
 Instead, it gives you sharp, reusable tools so you can build exactly the frontend you want.
@@ -91,7 +117,7 @@ target_link_libraries(my_compiler PRIVATE fe)
 ```
 
 `FE_LIB` compiles `src/fe/` along with the headers.
-You need it for `fe::dl`, `fe::sys`, `fe::stream_snippet`, and the default `operator<<`/`dump` of `fe::Pos`/`fe::Loc` - `fe/loc.h` merely declares those, so a link error for `operator<<(std::ostream&, fe::Loc)` means you either want `FE_LIB` or your own rendering.
+You need it for the components listed under [Requires `FE_LIB`](#requires-fe_lib).
 
 #### Direct Vendoring
 
