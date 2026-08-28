@@ -235,10 +235,8 @@ private:
         if (auto tok = accept(Tok::Tag::M_id)) return tok.to_string();
         if (auto tok = accept(Tok::Tag::M_lit)) return tok.to_string();
         if (accept(Tok::Tag::D_paren_l)) {
-            auto _   = this->anchor(Tok::Tag::D_paren_r);
-            auto str = parse_expr("parenthesized expression", Tok::Bot);
-            expect(Tok::Tag::D_paren_r, "parenthesized expression");
-            return str;
+            auto _ = this->anchor(Tok::Tag::D_paren_r, "parenthesized expression");
+            return parse_expr("parenthesized expression", Tok::Bot);
         }
         syntax_err(Tok::Tag::M_id, ctxt);
         return "<error>";

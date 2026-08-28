@@ -127,26 +127,35 @@ protected:
         Anchor(const Anchor&)            = delete;
         Anchor& operator=(const Anchor&) = delete;
 
-        Anchor(std::vector<Tag>& anchors, Tag tag)
-            : anchors_(anchors) {
-            anchors_.emplace_back(tag);
+        Anchor(Parser& parser, Tag tag, std::string_view ctxt = {})
+            : parser_(parser)
+            , tag_(tag)
+            , ctxt_(ctxt) {
+            parser_.anchors_.emplace_back(tag);
         }
-        ~Anchor() { anchors_.pop_back(); }
+
+        /// Removes the anchor again and - unless constructed without a @p ctxt - Parser::expect%s @p tag.
+        ~Anchor() {
+            parser_.anchors_.pop_back();
+            if (!ctxt_.empty()) parser_.expect(tag_, ctxt_);
+        }
 
     private:
-        std::vector<Tag>& anchors_;
+        Parser& parser_;
+        Tag tag_;
+        std::string_view ctxt_;
     };
 
     /// Factory method to build a Parser::Anchor.
+    /// A @p ctxt makes the Parser::Anchor Parser::expect @p tag at the end of the scope; omit it to merely anchor.
     /// Use like this:
     /// ```
     /// if (accept(Tag::D_paren_l)) {
-    ///     auto _      = this->anchor(Tag::D_paren_r);
-    ///     auto expr   = parse_expr();
-    ///     expect(Tag::D_paren_r, "parenthesized expression");
+    ///     auto _ = this->anchor(Tag::D_paren_r, "parenthesized expression");
+    ///     return parse_expr();
     /// }
     /// ```
-    [[nodiscard]] Anchor anchor(Tag tag) { return {anchors_, tag}; }
+    [[nodiscard]] Anchor anchor(Tag tag, std::string_view ctxt = {}) { return {*this, tag, ctxt}; }
 
     /// Is @p tag anchored by an enclosing context?
     bool anchored(Tag tag) const { return std::ranges::find(anchors_, tag) != anchors_.end(); }
