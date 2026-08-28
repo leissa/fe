@@ -62,9 +62,9 @@ void Profiler::summary(std::ostream& os) const {
         total += self;
     }
 
-    // Stable, over a name-ordered map: equal totals report in a reproducible order.
+    // Sorting a name-ordered map keeps the report reproducible.
     auto ordered = std::vector<std::pair<std::string_view, Agg>>(by_name.begin(), by_name.end());
-    std::ranges::stable_sort(ordered, [](const auto& a, const auto& b) { return a.second.total > b.second.total; });
+    std::ranges::sort(ordered, [](const auto& a, const auto& b) { return a.second.total > b.second.total; });
 
     std::println(os, "Profile (flat):");
     std::println(os, "{:>12}  {:>12}  {:>7}  {:>6}  {}", "total[ms]", "self[ms]", "self[%]", "#runs", "name");
