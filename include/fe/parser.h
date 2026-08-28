@@ -141,7 +141,7 @@ protected:
     /// Use like this:
     /// ```
     /// if (accept(Tag::D_paren_l)) {
-    ///     auto anchor = this->anchor(Tag::D_paren_r);
+    ///     auto _      = this->anchor(Tag::D_paren_r);
     ///     auto expr   = parse_expr();
     ///     expect(Tag::D_paren_r, "parenthesized expression");
     /// }
