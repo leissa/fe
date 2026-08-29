@@ -384,13 +384,6 @@ TEST_CASE("Error") {
         CHECK(e.msgs().front().str == "hi");
     }
 
-    SUBCASE("a Driver-less Error still renders") {
-        auto e = fe::Error();
-        e.error(Loc(), "no driver");
-        CHECK(e.num_errors() == 1);
-        CHECK(e.msgs().front().str == "no driver");
-    }
-
     fe::term::set_mode(old_mode);
 }
 

@@ -86,15 +86,10 @@ public:
         std::vector<Note> notes;
     };
 
-    /// @name Constructors
-    ///@{
-    Error() = default; ///< Renders with a default Driver::Diag and no Driver::render hook.
-
     /// @warning A Msg::loc points into @p driver's SrcMap and Error::msg renders through Driver::render,
     /// so @p driver must outlive this Error.
     explicit Error(const Driver& driver)
         : driver_(&driver) {}
-    ///@}
 
     /// @name Getters
     ///@{
@@ -210,11 +205,7 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const Error& e) { return e.summary(e.stream(os)); }
 
 private:
-    Driver::Diag diag() const { return driver_ ? driver_->diag : Driver::Diag(); }
-
-    std::string render_(const std::function<std::string()>& fmt) const {
-        return driver_ && driver_->render ? driver_->render(fmt) : fmt();
-    }
+    const Driver::Diag& diag() const { return driver_->diag; }
 
     /// Loc of the Msg that subsequent Note%s belong to.
     Loc primary_loc_() const { return msgs_.empty() ? Loc() : msgs_.back().loc; }
@@ -231,14 +222,14 @@ private:
 
         dropped_ = false;
         ++num_[size_t(tag)];
-        msgs_.emplace_back(loc, tag, render_(fmt));
+        msgs_.emplace_back(loc, tag, driver_->render(fmt));
     }
 
     void note_(Loc loc, const std::function<std::string()>& fmt) {
         if (dropped_) return;
         assert(!msgs_.empty() && "a note needs an error or warning to attach to");
         ++num_[size_t(Tag::Note)];
-        msgs_.back().notes.emplace_back(loc, render_(fmt));
+        msgs_.back().notes.emplace_back(loc, driver_->render(fmt));
     }
 
     /// Streamed piecewise instead of via std::format: a std::formatter cannot see its destination stream,
@@ -289,7 +280,7 @@ private:
         return os << '\n';
     }
 
-    const Driver* driver_ = nullptr;
+    const Driver* driver_;
     std::vector<Msg> msgs_;
     std::array<size_t, 3> num_ = {};
     bool truncated_            = false;

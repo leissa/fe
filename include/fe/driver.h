@@ -38,14 +38,15 @@ public:
     };
 
     /// Renders the text of one Error::Msg; a formatter is handed in and its result returned.
-    /// Leave unset to simply invoke it; set it to postprocess the result - or to invoke it a second time,
+    /// Defaults to the identity; assign to postprocess the result - or to invoke the formatter a second time,
     /// e.g. once the first pass turns out to have rendered two distinct entities under the same name.
+    /// @warning Must stay callable - assign a hook, never an empty `std::function`.
     /// @warning The formatter captures its arguments by reference and is only valid for that one call.
     /// @warning A hook that captures its Driver does not survive a move; keep the Driver pinned.
     using Render = std::function<std::string(const std::function<std::string()>&)>;
 
     Diag diag;
-    Render render;
+    Render render = [](const std::function<std::string()>& fmt) { return fmt(); };
     ///@}
 
     /// @name Source Files
