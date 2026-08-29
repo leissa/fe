@@ -47,13 +47,13 @@ public:
     constexpr Span(std::span<T, N> span) noexcept
         : Base(span) {}
     template<Vectorlike Vec>
-    requires(std::is_same_v<typename Vec::value_type, T>)
+    requires(std::is_same_v<typename Vec::value_type, T> && !std::is_const_v<Vec>)
     explicit(N != D) constexpr Span(Vec& vec) noexcept(noexcept(vec.data()) && noexcept(vec.size()))
         : Base(vec.data(), vec.size()) {}
     template<Vectorlike Vec>
-    requires(std::is_same_v<std::add_const_t<typename Vec::value_type>, std::add_const_t<T>>)
+    requires(std::is_const_v<T> && std::is_same_v<std::add_const_t<typename Vec::value_type>, T>)
     explicit(N != D) constexpr Span(const Vec& vec) noexcept(noexcept(vec.data()) && noexcept(vec.size()))
-        : Base(const_cast<T*>(vec.data()), vec.size()) {}
+        : Base(vec.data(), vec.size()) {}
     constexpr explicit Span(typename Base::pointer p) noexcept
         : Base(p, N) {
         static_assert(N != D);

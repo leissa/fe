@@ -148,41 +148,28 @@ protected:
         Anchor(const Anchor&)            = delete;
         Anchor& operator=(const Anchor&) = delete;
 
-        Anchor(Parser& parser, Tag tag, std::string ctxt = {})
-            : parser_(parser)
-            , tag_(tag)
-            , ctxt_(std::move(ctxt)) {
+        Anchor(Parser& parser, Tag tag)
+            : parser_(parser) {
             parser_.anchors_.emplace_back(tag);
         }
 
-        /// Removes the anchor again and - unless constructed without a @p ctxt - Parser::expect%s @p tag.
-        ~Anchor() {
-            parser_.anchors_.pop_back();
-            if (!ctxt_.empty()) parser_.expect(tag_, ctxt_);
-        }
+        ~Anchor() { parser_.anchors_.pop_back(); }
 
     private:
         Parser& parser_;
-        Tag tag_;
-        std::string ctxt_;
     };
 
-    /// Factory method to build a Parser::Anchor.
-    /// A @p ctxt makes the Parser::Anchor Parser::expect @p tag at the end of the scope; omit it to merely anchor.
+    /// Factory method to build a Parser::Anchor; Parser::expect @p tag yourself at the end of the scope.
     /// Use like this:
     /// ```
     /// if (accept(Tag::D_paren_l)) {
-    ///     auto _ = this->anchor(Tag::D_paren_r, "parenthesized expression");
-    ///     return parse_expr();
+    ///     auto _    = this->anchor(Tag::D_paren_r);
+    ///     auto expr = parse_expr();
+    ///     expect(Tag::D_paren_r, "parenthesized expression");
+    ///     return expr;
     /// }
     /// ```
-    [[nodiscard]] Anchor anchor(Tag tag, std::string_view ctxt = {}) { return {*this, tag, std::string(ctxt)}; }
-
-    /// As above but builds @p ctxt via std::format.
-    template<class... Args>
-    [[nodiscard]] Anchor anchor(Tag tag, std::format_string<Args...> fmt, Args&&... args) {
-        return {*this, tag, std::format(fmt, std::forward<Args>(args)...)};
-    }
+    [[nodiscard]] Anchor anchor(Tag tag) { return {*this, tag}; }
 
     /// Is @p tag anchored by an enclosing context?
     /// Scans the innermost anchor first, but *any* enclosing context counts.

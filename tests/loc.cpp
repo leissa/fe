@@ -264,11 +264,13 @@ TEST_CASE("Error") {
         auto loc = Loc(src, Pos(4), Pos(5));
         err.error(loc, "oops");
         err.note(loc, "same spot"); // overlaps the primary Loc
-        err.note(Loc(), "no Loc");
         CHECK(err.num_notes() == 0);
-        err.note(Loc(src, Pos(15), Pos(16)), "elsewhere");
+        err.note(Loc(), "no Loc"); // degrades to a continuation instead of vanishing
         CHECK(err.num_notes() == 1);
-        CHECK(err.msgs().front().notes.size() == 1);
+        CHECK(!err.msgs().front().notes.front().loc);
+        err.note(Loc(src, Pos(15), Pos(16)), "elsewhere");
+        CHECK(err.num_notes() == 2);
+        CHECK(err.msgs().front().notes.size() == 2);
     }
 
     SUBCASE("Diag lays the diagnostic out") {
@@ -404,6 +406,15 @@ TEST_CASE("snippet") {
     CHECK(str(Loc(&src, Pos(4), Pos(5)), 0)
           == "    1 | let x = 1;\n"
              "      |     ^\n");
+
+    // An empty Loc past the last column - a missing token - still gets its row and a caret.
+    CHECK(str(Loc(&src, Pos(10), Pos(10)), 0)
+          == "    1 | let x = 1;\n"
+             "      |           ^\n");
+
+    CHECK(str(Loc(&src, Pos(44), Pos(44)), 0)
+          == "    5 | \n"
+             "      | ^\n");
 
     // A Loc spanning more rows than `max_rows` elides its middle.
     CHECK(str(Loc(&src, Pos(4), Pos(37)), 2)

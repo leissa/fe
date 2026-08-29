@@ -102,7 +102,7 @@ Vector(I, I, A = A()) -> Vector<typename std::iterator_traits<I>::value_type,
 /// @name erase
 ///@{
 template<class T, size_t N, class A, class U>
-typename Vector<T, N, A>::size_type erase(Vector<T, N, A>& c, const U& value) noexcept {
+typename Vector<T, N, A>::size_type erase(Vector<T, N, A>& c, const U& value) {
     auto it = std::remove(c.begin(), c.end(), value);
     auto r  = c.end() - it;
     c.erase(it, c.end());
@@ -110,7 +110,7 @@ typename Vector<T, N, A>::size_type erase(Vector<T, N, A>& c, const U& value) no
 }
 
 template<class T, size_t N, class A, class Pred>
-typename Vector<T, N, A>::size_type erase_if(Vector<T, N, A>& c, Pred pred) noexcept {
+typename Vector<T, N, A>::size_type erase_if(Vector<T, N, A>& c, Pred pred) {
     auto it = std::remove_if(c.begin(), c.end(), pred);
     auto r  = c.end() - it;
     c.erase(it, c.end());

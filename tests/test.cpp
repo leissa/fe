@@ -586,6 +586,7 @@ TEST_CASE("Span") {
         static_assert(std::is_same_v<decltype(vv), fe::Span<const int, std::dynamic_extent>>);
         static_assert(std::is_same_v<decltype(vw), fe::Span<const int, std::dynamic_extent>>);
         static_assert(fe::Vectorlike<std::vector<int>>);
+        static_assert(!std::is_constructible_v<fe::Span<int>, const std::vector<int>&>);
         check(vs, 0, 9);
     }
 
@@ -704,6 +705,9 @@ TEST_CASE("algo") {
 
     CHECK(fe::subview("hello world", 6) == "world");
     CHECK(fe::subview("hello world", 0, 5) == "hello");
+    CHECK(fe::subview("hello world", 6, 3) == "wor");
+    CHECK(fe::subview("hello world", 6, 99) == "world");
+    CHECK(fe::subview("hello world", 99, 3) == "");
 
     auto str = std::string("a.b.c");
     fe::find_and_replace(str, ".", "::");

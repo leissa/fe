@@ -55,8 +55,9 @@ public:
         spans_.emplace_back(std::string(name), Clock::now(), Clock::time_point{}, stack_.size() - 1, parent);
     }
 
-    /// Marks the end of the most recently started run.
+    /// Marks the end of the most recently started run; no-op if no Span is running.
     void stop() {
+        if (stack_.empty()) return;
         auto id = stack_.back();
         stack_.pop_back();
         spans_[id].stop = Clock::now();

@@ -49,8 +49,6 @@ std::ostream& operator<<(std::ostream& os, const Snippet& snippet) {
     if (first_row == 0) return os;
     if (last_row < first_row) last_row = first_row, last_col = first_col;
 
-    if (first_row == last_row && size_t(first_col) - 1 >= utf8::num_code_points(src->line(first_row))) return os;
-
     for (auto row = first_row; row <= last_row; ++row) {
         if (max_rows != 0 && last_row - first_row + 1 > max_rows && row == first_row + max_rows / 2) {
             os << term::FG::Gray << std::format("{:>{}} |\n", "...", gutter) << term::FG::Reset;
@@ -60,8 +58,10 @@ std::ostream& operator<<(std::ostream& os, const Snippet& snippet) {
         auto line  = src->line(row);
         auto len   = utf8::num_code_points(line);
         auto begin = std::min(row == first_row ? size_t(first_col) - 1 : 0, len);
-        auto end   = std::min(std::max(row == last_row ? size_t(last_col) : len, begin + 1), len);
-        stream_row(os, line, row, begin, end, color, gutter);
+        auto end   = std::min(row == last_row ? size_t(last_col) : len, len);
+
+        // A Loc past the end of the line - what a missing token points at - still gets its caret there.
+        stream_row(os, line, row, begin, std::max(end, begin + 1), color, gutter);
     }
 
     return os;

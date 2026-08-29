@@ -130,9 +130,10 @@ public:
 
     /// A Note that points *elsewhere*; dropped when @p loc adds nothing.
     /// A @p loc overlapping the primary one is already covered by its snippet and so points nowhere new.
+    /// An invalid @p loc points *nowhere* and degrades to the `= note:` continuation above.
     /// The renderer gives @p loc a header line of its own, so phrase the message to stand alone.
     template<class... Args> Error& note(Loc loc, std::format_string<Args...> s, Args&&... args) {
-        if (!loc || (loc & primary_loc_())) return *this;
+        if (loc && (loc & primary_loc_())) return *this;
         note_(loc, [&] { return std::vformat(s.get(), std::make_format_args(args...)); });
         return *this;
     }

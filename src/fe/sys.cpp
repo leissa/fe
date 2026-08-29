@@ -1,6 +1,5 @@
 #include "fe/sys.h"
 
-#include <cctype>
 #include <cstdio>
 
 #include <array>
@@ -8,6 +7,7 @@
 #include <memory>
 
 #include "fe/assert.h"
+#include "fe/utf8.h"
 
 #ifdef _WIN32
 #    include <windows.h>
@@ -102,7 +102,7 @@ int run(std::string cmd, std::string args /* = {}*/) {
 std::string escape(const fs::path& path) {
     std::string str;
     for (char c : path.string()) {
-        if (isspace(c)) str += '\\';
+        if (utf8::isspace(static_cast<unsigned char>(c))) str += '\\';
         str += c;
     }
     return str;

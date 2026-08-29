@@ -91,10 +91,10 @@ It is an `OBJECT` library on purpose: link it into exactly one shared library of
 - `void unanchored_err(Tok, std::string_view ctxt)` - `Parser::recover` discarded this token.
 
 Error recovery is anchor-based: an *anchor* is a `Tag` an enclosing context is still waiting for.
-`Parser::anchor(tag, ctxt)` returns an RAII `Anchor` that anchors `tag` for the scope and - if given a `ctxt` - `expect`s it at the end of that scope; omit `ctxt` to merely anchor.
+`Parser::anchor(tag)` returns an RAII `Anchor` that anchors `tag` for the scope; `expect` it yourself at the end of that scope.
 `Parser::recover` then discards only tokens that are *not* anchored, so a nested parser bails out instead of swallowing a token its caller needs.
-Prefer this over hand-rolled skip loops, and keep `expect`/`anchor` context strings noun phrases ("parenthesized expression"): they end up inside the message `syntax_err` builds.
-Both take a `std::format_string` overload; use it instead of formatting the context yourself.
+Prefer this over hand-rolled skip loops, and keep `expect` context strings noun phrases ("parenthesized expression"): they end up inside the message `syntax_err` builds.
+`expect` takes a `std::format_string` overload; use it instead of formatting the context yourself.
 
 ## Comments
 

@@ -55,8 +55,8 @@ constexpr I binary_find(I begin, I end, T val, L lt) noexcept {
 
 /// Like `std::string::substr`, but works on `std::string_view` instead.
 constexpr std::string_view subview(std::string_view s, size_t i, size_t n = std::string_view::npos) noexcept {
-    n = std::min(n, s.size());
-    return {s.data() + i, n - i};
+    i = std::min(i, s.size());
+    return {s.data() + i, std::min(n, s.size() - i)};
 }
 
 /// Replaces all occurrences of @p what with @p repl.
