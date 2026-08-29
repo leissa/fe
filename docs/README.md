@@ -45,6 +45,8 @@ It provides a compact set of reusable, well-integrated components:
 - `fe::Sym` and `fe::SymPool` for string interning and cheap identifier comparison.
 - `fe::Driver` for diagnostics and shared frontend state.
 - `fe::Pos` and `fe::Loc` for source positions and source spans.
+- `fe::Dbg` for the `Loc`/`Sym` pair every named entity drags along.
+- `fe::Log` for leveled logging with acronym, color, and origin prefix; the `ELOG`/`WLOG`/... shorthands live in `fe/log_macros.h`, so you only get the macros if you ask for them.
 - `fe::Src` and `fe::SrcMap` for owning source text and resolving a position back to `path:row:col`.
 - `fe::term` for lightweight terminal colors in diagnostics and CLI output.
 - `fe::utf8` for lightweight UTF-8 handling.
@@ -53,13 +55,15 @@ It provides a compact set of reusable, well-integrated components:
 - `fe::Lexer<K, S>` for UTF-8-aware lexing with lookahead and token text accumulation.
 - `fe::Parser<Tok, Tag, K, S>` for recursive-descent-style parsing with token lookahead, span tracking, and anchor-based error recovery.
 - `fe::Restore` for RAII save/restore of a variable across a scope.
+- `fe::Span`/`fe::View` and `fe::Vector` for spans with structured binding and small-buffer vectors.
+- `fe/algo.h` and `fe/container.h` for the odds and ends every frontend rewrites otherwise.
 - Optional `FE_ABSL` support for [Abseil](https://abseil.io/) hash containers.
 
 ### Requires `FE_LIB` {#requires-fe_lib}
 
 These need a translation unit of their own and hence live in `src/fe/`:
 
-- `fe::stream_snippet` for the underlined source excerpt below a diagnostic.
+- `fe::Snippet` for the underlined source excerpt below a diagnostic.
 - `fe::dl` and `fe::sys` for loading dynamic libraries and locating/running external commands.
 - `fe::Profiler` for nested wall-clock spans reported as a flat table, a tree, or Chrome Trace JSON.
 - The default `operator<<`/`dump` of `fe::Pos`/`fe::Loc`.

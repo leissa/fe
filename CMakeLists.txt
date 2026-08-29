@@ -22,7 +22,7 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     endif()
 endif()
 
-# fe::dl, fe::sys, the default Pos/Loc rendering and fe::stream_snippet need a translation unit of their own.
+# fe::dl, fe::sys, the default Pos/Loc rendering and fe::Snippet need a translation unit of their own.
 option(FE_LIB "If ON, additionally build fe-lib with the components that are not header-only." OFF)
 
 add_library(fe INTERFACE)
@@ -33,9 +33,12 @@ target_sources(fe
         BASE_DIRS include
         TYPE HEADERS
         FILES
+            include/fe/algo.h
             include/fe/arena.h
             include/fe/assert.h
             include/fe/cast.h
+            include/fe/container.h
+            include/fe/dbg.h
             include/fe/dl.h
             include/fe/enum.h
             include/fe/driver.h
@@ -44,16 +47,20 @@ target_sources(fe
             include/fe/lct.h
             include/fe/lexer.h
             include/fe/loc.h
+            include/fe/log.h
+            include/fe/log_macros.h
             include/fe/parser.h
             include/fe/profile.h
             include/fe/restore.h
             include/fe/ring.h
             include/fe/snippet.h
+            include/fe/span.h
             include/fe/src.h
             include/fe/sym.h
             include/fe/sys.h
             include/fe/term.h
             include/fe/utf8.h
+            include/fe/vector.h
             include/fe/xtrie.h
 )
 target_include_directories(fe INTERFACE $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
@@ -70,6 +77,7 @@ if(FE_ABSL)
     target_link_libraries(fe
         INTERFACE
             absl::flat_hash_map absl::flat_hash_set
+            absl::inlined_vector
             absl::node_hash_map absl::node_hash_set
     )
 endif()

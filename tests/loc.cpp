@@ -245,7 +245,7 @@ TEST_CASE("snippet") {
     auto src = fe::Src("test.let", "let x = 1;\nlet y = 2;\nlet z = 3;\nlet w = 4;\n");
     auto str = [&](Loc loc, uint32_t max_rows) {
         std::ostringstream oss;
-        fe::stream_snippet(oss, loc, fe::term::FG::Red, 5, max_rows);
+        oss << fe::Snippet{loc, fe::term::FG::Red, 5, max_rows};
         return oss.str();
     };
 

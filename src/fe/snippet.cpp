@@ -38,7 +38,9 @@ void stream_row(std::ostream& os,
 
 } // namespace
 
-std::ostream& stream_snippet(std::ostream& os, Loc loc, term::FG color, uint32_t gutter, uint32_t max_rows) {
+std::ostream& operator<<(std::ostream& os, const Snippet& snippet) {
+    auto [loc, color, gutter, max_rows] = snippet;
+
     auto src = loc.src;
     if (!src) return os;
 

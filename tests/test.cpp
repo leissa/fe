@@ -1,12 +1,22 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 
+#include <stack>
+#include <unordered_map>
+#include <unordered_set>
+
 #include <doctest/doctest.h>
+#include <fe/algo.h>
 #include <fe/arena.h>
+#include <fe/container.h>
+#include <fe/dbg.h>
 #include <fe/enum.h>
+#include <fe/log.h>
 #include <fe/ring.h>
+#include <fe/span.h>
 #include <fe/sym.h>
 #include <fe/term.h>
 #include <fe/utf8.h>
+#include <fe/vector.h>
 
 using namespace std::literals;
 
@@ -543,5 +553,292 @@ TEST_CASE("format") {
 
         auto spaces = ++fe::Tab::spaces();
         CHECK(std::format("{}|", spaces) == "    |");
+    }
+}
+
+TEST_CASE("Span") {
+    SUBCASE("structured binding writes through") {
+        int a[3]        = {0, 1, 2};
+        auto s          = fe::Span(a);
+        auto& [x, y, z] = s;
+        y               = 23;
+        CHECK(a[1] == 23);
+        CHECK(x == 0);
+        CHECK(z == 2);
+    }
+
+    int a[9] = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+    int* p   = a;
+
+    auto check = [](auto span, int b, int e) {
+        CHECK(span.front() == b);
+        CHECK(span.back() == e - 1);
+        CHECK(span.size() == size_t(e - b));
+    };
+
+    SUBCASE("constness follows the source") {
+        auto vec         = std::vector(a, a + 9);
+        const auto& cvec = vec;
+        auto vs          = fe::Span(vec);
+        auto vv          = fe::View<int>(vec);
+        auto vw          = fe::Span(cvec);
+        static_assert(std::is_same_v<decltype(vs), fe::Span<int, std::dynamic_extent>>);
+        static_assert(std::is_same_v<decltype(vv), fe::Span<const int, std::dynamic_extent>>);
+        static_assert(std::is_same_v<decltype(vw), fe::Span<const int, std::dynamic_extent>>);
+        static_assert(fe::Vectorlike<std::vector<int>>);
+        check(vs, 0, 9);
+    }
+
+    SUBCASE("initializer_list") {
+        auto init = fe::Span<const int>({1, 2, 3});
+        CHECK(init.size() == 3);
+        CHECK(init[2] == 3);
+    }
+
+    auto s_0_9 = fe::Span(a);
+    auto d_0_9 = fe::Span(p, 9);
+    static_assert(std::is_same_v<decltype(s_0_9), fe::Span<int, 9>>, "dynamic_extent broken");
+    static_assert(std::is_same_v<decltype(d_0_9), fe::Span<int, std::dynamic_extent>>, "dynamic_extent broken");
+    check(s_0_9, 0, 9);
+    check(d_0_9, 0, 9);
+
+    SUBCASE("subspan") {
+        auto s_7_9 = s_0_9.subspan<7>();
+        auto s_2_6 = s_0_9.subspan<2, 4>();
+        auto s_1_4 = d_0_9.subspan<1, 3>();
+        auto d_2_9 = d_0_9.subspan<2>();
+        auto d_7_9 = s_0_9.subspan(7);
+        auto d_2_6 = s_0_9.subspan(2, 4);
+        static_assert(std::is_same_v<decltype(s_7_9), fe::Span<int, 2>>, "dynamic_extent broken");
+        static_assert(std::is_same_v<decltype(s_2_6), fe::Span<int, 4>>, "dynamic_extent broken");
+        static_assert(std::is_same_v<decltype(s_1_4), fe::Span<int, 3>>, "dynamic_extent broken");
+        static_assert(std::is_same_v<decltype(d_2_9), fe::Span<int, std::dynamic_extent>>, "dynamic_extent broken");
+        static_assert(std::is_same_v<decltype(d_7_9), fe::Span<int, std::dynamic_extent>>, "dynamic_extent broken");
+        static_assert(std::is_same_v<decltype(d_2_6), fe::Span<int, std::dynamic_extent>>, "dynamic_extent broken");
+
+        check(s_7_9, 7, 9);
+        check(s_2_6, 2, 6);
+        check(s_1_4, 1, 4);
+        check(d_2_9, 2, 9);
+        check(d_7_9, 7, 9);
+        check(d_2_6, 2, 6);
+    }
+
+    SUBCASE("rsubspan") {
+        auto s_0_2 = s_0_9.rsubspan<7>();
+        auto s_3_7 = s_0_9.rsubspan<2, 4>();
+        auto s_5_8 = d_0_9.rsubspan<1, 3>();
+        auto d_0_6 = d_0_9.rsubspan<3>();
+        auto d_0_2 = s_0_9.rsubspan(7);
+        auto d_3_7 = s_0_9.rsubspan(2, 4);
+        static_assert(std::is_same_v<decltype(s_0_2), fe::Span<int, 2>>, "dynamic_extent broken");
+        static_assert(std::is_same_v<decltype(s_3_7), fe::Span<int, 4>>, "dynamic_extent broken");
+        static_assert(std::is_same_v<decltype(s_5_8), fe::Span<int, 3>>, "dynamic_extent broken");
+        static_assert(std::is_same_v<decltype(d_0_6), fe::Span<int, std::dynamic_extent>>, "dynamic_extent broken");
+        static_assert(std::is_same_v<decltype(d_0_2), fe::Span<int, std::dynamic_extent>>, "dynamic_extent broken");
+        static_assert(std::is_same_v<decltype(d_3_7), fe::Span<int, std::dynamic_extent>>, "dynamic_extent broken");
+
+        check(s_0_2, 0, 2);
+        check(s_3_7, 3, 7);
+        check(s_5_8, 5, 8);
+        check(d_0_6, 0, 6);
+        check(d_0_2, 0, 2);
+        check(d_3_7, 3, 7);
+    }
+
+    SUBCASE("span<N> keeps the size static") {
+        auto first3 = s_0_9.span<3>();
+        static_assert(std::is_same_v<decltype(first3), fe::Span<int, 3>>);
+        check(first3, 0, 3);
+    }
+}
+
+TEST_CASE("Vector") {
+    fe::Vector<int> v = {1, 2, 3};
+    CHECK(v.span().size() == 3);
+    CHECK(v.view()[2] == 3);
+
+    SUBCASE("generator constructors") {
+        fe::Vector<int> squares(5, [](size_t i) { return int(i * i); });
+        CHECK(squares.size() == 5);
+        CHECK(squares[4] == 16);
+
+        std::vector<int> src = {1, 2, 3};
+        fe::Vector<int> twice(src, [](int i) { return 2 * i; });
+        CHECK(twice.size() == 3);
+        CHECK(twice[2] == 6);
+    }
+
+    SUBCASE("insert_range/append_range") {
+        std::vector<int> more = {4, 5};
+        v.append_range(more);
+        CHECK(v.size() == 5);
+        CHECK(v.back() == 5);
+        v.insert_range(v.begin(), more);
+        CHECK(v.front() == 4);
+    }
+
+    SUBCASE("erase/erase_if and swap") {
+        fe::Vector<int> w = {1, 2, 3, 2, 1};
+        CHECK(erase(w, 2) == 2);
+        CHECK(w.size() == 3);
+        CHECK(erase_if(w, [](int i) { return i == 1; }) == 2);
+        CHECK(w.size() == 1);
+
+        fe::Vector<int> x = {7};
+        swap(w, x);
+        CHECK(w.front() == 7);
+        CHECK(x.front() == 3);
+    }
+}
+
+TEST_CASE("algo") {
+    CHECK(fe::pad(0, 8) == 0);
+    CHECK(fe::pad(1, 8) == 8);
+    CHECK(fe::pad(8, 8) == 8);
+    CHECK(fe::pad(9, 8) == 16);
+
+    CHECK(fe::bitcast_resize<uint32_t>(uint16_t(23)) == 23);
+    CHECK(fe::bitcast_resize<uint8_t>(uint32_t(0xff23)) == 0x23);
+
+    CHECK(fe::subview("hello world", 6) == "world");
+    CHECK(fe::subview("hello world", 0, 5) == "hello");
+
+    auto str = std::string("a.b.c");
+    fe::find_and_replace(str, ".", "::");
+    CHECK(str == "a::b::c");
+
+    SUBCASE("binary_find below and above the linear-scan threshold") {
+        auto lt = std::less<int>();
+        for (int n : {8, 32}) {
+            std::vector<int> v;
+            for (int i = 0; i != n; ++i)
+                v.emplace_back(2 * i);
+            CHECK(fe::binary_find(v.begin(), v.end(), 0, lt) == v.begin());
+            CHECK(*fe::binary_find(v.begin(), v.end(), 2 * (n - 1), lt) == 2 * (n - 1));
+            CHECK(fe::binary_find(v.begin(), v.end(), 1, lt) == v.end());
+            CHECK(fe::binary_find(v.begin(), v.end(), 2 * n, lt) == v.end());
+        }
+    }
+}
+
+TEST_CASE("container") {
+    SUBCASE("pop") {
+        std::stack<int> s;
+        s.push(1);
+        s.push(2);
+        CHECK(fe::pop(s) == 2);
+        CHECK(fe::pop(s) == 1);
+        CHECK(s.empty());
+
+        std::queue<int> q;
+        q.push(1);
+        q.push(2);
+        CHECK(fe::pop(q) == 1);
+        CHECK(fe::pop(q) == 2);
+        CHECK(q.empty());
+    }
+
+    SUBCASE("lookup") {
+        std::unordered_map<int, int> map = {
+            {1, 23}
+        };
+        CHECK(*fe::lookup(map, 1) == 23);
+        CHECK(fe::lookup(map, 2) == nullptr);
+        CHECK(fe::assert_lookup(map, 1) == 23);
+
+        int i                              = 23;
+        std::unordered_map<int, int*> ptrs = {
+            {1, &i}
+        };
+        CHECK(fe::lookup(ptrs, 1) == &i);
+        CHECK(fe::lookup(ptrs, 2) == nullptr);
+
+        CHECK(fe::assert_emplace(map, 2, 42)->second == 42);
+    }
+
+    SUBCASE("UniqueQueue") {
+        fe::UniqueQueue<std::unordered_set<int>> queue;
+        CHECK(queue.empty());
+        CHECK(queue.push(1));
+        CHECK(!queue.push(1));
+        CHECK(queue.push(2));
+        CHECK(queue.front() == 1);
+        CHECK(queue.back() == 2);
+        CHECK(queue.pop() == 1);
+        CHECK(queue.pop() == 2);
+        CHECK(queue.empty());
+        CHECK(!queue.push(1)); // still done
+
+        queue.clear();
+        CHECK(queue.push(1));
+    }
+}
+
+TEST_CASE("Dbg") {
+    fe::SymPool syms;
+    auto a   = syms.sym("a");
+    auto loc = fe::Loc(fe::Pos(0), fe::Pos(1));
+    auto dbg = fe::Dbg(loc, a);
+
+    CHECK(dbg.sym() == a);
+    CHECK(dbg.loc() == loc);
+    CHECK(dbg);
+    CHECK(dbg == fe::Dbg(loc, a));
+    CHECK(dbg != fe::Dbg(loc, syms.sym("b")));
+    CHECK(std::format("{}", dbg) == "a");
+
+    SUBCASE("anonymous") {
+        CHECK(fe::Dbg().is_anon());
+        CHECK(fe::Dbg(syms.sym("_")).is_anon());
+        CHECK(!dbg.is_anon());
+        CHECK(!fe::Dbg(loc));
+    }
+
+    SUBCASE("Hash/Eq") {
+        std::unordered_map<fe::Dbg, int, fe::Dbg::Hash, fe::Dbg::Eq> map;
+        map[dbg] = 23;
+        CHECK(map.find(fe::Dbg(loc, a))->second == 23);
+        CHECK(!map.contains(fe::Dbg(a)));
+    }
+}
+
+TEST_CASE("Log") {
+    using Level = fe::Log::Level;
+    // The expectations go through std::format like Log::emit does, so they hold in any term::Mode.
+    auto expect = [](Level level, const auto& where, std::string_view msg) {
+        return std::format("{}{}:{}{}:{} {}\n", fe::Log::level2color(level), fe::Log::level2acro(level),
+                           fe::term::FG::Gray, where, fe::term::FG::Reset, msg);
+    };
+
+    std::ostringstream oss;
+    fe::Log log;
+    CHECK(!log);
+
+    log.set(&oss).set(Level::Info);
+    CHECK(log);
+    CHECK(log.level() == Level::Info);
+
+    log.log(Level::Info, "foo.cpp", 23, "hi {}", 42);
+    CHECK(oss.str() == expect(Level::Info, "foo.cpp:23", "hi 42"));
+
+    SUBCASE("levels above the maximum are dropped") {
+        oss.str({});
+        log.log(Level::Debug, "foo.cpp", 23, "nope");
+        CHECK(oss.str().empty());
+    }
+
+    SUBCASE("a Loc names the place instead") {
+        auto loc = fe::Loc(fe::Pos(0), fe::Pos(1));
+        oss.str({});
+        log.log(Level::Error, loc, "oops");
+        CHECK(oss.str() == expect(Level::Error, loc, "oops"));
+    }
+
+    SUBCASE("acronyms and colors") {
+        CHECK(fe::Log::level2acro(Level::Error) == 'E');
+        CHECK(fe::Log::level2acro(Level::Trace) == 'T');
+        CHECK(fe::Log::level2color(Level::Error) == fe::term::FG::Red);
+        CHECK(fe::Log::level2color(Level::Trace) == fe::term::FG::Magenta);
     }
 }

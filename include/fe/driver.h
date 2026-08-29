@@ -35,7 +35,7 @@ public:
 
     void diag(Loc loc, term::FG color, std::string_view tag, std::string_view msg) const {
         std::cerr << loc << ": " << color << tag << ": " << term::FG::Reset << msg << std::endl;
-        if (!no_snippet) stream_snippet(std::cerr, loc, color, gutter, max_rows);
+        if (!no_snippet) std::cerr << Snippet{loc, color, gutter, max_rows};
     }
 
     unsigned num_errors() const { return num_errors_; }

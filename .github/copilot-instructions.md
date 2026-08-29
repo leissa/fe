@@ -56,9 +56,9 @@ The library is organized around a few reusable frontend-building blocks that are
 - `fe::Lexer<K, S>` (`lexer.h`) is a CRTP base that handles UTF-8 decoding, character lookahead, token text accumulation (`str_`), and source location tracking (`loc_`).
 - `fe::Parser<Tok, Tag, K, S>` (`parser.h`) is a CRTP base that wraps a lexer with token lookahead, `accept`/`expect`/`eat`, `Tracker` helpers for building node spans, and the anchor-based error recovery described below.
 
-Support headers: `assert.h` (`assert`/`assertf`/`unreachable`), `cast.h` (checked/dynamic casts), `enum.h` (bit-flag enum ops), `format.h` (`ostream_formatter`, `std::format` glue), `hash.h` (`constexpr` hash mixing/combining), `restore.h` (`fe::Restore`, an RAII guard that restores a reference at end of scope), `term.h` (terminal/ANSI color), `utf8.h` (UTF-8 decode primitives).
+Support headers: `algo.h` (bit casts, padding, small string/range algorithms), `assert.h` (`assert`/`assertf`/`unreachable`), `cast.h` (checked/dynamic casts), `container.h` (`pop`/`lookup` helpers, `fe::UniqueQueue`), `dbg.h` (`fe::Dbg`, a `Loc`/`Sym` pair), `enum.h` (bit-flag enum ops), `format.h` (`ostream_formatter`, `std::format` glue), `hash.h` (`constexpr` hash mixing/combining), `log.h` (`fe::Log`, leveled logging) and `log_macros.h` (its `ELOG`/`WLOG`/... shorthands, separated so `log.h` stays macro-free), `restore.h` (`fe::Restore`, an RAII guard that restores a reference at end of scope), `span.h` (`fe::Span`/`fe::View`), `term.h` (terminal/ANSI color), `utf8.h` (UTF-8 decode primitives), `vector.h` (`fe::Vector`, small-buffer vector).
 
-`fe-lib` holds the components that need a translation unit of their own: the default `Pos`/`Loc` streaming and `dump` (`loc.h`), `fe::stream_snippet` (`snippet.h`), `fe::dl` (`dl.h`, dynamic library loading), `fe::sys` (`sys.h`, locating and running external commands), and `fe::Profiler` (`profile.h`, nested wall-clock spans reported as a flat table, a tree, or Chrome Trace JSON).
+`fe-lib` holds the components that need a translation unit of their own: the default `Pos`/`Loc` streaming and `dump` (`loc.h`), `fe::Snippet` (`snippet.h`), `fe::dl` (`dl.h`, dynamic library loading), `fe::sys` (`sys.h`, locating and running external commands), and `fe::Profiler` (`profile.h`, nested wall-clock spans reported as a flat table, a tree, or Chrome Trace JSON).
 It is an `OBJECT` library on purpose: link it into exactly one shared library of yours and every other consumer resolves those symbols there instead of carrying a copy.
 
 `tests/lexer.cpp` is the best end-to-end example of intended use: define a token type with `tag()` and `loc()`, derive a concrete lexer/parser from the CRTP bases, use `fe::Driver` for identifier interning and diagnostics, and let locations flow through tokens for error reporting.
@@ -75,7 +75,7 @@ It is an `OBJECT` library on purpose: link it into exactly one shared library of
 - Diagnostics are `std::format`-based and go through `fe::Driver::{note,warn,err}`. Follow that pattern rather than inventing separate reporting helpers.
 - If a type already has `operator<<`, expose it to `std::format` with `template<> struct std::formatter<T> : fe::ostream_formatter {};`.
 - Derived lexers/parsers pull the CRTP base helpers they use into scope with `using` declarations (`ahead`, `accept`, `next`, `loc_`, `peek`, `str_` for the lexer; `accept`, `anchor`, `eat`, `expect`, `lex`, `recover`, `tracker` for the parser), matching the pattern in `tests/lexer.cpp`.
-- `fe/loc.h` only declares `operator<<` for `Pos` and `Loc`: link `fe-lib` for the default rendering, or define them yourself. The same split applies to `fe::stream_snippet`, which `fe::Driver` puts under every diagnostic.
+- `fe/loc.h` only declares `operator<<` for `Pos` and `Loc`: link `fe-lib` for the default rendering, or define them yourself. The same split applies to `fe::Snippet`, which `fe::Driver` puts under every diagnostic.
 
 ## Parser contract
 
