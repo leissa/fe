@@ -41,20 +41,20 @@ target_sources(fe
             include/fe/driver.h
             include/fe/hash.h
             include/fe/format.h
+            include/fe/lct.h
             include/fe/lexer.h
-            include/fe/link_cut_tree.h
             include/fe/loc.h
             include/fe/parser.h
             include/fe/profile.h
             include/fe/restore.h
             include/fe/ring.h
-            include/fe/sets.h
             include/fe/snippet.h
             include/fe/src.h
             include/fe/sym.h
             include/fe/sys.h
             include/fe/term.h
             include/fe/utf8.h
+            include/fe/xtrie.h
 )
 target_include_directories(fe INTERFACE $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 target_compile_features(fe INTERFACE cxx_std_23)

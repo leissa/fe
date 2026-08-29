@@ -7,11 +7,11 @@
 #include <vector>
 
 #include <doctest/doctest.h>
-#include <fe/sets.h>
+#include <fe/xtrie.h>
 
 namespace {
 
-/// Minimal element: fe::Sets only needs a gid for ordering/hashing and a writable tid.
+/// Minimal element: fe::XTrie only needs a gid for ordering/hashing and a writable tid.
 struct Elem {
     explicit Elem(uint32_t gid)
         : gid_(gid) {}
@@ -26,10 +26,10 @@ struct Key {
     static void set_tid(Elem* e, uint32_t tid) noexcept { e->tid_ = tid; }
 };
 
-using S                   = fe::Sets<Elem, Key>;
-static constexpr size_t N = 16; ///< Sets' Data/Node switch-over point.
+using S                   = fe::XTrie<Elem, Key>;
+static constexpr size_t N = 16; ///< XTrie's Data/Node switch-over point.
 
-/// Stable storage, interned by gid: Sets keys on pointers but *orders* by gid, so one gid must map to
+/// Stable storage, interned by gid: XTrie keys on pointers but *orders* by gid, so one gid must map to
 /// exactly one Elem - otherwise the sortedness/uniqueness invariant is violated by construction.
 struct Pool {
     Elem* operator()(uint32_t gid) {
@@ -58,7 +58,7 @@ S::Set make(S& sets, Pool& pool, std::set<uint32_t> want) {
 
 } // namespace
 
-TEST_CASE("Sets") {
+TEST_CASE("XTrie") {
     auto sets = S();
     auto pool = Pool();
 
@@ -197,7 +197,7 @@ TEST_CASE("Sets") {
         }
     }
 
-    /// Differential test: drive Sets and std::set through the same random operations.
+    /// Differential test: drive XTrie and std::set through the same random operations.
     SUBCASE("random vs std::set") {
         auto rng = std::mt19937(42);
 

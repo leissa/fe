@@ -5,8 +5,8 @@ target_sources(fe-test
         hash.cpp
         lexer.cpp
         loc.cpp
-        sets.cpp
         test.cpp
+        xtrie.cpp
 )
 target_link_libraries(fe-test
     PRIVATE

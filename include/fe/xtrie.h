@@ -23,13 +23,14 @@
 #include "fe/arena.h"
 #include "fe/assert.h"
 #include "fe/hash.h"
-#include "fe/link_cut_tree.h"
+#include "fe/lct.h"
 
 namespace fe {
 
 /// Hash-consed sets of `D*`.
 /// Small sets are sorted arrays, large ones paths in a trie; either way, equal sets are pointer-equal.
-/// @p K is a *key* trait that grants access to the two `uint32_t`s Sets needs on `D`:
+/// This is an *IndexedTrie* as described [here](https://dl.acm.org/doi/10.1145/3808286).
+/// @p K is a *key* trait that grants access to the two `uint32_t`s XTrie needs on `D`:
 /// ```
 /// struct Key {
 ///     static uint32_t gid(const D*) noexcept;               ///< Unique id; orders and hashes the elements.
@@ -40,7 +41,7 @@ namespace fe {
 /// ```
 /// @p N is the maximum size of an array set; bigger sets live in the trie.
 template<class D, class K, size_t N = 16>
-class Sets {
+class XTrie {
 private:
     struct Hash {
         constexpr size_t operator()(D* d) const noexcept { return fe::hash(K::gid(d)); }
@@ -413,7 +414,7 @@ public:
 
         uintptr_t ptr_ = 0;
 
-        friend class Sets;
+        friend class XTrie;
         friend std::ostream& operator<<(std::ostream& os, Set set) { return set.stream(os); }
     };
 
@@ -422,13 +423,13 @@ public:
 
     /// @name Construction
     ///@{
-    Sets& operator=(const Sets&) = delete;
+    XTrie& operator=(const XTrie&) = delete;
 
-    constexpr Sets() noexcept
+    constexpr XTrie() noexcept
         : root_(make_node()) {}
-    constexpr Sets(const Sets&) noexcept = delete;
-    constexpr Sets(Sets&& other) noexcept
-        : Sets() {
+    constexpr XTrie(const XTrie&) noexcept = delete;
+    constexpr XTrie(XTrie&& other) noexcept
+        : XTrie() {
         swap(*this, other);
     }
     ///@}
@@ -635,7 +636,7 @@ public:
         std::print(os, "}}\n");
     }
 
-    friend void swap(Sets& s1, Sets& s2) noexcept {
+    friend void swap(XTrie& s1, XTrie& s2) noexcept {
         using std::swap;
         // clang-format off
         swap(s1.data_arena_,  s2.data_arena_);
