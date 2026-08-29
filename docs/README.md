@@ -55,7 +55,7 @@ It provides a compact set of reusable, well-integrated components:
 - `fe::Restore` for RAII save/restore of a variable across a scope.
 - Optional `FE_ABSL` support for [Abseil](https://abseil.io/) hash containers.
 
-### Requires `FE_LIB`
+### Requires `FE_LIB` {#requires-fe_lib}
 
 These need a translation unit of their own and hence live in `src/fe/`:
 
