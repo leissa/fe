@@ -10,7 +10,6 @@
 #include <print>
 #include <ranges>
 #include <string>
-#include <vector>
 
 #ifdef FE_ABSL
 #    include <absl/container/flat_hash_map.h>
@@ -24,6 +23,7 @@
 #include "fe/assert.h"
 #include "fe/hash.h"
 #include "fe/lct.h"
+#include "fe/vector.h"
 
 namespace fe {
 
@@ -461,13 +461,13 @@ public:
     /// Create a Set wih all elements in @p r.
     template<std::ranges::input_range R>
     [[nodiscard]] Set create(R&& r) {
-        auto v = std::vector<D*>(std::ranges::begin(r), std::ranges::end(r));
+        auto v = fe::Vector<D*>(std::ranges::begin(r), std::ranges::end(r));
         return create(v.begin(), v.end());
     }
 
     /// Create a Set wih all elements in @p list.
     [[nodiscard]] Set create(std::initializer_list<D*> list) {
-        auto v = std::vector<D*>(list);
+        auto v = fe::Vector<D*>(list);
         return create(v.begin(), v.end());
     }
 
