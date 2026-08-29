@@ -6,11 +6,16 @@ var hierarchy =
     [ "fe::Arena", "classfe_1_1Arena.html", null ],
     [ "fe::utf8::Char32", "structfe_1_1utf8_1_1Char32.html", null ],
     [ "fe::Dbg", "structfe_1_1Dbg.html", null ],
+    [ "fe::DbgKey", "classfe_1_1DbgKey.html", null ],
     [ "fe::Arena::Deleter&lt; T &gt;", "structfe_1_1Arena_1_1Deleter.html", null ],
+    [ "fe::Driver::Diag", "structfe_1_1Driver.html#structfe_1_1Driver_1_1Diag", null ],
     [ "fe::Dbg::Eq", "structfe_1_1Dbg_1_1Eq.html", null ],
     [ "fe::Sym::Eq", "structfe_1_1Sym_1_1Eq.html", null ],
     [ "fe::Sym::String::Equal", "structfe_1_1Sym_1_1String_1_1Equal.html", null ],
     [ "fe::XTrie&lt; D, K, N &gt;::Data::Equal", "structfe_1_1XTrie_1_1Data_1_1Equal.html", null ],
+    [ "std::exception", null, [
+      [ "fe::Error", "classfe_1_1Error.html", null ]
+    ] ],
     [ "std::false_type", null, [
       [ "fe::is_bit_enum< T >", "structfe_1_1is__bit__enum.html", null ]
     ] ],
@@ -36,6 +41,7 @@ var hierarchy =
     [ "std::pmr::memory_resource", "classstd_1_1pmr_1_1memory__resource.html", [
       [ "fe::Arena::MemoryResource", "classfe_1_1Arena_1_1MemoryResource.html", null ]
     ] ],
+    [ "fe::Error::Msg", "classfe_1_1Error.html#structfe_1_1Error_1_1Msg", null ],
     [ "fe::lct::Node&lt; P, K &gt;", "classfe_1_1lct_1_1Node.html", null ],
     [ "fe::Parser&lt; Tok, Tag, K, S &gt;", "classfe_1_1Parser.html", null ],
     [ "fe::PathHash", "structfe_1_1PathHash.html", null ],
@@ -66,6 +72,7 @@ var hierarchy =
     [ "std::tuple_element&lt; I, fe::Span&lt; T, N &gt; &gt;", "namespacestd.html#structstd_1_1tuple__element_3_01I_00_01fe_1_1Span_3_01T_00_01N_01_4_01_4", null ],
     [ "fe::UniqueQueue&lt; Set &gt;", "classfe_1_1UniqueQueue.html", null ],
     [ "detail::VectorBase", null, [
+      [ "fe::Vector< fe::Dbg >", "classfe_1_1Vector.html", null ],
       [ "fe::Vector< T, N, A >", "classfe_1_1Vector.html", null ]
     ] ],
     [ "fe::XTrie&lt; D, K, N &gt;", "classfe_1_1XTrie.html", null ],

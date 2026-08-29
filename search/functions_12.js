@@ -19,13 +19,14 @@ var searchData=
   ['stop_16',['stop',['../classfe_1_1Profiler.html#ab6c5c63abe26861a4c17f3ed39e449f0',1,'fe::Profiler']]],
   ['str_17',['str',['../classfe_1_1Sym.html#a924bef149f5053cf6dbc79740f48f02d',1,'fe::Sym']]],
   ['stream_18',['stream',['../classfe_1_1XTrie_1_1Set.html#a8fca7927052548d6cdf264212f07b558',1,'fe::XTrie::Set']]],
-  ['streamfn_19',['StreamFn',['../classfe_1_1StreamFn.html#a68d490240269c9a6d0347bd071fc0867',1,'fe::StreamFn::StreamFn()'],['../namespacefe.html#a653a3eb512f7610b2449a4546f7e335d',1,'fe::StreamFn()']]],
-  ['string_20',['String',['../structfe_1_1Sym_1_1String.html#a551bd30c8aceef146168764ee45238c4',1,'fe::Sym::String::String() noexcept=default'],['../structfe_1_1Sym_1_1String.html#a53744c058aad60d3cd8adee02bdeedbc',1,'fe::Sym::String::String(size_t size) noexcept']]],
-  ['subspan_21',['subspan',['../classfe_1_1Span.html#a9c5921a1fbbe25e7a937c2b42cad5c84',1,'fe::Span::subspan(size_t i, size_t n=D) const noexcept'],['../classfe_1_1Span.html#af9fe524f8b1e0b5b35adaed2539d3329',1,'fe::Span::subspan() const noexcept']]],
-  ['subview_22',['subview',['../namespacefe.html#a720f0cfe096eac4108e589e54fac9669',1,'fe']]],
-  ['summary_23',['summary',['../classfe_1_1Profiler.html#adc8d6ea8bdc264d8d2f3487e9bfb420f',1,'fe::Profiler']]],
-  ['sym_24',['Sym',['../classfe_1_1Sym.html#a3b4417ab3002f28d1e4f340711a8d094',1,'fe::Sym']]],
-  ['sym_25',['sym',['../structfe_1_1Dbg.html#a36f20fe59dfac6de58bf91312a22f332',1,'fe::Dbg::sym()'],['../classfe_1_1SymPool.html#a1a7c3278db18ad72926b06c1e757b865',1,'fe::SymPool::sym(std::string_view s)'],['../classfe_1_1SymPool.html#aaa85e3916fd52036699bd97f6376d398',1,'fe::SymPool::sym(const std::string &amp;s)'],['../classfe_1_1SymPool.html#aebce9967a8092fbb2d851c2f400745a1',1,'fe::SymPool::sym(const char *s)']]],
-  ['sympool_26',['SymPool',['../classfe_1_1SymPool.html#a9446b07a54c8892bc6135608d0321af7',1,'fe::SymPool::SymPool(const SymPool &amp;)=delete'],['../classfe_1_1SymPool.html#ad760b218bdbfd83a596a4482be8df1a4',1,'fe::SymPool::SymPool() noexcept'],['../classfe_1_1SymPool.html#ab59d67329468787346189016e67794b2',1,'fe::SymPool::SymPool(SymPool &amp;&amp;other) noexcept']]],
-  ['system_27',['system',['../namespacefe_1_1sys.html#a32dbb92355fcb6726986a2f850cfdbb9',1,'fe::sys']]]
+  ['stream_5fcode_19',['stream_code',['../namespacefe.html#af7e8cf8dd305aa63c10227cadec6883d',1,'fe']]],
+  ['streamfn_20',['StreamFn',['../classfe_1_1StreamFn.html#a68d490240269c9a6d0347bd071fc0867',1,'fe::StreamFn::StreamFn()'],['../namespacefe.html#a653a3eb512f7610b2449a4546f7e335d',1,'fe::StreamFn()']]],
+  ['string_21',['String',['../structfe_1_1Sym_1_1String.html#a551bd30c8aceef146168764ee45238c4',1,'fe::Sym::String::String() noexcept=default'],['../structfe_1_1Sym_1_1String.html#a53744c058aad60d3cd8adee02bdeedbc',1,'fe::Sym::String::String(size_t size) noexcept']]],
+  ['subspan_22',['subspan',['../classfe_1_1Span.html#a9c5921a1fbbe25e7a937c2b42cad5c84',1,'fe::Span::subspan(size_t i, size_t n=D) const noexcept'],['../classfe_1_1Span.html#af9fe524f8b1e0b5b35adaed2539d3329',1,'fe::Span::subspan() const noexcept']]],
+  ['subview_23',['subview',['../namespacefe.html#a720f0cfe096eac4108e589e54fac9669',1,'fe']]],
+  ['summary_24',['summary',['../classfe_1_1Profiler.html#adc8d6ea8bdc264d8d2f3487e9bfb420f',1,'fe::Profiler']]],
+  ['sym_25',['Sym',['../classfe_1_1Sym.html#a3b4417ab3002f28d1e4f340711a8d094',1,'fe::Sym']]],
+  ['sym_26',['sym',['../structfe_1_1Dbg.html#a36f20fe59dfac6de58bf91312a22f332',1,'fe::Dbg::sym()'],['../classfe_1_1SymPool.html#a1a7c3278db18ad72926b06c1e757b865',1,'fe::SymPool::sym(std::string_view s)'],['../classfe_1_1SymPool.html#aaa85e3916fd52036699bd97f6376d398',1,'fe::SymPool::sym(const std::string &amp;s)'],['../classfe_1_1SymPool.html#aebce9967a8092fbb2d851c2f400745a1',1,'fe::SymPool::sym(const char *s)']]],
+  ['sympool_27',['SymPool',['../classfe_1_1SymPool.html#a9446b07a54c8892bc6135608d0321af7',1,'fe::SymPool::SymPool(const SymPool &amp;)=delete'],['../classfe_1_1SymPool.html#ad760b218bdbfd83a596a4482be8df1a4',1,'fe::SymPool::SymPool() noexcept'],['../classfe_1_1SymPool.html#ab59d67329468787346189016e67794b2',1,'fe::SymPool::SymPool(SymPool &amp;&amp;other) noexcept']]],
+  ['system_28',['system',['../namespacefe_1_1sys.html#a32dbb92355fcb6726986a2f850cfdbb9',1,'fe::sys']]]
 ];

@@ -8,7 +8,7 @@ var searchData=
   ['char32_5',['Char32',['../structfe_1_1utf8_1_1Char32.html',1,'fe::utf8::Char32'],['../structfe_1_1utf8_1_1Char32.html#af46564ecf7d2aa5557f8b452ea406abf',1,'fe::utf8::Char32::Char32()']]],
   ['chars_6',['chars',['../structfe_1_1Sym_1_1String.html#a86ac99bc1a5ae5670498ab589c5f0c39',1,'fe::Sym::String']]],
   ['chrome_5ftrace_7',['chrome_trace',['../classfe_1_1Profiler.html#ac8ec9c9ecca1edbaf0b7a776cb7a48fa',1,'fe::Profiler']]],
-  ['clear_8',['clear',['../classfe_1_1UniqueQueue.html#a9c290c2a63ae0ae48902a0ac1949218a',1,'fe::UniqueQueue::clear()'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html#ad31ab44722c8c19df28e7216dfed1d96',1,'fe::XTrie::Set::iterator::clear()']]],
+  ['clear_8',['clear',['../classfe_1_1UniqueQueue.html#a9c290c2a63ae0ae48902a0ac1949218a',1,'fe::UniqueQueue::clear()'],['../classfe_1_1Error.html#a49f4b59762202737f27bd6e35a22d0fc',1,'fe::Error::clear()'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html#ad31ab44722c8c19df28e7216dfed1d96',1,'fe::XTrie::Set::iterator::clear()']]],
   ['clock_9',['Clock',['../classfe_1_1Profiler.html#ad6595b90c24f40995c1ebbb6f462bf52',1,'fe::Profiler']]],
   ['close_10',['close',['../namespacefe_1_1dl.html#a06893ca1a7701c45fb627831247dbc4c',1,'fe::dl']]],
   ['cmake_11',['CMake',['../index.html#autotoc_md6',1,'']]],

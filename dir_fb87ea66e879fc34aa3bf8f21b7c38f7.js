@@ -9,6 +9,7 @@ var dir_fb87ea66e879fc34aa3bf8f21b7c38f7 =
     [ "dl.h", "dl_8h.html", "dl_8h" ],
     [ "driver.h", "driver_8h.html", "driver_8h" ],
     [ "enum.h", "enum_8h.html", "enum_8h" ],
+    [ "error.h", "error_8h.html", "error_8h" ],
     [ "format.h", "format_8h.html", "format_8h" ],
     [ "hash.h", "hash_8h.html", "hash_8h" ],
     [ "lct.h", "lct_8h.html", "lct_8h" ],

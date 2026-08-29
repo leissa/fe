@@ -154,6 +154,8 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('dbg_8h.html','
 <div class="contents">
 <div class="textblock"><code>#include &lt;bit&gt;</code><br />
 <code>#include &lt;ostream&gt;</code><br />
+<code>#include &lt;unordered_map&gt;</code><br />
+<code>#include &lt;unordered_set&gt;</code><br />
 <code>#include &quot;<a class="el" href="format_8h_source.html">fe/format.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="hash_8h_source.html">fe/hash.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="loc_8h_source.html">fe/loc.h</a>&quot;</code><br />
@@ -162,6 +164,11 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('dbg_8h.html','
 Include dependency graph for dbg.h:</div>
 <div class="dyncontent">
 <div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="dbg_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="dbg_8h__dep__incl.svg" width="99" height="183"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="dbg_8h_source.html">Go to the source code of this file.</a></p>
@@ -172,10 +179,19 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The debug info of an entity: where it came from and what it was called.  <a href="structfe_1_1Dbg.html#details">More...</a><br /></td></tr>
 <tr class="memitem:fe_3A_3ADbg_3A_3AHash" id="r_fe_3A_3ADbg_3A_3AHash"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1Dbg_1_1Hash.html">fe::Dbg::Hash</a></td></tr>
 <tr class="memitem:fe_3A_3ADbg_3A_3AEq" id="r_fe_3A_3ADbg_3A_3AEq"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1Dbg_1_1Eq.html">fe::Dbg::Eq</a></td></tr>
+<tr class="memitem:fe_3A_3ADbgKey" id="r_fe_3A_3ADbgKey"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1DbgKey.html">fe::DbgKey</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opaque handle to a <a class="el" href="structfe_1_1Dbg.html" title="The debug info of an entity: where it came from and what it was called.">Dbg</a> interned in a <a class="el" href="structfe_1_1Driver.html" title="Use/derive from this class for &quot;global&quot; variables that you need all over the place.">Driver</a>; see <a class="el" href="structfe_1_1Driver.html#a100c3690b3a524c5bb8159ca6c7c9750">Driver::dbg</a>.  <a href="classfe_1_1DbgKey.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:fe" id="r_fe"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html">fe</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr id="typedef-members-0" class="groupHeader"><td colspan="2"><div class="groupHeader">DbgMap/DbgSet</div></td></tr>
+<tr class="memitem:ac1c71f6a9945566d80eb25be4812334a" id="r_ac1c71f6a9945566d80eb25be4812334a"><td class="memTemplParams" colspan="2">template&lt;class V&gt; </td></tr>
+<tr class="memitem:ac1c71f6a9945566d80eb25be4812334a template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#ac1c71f6a9945566d80eb25be4812334a">fe::DbgMap</a> = std::unordered_map&lt;<a class="el" href="structfe_1_1Dbg.html">Dbg</a>, V, <a class="el" href="structfe_1_1Dbg_1_1Hash.html">Dbg::Hash</a>, <a class="el" href="structfe_1_1Dbg_1_1Eq.html">Dbg::Eq</a>&gt;</td></tr>
+<tr class="memitem:a6001bdc1f05c56d81cf41b355f2027f6" id="r_a6001bdc1f05c56d81cf41b355f2027f6"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a6001bdc1f05c56d81cf41b355f2027f6">fe::DbgSet</a> = std::unordered_set&lt;<a class="el" href="structfe_1_1Dbg.html">Dbg</a>, <a class="el" href="structfe_1_1Dbg_1_1Hash.html">Dbg::Hash</a>, <a class="el" href="structfe_1_1Dbg_1_1Eq.html">Dbg::Eq</a>&gt;</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->
