@@ -347,10 +347,10 @@ requires (std::is_trivially_copyable_v&lt;S&gt; &amp;&amp; std::is_trivially_cop
 <tr class="memitem:a2e8e999b77fa2e3c1cba77396a9e192d" id="r_a2e8e999b77fa2e3c1cba77396a9e192d"><td class="memTemplParams" colspan="2">template&lt;class I, class A = std::allocator&lt;typename std::iterator_traits&lt;I&gt;::value_type&gt;&gt; </td></tr>
 <tr class="memitem:a2e8e999b77fa2e3c1cba77396a9e192d template"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a2e8e999b77fa2e3c1cba77396a9e192d">Vector</a> (I, I, A=A()) -&gt; Vector&lt; typename std::iterator_traits&lt; I &gt;::value_type, <a class="el" href="#aaca9f8e93c591cf178995b1d5da5ad7c">Default_Inlined_Size</a>&lt; typename std::iterator_traits&lt; I &gt;::value_type &gt;, A &gt;</td></tr>
 <tr id="func-members-6" class="groupHeader"><td colspan="2"><div class="groupHeader">erase</div></td></tr>
-<tr class="memitem:ab5d986d30abaddd490c6e31a05848b96" id="r_ab5d986d30abaddd490c6e31a05848b96"><td class="memTemplParams" colspan="2">template&lt;class T, size_t N, class A, class U&gt; </td></tr>
-<tr class="memitem:ab5d986d30abaddd490c6e31a05848b96 template"><td class="memItemLeft"><a class="el" href="classfe_1_1Vector.html">Vector</a>&lt; T, N, A &gt;::size_type&#160;</td><td class="memItemRight"><a class="el" href="#ab5d986d30abaddd490c6e31a05848b96">erase</a> (<a class="el" href="classfe_1_1Vector.html">Vector</a>&lt; T, N, A &gt; &amp;c, const U &amp;value) noexcept</td></tr>
-<tr class="memitem:aff591065de09b9b8cb1cf65cf784b972" id="r_aff591065de09b9b8cb1cf65cf784b972"><td class="memTemplParams" colspan="2">template&lt;class T, size_t N, class A, class Pred&gt; </td></tr>
-<tr class="memitem:aff591065de09b9b8cb1cf65cf784b972 template"><td class="memItemLeft"><a class="el" href="classfe_1_1Vector.html">Vector</a>&lt; T, N, A &gt;::size_type&#160;</td><td class="memItemRight"><a class="el" href="#aff591065de09b9b8cb1cf65cf784b972">erase_if</a> (<a class="el" href="classfe_1_1Vector.html">Vector</a>&lt; T, N, A &gt; &amp;c, Pred pred) noexcept</td></tr>
+<tr class="memitem:a32e00013e42152781f4bb035ace7af01" id="r_a32e00013e42152781f4bb035ace7af01"><td class="memTemplParams" colspan="2">template&lt;class T, size_t N, class A, class U&gt; </td></tr>
+<tr class="memitem:a32e00013e42152781f4bb035ace7af01 template"><td class="memItemLeft"><a class="el" href="classfe_1_1Vector.html">Vector</a>&lt; T, N, A &gt;::size_type&#160;</td><td class="memItemRight"><a class="el" href="#a32e00013e42152781f4bb035ace7af01">erase</a> (<a class="el" href="classfe_1_1Vector.html">Vector</a>&lt; T, N, A &gt; &amp;c, const U &amp;value)</td></tr>
+<tr class="memitem:ace6f5864e6c7ef635e260299ed16fe86" id="r_ace6f5864e6c7ef635e260299ed16fe86"><td class="memTemplParams" colspan="2">template&lt;class T, size_t N, class A, class Pred&gt; </td></tr>
+<tr class="memitem:ace6f5864e6c7ef635e260299ed16fe86 template"><td class="memItemLeft"><a class="el" href="classfe_1_1Vector.html">Vector</a>&lt; T, N, A &gt;::size_type&#160;</td><td class="memItemRight"><a class="el" href="#ace6f5864e6c7ef635e260299ed16fe86">erase_if</a> (<a class="el" href="classfe_1_1Vector.html">Vector</a>&lt; T, N, A &gt; &amp;c, Pred pred)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -682,16 +682,13 @@ requires (std::is_trivially_copyable_v&lt;S&gt; &amp;&amp; std::is_trivially_cop
 
 </div>
 </div>
-<a id="ab5d986d30abaddd490c6e31a05848b96" name="ab5d986d30abaddd490c6e31a05848b96"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab5d986d30abaddd490c6e31a05848b96">&#9670;&#160;</a></span>erase()</h2>
+<a id="a32e00013e42152781f4bb035ace7af01" name="a32e00013e42152781f4bb035ace7af01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32e00013e42152781f4bb035ace7af01">&#9670;&#160;</a></span>erase()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class T, size_t N, class A, class U&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classfe_1_1Vector.html">Vector</a>&lt; T, N, A &gt;::size_type fe::erase </td>
@@ -704,11 +701,6 @@ template&lt;class T, size_t N, class A, class U&gt; </div>
           <td class="paramtype">const U &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;)</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel noexcept">noexcept</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00105">105</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
@@ -719,16 +711,13 @@ template&lt;class T, size_t N, class A, class U&gt; </div>
 
 </div>
 </div>
-<a id="aff591065de09b9b8cb1cf65cf784b972" name="aff591065de09b9b8cb1cf65cf784b972"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff591065de09b9b8cb1cf65cf784b972">&#9670;&#160;</a></span>erase_if()</h2>
+<a id="ace6f5864e6c7ef635e260299ed16fe86" name="ace6f5864e6c7ef635e260299ed16fe86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace6f5864e6c7ef635e260299ed16fe86">&#9670;&#160;</a></span>erase_if()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class T, size_t N, class A, class Pred&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classfe_1_1Vector.html">Vector</a>&lt; T, N, A &gt;::size_type fe::erase_if </td>
@@ -741,11 +730,6 @@ template&lt;class T, size_t N, class A, class Pred&gt; </div>
           <td class="paramtype">Pred</td>          <td class="paramname"><span class="paramname"><em>pred</em></span>&#160;)</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel noexcept">noexcept</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00113">113</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
@@ -1541,7 +1525,7 @@ template&lt;<a class="el" href="conceptfe_1_1BitEnum.html">fe::BitEnum</a> E&gt;
 
 <p class="reference">References <a class="el" href="assert_8h_source.html#l00030">unreachable()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="log_8h_source.html#l00068">fe::Log::level2acro()</a>, <a class="el" href="log_8h_source.html#l00080">fe::Log::level2color()</a>, <a class="el" href="xtrie_8h_source.html#l00243">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator*()</a>, <a class="el" href="xtrie_8h_source.html#l00208">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator++()</a>, <a class="el" href="error_8h_source.html#l00193">fe::Error::operator&lt;&lt;</a>, <a class="el" href="error_8h_source.html#l00182">fe::Error::tag2color()</a>, <a class="el" href="assert_8h_source.html#l00030">unreachable()</a>, and <a class="el" href="term_8h_source.html#l00188">fe::term::use_color()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="log_8h_source.html#l00068">fe::Log::level2acro()</a>, <a class="el" href="log_8h_source.html#l00080">fe::Log::level2color()</a>, <a class="el" href="xtrie_8h_source.html#l00243">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator*()</a>, <a class="el" href="xtrie_8h_source.html#l00208">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator++()</a>, <a class="el" href="error_8h_source.html#l00194">fe::Error::operator&lt;&lt;</a>, <a class="el" href="error_8h_source.html#l00183">fe::Error::tag2color()</a>, <a class="el" href="assert_8h_source.html#l00030">unreachable()</a>, and <a class="el" href="term_8h_source.html#l00188">fe::term::use_color()</a>.</p>
 
 </div>
 </div>

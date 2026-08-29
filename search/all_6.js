@@ -10,8 +10,8 @@ var searchData=
   ['eof_7',['EoF',['../namespacefe_1_1utf8.html#a958f5b14010ee32136a35e5534a205ce',1,'fe::utf8']]],
   ['eq_8',['Eq',['../structfe_1_1Dbg_1_1Eq.html',1,'fe::Dbg::Eq'],['../structfe_1_1Sym_1_1Eq.html',1,'fe::Sym::Eq']]],
   ['equal_9',['Equal',['../structfe_1_1Sym_1_1String_1_1Equal.html',1,'fe::Sym::String::Equal'],['../structfe_1_1XTrie_1_1Data_1_1Equal.html',1,'fe::XTrie&lt; D, K, N &gt;::Data::Equal']]],
-  ['erase_10',['erase',['../classfe_1_1XTrie.html#ad9012a6e842ad6ac47ec9ea81517995d',1,'fe::XTrie::erase()'],['../namespacefe.html#ab5d986d30abaddd490c6e31a05848b96',1,'fe::erase(Vector&lt; T, N, A &gt; &amp;c, const U &amp;value) noexcept']]],
-  ['erase_5fif_11',['erase_if',['../namespacefe.html#aff591065de09b9b8cb1cf65cf784b972',1,'fe']]],
+  ['erase_10',['erase',['../classfe_1_1XTrie.html#ad9012a6e842ad6ac47ec9ea81517995d',1,'fe::XTrie::erase()'],['../namespacefe.html#a32e00013e42152781f4bb035ace7af01',1,'fe::erase(Vector&lt; T, N, A &gt; &amp;c, const U &amp;value)']]],
+  ['erase_5fif_11',['erase_if',['../namespacefe.html#ace6f5864e6c7ef635e260299ed16fe86',1,'fe']]],
   ['error_12',['Error',['../classfe_1_1Error.html',1,'fe::Error'],['../classfe_1_1Error.html#a006230978a0baa2c40452a3f393c8db5',1,'fe::Error::Error(const Driver &amp;driver)'],['../classfe_1_1Error.html#aa3c44d20a15cae1e0737b74351bf7523a902b0d55fddef6f8d651fe1035b7d4bd',1,'fe::Error::Error'],['../classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06a902b0d55fddef6f8d651fe1035b7d4bd',1,'fe::Log::Error']]],
   ['error_13',['error',['../classfe_1_1Error.html#ad8368ada831692fd3994e6be28b6240d',1,'fe::Error']]],
   ['error_2eh_14',['error.h',['../error_8h.html',1,'']]],
@@ -19,7 +19,7 @@ var searchData=
   ['exec_16',['exec',['../namespacefe_1_1sys.html#ae3e1e6c6e12f32f87cfed0a319f06bb9',1,'fe::sys']]],
   ['existing_20project_17',['Integrate into existing Project',['../index.html#autotoc_md5',1,'']]],
   ['expect_18',['expect',['../classfe_1_1RuntimeCast.html#a97f66212ac0a03ef6624224cf353be56',1,'fe::RuntimeCast::expect(std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)'],['../classfe_1_1RuntimeCast.html#a3a9f9a465d191723aef6da3a3f81bddc',1,'fe::RuntimeCast::expect(std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args) const'],['../classfe_1_1Parser.html#ab01ccf1dc21df6abc1df96282174e9f4',1,'fe::Parser::expect(Tag tag, std::string_view ctxt)'],['../classfe_1_1Parser.html#af063a3c467ab8c8072e7e717b46ac97e',1,'fe::Parser::expect(Tag tag, std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)']]],
-  ['explicit_19',['explicit',['../classfe_1_1Span.html#aa502ec1dfbd1364cf56ef0413366bc1f',1,'fe::Span::explicit(N !=D) const expr Span(std'],['../classfe_1_1Span.html#a5a8e3a2caa0781ba946b982979dd0204',1,'fe::Span::explicit(N !=D) const expr Span(Vec &amp;vec) noexcept(noexcept(vec.data()) &amp;&amp;noexcept(vec.size()))'],['../classfe_1_1Span.html#adb3f8dd073640da78eabd499dec3797c',1,'fe::Span::explicit(N !=D) const expr Span(const Vec &amp;vec) noexcept(noexcept(vec.data()) &amp;&amp;noexcept(vec.size()))']]],
+  ['explicit_19',['explicit',['../classfe_1_1Span.html#aa502ec1dfbd1364cf56ef0413366bc1f',1,'fe::Span::explicit(N !=D) const expr Span(std'],['../classfe_1_1Span.html#a2b19787ce493b079f65d4bf0f8e837ea',1,'fe::Span::explicit(N !=D) const expr Span(Vec &amp;vec) noexcept(noexcept(vec.data()) &amp;&amp;noexcept(vec.size()))'],['../classfe_1_1Span.html#a7855392c4dce39b98fc729e3f5059f46',1,'fe::Span::explicit(N !=D) const expr Span(const Vec &amp;vec) noexcept(noexcept(vec.data()) &amp;&amp;noexcept(vec.size()))']]],
   ['expose_20',['expose',['../classfe_1_1lct_1_1Node.html#ae37ec517abab841c5851702c10b148ec',1,'fe::lct::Node']]],
   ['extension_21',['extension',['../namespacefe_1_1dl.html#a90a43bf1410ff386651d4d4e40ead244',1,'fe::dl']]]
 ];

@@ -176,11 +176,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab3df71f2dbc57180667d0f680b621a48" id="r_ab3df71f2dbc57180667d0f680b621a48"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ab3df71f2dbc57180667d0f680b621a48">empty</a> () const</td></tr>
 <tr class="memitem:a7816f45a5ccf1e62f3baf63608a48c46" id="r_a7816f45a5ccf1e62f3baf63608a48c46"><td class="memItemLeft">const auto &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a7816f45a5ccf1e62f3baf63608a48c46">spans</a> () const</td></tr>
 <tr id="pub-methods-1" class="groupHeader"><td colspan="2"><div class="groupHeader">Recording</div></td></tr>
-<tr><td colspan="2" class="ititle"><div class="groupText"><p>Bracket a run with <a class="el" href="#ab61d4b5a3f4c1435b31f65e755c6ca0f">Profiler::start</a> / <a class="el" href="#ab6c5c63abe26861a4c17f3ed39e449f0" title="Marks the end of the most recently started run.">Profiler::stop</a>; the calls must nest like a stack. </p>
+<tr><td colspan="2" class="ititle"><div class="groupText"><p>Bracket a run with <a class="el" href="#ab61d4b5a3f4c1435b31f65e755c6ca0f">Profiler::start</a> / <a class="el" href="#ab6c5c63abe26861a4c17f3ed39e449f0" title="Marks the end of the most recently started run; no-op if no Span is running.">Profiler::stop</a>; the calls must nest like a stack. </p>
 </div></td></tr>
 <tr class="memitem:ab61d4b5a3f4c1435b31f65e755c6ca0f" id="r_ab61d4b5a3f4c1435b31f65e755c6ca0f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab61d4b5a3f4c1435b31f65e755c6ca0f">start</a> (std::string_view name)</td></tr>
 <tr class="memitem:ab6c5c63abe26861a4c17f3ed39e449f0" id="r_ab6c5c63abe26861a4c17f3ed39e449f0"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab6c5c63abe26861a4c17f3ed39e449f0">stop</a> ()</td></tr>
-<tr class="memdesc:ab6c5c63abe26861a4c17f3ed39e449f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks the end of the most recently started run.  <br /></td></tr>
+<tr class="memdesc:ab6c5c63abe26861a4c17f3ed39e449f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks the end of the most recently started run; no-op if no <a class="el" href="structfe_1_1Profiler_1_1Span.html" title="A single run.">Span</a> is running.  <br /></td></tr>
 <tr class="memitem:a837594026adc894f2c372d43ed1f87ee" id="r_a837594026adc894f2c372d43ed1f87ee"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a837594026adc894f2c372d43ed1f87ee">count</a> (std::string_view key, uint64_t n=1)</td></tr>
 <tr class="memdesc:a837594026adc894f2c372d43ed1f87ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds <code class="param">n</code> to counter <code class="param">key</code> of the currently running <a class="el" href="structfe_1_1Profiler_1_1Span.html" title="A single run.">Span</a>; no-op if no <a class="el" href="structfe_1_1Profiler_1_1Span.html" title="A single run.">Span</a> is running or <code class="param">n</code> is <span class="tt">0</span>.  <br /></td></tr>
 <tr id="pub-methods-2" class="groupHeader"><td colspan="2"><div class="groupHeader">Reporting</div></td></tr>
@@ -199,7 +199,7 @@ Static Public Attributes</h2></td></tr>
 <p><a class="el" href="structfe_1_1Profiler_1_1Span.html" title="A single run.">Span</a>s nest like a stack, so each one remembers its parent. From these <a class="el" href="structfe_1_1Profiler_1_1Span.html" title="A single run.">Span</a>s the <a class="el" href="classfe_1_1Profiler.html" title="Records wall-clock timings for (possibly nested) named Profiler::Spans and reports them in various fo...">Profiler</a> can derive</p><ul>
 <li>a flat <a class="el" href="#adc8d6ea8bdc264d8d2f3487e9bfb420f">Profiler::summary</a> aggregated by name,</li>
 <li>a hierarchical <a class="el" href="#a26364a91c8c0f82aee60bdc8e1aa55d1" title="Prints the Spans as an indented tree, preserving the order in which they ran.">Profiler::tree</a> that shows the runtimes in context, and</li>
-<li>a <a href="https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU">Chrome Trace Event</a> JSON dump (<a class="el" href="#ac8ec9c9ecca1edbaf0b7a776cb7a48fa" title="Dumps all Spans as Chrome Trace Event Format JSON.">Profiler::chrome_trace</a>) that can be loaded into <span class="tt">chrome://tracing</span>, Perfetto, or speedscope. <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab61d4b5a3f4c1435b31f65e755c6ca0f">Profiler::start</a>, <a class="el" href="#ab6c5c63abe26861a4c17f3ed39e449f0" title="Marks the end of the most recently started run.">Profiler::stop</a> </dd></dl>
+<li>a <a href="https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU">Chrome Trace Event</a> JSON dump (<a class="el" href="#ac8ec9c9ecca1edbaf0b7a776cb7a48fa" title="Dumps all Spans as Chrome Trace Event Format JSON.">Profiler::chrome_trace</a>) that can be loaded into <span class="tt">chrome://tracing</span>, Perfetto, or speedscope. <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab61d4b5a3f4c1435b31f65e755c6ca0f">Profiler::start</a>, <a class="el" href="#ab6c5c63abe26861a4c17f3ed39e449f0" title="Marks the end of the most recently started run; no-op if no Span is running.">Profiler::stop</a> </dd></dl>
 </li>
 </ul>
 
@@ -286,7 +286,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Adds <code class="param">n</code> to counter <code class="param">key</code> of the currently running <a class="el" href="structfe_1_1Profiler_1_1Span.html" title="A single run.">Span</a>; no-op if no <a class="el" href="structfe_1_1Profiler_1_1Span.html" title="A single run.">Span</a> is running or <code class="param">n</code> is <span class="tt">0</span>. </p>
 
-<p class="definition">Definition at line <a class="el" href="profile_8h_source.html#l00066">66</a> of file <a class="el" href="profile_8h_source.html">profile.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="profile_8h_source.html#l00067">67</a> of file <a class="el" href="profile_8h_source.html">profile.h</a>.</p>
 
 </div>
 </div>
@@ -397,7 +397,7 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Marks the end of the most recently started run. </p>
+<p>Marks the end of the most recently started run; no-op if no <a class="el" href="structfe_1_1Profiler_1_1Span.html" title="A single run.">Span</a> is running. </p>
 
 <p class="definition">Definition at line <a class="el" href="profile_8h_source.html#l00059">59</a> of file <a class="el" href="profile_8h_source.html">profile.h</a>.</p>
 

@@ -198,8 +198,8 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('algo_8h_source
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment">/// Like `std::string::substr`, but works on `std::string_view` instead.</span></div>
 <div class="foldopen" id="foldopen00057" data-start="{" data-end="}">
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="namespacefe.html#a720f0cfe096eac4108e589e54fac9669">   57</a></span><span class="keyword">constexpr</span> std::string_view <a class="code hl_function" href="namespacefe.html#a720f0cfe096eac4108e589e54fac9669">subview</a>(std::string_view s, <span class="keywordtype">size_t</span> i, <span class="keywordtype">size_t</span> n = std::string_view::npos) <span class="keyword">noexcept</span> {</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    n = std::min(n, s.size());</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordflow">return</span> {s.data() + i, n - i};</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    i = std::min(i, s.size());</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordflow">return</span> {s.data() + i, std::min(n, s.size() - i)};</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>}</div>
 </div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment"></span> </div>
