@@ -185,7 +185,7 @@ Public Types</h2></td></tr>
 Public Member Functions</h2></td></tr>
 <tr id="pub-methods-0" class="groupHeader"><td colspan="2"><div class="groupHeader">Constructors</div></td></tr>
 <tr class="memitem:a58cd37af979e6963222009b353c9a766" id="r_a58cd37af979e6963222009b353c9a766"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a58cd37af979e6963222009b353c9a766">Error</a> ()=default</td></tr>
-<tr class="memdesc:a58cd37af979e6963222009b353c9a766"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders with a default <a class="el" href="namespacefe.html#structfe_1_1Diag" title="How an Error lays out - and how much of it it keeps.">Diag</a> and no <a class="el" href="structfe_1_1Diagnostics.html#a237f7b16233d936ae1554d5997bb1757" title="Renders the text of one Error::Msg.">Diagnostics::render</a> hook.  <br /></td></tr>
+<tr class="memdesc:a58cd37af979e6963222009b353c9a766"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders with a default <a class="el" href="namespacefe.html#structfe_1_1Diag" title="How an Error lays out - and how much of it it keeps.">Diag</a> and no <a class="el" href="structfe_1_1Diagnostics.html#ad17c7aac6603fbb976bbbedff6a8ab45">Diagnostics::render</a> hook.  <br /></td></tr>
 <tr class="memitem:a2a9cb0439e0f9cae0bf4853498cd1674" id="r_a2a9cb0439e0f9cae0bf4853498cd1674"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a2a9cb0439e0f9cae0bf4853498cd1674">Error</a> (const <a class="el" href="structfe_1_1Diagnostics.html">Diagnostics</a> &amp;diagnostics)</td></tr>
 <tr id="pub-methods-1" class="groupHeader"><td colspan="2"><div class="groupHeader">Getters</div></td></tr>
 <tr class="memitem:a27fe473278b55b1e3df08f10c40f748d" id="r_a27fe473278b55b1e3df08f10c40f748d"><td class="memItemLeft">const auto &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a27fe473278b55b1e3df08f10c40f748d">msgs</a> () const</td></tr>
@@ -371,7 +371,7 @@ tag</td>
 </table>
 </div><div class="memdoc">
 
-<p>Renders with a default <a class="el" href="namespacefe.html#structfe_1_1Diag" title="How an Error lays out - and how much of it it keeps.">Diag</a> and no <a class="el" href="structfe_1_1Diagnostics.html#a237f7b16233d936ae1554d5997bb1757" title="Renders the text of one Error::Msg.">Diagnostics::render</a> hook. </p>
+<p>Renders with a default <a class="el" href="namespacefe.html#structfe_1_1Diag" title="How an Error lays out - and how much of it it keeps.">Diag</a> and no <a class="el" href="structfe_1_1Diagnostics.html#ad17c7aac6603fbb976bbbedff6a8ab45">Diagnostics::render</a> hook. </p>
 
 <p class="reference">Referenced by <a class="el" href="error_8h_source.html#l00046">Error</a>, <a class="el" href="error_8h_source.html#l00127">error()</a>, <a class="el" href="error_8h_source.html#l00115">msg()</a>, <a class="el" href="error_8h_source.html#l00122">msg()</a>, <a class="el" href="error_8h_source.html#l00139">note()</a>, <a class="el" href="error_8h_source.html#l00131">note()</a>, <a class="el" href="error_8h_source.html#l00210">operator&lt;&lt;</a>, and <a class="el" href="error_8h_source.html#l00128">warn()</a>.</p>
 
@@ -399,7 +399,7 @@ tag</td>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section warning"><dt>Warning</dt><dd>A <a class="el" href="#a53f731bf71af5f30d751265cab6a3c78">Msg::loc</a> points into the <a class="el" href="classfe_1_1SrcMap.html" title="Interns the text - and the std::filesystem::path - of every file a Loc may point into.">SrcMap</a> that <code class="param">diagnostics</code> belongs to and <a class="el" href="#a0be3ad6db15f4a91da361765326e508e">Error::msg</a> renders through <a class="el" href="structfe_1_1Diagnostics.html#a237f7b16233d936ae1554d5997bb1757" title="Renders the text of one Error::Msg.">Diagnostics::render</a>, so <code class="param">diagnostics</code> must outlive this <a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and renders each with the source Snippet its Loc points at.">Error</a>. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>A <a class="el" href="#a53f731bf71af5f30d751265cab6a3c78">Msg::loc</a> points into the <a class="el" href="classfe_1_1SrcMap.html" title="Interns the text - and the std::filesystem::path - of every file a Loc may point into.">SrcMap</a> that <code class="param">diagnostics</code> belongs to and <a class="el" href="#a0be3ad6db15f4a91da361765326e508e">Error::msg</a> renders through <a class="el" href="structfe_1_1Diagnostics.html#ad17c7aac6603fbb976bbbedff6a8ab45">Diagnostics::render</a>, so <code class="param">diagnostics</code> must outlive this <a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and renders each with the source Snippet its Loc points at.">Error</a>. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00095">95</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 
@@ -599,7 +599,7 @@ template&lt;class... Args&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Records the message <code class="param">fmt</code> renders; see <a class="el" href="structfe_1_1Diagnostics.html#a237f7b16233d936ae1554d5997bb1757" title="Renders the text of one Error::Msg.">Diagnostics::render</a>. <code class="param">tag</code> must be <a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523a902b0d55fddef6f8d651fe1035b7d4bd">Tag::Error</a> or <a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523a56525ae64d370c0b448ac0d60710ef17">Tag::Warn</a> - a <a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523a3b0649c72650c313a357338dcdfb64ec">Tag::Note</a> belongs to <a class="el" href="#aad9cee35248ef994e08254f3714cbffa" title="A = note: continuation of the diagnostic being built; it has no Loc of its own to point at.">Error::note</a>. </p>
+<p>Records the message <code class="param">fmt</code> renders; see <a class="el" href="structfe_1_1Diagnostics.html#ad17c7aac6603fbb976bbbedff6a8ab45">Diagnostics::render</a>. <code class="param">tag</code> must be <a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523a902b0d55fddef6f8d651fe1035b7d4bd">Tag::Error</a> or <a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523a56525ae64d370c0b448ac0d60710ef17">Tag::Warn</a> - a <a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523a3b0649c72650c313a357338dcdfb64ec">Tag::Note</a> belongs to <a class="el" href="#aad9cee35248ef994e08254f3714cbffa" title="A = note: continuation of the diagnostic being built; it has no Loc of its own to point at.">Error::note</a>. </p>
 
 <p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00115">115</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 
@@ -647,7 +647,7 @@ template&lt;class... Args&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section note"><dt>Note</dt><dd>Formats via <span class="tt">std::vformat</span> because <a class="el" href="structfe_1_1Diagnostics.html#a237f7b16233d936ae1554d5997bb1757" title="Renders the text of one Error::Msg.">Diagnostics::render</a> may render <code class="param">s</code> more than once. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Formats via <span class="tt">std::vformat</span> because <a class="el" href="structfe_1_1Diagnostics.html#ad17c7aac6603fbb976bbbedff6a8ab45">Diagnostics::render</a> may render <code class="param">s</code> more than once. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00122">122</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 

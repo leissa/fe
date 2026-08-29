@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('structfe_1_1Di
 
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="structfe_1_1Diagnostics-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">fe::Diagnostics Struct Reference</div></div>
@@ -164,73 +164,38 @@ Inheritance diagram for fe::Diagnostics:</div>
 <div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="structfe_1_1Diagnostics__inherit__graph.svg" width="130" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:a49c32c4201e4f43634f769f88aaf0b8c" id="r_a49c32c4201e4f43634f769f88aaf0b8c"><td class="memItemLeft">virtual&#160;</td><td class="memItemRight"><a class="el" href="#a49c32c4201e4f43634f769f88aaf0b8c">~Diagnostics</a> ()=default</td></tr>
-<tr class="memitem:a237f7b16233d936ae1554d5997bb1757" id="r_a237f7b16233d936ae1554d5997bb1757"><td class="memItemLeft">virtual std::string&#160;</td><td class="memItemRight"><a class="el" href="#a237f7b16233d936ae1554d5997bb1757">render</a> (const std::function&lt; std::string()&gt; &amp;fmt) const</td></tr>
-<tr class="memdesc:a237f7b16233d936ae1554d5997bb1757"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders the text of one <a class="el" href="classfe_1_1Error.html#structfe_1_1Error_1_1Msg" title="One Tag::Error or Tag::Warn together with the Notes that belong to it.">Error::Msg</a>.  <br /></td></tr>
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a4a874d4dc3ccc6a2979fdcabbe776e6a" id="r_a4a874d4dc3ccc6a2979fdcabbe776e6a"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a4a874d4dc3ccc6a2979fdcabbe776e6a">Render</a> = std::function&lt;std::string(const std::function&lt;std::string()&gt;&amp;)&gt;</td></tr>
+<tr class="memdesc:a4a874d4dc3ccc6a2979fdcabbe776e6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders the text of one <a class="el" href="classfe_1_1Error.html#structfe_1_1Error_1_1Msg" title="One Tag::Error or Tag::Warn together with the Notes that belong to it.">Error::Msg</a>; a formatter is handed in and its result returned.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a6edd16de3c6adb366e32d38c24474d6b" id="r_a6edd16de3c6adb366e32d38c24474d6b"><td class="memItemLeft"><a class="el" href="namespacefe.html#structfe_1_1Diag">Diag</a>&#160;</td><td class="memItemRight"><a class="el" href="#a6edd16de3c6adb366e32d38c24474d6b">diag</a></td></tr>
+<tr class="memitem:ad17c7aac6603fbb976bbbedff6a8ab45" id="r_ad17c7aac6603fbb976bbbedff6a8ab45"><td class="memItemLeft"><a class="el" href="#a4a874d4dc3ccc6a2979fdcabbe776e6a">Render</a>&#160;</td><td class="memItemRight"><a class="el" href="#ad17c7aac6603fbb976bbbedff6a8ab45">render</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The diagnostic policy an <a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and renders each with the source Snippet its Loc points at.">Error</a> works against. </p>
-<p><a class="el" href="structfe_1_1Driver.html" title="Use/derive from this class for &quot;global&quot; variables that you need all over the place.">fe::Driver</a> is one - but an <a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and renders each with the source Snippet its Loc points at.">Error</a> does not need a whole <a class="el" href="structfe_1_1Driver.html" title="Use/derive from this class for &quot;global&quot; variables that you need all over the place.">Driver</a>. </p>
+<p><a class="el" href="structfe_1_1Driver.html" title="Use/derive from this class for &quot;global&quot; variables that you need all over the place.">fe::Driver</a> is one - but an <a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and renders each with the source Snippet its Loc points at.">Error</a> does not need a whole <a class="el" href="structfe_1_1Driver.html" title="Use/derive from this class for &quot;global&quot; variables that you need all over the place.">Driver</a>. </p><dl class="section note"><dt>Note</dt><dd>Deliberately free of virtual functions: a polymorphic <a class="el" href="structfe_1_1Driver.html" title="Use/derive from this class for &quot;global&quot; variables that you need all over the place.">Driver</a> drags a vtable across every shared-library boundary it is used over, and an exported vtable is a data symbol that Windows only resolves correctly with <span class="tt">__declspec(dllimport)</span>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="diag_8h_source.html#l00021">21</a> of file <a class="el" href="diag_8h_source.html">diag.h</a>.</p>
-</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a49c32c4201e4f43634f769f88aaf0b8c" name="a49c32c4201e4f43634f769f88aaf0b8c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a49c32c4201e4f43634f769f88aaf0b8c">&#9670;&#160;</a></span>~Diagnostics()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual fe::Diagnostics::~Diagnostics </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel virtual">virtual</span><span class="mlabel default">default</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a237f7b16233d936ae1554d5997bb1757" name="a237f7b16233d936ae1554d5997bb1757"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a237f7b16233d936ae1554d5997bb1757">&#9670;&#160;</a></span>render()</h2>
+<p class="definition">Definition at line <a class="el" href="diag_8h_source.html#l00024">24</a> of file <a class="el" href="diag_8h_source.html">diag.h</a>.</p>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a id="a4a874d4dc3ccc6a2979fdcabbe776e6a" name="a4a874d4dc3ccc6a2979fdcabbe776e6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a874d4dc3ccc6a2979fdcabbe776e6a">&#9670;&#160;</a></span>Render</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual std::string fe::Diagnostics::render </td>
-          <td>(</td>
-          <td class="paramtype">const std::function&lt; std::string()&gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>fmt</em></span></td><td>)</td>
-          <td> const</td>
+          <td class="memname">using <a class="el" href="#a4a874d4dc3ccc6a2979fdcabbe776e6a">fe::Diagnostics::Render</a> = std::function&lt;std::string(const std::function&lt;std::string()&gt;&amp;)&gt;</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Renders the text of one <a class="el" href="classfe_1_1Error.html#structfe_1_1Error_1_1Msg" title="One Tag::Error or Tag::Warn together with the Notes that belong to it.">Error::Msg</a>. </p>
-<p>The default simply invokes <code class="param">fmt</code>; override to postprocess it - or to invoke <code class="param">fmt</code> a second time, e.g. once the first pass turns out to have rendered two distinct entities under the same name. </p><dl class="section warning"><dt>Warning</dt><dd><code class="param">fmt</code> captures its arguments by reference and is only valid for the duration of this call. </dd></dl>
+<p>Renders the text of one <a class="el" href="classfe_1_1Error.html#structfe_1_1Error_1_1Msg" title="One Tag::Error or Tag::Warn together with the Notes that belong to it.">Error::Msg</a>; a formatter is handed in and its result returned. </p>
+<p>Leave unset to simply invoke it; set it to postprocess the result - or to invoke it a second time, e.g. once the first pass turns out to have rendered two distinct entities under the same name. </p><dl class="section warning"><dt>Warning</dt><dd>The formatter captures its arguments by reference and is only valid for that one call. </dd>
+<dd>
+A hook that captures its <a class="el" href="structfe_1_1Diagnostics.html" title="The diagnostic policy an Error works against.">Diagnostics</a> does not survive a move; keep the owner pinned. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="diag_8h_source.html#l00030">30</a> of file <a class="el" href="diag_8h_source.html">diag.h</a>.</p>
 
@@ -249,7 +214,23 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="diag_8h_source.html#l00024">24</a> of file <a class="el" href="diag_8h_source.html">diag.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="diag_8h_source.html#l00032">32</a> of file <a class="el" href="diag_8h_source.html">diag.h</a>.</p>
+
+</div>
+</div>
+<a id="ad17c7aac6603fbb976bbbedff6a8ab45" name="ad17c7aac6603fbb976bbbedff6a8ab45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad17c7aac6603fbb976bbbedff6a8ab45">&#9670;&#160;</a></span>render</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a4a874d4dc3ccc6a2979fdcabbe776e6a">Render</a> fe::Diagnostics::render</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="diag_8h_source.html#l00033">33</a> of file <a class="el" href="diag_8h_source.html">diag.h</a>.</p>
 
 </div>
 </div>

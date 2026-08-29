@@ -1,6 +1,6 @@
 var structfe_1_1Diagnostics =
 [
-    [ "~Diagnostics", "structfe_1_1Diagnostics.html#a49c32c4201e4f43634f769f88aaf0b8c", null ],
-    [ "render", "structfe_1_1Diagnostics.html#a237f7b16233d936ae1554d5997bb1757", null ],
-    [ "diag", "structfe_1_1Diagnostics.html#a6edd16de3c6adb366e32d38c24474d6b", null ]
+    [ "Render", "structfe_1_1Diagnostics.html#a4a874d4dc3ccc6a2979fdcabbe776e6a", null ],
+    [ "diag", "structfe_1_1Diagnostics.html#a6edd16de3c6adb366e32d38c24474d6b", null ],
+    [ "render", "structfe_1_1Diagnostics.html#ad17c7aac6603fbb976bbbedff6a8ab45", null ]
 ];
