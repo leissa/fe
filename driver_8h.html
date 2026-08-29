@@ -152,10 +152,8 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('driver_8h.html
   <div class="headertitle"><div class="title">driver.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;cstdint&gt;</code><br />
-<code>#include &lt;functional&gt;</code><br />
-<code>#include &lt;string&gt;</code><br />
-<code>#include &quot;<a class="el" href="dbg_8h_source.html">fe/dbg.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="dbg_8h_source.html">fe/dbg.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="diag_8h_source.html">fe/diag.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="src_8h_source.html">fe/src.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="sym_8h_source.html">fe/sym.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="vector_8h_source.html">fe/vector.h</a>&quot;</code><br />
@@ -164,11 +162,6 @@ Include dependency graph for driver.h:</div>
 <div class="dyncontent">
 <div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="driver_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
-</div><div class="textblock"><div class="dynheader">
-This graph shows which files directly or indirectly include this file:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="driver_8h__dep__incl.svg" width="99" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 </div>
 <p><a href="driver_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -176,51 +169,11 @@ This graph shows which files directly or indirectly include this file:</div>
 Classes</h2></td></tr>
 <tr class="memitem:fe_3A_3ADriver" id="r_fe_3A_3ADriver"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1Driver.html">fe::Driver</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use/derive from this class for "global" variables that you need all over the place.  <a href="structfe_1_1Driver.html#details">More...</a><br /></td></tr>
-<tr class="memitem:fe_3A_3ADriver_3A_3ADiag_5Fstructfe_5F1_5F1Driver_5F1_5F1Diag" id="r_fe_3A_3ADriver_3A_3ADiag_5Fstructfe_5F1_5F1Driver_5F1_5F1Diag"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1Driver.html#structfe_1_1Driver_1_1Diag">fe::Driver::Diag</a></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:fe" id="r_fe"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html">fe</a></td></tr>
 </table>
-<hr/><h2 id="header-inline_5Fclasses" class="groupheader">Class Documentation</h2>
-<a name="structfe_1_1Driver_1_1Diag" id="structfe_1_1Driver_1_1Diag"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#structfe_1_1Driver_1_1Diag">&#9670;&#160;</a></span>fe::Driver::Diag</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct fe::Driver::Diag</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="textblock"><p>How an <a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and renders each with the source Snippet its Loc points at.">Error</a> lays out a diagnostic. </p>
-
-<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00054">54</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
-</div><table class="fieldtable">
-<tr><th colspan="3">Class Members</th></tr>
-<tr><td class="fieldtype">
-<a id="a2fd1895c00d7de81fa40a7c02498926e" name="a2fd1895c00d7de81fa40a7c02498926e"></a>uint32_t</td>
-<td class="fieldname">
-gutter = 5</td>
-<td class="fielddoc">
-Width of the line-number column. </td></tr>
-<tr><td class="fieldtype">
-<a id="a6ef5f101de8090039fa1608440a29ec5" name="a6ef5f101de8090039fa1608440a29ec5"></a>uint32_t</td>
-<td class="fieldname">
-max_rows = 8</td>
-<td class="fielddoc">
-Rows a <a class="el" href="structfe_1_1Snippet.html" title="The underlined source excerpt that goes below a diagnostic.">Snippet</a> streams before eliding its middle; <span class="tt">0</span> elides nothing. </td></tr>
-<tr><td class="fieldtype">
-<a id="a9eef29ea848bc17ad12288333dd18c14" name="a9eef29ea848bc17ad12288333dd18c14"></a>bool</td>
-<td class="fieldname">
-no_snippet = false</td>
-<td class="fielddoc">
-If <span class="tt">true</span>, a diagnostic is only its header line. </td></tr>
-</table>
-
-</div>
-</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

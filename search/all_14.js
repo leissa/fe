@@ -29,7 +29,7 @@ var searchData=
   ['state_26',['state',['../classfe_1_1Arena.html#adc11bd44aacf4c22167b1ed08d400077',1,'fe::Arena']]],
   ['std_27',['std',['../namespacestd.html',1,'']]],
   ['stop_28',['stop',['../structfe_1_1Profiler_1_1Span.html#aff672925653c7b61b116644b6b0199b9',1,'fe::Profiler::Span::stop'],['../classfe_1_1Profiler.html#ab6c5c63abe26861a4c17f3ed39e449f0',1,'fe::Profiler::stop()']]],
-  ['str_29',['str',['../classfe_1_1Error.html#ab61fb6acdf8c8cdcc5fbc09c34407edb',1,'fe::Error::Msg::str'],['../classfe_1_1Sym.html#a924bef149f5053cf6dbc79740f48f02d',1,'fe::Sym::str()']]],
+  ['str_29',['str',['../classfe_1_1Error.html#aeea84045d05e8e7aaa7df447d7ebac1e',1,'fe::Error::Note::str'],['../classfe_1_1Error.html#ab61fb6acdf8c8cdcc5fbc09c34407edb',1,'fe::Error::Msg::str'],['../classfe_1_1Sym.html#a924bef149f5053cf6dbc79740f48f02d',1,'fe::Sym::str()']]],
   ['str_5f_30',['str_',['../classfe_1_1Lexer.html#a8038ab296487b12c19dc2d7967e6b5c7',1,'fe::Lexer']]],
   ['stream_31',['stream',['../classfe_1_1XTrie_1_1Set.html#a8fca7927052548d6cdf264212f07b558',1,'fe::XTrie::Set']]],
   ['stream_5fcode_32',['stream_code',['../namespacefe.html#af7e8cf8dd305aa63c10227cadec6883d',1,'fe']]],

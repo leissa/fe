@@ -8,7 +8,10 @@ var hierarchy =
     [ "fe::Dbg", "structfe_1_1Dbg.html", null ],
     [ "fe::DbgKey", "classfe_1_1DbgKey.html", null ],
     [ "fe::Arena::Deleter&lt; T &gt;", "structfe_1_1Arena_1_1Deleter.html", null ],
-    [ "fe::Driver::Diag", "structfe_1_1Driver.html#structfe_1_1Driver_1_1Diag", null ],
+    [ "fe::Diag", "namespacefe.html#structfe_1_1Diag", null ],
+    [ "fe::Diagnostics", "structfe_1_1Diagnostics.html", [
+      [ "fe::Driver", "structfe_1_1Driver.html", null ]
+    ] ],
     [ "fe::Dbg::Eq", "structfe_1_1Dbg_1_1Eq.html", null ],
     [ "fe::Sym::Eq", "structfe_1_1Sym_1_1Eq.html", null ],
     [ "fe::Sym::String::Equal", "structfe_1_1Sym_1_1String_1_1Equal.html", null ],
@@ -43,6 +46,7 @@ var hierarchy =
     ] ],
     [ "fe::Error::Msg", "classfe_1_1Error.html#structfe_1_1Error_1_1Msg", null ],
     [ "fe::lct::Node&lt; P, K &gt;", "classfe_1_1lct_1_1Node.html", null ],
+    [ "fe::Error::Note", "classfe_1_1Error.html#structfe_1_1Error_1_1Note", null ],
     [ "fe::Parser&lt; Tok, Tag, K, S &gt;", "classfe_1_1Parser.html", null ],
     [ "fe::PathHash", "structfe_1_1PathHash.html", null ],
     [ "fe::Pos", "structfe_1_1Pos.html", null ],

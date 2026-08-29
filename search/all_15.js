@@ -19,8 +19,9 @@ var searchData=
   ['tracker_16',['Tracker',['../classfe_1_1Parser_1_1Tracker.html',1,'fe::Parser&lt; Tok, Tag, K, S &gt;::Tracker'],['../classfe_1_1Parser_1_1Tracker.html#a8b31319b66d8fb1a2911ec78e1b05ccf',1,'fe::Parser::Tracker::Tracker()']]],
   ['tracker_17',['tracker',['../classfe_1_1Parser.html#aea3507b75aa247b9431256f5463a7821',1,'fe::Parser::tracker()'],['../classfe_1_1Parser.html#a01e44a12cb19d3172293feac4f89bbbc',1,'fe::Parser::tracker(Pos begin)'],['../classfe_1_1Parser.html#a4a964da822c8e0c743a8e5fce865ca20',1,'fe::Parser::tracker(Loc begin)']]],
   ['tree_18',['tree',['../classfe_1_1Profiler.html#a26364a91c8c0f82aee60bdc8e1aa55d1',1,'fe::Profiler']]],
-  ['tuple_5felement_3c_20i_2c_20fe_3a_3aspan_3c_20t_2c_20n_20_3e_20_3e_19',['tuple_element&lt; I, fe::Span&lt; T, N &gt; &gt;',['../namespacestd.html#structstd_1_1tuple__element_3_01I_00_01fe_1_1Span_3_01T_00_01N_01_4_01_4',1,'std']]],
-  ['tuple_5fsize_3c_20fe_3a_3aspan_3c_20t_2c_20n_20_3e_20_3e_20',['tuple_size&lt; fe::Span&lt; T, N &gt; &gt;',['../structstd_1_1tuple__size_3_01fe_1_1Span_3_01T_00_01N_01_4_01_4.html',1,'std']]],
-  ['type_21',['type',['../namespacestd.html#ae7ea1ac935d568b31d413ae7f70c14fe',1,'std::tuple_element&lt; I, fe::Span&lt; T, N &gt; &gt;']]],
-  ['typical_20workflow_22',['🧭 Typical Workflow',['../index.html#autotoc_md8',1,'']]]
+  ['truncated_19',['truncated',['../classfe_1_1Error.html#a4e722a70d4cab71100fa6ea30e8e2073',1,'fe::Error']]],
+  ['tuple_5felement_3c_20i_2c_20fe_3a_3aspan_3c_20t_2c_20n_20_3e_20_3e_20',['tuple_element&lt; I, fe::Span&lt; T, N &gt; &gt;',['../namespacestd.html#structstd_1_1tuple__element_3_01I_00_01fe_1_1Span_3_01T_00_01N_01_4_01_4',1,'std']]],
+  ['tuple_5fsize_3c_20fe_3a_3aspan_3c_20t_2c_20n_20_3e_20_3e_21',['tuple_size&lt; fe::Span&lt; T, N &gt; &gt;',['../structstd_1_1tuple__size_3_01fe_1_1Span_3_01T_00_01N_01_4_01_4.html',1,'std']]],
+  ['type_22',['type',['../namespacestd.html#ae7ea1ac935d568b31d413ae7f70c14fe',1,'std::tuple_element&lt; I, fe::Span&lt; T, N &gt; &gt;']]],
+  ['typical_20workflow_23',['🧭 Typical Workflow',['../index.html#autotoc_md8',1,'']]]
 ];

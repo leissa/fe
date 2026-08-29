@@ -37,6 +37,8 @@ var namespacefe =
     [ "basic_ostream_formatter", "structfe_1_1basic__ostream__formatter.html", "structfe_1_1basic__ostream__formatter" ],
     [ "Dbg", "structfe_1_1Dbg.html", "structfe_1_1Dbg" ],
     [ "DbgKey", "classfe_1_1DbgKey.html", "classfe_1_1DbgKey" ],
+    [ "Diag", "namespacefe.html#structfe_1_1Diag", "namespacefe_structfe_1_1Diag_dup" ],
+    [ "Diagnostics", "structfe_1_1Diagnostics.html", "structfe_1_1Diagnostics" ],
     [ "Driver", "structfe_1_1Driver.html", "structfe_1_1Driver" ],
     [ "Error", "classfe_1_1Error.html", "classfe_1_1Error" ],
     [ "is_bit_enum", "structfe_1_1is__bit__enum.html", null ],
