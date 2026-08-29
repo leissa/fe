@@ -43,7 +43,7 @@ It provides a compact set of reusable, well-integrated components:
 
 - `fe::Arena` for fast arena allocation and arena-backed ownership.
 - `fe::Sym` and `fe::SymPool` for string interning and cheap identifier comparison.
-- `fe::Driver` for shared frontend state: the SymPool, the SrcMap, the interned `Dbg`s, and - as a `Diagnostics` - how an `Error` renders.
+- `fe::Driver` for shared frontend state: the SymPool, the SrcMap, the interned `Dbg`s, and how an `Error` lays out and renders a diagnostic.
 - `fe::Pos` and `fe::Loc` for source positions and source spans.
 - `fe::Dbg` for the `Loc`/`Sym` pair every named entity drags along, interned in the `Driver` as a `DbgKey`.
 - `fe::Log` for leveled logging with acronym, color, and origin prefix.
@@ -56,7 +56,6 @@ It provides a compact set of reusable, well-integrated components:
 - `fe::Lexer<K, S>` for UTF-8-aware lexing with lookahead and token text accumulation.
 - `fe::Parser<Tok, Tag, K, S>` for recursive-descent-style parsing with token lookahead, span tracking, and anchor-based error recovery.
 - `fe::Error` for collecting diagnostics - errors, warnings and their notes - and rendering each with its source snippet; `Error::ack` throws what it collected as a self-contained `Error::Bail`.
-- `fe::Diag` and `fe::Diagnostics` for the layout an `Error` follows and the hook it renders each message through - a `std::function`, so nothing here is virtual.
 - `fe::Restore` for RAII save/restore of a variable across a scope.
 - `fe::Span`/`fe::View` and `fe::Vector` for spans with structured binding and small-buffer vectors.
 - `fe/algo.h` and `fe/container.h` for the odds and ends every frontend rewrites otherwise.

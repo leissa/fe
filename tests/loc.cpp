@@ -369,7 +369,7 @@ TEST_CASE("Error") {
         }
     }
 
-    SUBCASE("Diagnostics::render may render a message twice") {
+    SUBCASE("Driver::render may render a message twice") {
         auto calls   = 0;
         auto retry   = fe::Driver();
         retry.render = [&](const std::function<std::string()>& fmt) {
@@ -384,7 +384,7 @@ TEST_CASE("Error") {
         CHECK(e.msgs().front().str == "hi");
     }
 
-    SUBCASE("a Diagnostics-less Error still renders") {
+    SUBCASE("a Driver-less Error still renders") {
         auto e = fe::Error();
         e.error(Loc(), "no driver");
         CHECK(e.num_errors() == 1);
