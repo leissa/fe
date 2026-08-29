@@ -79,9 +79,9 @@ public:
     const auto& msgs() const { return msgs_; }
     bool empty() const { return msgs_.empty(); }
     bool ok() const { return num_errors() == 0; } ///< Nothing recorded that must stop the compilation?
-    size_t num_errors() const { return n_[size_t(Tag::Error)]; }
-    size_t num_warnings() const { return n_[size_t(Tag::Warn)]; }
-    size_t num_notes() const { return n_[size_t(Tag::Note)]; }
+    size_t num_errors() const { return num_[size_t(Tag::Error)]; }
+    size_t num_warnings() const { return num_[size_t(Tag::Warn)]; }
+    size_t num_notes() const { return num_[size_t(Tag::Note)]; }
     bool truncated() const { return truncated_; } ///< Did Diag::max_errors drop anything?
     ///@}
 
@@ -136,7 +136,7 @@ public:
     void clear() {
         msgs_.clear();
         what_.clear();
-        n_         = {};
+        num_       = {};
         truncated_ = false;
         dropped_   = false;
     }
@@ -217,7 +217,7 @@ private:
 
         dropped_ = false;
         what_.clear();
-        ++n_[size_t(tag)];
+        ++num_[size_t(tag)];
         msgs_.emplace_back(loc, tag, render_(fmt));
     }
 
@@ -225,7 +225,7 @@ private:
         if (dropped_) return;
         assert(!msgs_.empty() && "a note needs an error or warning to attach to");
         what_.clear();
-        ++n_[size_t(Tag::Note)];
+        ++num_[size_t(Tag::Note)];
         msgs_.back().notes.emplace_back(loc, render_(fmt));
     }
 
@@ -279,9 +279,9 @@ private:
 
     const Diagnostics* diagnostics_ = nullptr;
     std::vector<Msg> msgs_;
-    std::array<size_t, 3> n_ = {};
-    bool truncated_          = false;
-    bool dropped_            = false; ///< Was the Msg that Note%s would attach to dropped?
+    std::array<size_t, 3> num_ = {};
+    bool truncated_            = false;
+    bool dropped_              = false; ///< Was the Msg that Note%s would attach to dropped?
     mutable std::string what_;
 };
 
