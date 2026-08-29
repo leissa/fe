@@ -17,7 +17,7 @@ var classfe_1_1Error =
       [ "Note", "classfe_1_1Error.html#aa3c44d20a15cae1e0737b74351bf7523a3b0649c72650c313a357338dcdfb64ec", null ]
     ] ],
     [ "Error", "classfe_1_1Error.html#a58cd37af979e6963222009b353c9a766", null ],
-    [ "Error", "classfe_1_1Error.html#a2a9cb0439e0f9cae0bf4853498cd1674", null ],
+    [ "Error", "classfe_1_1Error.html#a006230978a0baa2c40452a3f393c8db5", null ],
     [ "ack", "classfe_1_1Error.html#a1691ca5ebb45613d58aed573af1a75bc", null ],
     [ "bail", "classfe_1_1Error.html#a4c1692799986392837a8bb3552384eb9", null ],
     [ "clear", "classfe_1_1Error.html#a49f4b59762202737f27bd6e35a22d0fc", null ],

@@ -6,7 +6,6 @@ var dir_fb87ea66e879fc34aa3bf8f21b7c38f7 =
     [ "cast.h", "cast_8h.html", "cast_8h" ],
     [ "container.h", "container_8h.html", "container_8h" ],
     [ "dbg.h", "dbg_8h.html", "dbg_8h" ],
-    [ "diag.h", "diag_8h.html", "diag_8h" ],
     [ "dl.h", "dl_8h.html", "dl_8h" ],
     [ "driver.h", "driver_8h.html", "driver_8h" ],
     [ "enum.h", "enum_8h.html", "enum_8h" ],

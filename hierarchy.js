@@ -8,10 +8,7 @@ var hierarchy =
     [ "fe::Dbg", "structfe_1_1Dbg.html", null ],
     [ "fe::DbgKey", "classfe_1_1DbgKey.html", null ],
     [ "fe::Arena::Deleter&lt; T &gt;", "structfe_1_1Arena_1_1Deleter.html", null ],
-    [ "fe::Diag", "namespacefe.html#structfe_1_1Diag", null ],
-    [ "fe::Diagnostics", "structfe_1_1Diagnostics.html", [
-      [ "fe::Driver", "structfe_1_1Driver.html", null ]
-    ] ],
+    [ "fe::Driver::Diag", "structfe_1_1Driver.html#structfe_1_1Driver_1_1Diag", null ],
     [ "fe::Dbg::Eq", "structfe_1_1Dbg_1_1Eq.html", null ],
     [ "fe::Sym::Eq", "structfe_1_1Sym_1_1Eq.html", null ],
     [ "fe::Sym::String::Equal", "structfe_1_1Sym_1_1String_1_1Equal.html", null ],
