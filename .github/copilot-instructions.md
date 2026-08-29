@@ -51,6 +51,8 @@ The library is organized around a few reusable frontend-building blocks that are
 - `fe::Pos` and `fe::Loc` (`loc.h`) track source positions/locations and are threaded through lexers, parsers, and diagnostics.
 - `fe::Src` and `fe::SrcMap` (`src.h`) own the text of each source file and turn a `Pos` back into a row/column. A `Loc` borrows a `const Src*`, which is how it renders itself as `path:row:col`.
 - `fe::Ring` (`ring.h`) is the fixed-size lookahead buffer used by the lexer/parser blueprints.
+- `fe::XTrie` (`xtrie.h`) hash-conses sets of pointers - small ones as sorted arrays, large ones as paths in an [IndexedTrie](https://dl.acm.org/doi/10.1145/3808286) built on the intrusive link-cut-tree of `lct.h` - so that equal sets are pointer-equal.
+  A *key* trait passed as template argument tells it how to read the `gid`/`tid` of an element.
 - `fe::Lexer<K, S>` (`lexer.h`) is a CRTP base that handles UTF-8 decoding, character lookahead, token text accumulation (`str_`), and source location tracking (`loc_`).
 - `fe::Parser<Tok, Tag, K, S>` (`parser.h`) is a CRTP base that wraps a lexer with token lookahead, `accept`/`expect`/`eat`, `Tracker` helpers for building node spans, and the anchor-based error recovery described below.
 

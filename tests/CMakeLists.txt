@@ -6,6 +6,7 @@ target_sources(fe-test
         lexer.cpp
         loc.cpp
         test.cpp
+        xtrie.cpp
 )
 target_link_libraries(fe-test
     PRIVATE

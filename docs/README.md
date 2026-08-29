@@ -49,6 +49,7 @@ It provides a compact set of reusable, well-integrated components:
 - `fe::term` for lightweight terminal colors in diagnostics and CLI output.
 - `fe::utf8` for lightweight UTF-8 handling.
 - `fe::hash` and friends for cheap, `constexpr` hash mixing/combining.
+- `fe::XTrie` for interned, immutable sets - an [IndexedTrie](https://dl.acm.org/doi/10.1145/3808286) that is space-efficient and answers intersection tests fast.
 - `fe::Lexer<K, S>` for UTF-8-aware lexing with lookahead and token text accumulation.
 - `fe::Parser<Tok, Tag, K, S>` for recursive-descent-style parsing with token lookahead, span tracking, and anchor-based error recovery.
 - `fe::Restore` for RAII save/restore of a variable across a scope.
@@ -63,22 +64,22 @@ These need a translation unit of their own and hence live in `src/fe/`:
 - `fe::Profiler` for nested wall-clock spans reported as a flat table, a tree, or Chrome Trace JSON.
 - The default `operator<<`/`dump` of `fe::Pos`/`fe::Loc`.
 
-`fe/loc.h` merely *declares* these.
-So in a header-only setup you have to hand-roll your own rendering - as a hidden friend, it must be defined in namespace `fe`:
+  `fe/loc.h` merely *declares* these.
+  So in a header-only setup you have to hand-roll your own rendering - as a hidden friend, it must be defined in namespace `fe`:
 
-```cpp
-namespace fe {
+  ```cpp
+  namespace fe {
 
-std::ostream& operator<<(std::ostream& os, Loc loc) { /* ... */ }
-std::ostream& operator<<(std::ostream& os, Pos pos) { /* ... */ }
+  std::ostream& operator<<(std::ostream& os, Loc loc) { /* ... */ }
+  std::ostream& operator<<(std::ostream& os, Pos pos) { /* ... */ }
 
-void Loc::dump() const { std::cout << *this << std::endl; }
-void Pos::dump() const { std::cout << *this << std::endl; }
+  void Loc::dump() const { std::cout << *this << std::endl; }
+  void Pos::dump() const { std::cout << *this << std::endl; }
 
-} // namespace fe
-```
+  } // namespace fe
+  ```
 
-Otherwise you will run into a link error for `operator<<(std::ostream&, fe::Loc)` and friends.
+  Otherwise you will run into a link error for `operator<<(std::ostream&, fe::Loc)` and friends.
 
 FE does not try to hide frontend construction behind a generator.
 Instead, it gives you sharp, reusable tools so you can build exactly the frontend you want.

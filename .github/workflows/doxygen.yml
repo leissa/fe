@@ -10,9 +10,9 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  DOXYGEN_TAG: Release_1_16_1
-  DOXYGEN_VERSION: 1.16.1
-  DOXYGEN_CACHE_DIR: ${{ github.workspace }}/.cache/doxygen-1.16.1
+  DOXYGEN_TAG: Release_1_18_0
+  DOXYGEN_VERSION: 1.18.0
+  DOXYGEN_CACHE_DIR: ${{ github.workspace }}/.cache/doxygen-1.18.0
 
 jobs:
   build:
