@@ -16,8 +16,9 @@ var hierarchy =
     [ "fe::Sym::Eq", "structfe_1_1Sym_1_1Eq.html", null ],
     [ "fe::Sym::String::Equal", "structfe_1_1Sym_1_1String_1_1Equal.html", null ],
     [ "fe::XTrie&lt; D, K, N &gt;::Data::Equal", "structfe_1_1XTrie_1_1Data_1_1Equal.html", null ],
+    [ "fe::Error", "classfe_1_1Error.html", null ],
     [ "std::exception", null, [
-      [ "fe::Error", "classfe_1_1Error.html", null ]
+      [ "fe::Error::Bail", "classfe_1_1Error_1_1Bail.html", null ]
     ] ],
     [ "std::false_type", null, [
       [ "fe::is_bit_enum< T >", "structfe_1_1is__bit__enum.html", null ]
@@ -56,6 +57,7 @@ var hierarchy =
     [ "fe::Ring&lt; T, 1 &gt;", "classfe_1_1Ring_3_01T_00_011_01_4.html", null ],
     [ "fe::Ring&lt; T, 2 &gt;", "classfe_1_1Ring_3_01T_00_012_01_4.html", null ],
     [ "fe::RuntimeCast&lt; B &gt;", "classfe_1_1RuntimeCast.html", null ],
+    [ "fe::term::ScopedMode", "classfe_1_1term_1_1ScopedMode.html", null ],
     [ "fe::XTrie&lt; D, K, N &gt;::Set", "classfe_1_1XTrie_1_1Set.html", null ],
     [ "fe::Snippet", "structfe_1_1Snippet.html", null ],
     [ "fe::Profiler::Span", "structfe_1_1Profiler_1_1Span.html", null ],

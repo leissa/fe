@@ -1,5 +1,6 @@
 var term_8h =
 [
+    [ "fe::term::ScopedMode", "classfe_1_1term_1_1ScopedMode.html", "classfe_1_1term_1_1ScopedMode" ],
     [ "fe::term::FG", "namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148", [
       [ "fe::term::FG::Black", "namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ae90dfb84e30edf611e326eeb04d680de", null ],
       [ "fe::term::FG::Red", "namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47", null ],
