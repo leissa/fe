@@ -369,27 +369,19 @@ TEST_CASE("Error") {
         }
     }
 
-    SUBCASE("Diagnostics::render may render a message twice") {
-        struct Retry : fe::Driver {
-            std::string render(const std::function<std::string()>& fmt) const override {
-                ++calls;
-                fmt();
-                return fmt();
-            }
-            mutable int calls = 0;
-        } retry;
+    SUBCASE("Driver::render may render a message twice") {
+        auto calls   = 0;
+        auto retry   = fe::Driver();
+        retry.render = [&](const std::function<std::string()>& fmt) {
+            ++calls;
+            fmt();
+            return fmt();
+        };
 
         auto e = fe::Error(retry);
         e.error(Loc(), "hi");
-        CHECK(retry.calls == 1);
+        CHECK(calls == 1);
         CHECK(e.msgs().front().str == "hi");
-    }
-
-    SUBCASE("a Diagnostics-less Error still renders") {
-        auto e = fe::Error();
-        e.error(Loc(), "no driver");
-        CHECK(e.num_errors() == 1);
-        CHECK(e.msgs().front().str == "no driver");
     }
 
     fe::term::set_mode(old_mode);

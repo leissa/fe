@@ -13,7 +13,7 @@
 #include <utility>
 #include <vector>
 
-#include "fe/diag.h"
+#include "fe/driver.h"
 #include "fe/format.h"
 #include "fe/loc.h"
 #include "fe/snippet.h"
@@ -50,7 +50,7 @@ public:
 
     /// What Error::ack and Error::bail throw.
     /// It carries the finished text, so nothing in here points into a SrcMap any more and it may
-    /// propagate past the Diagnostics - and the Src%s - that produced it.
+    /// propagate past the Driver - and the Src%s - that produced it.
     class Bail : public std::exception {
     public:
         Bail(std::string what, size_t num_errors, size_t num_warnings)
@@ -86,15 +86,10 @@ public:
         std::vector<Note> notes;
     };
 
-    /// @name Constructors
-    ///@{
-    Error() = default; ///< Renders with a default Diag and no Diagnostics::render hook.
-
-    /// @warning A Msg::loc points into the SrcMap that @p diagnostics belongs to and Error::msg renders through
-    /// Diagnostics::render, so @p diagnostics must outlive this Error.
-    explicit Error(const Diagnostics& diagnostics)
-        : diagnostics_(&diagnostics) {}
-    ///@}
+    /// @warning A Msg::loc points into @p driver's SrcMap and Error::msg renders through Driver::render,
+    /// so @p driver must outlive this Error.
+    explicit Error(const Driver& driver)
+        : driver_(&driver) {}
 
     /// @name Getters
     ///@{
@@ -110,7 +105,7 @@ public:
     /// @name Add a Message
     /// Each of these yields the Error again, so a diagnostic, its Note%s, and a closing Error::bail chain.
     ///@{
-    /// Records the message @p fmt renders; see Diagnostics::render.
+    /// Records the message @p fmt renders; see Driver::render.
     /// @p tag must be Tag::Error or Tag::Warn - a Tag::Note belongs to Error::note.
     Error& msg(Loc loc, Tag tag, const std::function<std::string()>& fmt) {
         msg_(loc, tag, fmt);
@@ -118,7 +113,7 @@ public:
     }
 
     // clang-format off
-    /// @note Formats via `std::vformat` because Diagnostics::render may render @p s more than once.
+    /// @note Formats via `std::vformat` because Driver::render may render @p s more than once.
     template<class... Args> Error& msg(Loc loc, Tag tag, std::format_string<Args...> s, Args&&... args) {
         msg_(loc, tag, [&] { return std::vformat(s.get(), std::make_format_args(args...)); });
         return *this;
@@ -210,11 +205,7 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const Error& e) { return e.summary(e.stream(os)); }
 
 private:
-    Diag diag() const { return diagnostics_ ? diagnostics_->diag : Diag(); }
-
-    std::string render_(const std::function<std::string()>& fmt) const {
-        return diagnostics_ ? diagnostics_->render(fmt) : fmt();
-    }
+    const Driver::Diag& diag() const { return driver_->diag; }
 
     /// Loc of the Msg that subsequent Note%s belong to.
     Loc primary_loc_() const { return msgs_.empty() ? Loc() : msgs_.back().loc; }
@@ -231,14 +222,14 @@ private:
 
         dropped_ = false;
         ++num_[size_t(tag)];
-        msgs_.emplace_back(loc, tag, render_(fmt));
+        msgs_.emplace_back(loc, tag, driver_->render(fmt));
     }
 
     void note_(Loc loc, const std::function<std::string()>& fmt) {
         if (dropped_) return;
         assert(!msgs_.empty() && "a note needs an error or warning to attach to");
         ++num_[size_t(Tag::Note)];
-        msgs_.back().notes.emplace_back(loc, render_(fmt));
+        msgs_.back().notes.emplace_back(loc, driver_->render(fmt));
     }
 
     /// Streamed piecewise instead of via std::format: a std::formatter cannot see its destination stream,
@@ -289,7 +280,7 @@ private:
         return os << '\n';
     }
 
-    const Diagnostics* diagnostics_ = nullptr;
+    const Driver* driver_;
     std::vector<Msg> msgs_;
     std::array<size_t, 3> num_ = {};
     bool truncated_            = false;
