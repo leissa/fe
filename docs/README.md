@@ -55,7 +55,7 @@ It provides a compact set of reusable, well-integrated components:
 - `fe::XTrie` for interned, immutable sets - an [IndexedTrie](https://dl.acm.org/doi/10.1145/3808286) that is space-efficient and answers intersection tests fast.
 - `fe::Lexer<K, S>` for UTF-8-aware lexing with lookahead and token text accumulation.
 - `fe::Parser<Tok, Tag, K, S>` for recursive-descent-style parsing with token lookahead, span tracking, and anchor-based error recovery.
-- `fe::Error` for collecting diagnostics - errors, warnings and their notes - and rendering each with its source snippet.
+- `fe::Error` for collecting diagnostics - errors, warnings and their notes - and rendering each with its source snippet; `Error::ack` throws what it collected as a self-contained `Error::Bail`.
 - `fe::Diag` and `fe::Diagnostics` for the layout an `Error` follows and the hook it renders each message through.
 - `fe::Restore` for RAII save/restore of a variable across a scope.
 - `fe::Span`/`fe::View` and `fe::Vector` for spans with structured binding and small-buffer vectors.

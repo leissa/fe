@@ -245,7 +245,7 @@ TEST_CASE("Error") {
              "      |     ^\n"
              "1 error(s), 1 warning(s) encountered\n");
 
-    SUBCASE("what() renders the whole collection") { CHECK(std::string(err.what()) == std::format("{}", err)); }
+    SUBCASE("str renders the whole collection") { CHECK(err.str() == std::format("{}", err)); }
 
     SUBCASE("a note without a Loc stays a continuation line") {
         err.clear();
@@ -331,20 +331,41 @@ TEST_CASE("Error") {
         CHECK(err.empty()); // ack claims the messages
 
         err.error(Loc(src, Pos(4), Pos(5)), "a real error");
-        CHECK_THROWS_AS(err.ack(oss), fe::Error);
+        CHECK_THROWS_AS(err.ack(oss), fe::Error::Bail);
         CHECK(err.empty()); // ... and claims them here, too
         CHECK(err.num_errors() == 0);
     }
 
-    SUBCASE("a chain on a temporary moves into the exception") {
+    SUBCASE("a Bail outlives the Src its Loc%s pointed into") {
+        auto what = std::string();
+        {
+            fe::Driver tmp;
+            auto [tmp_src, _] = tmp.src().add("gone.let", "let x = 1;\n");
+            auto e            = fe::Error(tmp);
+            e.error(Loc(tmp_src, Pos(4), Pos(5)), "vanishing");
+            try {
+                e.bail();
+            } catch (const fe::Error::Bail& bail) {
+                CHECK(bail.num_errors() == 1);
+                what = bail.what();
+            }
+        }
+        CHECK(what.starts_with("gone.let:1:5: error: vanishing\n"));
+        CHECK(what.ends_with("1 error(s) encountered\n"));
+    }
+
+    SUBCASE("a chain on a temporary bails out in one expression") {
         try {
-            throw fe::Error(drv)
+            fe::Error(drv)
                 .error(Loc(src, Pos(4), Pos(5)), "boom")
                 .note("why")
-                .note(Loc(src, Pos(15), Pos(16)), "and there");
-        } catch (const fe::Error& e) {
-            CHECK(e.num_errors() == 1);
-            CHECK(e.msgs().front().notes.size() == 2);
+                .note(Loc(src, Pos(15), Pos(16)), "and there")
+                .bail();
+        } catch (const fe::Error::Bail& bail) {
+            auto what = std::string(bail.what());
+            CHECK(bail.num_errors() == 1);
+            CHECK(what.find("= note: why") != std::string::npos);
+            CHECK(what.find("note: and there") != std::string::npos);
         }
     }
 

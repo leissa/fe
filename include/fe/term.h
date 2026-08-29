@@ -199,6 +199,23 @@ inline bool use_color(std::ostream& os) noexcept {
 /// Overrides the current terminal color mode.
 inline void set_mode(Mode m) noexcept { detail::current_mode().store(m, std::memory_order_relaxed); }
 
+/// Overrides the color mode for the duration of the scope.
+/// @warning The mode is global, so this affects every stream - and every thread - while it is alive.
+class ScopedMode {
+public:
+    explicit ScopedMode(Mode m)
+        : prev_(mode()) {
+        set_mode(m);
+    }
+    ~ScopedMode() { set_mode(prev_); }
+
+    ScopedMode(const ScopedMode&)            = delete;
+    ScopedMode& operator=(const ScopedMode&) = delete;
+
+private:
+    Mode prev_;
+};
+
 /// Resolves Mode::Auto to Mode::Always or Mode::Never, depending on whether @p os refers to a terminal.
 /// A `std::formatter` cannot see its destination stream, so FG values embedded in a
 /// `std::format`/`std::print` format string never detect a terminal in Mode::Auto.
