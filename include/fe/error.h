@@ -213,7 +213,7 @@ private:
     Diag diag() const { return diagnostics_ ? diagnostics_->diag : Diag(); }
 
     std::string render_(const std::function<std::string()>& fmt) const {
-        return diagnostics_ ? diagnostics_->render(fmt) : fmt();
+        return diagnostics_ && diagnostics_->render ? diagnostics_->render(fmt) : fmt();
     }
 
     /// Loc of the Msg that subsequent Note%s belong to.

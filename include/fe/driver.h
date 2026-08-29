@@ -15,7 +15,7 @@ struct Driver : public SymPool, public Diagnostics {
 public:
     Driver()                  = default;
     Driver(Driver&&)          = default;
-    virtual ~Driver()         = default;
+    ~Driver()                 = default; ///< @note Not virtual - see Diagnostics.
     Driver(const Driver&)     = delete;
     Driver& operator=(Driver) = delete;
 
