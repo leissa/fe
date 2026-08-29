@@ -27,5 +27,6 @@ var searchData=
   ['assert_2eh_24',['assert.h',['../assert_8h.html',1,'']]],
   ['assert_5funused_25',['assert_unused',['../assert_8h.html#a1bf507325593e1ed7b3acc75596bd525',1,'assert.h']]],
   ['assertf_26',['assertf',['../format_8h.html#a7bc6143638d489bb640260462bf07777',1,'format.h']]],
-  ['auto_27',['Auto',['../namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb',1,'fe::term']]]
+  ['auto_27',['Auto',['../namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb',1,'fe::term']]],
+  ['aux_5fparent_28',['aux_parent',['../classfe_1_1lct_1_1Node.html#a09aa5b87ed14fc527222cfc29b83d472',1,'fe::lct::Node']]]
 ];

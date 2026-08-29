@@ -63,6 +63,7 @@ var NAVTREE =
         [ "Variables", "functions_vars.html", null ],
         [ "Typedefs", "functions_type.html", null ],
         [ "Enumerations", "functions_enum.html", null ],
+        [ "Enumerator", "functions_eval.html", null ],
         [ "Related Symbols", "functions_rela.html", null ]
       ] ]
     ] ],
@@ -81,10 +82,11 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "classfe_1_1Ring_3_01T_00_011_01_4.html#a1576a3573f5b1e34e217f45beea6a771",
-"enum_8h.html#a6d5ff498e337573172c3f886624dd528",
-"structfe_1_1Loc.html"
+"classfe_1_1XTrie.html#ad9012a6e842ad6ac47ec9ea81517995d",
+"namespacefe_1_1sys.html#a32dbb92355fcb6726986a2f850cfdbb9",
+"structfe_1_1utf8_1_1Char32.html#a1007c5ee35ebf25d42f9c65539e2500e"
 ];
 
-var SYNCONMSG = 'click to disable panel synchronization';
-var SYNCOFFMSG = 'click to enable panel synchronization';
-var LISTOFALLMEMBERS = 'List of all members';
+const SYNCONMSG = 'click to disable panel synchronization';
+const SYNCOFFMSG = 'click to enable panel synchronization';
+const LISTOFALLMEMBERS = 'List of all members';

@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['state_0',['State',['../classfe_1_1Arena.html#a5e05161e3a767ebfdecbf2cb1e21f6d4',1,'fe::Arena']]],
-  ['string_1',['String',['../classfe_1_1SymPool.html#a11d53cf665ae00f361fd8d2e4d00d100',1,'fe::SymPool']]],
-  ['symmap_2',['SymMap',['../namespacefe.html#a11fef75d471024bdbf5cfc3223146f8e',1,'fe']]],
-  ['symset_3',['SymSet',['../namespacefe.html#afc6debb6fc36d12352409c5e46ce4e55',1,'fe']]]
+  ['pathmap_0',['PathMap',['../namespacefe.html#abd33b4214fdd0afae828ffb1c5fc9f9e',1,'fe']]],
+  ['pointer_1',['pointer',['../classfe_1_1XTrie_1_1Set_1_1iterator.html#a72a207dc7981ded537807c27ec3bf5d9',1,'fe::XTrie::Set::iterator']]],
+  ['ptr_2',['Ptr',['../classfe_1_1Arena.html#a9ec4e56220ef5a3d2d80bfcd3653bbdc',1,'fe::Arena']]]
 ];

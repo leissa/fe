@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['_7eanchor_0',['~Anchor',['../classfe_1_1Parser_1_1Anchor.html#ae2569d59dc583ab803e8680522f963b1',1,'fe::Parser::Anchor']]],
-  ['_7erestore_1',['~Restore',['../classfe_1_1Restore.html#a002b61e600b9a841cdbd914b36bf8326',1,'fe::Restore']]]
+  ['xtrie_0',['XTrie',['../classfe_1_1XTrie.html#a90bf04671e0d5951f95be4f5746776cd',1,'fe::XTrie::XTrie() noexcept'],['../classfe_1_1XTrie.html#af63ab95e82919dd0a563b915692c9aee',1,'fe::XTrie::XTrie(const XTrie &amp;) noexcept=delete'],['../classfe_1_1XTrie.html#a6f5a14c689ddd26c0b8d89362117f4af',1,'fe::XTrie::XTrie(XTrie &amp;&amp;other) noexcept']]]
 ];

@@ -6,6 +6,7 @@ var functions_func =
     [ "d", "functions_func_d.html", null ],
     [ "e", "functions_func_e.html", null ],
     [ "f", "functions_func_f.html", null ],
+    [ "h", "functions_func_h.html", null ],
     [ "i", "functions_func_i.html", null ],
     [ "j", "functions_func_j.html", null ],
     [ "k", "functions_func_k.html", null ],
@@ -19,5 +20,6 @@ var functions_func =
     [ "t", "functions_func_t.html", null ],
     [ "v", "functions_func_v.html", null ],
     [ "w", "functions_func_w.html", null ],
+    [ "x", "functions_func_x.html", null ],
     [ "~", "functions_func_~.html", null ]
 ];

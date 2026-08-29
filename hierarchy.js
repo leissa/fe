@@ -8,6 +8,7 @@ var hierarchy =
     [ "fe::Arena::Deleter&lt; T &gt;", "structfe_1_1Arena_1_1Deleter.html", null ],
     [ "fe::Sym::Eq", "structfe_1_1Sym_1_1Eq.html", null ],
     [ "fe::Sym::String::Equal", "structfe_1_1Sym_1_1String_1_1Equal.html", null ],
+    [ "fe::XTrie&lt; D, K, N &gt;::Data::Equal", "structfe_1_1XTrie_1_1Data_1_1Equal.html", null ],
     [ "std::false_type", null, [
       [ "fe::is_bit_enum< T >", "structfe_1_1is__bit__enum.html", null ]
     ] ],
@@ -17,6 +18,8 @@ var hierarchy =
     ] ],
     [ "fe::Sym::Hash", "structfe_1_1Sym_1_1Hash.html", null ],
     [ "fe::Sym::String::Hash", "structfe_1_1Sym_1_1String_1_1Hash.html", null ],
+    [ "fe::XTrie&lt; D, K, N &gt;::Data::Hash", "structfe_1_1XTrie_1_1Data_1_1Hash.html", null ],
+    [ "fe::XTrie&lt; D, K, N &gt;::Set::iterator", "classfe_1_1XTrie_1_1Set_1_1iterator.html", null ],
     [ "fe::Join&lt; R &gt;", "classfe_1_1Join.html", null ],
     [ "fe::Lexer&lt; K, S &gt;", "classfe_1_1Lexer.html", null ],
     [ "fe::Loc", "structfe_1_1Loc.html", null ],
@@ -26,6 +29,7 @@ var hierarchy =
     [ "std::pmr::memory_resource", "classstd_1_1pmr_1_1memory__resource.html", [
       [ "fe::Arena::MemoryResource", "classfe_1_1Arena_1_1MemoryResource.html", null ]
     ] ],
+    [ "fe::lct::Node&lt; P, K &gt;", "classfe_1_1lct_1_1Node.html", null ],
     [ "fe::Parser&lt; Tok, Tag, K, S &gt;", "classfe_1_1Parser.html", null ],
     [ "fe::PathHash", "structfe_1_1PathHash.html", null ],
     [ "fe::Pos", "structfe_1_1Pos.html", null ],
@@ -35,6 +39,7 @@ var hierarchy =
     [ "fe::Ring&lt; T, 1 &gt;", "classfe_1_1Ring_3_01T_00_011_01_4.html", null ],
     [ "fe::Ring&lt; T, 2 &gt;", "classfe_1_1Ring_3_01T_00_012_01_4.html", null ],
     [ "fe::RuntimeCast&lt; B &gt;", "classfe_1_1RuntimeCast.html", null ],
+    [ "fe::XTrie&lt; D, K, N &gt;::Set", "classfe_1_1XTrie_1_1Set.html", null ],
     [ "fe::Profiler::Span", "structfe_1_1Profiler_1_1Span.html", null ],
     [ "fe::Src", "classfe_1_1Src.html", null ],
     [ "fe::SrcMap", "classfe_1_1SrcMap.html", null ],
@@ -46,6 +51,7 @@ var hierarchy =
     ] ],
     [ "fe::Tab", "classfe_1_1Tab.html", null ],
     [ "fe::Parser&lt; Tok, Tag, K, S &gt;::Tracker", "classfe_1_1Parser_1_1Tracker.html", null ],
+    [ "fe::XTrie&lt; D, K, N &gt;", "classfe_1_1XTrie.html", null ],
     [ "array&lt; fe::Lexer::Ahead, N &gt;", "namespace_3globalScope_4.html#classstd_1_1array_3_01fe_1_1Lexer_1_1Ahead_00_01N_01_4", null ],
     [ "array&lt; Tok, N &gt;", "namespace_3globalScope_4.html#classstd_1_1array_3_01Tok_00_01N_01_4", null ]
 ];

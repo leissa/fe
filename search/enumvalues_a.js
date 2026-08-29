@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['yellow_0',['Yellow',['../namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a51e6cd92b6c45f9affdc158ecca2b8b8',1,'fe::term']]]
+  ['upper_0',['Upper',['../classfe_1_1Lexer.html#a99366b3ab28fff1d6a1013b1007246a6a19de5b94f7b83900d4b296d9fa491aec',1,'fe::Lexer']]]
 ];

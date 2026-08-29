@@ -4,8 +4,10 @@ var searchData=
   ['decode_1',['decode',['../namespacefe_1_1utf8.html#a4ca17134ff0be619535e913b53a80e79',1,'fe::utf8::decode(std::istream &amp;is)'],['../namespacefe_1_1utf8.html#a7411b5c6d9f361e3a039bfb6fa673ec1',1,'fe::utf8::decode(std::string_view str, size_t &amp;i) noexcept']]],
   ['deleter_2',['Deleter',['../structfe_1_1Arena_1_1Deleter.html#a4f115196981ec080d075fd09f8fce52e',1,'fe::Arena::Deleter::Deleter() noexcept=default'],['../structfe_1_1Arena_1_1Deleter.html#acb74633b0f9c12116865339f08659d8d',1,'fe::Arena::Deleter::Deleter(const Deleter&lt; U &gt; &amp;) noexcept']]],
   ['diag_3',['diag',['../structfe_1_1Driver.html#a896a1ac971a186c589012f8f5f67f54c',1,'fe::Driver']]],
-  ['do_5fallocate_4',['do_allocate',['../classfe_1_1Arena_1_1MemoryResource.html#a8e71a597b41a12d7a3a66c588b065e1e',1,'fe::Arena::MemoryResource']]],
-  ['do_5fdeallocate_5',['do_deallocate',['../classfe_1_1Arena_1_1MemoryResource.html#a8612aaa7c927034b57091ee96f4f85da',1,'fe::Arena::MemoryResource']]],
-  ['do_5fis_5fequal_6',['do_is_equal',['../classfe_1_1Arena_1_1MemoryResource.html#a670b91798198a06fce1a2bb3625a9b01',1,'fe::Arena::MemoryResource']]],
-  ['dump_7',['dump',['../structfe_1_1Pos.html#a9a6685af4e76850af36627fd7f9a0978',1,'fe::Pos::dump()'],['../structfe_1_1Loc.html#a0531b0fe2bb2304752a1d58b80647365',1,'fe::Loc::dump()']]]
+  ['dir_4',['dir',['../classfe_1_1lct_1_1Node.html#abdbc999fe7531a0e289613355f961fa3',1,'fe::lct::Node']]],
+  ['do_5fallocate_5',['do_allocate',['../classfe_1_1Arena_1_1MemoryResource.html#a8e71a597b41a12d7a3a66c588b065e1e',1,'fe::Arena::MemoryResource']]],
+  ['do_5fdeallocate_6',['do_deallocate',['../classfe_1_1Arena_1_1MemoryResource.html#a8612aaa7c927034b57091ee96f4f85da',1,'fe::Arena::MemoryResource']]],
+  ['do_5fis_5fequal_7',['do_is_equal',['../classfe_1_1Arena_1_1MemoryResource.html#a670b91798198a06fce1a2bb3625a9b01',1,'fe::Arena::MemoryResource']]],
+  ['dot_8',['dot',['../classfe_1_1XTrie.html#a5dfa470658e4f440565a09a1297f61b4',1,'fe::XTrie::dot()'],['../classfe_1_1XTrie.html#a60256382276cdb10834b4b77cae85ef7',1,'fe::XTrie::dot(std::ostream &amp;os) const']]],
+  ['dump_9',['dump',['../structfe_1_1Pos.html#a9a6685af4e76850af36627fd7f9a0978',1,'fe::Pos::dump()'],['../structfe_1_1Loc.html#a0531b0fe2bb2304752a1d58b80647365',1,'fe::Loc::dump()'],['../classfe_1_1XTrie_1_1Set.html#a3dd1280e0e1ee250710ad915b1310ee3',1,'fe::XTrie::Set::dump()']]]
 ];

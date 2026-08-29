@@ -8,6 +8,7 @@ var dir_fb87ea66e879fc34aa3bf8f21b7c38f7 =
     [ "enum.h", "enum_8h.html", "enum_8h" ],
     [ "format.h", "format_8h.html", "format_8h" ],
     [ "hash.h", "hash_8h.html", "hash_8h" ],
+    [ "lct.h", "lct_8h.html", "lct_8h" ],
     [ "lexer.h", "lexer_8h.html", "lexer_8h" ],
     [ "loc.h", "loc_8h.html", "loc_8h" ],
     [ "parser.h", "parser_8h.html", "parser_8h" ],
@@ -19,5 +20,6 @@ var dir_fb87ea66e879fc34aa3bf8f21b7c38f7 =
     [ "sym.h", "sym_8h.html", "sym_8h" ],
     [ "sys.h", "sys_8h.html", "sys_8h" ],
     [ "term.h", "term_8h.html", "term_8h" ],
-    [ "utf8.h", "utf8_8h.html", "utf8_8h" ]
+    [ "utf8.h", "utf8_8h.html", "utf8_8h" ],
+    [ "xtrie.h", "xtrie_8h.html", "xtrie_8h" ]
 ];

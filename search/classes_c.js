@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['span_0',['Span',['../structfe_1_1Profiler_1_1Span.html',1,'fe::Profiler']]],
-  ['src_1',['Src',['../classfe_1_1Src.html',1,'fe']]],
-  ['srcmap_2',['SrcMap',['../classfe_1_1SrcMap.html',1,'fe']]],
-  ['streamfn_3',['StreamFn',['../classfe_1_1StreamFn.html',1,'fe']]],
-  ['string_4',['String',['../structfe_1_1Sym_1_1String.html',1,'fe::Sym']]],
-  ['sym_5',['Sym',['../classfe_1_1Sym.html',1,'fe']]],
-  ['sympool_6',['SymPool',['../classfe_1_1SymPool.html',1,'fe']]]
+  ['restore_0',['Restore',['../classfe_1_1Restore.html',1,'fe']]],
+  ['ring_1',['Ring',['../classfe_1_1Ring.html',1,'fe']]],
+  ['ring_3c_20fe_3a_3alexer_3a_3aahead_2c_20k_20_3e_2',['Ring&lt; fe::Lexer::Ahead, K &gt;',['../classfe_1_1Ring.html',1,'fe']]],
+  ['ring_3c_20t_2c_201_20_3e_3',['Ring&lt; T, 1 &gt;',['../classfe_1_1Ring_3_01T_00_011_01_4.html',1,'fe']]],
+  ['ring_3c_20t_2c_202_20_3e_4',['Ring&lt; T, 2 &gt;',['../classfe_1_1Ring_3_01T_00_012_01_4.html',1,'fe']]],
+  ['ring_3c_20tok_2c_20k_20_3e_5',['Ring&lt; Tok, K &gt;',['../classfe_1_1Ring.html',1,'fe']]],
+  ['runtimecast_6',['RuntimeCast',['../classfe_1_1RuntimeCast.html',1,'fe']]]
 ];
