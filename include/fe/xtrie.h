@@ -9,7 +9,7 @@
 #include <iostream>
 #include <print>
 #include <ranges>
-#include <span>
+#include <string>
 #include <vector>
 
 #ifdef FE_ABSL
