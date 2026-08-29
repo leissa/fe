@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mode_0',['Mode',['../namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087',1,'fe::term']]]
+  ['level_0',['Level',['../classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06',1,'fe::Log']]]
 ];

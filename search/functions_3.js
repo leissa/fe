@@ -5,7 +5,7 @@ var searchData=
   ['cend_2',['cend',['../classfe_1_1Sym.html#a3308cf822fc8707a9c946335d85972cd',1,'fe::Sym']]],
   ['char32_3',['Char32',['../structfe_1_1utf8_1_1Char32.html#af46564ecf7d2aa5557f8b452ea406abf',1,'fe::utf8::Char32']]],
   ['chrome_5ftrace_4',['chrome_trace',['../classfe_1_1Profiler.html#ac8ec9c9ecca1edbaf0b7a776cb7a48fa',1,'fe::Profiler']]],
-  ['clear_5',['clear',['../classfe_1_1XTrie_1_1Set_1_1iterator.html#ad31ab44722c8c19df28e7216dfed1d96',1,'fe::XTrie::Set::iterator']]],
+  ['clear_5',['clear',['../classfe_1_1UniqueQueue.html#a9c290c2a63ae0ae48902a0ac1949218a',1,'fe::UniqueQueue::clear()'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html#ad31ab44722c8c19df28e7216dfed1d96',1,'fe::XTrie::Set::iterator::clear()']]],
   ['close_6',['close',['../namespacefe_1_1dl.html#a06893ca1a7701c45fb627831247dbc4c',1,'fe::dl']]],
   ['cmdnotfound_7',['CmdNotFound',['../classfe_1_1sys_1_1CmdNotFound.html#aa13bab22662d2f2aa62763da2d15208b',1,'fe::sys::CmdNotFound']]],
   ['col_8',['col',['../classfe_1_1Src.html#aa3b5f99f7e3b97c5c04d3ad52d98c18d',1,'fe::Src']]],

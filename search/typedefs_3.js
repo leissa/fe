@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ostream_5fformatter_0',['ostream_formatter',['../namespacefe.html#a923ce058163e2041744a84793de679c0',1,'fe']]]
+  ['iterator_5fcategory_0',['iterator_category',['../classfe_1_1XTrie_1_1Set_1_1iterator.html#a477d7360e29c7fb371869da9b69d7c1f',1,'fe::XTrie::Set::iterator']]]
 ];

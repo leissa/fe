@@ -1,8 +1,11 @@
 var dir_fb87ea66e879fc34aa3bf8f21b7c38f7 =
 [
+    [ "algo.h", "algo_8h.html", "algo_8h" ],
     [ "arena.h", "arena_8h.html", "arena_8h" ],
     [ "assert.h", "assert_8h.html", "assert_8h" ],
     [ "cast.h", "cast_8h.html", "cast_8h" ],
+    [ "container.h", "container_8h.html", "container_8h" ],
+    [ "dbg.h", "dbg_8h.html", "dbg_8h" ],
     [ "dl.h", "dl_8h.html", "dl_8h" ],
     [ "driver.h", "driver_8h.html", "driver_8h" ],
     [ "enum.h", "enum_8h.html", "enum_8h" ],
@@ -11,15 +14,19 @@ var dir_fb87ea66e879fc34aa3bf8f21b7c38f7 =
     [ "lct.h", "lct_8h.html", "lct_8h" ],
     [ "lexer.h", "lexer_8h.html", "lexer_8h" ],
     [ "loc.h", "loc_8h.html", "loc_8h" ],
+    [ "log.h", "log_8h.html", "log_8h" ],
+    [ "log_macros.h", "log__macros_8h.html", "log__macros_8h" ],
     [ "parser.h", "parser_8h.html", "parser_8h" ],
     [ "profile.h", "profile_8h.html", "profile_8h" ],
     [ "restore.h", "restore_8h.html", "restore_8h" ],
     [ "ring.h", "ring_8h.html", "ring_8h" ],
     [ "snippet.h", "snippet_8h.html", "snippet_8h" ],
+    [ "span.h", "span_8h.html", "span_8h" ],
     [ "src.h", "src_8h.html", "src_8h" ],
     [ "sym.h", "sym_8h.html", "sym_8h" ],
     [ "sys.h", "sys_8h.html", "sys_8h" ],
     [ "term.h", "term_8h.html", "term_8h" ],
     [ "utf8.h", "utf8_8h.html", "utf8_8h" ],
+    [ "vector.h", "vector_8h.html", "vector_8h" ],
     [ "xtrie.h", "xtrie_8h.html", "xtrie_8h" ]
 ];

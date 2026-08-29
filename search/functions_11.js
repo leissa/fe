@@ -14,5 +14,6 @@ var searchData=
   ['rotate_11',['rotate',['../classfe_1_1lct_1_1Node.html#a5d21896a2ec253e1d8d64dd12597bc33',1,'fe::lct::Node']]],
   ['row_12',['row',['../classfe_1_1Src.html#ae5999ab785d5dfbe58ac84eb3ffc4988',1,'fe::Src']]],
   ['rowcol_13',['rowcol',['../classfe_1_1Src.html#ae73eecf9ba170e53ae615cf58486af41',1,'fe::Src']]],
-  ['run_14',['run',['../namespacefe_1_1sys.html#a102d53e2f25459ccf55e83003c8d5d43',1,'fe::sys']]]
+  ['rsubspan_14',['rsubspan',['../classfe_1_1Span.html#aeee1f2c26925661a2a4c47238aa2b9ac',1,'fe::Span::rsubspan(size_t i, size_t n=D) const noexcept'],['../classfe_1_1Span.html#ab53827d6bae574d32de93ef41a36c2e9',1,'fe::Span::rsubspan() const noexcept']]],
+  ['run_15',['run',['../namespacefe_1_1sys.html#a102d53e2f25459ccf55e83003c8d5d43',1,'fe::sys']]]
 ];

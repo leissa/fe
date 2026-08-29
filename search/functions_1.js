@@ -14,7 +14,10 @@ var searchData=
   ['anew_5fend_11',['anew_end',['../structfe_1_1Loc.html#a880683bdd569c8ba9f1b70e93025c70e',1,'fe::Loc']]],
   ['any_12',['any',['../namespacefe_1_1utf8.html#a878567e47549cb6104196c7fb77413fa',1,'fe::utf8']]],
   ['append_13',['append',['../namespacefe_1_1utf8.html#aa8ae49725f0b51d0ff9c826a7268dfb0',1,'fe::utf8']]],
-  ['arena_14',['Arena',['../classfe_1_1Arena.html#a31a9b29bc955003c0df7f4103bc434c1',1,'fe::Arena::Arena(const Arena &amp;)=delete'],['../classfe_1_1Arena.html#a6954c6cb8a60224261e98798a7cd5fda',1,'fe::Arena::Arena(size_t page_size=Default_Page_Size)'],['../classfe_1_1Arena.html#a35374c3e8e92a4510a78d2d51d24f5ec',1,'fe::Arena::Arena(Arena &amp;&amp;other) noexcept']]],
-  ['as_15',['as',['../classfe_1_1RuntimeCast.html#a1f2d655724345f4b4e0bc4540ea78554',1,'fe::RuntimeCast::as()'],['../classfe_1_1RuntimeCast.html#af077f6cb9aef8502e4c76674a3a2666d',1,'fe::RuntimeCast::as() const']]],
-  ['aux_5fparent_16',['aux_parent',['../classfe_1_1lct_1_1Node.html#a09aa5b87ed14fc527222cfc29b83d472',1,'fe::lct::Node']]]
+  ['append_5frange_14',['append_range',['../classfe_1_1Vector.html#a641bf1faf45096926355c1104e2a037a',1,'fe::Vector']]],
+  ['arena_15',['Arena',['../classfe_1_1Arena.html#a31a9b29bc955003c0df7f4103bc434c1',1,'fe::Arena::Arena(const Arena &amp;)=delete'],['../classfe_1_1Arena.html#a6954c6cb8a60224261e98798a7cd5fda',1,'fe::Arena::Arena(size_t page_size=Default_Page_Size)'],['../classfe_1_1Arena.html#a35374c3e8e92a4510a78d2d51d24f5ec',1,'fe::Arena::Arena(Arena &amp;&amp;other) noexcept']]],
+  ['as_16',['as',['../classfe_1_1RuntimeCast.html#a1f2d655724345f4b4e0bc4540ea78554',1,'fe::RuntimeCast::as()'],['../classfe_1_1RuntimeCast.html#af077f6cb9aef8502e4c76674a3a2666d',1,'fe::RuntimeCast::as() const']]],
+  ['assert_5femplace_17',['assert_emplace',['../namespacefe.html#a4df91557ebad4a98ce8c285e992947e1',1,'fe']]],
+  ['assert_5flookup_18',['assert_lookup',['../namespacefe.html#a835c540d554775fe26d55827cc6812d4',1,'fe']]],
+  ['aux_5fparent_19',['aux_parent',['../classfe_1_1lct_1_1Node.html#a09aa5b87ed14fc527222cfc29b83d472',1,'fe::lct::Node']]]
 ];

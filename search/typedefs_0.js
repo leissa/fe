@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['clock_0',['Clock',['../classfe_1_1Profiler.html#ad6595b90c24f40995c1ebbb6f462bf52',1,'fe::Profiler']]]
+  ['base_0',['Base',['../classfe_1_1Span.html#a9f1290dc5b376d2af47ebc9ff0cfcd39',1,'fe::Span::Base'],['../classfe_1_1Vector.html#ae849108dfc0716acfd1051a6af8f425b',1,'fe::Vector::Base']]]
 ];

@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('restore_8h_sou
 <div class="foldopen" id="foldopen00018" data-start="{" data-end="}">
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classfe_1_1Restore.html#a6c9562790a3b9eaae620de533359a101">   18</a></span>    <a class="code hl_function" href="classfe_1_1Restore.html#a6c9562790a3b9eaae620de533359a101">Restore</a>(T&amp; ref, T value)</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        : ref_(ref)</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        , prev_(std::exchange(ref, std::move(value))) {}</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        , prev_(<a class="code hl_namespace" href="namespacestd.html">std</a>::exchange(ref, <a class="code hl_namespace" href="namespacestd.html">std</a>::move(value))) {}</div>
 </div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classfe_1_1Restore.html#a002b61e600b9a841cdbd914b36bf8326">   22</a></span>    <a class="code hl_function" href="classfe_1_1Restore.html#a002b61e600b9a841cdbd914b36bf8326">~Restore</a>() { ref_ = std::move(prev_); }</div>
@@ -176,7 +176,8 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('restore_8h_sou
 <div class="ttc" id="aclassfe_1_1Restore_html_a739e63c88247f84ddebd7393d09837a4"><div class="ttname"><a href="classfe_1_1Restore.html#a739e63c88247f84ddebd7393d09837a4">fe::Restore::Restore</a></div><div class="ttdeci">Restore(const Restore &amp;)=delete</div></div>
 <div class="ttc" id="aclassfe_1_1Restore_html_aedc5ff389dd48ba93f996180b22d7ded"><div class="ttname"><a href="classfe_1_1Restore.html#aedc5ff389dd48ba93f996180b22d7ded">fe::Restore::Restore</a></div><div class="ttdeci">Restore(T &amp;ref)</div><div class="ttdoc">Saves ref and restores it in the destructor.</div><div class="ttdef"><b>Definition</b> <a href="#l00013">restore.h:13</a></div></div>
 <div class="ttc" id="aclassfe_1_1Restore_html_afacf0dac6f0671081e7592941de508fe"><div class="ttname"><a href="classfe_1_1Restore.html#afacf0dac6f0671081e7592941de508fe">fe::Restore::operator=</a></div><div class="ttdeci">Restore &amp; operator=(const Restore &amp;)=delete</div></div>
-<div class="ttc" id="anamespacefe_html"><div class="ttname"><a href="namespacefe.html">fe</a></div><div class="ttdef"><b>Definition</b> <a href="arena_8h_source.html#l00013">arena.h:13</a></div></div>
+<div class="ttc" id="anamespacefe_html"><div class="ttname"><a href="namespacefe.html">fe</a></div><div class="ttdef"><b>Definition</b> <a href="algo_8h_source.html#l00014">algo.h:14</a></div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition</b> <a href="span_8h_source.html#l00130">span.h:130</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->
