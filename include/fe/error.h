@@ -2,7 +2,7 @@
 
 #include <cassert>
 
-#include <algorithm>
+#include <array>
 #include <exception>
 #include <format>
 #include <functional>
@@ -10,9 +10,10 @@
 #include <sstream>
 #include <string>
 #include <string_view>
+#include <utility>
 #include <vector>
 
-#include "fe/driver.h"
+#include "fe/diag.h"
 #include "fe/format.h"
 #include "fe/loc.h"
 #include "fe/snippet.h"
@@ -47,74 +48,116 @@ public:
         Note,
     };
 
+    /// A secondary message elaborating a Msg.
+    /// A Note with a Loc of its own reads as a diagnostic of its own - header line plus snippet;
+    /// one without has nowhere else to point and renders as a `= note:` continuation line.
+    struct Note {
+        Loc loc;
+        std::string str;
+    };
+
+    /// One Tag::Error or Tag::Warn together with the Note%s that belong to it.
     struct Msg {
         Loc loc;
         Tag tag;
         std::string str;
+        std::vector<Note> notes;
     };
 
     /// @name Constructors
     ///@{
-    Error() = default; ///< Renders with a default Driver::Diag and no Driver::render hook.
+    Error() = default; ///< Renders with a default Diag and no Diagnostics::render hook.
 
-    /// @warning A Msg::loc points into @p driver's SrcMap and Error::msg renders through Driver::render,
-    /// so @p driver must outlive this Error.
-    explicit Error(const Driver& driver)
-        : driver_(&driver) {}
+    /// @warning A Msg::loc points into the SrcMap that @p diagnostics belongs to and Error::msg renders through
+    /// Diagnostics::render, so @p diagnostics must outlive this Error.
+    explicit Error(const Diagnostics& diagnostics)
+        : diagnostics_(&diagnostics) {}
     ///@}
 
     /// @name Getters
     ///@{
     const auto& msgs() const { return msgs_; }
     bool empty() const { return msgs_.empty(); }
-    explicit operator bool() const { return !empty(); } ///< Any message at all?
-    size_t num_errors() const { return std::ranges::count(msgs_, Tag::Error, &Msg::tag); }
-    size_t num_warnings() const { return std::ranges::count(msgs_, Tag::Warn, &Msg::tag); }
-    size_t num_notes() const { return std::ranges::count(msgs_, Tag::Note, &Msg::tag); }
+    bool ok() const { return num_errors() == 0; } ///< Nothing recorded that must stop the compilation?
+    size_t num_errors() const { return n_[size_t(Tag::Error)]; }
+    size_t num_warnings() const { return n_[size_t(Tag::Warn)]; }
+    size_t num_notes() const { return n_[size_t(Tag::Note)]; }
+    bool truncated() const { return truncated_; } ///< Did Diag::max_errors drop anything?
     ///@}
 
     /// @name Add a Message
+    /// Each of these yields the Error again, so a diagnostic and its Note%s chain.
+    /// On a temporary the chain yields an rvalue, so `throw Error(d).error(...)` moves instead of copying.
     ///@{
-    /// Records the message @p fmt renders; see Driver::render.
-    Error& msg(Loc loc, Tag tag, const std::function<std::string()>& fmt) {
-        msgs_.emplace_back(loc, tag, driver_ ? driver_->render(fmt) : fmt());
+    /// Records the message @p fmt renders; see Diagnostics::render.
+    /// @p tag must be Tag::Error or Tag::Warn - a Tag::Note belongs to Error::note.
+    Error& msg(Loc loc, Tag tag, const std::function<std::string()>& fmt) & {
+        msg_(loc, tag, fmt);
         return *this;
     }
 
-    /// @note Formats via `std::vformat` because Driver::render may render @p s more than once.
-    template<class... Args>
-    Error& msg(Loc loc, Tag tag, std::format_string<Args...> s, Args&&... args) {
-        return msg(loc, tag, [&] { return std::vformat(s.get(), std::make_format_args(args...)); });
-    }
-
     // clang-format off
-    template<class... Args> Error& error(Loc loc, std::format_string<Args...> s, Args&&... args) { return msg(loc, Tag::Error, s, std::forward<Args>(args)...); }
-    template<class... Args> Error& warn (Loc loc, std::format_string<Args...> s, Args&&... args) { return msg(loc, Tag::Warn,  s, std::forward<Args>(args)...); }
-    template<class... Args> Error& note (Loc loc, std::format_string<Args...> s, Args&&... args) {
-        assert(num_errors() > 0 || num_warnings() > 0);
-        return msg(loc, Tag::Note, s, std::forward<Args>(args)...);
+    /// @note Formats via `std::vformat` because Diagnostics::render may render @p s more than once.
+    template<class... Args> Error& msg(Loc loc, Tag tag, std::format_string<Args...> s, Args&&... args) & {
+        msg_(loc, tag, [&] { return std::vformat(s.get(), std::make_format_args(args...)); });
+        return *this;
     }
-    // clang-format on
 
-    /// Error::note whose whole point is to point *elsewhere*; dropped when @p loc adds nothing.
+    template<class... Args> Error& error(Loc loc, std::format_string<Args...> s, Args&&... args) & { return msg(loc, Tag::Error, s, std::forward<Args>(args)...); }
+    template<class... Args> Error& warn (Loc loc, std::format_string<Args...> s, Args&&... args) & { return msg(loc, Tag::Warn,  s, std::forward<Args>(args)...); }
+
+    /// A `= note:` continuation of the diagnostic being built; it has no Loc of its own to point at.
+    template<class... Args> Error& note(std::format_string<Args...> s, Args&&... args) & {
+        note_(Loc(), [&] { return std::vformat(s.get(), std::make_format_args(args...)); });
+        return *this;
+    }
+
+    /// A Note that points *elsewhere*; dropped when @p loc adds nothing.
     /// A @p loc overlapping the primary one is already covered by its snippet and so points nowhere new.
     /// The renderer gives @p loc a header line of its own, so phrase the message to stand alone.
-    template<class... Args>
-    Error& note_at(Loc loc, std::format_string<Args...> s, Args&&... args) {
-        if (!loc || (loc & primary_loc())) return *this;
-        return note(loc, s, std::forward<Args>(args)...);
+    template<class... Args> Error& note(Loc loc, std::format_string<Args...> s, Args&&... args) & {
+        if (!loc || (loc & primary_loc_())) return *this;
+        note_(loc, [&] { return std::vformat(s.get(), std::make_format_args(args...)); });
+        return *this;
     }
+
+    Error&& msg(Loc loc, Tag tag, const std::function<std::string()>& fmt) && { return std::move(msg(loc, tag, fmt)); }
+
+    template<class... Args> Error&& msg    (Loc loc, Tag tag, std::format_string<Args...> s, Args&&... args) && { return std::move(msg    (loc, tag, s, std::forward<Args>(args)...)); }
+    template<class... Args> Error&& error  (Loc loc,          std::format_string<Args...> s, Args&&... args) && { return std::move(error  (loc,      s, std::forward<Args>(args)...)); }
+    template<class... Args> Error&& warn   (Loc loc,          std::format_string<Args...> s, Args&&... args) && { return std::move(warn   (loc,      s, std::forward<Args>(args)...)); }
+    template<class... Args> Error&& note   (                  std::format_string<Args...> s, Args&&... args) && { return std::move(note   (          s, std::forward<Args>(args)...)); }
+    template<class... Args> Error&& note   (Loc loc,          std::format_string<Args...> s, Args&&... args) && { return std::move(note   (loc,      s, std::forward<Args>(args)...)); }
+    // clang-format on
     ///@}
 
     /// @name Handle Errors/Warnings
     ///@{
-    void clear() { msgs_.clear(); }
+    void clear() {
+        msgs_.clear();
+        what_.clear();
+        n_         = {};
+        truncated_ = false;
+        dropped_   = false;
+    }
 
-    /// If errors occurred, claim them and throw; if warnings occurred, claim them and report to @p os.
+    /// Streams everything collected so far to @p os and claims it.
+    /// @returns the number of Tag::Error%s that were reported.
+    size_t report(std::ostream& os = std::cerr) {
+        auto num = num_errors();
+        if (!empty()) os << *this;
+        clear();
+        return num;
+    }
+
+    /// If errors occurred, claim them and throw; otherwise Error::report any warnings to @p os.
     void ack(std::ostream& os = std::cerr) {
-        auto e = std::move(*this);
-        if (e.num_errors() != 0) throw e;
-        if (e.num_warnings() != 0) os << e.num_warnings() << " warning(s) encountered\n" << e;
+        if (num_errors() != 0) {
+            auto e = std::move(*this);
+            clear();
+            throw e;
+        }
+        report(os);
     }
 
     const char* what() const noexcept override {
@@ -149,60 +192,96 @@ public:
         // clang-format on
     }
 
-    /// Renders each Tag::Error/Tag::Warn with its source snippet and its Tag::Note%s underneath.
-    /// A Tag::Note pointing at a Loc of its own reads as a diagnostic of its own - header line plus snippet;
-    /// one about the primary Loc has nowhere else to point and stays a `= note:` continuation line.
-    friend std::ostream& operator<<(std::ostream& os, const Error& e) { return e.stream(os); }
+    /// Renders each Msg with its source snippet and its Note%s underneath, closed by Error::summary.
+    friend std::ostream& operator<<(std::ostream& os, const Error& e) { return e.summary(e.stream(os)); }
 
 private:
-    Driver::Diag diag() const { return driver_ ? driver_->diag : Driver::Diag(); }
+    Diag diag() const { return diagnostics_ ? diagnostics_->diag : Diag(); }
 
-    /// Loc of the Tag::Error/Tag::Warn that subsequent Tag::Note%s belong to.
-    Loc primary_loc() const {
-        for (auto i = msgs_.rbegin(), e = msgs_.rend(); i != e; ++i)
-            if (i->tag != Tag::Note) return i->loc;
-        return {};
+    std::string render_(const std::function<std::string()>& fmt) const {
+        return diagnostics_ ? diagnostics_->render(fmt) : fmt();
+    }
+
+    /// Loc of the Msg that subsequent Note%s belong to.
+    Loc primary_loc_() const { return msgs_.empty() ? Loc() : msgs_.back().loc; }
+
+    void msg_(Loc loc, Tag tag, const std::function<std::string()>& fmt) {
+        assert(tag != Tag::Note && "a note belongs to Error::note");
+        auto d = diag();
+        if (tag == Tag::Warn && d.werror) tag = Tag::Error;
+
+        if (tag == Tag::Error && d.max_errors != 0 && num_errors() >= d.max_errors) {
+            truncated_ = dropped_ = true;
+            return;
+        }
+
+        dropped_ = false;
+        what_.clear();
+        ++n_[size_t(tag)];
+        msgs_.emplace_back(loc, tag, render_(fmt));
+    }
+
+    void note_(Loc loc, const std::function<std::string()>& fmt) {
+        if (dropped_) return;
+        assert(!msgs_.empty() && "a note needs an error or warning to attach to");
+        what_.clear();
+        ++n_[size_t(Tag::Note)];
+        msgs_.back().notes.emplace_back(loc, render_(fmt));
     }
 
     /// Streamed piecewise instead of via std::format: a std::formatter cannot see its destination stream,
     /// so embedded term::FG values would resolve Mode::Auto to "no color"; see fe/term.h.
-    std::ostream& header(std::ostream& os, const Msg& msg) const {
-        os << term::FG::Yellow << msg.loc << ": " << msg.tag << ": " << term::FG::Reset;
-        return stream_code(os, msg.str);
+    std::ostream& header_(std::ostream& os, Loc loc, Tag tag, std::string_view str) const {
+        os << term::FG::Yellow << loc << ": " << tag << ": " << term::FG::Reset;
+        return stream_code(os, str);
     }
 
     std::ostream& stream(std::ostream& os) const {
-        auto [gutter, max_rows, no_snippet] = diag();
-        auto primary                        = Loc();
-
-        auto snippet = [&](const Msg& msg) {
-            if (!no_snippet) os << Snippet{msg.loc, tag2color(msg.tag), gutter, max_rows};
+        auto d       = diag();
+        auto snippet = [&](Loc loc, Tag tag) {
+            if (!d.no_snippet) os << Snippet{loc, tag2color(tag), d.gutter, d.max_rows};
         };
 
         for (const auto& msg : msgs_) {
-            if (msg.tag == Tag::Note) {
-                // A note pointing elsewhere reads as a diagnostic of its own; one about the primary Loc has no
-                // other place to name and stays a continuation line.
-                if (msg.loc && msg.loc != primary) {
-                    os << std::format("{:>{}} ", "", gutter);
-                    header(os, msg) << '\n';
-                    snippet(msg);
+            header_(os, msg.loc, msg.tag, msg.str) << '\n';
+            snippet(msg.loc, msg.tag);
+
+            for (const auto& note : msg.notes) {
+                if (note.loc) {
+                    os << std::format("{:>{}} ", "", d.gutter);
+                    header_(os, note.loc, Tag::Note, note.str) << '\n';
+                    snippet(note.loc, Tag::Note);
                 } else {
-                    os << term::FG::Gray << std::format("{:>{}} = ", "", gutter) << msg.tag << ": " << term::FG::Reset;
-                    stream_code(os, msg.str) << '\n';
+                    os << term::FG::Gray << std::format("{:>{}} = ", "", d.gutter) << Tag::Note << ": "
+                       << term::FG::Reset;
+                    stream_code(os, note.str) << '\n';
                 }
-            } else {
-                primary = msg.loc;
-                header(os, msg) << '\n';
-                snippet(msg);
             }
         }
 
-        return os.flush();
+        return os;
     }
 
-    const Driver* driver_ = nullptr;
+    /// The `n error(s), m warning(s) encountered` line that closes a dump.
+    std::ostream& summary(std::ostream& os) const {
+        if (empty()) return os;
+
+        auto sep = std::string_view();
+        if (auto n = num_errors()) {
+            os << sep << n << " error(s)";
+            sep = ", ";
+        }
+        if (auto n = num_warnings()) os << sep << n << " warning(s)";
+        os << " encountered";
+        if (truncated_) os << "; further diagnostics dropped";
+        return os << '\n';
+    }
+
+    const Diagnostics* diagnostics_ = nullptr;
     std::vector<Msg> msgs_;
+    std::array<size_t, 3> n_ = {};
+    bool truncated_          = false;
+    bool dropped_            = false; ///< Was the Msg that Note%s would attach to dropped?
     mutable std::string what_;
 };
 

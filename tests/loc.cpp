@@ -219,7 +219,7 @@ TEST_CASE("Error") {
     auto [src, _] = drv.src().add("test.let", "let x = 1;\nlet y = 2;\nlet z = 3;");
 
     auto err = fe::Error(drv);
-    CHECK(!err);
+    CHECK(err.ok());
     CHECK(err.empty());
     CHECK(err.num_errors() == 0);
     CHECK(err.num_warnings() == 0);
@@ -228,7 +228,7 @@ TEST_CASE("Error") {
     err.warn(Loc(src, Pos(15), Pos(16)), "unused variable '{}'", "x");
     err.note(Loc(src, Pos(26), Pos(27)), "declared here");
 
-    CHECK(err);
+    CHECK(!err.ok());
     CHECK(err.num_errors() == 1);
     CHECK(err.num_warnings() == 1);
     CHECK(err.num_notes() == 1);
@@ -242,46 +242,84 @@ TEST_CASE("Error") {
              "      |     ^\n"
              "      test.let:3:5: note: declared here\n"
              "    3 | let z = 3;\n"
-             "      |     ^\n");
+             "      |     ^\n"
+             "1 error(s), 1 warning(s) encountered\n");
 
     SUBCASE("what() renders the whole collection") { CHECK(std::string(err.what()) == std::format("{}", err)); }
 
-    SUBCASE("a note about the primary Loc stays a continuation line") {
+    SUBCASE("a note without a Loc stays a continuation line") {
         err.clear();
-        auto loc = Loc(src, Pos(4), Pos(5));
-        err.error(loc, "expected '{}'", ';');
-        err.note(loc, "inserted here");
+        err.error(Loc(src, Pos(4), Pos(5)), "expected '{}'", ';').note("inserted here");
+        CHECK(err.msgs().front().notes.size() == 1);
         CHECK(std::format("{}", err)
               == "test.let:1:5: error: expected ';'\n"
                  "    1 | let x = 1;\n"
                  "      |     ^\n"
-                 "      = note: inserted here\n");
+                 "      = note: inserted here\n"
+                 "1 error(s) encountered\n");
     }
 
-    SUBCASE("note_at drops a Loc that points nowhere new") {
+    SUBCASE("a note drops a Loc that points nowhere new") {
         err.clear();
         auto loc = Loc(src, Pos(4), Pos(5));
         err.error(loc, "oops");
-        err.note_at(loc, "same spot"); // overlaps the primary Loc
-        err.note_at(Loc(), "no Loc");
+        err.note(loc, "same spot"); // overlaps the primary Loc
+        err.note(Loc(), "no Loc");
         CHECK(err.num_notes() == 0);
-        err.note_at(Loc(src, Pos(15), Pos(16)), "elsewhere");
+        err.note(Loc(src, Pos(15), Pos(16)), "elsewhere");
         CHECK(err.num_notes() == 1);
+        CHECK(err.msgs().front().notes.size() == 1);
     }
 
-    SUBCASE("Driver::diag lays the diagnostic out") {
+    SUBCASE("Diag lays the diagnostic out") {
         drv.diag.no_snippet = true;
         err.clear();
-        err.note_at(Loc(), ""); // no-op, just to keep the assert in note() happy below
         err.error(Loc(src, Pos(4), Pos(5)), "just the header line");
-        CHECK(std::format("{}", err) == "test.let:1:5: error: just the header line\n");
+        CHECK(std::format("{}", err)
+              == "test.let:1:5: error: just the header line\n"
+                 "1 error(s) encountered\n");
 
         drv.diag.no_snippet = false;
         drv.diag.gutter     = 2;
         CHECK(std::format("{}", err)
               == "test.let:1:5: error: just the header line\n"
                  " 1 | let x = 1;\n"
-                 "   |     ^\n");
+                 "   |     ^\n"
+                 "1 error(s) encountered\n");
+        drv.diag.gutter = 5;
+    }
+
+    SUBCASE("Diag::werror records a warning as an error") {
+        drv.diag.werror = true;
+        err.clear();
+        err.warn(Loc(src, Pos(4), Pos(5)), "promoted");
+        CHECK(err.num_errors() == 1);
+        CHECK(err.num_warnings() == 0);
+        CHECK(!err.ok());
+        drv.diag.werror = false;
+    }
+
+    SUBCASE("Diag::max_errors drops the rest") {
+        drv.diag.max_errors = 1;
+        err.clear();
+        err.error(Loc(src, Pos(4), Pos(5)), "kept").note("kept note");
+        err.error(Loc(src, Pos(15), Pos(16)), "dropped").note("dropped note");
+        CHECK(err.num_errors() == 1);
+        CHECK(err.num_notes() == 1);
+        CHECK(err.truncated());
+        CHECK(std::format("{}", err).ends_with("1 error(s) encountered; further diagnostics dropped\n"));
+        drv.diag.max_errors = 0;
+    }
+
+    SUBCASE("report streams and claims everything") {
+        err.clear();
+        err.warn(Loc(src, Pos(4), Pos(5)), "just a warning");
+        std::ostringstream oss;
+        CHECK(err.report(oss) == 0);
+        CHECK(oss.str().ends_with("1 warning(s) encountered\n"));
+        CHECK(err.empty());
+        CHECK(err.report(oss) == 0); // nothing left to say
+        CHECK(oss.str().ends_with("1 warning(s) encountered\n"));
     }
 
     SUBCASE("ack throws on errors and reports warnings") {
@@ -289,14 +327,28 @@ TEST_CASE("Error") {
         err.warn(Loc(src, Pos(4), Pos(5)), "just a warning");
         std::ostringstream oss;
         err.ack(oss);
-        CHECK(oss.str().starts_with("1 warning(s) encountered\n"));
+        CHECK(oss.str().ends_with("1 warning(s) encountered\n"));
         CHECK(err.empty()); // ack claims the messages
 
         err.error(Loc(src, Pos(4), Pos(5)), "a real error");
         CHECK_THROWS_AS(err.ack(oss), fe::Error);
+        CHECK(err.empty()); // ... and claims them here, too
+        CHECK(err.num_errors() == 0);
     }
 
-    SUBCASE("Driver::render may render a message twice") {
+    SUBCASE("a chain on a temporary moves into the exception") {
+        try {
+            throw fe::Error(drv)
+                .error(Loc(src, Pos(4), Pos(5)), "boom")
+                .note("why")
+                .note(Loc(src, Pos(15), Pos(16)), "and there");
+        } catch (const fe::Error& e) {
+            CHECK(e.num_errors() == 1);
+            CHECK(e.msgs().front().notes.size() == 2);
+        }
+    }
+
+    SUBCASE("Diagnostics::render may render a message twice") {
         struct Retry : fe::Driver {
             std::string render(const std::function<std::string()>& fmt) const override {
                 ++calls;
@@ -312,7 +364,7 @@ TEST_CASE("Error") {
         CHECK(e.msgs().front().str == "hi");
     }
 
-    SUBCASE("a Driver-less Error still renders") {
+    SUBCASE("a Diagnostics-less Error still renders") {
         auto e = fe::Error();
         e.error(Loc(), "no driver");
         CHECK(e.num_errors() == 1);

@@ -1,11 +1,7 @@
 #pragma once
 
-#include <cstdint>
-
-#include <functional>
-#include <string>
-
 #include "fe/dbg.h"
+#include "fe/diag.h"
 #include "fe/src.h"
 #include "fe/sym.h"
 #include "fe/vector.h"
@@ -14,8 +10,8 @@ namespace fe {
 
 /// Use/derive from this class for "global" variables that you need all over the place.
 /// Well, there are not really global - that's the point of this class.
-/// It manages a SymPool, a SrcMap, the interned Dbg%s, and how an Error renders.
-struct Driver : public SymPool {
+/// It manages a SymPool, a SrcMap, the interned Dbg%s, and - as a Diagnostics - how an Error renders.
+struct Driver : public SymPool, public Diagnostics {
 public:
     Driver()                  = default;
     Driver(Driver&&)          = default;
@@ -45,24 +41,6 @@ public:
         dbg2key_.emplace(dbg, key);
         return DbgKey(key);
     }
-    ///@}
-
-    /// @name Diagnostics
-    /// @see fe::Error
-    ///@{
-    /// How an Error lays out a diagnostic.
-    struct Diag {
-        uint32_t gutter   = 5;     ///< Width of the line-number column.
-        uint32_t max_rows = 8;     ///< Rows a Snippet streams before eliding its middle; `0` elides nothing.
-        bool no_snippet   = false; ///< If `true`, a diagnostic is only its header line.
-    };
-
-    Diag diag;
-
-    /// Renders the text of one Error::Msg.
-    /// The default simply invokes @p fmt; override to postprocess it - or to invoke @p fmt a second time,
-    /// e.g. once the first pass turns out to have rendered two distinct entities under the same name.
-    virtual std::string render(const std::function<std::string()>& fmt) const { return fmt(); }
     ///@}
 
 private:

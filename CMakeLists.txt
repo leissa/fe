@@ -39,6 +39,7 @@ target_sources(fe
             include/fe/cast.h
             include/fe/container.h
             include/fe/dbg.h
+            include/fe/diag.h
             include/fe/dl.h
             include/fe/enum.h
             include/fe/error.h
