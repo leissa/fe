@@ -16,6 +16,7 @@ var classfe_1_1Error =
     [ "clear", "classfe_1_1Error.html#a49f4b59762202737f27bd6e35a22d0fc", null ],
     [ "empty", "classfe_1_1Error.html#ac291fef4f4637573b438cb1188997c98", null ],
     [ "error", "classfe_1_1Error.html#ad8368ada831692fd3994e6be28b6240d", null ],
+    [ "msg", "classfe_1_1Error.html#a0be3ad6db15f4a91da361765326e508e", null ],
     [ "msg", "classfe_1_1Error.html#a7d5548075c6e6527e87f8c76034a01e8", null ],
     [ "msgs", "classfe_1_1Error.html#a27fe473278b55b1e3df08f10c40f748d", null ],
     [ "note", "classfe_1_1Error.html#aff0747094a9e80944bffd43c325f5748", null ],
