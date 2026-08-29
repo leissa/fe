@@ -590,7 +590,8 @@ TEST_CASE("Span") {
     }
 
     SUBCASE("initializer_list") {
-        auto init = fe::Span<const int>({1, 2, 3});
+        std::initializer_list<const int> list = {1, 2, 3};
+        auto init                             = fe::Span<const int>(list);
         CHECK(init.size() == 3);
         CHECK(init[2] == 3);
     }
