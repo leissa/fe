@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <exception>
 #include <format>
+#include <functional>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -74,12 +75,16 @@ public:
 
     /// @name Add a Message
     ///@{
+    /// Records the message @p fmt renders; see Driver::render.
+    Error& msg(Loc loc, Tag tag, const std::function<std::string()>& fmt) {
+        msgs_.emplace_back(loc, tag, driver_ ? driver_->render(fmt) : fmt());
+        return *this;
+    }
+
     /// @note Formats via `std::vformat` because Driver::render may render @p s more than once.
     template<class... Args>
     Error& msg(Loc loc, Tag tag, std::format_string<Args...> s, Args&&... args) {
-        auto fmt = [&] { return std::vformat(s.get(), std::make_format_args(args...)); };
-        msgs_.emplace_back(loc, tag, driver_ ? driver_->render(fmt) : fmt());
-        return *this;
+        return msg(loc, tag, [&] { return std::vformat(s.get(), std::make_format_args(args...)); });
     }
 
     // clang-format off
