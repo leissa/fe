@@ -2,6 +2,7 @@
 
 #include <doctest/doctest.h>
 #include <fe/driver.h>
+#include <fe/error.h>
 #include <fe/format.h>
 #include <fe/loc.h>
 #include <fe/snippet.h>
@@ -189,53 +190,136 @@ TEST_CASE("SrcMap") {
 }
 
 TEST_CASE("Driver") {
-    // Capture std::cerr and disable colors so the diagnostic text is predictable.
-    struct Capture {
-        Capture()
-            : old_buf(std::cerr.rdbuf(oss.rdbuf()))
-            , old_mode(fe::term::mode()) {
-            fe::term::set_mode(fe::term::Mode::Never);
-        }
-        ~Capture() {
-            std::cerr.rdbuf(old_buf);
-            fe::term::set_mode(old_mode);
-        }
+    fe::Driver drv;
+    auto [src, _] = drv.src().add("test.let", "let x = 1;\nlet y = 2;\nlet z = 3;");
 
-        std::ostringstream oss;
-        std::streambuf* old_buf;
-        fe::term::Mode old_mode;
-    } capture;
+    CHECK(drv.sym("foo") == drv.sym("foo")); // Driver inherits SymPool.
+    CHECK(drv.src().lookup("test.let") == src);
+
+    SUBCASE("Dbg interning") {
+        auto dbg = fe::Dbg(Loc(src, Pos(4), Pos(5)), drv.sym("x"));
+        auto key = drv.dbg(dbg);
+        CHECK(key);
+        CHECK(drv.dbg(key) == dbg);
+        CHECK(drv.dbg(dbg) == key); // interned only once
+
+        auto empty = drv.dbg(fe::Dbg());
+        CHECK(!empty);
+        CHECK(!drv.dbg(empty));
+        CHECK(fe::DbgKey() == empty); // key 0 is always the empty Dbg
+    }
+}
+
+TEST_CASE("Error") {
+    // Disable colors so the diagnostic text is predictable.
+    auto old_mode = fe::term::mode();
+    fe::term::set_mode(fe::term::Mode::Never);
 
     fe::Driver drv;
     auto [src, _] = drv.src().add("test.let", "let x = 1;\nlet y = 2;\nlet z = 3;");
 
-    CHECK(drv.num_errors() == 0);
-    CHECK(drv.num_warnings() == 0);
+    auto err = fe::Error(drv);
+    CHECK(!err);
+    CHECK(err.empty());
+    CHECK(err.num_errors() == 0);
+    CHECK(err.num_warnings() == 0);
 
-    drv.err(Loc(src, Pos(4), Pos(5)), "expected '{}'", ';');
-    drv.warn(Loc(src, Pos(15), Pos(16)), "unused variable '{}'", "x");
-    drv.note(Loc(src, Pos(26), Pos(27)), "declared here");
+    err.error(Loc(src, Pos(4), Pos(5)), "expected '{}'", ';');
+    err.warn(Loc(src, Pos(15), Pos(16)), "unused variable '{}'", "x");
+    err.note(Loc(src, Pos(26), Pos(27)), "declared here");
 
-    CHECK(drv.num_errors() == 1);
-    CHECK(drv.num_warnings() == 1);
-    CHECK(capture.oss.str()
+    CHECK(err);
+    CHECK(err.num_errors() == 1);
+    CHECK(err.num_warnings() == 1);
+    CHECK(err.num_notes() == 1);
+
+    CHECK(std::format("{}", err)
           == "test.let:1:5: error: expected ';'\n"
              "    1 | let x = 1;\n"
              "      |     ^\n"
              "test.let:2:5: warning: unused variable 'x'\n"
              "    2 | let y = 2;\n"
              "      |     ^\n"
-             "test.let:3:5: note: declared here\n"
+             "      test.let:3:5: note: declared here\n"
              "    3 | let z = 3;\n"
              "      |     ^\n");
 
-    drv.no_snippet = true;
-    capture.oss.str("");
-    drv.note(Loc(src, Pos(4), Pos(5)), "just the header line");
-    CHECK(capture.oss.str() == "test.let:1:5: note: just the header line\n");
+    SUBCASE("what() renders the whole collection") { CHECK(std::string(err.what()) == std::format("{}", err)); }
 
-    // Driver inherits SymPool.
-    CHECK(drv.sym("foo") == drv.sym("foo"));
+    SUBCASE("a note about the primary Loc stays a continuation line") {
+        err.clear();
+        auto loc = Loc(src, Pos(4), Pos(5));
+        err.error(loc, "expected '{}'", ';');
+        err.note(loc, "inserted here");
+        CHECK(std::format("{}", err)
+              == "test.let:1:5: error: expected ';'\n"
+                 "    1 | let x = 1;\n"
+                 "      |     ^\n"
+                 "      = note: inserted here\n");
+    }
+
+    SUBCASE("note_at drops a Loc that points nowhere new") {
+        err.clear();
+        auto loc = Loc(src, Pos(4), Pos(5));
+        err.error(loc, "oops");
+        err.note_at(loc, "same spot"); // overlaps the primary Loc
+        err.note_at(Loc(), "no Loc");
+        CHECK(err.num_notes() == 0);
+        err.note_at(Loc(src, Pos(15), Pos(16)), "elsewhere");
+        CHECK(err.num_notes() == 1);
+    }
+
+    SUBCASE("Driver::diag lays the diagnostic out") {
+        drv.diag.no_snippet = true;
+        err.clear();
+        err.note_at(Loc(), ""); // no-op, just to keep the assert in note() happy below
+        err.error(Loc(src, Pos(4), Pos(5)), "just the header line");
+        CHECK(std::format("{}", err) == "test.let:1:5: error: just the header line\n");
+
+        drv.diag.no_snippet = false;
+        drv.diag.gutter     = 2;
+        CHECK(std::format("{}", err)
+              == "test.let:1:5: error: just the header line\n"
+                 " 1 | let x = 1;\n"
+                 "   |     ^\n");
+    }
+
+    SUBCASE("ack throws on errors and reports warnings") {
+        err.clear();
+        err.warn(Loc(src, Pos(4), Pos(5)), "just a warning");
+        std::ostringstream oss;
+        err.ack(oss);
+        CHECK(oss.str().starts_with("1 warning(s) encountered\n"));
+        CHECK(err.empty()); // ack claims the messages
+
+        err.error(Loc(src, Pos(4), Pos(5)), "a real error");
+        CHECK_THROWS_AS(err.ack(oss), fe::Error);
+    }
+
+    SUBCASE("Driver::render may render a message twice") {
+        struct Retry : fe::Driver {
+            std::string render(const std::function<std::string()>& fmt) const override {
+                ++calls;
+                fmt();
+                return fmt();
+            }
+            mutable int calls = 0;
+        } retry;
+
+        auto e = fe::Error(retry);
+        e.error(Loc(), "hi");
+        CHECK(retry.calls == 1);
+        CHECK(e.msgs().front().str == "hi");
+    }
+
+    SUBCASE("a Driver-less Error still renders") {
+        auto e = fe::Error();
+        e.error(Loc(), "no driver");
+        CHECK(e.num_errors() == 1);
+        CHECK(e.msgs().front().str == "no driver");
+    }
+
+    fe::term::set_mode(old_mode);
 }
 
 TEST_CASE("snippet") {

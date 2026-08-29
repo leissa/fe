@@ -43,9 +43,9 @@ It provides a compact set of reusable, well-integrated components:
 
 - `fe::Arena` for fast arena allocation and arena-backed ownership.
 - `fe::Sym` and `fe::SymPool` for string interning and cheap identifier comparison.
-- `fe::Driver` for diagnostics and shared frontend state.
+- `fe::Driver` for shared frontend state: the SymPool, the SrcMap, the interned `Dbg`s, and how an `Error` renders.
 - `fe::Pos` and `fe::Loc` for source positions and source spans.
-- `fe::Dbg` for the `Loc`/`Sym` pair every named entity drags along.
+- `fe::Dbg` for the `Loc`/`Sym` pair every named entity drags along, interned in the `Driver` as a `DbgKey`.
 - `fe::Log` for leveled logging with acronym, color, and origin prefix.
     - `ELOG`/`WLOG`/... shorthands live in `fe/log_macros.h`, so you only get the macros if you ask for them.
 - `fe::Src` and `fe::SrcMap` for owning source text and resolving a position back to `path:row:col`.
@@ -55,6 +55,7 @@ It provides a compact set of reusable, well-integrated components:
 - `fe::XTrie` for interned, immutable sets - an [IndexedTrie](https://dl.acm.org/doi/10.1145/3808286) that is space-efficient and answers intersection tests fast.
 - `fe::Lexer<K, S>` for UTF-8-aware lexing with lookahead and token text accumulation.
 - `fe::Parser<Tok, Tag, K, S>` for recursive-descent-style parsing with token lookahead, span tracking, and anchor-based error recovery.
+- `fe::Error` for collecting diagnostics - errors, warnings and their notes - and rendering each with its source snippet.
 - `fe::Restore` for RAII save/restore of a variable across a scope.
 - `fe::Span`/`fe::View` and `fe::Vector` for spans with structured binding and small-buffer vectors.
 - `fe/algo.h` and `fe/container.h` for the odds and ends every frontend rewrites otherwise.
@@ -142,7 +143,7 @@ A typical FE-based frontend looks roughly like this:
 1. Define a token type exposing `tag()` and `loc()`.
 2. Implement your lexer by deriving from `fe::Lexer<K, S>`.
 3. Implement your parser by deriving from `fe::Parser<Tok, Tag, K, S>`.
-4. Use `fe::Driver` to centralize diagnostics and shared state.
+4. Use `fe::Driver` to centralize shared state and an `fe::Error` to collect diagnostics.
 5. Register each source file with `fe::Driver::src()` so a `fe::Loc` can resolve itself to `path:row:col`.
 6. Thread `fe::Loc` through tokens and AST nodes for precise error reporting.
 7. Use `fe::Arena` and symbol interning where allocation cost and identifier handling matter.

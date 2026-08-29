@@ -1,22 +1,28 @@
 #pragma once
 
-#include <sstream>
-#include <string_view>
+#include <cstdint>
 
-#include <fe/format.h>
-#include <fe/loc.h>
-#include <fe/snippet.h>
-#include <fe/src.h>
-#include <fe/sym.h>
-#include <fe/term.h>
+#include <functional>
+#include <string>
+
+#include "fe/dbg.h"
+#include "fe/src.h"
+#include "fe/sym.h"
+#include "fe/vector.h"
 
 namespace fe {
 
 /// Use/derive from this class for "global" variables that you need all over the place.
 /// Well, there are not really global - that's the point of this class.
-/// Right now, it manages a SymPool and a SrcMap and offers `std::format`-based diagnostics.
+/// It manages a SymPool, a SrcMap, the interned Dbg%s, and how an Error renders.
 struct Driver : public SymPool {
 public:
+    Driver()                  = default;
+    Driver(Driver&&)          = default;
+    virtual ~Driver()         = default;
+    Driver(const Driver&)     = delete;
+    Driver& operator=(Driver) = delete;
+
     /// @name Source Files
     /// Register every file you lex here: a Loc is only as good as the SrcMap that keeps its Src alive.
     ///@{
@@ -24,35 +30,47 @@ public:
     const SrcMap& src() const { return src_; }
     ///@}
 
-    /// @name Diagnostics
-    /// A diagnostic is the header line `loc: tag: msg` followed by the source snippet @p loc points at.
+    /// @name Dbg Interning
+    /// A node only has to store the DbgKey instead of a full Dbg.
+    /// Both halves of a Dbg are already owned here:
+    /// Dbg::sym is interned in this Driver's SymPool and Dbg::loc points into Driver::src.
     ///@{
-    // clang-format off
-    template<class... Args> void note(Loc loc, std::format_string<Args...> fmt, Args&&... args) const {                  diag(loc, term::FG::Cyan,    "note",    std::format(fmt, std::forward<Args>(args)...)); }
-    template<class... Args> void warn(Loc loc, std::format_string<Args...> fmt, Args&&... args)       { ++num_warnings_; diag(loc, term::FG::Magenta, "warning", std::format(fmt, std::forward<Args>(args)...)); }
-    template<class... Args> void err (Loc loc, std::format_string<Args...> fmt, Args&&... args)       { ++num_errors_;   diag(loc, term::FG::Red,     "error",   std::format(fmt, std::forward<Args>(args)...)); }
-    // clang-format on
+    Dbg dbg(DbgKey key) const { return dbgs_[key.key_]; }
 
-    void diag(Loc loc, term::FG color, std::string_view tag, std::string_view msg) const {
-        std::cerr << loc << ": " << color << tag << ": " << term::FG::Reset << msg << std::endl;
-        if (!no_snippet) std::cerr << Snippet{loc, color, gutter, max_rows};
+    /// Interns @p dbg and yields its DbgKey.
+    DbgKey dbg(Dbg dbg) {
+        if (auto i = dbg2key_.find(dbg); i != dbg2key_.end()) return DbgKey(i->second);
+        auto key = uint32_t(dbgs_.size());
+        dbgs_.emplace_back(dbg);
+        dbg2key_.emplace(dbg, key);
+        return DbgKey(key);
     }
-
-    unsigned num_errors() const { return num_errors_; }
-    unsigned num_warnings() const { return num_warnings_; }
     ///@}
 
-    /// @name Diagnostic Layout
+    /// @name Diagnostics
+    /// @see fe::Error
     ///@{
-    uint32_t gutter   = 5;     ///< Width of the line-number column.
-    uint32_t max_rows = 8;     ///< Rows a snippet streams before eliding its middle; `0` elides nothing.
-    bool no_snippet   = false; ///< If `true`, only the header line is streamed.
+    /// How an Error lays out a diagnostic.
+    struct Diag {
+        uint32_t gutter   = 5;     ///< Width of the line-number column.
+        uint32_t max_rows = 8;     ///< Rows a Snippet streams before eliding its middle; `0` elides nothing.
+        bool no_snippet   = false; ///< If `true`, a diagnostic is only its header line.
+    };
+
+    Diag diag;
+
+    /// Renders the text of one Error::Msg.
+    /// The default simply invokes @p fmt; override to postprocess it - or to invoke @p fmt a second time,
+    /// e.g. once the first pass turns out to have rendered two distinct entities under the same name.
+    virtual std::string render(const std::function<std::string()>& fmt) const { return fmt(); }
     ///@}
 
 private:
     SrcMap src_;
-    unsigned num_errors_   = 0;
-    unsigned num_warnings_ = 0;
+    Vector<Dbg> dbgs_         = {Dbg()}; ///< Key `0` is the empty Dbg.
+    DbgMap<uint32_t> dbg2key_ = {
+        {Dbg(), 0}
+    };
 };
 
 } // namespace fe

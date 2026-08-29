@@ -41,6 +41,7 @@ target_sources(fe
             include/fe/dbg.h
             include/fe/dl.h
             include/fe/enum.h
+            include/fe/error.h
             include/fe/driver.h
             include/fe/hash.h
             include/fe/format.h

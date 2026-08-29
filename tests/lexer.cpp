@@ -2,6 +2,7 @@
 
 #include <doctest/doctest.h>
 #include <fe/driver.h>
+#include <fe/error.h>
 #include <fe/lexer.h>
 #include <fe/parser.h>
 
@@ -115,12 +116,14 @@ public:
     using fe::Lexer<K, Lexer<K>>::peek;
     using fe::Lexer<K, Lexer<K>>::str_;
 
-    Lexer(fe::Driver& driver, std::string_view buf)
+    Lexer(fe::Driver& driver, fe::Error& err, std::string_view buf)
         : fe::Lexer<K, Lexer<K>>(buf)
-        , driver_(driver) {}
-    Lexer(fe::Driver& driver, const fe::Src& src)
+        , driver_(driver)
+        , err_(err) {}
+    Lexer(fe::Driver& driver, fe::Error& err, const fe::Src& src)
         : fe::Lexer<K, Lexer<K>>(src)
-        , driver_(driver) {}
+        , driver_(driver)
+        , err_(err) {}
 
     Tok lex() {
         while (true) {
@@ -160,13 +163,14 @@ public:
                 return {loc_, u};
             }
 
-            driver_.err(peek(), "invalid input character: ''{}'", utf8::Char32(ahead()));
+            err_.error(peek(), "invalid input character: ''{}'", utf8::Char32(ahead()));
             next();
         }
     }
 
 private:
     fe::Driver& driver_;
+    fe::Error& err_;
 };
 
 /// Minimal precedence-climbing expression parser, mirroring the intended `fe::Parser` usage in the
@@ -187,14 +191,16 @@ public:
     using Super::recover;
     using Super::tracker;
 
-    Parser(fe::Driver& driver, std::string_view buf)
+    Parser(fe::Driver& driver, fe::Error& err, std::string_view buf)
         : driver_(driver)
-        , lexer_(driver, buf) {
+        , err_(err)
+        , lexer_(driver, err, buf) {
         this->init(); // fill lookahead; must run after lexer_ is constructed
     }
-    Parser(fe::Driver& driver, const fe::Src& src)
+    Parser(fe::Driver& driver, fe::Error& err, const fe::Src& src)
         : driver_(driver)
-        , lexer_(driver, src) {
+        , err_(err)
+        , lexer_(driver, err, src) {
         this->init(); // fill lookahead; must run after lexer_ is constructed
     }
 
@@ -210,11 +216,11 @@ public:
     }
 
     void syntax_err(Tok::Tag tag, std::string_view ctxt) {
-        driver_.err(ahead().loc(), "expected '{}' while parsing {}", Tok::tag2str(tag), ctxt);
+        err_.error(ahead().loc(), "expected '{}' while parsing {}", Tok::tag2str(tag), ctxt);
     }
 
     void unanchored_err(Tok tok, std::string_view ctxt) {
-        driver_.err(tok.loc(), "ignoring unmatched '{}' while parsing {}", tok, ctxt);
+        err_.error(tok.loc(), "ignoring unmatched '{}' while parsing {}", tok, ctxt);
     }
 
 private:
@@ -259,6 +265,7 @@ private:
 
     friend Super;
     fe::Driver& driver_;
+    fe::Error& err_;
     Lexer<K> lexer_;
 };
 
@@ -266,9 +273,10 @@ template<size_t K>
 void test_parser() {
     auto parse = [](std::string_view src) {
         fe::Driver drv;
-        Parser<K> parser(drv, src);
+        fe::Error err(drv);
+        Parser<K> parser(drv, err, src);
         auto [str, loc] = parser.parse();
-        return std::tuple{str, loc, drv.num_errors()};
+        return std::tuple{str, loc, err.num_errors()};
     };
 
     // precedence
@@ -325,7 +333,8 @@ TEST_CASE("Parser") {
 template<size_t K>
 void test_lexer() {
     fe::Driver drv;
-    Lexer<K> lexer(drv, " test  abc    def if  \nwhile λ foo «n; X»  ");
+    fe::Error err(drv);
+    Lexer<K> lexer(drv, err, " test  abc    def if  \nwhile λ foo «n; X»  ");
 
     auto t1 = lexer.lex();
     auto t2 = lexer.lex();
@@ -374,7 +383,8 @@ template<size_t K>
 void test_bom() {
     SUBCASE("UTF-8 BOM is skipped") {
         fe::Driver drv;
-        Lexer<K> lexer(drv, "\xEF\xBB\xBFtest");
+        fe::Error err(drv);
+        Lexer<K> lexer(drv, err, "\xEF\xBB\xBFtest");
 
         auto tok = lexer.lex();
         CHECK(tok.to_string() == "test");
@@ -384,7 +394,8 @@ void test_bom() {
 
     SUBCASE("buffer starting with a newline") {
         fe::Driver drv;
-        Lexer<K> lexer(drv, "\nwhile");
+        fe::Error err(drv);
+        Lexer<K> lexer(drv, err, "\nwhile");
 
         auto tok = lexer.lex();
         CHECK(tok.to_string() == "while");
@@ -393,7 +404,8 @@ void test_bom() {
 
     SUBCASE("empty buffer") {
         fe::Driver drv;
-        Lexer<K> lexer(drv, "");
+        fe::Error err(drv);
+        Lexer<K> lexer(drv, err, "");
 
         auto tok = lexer.lex();
         CHECK(tok.tag() == Tok::Tag::EoF);

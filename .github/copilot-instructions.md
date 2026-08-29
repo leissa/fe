@@ -47,7 +47,8 @@ The library is organized around a few reusable frontend-building blocks that are
 
 - `fe::Arena` (`arena.h`) provides arena allocation, an STL allocator adapter, and arena-backed `unique_ptr` support for AST-style ownership.
 - `fe::Sym` and `fe::SymPool` (`sym.h`) intern strings so identifiers can be compared cheaply by pointer after interning.
-- `fe::Driver` (`driver.h`) is the shared frontend context: it inherits `SymPool`, owns the `SrcMap` (`Driver::src`), and offers the `std::format`-based diagnostics plus their error/warning counts and layout knobs.
+- `fe::Driver` (`driver.h`) is the shared frontend context: it inherits `SymPool`, owns the `SrcMap` (`Driver::src`) and the interned `Dbg`s (`Driver::dbg`), and carries the diagnostic layout (`Driver::diag`) plus the `Driver::render` hook an `Error` formats each message through.
+- `fe::Error` (`error.h`) collects `std::format`-based diagnostics - errors, warnings, and notes that hang off them - and renders each with the `Snippet` its `Loc` points at. Throw it: it *is* the exception.
 - `fe::Pos` and `fe::Loc` (`loc.h`) track source positions/locations and are threaded through lexers, parsers, and diagnostics.
 - `fe::Src` and `fe::SrcMap` (`src.h`) own the text of each source file and turn a `Pos` back into a row/column. A `Loc` borrows a `const Src*`, which is how it renders itself as `path:row:col`.
 - `fe::Ring` (`ring.h`) is the fixed-size lookahead buffer used by the lexer/parser blueprints.
@@ -61,7 +62,7 @@ Support headers: `algo.h` (bit casts, padding, small string/range algorithms), `
 `fe-lib` holds the components that need a translation unit of their own: the default `Pos`/`Loc` streaming and `dump` (`loc.h`), `fe::Snippet` (`snippet.h`), `fe::dl` (`dl.h`, dynamic library loading), `fe::sys` (`sys.h`, locating and running external commands), and `fe::Profiler` (`profile.h`, nested wall-clock spans reported as a flat table, a tree, or Chrome Trace JSON).
 It is an `OBJECT` library on purpose: link it into exactly one shared library of yours and every other consumer resolves those symbols there instead of carrying a copy.
 
-`tests/lexer.cpp` is the best end-to-end example of intended use: define a token type with `tag()` and `loc()`, derive a concrete lexer/parser from the CRTP bases, use `fe::Driver` for identifier interning and diagnostics, and let locations flow through tokens for error reporting.
+`tests/lexer.cpp` is the best end-to-end example of intended use: define a token type with `tag()` and `loc()`, derive a concrete lexer/parser from the CRTP bases, use `fe::Driver` for identifier interning and an `fe::Error` for diagnostics, and let locations flow through tokens for error reporting.
 
 ## Key conventions
 
@@ -72,10 +73,10 @@ It is an `OBJECT` library on purpose: link it into exactly one shared library of
 - `SrcMap` interns paths under `SrcMap::key` (absolute, symlink-free, normalized), so one file yields exactly one `Src`. That is what lets `Loc` compare files by pointer - do not hand a `Loc` a `Src` that some other `SrcMap` (or nobody) owns.
 - A `Loc` renders itself: `operator<<`/`std::format` spell out `path:row:col-row:col` via `Loc::src`, falling back to `path@begin-end` when it has no `Src` or the offsets do not resolve within it. Diagnostics just pass the `Loc`.
 - Non-empty symbols should be created through `SymPool::sym` / `Driver::sym`, not by constructing `Sym` manually. Use `SymMap` / `SymSet` aliases instead of concrete hash container types, especially because `FE_ABSL` switches those aliases to Abseil containers.
-- Diagnostics are `std::format`-based and go through `fe::Driver::{note,warn,err}`. Follow that pattern rather than inventing separate reporting helpers.
+- Diagnostics are `std::format`-based and go through `fe::Error::{error,warn,note,note_at}`. Follow that pattern rather than inventing separate reporting helpers; `Error::ack` then throws the errors and reports the warnings.
 - If a type already has `operator<<`, expose it to `std::format` with `template<> struct std::formatter<T> : fe::ostream_formatter {};`.
 - Derived lexers/parsers pull the CRTP base helpers they use into scope with `using` declarations (`ahead`, `accept`, `next`, `loc_`, `peek`, `str_` for the lexer; `accept`, `anchor`, `eat`, `expect`, `lex`, `recover`, `tracker` for the parser), matching the pattern in `tests/lexer.cpp`.
-- `fe/loc.h` only declares `operator<<` for `Pos` and `Loc`: link `fe-lib` for the default rendering, or define them yourself. The same split applies to `fe::Snippet`, which `fe::Driver` puts under every diagnostic.
+- `fe/loc.h` only declares `operator<<` for `Pos` and `Loc`: link `fe-lib` for the default rendering, or define them yourself. The same split applies to `fe::Snippet`, which `fe::Error` puts under every diagnostic.
 
 ## Parser contract
 
