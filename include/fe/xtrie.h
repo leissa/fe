@@ -87,12 +87,18 @@ private:
                 return "n_"s + (n->def ? std::to_string(K::tid(n->def)) : "root"s) + "_"s + std::to_string(n->id);
             };
 
-            std::print(os, "{} [tooltip=\"gid: {}, min: {}\"];\n", node2str(this), def ? K::gid(def) : 0, min);
+            for (auto stack = Vector<Node*>{this}; !stack.empty();) {
+                auto n = stack.back();
+                stack.pop_back();
 
-            for (const auto& [_, child] : children)
-                std::print(os, "{} -> {}\n", node2str(this), node2str(child.get()));
-            for (const auto& [_, child] : children)
-                child->dot(os);
+                std::print(os, "{} [tooltip=\"gid: {}, min: {}\"];\n", node2str(n), n->def ? K::gid(n->def) : 0,
+                           n->min);
+
+                for (const auto& [_, child] : n->children) {
+                    std::print(os, "{} -> {}\n", node2str(n), node2str(child.get()));
+                    stack.emplace_back(child.get());
+                }
+            }
         }
 
         ///@name Getters
@@ -709,6 +715,13 @@ private:
     Arena::Ptr<Node> make_node() { return node_arena_.mk<Node>(id_counter_++); }
     Arena::Ptr<Node> make_node(Node* parent, D* def) { return node_arena_.mk<Node>(parent, def, id_counter_++); }
 
+    /// Mounts all Node::def%s stacked up in @p path back onto @p n - deepest one last.
+    [[nodiscard]] Node* remount(Node* n, View<D*> path) {
+        for (auto d : path | std::views::reverse)
+            n = mount(n, d);
+        return n;
+    }
+
     [[nodiscard]] Node* mount(Node* parent, D* d) {
         assert(K::tid(d) != 0);
         auto [i, ins] = parent->children.emplace(d, nullptr);
@@ -716,33 +729,48 @@ private:
         return i->second.get();
     }
 
-    [[nodiscard]] constexpr Node* insert(Node* n, D* d) noexcept {
+    /// The path from @p n up to the insertion point is re-mounted on top of the new node; keep it in @p path instead
+    /// of in the call stack, which the depth of a trie path may well outgrow.
+    [[nodiscard]] Node* insert(Node* n, D* d) {
         if (K::tid(d) == 0) return mount(n, set_tid(d));
-        if (n->def == d) return n;
-        if (n->is_root() || K::tid(n->def) < K::tid(d)) return mount(n, d);
-        return mount(insert(n->parent, d), n->def);
+
+        auto path = Vector<D*>();
+        for (; !n->is_root() && n->def != d && K::tid(d) < K::tid(n->def); n = n->parent)
+            path.emplace_back(n->def);
+
+        return remount(n->def == d ? n : mount(n, d), path);
     }
 
-    [[nodiscard]] constexpr Node* merge(Node* n, Node* m) {
-        if (n == m || m->is_root()) return n;
-        if (n->is_root()) return m;
-        auto nn = K::tid(n->def) < K::tid(m->def) ? n : n->parent;
-        auto mm = K::tid(n->def) > K::tid(m->def) ? m : m->parent;
-        return mount(merge(nn, mm), K::tid(n->def) < K::tid(m->def) ? m->def : n->def);
+    [[nodiscard]] Node* merge(Node* n, Node* m) {
+        auto path = Vector<D*>();
+        while (n != m && !n->is_root() && !m->is_root()) {
+            auto tn = K::tid(n->def), tm = K::tid(m->def);
+            if (tn < tm)
+                path.emplace_back(m->def), m = m->parent;
+            else if (tn > tm)
+                path.emplace_back(n->def), n = n->parent;
+            else
+                path.emplace_back(n->def), n = n->parent, m = m->parent;
+        }
+
+        return remount(n == m || m->is_root() ? n : m, path);
     }
 
     [[nodiscard]] Node* erase(Node* n, D* d) {
-        if (K::tid(d) > K::tid(n->def)) return n;
-        if (n->def == d) return n->parent;
-        return mount(erase(n->parent, d), n->def);
+        auto path = Vector<D*>();
+        for (; K::tid(d) <= K::tid(n->def) && n->def != d; n = n->parent)
+            path.emplace_back(n->def);
+
+        return remount(n->def == d ? n->parent : n, path);
     }
 
     Arena node_arena_;
     Arena data_arena_;
     Pool pool_;
-    Arena::Ptr<Node> root_;
     uint32_t tid_counter_ = 1;
     uint32_t id_counter_  = 0;
+    /// @note Must be declared after id_counter_, as the constructor draws the root's Node::id from it.
+    Arena::Ptr<Node> root_;
 };
 
 } // namespace fe
