@@ -1,5 +1,6 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 
+#include <memory>
 #include <stack>
 #include <unordered_map>
 #include <unordered_set>
@@ -695,19 +696,25 @@ TEST_CASE("Vector") {
 }
 
 TEST_CASE("algo") {
-    CHECK(fe::pad(0, 8) == 0);
-    CHECK(fe::pad(1, 8) == 8);
-    CHECK(fe::pad(8, 8) == 8);
-    CHECK(fe::pad(9, 8) == 16);
+    static_assert(fe::pad(0, 8) == 0);
+    static_assert(fe::pad(1, 8) == 8);
+    static_assert(fe::pad(8, 8) == 8);
+    static_assert(fe::pad(9, 8) == 16);
 
-    CHECK(fe::bitcast_resize<uint32_t>(uint16_t(23)) == 23);
-    CHECK(fe::bitcast_resize<uint8_t>(uint32_t(0xff23)) == 0x23);
+    static_assert(fe::is_aligned(0, 8));
+    static_assert(fe::is_aligned(8, 8));
+    static_assert(!fe::is_aligned(9, 8));
 
-    CHECK(fe::subview("hello world", 6) == "world");
-    CHECK(fe::subview("hello world", 0, 5) == "hello");
-    CHECK(fe::subview("hello world", 6, 3) == "wor");
-    CHECK(fe::subview("hello world", 6, 99) == "world");
-    CHECK(fe::subview("hello world", 99, 3) == "");
+    static_assert(fe::bitcast_resize<uint32_t>(uint16_t(23)) == 23);
+    static_assert(fe::bitcast_resize<uint8_t>(uint32_t(0xff23)) == 0x23);
+    static_assert(fe::bitcast_resize<uint64_t>(3.5f) == UINT64_C(0x40600000));
+    static_assert(fe::bitcast_resize<float>(UINT64_C(0x40600000)) == 3.5f);
+
+    static_assert(fe::subview("hello world", 6) == "world");
+    static_assert(fe::subview("hello world", 0, 5) == "hello");
+    static_assert(fe::subview("hello world", 6, 3) == "wor");
+    static_assert(fe::subview("hello world", 6, 99) == "world");
+    static_assert(fe::subview("hello world", 99, 3) == "");
 
     auto str = std::string("a.b.c");
     fe::find_and_replace(str, ".", "::");
@@ -723,6 +730,11 @@ TEST_CASE("algo") {
             CHECK(*fe::binary_find(v.begin(), v.end(), 2 * (n - 1), lt) == 2 * (n - 1));
             CHECK(fe::binary_find(v.begin(), v.end(), 1, lt) == v.end());
             CHECK(fe::binary_find(v.begin(), v.end(), 2 * n, lt) == v.end());
+
+            CHECK(fe::binary_find(v, 0) == v.begin());
+            CHECK(*fe::binary_find(v, 2 * (n - 1)) == 2 * (n - 1));
+            CHECK(fe::binary_find(v, 1) == v.end());
+            CHECK(fe::binary_find(v, 2 * n) == v.end());
         }
     }
 }
@@ -742,6 +754,16 @@ TEST_CASE("container") {
         CHECK(fe::pop(q) == 1);
         CHECK(fe::pop(q) == 2);
         CHECK(q.empty());
+
+        std::priority_queue<int> p;
+        p.push(1);
+        p.push(5);
+        CHECK(fe::pop(p) == 5);
+        CHECK(fe::pop(p) == 1);
+
+        std::queue<std::unique_ptr<int>> m;
+        m.emplace(std::make_unique<int>(23));
+        CHECK(*fe::pop(m) == 23);
     }
 
     SUBCASE("lookup") {
@@ -751,6 +773,17 @@ TEST_CASE("container") {
         CHECK(*fe::lookup(map, 1) == 23);
         CHECK(fe::lookup(map, 2) == nullptr);
         CHECK(fe::assert_lookup(map, 1) == 23);
+
+        *fe::lookup(map, 1) = 42;
+        CHECK(fe::assert_lookup(map, 1) == 42);
+        fe::assert_lookup(map, 1) = 23;
+        CHECK(map[1] == 23);
+
+        const auto& const_map = map;
+        static_assert(std::is_same_v<decltype(fe::lookup(const_map, 1)), const int*>);
+        static_assert(std::is_same_v<decltype(fe::assert_lookup(const_map, 1)), const int&>);
+        static_assert(std::is_same_v<decltype(fe::lookup(map, 1)), int*>);
+        static_assert(std::is_same_v<decltype(fe::assert_lookup(map, 1)), int&>);
 
         int i                              = 23;
         std::unordered_map<int, int*> ptrs = {
@@ -768,6 +801,7 @@ TEST_CASE("container") {
         CHECK(queue.push(1));
         CHECK(!queue.push(1));
         CHECK(queue.push(2));
+        CHECK(queue.size() == 2);
         CHECK(queue.front() == 1);
         CHECK(queue.back() == 2);
         CHECK(queue.pop() == 1);
@@ -777,6 +811,28 @@ TEST_CASE("container") {
 
         queue.clear();
         CHECK(queue.push(1));
+
+        queue.push(std::vector{1, 2, 3, 2});
+        CHECK(queue.size() == 3);
+    }
+
+    SUBCASE("UniqueStack") {
+        fe::UniqueStack<std::unordered_set<int>> stack = {1, 2, 3, 1};
+        CHECK(stack.size() == 3);
+        CHECK(stack.top() == 3);
+        CHECK(stack.pop() == 3);
+        CHECK(stack.pop() == 2);
+        CHECK(stack.pop() == 1);
+        CHECK(stack.empty());
+        CHECK(!stack.push(1)); // still done
+    }
+
+    SUBCASE("Unique with a shared done-set") {
+        std::unordered_set<int> done = {1};
+        fe::UniqueQueue<std::unordered_set<int>&> queue{done};
+        CHECK(!queue.push(1));
+        CHECK(queue.push(2));
+        CHECK(done.size() == 2);
     }
 }
 
