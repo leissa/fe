@@ -224,8 +224,8 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hash set where all strings - wrapped in <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol - live in.  <a href="classfe_1_1SymPool.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Tab" id="r_Tab"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Tab.html">Tab</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keeps track of indentation level during output.  <a href="classfe_1_1Tab.html#details">More...</a><br /></td></tr>
-<tr class="memitem:UniqueQueue" id="r_UniqueQueue"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1UniqueQueue.html">UniqueQueue</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <span class="tt">std::queue</span> that pushes each element at most once.  <a href="classfe_1_1UniqueQueue.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Unique" id="r_Unique"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Unique.html">Unique</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A worklist that pushes each element at most once.  <a href="classfe_1_1Unique.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Vector" id="r_Vector"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Vector.html">Vector</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a thin wrapper for <a href="https://github.com/abseil/abseil-cpp/blob/master/absl/container/inlined_vector.h"><span class="tt">absl::InlinedVector&lt;T, N, A&gt;</span></a> which is a drop-in replacement for <a href="https://en.cppreference.com/w/cpp/container/vector"><span class="tt">std::vector&lt;T, A&gt;</span></a>.  <a href="classfe_1_1Vector.html#details">More...</a><br /></td></tr>
 <tr class="memitem:XTrie" id="r_XTrie"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1XTrie.html">XTrie</a></td></tr>
@@ -238,11 +238,19 @@ Concepts</h2></td></tr>
 <tr class="memitem:Nodeable" id="r_Nodeable"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="conceptfe_1_1Nodeable.html">Nodeable</a></td></tr>
 <tr class="memitem:NodeSetable" id="r_NodeSetable"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="conceptfe_1_1NodeSetable.html">NodeSetable</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Like Nodeable, but for a class that spans a <em>set</em> of node kinds instead of a single one. <br /></td></tr>
+<tr class="memitem:Queuelike" id="r_Queuelike"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="conceptfe_1_1Queuelike.html">Queuelike</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Something which behaves like <span class="tt">std::queue</span>. <br /></td></tr>
+<tr class="memitem:Stacklike" id="r_Stacklike"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="conceptfe_1_1Stacklike.html">Stacklike</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Something which behaves like <span class="tt">std::stack</span> or <span class="tt">std::priority_queue</span>. <br /></td></tr>
 <tr class="memitem:Vectorlike" id="r_Vectorlike"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="conceptfe_1_1Vectorlike.html">Vectorlike</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Something which behaves like <span class="tt">std::vector</span> or <span class="tt">std::array</span>. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
+<tr class="memitem:a28f05fb39b91b70a7ce4f89129cd7707" id="r_a28f05fb39b91b70a7ce4f89129cd7707"><td class="memTemplParams" colspan="2">template&lt;class Set&gt; </td></tr>
+<tr class="memitem:a28f05fb39b91b70a7ce4f89129cd7707 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a28f05fb39b91b70a7ce4f89129cd7707">UniqueQueue</a> = <a class="el" href="classfe_1_1Unique.html">Unique</a>&lt;Set, std::queue&gt;</td></tr>
+<tr class="memitem:a38f428773cd28d1850a6dee8be1675a7" id="r_a38f428773cd28d1850a6dee8be1675a7"><td class="memTemplParams" colspan="2">template&lt;class Set&gt; </td></tr>
+<tr class="memitem:a38f428773cd28d1850a6dee8be1675a7 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a38f428773cd28d1850a6dee8be1675a7">UniqueStack</a> = <a class="el" href="classfe_1_1Unique.html">Unique</a>&lt;Set, std::stack&gt;</td></tr>
 <tr class="memitem:a923ce058163e2041744a84793de679c0" id="r_a923ce058163e2041744a84793de679c0"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a923ce058163e2041744a84793de679c0">ostream_formatter</a> = <a class="el" href="structfe_1_1basic__ostream__formatter.html">basic_ostream_formatter</a>&lt;char&gt;</td></tr>
 <tr class="memitem:a3fa8abec15ebc094748836707250e96e" id="r_a3fa8abec15ebc094748836707250e96e"><td class="memTemplParams" colspan="2">template&lt;class T, size_t N = std::dynamic_extent&gt; </td></tr>
 <tr class="memitem:a3fa8abec15ebc094748836707250e96e template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a3fa8abec15ebc094748836707250e96e">View</a> = <a class="el" href="classfe_1_1Span.html">Span</a>&lt;const T, N&gt;</td></tr>
@@ -285,24 +293,29 @@ requires (std::is_trivially_copyable_v&lt;S&gt; &amp;&amp; std::is_trivially_cop
 <tr class="memitem:a23c050efc089d138baaefe04d33562f6 template"><td class="memItemLeft">constexpr D&#160;</td><td class="memItemRight"><a class="el" href="#a23c050efc089d138baaefe04d33562f6">bitcast_resize</a> (const S &amp;src) noexcept</td></tr>
 <tr class="memdesc:a23c050efc089d138baaefe04d33562f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">A bitcast from <code class="param">src</code> of type <code class="param">S</code> to <code class="param">D</code>, supporting different sizes.  <br /></td></tr>
 <tr class="memitem:ab71076f2b315aa8a0170fe386daf4d4d" id="r_ab71076f2b315aa8a0170fe386daf4d4d"><td class="memItemLeft">constexpr std::uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#ab71076f2b315aa8a0170fe386daf4d4d">pad</a> (std::uint64_t offset, std::uint64_t align) noexcept</td></tr>
+<tr class="memdesc:ab71076f2b315aa8a0170fe386daf4d4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rounds <code class="param">offset</code> up to the next multiple of <code class="param">align</code>.  <br /></td></tr>
+<tr class="memitem:a6c3387d3cb75e5620007f6f12d96429d" id="r_a6c3387d3cb75e5620007f6f12d96429d"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a6c3387d3cb75e5620007f6f12d96429d">is_aligned</a> (std::uint64_t offset, std::uint64_t align) noexcept</td></tr>
 <tr id="func-members-1" class="groupHeader"><td colspan="2"><div class="groupHeader">Algorithms</div></td></tr>
-<tr class="memitem:ae567af13c26dad9e4489a5a215adc8a1" id="r_ae567af13c26dad9e4489a5a215adc8a1"><td class="memTemplParams" colspan="2">template&lt;class I, class T, class L&gt; </td></tr>
-<tr class="memitem:ae567af13c26dad9e4489a5a215adc8a1 template"><td class="memItemLeft">constexpr I&#160;</td><td class="memItemRight"><a class="el" href="#ae567af13c26dad9e4489a5a215adc8a1">binary_find</a> (I begin, I end, T val, L lt) noexcept</td></tr>
+<tr class="memitem:a390cae4065f52defea7585368a93d601" id="r_a390cae4065f52defea7585368a93d601"><td class="memTemplParams" colspan="2">template&lt;std::random_access_iterator I, class T, class L = std::less&lt;&gt;&gt; </td></tr>
+<tr class="memitem:a390cae4065f52defea7585368a93d601 template"><td class="memItemLeft">constexpr I&#160;</td><td class="memItemRight"><a class="el" href="#a390cae4065f52defea7585368a93d601">binary_find</a> (I begin, I end, const T &amp;val, L lt={}) noexcept</td></tr>
+<tr class="memitem:ad7091e111867cd8228d37686aa31e372" id="r_ad7091e111867cd8228d37686aa31e372"><td class="memTemplParams" colspan="2">template&lt;std::ranges::random_access_range R, class T, class L = std::less&lt;&gt;&gt; <br />
+requires std::ranges::common_range&lt;R&gt;</td></tr>
+<tr class="memitem:ad7091e111867cd8228d37686aa31e372 template"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#ad7091e111867cd8228d37686aa31e372">binary_find</a> (R &amp;&amp;r, const T &amp;val, L lt={}) noexcept</td></tr>
 <tr class="memitem:a720f0cfe096eac4108e589e54fac9669" id="r_a720f0cfe096eac4108e589e54fac9669"><td class="memItemLeft">constexpr std::string_view&#160;</td><td class="memItemRight"><a class="el" href="#a720f0cfe096eac4108e589e54fac9669">subview</a> (std::string_view s, size_t i, size_t n=std::string_view::npos) noexcept</td></tr>
-<tr class="memdesc:a720f0cfe096eac4108e589e54fac9669"><td class="mdescLeft">&#160;</td><td class="mdescRight">Like <span class="tt">std::string::substr</span>, but works on <span class="tt">std::string_view</span> instead.  <br /></td></tr>
+<tr class="memdesc:a720f0cfe096eac4108e589e54fac9669"><td class="mdescLeft">&#160;</td><td class="mdescRight">Like <span class="tt">std::string::substr</span>, but works on <span class="tt">std::string_view</span> and clamps <code class="param">i</code> instead of throwing.  <br /></td></tr>
 <tr class="memitem:a1bc01939aa7352b79a0917dc535bde8a" id="r_a1bc01939aa7352b79a0917dc535bde8a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1bc01939aa7352b79a0917dc535bde8a">find_and_replace</a> (std::string &amp;str, std::string_view what, std::string_view repl)</td></tr>
 <tr class="memdesc:a1bc01939aa7352b79a0917dc535bde8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces all occurrences of <code class="param">what</code> with <code class="param">repl</code>.  <br /></td></tr>
 <tr id="func-members-2" class="groupHeader"><td colspan="2"><div class="groupHeader">Helpers for Containers</div></td></tr>
-<tr class="memitem:ae2b8c8682a61d9cdc9e87f0481daa587" id="r_ae2b8c8682a61d9cdc9e87f0481daa587"><td class="memTemplParams" colspan="2">template&lt;class S&gt; </td></tr>
-<tr class="memitem:ae2b8c8682a61d9cdc9e87f0481daa587 template"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#ae2b8c8682a61d9cdc9e87f0481daa587">pop</a> (S &amp;s) -&gt; decltype(s.top(), typename S::value_type())</td></tr>
-<tr class="memitem:ac2dfaf57ba8d0d131e9caaab36b32c57" id="r_ac2dfaf57ba8d0d131e9caaab36b32c57"><td class="memTemplParams" colspan="2">template&lt;class Q&gt; </td></tr>
-<tr class="memitem:ac2dfaf57ba8d0d131e9caaab36b32c57 template"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#ac2dfaf57ba8d0d131e9caaab36b32c57">pop</a> (Q &amp;q) -&gt; decltype(q.front(), typename Q::value_type())</td></tr>
-<tr class="memitem:aa4ba0a0c89dafdd4b6e3a142c68e5e6b" id="r_aa4ba0a0c89dafdd4b6e3a142c68e5e6b"><td class="memTemplParams" colspan="2">template&lt;class C, class K&gt; </td></tr>
-<tr class="memitem:aa4ba0a0c89dafdd4b6e3a142c68e5e6b template"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#aa4ba0a0c89dafdd4b6e3a142c68e5e6b">lookup</a> (const C &amp;container, const K &amp;key)</td></tr>
-<tr class="memdesc:aa4ba0a0c89dafdd4b6e3a142c68e5e6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Yields pointer to element (or the element itself if it is already a pointer), if found and <span class="tt">nullptr</span> otherwise.  <br /></td></tr>
-<tr class="memitem:a835c540d554775fe26d55827cc6812d4" id="r_a835c540d554775fe26d55827cc6812d4"><td class="memTemplParams" colspan="2">template&lt;class C, class K&gt; </td></tr>
-<tr class="memitem:a835c540d554775fe26d55827cc6812d4 template"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#a835c540d554775fe26d55827cc6812d4">assert_lookup</a> (C &amp;container, const K &amp;key)</td></tr>
-<tr class="memdesc:a835c540d554775fe26d55827cc6812d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Looks up <code class="param">key</code> in <code class="param">container</code>, asserts that it exists, and returns the mapped value.  <br /></td></tr>
+<tr class="memitem:a2015189724c77cd909fa8d2ed9b4e552" id="r_a2015189724c77cd909fa8d2ed9b4e552"><td class="memTemplParams" colspan="2">template&lt;Stacklike S&gt; </td></tr>
+<tr class="memitem:a2015189724c77cd909fa8d2ed9b4e552 template"><td class="memItemLeft">S::value_type&#160;</td><td class="memItemRight"><a class="el" href="#a2015189724c77cd909fa8d2ed9b4e552">pop</a> (S &amp;s)</td></tr>
+<tr class="memitem:a90bc9bf0b8f347e76dd29569cee16d34" id="r_a90bc9bf0b8f347e76dd29569cee16d34"><td class="memTemplParams" colspan="2">template&lt;Queuelike Q&gt; </td></tr>
+<tr class="memitem:a90bc9bf0b8f347e76dd29569cee16d34 template"><td class="memItemLeft">Q::value_type&#160;</td><td class="memItemRight"><a class="el" href="#a90bc9bf0b8f347e76dd29569cee16d34">pop</a> (Q &amp;q)</td></tr>
+<tr class="memitem:a00e1ee524a678f2b004c9b5c91e94903" id="r_a00e1ee524a678f2b004c9b5c91e94903"><td class="memTemplParams" colspan="2">template&lt;class C, class K&gt; </td></tr>
+<tr class="memitem:a00e1ee524a678f2b004c9b5c91e94903 template"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#a00e1ee524a678f2b004c9b5c91e94903">lookup</a> (C &amp;container, const K &amp;key)</td></tr>
+<tr class="memdesc:a00e1ee524a678f2b004c9b5c91e94903"><td class="mdescLeft">&#160;</td><td class="mdescRight">Yields pointer to element (or the element itself if it is already a pointer), if found and <span class="tt">nullptr</span> otherwise.  <br /></td></tr>
+<tr class="memitem:a7f55906d386570e1170752a24b9d28e3" id="r_a7f55906d386570e1170752a24b9d28e3"><td class="memTemplParams" colspan="2">template&lt;class C, class K&gt; </td></tr>
+<tr class="memitem:a7f55906d386570e1170752a24b9d28e3 template"><td class="memItemLeft">decltype(auto)&#160;</td><td class="memItemRight"><a class="el" href="#a7f55906d386570e1170752a24b9d28e3">assert_lookup</a> (C &amp;container, const K &amp;key)</td></tr>
+<tr class="memdesc:a7f55906d386570e1170752a24b9d28e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Looks up <code class="param">key</code> in <code class="param">container</code>, asserts that it exists, and returns a reference to the mapped value.  <br /></td></tr>
 <tr class="memitem:a4df91557ebad4a98ce8c285e992947e1" id="r_a4df91557ebad4a98ce8c285e992947e1"><td class="memTemplParams" colspan="2">template&lt;class C, class... Args&gt; </td></tr>
 <tr class="memitem:a4df91557ebad4a98ce8c285e992947e1 template"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#a4df91557ebad4a98ce8c285e992947e1">assert_emplace</a> (C &amp;container, Args &amp;&amp;... args)</td></tr>
 <tr class="memdesc:a4df91557ebad4a98ce8c285e992947e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes <span class="tt">emplace</span> on <code class="param">container</code>, asserts that insertion actually happened, and returns the iterator.  <br /></td></tr>
@@ -485,6 +498,42 @@ template&lt;class V&gt; </div>
 
 </div>
 </div>
+<a id="a28f05fb39b91b70a7ce4f89129cd7707" name="a28f05fb39b91b70a7ce4f89129cd7707"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28f05fb39b91b70a7ce4f89129cd7707">&#9670;&#160;</a></span>UniqueQueue</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Set&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a28f05fb39b91b70a7ce4f89129cd7707">fe::UniqueQueue</a> = <a class="el" href="classfe_1_1Unique.html">Unique</a>&lt;Set, std::queue&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00130">130</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
+
+</div>
+</div>
+<a id="a38f428773cd28d1850a6dee8be1675a7" name="a38f428773cd28d1850a6dee8be1675a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38f428773cd28d1850a6dee8be1675a7">&#9670;&#160;</a></span>UniqueStack</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Set&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a38f428773cd28d1850a6dee8be1675a7">fe::UniqueStack</a> = <a class="el" href="classfe_1_1Unique.html">Unique</a>&lt;Set, std::stack&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00132">132</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
+
+</div>
+</div>
 <a id="a3fa8abec15ebc094748836707250e96e" name="a3fa8abec15ebc094748836707250e96e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3fa8abec15ebc094748836707250e96e">&#9670;&#160;</a></span>View</h2>
 
@@ -527,24 +576,27 @@ template&lt;class C, class... Args&gt; </div>
 
 <p>Invokes <span class="tt">emplace</span> on <code class="param">container</code>, asserts that insertion actually happened, and returns the iterator. </p>
 
-<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00049">49</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00066">66</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
 
-<p class="reference">References <a class="el" href="container_8h_source.html#l00049">assert_emplace()</a>, and <a class="el" href="assert_8h_source.html#l00049">assert_unused</a>.</p>
+<p class="reference">References <a class="el" href="container_8h_source.html#l00066">assert_emplace()</a>, and <a class="el" href="assert_8h_source.html#l00049">assert_unused</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="container_8h_source.html#l00049">assert_emplace()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="container_8h_source.html#l00066">assert_emplace()</a>.</p>
 
 </div>
 </div>
-<a id="a835c540d554775fe26d55827cc6812d4" name="a835c540d554775fe26d55827cc6812d4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a835c540d554775fe26d55827cc6812d4">&#9670;&#160;</a></span>assert_lookup()</h2>
+<a id="a7f55906d386570e1170752a24b9d28e3" name="a7f55906d386570e1170752a24b9d28e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f55906d386570e1170752a24b9d28e3">&#9670;&#160;</a></span>assert_lookup()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class C, class K&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto fe::assert_lookup </td>
+          <td class="memname">decltype(auto) fe::assert_lookup </td>
           <td>(</td>
           <td class="paramtype">C &amp;</td>          <td class="paramname"><span class="paramname"><em>container</em></span>, </td>
         </tr>
@@ -554,25 +606,30 @@ template&lt;class C, class K&gt; </div>
           <td class="paramtype">const K &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span>&#160;)</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Looks up <code class="param">key</code> in <code class="param">container</code>, asserts that it exists, and returns the mapped value. </p>
+<p>Looks up <code class="param">key</code> in <code class="param">container</code>, asserts that it exists, and returns a reference to the mapped value. </p>
 
-<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00041">41</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00058">58</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
 
-<p class="reference">References <a class="el" href="container_8h_source.html#l00041">assert_lookup()</a>.</p>
+<p class="reference">References <a class="el" href="container_8h_source.html#l00058">assert_lookup()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="container_8h_source.html#l00041">assert_lookup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="container_8h_source.html#l00058">assert_lookup()</a>.</p>
 
 </div>
 </div>
-<a id="ae567af13c26dad9e4489a5a215adc8a1" name="ae567af13c26dad9e4489a5a215adc8a1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae567af13c26dad9e4489a5a215adc8a1">&#9670;&#160;</a></span>binary_find()</h2>
+<a id="a390cae4065f52defea7585368a93d601" name="a390cae4065f52defea7585368a93d601"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a390cae4065f52defea7585368a93d601">&#9670;&#160;</a></span>binary_find() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class I, class T, class L&gt; </div>
+template&lt;std::random_access_iterator I, class T, class L = std::less&lt;&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -590,26 +647,67 @@ template&lt;class I, class T, class L&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>val</em></span>, </td>
+          <td class="paramtype">const T &amp;</td>          <td class="paramname"><span class="paramname"><em>val</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">L</td>          <td class="paramname"><span class="paramname"><em>lt</em></span>&#160;)</td>
+          <td class="paramtype">L</td>          <td class="paramname"><span class="paramname"><em>lt</em></span><span class="paramdefsep"> = </span><span class="paramdefval">{}</span>&#160;)</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="algo_8h_source.html#l00046">46</a> of file <a class="el" href="algo_8h_source.html">algo.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algo_8h_source.html#l00059">59</a> of file <a class="el" href="algo_8h_source.html">algo.h</a>.</p>
 
-<p class="reference">References <a class="el" href="algo_8h_source.html#l00046">binary_find()</a>.</p>
+<p class="reference">References <a class="el" href="algo_8h_source.html#l00059">binary_find()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="algo_8h_source.html#l00046">binary_find()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="algo_8h_source.html#l00059">binary_find()</a>, and <a class="el" href="algo_8h_source.html#l00069">binary_find()</a>.</p>
+
+</div>
+</div>
+<a id="ad7091e111867cd8228d37686aa31e372" name="ad7091e111867cd8228d37686aa31e372"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7091e111867cd8228d37686aa31e372">&#9670;&#160;</a></span>binary_find() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;std::ranges::random_access_range R, class T, class L = std::less&lt;&gt;&gt; <br />
+requires std::ranges::common_range&lt;R&gt;</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto fe::binary_find </td>
+          <td>(</td>
+          <td class="paramtype">R &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>r</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;</td>          <td class="paramname"><span class="paramname"><em>val</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">L</td>          <td class="paramname"><span class="paramname"><em>lt</em></span><span class="paramdefsep"> = </span><span class="paramdefval">{}</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="algo_8h_source.html#l00069">69</a> of file <a class="el" href="algo_8h_source.html">algo.h</a>.</p>
+
+<p class="reference">References <a class="el" href="algo_8h_source.html#l00059">binary_find()</a>.</p>
 
 </div>
 </div>
@@ -640,12 +738,13 @@ requires (std::is_trivially_copyable_v&lt;S&gt; &amp;&amp; std::is_trivially_cop
 </div><div class="memdoc">
 
 <p>A bitcast from <code class="param">src</code> of type <code class="param">S</code> to <code class="param">D</code>, supporting different sizes. </p>
+<p>Keeps the <em>low-order</em> bytes on either endianness: a wider <code class="param">D</code> zero-fills the rest, a narrower one truncates. </p>
 
-<p class="definition">Definition at line <a class="el" href="algo_8h_source.html#l00021">21</a> of file <a class="el" href="algo_8h_source.html">algo.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algo_8h_source.html#l00026">26</a> of file <a class="el" href="algo_8h_source.html">algo.h</a>.</p>
 
-<p class="reference">References <a class="el" href="algo_8h_source.html#l00021">bitcast_resize()</a>.</p>
+<p class="reference">References <a class="el" href="algo_8h_source.html#l00026">bitcast_resize()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="algo_8h_source.html#l00021">bitcast_resize()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="algo_8h_source.html#l00026">bitcast_resize()</a>.</p>
 
 </div>
 </div>
@@ -774,11 +873,11 @@ template&lt;class T, size_t N, class A, class Pred&gt; </div>
 
 <p>Replaces all occurrences of <code class="param">what</code> with <code class="param">repl</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="algo_8h_source.html#l00063">63</a> of file <a class="el" href="algo_8h_source.html">algo.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algo_8h_source.html#l00081">81</a> of file <a class="el" href="algo_8h_source.html">algo.h</a>.</p>
 
-<p class="reference">References <a class="el" href="algo_8h_source.html#l00063">find_and_replace()</a>.</p>
+<p class="reference">References <a class="el" href="algo_8h_source.html#l00081">find_and_replace()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="algo_8h_source.html#l00063">find_and_replace()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="algo_8h_source.html#l00081">find_and_replace()</a>.</p>
 
 </div>
 </div>
@@ -992,6 +1091,41 @@ template&lt;std::integral T&gt; </div>
 
 </div>
 </div>
+<a id="a6c3387d3cb75e5620007f6f12d96429d" name="a6c3387d3cb75e5620007f6f12d96429d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c3387d3cb75e5620007f6f12d96429d">&#9670;&#160;</a></span>is_aligned()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fe::is_aligned </td>
+          <td>(</td>
+          <td class="paramtype">std::uint64_t</td>          <td class="paramname"><span class="paramname"><em>offset</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint64_t</td>          <td class="paramname"><span class="paramname"><em>align</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="algo_8h_source.html#l00050">50</a> of file <a class="el" href="algo_8h_source.html">algo.h</a>.</p>
+
+<p class="reference">References <a class="el" href="algo_8h_source.html#l00050">is_aligned()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="algo_8h_source.html#l00050">is_aligned()</a>.</p>
+
+</div>
+</div>
 <a id="afdda5f81a682643effc4dd73321bc737" name="afdda5f81a682643effc4dd73321bc737"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afdda5f81a682643effc4dd73321bc737">&#9670;&#160;</a></span>Join()</h2>
 
@@ -1015,18 +1149,21 @@ template&lt;class R&gt; </div>
 
 </div>
 </div>
-<a id="aa4ba0a0c89dafdd4b6e3a142c68e5e6b" name="aa4ba0a0c89dafdd4b6e3a142c68e5e6b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa4ba0a0c89dafdd4b6e3a142c68e5e6b">&#9670;&#160;</a></span>lookup()</h2>
+<a id="a00e1ee524a678f2b004c9b5c91e94903" name="a00e1ee524a678f2b004c9b5c91e94903"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00e1ee524a678f2b004c9b5c91e94903">&#9670;&#160;</a></span>lookup()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class C, class K&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">auto fe::lookup </td>
           <td>(</td>
-          <td class="paramtype">const C &amp;</td>          <td class="paramname"><span class="paramname"><em>container</em></span>, </td>
+          <td class="paramtype">C &amp;</td>          <td class="paramname"><span class="paramname"><em>container</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1034,16 +1171,21 @@ template&lt;class C, class K&gt; </div>
           <td class="paramtype">const K &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span>&#160;)</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Yields pointer to element (or the element itself if it is already a pointer), if found and <span class="tt">nullptr</span> otherwise. </p>
-<dl class="section warning"><dt>Warning</dt><dd>If the element is <b>not</b> already a pointer, this lookup will simply take the address of this element. This means that, e.g., a rehash of an <span class="tt">absl::flat_hash_map</span> will invalidate this pointer. </dd></dl>
+<p>Constness of <code class="param">container</code> carries over to the result. </p><dl class="section warning"><dt>Warning</dt><dd>If the element is <b>not</b> already a pointer, this lookup will simply take the address of this element. This means that, e.g., a rehash of an <span class="tt">absl::flat_hash_map</span> will invalidate this pointer. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00031">31</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00048">48</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
 
-<p class="reference">References <a class="el" href="container_8h_source.html#l00031">lookup()</a>.</p>
+<p class="reference">References <a class="el" href="container_8h_source.html#l00048">lookup()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="container_8h_source.html#l00031">lookup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="container_8h_source.html#l00048">lookup()</a>.</p>
 
 </div>
 </div>
@@ -1102,64 +1244,82 @@ template&lt;class C, class K&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="algo_8h_source.html#l00034">34</a> of file <a class="el" href="algo_8h_source.html">algo.h</a>.</p>
+<p>Rounds <code class="param">offset</code> up to the next multiple of <code class="param">align</code>. </p>
 
-<p class="reference">References <a class="el" href="algo_8h_source.html#l00034">pad()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algo_8h_source.html#l00042">42</a> of file <a class="el" href="algo_8h_source.html">algo.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="algo_8h_source.html#l00034">pad()</a>.</p>
+<p class="reference">References <a class="el" href="algo_8h_source.html#l00042">pad()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="algo_8h_source.html#l00042">pad()</a>.</p>
 
 </div>
 </div>
-<a id="ac2dfaf57ba8d0d131e9caaab36b32c57" name="ac2dfaf57ba8d0d131e9caaab36b32c57"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2dfaf57ba8d0d131e9caaab36b32c57">&#9670;&#160;</a></span>pop() <span class="overload">[1/2]</span></h2>
+<a id="a90bc9bf0b8f347e76dd29569cee16d34" name="a90bc9bf0b8f347e76dd29569cee16d34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90bc9bf0b8f347e76dd29569cee16d34">&#9670;&#160;</a></span>pop() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class Q&gt; </div>
+template&lt;Queuelike Q&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto fe::pop </td>
+          <td class="memname">Q::value_type fe::pop </td>
           <td>(</td>
           <td class="paramtype">Q &amp;</td>          <td class="paramname"><span class="paramname"><em>q</em></span></td><td>)</td>
-          <td> -&gt; decltype(q.front(), typename Q::value_type())</td>
+          <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00021">21</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00037">37</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
 
-<p class="reference">References <a class="el" href="container_8h_source.html#l00014">pop()</a>.</p>
+<p class="reference">References <a class="el" href="container_8h_source.html#l00030">pop()</a>.</p>
 
 </div>
 </div>
-<a id="ae2b8c8682a61d9cdc9e87f0481daa587" name="ae2b8c8682a61d9cdc9e87f0481daa587"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae2b8c8682a61d9cdc9e87f0481daa587">&#9670;&#160;</a></span>pop() <span class="overload">[2/2]</span></h2>
+<a id="a2015189724c77cd909fa8d2ed9b4e552" name="a2015189724c77cd909fa8d2ed9b4e552"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2015189724c77cd909fa8d2ed9b4e552">&#9670;&#160;</a></span>pop() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class S&gt; </div>
+template&lt;Stacklike S&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto fe::pop </td>
+          <td class="memname">S::value_type fe::pop </td>
           <td>(</td>
           <td class="paramtype">S &amp;</td>          <td class="paramname"><span class="paramname"><em>s</em></span></td><td>)</td>
-          <td> -&gt; decltype(s.top(), typename S::value_type())</td>
+          <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00014">14</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00030">30</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
 
-<p class="reference">References <a class="el" href="container_8h_source.html#l00014">pop()</a>.</p>
+<p class="reference">References <a class="el" href="container_8h_source.html#l00030">pop()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="container_8h_source.html#l00021">pop()</a>, <a class="el" href="container_8h_source.html#l00014">pop()</a>, and <a class="el" href="container_8h_source.html#l00075">fe::UniqueQueue&lt; Set &gt;::pop()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="container_8h_source.html#l00037">pop()</a>, <a class="el" href="container_8h_source.html#l00030">pop()</a>, and <a class="el" href="container_8h_source.html#l00109">fe::Unique&lt; Set, std::queue &gt;::pop()</a>.</p>
 
 </div>
 </div>
@@ -1417,18 +1577,18 @@ template&lt;class F&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Like <span class="tt">std::string::substr</span>, but works on <span class="tt">std::string_view</span> instead. </p>
+<p>Like <span class="tt">std::string::substr</span>, but works on <span class="tt">std::string_view</span> and clamps <code class="param">i</code> instead of throwing. </p>
 
-<p class="definition">Definition at line <a class="el" href="algo_8h_source.html#l00057">57</a> of file <a class="el" href="algo_8h_source.html">algo.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algo_8h_source.html#l00076">76</a> of file <a class="el" href="algo_8h_source.html">algo.h</a>.</p>
 
-<p class="reference">References <a class="el" href="algo_8h_source.html#l00057">subview()</a>.</p>
+<p class="reference">References <a class="el" href="algo_8h_source.html#l00076">subview()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="algo_8h_source.html#l00057">subview()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="algo_8h_source.html#l00076">subview()</a>.</p>
 
 </div>
 </div>

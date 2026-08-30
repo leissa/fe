@@ -41,7 +41,7 @@ var annotated_dup =
       [ "Sym", "classfe_1_1Sym.html", "classfe_1_1Sym" ],
       [ "SymPool", "classfe_1_1SymPool.html", "classfe_1_1SymPool" ],
       [ "Tab", "classfe_1_1Tab.html", "classfe_1_1Tab" ],
-      [ "UniqueQueue", "classfe_1_1UniqueQueue.html", "classfe_1_1UniqueQueue" ],
+      [ "Unique", "classfe_1_1Unique.html", "classfe_1_1Unique" ],
       [ "Vector", "classfe_1_1Vector.html", "classfe_1_1Vector" ],
       [ "XTrie", "classfe_1_1XTrie.html", "classfe_1_1XTrie" ]
     ] ],

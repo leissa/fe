@@ -152,11 +152,14 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('algo_8h.html',
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;cassert&gt;</code><br />
+<code>#include &lt;cstddef&gt;</code><br />
 <code>#include &lt;cstdint&gt;</code><br />
-<code>#include &lt;cstring&gt;</code><br />
 <code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;array&gt;</code><br />
 <code>#include &lt;bit&gt;</code><br />
+<code>#include &lt;functional&gt;</code><br />
 <code>#include &lt;iterator&gt;</code><br />
+<code>#include &lt;ranges&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;string_view&gt;</code><br />
 <code>#include &lt;type_traits&gt;</code><br />
@@ -180,11 +183,16 @@ requires (std::is_trivially_copyable_v&lt;S&gt; &amp;&amp; std::is_trivially_cop
 <tr class="memitem:a23c050efc089d138baaefe04d33562f6 template"><td class="memItemLeft">constexpr D&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a23c050efc089d138baaefe04d33562f6">fe::bitcast_resize</a> (const S &amp;src) noexcept</td></tr>
 <tr class="memdesc:a23c050efc089d138baaefe04d33562f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">A bitcast from <code class="param">src</code> of type <code class="param">S</code> to <code class="param">D</code>, supporting different sizes.  <br /></td></tr>
 <tr class="memitem:ab71076f2b315aa8a0170fe386daf4d4d" id="r_ab71076f2b315aa8a0170fe386daf4d4d"><td class="memItemLeft">constexpr std::uint64_t&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#ab71076f2b315aa8a0170fe386daf4d4d">fe::pad</a> (std::uint64_t offset, std::uint64_t align) noexcept</td></tr>
+<tr class="memdesc:ab71076f2b315aa8a0170fe386daf4d4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rounds <code class="param">offset</code> up to the next multiple of <code class="param">align</code>.  <br /></td></tr>
+<tr class="memitem:a6c3387d3cb75e5620007f6f12d96429d" id="r_a6c3387d3cb75e5620007f6f12d96429d"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a6c3387d3cb75e5620007f6f12d96429d">fe::is_aligned</a> (std::uint64_t offset, std::uint64_t align) noexcept</td></tr>
 <tr id="func-members-1" class="groupHeader"><td colspan="2"><div class="groupHeader">Algorithms</div></td></tr>
-<tr class="memitem:ae567af13c26dad9e4489a5a215adc8a1" id="r_ae567af13c26dad9e4489a5a215adc8a1"><td class="memTemplParams" colspan="2">template&lt;class I, class T, class L&gt; </td></tr>
-<tr class="memitem:ae567af13c26dad9e4489a5a215adc8a1 template"><td class="memItemLeft">constexpr I&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#ae567af13c26dad9e4489a5a215adc8a1">fe::binary_find</a> (I begin, I end, T val, L lt) noexcept</td></tr>
+<tr class="memitem:a390cae4065f52defea7585368a93d601" id="r_a390cae4065f52defea7585368a93d601"><td class="memTemplParams" colspan="2">template&lt;std::random_access_iterator I, class T, class L = std::less&lt;&gt;&gt; </td></tr>
+<tr class="memitem:a390cae4065f52defea7585368a93d601 template"><td class="memItemLeft">constexpr I&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a390cae4065f52defea7585368a93d601">fe::binary_find</a> (I begin, I end, const T &amp;val, L lt={}) noexcept</td></tr>
+<tr class="memitem:ad7091e111867cd8228d37686aa31e372" id="r_ad7091e111867cd8228d37686aa31e372"><td class="memTemplParams" colspan="2">template&lt;std::ranges::random_access_range R, class T, class L = std::less&lt;&gt;&gt; <br />
+requires std::ranges::common_range&lt;R&gt;</td></tr>
+<tr class="memitem:ad7091e111867cd8228d37686aa31e372 template"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#ad7091e111867cd8228d37686aa31e372">fe::binary_find</a> (R &amp;&amp;r, const T &amp;val, L lt={}) noexcept</td></tr>
 <tr class="memitem:a720f0cfe096eac4108e589e54fac9669" id="r_a720f0cfe096eac4108e589e54fac9669"><td class="memItemLeft">constexpr std::string_view&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a720f0cfe096eac4108e589e54fac9669">fe::subview</a> (std::string_view s, size_t i, size_t n=std::string_view::npos) noexcept</td></tr>
-<tr class="memdesc:a720f0cfe096eac4108e589e54fac9669"><td class="mdescLeft">&#160;</td><td class="mdescRight">Like <span class="tt">std::string::substr</span>, but works on <span class="tt">std::string_view</span> instead.  <br /></td></tr>
+<tr class="memdesc:a720f0cfe096eac4108e589e54fac9669"><td class="mdescLeft">&#160;</td><td class="mdescRight">Like <span class="tt">std::string::substr</span>, but works on <span class="tt">std::string_view</span> and clamps <code class="param">i</code> instead of throwing.  <br /></td></tr>
 <tr class="memitem:a1bc01939aa7352b79a0917dc535bde8a" id="r_a1bc01939aa7352b79a0917dc535bde8a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a1bc01939aa7352b79a0917dc535bde8a">fe::find_and_replace</a> (std::string &amp;str, std::string_view what, std::string_view repl)</td></tr>
 <tr class="memdesc:a1bc01939aa7352b79a0917dc535bde8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces all occurrences of <code class="param">what</code> with <code class="param">repl</code>.  <br /></td></tr>
 </table>

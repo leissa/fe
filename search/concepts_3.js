@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vectorlike_0',['Vectorlike',['../conceptfe_1_1Vectorlike.html',1,'fe']]]
+  ['queuelike_0',['Queuelike',['../conceptfe_1_1Queuelike.html',1,'fe']]]
 ];
