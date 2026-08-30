@@ -1,6 +1,7 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 
 #include <memory>
+#include <queue>
 #include <stack>
 #include <unordered_map>
 #include <unordered_set>
@@ -18,6 +19,7 @@
 #include <fe/term.h>
 #include <fe/utf8.h>
 #include <fe/vector.h>
+#include <fe/worklist.h>
 
 using namespace std::literals;
 
@@ -794,9 +796,11 @@ TEST_CASE("container") {
 
         CHECK(fe::assert_emplace(map, 2, 42)->second == 42);
     }
+}
 
-    SUBCASE("UniqueQueue") {
-        fe::UniqueQueue<std::unordered_set<int>> queue;
+TEST_CASE("Worklist") {
+    SUBCASE("BFSWorklist") {
+        fe::BFSWorklist<std::unordered_set<int>> queue;
         CHECK(queue.empty());
         CHECK(queue.push(1));
         CHECK(!queue.push(1));
@@ -816,8 +820,8 @@ TEST_CASE("container") {
         CHECK(queue.size() == 3);
     }
 
-    SUBCASE("UniqueStack") {
-        fe::UniqueStack<std::unordered_set<int>> stack = {1, 2, 3, 1};
+    SUBCASE("DFSWorklist") {
+        fe::DFSWorklist<std::unordered_set<int>> stack = {1, 2, 3, 1};
         CHECK(stack.size() == 3);
         CHECK(stack.top() == 3);
         CHECK(stack.pop() == 3);
@@ -827,9 +831,9 @@ TEST_CASE("container") {
         CHECK(!stack.push(1)); // still done
     }
 
-    SUBCASE("Unique with a shared done-set") {
+    SUBCASE("Worklist with a shared done-set") {
         std::unordered_set<int> done = {1};
-        fe::UniqueQueue<std::unordered_set<int>&> queue{done};
+        fe::BFSWorklist<std::unordered_set<int>&> queue{done};
         CHECK(!queue.push(1));
         CHECK(queue.push(2));
         CHECK(done.size() == 2);

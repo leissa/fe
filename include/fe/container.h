@@ -1,8 +1,5 @@
 #pragma once
 
-#include <queue>
-#include <ranges>
-#include <stack>
 #include <type_traits>
 #include <utility>
 
@@ -69,66 +66,5 @@ auto assert_emplace(C& container, Args&&... args) {
     return i;
 }
 ///@}
-
-/// A worklist that pushes each element at most once.
-/// @p Set remembers what has already been pushed and may be a reference to share it with the caller.
-/// Use it through the UniqueQueue/UniqueStack aliases.
-template<class Set, template<class> class C>
-class Unique {
-public:
-    using T = typename std::remove_reference_t<Set>::value_type;
-
-    /// @name Constructors
-    ///@{
-    Unique() = default;
-    explicit Unique(Set set)
-        : done_(std::forward<Set>(set)) {}
-    Unique(std::initializer_list<T> init) { push(init); }
-    ///@}
-
-    /// @name push
-    ///@{
-    bool push(T val) {
-        if (done_.emplace(val).second) {
-            c_.emplace(std::move(val));
-            return true;
-        }
-        return false;
-    }
-    template<std::ranges::input_range R>
-    void push(R&& r) {
-        for (auto&& val : r)
-            push(val);
-    }
-    ///@}
-
-    /// @name Access
-    ///@{
-    bool empty() const { return c_.empty(); }
-    size_t size() const { return c_.size(); }
-    T pop() { return fe::pop(c_); }
-
-    T& front() requires Queuelike<C<T>> { return c_.front(); }
-    const T& front() const requires Queuelike<C<T>> { return c_.front(); }
-    T& back() requires Queuelike<C<T>> { return c_.back(); }
-    const T& back() const requires Queuelike<C<T>> { return c_.back(); }
-    T& top() requires Stacklike<C<T>> { return c_.top(); }
-    const T& top() const requires Stacklike<C<T>> { return c_.top(); }
-    ///@}
-
-    void clear() {
-        done_.clear();
-        c_ = {};
-    }
-
-private:
-    Set done_;
-    C<T> c_;
-};
-
-template<class Set>
-using UniqueQueue = Unique<Set, std::queue>;
-template<class Set>
-using UniqueStack = Unique<Set, std::stack>;
 
 } // namespace fe

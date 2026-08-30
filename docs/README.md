@@ -57,6 +57,7 @@ It provides a compact set of reusable, well-integrated components:
 - `fe::Parser<Tok, Tag, K, S>` for recursive-descent-style parsing with token lookahead, span tracking, and anchor-based error recovery.
 - `fe::Error` for collecting diagnostics - errors, warnings and their notes - and rendering each with its source snippet; `Error::ack` throws what it collected as a self-contained `Error::Bail`.
 - `fe::Restore` for RAII save/restore of a variable across a scope.
+- `fe::BFSWorklist`/`fe::DFSWorklist` for worklist traversals that visit each element at most once.
 - `fe::Span`/`fe::View` and `fe::Vector` for spans with structured binding and small-buffer vectors.
 - `fe/algo.h` and `fe/container.h` for the odds and ends every frontend rewrites otherwise.
 - Optional `FE_ABSL` support for [Abseil](https://abseil.io/) hash containers.

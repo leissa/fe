@@ -62,6 +62,7 @@ target_sources(fe
             include/fe/term.h
             include/fe/utf8.h
             include/fe/vector.h
+            include/fe/worklist.h
             include/fe/xtrie.h
 )
 target_include_directories(fe INTERFACE $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
