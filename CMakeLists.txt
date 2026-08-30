@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.24 FATAL_ERROR)
 
-project(fe VERSION 0.11.2)
+project(fe VERSION 0.12.0)
 
 include(CMakePackageConfigHelpers)
 include(CheckIncludeFileCXX)
