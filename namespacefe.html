@@ -224,10 +224,10 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hash set where all strings - wrapped in <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol - live in.  <a href="classfe_1_1SymPool.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Tab" id="r_Tab"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Tab.html">Tab</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keeps track of indentation level during output.  <a href="classfe_1_1Tab.html#details">More...</a><br /></td></tr>
-<tr class="memitem:Unique" id="r_Unique"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Unique.html">Unique</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A worklist that pushes each element at most once.  <a href="classfe_1_1Unique.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Vector" id="r_Vector"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Vector.html">Vector</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a thin wrapper for <a href="https://github.com/abseil/abseil-cpp/blob/master/absl/container/inlined_vector.h"><span class="tt">absl::InlinedVector&lt;T, N, A&gt;</span></a> which is a drop-in replacement for <a href="https://en.cppreference.com/w/cpp/container/vector"><span class="tt">std::vector&lt;T, A&gt;</span></a>.  <a href="classfe_1_1Vector.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Worklist" id="r_Worklist"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Worklist.html">Worklist</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A worklist that pushes each element at most once.  <a href="classfe_1_1Worklist.html#details">More...</a><br /></td></tr>
 <tr class="memitem:XTrie" id="r_XTrie"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1XTrie.html">XTrie</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hash-consed sets of <span class="tt">D*</span>.  <a href="classfe_1_1XTrie.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
@@ -247,16 +247,16 @@ Concepts</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a28f05fb39b91b70a7ce4f89129cd7707" id="r_a28f05fb39b91b70a7ce4f89129cd7707"><td class="memTemplParams" colspan="2">template&lt;class Set&gt; </td></tr>
-<tr class="memitem:a28f05fb39b91b70a7ce4f89129cd7707 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a28f05fb39b91b70a7ce4f89129cd7707">UniqueQueue</a> = <a class="el" href="classfe_1_1Unique.html">Unique</a>&lt;Set, std::queue&gt;</td></tr>
-<tr class="memitem:a38f428773cd28d1850a6dee8be1675a7" id="r_a38f428773cd28d1850a6dee8be1675a7"><td class="memTemplParams" colspan="2">template&lt;class Set&gt; </td></tr>
-<tr class="memitem:a38f428773cd28d1850a6dee8be1675a7 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a38f428773cd28d1850a6dee8be1675a7">UniqueStack</a> = <a class="el" href="classfe_1_1Unique.html">Unique</a>&lt;Set, std::stack&gt;</td></tr>
 <tr class="memitem:a923ce058163e2041744a84793de679c0" id="r_a923ce058163e2041744a84793de679c0"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a923ce058163e2041744a84793de679c0">ostream_formatter</a> = <a class="el" href="structfe_1_1basic__ostream__formatter.html">basic_ostream_formatter</a>&lt;char&gt;</td></tr>
 <tr class="memitem:a3fa8abec15ebc094748836707250e96e" id="r_a3fa8abec15ebc094748836707250e96e"><td class="memTemplParams" colspan="2">template&lt;class T, size_t N = std::dynamic_extent&gt; </td></tr>
 <tr class="memitem:a3fa8abec15ebc094748836707250e96e template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a3fa8abec15ebc094748836707250e96e">View</a> = <a class="el" href="classfe_1_1Span.html">Span</a>&lt;const T, N&gt;</td></tr>
 <tr class="memitem:abd33b4214fdd0afae828ffb1c5fc9f9e" id="r_abd33b4214fdd0afae828ffb1c5fc9f9e"><td class="memTemplParams" colspan="2">template&lt;class V&gt; </td></tr>
 <tr class="memitem:abd33b4214fdd0afae828ffb1c5fc9f9e template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#abd33b4214fdd0afae828ffb1c5fc9f9e">PathMap</a> = std::unordered_map&lt;std::filesystem::path, V, <a class="el" href="structfe_1_1PathHash.html">PathHash</a>&gt;</td></tr>
 <tr class="memdesc:abd33b4214fdd0afae828ffb1c5fc9f9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps a <span class="tt">std::filesystem::path</span> to <code class="param">V</code>.  <br /></td></tr>
+<tr class="memitem:a0cf8b223e0a15d8cae20a0d8b332e8b9" id="r_a0cf8b223e0a15d8cae20a0d8b332e8b9"><td class="memTemplParams" colspan="2">template&lt;class Set&gt; </td></tr>
+<tr class="memitem:a0cf8b223e0a15d8cae20a0d8b332e8b9 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a0cf8b223e0a15d8cae20a0d8b332e8b9">BFSWorklist</a> = <a class="el" href="classfe_1_1Worklist.html">Worklist</a>&lt;Set, std::queue&lt;detail::WorklistElem&lt;Set&gt;&gt;&gt;</td></tr>
+<tr class="memitem:a549e9d25223dacc899ddef74bf627b3f" id="r_a549e9d25223dacc899ddef74bf627b3f"><td class="memTemplParams" colspan="2">template&lt;class Set&gt; </td></tr>
+<tr class="memitem:a549e9d25223dacc899ddef74bf627b3f template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a549e9d25223dacc899ddef74bf627b3f">DFSWorklist</a> = <a class="el" href="classfe_1_1Worklist.html">Worklist</a>&lt;Set, std::stack&lt;detail::WorklistElem&lt;Set&gt;&gt;&gt;</td></tr>
 <tr id="typedef-members-0" class="groupHeader"><td colspan="2"><div class="groupHeader">DbgMap/DbgSet</div></td></tr>
 <tr class="memitem:ac1c71f6a9945566d80eb25be4812334a" id="r_ac1c71f6a9945566d80eb25be4812334a"><td class="memTemplParams" colspan="2">template&lt;class V&gt; </td></tr>
 <tr class="memitem:ac1c71f6a9945566d80eb25be4812334a template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#ac1c71f6a9945566d80eb25be4812334a">DbgMap</a> = std::unordered_map&lt;<a class="el" href="structfe_1_1Dbg.html">Dbg</a>, V, <a class="el" href="structfe_1_1Dbg_1_1Hash.html">Dbg::Hash</a>, <a class="el" href="structfe_1_1Dbg_1_1Eq.html">Dbg::Eq</a>&gt;</td></tr>
@@ -393,6 +393,24 @@ FNV-1 Hash</h2></td></tr>
 <tr class="memdesc:ac131b22cfcf0e569e4adc1bf67583358"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shorthand for <span class="tt">hash_combine(hash_begin(), v)</span>.  <br /></td></tr>
 </table>
 <a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
+<a id="a0cf8b223e0a15d8cae20a0d8b332e8b9" name="a0cf8b223e0a15d8cae20a0d8b332e8b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cf8b223e0a15d8cae20a0d8b332e8b9">&#9670;&#160;</a></span>BFSWorklist</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Set&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a0cf8b223e0a15d8cae20a0d8b332e8b9">fe::BFSWorklist</a> = <a class="el" href="classfe_1_1Worklist.html">Worklist</a>&lt;Set, std::queue&lt;detail::WorklistElem&lt;Set&gt;&gt;&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="worklist_8h_source.html#l00078">78</a> of file <a class="el" href="worklist_8h_source.html">worklist.h</a>.</p>
+
+</div>
+</div>
 <a id="ac1c71f6a9945566d80eb25be4812334a" name="ac1c71f6a9945566d80eb25be4812334a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac1c71f6a9945566d80eb25be4812334a">&#9670;&#160;</a></span>DbgMap</h2>
 
@@ -424,6 +442,24 @@ template&lt;class V&gt; </div>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="dbg_8h_source.html#l00094">94</a> of file <a class="el" href="dbg_8h_source.html">dbg.h</a>.</p>
+
+</div>
+</div>
+<a id="a549e9d25223dacc899ddef74bf627b3f" name="a549e9d25223dacc899ddef74bf627b3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a549e9d25223dacc899ddef74bf627b3f">&#9670;&#160;</a></span>DFSWorklist</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Set&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a549e9d25223dacc899ddef74bf627b3f">fe::DFSWorklist</a> = <a class="el" href="classfe_1_1Worklist.html">Worklist</a>&lt;Set, std::stack&lt;detail::WorklistElem&lt;Set&gt;&gt;&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="worklist_8h_source.html#l00080">80</a> of file <a class="el" href="worklist_8h_source.html">worklist.h</a>.</p>
 
 </div>
 </div>
@@ -498,42 +534,6 @@ template&lt;class V&gt; </div>
 
 </div>
 </div>
-<a id="a28f05fb39b91b70a7ce4f89129cd7707" name="a28f05fb39b91b70a7ce4f89129cd7707"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a28f05fb39b91b70a7ce4f89129cd7707">&#9670;&#160;</a></span>UniqueQueue</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class Set&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="#a28f05fb39b91b70a7ce4f89129cd7707">fe::UniqueQueue</a> = <a class="el" href="classfe_1_1Unique.html">Unique</a>&lt;Set, std::queue&gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00130">130</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
-
-</div>
-</div>
-<a id="a38f428773cd28d1850a6dee8be1675a7" name="a38f428773cd28d1850a6dee8be1675a7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a38f428773cd28d1850a6dee8be1675a7">&#9670;&#160;</a></span>UniqueStack</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class Set&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="#a38f428773cd28d1850a6dee8be1675a7">fe::UniqueStack</a> = <a class="el" href="classfe_1_1Unique.html">Unique</a>&lt;Set, std::stack&gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00132">132</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
-
-</div>
-</div>
 <a id="a3fa8abec15ebc094748836707250e96e" name="a3fa8abec15ebc094748836707250e96e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3fa8abec15ebc094748836707250e96e">&#9670;&#160;</a></span>View</h2>
 
@@ -576,11 +576,11 @@ template&lt;class C, class... Args&gt; </div>
 
 <p>Invokes <span class="tt">emplace</span> on <code class="param">container</code>, asserts that insertion actually happened, and returns the iterator. </p>
 
-<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00066">66</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00063">63</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
 
-<p class="reference">References <a class="el" href="container_8h_source.html#l00066">assert_emplace()</a>, and <a class="el" href="assert_8h_source.html#l00049">assert_unused</a>.</p>
+<p class="reference">References <a class="el" href="container_8h_source.html#l00063">assert_emplace()</a>, and <a class="el" href="assert_8h_source.html#l00049">assert_unused</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="container_8h_source.html#l00066">assert_emplace()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="container_8h_source.html#l00063">assert_emplace()</a>.</p>
 
 </div>
 </div>
@@ -615,11 +615,11 @@ template&lt;class C, class K&gt; </div>
 
 <p>Looks up <code class="param">key</code> in <code class="param">container</code>, asserts that it exists, and returns a reference to the mapped value. </p>
 
-<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00058">58</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00055">55</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
 
-<p class="reference">References <a class="el" href="container_8h_source.html#l00058">assert_lookup()</a>.</p>
+<p class="reference">References <a class="el" href="container_8h_source.html#l00055">assert_lookup()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="container_8h_source.html#l00058">assert_lookup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="container_8h_source.html#l00055">assert_lookup()</a>.</p>
 
 </div>
 </div>
@@ -1181,11 +1181,11 @@ template&lt;class C, class K&gt; </div>
 <p>Yields pointer to element (or the element itself if it is already a pointer), if found and <span class="tt">nullptr</span> otherwise. </p>
 <p>Constness of <code class="param">container</code> carries over to the result. </p><dl class="section warning"><dt>Warning</dt><dd>If the element is <b>not</b> already a pointer, this lookup will simply take the address of this element. This means that, e.g., a rehash of an <span class="tt">absl::flat_hash_map</span> will invalidate this pointer. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00048">48</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00045">45</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
 
-<p class="reference">References <a class="el" href="container_8h_source.html#l00048">lookup()</a>.</p>
+<p class="reference">References <a class="el" href="container_8h_source.html#l00045">lookup()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="container_8h_source.html#l00048">lookup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="container_8h_source.html#l00045">lookup()</a>.</p>
 
 </div>
 </div>
@@ -1284,9 +1284,9 @@ template&lt;Queuelike Q&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00037">37</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00034">34</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
 
-<p class="reference">References <a class="el" href="container_8h_source.html#l00030">pop()</a>.</p>
+<p class="reference">References <a class="el" href="container_8h_source.html#l00027">pop()</a>.</p>
 
 </div>
 </div>
@@ -1315,11 +1315,11 @@ template&lt;Stacklike S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00030">30</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00027">27</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
 
-<p class="reference">References <a class="el" href="container_8h_source.html#l00030">pop()</a>.</p>
+<p class="reference">References <a class="el" href="container_8h_source.html#l00027">pop()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="container_8h_source.html#l00037">pop()</a>, <a class="el" href="container_8h_source.html#l00030">pop()</a>, and <a class="el" href="container_8h_source.html#l00109">fe::Unique&lt; Set, std::queue &gt;::pop()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="container_8h_source.html#l00034">pop()</a>, <a class="el" href="container_8h_source.html#l00027">pop()</a>, and <a class="el" href="worklist_8h_source.html#l00052">fe::Worklist&lt; Set, C &gt;::pop()</a>.</p>
 
 </div>
 </div>

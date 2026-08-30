@@ -7,7 +7,7 @@ var searchData=
   ['set_5fmode_4',['set_mode',['../namespacefe_1_1term.html#aea69c469efc3010ca40cb1873ff6bec6',1,'fe::term']]],
   ['short_5fstring_5fbytes_5',['Short_String_Bytes',['../classfe_1_1Sym.html#a2d6e0bb54a5a9513e4a064dd38011863',1,'fe::Sym']]],
   ['short_5fstring_5fmask_6',['Short_String_Mask',['../classfe_1_1Sym.html#a2d4bd5c6441545264c94de234dcc9d4e',1,'fe::Sym']]],
-  ['size_7',['size',['../structfe_1_1Sym_1_1String.html#aa0db4d8f8fc3944406f4ff41891100c0',1,'fe::Sym::String::size'],['../classfe_1_1Unique.html#a346fa4734f862066f6b4da46de7ddf2f',1,'fe::Unique::size()'],['../structfe_1_1Loc.html#aac89272328e80519026d0e7f26d0f45e',1,'fe::Loc::size()'],['../classfe_1_1Sym.html#a35a3c9b2d1a8576e2c79ad9c5582df69',1,'fe::Sym::size()'],['../classfe_1_1XTrie_1_1Set.html#aa6d578531bc83831bff1b1f7c09f2af5',1,'fe::XTrie::Set::size()']]],
+  ['size_7',['size',['../structfe_1_1Sym_1_1String.html#aa0db4d8f8fc3944406f4ff41891100c0',1,'fe::Sym::String::size'],['../structfe_1_1Loc.html#aac89272328e80519026d0e7f26d0f45e',1,'fe::Loc::size()'],['../classfe_1_1Sym.html#a35a3c9b2d1a8576e2c79ad9c5582df69',1,'fe::Sym::size()'],['../classfe_1_1Worklist.html#a13e90f80dacf61eda3a305e8198e1da6',1,'fe::Worklist::size()'],['../classfe_1_1XTrie_1_1Set.html#aa6d578531bc83831bff1b1f7c09f2af5',1,'fe::XTrie::Set::size()']]],
   ['slurp_8',['slurp',['../classfe_1_1SrcMap.html#acfb223ff98a9a1289a29c729969c7693',1,'fe::SrcMap']]],
   ['snippet_9',['Snippet',['../structfe_1_1Snippet.html',1,'fe']]],
   ['snippet_2eh_10',['snippet.h',['../snippet_8h.html',1,'']]],

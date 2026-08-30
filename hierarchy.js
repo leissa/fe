@@ -73,11 +73,11 @@ var hierarchy =
     [ "fe::Tab", "classfe_1_1Tab.html", null ],
     [ "fe::Parser&lt; Tok, Tag, K, S &gt;::Tracker", "classfe_1_1Parser_1_1Tracker.html", null ],
     [ "std::tuple_element&lt; I, fe::Span&lt; T, N &gt; &gt;", "namespacestd.html#structstd_1_1tuple__element_3_01I_00_01fe_1_1Span_3_01T_00_01N_01_4_01_4", null ],
-    [ "fe::Unique&lt; Set, C &gt;", "classfe_1_1Unique.html", null ],
     [ "detail::VectorBase", null, [
       [ "fe::Vector< fe::Dbg >", "classfe_1_1Vector.html", null ],
       [ "fe::Vector< T, N, A >", "classfe_1_1Vector.html", null ]
     ] ],
+    [ "fe::Worklist&lt; Set, C &gt;", "classfe_1_1Worklist.html", null ],
     [ "fe::XTrie&lt; D, K, N &gt;", "classfe_1_1XTrie.html", null ],
     [ "array&lt; fe::Lexer::Ahead, N &gt;", "namespace_3globalScope_4.html#classstd_1_1array_3_01fe_1_1Lexer_1_1Ahead_00_01N_01_4", null ],
     [ "array&lt; Tok, N &gt;", "namespace_3globalScope_4.html#classstd_1_1array_3_01Tok_00_01N_01_4", null ]

@@ -6,7 +6,7 @@ var searchData=
   ['throwf_3',['throwf',['../namespacefe.html#a90e0f8ec6bf736dde22be99a5cfde6ca',1,'fe']]],
   ['to_5funderlying_4',['to_underlying',['../namespacefe.html#a1f98d7865fd23c1d29648fb9f6239ce3',1,'fe']]],
   ['tolower_5',['tolower',['../namespacefe_1_1utf8.html#a2dc258776e743dd1204f68bfe2baed2b',1,'fe::utf8']]],
-  ['top_6',['top',['../classfe_1_1Unique.html#a1a34a600d4af0f101da94cd81558911e',1,'fe::Unique::top()'],['../classfe_1_1Unique.html#a902e55185bc760e60ea3bf73db606efe',1,'fe::Unique::top() const']]],
+  ['top_6',['top',['../classfe_1_1Worklist.html#a94baae116e545c5a2eb1a3a14d314cdd',1,'fe::Worklist::top()'],['../classfe_1_1Worklist.html#a257e29d7ed3952d3b552d8f0904e3eeb',1,'fe::Worklist::top() const']]],
   ['toupper_7',['toupper',['../namespacefe_1_1utf8.html#a7907975b61b06db27b14fe2a912f8f8c',1,'fe::utf8']]],
   ['tracker_8',['Tracker',['../classfe_1_1Parser_1_1Tracker.html#a8b31319b66d8fb1a2911ec78e1b05ccf',1,'fe::Parser::Tracker']]],
   ['tracker_9',['tracker',['../classfe_1_1Parser.html#aea3507b75aa247b9431256f5463a7821',1,'fe::Parser::tracker()'],['../classfe_1_1Parser.html#a01e44a12cb19d3172293feac4f89bbbc',1,'fe::Parser::tracker(Pos begin)'],['../classfe_1_1Parser.html#a4a964da822c8e0c743a8e5fce865ca20',1,'fe::Parser::tracker(Loc begin)']]],

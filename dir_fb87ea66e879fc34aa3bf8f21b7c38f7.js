@@ -29,5 +29,6 @@ var dir_fb87ea66e879fc34aa3bf8f21b7c38f7 =
     [ "term.h", "term_8h.html", "term_8h" ],
     [ "utf8.h", "utf8_8h.html", "utf8_8h" ],
     [ "vector.h", "vector_8h.html", "vector_8h" ],
+    [ "worklist.h", "worklist_8h.html", "worklist_8h" ],
     [ "xtrie.h", "xtrie_8h.html", "xtrie_8h" ]
 ];

@@ -84,8 +84,8 @@ var NAVTREEINDEX =
 "classfe_1_1Log.html#aca33a8cd004ad91aa9f9f632358446c0",
 "classfe_1_1Src.html#ae5999ab785d5dfbe58ac84eb3ffc4988",
 "classfe_1_1XTrie_1_1Set.html#aac8fda525c29ff11b3ad035855f48eb1",
-"namespacefe.html#a89ce852a3e2d3ecde80f0ed8f81a501b",
-"structfe_1_1Loc.html#a84dc0aa715cb3c980ab7373b25e30c85"
+"namespacefe.html#a90e0f8ec6bf736dde22be99a5cfde6ca",
+"structfe_1_1Loc.html#a880683bdd569c8ba9f1b70e93025c70e"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';
