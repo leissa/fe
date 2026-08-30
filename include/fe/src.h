@@ -56,7 +56,9 @@ public:
     ///@{
     const std::filesystem::path& path() const { return path_; }
     std::string_view buf() const { return buf_; }
-    uint32_t num_rows() const { return (uint32_t)rows_.size(); }
+    /// The number of rows the file actually has.
+    /// @note A trailing line terminator does *not* open one more, empty row - it ends the last one.
+    uint32_t num_rows() const { return (uint32_t)rows_.size() - phantom_(); }
     Pos begin() const { return Pos(0); }
     Pos end() const { return Pos((uint32_t)buf_.size()); }
     bool contains(Pos pos) const { return pos && pos.off <= buf_.size(); }
@@ -66,9 +68,15 @@ public:
     ///@{
     /// 1-based row and column @p pos sits at, or `{0, 0}` if @p pos does not belong to this file.
     /// The column counts code points, not bytes, and a leading utf8::Bom occupies none.
+    /// @note Never names a row Src::num_rows does not count - see there.
     std::pair<uint32_t, uint32_t> rowcol(Pos pos) const {
         if (!contains(pos)) return {0, 0};
-        auto row   = (uint32_t)(std::ranges::upper_bound(rows_, pos.off) - rows_.begin());
+        auto row = (uint32_t)(std::ranges::upper_bound(rows_, pos.off) - rows_.begin());
+
+        // @p pos is at the very end of a file that ends with a terminator. That is no row of its own
+        // but one past the end of the last real one - which is where an `<end of file>` token points.
+        if (row > num_rows()) return {num_rows(), (uint32_t)utf8::num_code_points(line(num_rows())) + 1};
+
         auto begin = row == 1 ? std::min(bom_, pos.off) : rows_[row - 1];
         return {row, (uint32_t)utf8::num_code_points(sub(begin, pos.off)) + 1};
     }
@@ -79,7 +87,7 @@ public:
     /// Text of the 1-based @p row without its line terminator - or a leading utf8::Bom;
     /// empty if @p row is out of range.
     std::string_view line(uint32_t row) const {
-        if (row == 0 || row > rows_.size()) return {};
+        if (row == 0 || row > num_rows()) return {};
         auto begin = row == 1 ? bom_ : rows_[row - 1];
         auto end   = row == rows_.size() ? (uint32_t)buf_.size() : rows_[row] - 1;
         if (end > begin && buf_[end - 1] == '\r') --end;
@@ -104,6 +112,11 @@ public:
     ///@}
 
 private:
+    /// Scanning for `\n` appends one more offset when buf_ ends with a terminator: a row with
+    /// nothing in it and nothing after it. A terminator *ends* its row rather than opening a new
+    /// one, so that entry is an artifact of the scan and not a row the file has.
+    uint32_t phantom_() const { return rows_.size() > 1 && rows_.back() == buf_.size() ? 1 : 0; }
+
     std::string_view sub(uint32_t begin, uint32_t end) const {
         return std::string_view(buf_).substr(begin, end - begin);
     }

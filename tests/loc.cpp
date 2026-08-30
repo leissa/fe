@@ -140,6 +140,40 @@ TEST_CASE("Src") {
         CHECK(trunc.prev(Pos(2)) == Pos(1));
     }
 
+    SUBCASE("a trailing line terminator ends its row rather than opening a new one") {
+        auto nl    = fe::Src("nl.let", "let x = 1;\n");
+        auto nonl  = fe::Src("nonl.let", "let x = 1;");
+        auto crlf  = fe::Src("crlf.let", "let x = 1;\r\n");
+        auto blank = fe::Src("blank.let", "let x = 1;\n\n");
+        auto empty = fe::Src("empty.let", "");
+
+        CHECK(nl.num_rows() == 1);
+        CHECK(nonl.num_rows() == 1);
+        CHECK(crlf.num_rows() == 1);
+        CHECK(empty.num_rows() == 1);
+
+        // Whether the file ends with a terminator or not, its end spells the same position -
+        // and the terminator itself is no column.
+        CHECK(nl.rowcol(nl.end()) == std::pair(1u, 11u));
+        CHECK(nonl.rowcol(nonl.end()) == std::pair(1u, 11u));
+        CHECK(crlf.rowcol(crlf.end()) == std::pair(1u, 11u));
+        CHECK(empty.rowcol(empty.end()) == std::pair(1u, 1u));
+
+        // A row that really is empty is a row all the same: `blank` ends *its* row 2, so the
+        // file end resolves there and not to a row 3.
+        CHECK(blank.num_rows() == 2);
+        CHECK(blank.rowcol(Pos(11)) == std::pair(2u, 1u));
+        CHECK(blank.rowcol(blank.end()) == std::pair(2u, 1u));
+
+        CHECK(nl.line(1) == "let x = 1;");
+        CHECK(crlf.line(1) == "let x = 1;");
+        CHECK(nl.line(2).empty());
+
+        // The row a Loc names is the row its snippet underlines - see TEST_CASE("snippet").
+        CHECK(std::format("{}", Loc(&nl, nl.end())) == "nl.let:1:11");
+        CHECK(std::format("{}", Loc(&nonl, nonl.end())) == "nonl.let:1:11");
+    }
+
     SUBCASE("a leading BOM is no column") {
         auto bom = fe::Src("bom.let", "\xEF\xBB\xBF"
                                       "let x = 1;\ny");
@@ -412,9 +446,18 @@ TEST_CASE("snippet") {
           == "    1 | let x = 1;\n"
              "      |           ^\n");
 
+    // The trailing newline opens a row 5 that the source does not actually contain:
+    // a Loc there falls back to the end of row 4.
     CHECK(str(Loc(&src, Pos(44), Pos(44)), 0)
-          == "    5 | \n"
+          == "    4 | let w = 4;\n"
+             "      |           ^\n");
+
+    // A row that really is empty is a row all the same and keeps its caret.
+    auto src2 = fe::Src("test2.let", "let x = 1;\n\n");
+    CHECK(str(Loc(&src2, Pos(11), Pos(11)), 0)
+          == "    2 | \n"
              "      | ^\n");
+    CHECK(str(Loc(&src2, Pos(12), Pos(12)), 0) == str(Loc(&src2, Pos(11), Pos(11)), 0));
 
     // A Loc spanning more rows than `max_rows` elides its middle.
     CHECK(str(Loc(&src, Pos(4), Pos(37)), 2)
