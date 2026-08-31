@@ -6,6 +6,7 @@
 #include <deque>
 #include <format>
 
+#include "fe/error.h"
 #include "fe/loc.h"
 #include "fe/ring.h"
 
@@ -33,20 +34,20 @@ namespace fe {
 ///     do_something(tok);
 /// }
 /// ```
-/// The Parser itself does not report anything; @p S must provide the Lexer to pull from and the diagnostics:
+/// @p S must provide the Lexer to pull from and somewhere to report to:
 /// ```
 /// class MyParser : public fe::Parser<Tok, Tok::Tag, K, MyParser> {
-///     Lexer& lexer();                                  ///< Parser::lex pulls the next Tok%en from here.
-///     void syntax_err(Tag, std::string_view ctxt);     ///< Parser::expect did not find its Tag.
-///     void unanchored_err(Tok, std::string_view ctxt); ///< Parser::recover discarded this Tok%en.
+///     Lexer& lexer();                                ///< Parser::lex pulls the next Tok%en from here.
+///     fe::Error& error();                            ///< Where the default diagnostics below go.
 ///
-///     friend fe::Parser<Tok, Tok::Tag, K, MyParser>;   ///< Otherwise, these may be private.
+///     friend fe::Parser<Tok, Tok::Tag, K, MyParser>; ///< Otherwise, these may be private.
 /// };
 /// ```
+/// Parser::syntax_err and Parser::unanchored_err come with a default; declare either in @p S to word it differently.
+/// @warning Declaring *any* `syntax_err` in @p S hides all of them, so keep one that takes a `Tag`.
 template<class Tok, class Tag, size_t K, class S>
 requires std::is_default_constructible_v<Tok>
-      && (std::is_convertible_v<Tok, bool> || std::is_constructible_v<bool, Tok>)
-class Parser {
+      && (std::is_convertible_v<Tok, bool> || std::is_constructible_v<bool, Tok>)class Parser {
 private:
     S& self() { return *static_cast<S*>(this); }
     const S& self() const { return *static_cast<const S*>(this); }
@@ -189,6 +190,34 @@ protected:
         recover([tag](Tag t) { return t == tag; }, ctxt);
     }
     ///@}
+
+    /// @name Diagnostics
+    /// The defaults @p S may replace with one of its own.
+    ///@{
+    /// Parser::expect did not find @p tag while parsing @p ctxt.
+    void syntax_err(Tag tag, std::string_view ctxt) {
+        static_assert(
+            requires(S& s) { s.error(); },
+            "provide `fe::Error& error()` in your parser - or a `syntax_err` of your own");
+        self().error().error(ahead().loc(), "expected {}, got `{}` while parsing {}", tag2str_(tag), ahead(), ctxt);
+    }
+
+    /// Parser::recover discarded @p tok while parsing @p ctxt.
+    void unanchored_err(Tok tok, std::string_view ctxt) {
+        static_assert(
+            requires(S& s) { s.error(); },
+            "provide `fe::Error& error()` in your parser - or an `unanchored_err` of your own");
+        self().error().error(tok.loc(), "ignoring unmatched `{}` while parsing {}", tok, ctxt);
+    }
+    ///@}
+
+    /// Spells @p tag out via `Tok::tag2str` if there is one - a bare enumerator would render as its number.
+    static auto tag2str_(Tag tag) {
+        if constexpr (requires { Tok::tag2str(tag); })
+            return std::format("`{}`", Tok::tag2str(tag));
+        else
+            return std::format("`{}`", tag);
+    }
 
     Ring<Tok, K> ahead_;
     Loc curr_;

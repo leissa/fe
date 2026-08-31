@@ -174,7 +174,7 @@ private:
 };
 
 /// Minimal precedence-climbing expression parser, mirroring the intended `fe::Parser` usage in the
-/// sister `let` project: derive via CRTP, expose `lexer()`, provide `syntax_err`, drive the parse with
+/// sister `let` project: derive via CRTP, expose `lexer()`/`error()`, drive the parse with
 /// the inherited `tracker`/`ahead`/`accept`/`expect`/`eat`/`lex` helpers.
 /// `parse` returns the expression as an s-expression string so precedence/associativity are easy to check.
 template<size_t K = 1>
@@ -206,6 +206,7 @@ public:
 
     Lexer<K>& lexer() { return lexer_; }
     fe::Driver& driver() { return driver_; }
+    fe::Error& error() { return err_; } ///< All the Parser's default diagnostics need.
 
     /// Parse one whole expression and return {s-expression string, its Loc}.
     std::pair<std::string, Loc> parse() {
@@ -213,14 +214,6 @@ public:
         auto str   = parse_expr("expression", Tok::Bot);
         expect(Tok::Tag::EoF, "expression");
         return {str, track.loc()};
-    }
-
-    void syntax_err(Tok::Tag tag, std::string_view ctxt) {
-        err_.error(ahead().loc(), "expected '{}' while parsing {}", Tok::tag2str(tag), ctxt);
-    }
-
-    void unanchored_err(Tok tok, std::string_view ctxt) {
-        err_.error(tok.loc(), "ignoring unmatched '{}' while parsing {}", tok, ctxt);
     }
 
 private:
@@ -245,7 +238,7 @@ private:
             expect(Tok::Tag::D_paren_r, "parenthesized expression");
             return str;
         }
-        syntax_err(Tok::Tag::M_id, ctxt);
+        this->syntax_err(Tok::Tag::M_id, ctxt);
         return "<error>";
     }
 

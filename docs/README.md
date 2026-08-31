@@ -16,7 +16,7 @@
 [TOC]
 
 **FE** is a C++23 toolkit for building handwritten compiler and interpreter frontends.
-It is header-only by default; the handful of components that need a translation unit of their own come with `FE_LIB`.
+Most of it is header-only; the handful of components that need a translation unit of their own come with `FE_LIB`, which is on by default.
 
 Rather than generating lexers or parsers for you, FE focuses on the infrastructure that every frontend needs anyway: source locations, diagnostics, interning, parsing support, and efficient memory management.
 The goal is simple: keep handwritten frontends lightweight, explicit, and pleasant to maintain.
@@ -59,6 +59,8 @@ It provides a compact set of reusable, well-integrated components:
 - `fe::Src` and `fe::SrcMap` for owning source text and resolving a position back to `path:row:col`.
 - `fe::Dbg` for the `Loc`/`Sym` pair every named entity drags along, interned in the `Driver` as a `DbgKey`.
 - `fe::Error` for collecting diagnostics - errors, warnings and their notes - and rendering each with its source snippet; `Error::ack` throws what it collected as a self-contained `Error::Bail`.
+- `fe::Diag` for how a diagnostic lays out: `Diag::loc_style` (a `Loc::Style`), `Diag::no_snippet`, and friends cover the usual adjustments, and one virtual per piece (`loc`, `header`, `snippet`, `note`, `summary`, `render`) covers the rest.
+  Derive and `Driver::diag(std::make_unique<MyDiag>())` to lay one out entirely your own way.
 - `fe::Log` for leveled logging with acronym, color, and origin prefix.
     - `Log::error`/`Log::warn`/... shorthands point at their call site via `std::source_location`; no macros involved.
 - `fe::term` for lightweight terminal colors in diagnostics and CLI output.
@@ -74,13 +76,14 @@ It provides a compact set of reusable, well-integrated components:
 #### Odds & Ends
 
 - `fe::hash` and friends for cheap, `constexpr` hash mixing/combining.
-- `fe::Restore` for RAII save/restore of a variable across a scope.
+- `fe::Restore` for RAII save/restore of a variable - or of anything a getter/setter pair reaches, like `term::ScopedMode` - across a scope.
 - `fe/algo.h` and `fe/container.h` for the odds and ends every frontend rewrites otherwise.
 
 ### Requires `FE_LIB` {#requires-fe_lib}
 
 These need a translation unit of their own and hence live in `src/fe/`:
 
+- `fe::Diag` for the diagnostic layout - and hence `fe::Driver`, which owns one, and `fe::Error`, which renders through it.
 - `fe::Snippet` for the underlined source excerpt below a diagnostic.
 - `fe::dl` and `fe::sys` for loading dynamic libraries and locating/running external commands.
 - `fe::Profiler` for nested wall-clock spans reported as a flat table, a tree, or Chrome Trace JSON.
@@ -133,14 +136,21 @@ target_link_libraries(my_compiler PRIVATE fe)
 Set any of the options below *before* adding the subdirectory:
 
 ```cmake
-set(FE_LIB  ON) # build fe as a static library instead of an interface one
+set(FE_LIB  OFF) # header-only building blocks only - no fe::Driver, fe::Error, or fe::Diag
 set(FE_ABSL ON) # use Abseil-backed hash containers
 add_subdirectory(submodules/fe)
 target_link_libraries(my_compiler PRIVATE fe)
 ```
 
-`FE_LIB` compiles `src/fe/` along with the headers.
-You need it for the components listed under [Requires `FE_LIB`](#requires-fe_lib).
+`FE_LIB` compiles `src/fe/` along with the headers and is on by default.
+Turn it off to get only the header-only building blocks; you lose the components listed under [Requires `FE_LIB`](#requires-fe_lib).
+
+`fe-lib` is an `OBJECT` library, so its symbols land inside a shared library of *yours*.
+On Windows that shared library has to export them, which CMake cannot infer: compile everything that goes into it with `fe_lib_EXPORTS`, or `FE_STATIC_DEFINE` if there is no shared library in play.
+
+```cmake
+target_compile_definitions(my_compiler PRIVATE fe_lib_EXPORTS)
+```
 
 #### Direct Vendoring
 
@@ -176,7 +186,7 @@ cmake --build build
 ctest --test-dir build --output-on-failure
 ```
 
-A standalone `BUILD_TESTING` build enables `FE_LIB`, as the tests rely on the default `fe::Loc` rendering.
+The tests need `FE_LIB`, which is on by default.
 
 To run one discovered test:
 
