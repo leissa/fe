@@ -13,6 +13,8 @@ var classfe_1_1Parser =
     [ "lex", "classfe_1_1Parser.html#a5d4335bae86e3127fbf5b42fb0fcd3e7", null ],
     [ "recover", "classfe_1_1Parser.html#a41e9d9c41ad8485c8cd8f45405953e43", null ],
     [ "recover", "classfe_1_1Parser.html#afdfceb8db1545f1cfb8e6a4d2acf92ec", null ],
+    [ "syntax_err", "classfe_1_1Parser.html#a5ab48071df63eceb3e12a59f47c9a254", null ],
+    [ "syntax_err", "classfe_1_1Parser.html#ae93549434e4a8d07d5db1d73b1161374", null ],
     [ "syntax_err", "classfe_1_1Parser.html#a14111c13fee4ffb52c5adcffc09343ee", null ],
     [ "tag2str_", "classfe_1_1Parser.html#a729e065306271ccbfdf2b74ca8223932", null ],
     [ "tracker", "classfe_1_1Parser.html#aea3507b75aa247b9431256f5463a7821", null ],

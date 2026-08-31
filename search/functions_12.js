@@ -29,6 +29,6 @@ var searchData=
   ['sym_26',['Sym',['../classfe_1_1Sym.html#a3b4417ab3002f28d1e4f340711a8d094',1,'fe::Sym']]],
   ['sym_27',['sym',['../structfe_1_1Dbg.html#a36f20fe59dfac6de58bf91312a22f332',1,'fe::Dbg::sym()'],['../classfe_1_1SymPool.html#a1a7c3278db18ad72926b06c1e757b865',1,'fe::SymPool::sym(std::string_view s)'],['../classfe_1_1SymPool.html#aaa85e3916fd52036699bd97f6376d398',1,'fe::SymPool::sym(const std::string &amp;s)'],['../classfe_1_1SymPool.html#aebce9967a8092fbb2d851c2f400745a1',1,'fe::SymPool::sym(const char *s)']]],
   ['sympool_28',['SymPool',['../classfe_1_1SymPool.html#a9446b07a54c8892bc6135608d0321af7',1,'fe::SymPool::SymPool(const SymPool &amp;)=delete'],['../classfe_1_1SymPool.html#ad760b218bdbfd83a596a4482be8df1a4',1,'fe::SymPool::SymPool() noexcept'],['../classfe_1_1SymPool.html#ab59d67329468787346189016e67794b2',1,'fe::SymPool::SymPool(SymPool &amp;&amp;other) noexcept']]],
-  ['syntax_5ferr_29',['syntax_err',['../classfe_1_1Parser.html#a14111c13fee4ffb52c5adcffc09343ee',1,'fe::Parser']]],
+  ['syntax_5ferr_29',['syntax_err',['../classfe_1_1Parser.html#ae93549434e4a8d07d5db1d73b1161374',1,'fe::Parser::syntax_err(std::string_view what, Tok tok, std::string_view ctxt)'],['../classfe_1_1Parser.html#a5ab48071df63eceb3e12a59f47c9a254',1,'fe::Parser::syntax_err(std::string_view what, std::string_view ctxt)'],['../classfe_1_1Parser.html#a14111c13fee4ffb52c5adcffc09343ee',1,'fe::Parser::syntax_err(Tag tag, std::string_view ctxt)']]],
   ['system_30',['system',['../namespacefe_1_1sys.html#a32dbb92355fcb6726986a2f850cfdbb9',1,'fe::sys']]]
 ];

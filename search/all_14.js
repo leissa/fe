@@ -50,7 +50,7 @@ var searchData=
   ['symmap_47',['SymMap',['../namespacefe.html#a11fef75d471024bdbf5cfc3223146f8e',1,'fe']]],
   ['sympool_48',['SymPool',['../classfe_1_1SymPool.html',1,'fe::SymPool'],['../classfe_1_1Sym.html#a5379cdd60ce3c910e14da02defe0a1aa',1,'fe::Sym::SymPool()'],['../classfe_1_1SymPool.html#a9446b07a54c8892bc6135608d0321af7',1,'fe::SymPool::SymPool(const SymPool &amp;)=delete'],['../classfe_1_1SymPool.html#ad760b218bdbfd83a596a4482be8df1a4',1,'fe::SymPool::SymPool() noexcept'],['../classfe_1_1SymPool.html#ab59d67329468787346189016e67794b2',1,'fe::SymPool::SymPool(SymPool &amp;&amp;other) noexcept']]],
   ['symset_49',['SymSet',['../namespacefe.html#afc6debb6fc36d12352409c5e46ce4e55',1,'fe']]],
-  ['syntax_5ferr_50',['syntax_err',['../classfe_1_1Parser.html#a14111c13fee4ffb52c5adcffc09343ee',1,'fe::Parser']]],
+  ['syntax_5ferr_50',['syntax_err',['../classfe_1_1Parser.html#ae93549434e4a8d07d5db1d73b1161374',1,'fe::Parser::syntax_err(std::string_view what, Tok tok, std::string_view ctxt)'],['../classfe_1_1Parser.html#a5ab48071df63eceb3e12a59f47c9a254',1,'fe::Parser::syntax_err(std::string_view what, std::string_view ctxt)'],['../classfe_1_1Parser.html#a14111c13fee4ffb52c5adcffc09343ee',1,'fe::Parser::syntax_err(Tag tag, std::string_view ctxt)']]],
   ['sys_2eh_51',['sys.h',['../sys_8h.html',1,'']]],
   ['system_52',['system',['../namespacefe_1_1sys.html#a32dbb92355fcb6726986a2f850cfdbb9',1,'fe::sys']]]
 ];
