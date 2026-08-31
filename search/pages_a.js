@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['project_0',['Integrate into existing Project',['../index.html#autotoc_md5',1,'']]],
-  ['projects_1',['🔨 Related Projects',['../index.html#autotoc_md11',1,'']]]
+  ['parsing_0',['Lexing &amp;amp; Parsing',['../index.html#autotoc_md5',1,'']]],
+  ['project_1',['Integrate into existing Project',['../index.html#autotoc_md10',1,'']]],
+  ['projects_2',['🔨 Related Projects',['../index.html#autotoc_md16',1,'']]]
 ];

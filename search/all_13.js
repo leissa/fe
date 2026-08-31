@@ -6,7 +6,7 @@ var searchData=
   ['recover_3',['recover',['../classfe_1_1Parser.html#a41e9d9c41ad8485c8cd8f45405953e43',1,'fe::Parser::recover(P pred, std::string_view ctxt)'],['../classfe_1_1Parser.html#afdfceb8db1545f1cfb8e6a4d2acf92ec',1,'fe::Parser::recover(Tag tag, std::string_view ctxt)']]],
   ['red_4',['Red',['../namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47',1,'fe::term']]],
   ['reference_5',['reference',['../classfe_1_1Bitset_1_1reference.html',1,'fe::Bitset::reference'],['../classfe_1_1Bitset_1_1iterator.html#a9062596fa622ae6edbc471d7c31249ec',1,'fe::Bitset::iterator::reference'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html#afdd862aea2bf0c44672b13bd0fdd6cde',1,'fe::XTrie::Set::iterator::reference']]],
-  ['related_20projects_6',['🔨 Related Projects',['../index.html#autotoc_md11',1,'']]],
+  ['related_20projects_6',['🔨 Related Projects',['../index.html#autotoc_md16',1,'']]],
   ['rend_7',['rend',['../classfe_1_1Sym.html#a1e7ad312b7d4d7f733e2ee47245b3e9b',1,'fe::Sym']]],
   ['render_8',['Render',['../structfe_1_1Driver.html#ada4296ee6fd4167b39f4f9c8acfd0515',1,'fe::Driver']]],
   ['render_9',['render',['../structfe_1_1Driver.html#a2e255ee9efb08b65174b2c551882f323',1,'fe::Driver']]],

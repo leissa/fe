@@ -24,6 +24,6 @@ var searchData=
   ['breakpoint_21',['breakpoint',['../namespacefe.html#aa67601e05290c4a15e0d5d5f1f12a4a2',1,'fe']]],
   ['buf_22',['buf',['../classfe_1_1Src.html#a2026b6761200d7a92fa5400d5d770b29',1,'fe::Src']]],
   ['buf_5f_23',['buf_',['../classfe_1_1Lexer.html#ae93aa4d0d0632b0494c78ca67a48f99c',1,'fe::Lexer']]],
-  ['building_20and_20testing_24',['🛠️ Building and Testing',['../index.html#autotoc_md9',1,'']]],
-  ['building_20the_20documentation_25',['📚 Building the Documentation',['../index.html#autotoc_md10',1,'']]]
+  ['building_20and_20testing_24',['🛠️ Building and Testing',['../index.html#autotoc_md14',1,'']]],
+  ['building_20the_20documentation_25',['📚 Building the Documentation',['../index.html#autotoc_md15',1,'']]]
 ];

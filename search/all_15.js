@@ -8,8 +8,8 @@ var searchData=
   ['tag2color_5',['tag2color',['../classfe_1_1Error.html#a5182107fa755cab48952e2162d1c9e24',1,'fe::Error']]],
   ['term_2eh_6',['term.h',['../term_8h.html',1,'']]],
   ['test_7',['test',['../classfe_1_1Bitset.html#a448de800fb743ee8f98dd80009a7b36b',1,'fe::Bitset']]],
-  ['testing_8',['🛠️ Building and Testing',['../index.html#autotoc_md9',1,'']]],
-  ['the_20documentation_9',['📚 Building the Documentation',['../index.html#autotoc_md10',1,'']]],
+  ['testing_8',['🛠️ Building and Testing',['../index.html#autotoc_md14',1,'']]],
+  ['the_20documentation_9',['📚 Building the Documentation',['../index.html#autotoc_md15',1,'']]],
   ['throwf_10',['throwf',['../namespacefe.html#a90e0f8ec6bf736dde22be99a5cfde6ca',1,'fe']]],
   ['tlog_11',['TLOG',['../log__macros_8h.html#a69dcfba03c6d43734c25d912a4f2288c',1,'log_macros.h']]],
   ['to_5funderlying_12',['to_underlying',['../namespacefe.html#a1f98d7865fd23c1d29648fb9f6239ce3',1,'fe']]],
@@ -25,5 +25,5 @@ var searchData=
   ['tuple_5felement_3c_20i_2c_20fe_3a_3aspan_3c_20t_2c_20n_20_3e_20_3e_22',['tuple_element&lt; I, fe::Span&lt; T, N &gt; &gt;',['../namespacestd.html#structstd_1_1tuple__element_3_01I_00_01fe_1_1Span_3_01T_00_01N_01_4_01_4',1,'std']]],
   ['tuple_5fsize_3c_20fe_3a_3aspan_3c_20t_2c_20n_20_3e_20_3e_23',['tuple_size&lt; fe::Span&lt; T, N &gt; &gt;',['../structstd_1_1tuple__size_3_01fe_1_1Span_3_01T_00_01N_01_4_01_4.html',1,'std']]],
   ['type_24',['type',['../namespacestd.html#ae7ea1ac935d568b31d413ae7f70c14fe',1,'std::tuple_element&lt; I, fe::Span&lt; T, N &gt; &gt;']]],
-  ['typical_20workflow_25',['🧭 Typical Workflow',['../index.html#autotoc_md8',1,'']]]
+  ['typical_20workflow_25',['🧭 Typical Workflow',['../index.html#autotoc_md13',1,'']]]
 ];
