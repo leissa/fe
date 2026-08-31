@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['related_20projects_0',['🔨 Related Projects',['../index.html#autotoc_md16',1,'']]],
-  ['requires_20fe_5flib_1',['Requires &lt;span class=&quot;tt&quot;&gt;FE_LIB&lt;/span&gt;',['../index.html#requires-fe_lib',1,'']]]
+  ['parsing_0',['Lexing &amp;amp; Parsing',['../index.html#autotoc_md8',1,'']]],
+  ['project_1',['Integrate into existing Project',['../index.html#autotoc_md13',1,'']]],
+  ['projects_2',['🔨 Related Projects',['../index.html#autotoc_md19',1,'']]]
 ];

@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['lexing_20parsing_0',['Lexing &amp;amp; Parsing',['../index.html#autotoc_md5',1,'']]],
-  ['license_1',['⚖️ License',['../index.html#autotoc_md18',1,'']]]
+  ['integrate_20into_20existing_20project_0',['Integrate into existing Project',['../index.html#autotoc_md13',1,'']]],
+  ['into_20existing_20project_1',['Integrate into existing Project',['../index.html#autotoc_md13',1,'']]],
+  ['is_20that_2',['How much code is that?',['../index.html#autotoc_md2',1,'']]],
+  ['it_20afterwards_3',['And you can read it afterwards',['../index.html#autotoc_md4',1,'']]]
 ];

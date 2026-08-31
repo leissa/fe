@@ -25,29 +25,33 @@
 var NAVTREE =
 [
   [ "FE", "index.html", [
-    [ "💡 Why FE?", "index.html#autotoc_md1", null ],
-    [ "✨ Features", "index.html#autotoc_md2", [
-      [ "Building Blocks", "index.html#autotoc_md3", [
-        [ "Core", "index.html#autotoc_md4", null ],
-        [ "Lexing &amp; Parsing", "index.html#autotoc_md5", null ],
-        [ "Diagnostics", "index.html#autotoc_md6", null ],
-        [ "Data Structures", "index.html#autotoc_md7", null ],
-        [ "Odds &amp; Ends", "index.html#autotoc_md8", null ]
+    [ "💡 Why FE?", "index.html#autotoc_md1", [
+      [ "How much code is that?", "index.html#autotoc_md2", null ],
+      [ "Diagnostics you would otherwise write yourself", "index.html#autotoc_md3", null ],
+      [ "And you can read it afterwards", "index.html#autotoc_md4", null ]
+    ] ],
+    [ "✨ Features", "index.html#autotoc_md5", [
+      [ "Building Blocks", "index.html#autotoc_md6", [
+        [ "Core", "index.html#autotoc_md7", null ],
+        [ "Lexing &amp; Parsing", "index.html#autotoc_md8", null ],
+        [ "Diagnostics", "index.html#autotoc_md9", null ],
+        [ "Data Structures", "index.html#autotoc_md10", null ],
+        [ "Odds &amp; Ends", "index.html#autotoc_md11", null ]
       ] ],
       [ "Requires <span class=\"tt\">FE_LIB</span>", "index.html#requires-fe_lib", null ]
     ] ],
-    [ "🚀 Quick Start", "index.html#autotoc_md9", [
-      [ "Integrate into existing Project", "index.html#autotoc_md10", [
-        [ "CMake", "index.html#autotoc_md11", null ],
-        [ "Direct Vendoring", "index.html#autotoc_md12", null ]
+    [ "🚀 Quick Start", "index.html#autotoc_md12", [
+      [ "Integrate into existing Project", "index.html#autotoc_md13", [
+        [ "CMake", "index.html#autotoc_md14", null ],
+        [ "Direct Vendoring", "index.html#autotoc_md15", null ]
       ] ]
     ] ],
-    [ "🧭 Typical Workflow", "index.html#autotoc_md13", null ],
-    [ "🛠️ Building and Testing", "index.html#autotoc_md14", null ],
-    [ "📚 Building the Documentation", "index.html#autotoc_md15", null ],
-    [ "🔨 Related Projects", "index.html#autotoc_md16", null ],
-    [ "🤝 Contributing", "index.html#autotoc_md17", null ],
-    [ "⚖️ License", "index.html#autotoc_md18", null ],
+    [ "🧭 Typical Workflow", "index.html#autotoc_md16", null ],
+    [ "🛠️ Building and Testing", "index.html#autotoc_md17", null ],
+    [ "📚 Building the Documentation", "index.html#autotoc_md18", null ],
+    [ "🔨 Related Projects", "index.html#autotoc_md19", null ],
+    [ "🤝 Contributing", "index.html#autotoc_md20", null ],
+    [ "⚖️ License", "index.html#autotoc_md21", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -91,8 +95,8 @@ var NAVTREEINDEX =
 "classfe_1_1Parser_1_1Anchor.html",
 "classfe_1_1Sym.html#a3308cf822fc8707a9c946335d85972cd",
 "classfe_1_1lct_1_1Node.html#a0d02ac1d102e2d1af583428671e1264c",
-"namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb",
-"structfe_1_1Pos.html#a640b75ac976ba1789f7f47a961734d24"
+"namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ae90dfb84e30edf611e326eeb04d680de",
+"structfe_1_1Pos.html#a46b4925b94d29c02c9584baab42a0401"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';

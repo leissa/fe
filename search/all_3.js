@@ -15,7 +15,7 @@ var searchData=
   ['bitset_12',['Bitset',['../classfe_1_1Bitset.html',1,'fe::Bitset'],['../classfe_1_1Bitset_1_1reference.html#aa7797c60712c808e0011e2ea6a922bcf',1,'fe::Bitset::reference::Bitset()'],['../classfe_1_1Bitset_1_1iterator.html#aa7797c60712c808e0011e2ea6a922bcf',1,'fe::Bitset::iterator::Bitset()'],['../classfe_1_1Bitset.html#a5cb3759824e6b7aec184838f7f2900b4',1,'fe::Bitset::Bitset() noexcept=default'],['../classfe_1_1Bitset.html#ac01c5c9e0ad6c1c8352787d2bbbe9478',1,'fe::Bitset::Bitset(std::initializer_list&lt; size_t &gt; bits)'],['../classfe_1_1Bitset.html#a05df7d7f17d64ebda97303c5ab4e2793',1,'fe::Bitset::Bitset(const Bitset &amp;other)'],['../classfe_1_1Bitset.html#a9ca68a037cb52a6eb07bbfac9badffcb',1,'fe::Bitset::Bitset(Bitset &amp;&amp;other) noexcept']]],
   ['bitset_2eh_13',['bitset.h',['../bitset_8h.html',1,'']]],
   ['black_14',['Black',['../namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ae90dfb84e30edf611e326eeb04d680de',1,'fe::term']]],
-  ['blocks_15',['Building Blocks',['../index.html#autotoc_md3',1,'']]],
+  ['blocks_15',['Building Blocks',['../index.html#autotoc_md6',1,'']]],
   ['blue_16',['Blue',['../namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a9594eec95be70e7b1710f730fdda33d9',1,'fe::term']]],
   ['bom_17',['BOM',['../namespacefe_1_1utf8.html#a262057ce9cd9138f8dd21b84c7379b1c',1,'fe::utf8']]],
   ['bom_18',['Bom',['../namespacefe_1_1utf8.html#a2e8ce90548abc90ddd7184e4379aebe0',1,'fe::utf8']]],
@@ -25,7 +25,7 @@ var searchData=
   ['breakpoint_22',['breakpoint',['../namespacefe.html#aa67601e05290c4a15e0d5d5f1f12a4a2',1,'fe']]],
   ['buf_23',['buf',['../classfe_1_1Src.html#a2026b6761200d7a92fa5400d5d770b29',1,'fe::Src']]],
   ['buf_5f_24',['buf_',['../classfe_1_1Lexer.html#ae93aa4d0d0632b0494c78ca67a48f99c',1,'fe::Lexer']]],
-  ['building_20and_20testing_25',['🛠️ Building and Testing',['../index.html#autotoc_md14',1,'']]],
-  ['building_20blocks_26',['Building Blocks',['../index.html#autotoc_md3',1,'']]],
-  ['building_20the_20documentation_27',['📚 Building the Documentation',['../index.html#autotoc_md15',1,'']]]
+  ['building_20and_20testing_25',['🛠️ Building and Testing',['../index.html#autotoc_md17',1,'']]],
+  ['building_20blocks_26',['Building Blocks',['../index.html#autotoc_md6',1,'']]],
+  ['building_20the_20documentation_27',['📚 Building the Documentation',['../index.html#autotoc_md18',1,'']]]
 ];

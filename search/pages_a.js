@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['quick_20start_0',['🚀 Quick Start',['../index.html#autotoc_md9',1,'']]]
+  ['odds_20ends_0',['Odds &amp;amp; Ends',['../index.html#autotoc_md11',1,'']]],
+  ['otherwise_20write_20yourself_1',['Diagnostics you would otherwise write yourself',['../index.html#autotoc_md3',1,'']]]
 ];

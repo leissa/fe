@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['odds_20ends_0',['Odds &amp;amp; Ends',['../index.html#autotoc_md8',1,'']]],
+  ['odds_20ends_0',['Odds &amp;amp; Ends',['../index.html#autotoc_md11',1,'']]],
   ['off_1',['Off',['../classfe_1_1Lexer.html#a99366b3ab28fff1d6a1013b1007246a6ad15305d7a4e34e02489c74a5ef542f36',1,'fe::Lexer']]],
   ['off_2',['off',['../structfe_1_1Pos.html#a055b58d719423ee4aa8928a927970f99',1,'fe::Pos']]],
   ['ok_3',['ok',['../classfe_1_1Error.html#afe0bb794482d9b67a4df05f683d5e302',1,'fe::Error']]],
@@ -34,5 +34,6 @@ var searchData=
   ['operator_7c_3d_31',['operator|=',['../classfe_1_1Bitset.html#a61664a43d9641e983447317ac552710f',1,'fe::Bitset::operator|=()'],['../enum_8h.html#a6d5ff498e337573172c3f886624dd528',1,'operator|=():&#160;enum.h']]],
   ['operator_7e_32',['operator~',['../classfe_1_1Bitset_1_1reference.html#a3e7e9b3c9199e355e278ce087b1762de',1,'fe::Bitset::reference::operator~()'],['../enum_8h.html#a14c03db6837c04990ce6de219bc6e9e1',1,'operator~():&#160;enum.h']]],
   ['ostream_33',['ostream',['../classfe_1_1Log.html#aca33a8cd004ad91aa9f9f632358446c0',1,'fe::Log']]],
-  ['ostream_5fformatter_34',['ostream_formatter',['../namespacefe.html#a923ce058163e2041744a84793de679c0',1,'fe']]]
+  ['ostream_5fformatter_34',['ostream_formatter',['../namespacefe.html#a923ce058163e2041744a84793de679c0',1,'fe']]],
+  ['otherwise_20write_20yourself_35',['Diagnostics you would otherwise write yourself',['../index.html#autotoc_md3',1,'']]]
 ];

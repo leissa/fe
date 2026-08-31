@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['parsing_0',['Lexing &amp;amp; Parsing',['../index.html#autotoc_md5',1,'']]],
-  ['project_1',['Integrate into existing Project',['../index.html#autotoc_md10',1,'']]],
-  ['projects_2',['🔨 Related Projects',['../index.html#autotoc_md16',1,'']]]
+  ['much_20code_20is_20that_0',['How much code is that?',['../index.html#autotoc_md2',1,'']]]
 ];

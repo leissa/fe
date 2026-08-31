@@ -153,27 +153,38 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
 <ul>
   <li class="level1">
     <a href="#autotoc_md1">💡 Why FE? </a>
-  </li>
-  <li class="level1">
-    <a href="#autotoc_md2">✨ Features </a>
     <ul>
       <li class="level2">
-        <a href="#autotoc_md3">Building Blocks </a>
+        <a href="#autotoc_md2">How much code is that? </a>
+      </li>
+      <li class="level2">
+        <a href="#autotoc_md3">Diagnostics you would otherwise write yourself </a>
+      </li>
+      <li class="level2">
+        <a href="#autotoc_md4">And you can read it afterwards </a>
+      </li>
+    </ul>
+  </li>
+  <li class="level1">
+    <a href="#autotoc_md5">✨ Features </a>
+    <ul>
+      <li class="level2">
+        <a href="#autotoc_md6">Building Blocks </a>
         <ul>
           <li class="level3">
-            <a href="#autotoc_md4">Core </a>
+            <a href="#autotoc_md7">Core </a>
           </li>
           <li class="level3">
-            <a href="#autotoc_md5">Lexing &amp; Parsing </a>
+            <a href="#autotoc_md8">Lexing &amp; Parsing </a>
           </li>
           <li class="level3">
-            <a href="#autotoc_md6">Diagnostics </a>
+            <a href="#autotoc_md9">Diagnostics </a>
           </li>
           <li class="level3">
-            <a href="#autotoc_md7">Data Structures </a>
+            <a href="#autotoc_md10">Data Structures </a>
           </li>
           <li class="level3">
-            <a href="#autotoc_md8">Odds &amp; Ends </a>
+            <a href="#autotoc_md11">Odds &amp; Ends </a>
           </li>
         </ul>
       </li>
@@ -183,38 +194,38 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
     </ul>
   </li>
   <li class="level1">
-    <a href="#autotoc_md9">🚀 Quick Start </a>
+    <a href="#autotoc_md12">🚀 Quick Start </a>
     <ul>
       <li class="level2">
-        <a href="#autotoc_md10">Integrate into existing Project </a>
+        <a href="#autotoc_md13">Integrate into existing Project </a>
         <ul>
           <li class="level3">
-            <a href="#autotoc_md11">CMake </a>
+            <a href="#autotoc_md14">CMake </a>
           </li>
           <li class="level3">
-            <a href="#autotoc_md12">Direct Vendoring </a>
+            <a href="#autotoc_md15">Direct Vendoring </a>
           </li>
         </ul>
       </li>
     </ul>
   </li>
   <li class="level1">
-    <a href="#autotoc_md13">🧭 Typical Workflow </a>
+    <a href="#autotoc_md16">🧭 Typical Workflow </a>
   </li>
   <li class="level1">
-    <a href="#autotoc_md14">🛠️ Building and Testing </a>
+    <a href="#autotoc_md17">🛠️ Building and Testing </a>
   </li>
   <li class="level1">
-    <a href="#autotoc_md15">📚 Building the Documentation </a>
+    <a href="#autotoc_md18">📚 Building the Documentation </a>
   </li>
   <li class="level1">
-    <a href="#autotoc_md16">🔨 Related Projects </a>
+    <a href="#autotoc_md19">🔨 Related Projects </a>
   </li>
   <li class="level1">
-    <a href="#autotoc_md17">🤝 Contributing </a>
+    <a href="#autotoc_md20">🤝 Contributing </a>
   </li>
   <li class="level1">
-    <a href="#autotoc_md18">⚖️ License </a>
+    <a href="#autotoc_md21">⚖️ License </a>
   </li>
 </ul>
 </div>
@@ -235,28 +246,69 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
 <li>a prototype compiler or interpreter that should stay easy to evolve.</li>
 </ul>
 <p>It is especially useful when you want the flexibility of handwritten code without repeatedly rebuilding the same frontend infrastructure from scratch.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+How much code is that?</h2>
+<p><a href="https://github.com/leissa/let"><b>Let</b></a> is a complete little language: lexer, parser, AST, arena-allocated nodes, evaluator, printer, CLI, and a golden-file test suite. <span class="tt">sloccount src include</span> says 619 lines.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone"></th><th class="markdownTableHeadRight">SLOC  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">lexer + parser  </td><td class="markdownTableBodyRight">203  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">token type: tag list and precedences  </td><td class="markdownTableBodyRight">128  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">AST, evaluator, printer  </td><td class="markdownTableBodyRight">201  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">driver + CLI  </td><td class="markdownTableBodyRight">87  </td></tr>
+</table>
+<p>A <span class="tt">.l</span>/<span class="tt">.y</span> pair for that grammar would not come out much shorter than those 203 lines - and Bison would additionally check the grammar for conflicts, which recursive descent never will. What a generator does <em>not</em> write for you is the other 416: the AST, the arena, the interning, the evaluator, the printer. Nor does it write the diagnostics, and that is where the difference actually shows up.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
+Diagnostics you would otherwise write yourself</h2>
+<p>Those 203 lines already produce this. The error line and its snippet come out of <span class="tt">expect</span>; the note that points back at the <span class="tt">(</span> is a three-line <span class="tt">syntax_err</span> override plus one <span class="tt"><a class="el" href="classfe_1_1Restore.html" title="RAII guard that restores a value at the end of the scope.">fe::Restore</a></span> to remember which <span class="tt">(</span> it was:</p>
+<div class="fragment"><div class="line">test/error/unclosed_paren.let:1:13: error: expected `)`, got `;` while parsing parenthesized expression</div>
+<div class="line">    1 | print (1 + 2;</div>
+<div class="line">      |             ^</div>
+<div class="line">      test/error/unclosed_paren.let:1:7: note: unmatched `(` opened here</div>
+<div class="line">    1 | print (1 + 2;</div>
+<div class="line">      |       ^</div>
+<div class="line">1 error(s) encountered</div>
+</div><!-- fragment --><p>An <em>anchor</em> is a token an enclosing context is still waiting for, so a nested parser bails out instead of swallowing it. That is what lets a stray <span class="tt">)</span> be a message the parser recovers from - three times in one run - instead of the end of the parse:</p>
+<div class="fragment"><div class="line">test/error/stray_paren.let:1:12: error: ignoring unmatched `)` while parsing right-hand side of binary expression</div>
+<div class="line">    1 | print 3 + 4) + 5;</div>
+<div class="line">      |            ^</div>
+<div class="line">test/error/stray_paren.let:2:14: error: ignoring unmatched `)` while parsing print-statement</div>
+<div class="line">    2 | print (1 + 2)) * 2;</div>
+<div class="line">      |              ^</div>
+<div class="line">test/error/stray_paren.let:3:7: error: ignoring unmatched `)` while parsing print-statement</div>
+<div class="line">    3 | print ) + 5;</div>
+<div class="line">      |       ^</div>
+<div class="line">3 error(s) encountered</div>
+</div><!-- fragment --><p>Every message above is FE's own wording, summary line included; the only text Let contributes is that one note. A generator hands you the parse and <span class="tt">yyerror("syntax error")</span> - the snippets, the notes, the recovery, and the <span class="tt">--max-errors</span> truncation are yours to build.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
+And you can read it afterwards</h2>
+<p>There is no code generation step, so there is no generated code to debug and no build-time dependency on a tool. <span class="tt">parse_expr</span> is a function that says what it does, in the language the rest of your compiler is written in.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
 ✨ Features</h1>
 <p>Handwritten frontends are often the right choice when you want full control over syntax, diagnostics, recovery, and architecture. FE embraces that style.</p>
 <p>It provides a compact set of reusable, well-integrated components:</p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
 Building Blocks</h2>
 <p>Header-only, except for what <a class="el" href="#requires-fe_lib" title="Requires &lt;tt&gt;FE_LIB&lt;/tt&gt;">Requires `FE_LIB`</a> lists below.</p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
 Core</h3>
 <ul>
 <li><span class="tt"><a class="el" href="structfe_1_1Driver.html" title="Use/derive from this class for &quot;global&quot; variables that you need all over the place.">fe::Driver</a></span> for shared frontend state: the SymPool, the SrcMap, the interned <span class="tt">Dbg</span>s, the <span class="tt">Diag</span> that lays a diagnostic out, and the <span class="tt">Error</span> everything reports into. Global variables in all but name - which is the point: they live in one object you own and pass around, not in the global namespace.</li>
 <li><span class="tt"><a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">fe::Arena</a></span> for fast arena allocation and arena-backed ownership.</li>
 <li><span class="tt"><a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">fe::Sym</a></span> and <span class="tt"><a class="el" href="classfe_1_1SymPool.html" title="Hash set where all strings - wrapped in Symbol - live in.">fe::SymPool</a></span> for string interning and cheap identifier comparison.</li>
 </ul>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
 Lexing &amp; Parsing</h3>
 <ul>
 <li><span class="tt"><a class="el" href="classfe_1_1Lexer.html" title="The blueprint for a lexer with a buffer of K tokens to peek into the future (Lexer::ahead).">fe::Lexer</a>&lt;K, S&gt;</span> for UTF-8-aware lexing with lookahead and token text accumulation.</li>
 <li><span class="tt"><a class="el" href="classfe_1_1Parser.html" title="The blueprint for a recursive descent/ ascent parser using a K lookahead of Tokens.">fe::Parser</a>&lt;Tok, Tag, K, S&gt;</span> for recursive-descent-style parsing with token lookahead, span tracking, and anchor-based error recovery. Both blueprints ask their child for a <span class="tt"><a class="el" href="structfe_1_1Driver.html" title="Use/derive from this class for &quot;global&quot; variables that you need all over the place.">fe::Driver</a>&amp; driver()</span> and report their default diagnostics into its <span class="tt">Error</span>; a header-only setup words all of them itself and never touches a <span class="tt">Driver</span>.</li>
 <li><span class="tt"><a class="el" href="namespacefe_1_1utf8.html" title="UTF-8 helpers for decoding byte streams, encoding char32_t values, and running ASCII-style character ...">fe::utf8</a></span> for lightweight UTF-8 handling.</li>
 </ul>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
 Diagnostics</h3>
 <ul>
 <li><span class="tt"><a class="el" href="structfe_1_1Pos.html" title="Byte offset into a Src; pass around as value.">fe::Pos</a></span> and <span class="tt"><a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">fe::Loc</a></span> for source positions and source spans.</li>
@@ -270,7 +322,7 @@ Diagnostics</h3>
 </li>
 <li><span class="tt"><a class="el" href="namespacefe_1_1term.html" title="Lightweight stream-based terminal colors for diagnostics and CLI output.">fe::term</a></span> for lightweight terminal colors in diagnostics and CLI output.</li>
 </ul>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
 Data Structures</h3>
 <ul>
 <li><span class="tt"><a class="el" href="classfe_1_1Span.html" title="This is a thin wrapper for std::span&lt;T, N&gt; with the following additional features:">fe::Span</a></span>/<span class="tt"><a class="el" href="namespacefe.html#a3fa8abec15ebc094748836707250e96e">fe::View</a></span> and <span class="tt"><a class="el" href="classfe_1_1Vector.html" title="This is a thin wrapper for absl::InlinedVector&lt;T, N, A&gt; which is a drop-in replacement for std::vecto...">fe::Vector</a></span> for spans with structured binding and small-buffer vectors.</li>
@@ -279,7 +331,7 @@ Data Structures</h3>
 <li><span class="tt"><a class="el" href="namespacefe.html#a0cf8b223e0a15d8cae20a0d8b332e8b9">fe::BFSWorklist</a></span>/<span class="tt"><a class="el" href="namespacefe.html#a549e9d25223dacc899ddef74bf627b3f">fe::DFSWorklist</a></span> for worklist traversals that visit each element at most once.</li>
 <li>Optional <span class="tt">FE_ABSL</span> support for <a href="https://abseil.io/">Abseil</a> hash containers.</li>
 </ul>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
 Odds &amp; Ends</h3>
 <ul>
 <li><span class="tt"><a class="el" href="namespacefe.html#a11d6f3c09be860709bc513577982fbaa" title="Mixes h with murmur3 or splitmix64 - whichever matches sizeof(size_t).">fe::hash</a></span> and friends for cheap, <span class="tt">constexpr</span> hash mixing/combining.</li>
@@ -314,7 +366,7 @@ Requires <span class="tt">FE_LIB</span></h2>
 </ul>
 <p>FE does not try to hide frontend construction behind a generator. Instead, it gives you sharp, reusable tools so you can build exactly the frontend you want.</p>
 <p>For a complete end-to-end example, see <a href="https://github.com/leissa/let"><b>Let</b></a>, a small toy language built on FE.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md12"></a>
 🚀 Quick Start</h1>
 <p>The easiest way to get going is through <a href="https://github.com/leissa/let"><b>Let</b></a>.</p>
 <p>You can either:</p>
@@ -323,9 +375,9 @@ Requires <span class="tt">FE_LIB</span></h2>
 <li>🍴 <a href="https://github.com/leissa/let/fork">fork Let directly</a>.</li>
 </ul>
 <p>That gives you a concrete, working example of how FE is intended to be used in practice.</p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md13"></a>
 Integrate into existing Project</h2>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md14"></a>
 CMake</h3>
 <p>Add FE as a subdirectory and link the <span class="tt"><a class="el" href="namespacefe.html">fe</a></span> target:</p>
 <div class="fragment"><div class="line">add_subdirectory(submodules/fe)</div>
@@ -338,12 +390,12 @@ CMake</h3>
 </div><!-- fragment --><p><span class="tt">FE_LIB</span> compiles <span class="tt">src/fe/</span> along with the headers and is on by default. Turn it off to get only the header-only building blocks; you lose the components listed under <a class="el" href="#requires-fe_lib" title="Requires &lt;tt&gt;FE_LIB&lt;/tt&gt;">Requires `FE_LIB`</a>.</p>
 <p><span class="tt">fe-lib</span> is an <span class="tt">OBJECT</span> library, so its symbols land inside a shared library of <em>yours</em>. On Windows that shared library has to export them, which CMake cannot infer: compile everything that goes into it with <span class="tt">fe_lib_EXPORTS</span>, or <span class="tt">FE_STATIC_DEFINE</span> if there is no shared library in play.</p>
 <div class="fragment"><div class="line">target_compile_definitions(my_compiler PRIVATE fe_lib_EXPORTS)</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md12"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md15"></a>
 Direct Vendoring</h3>
 <p>You can also vendor <span class="tt">include/fe/</span> directly into your project and add the <span class="tt">src/fe/*.cpp</span> you need to your build - <span class="tt"><a class="el" href="namespacefe_1_1dl.html">fe::dl</a></span> additionally wants <span class="tt">${CMAKE_DL_LIBS}</span>.</p>
 <p>If you want Abseil support in that setup, compile with:</p>
 <div class="fragment"><div class="line">-DFE_ABSL</div>
-</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md13"></a>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md16"></a>
 🧭 Typical Workflow</h1>
 <p>A typical FE-based frontend looks roughly like this:</p>
 <ol type="1">
@@ -356,7 +408,7 @@ Direct Vendoring</h3>
 <li>Use <span class="tt"><a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">fe::Arena</a></span> and symbol interning where allocation cost and identifier handling matter.</li>
 </ol>
 <p>If you want a concrete model to copy from, start with <a href="../tests/lexer.cpp"><span class="tt">tests/lexer.cpp</span></a>.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md14"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md17"></a>
 🛠️ Building and Testing</h1>
 <p>To configure, build, and run the test suite:</p>
 <div class="fragment"><div class="line">cmake -S . -B build -DBUILD_TESTING=ON</div>
@@ -367,25 +419,28 @@ Direct Vendoring</h3>
 <div class="fragment"><div class="line">ctest --test-dir build -R &#39;^Lexer$&#39; --output-on-failure</div>
 </div><!-- fragment --><p>To run a doctest case directly:</p>
 <div class="fragment"><div class="line">./build/bin/fe-test --test-case=Lexer</div>
-</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md15"></a>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md18"></a>
 📚 Building the Documentation</h1>
 <p>To build the documentation:</p>
 <div class="fragment"><div class="line">cmake -S . -B build -DFE_BUILD_DOCS=ON</div>
 <div class="line">cmake --build build --target docs</div>
 </div><!-- fragment --><p>This requires Doxygen and Graphviz (<span class="tt">dot</span>).</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md16"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md19"></a>
 🔨 Related Projects</h1>
-<p>A few projects that use or reflect the same frontend philosophy:</p>
+<p>FE is developed against three frontends of very different scale, and every change has to work for all three:</p>
 <ul>
-<li><a href="https://github.com/leissa/let">Let</a> - a small demo language built on FE.</li>
-<li><a href="https://anydsl.github.io/MimIR/">MimIR</a> - an intermediate representation project by the author.</li>
-<li><a href="https://github.com/leissa/graphtool">GraphTool</a> - a DOT-language tool using FE-style frontend infrastructure.</li>
-<li><a href="https://github.com/leissa/sql">SQL</a> - a small SQL parser.</li>
+<li><a href="https://github.com/leissa/let">Let</a> - the 619-line demo language above, and the template to fork.</li>
+<li><a href="https://github.com/leissa/sql">SQL</a> - a SQL parser: two-token lookahead, reserved versus non-reserved words, and anchor-based recovery through comma-separated lists.</li>
+<li><a href="https://anydsl.github.io/MimIR/">MimIR</a> - the author's compiler IR: three-token lookahead, a Unicode-heavy surface syntax, and plugins loaded mid-parse that bring their own vocabulary.</li>
 </ul>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md17"></a>
+<p>In the same spirit:</p>
+<ul>
+<li><a href="https://github.com/leissa/graphtool">GraphTool</a> - a DOT-language tool using FE-style frontend infrastructure.</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md20"></a>
 🤝 Contributing</h1>
 <p>Issues and pull requests are welcome - whether that's a bug report, a new frontend building block, or a documentation fix. If you're unsure where to start, open an issue to discuss the idea first.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md18"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md21"></a>
 ⚖️ License</h1>
 <p>FE is licensed under the <a href="../LICENSE">MIT License</a>. </p>
 </div></div><!-- PageDoc -->

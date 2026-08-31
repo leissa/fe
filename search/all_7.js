@@ -8,7 +8,7 @@ var searchData=
   ['fe_3a_3aterm_5',['term',['../namespacefe_1_1term.html',1,'fe']]],
   ['fe_3a_3autf8_6',['utf8',['../namespacefe_1_1utf8.html',1,'fe']]],
   ['fe_5flib_7',['Requires &lt;span class=&quot;tt&quot;&gt;FE_LIB&lt;/span&gt;',['../index.html#requires-fe_lib',1,'']]],
-  ['features_8',['✨ Features',['../index.html#autotoc_md2',1,'']]],
+  ['features_8',['✨ Features',['../index.html#autotoc_md5',1,'']]],
   ['fg_9',['FG',['../namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148',1,'fe::term']]],
   ['find_10',['find',['../classfe_1_1lct_1_1Node.html#a1756254795d7613de5fe9819f1f2a93e',1,'fe::lct::Node']]],
   ['find_5fand_5freplace_11',['find_and_replace',['../namespacefe.html#a1bc01939aa7352b79a0917dc535bde8a',1,'fe']]],
