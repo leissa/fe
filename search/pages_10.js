@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['why_20fe_0',['💡 Why FE?',['../index.html#autotoc_md1',1,'']]],
-  ['workflow_1',['🧭 Typical Workflow',['../index.html#autotoc_md13',1,'']]]
+  ['⚖️_20license_0',['⚖️ License',['../index.html#autotoc_md18',1,'']]]
 ];

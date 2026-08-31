@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
     <a href="#autotoc_md2">✨ Features </a>
     <ul>
       <li class="level2">
-        <a href="#autotoc_md3">Header-only </a>
+        <a href="#autotoc_md3">Building Blocks </a>
         <ul>
           <li class="level3">
             <a href="#autotoc_md4">Core </a>
@@ -240,11 +240,12 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
 <p>Handwritten frontends are often the right choice when you want full control over syntax, diagnostics, recovery, and architecture. FE embraces that style.</p>
 <p>It provides a compact set of reusable, well-integrated components:</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
-Header-only</h2>
+Building Blocks</h2>
+<p>Header-only, except for what <a class="el" href="#requires-fe_lib" title="Requires &lt;tt&gt;FE_LIB&lt;/tt&gt;">Requires `FE_LIB`</a> lists below.</p>
 <h3 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
 Core</h3>
 <ul>
-<li><span class="tt"><a class="el" href="structfe_1_1Driver.html" title="Use/derive from this class for &quot;global&quot; variables that you need all over the place.">fe::Driver</a></span> for shared frontend state: the SymPool, the SrcMap, the interned <span class="tt">Dbg</span>s, and how an <span class="tt">Error</span> lays out and renders a diagnostic.</li>
+<li><span class="tt"><a class="el" href="structfe_1_1Driver.html" title="Use/derive from this class for &quot;global&quot; variables that you need all over the place.">fe::Driver</a></span> for shared frontend state: the SymPool, the SrcMap, the interned <span class="tt">Dbg</span>s, the <span class="tt">Diag</span> that lays a diagnostic out, and the <span class="tt">Error</span> everything reports into. Global variables in all but name - which is the point: they live in one object you own and pass around, not in the global namespace.</li>
 <li><span class="tt"><a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">fe::Arena</a></span> for fast arena allocation and arena-backed ownership.</li>
 <li><span class="tt"><a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">fe::Sym</a></span> and <span class="tt"><a class="el" href="classfe_1_1SymPool.html" title="Hash set where all strings - wrapped in Symbol - live in.">fe::SymPool</a></span> for string interning and cheap identifier comparison.</li>
 </ul>
@@ -252,7 +253,7 @@ Core</h3>
 Lexing &amp; Parsing</h3>
 <ul>
 <li><span class="tt"><a class="el" href="classfe_1_1Lexer.html" title="The blueprint for a lexer with a buffer of K tokens to peek into the future (Lexer::ahead).">fe::Lexer</a>&lt;K, S&gt;</span> for UTF-8-aware lexing with lookahead and token text accumulation.</li>
-<li><span class="tt"><a class="el" href="classfe_1_1Parser.html" title="The blueprint for a recursive descent/ ascent parser using a K lookahead of Tokens.">fe::Parser</a>&lt;Tok, Tag, K, S&gt;</span> for recursive-descent-style parsing with token lookahead, span tracking, and anchor-based error recovery.</li>
+<li><span class="tt"><a class="el" href="classfe_1_1Parser.html" title="The blueprint for a recursive descent/ ascent parser using a K lookahead of Tokens.">fe::Parser</a>&lt;Tok, Tag, K, S&gt;</span> for recursive-descent-style parsing with token lookahead, span tracking, and anchor-based error recovery. Both blueprints ask their child for a <span class="tt"><a class="el" href="structfe_1_1Driver.html" title="Use/derive from this class for &quot;global&quot; variables that you need all over the place.">fe::Driver</a>&amp; driver()</span> and report their default diagnostics into its <span class="tt">Error</span>; a header-only setup words all of them itself and never touches a <span class="tt">Driver</span>.</li>
 <li><span class="tt"><a class="el" href="namespacefe_1_1utf8.html" title="UTF-8 helpers for decoding byte streams, encoding char32_t values, and running ASCII-style character ...">fe::utf8</a></span> for lightweight UTF-8 handling.</li>
 </ul>
 <h3 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
@@ -289,7 +290,7 @@ Odds &amp; Ends</h3>
 Requires <span class="tt">FE_LIB</span></h2>
 <p>These need a translation unit of their own and hence live in <span class="tt">src/fe/</span>:</p>
 <ul>
-<li><span class="tt"><a class="el" href="classfe_1_1Diag.html" title="How a diagnostic lays out - and how much of it an Error keeps.">fe::Diag</a></span> for the diagnostic layout - and hence <span class="tt"><a class="el" href="structfe_1_1Driver.html" title="Use/derive from this class for &quot;global&quot; variables that you need all over the place.">fe::Driver</a></span>, which owns one, and <span class="tt"><a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and hands each to the Diag that lays it out.">fe::Error</a></span>, which renders through it.</li>
+<li><span class="tt"><a class="el" href="classfe_1_1Diag.html" title="How a diagnostic lays out - and how much of it an Error keeps.">fe::Diag</a></span> for the diagnostic layout - and hence <span class="tt"><a class="el" href="structfe_1_1Driver.html" title="Use/derive from this class for &quot;global&quot; variables that you need all over the place.">fe::Driver</a></span>, whose ctor/dtor own one, and <span class="tt">Error::diag</span>, which reads it back out of the <span class="tt">Driver</span>. The default <span class="tt">syntax_err</span>/<span class="tt">unanchored_err</span>/<span class="tt">utf8_err</span>/<span class="tt">char_err</span> of <span class="tt"><a class="el" href="classfe_1_1Parser.html" title="The blueprint for a recursive descent/ ascent parser using a K lookahead of Tokens.">fe::Parser</a></span>/<span class="tt"><a class="el" href="classfe_1_1Lexer.html" title="The blueprint for a lexer with a buffer of K tokens to peek into the future (Lexer::ahead).">fe::Lexer</a></span> go through this, so a header-only frontend has to supply its own.</li>
 <li><span class="tt"><a class="el" href="structfe_1_1Snippet.html" title="The underlined source excerpt that goes below a diagnostic.">fe::Snippet</a></span> for the underlined source excerpt below a diagnostic.</li>
 <li><span class="tt"><a class="el" href="namespacefe_1_1dl.html">fe::dl</a></span> and <span class="tt"><a class="el" href="namespacefe_1_1sys.html">fe::sys</a></span> for loading dynamic libraries and locating/running external commands.</li>
 <li><span class="tt"><a class="el" href="classfe_1_1Profiler.html" title="Records wall-clock timings for (possibly nested) named Profiler::Spans and reports them in various fo...">fe::Profiler</a></span> for nested wall-clock spans reported as a flat table, a tree, or Chrome Trace JSON.</li>

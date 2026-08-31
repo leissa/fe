@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['integrate_20into_20existing_20project_0',['Integrate into existing Project',['../index.html#autotoc_md10',1,'']]],
-  ['into_20existing_20project_1',['Integrate into existing Project',['../index.html#autotoc_md10',1,'']]]
+  ['lexing_20parsing_0',['Lexing &amp;amp; Parsing',['../index.html#autotoc_md5',1,'']]],
+  ['license_1',['⚖️ License',['../index.html#autotoc_md18',1,'']]]
 ];

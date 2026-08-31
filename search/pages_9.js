@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['odds_20ends_0',['Odds &amp;amp; Ends',['../index.html#autotoc_md8',1,'']]],
-  ['only_1',['Header-only',['../index.html#autotoc_md3',1,'']]]
+  ['parsing_0',['Lexing &amp;amp; Parsing',['../index.html#autotoc_md5',1,'']]],
+  ['project_1',['Integrate into existing Project',['../index.html#autotoc_md10',1,'']]],
+  ['projects_2',['🔨 Related Projects',['../index.html#autotoc_md16',1,'']]]
 ];

@@ -27,7 +27,7 @@ var NAVTREE =
   [ "FE", "index.html", [
     [ "💡 Why FE?", "index.html#autotoc_md1", null ],
     [ "✨ Features", "index.html#autotoc_md2", [
-      [ "Header-only", "index.html#autotoc_md3", [
+      [ "Building Blocks", "index.html#autotoc_md3", [
         [ "Core", "index.html#autotoc_md4", null ],
         [ "Lexing &amp; Parsing", "index.html#autotoc_md5", null ],
         [ "Diagnostics", "index.html#autotoc_md6", null ],
