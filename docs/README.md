@@ -33,6 +33,61 @@ FE is a good fit if you want to build:
 
 It is especially useful when you want the flexibility of handwritten code without repeatedly rebuilding the same frontend infrastructure from scratch.
 
+### How much code is that?
+
+[**Let**](https://github.com/leissa/let) is a complete little language: lexer, parser, AST, arena-allocated nodes, evaluator, printer, CLI, and a golden-file test suite.
+`sloccount src include` says 619 lines.
+
+| | SLOC |
+| ------------------------------------ | ---: |
+| lexer + parser                       |  203 |
+| token type: tag list and precedences |  128 |
+| AST, evaluator, printer              |  201 |
+| driver + CLI                         |   87 |
+
+A `.l`/`.y` pair for that grammar would not come out much shorter than those 203 lines - and Bison would additionally check the grammar for conflicts, which recursive descent never will.
+What a generator does *not* write for you is the other 416: the AST, the arena, the interning, the evaluator, the printer.
+Nor does it write the diagnostics, and that is where the difference actually shows up.
+
+### Diagnostics you would otherwise write yourself
+
+Those 203 lines already produce this.
+The error line and its snippet come out of `expect`; the note that points back at the `(` is a three-line `syntax_err` override plus one `fe::Restore` to remember which `(` it was:
+
+```
+test/error/unclosed_paren.let:1:13: error: expected `)`, got `;` while parsing parenthesized expression
+    1 | print (1 + 2;
+      |             ^
+      test/error/unclosed_paren.let:1:7: note: unmatched `(` opened here
+    1 | print (1 + 2;
+      |       ^
+1 error(s) encountered
+```
+
+An *anchor* is a token an enclosing context is still waiting for, so a nested parser bails out instead of swallowing it.
+That is what lets a stray `)` be a message the parser recovers from - three times in one run - instead of the end of the parse:
+
+```
+test/error/stray_paren.let:1:12: error: ignoring unmatched `)` while parsing right-hand side of binary expression
+    1 | print 3 + 4) + 5;
+      |            ^
+test/error/stray_paren.let:2:14: error: ignoring unmatched `)` while parsing print-statement
+    2 | print (1 + 2)) * 2;
+      |              ^
+test/error/stray_paren.let:3:7: error: ignoring unmatched `)` while parsing print-statement
+    3 | print ) + 5;
+      |       ^
+3 error(s) encountered
+```
+
+Every message above is FE's own wording, summary line included; the only text Let contributes is that one note.
+A generator hands you the parse and `yyerror("syntax error")` - the snippets, the notes, the recovery, and the `--max-errors` truncation are yours to build.
+
+### And you can read it afterwards
+
+There is no code generation step, so there is no generated code to debug and no build-time dependency on a tool.
+`parse_expr` is a function that says what it does, in the language the rest of your compiler is written in.
+
 ## ✨ Features
 
 Handwritten frontends are often the right choice when you want full control over syntax, diagnostics, recovery, and architecture. FE embraces that style.
@@ -219,12 +274,15 @@ This requires Doxygen and Graphviz (`dot`).
 
 ## 🔨 Related Projects
 
-A few projects that use or reflect the same frontend philosophy:
+FE is developed against three frontends of very different scale, and every change has to work for all three:
 
-- [Let](https://github.com/leissa/let) - a small demo language built on FE.
-- [MimIR](https://anydsl.github.io/MimIR/) - an intermediate representation project by the author.
+- [Let](https://github.com/leissa/let) - the 619-line demo language above, and the template to fork.
+- [SQL](https://github.com/leissa/sql) - a SQL parser: two-token lookahead, reserved versus non-reserved words, and anchor-based recovery through comma-separated lists.
+- [MimIR](https://anydsl.github.io/MimIR/) - the author's compiler IR: three-token lookahead, a Unicode-heavy surface syntax, and plugins loaded mid-parse that bring their own vocabulary.
+
+In the same spirit:
+
 - [GraphTool](https://github.com/leissa/graphtool) - a DOT-language tool using FE-style frontend infrastructure.
-- [SQL](https://github.com/leissa/sql) - a small SQL parser.
 
 ## 🤝 Contributing
 
