@@ -118,9 +118,9 @@ public:
     }
 #else
     template<class... Args>
-    void debug(Fmt<Args...>, Args&&...) const {}
+    void d(Fmt<Args...>, Args&&...) const {}
     template<class... Args>
-    void trace(Fmt<Args...>, Args&&...) const {}
+    void t(Fmt<Args...>, Args&&...) const {}
 #endif
     ///@}
 
