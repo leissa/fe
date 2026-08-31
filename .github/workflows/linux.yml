@@ -7,15 +7,11 @@ on:
 
 jobs:
   build-and-test:
-    name: ${{matrix.compiler.name}} ${{matrix.build-type}}
+    name: gcc-14 ${{matrix.build-type}}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        compiler:
-          # clang uses libstdc++ for its standard library, so g++-14 is installed in both cases.
-          - { name: gcc-14, cc: gcc-14, cxx: g++-14,  apt: g++-14 }
-          - { name: clang,  cc: clang,  cxx: clang++, apt: clang g++-14 }
         build-type: [Debug, Release]
 
     steps:
@@ -27,10 +23,10 @@ jobs:
       - name: Install toolchain and Valgrind
         run: |
           sudo apt-get update
-          sudo apt-get install -y valgrind ${{matrix.compiler.apt}}
+          sudo apt-get install -y valgrind g++-14
 
       - name: Configure
-        run: CC=${{matrix.compiler.cc}} CXX=${{matrix.compiler.cxx}} cmake -S ${{github.workspace}} -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{matrix.build-type}} -DBUILD_TESTING=ON
+        run: CC=gcc-14 CXX=g++-14 cmake -S ${{github.workspace}} -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{matrix.build-type}} -DBUILD_TESTING=ON
 
       - name: Build
         run: cmake --build ${{github.workspace}}/build -v

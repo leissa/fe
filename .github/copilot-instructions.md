@@ -27,7 +27,7 @@ cmake --build build --target docs
 
 Formatting/lint-style checks are defined in `.pre-commit-config.yaml` and run via `pre-commit run --all-files`: `clang-format` (see `.clang-format`) plus the configured whitespace/YAML hooks. There is no separate CMake lint target.
 
-CI (`.github/workflows/`) builds Linux (gcc-14 and clang, Debug and Release), macOS, and Windows, and runs `fe-test` under Valgrind as well as ASan/LSan/UBSan.
+CI (`.github/workflows/`) builds one compiler per platform in Debug and Release - gcc-14 on Linux, Apple clang on macOS, MSVC on Windows - and runs `fe-test` under Valgrind as well as ASan/LSan/UBSan.
 A change is only done when it is leak- and UB-clean, not merely when `ctest` passes.
 
 ## Build options & toolchain
