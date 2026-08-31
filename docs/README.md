@@ -59,6 +59,7 @@ It provides a compact set of reusable, well-integrated components:
 - `fe::Src` and `fe::SrcMap` for owning source text and resolving a position back to `path:row:col`.
 - `fe::Dbg` for the `Loc`/`Sym` pair every named entity drags along, interned in the `Driver` as a `DbgKey`.
 - `fe::Error` for collecting diagnostics - errors, warnings and their notes - and rendering each with its source snippet; `Error::ack` throws what it collected as a self-contained `Error::Bail`.
+  The `Driver` owns the one everything reports into: `Driver::error`, with `Driver::{error,warn,note}` as shorthands.
 - `fe::Diag` for how a diagnostic lays out: `Diag::loc_style` (a `Loc::Style`), `Diag::no_snippet`, and friends cover the usual adjustments, and one virtual per piece (`loc`, `header`, `snippet`, `note`, `summary`, `render`) covers the rest.
   Derive and `Driver::diag(std::make_unique<MyDiag>())` to lay one out entirely your own way.
 - `fe::Log` for leveled logging with acronym, color, and origin prefix.
@@ -169,7 +170,7 @@ A typical FE-based frontend looks roughly like this:
 1. Define a token type exposing `tag()` and `loc()`.
 2. Implement your lexer by deriving from `fe::Lexer<K, S>`.
 3. Implement your parser by deriving from `fe::Parser<Tok, Tag, K, S>`.
-4. Use `fe::Driver` to centralize shared state and an `fe::Error` to collect diagnostics.
+4. Use `fe::Driver` to centralize shared state; its `fe::Error` collects the diagnostics.
 5. Register each source file with `fe::Driver::src()` so a `fe::Loc` can resolve itself to `path:row:col`.
 6. Thread `fe::Loc` through tokens and AST nodes for precise error reporting.
 7. Use `fe::Arena` and symbol interning where allocation cost and identifier handling matter.

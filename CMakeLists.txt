@@ -93,6 +93,7 @@ if(FE_LIB)
             src/fe/diag.cpp
             src/fe/dl.cpp
             src/fe/driver.cpp
+            src/fe/error.cpp
             src/fe/loc.cpp
             src/fe/profile.cpp
             src/fe/snippet.cpp

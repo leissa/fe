@@ -14,12 +14,13 @@
 #include <vector>
 
 #include "fe/diag.h"
-#include "fe/driver.h"
 #include "fe/format.h"
 #include "fe/loc.h"
 #include "fe/term.h"
 
 namespace fe {
+
+struct Driver;
 
 /// Collects diagnostics and hands each to the Diag that lays it out.
 /// Error::ack once you are done: it throws an Error::Bail if anything went wrong.
@@ -65,6 +66,7 @@ public:
         std::vector<Note> notes;
     };
 
+    /// A sink of your own; Driver::error is the one every frontend building block already reports to.
     /// @warning A Msg::loc points into @p driver's SrcMap and Error::msg renders through Diag::render,
     /// so @p driver must outlive this Error.
     explicit Error(const Driver& driver)
@@ -175,7 +177,7 @@ public:
     }
 
 private:
-    const Diag& diag() const { return driver_->diag(); }
+    const Diag& diag() const; ///< Driver is incomplete here - it owns an Error of its own.
 
     /// Loc of the Msg that subsequent Note%s belong to.
     Loc primary_loc_() const { return msgs_.empty() ? Loc() : msgs_.back().loc; }

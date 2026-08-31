@@ -6,7 +6,7 @@
 #include <deque>
 #include <format>
 
-#include "fe/error.h"
+#include "fe/driver.h"
 #include "fe/loc.h"
 #include "fe/ring.h"
 
@@ -34,11 +34,11 @@ namespace fe {
 ///     do_something(tok);
 /// }
 /// ```
-/// @p S must provide the Lexer to pull from and somewhere to report to:
+/// @p S must provide the Lexer to pull from and the Driver to report to:
 /// ```
 /// class MyParser : public fe::Parser<Tok, Tok::Tag, K, MyParser> {
 ///     Lexer& lexer();                                ///< Parser::lex pulls the next Tok%en from here.
-///     fe::Error& error();                            ///< Where the default diagnostics below go.
+///     fe::Driver& driver();                          ///< The default diagnostics below land in its Driver::error.
 ///
 ///     friend fe::Parser<Tok, Tok::Tag, K, MyParser>; ///< Otherwise, these may be private.
 /// };
@@ -137,13 +137,6 @@ protected:
     }
     ///@}
 
-    /// @name Anchor
-    /// An *anchor* is a @p Tag that an enclosing context is waiting for.
-    /// E.g., while parsing a parenthesized expression, `)` is anchored:
-    /// a nested parser must not swallow it but bail out, so the enclosing context can Parser::expect it.
-    /// A `)` that is *not* anchored, however, is simply bogus and Parser::recover discards it.
-    ///@{
-
     /// RAII helper that anchors a @p Tag for its lifetime; use Parser::anchor to build one.
     class Anchor {
     public:
@@ -160,6 +153,13 @@ protected:
     private:
         Parser& parser_;
     };
+
+    /// @name Anchor
+    /// An *anchor* is a @p Tag that an enclosing context is waiting for.
+    /// E.g., while parsing a parenthesized expression, `)` is anchored:
+    /// a nested parser must not swallow it but bail out, so the enclosing context can Parser::expect it.
+    /// A `)` that is *not* anchored, however, is simply bogus and Parser::recover discards it.
+    ///@{
 
     /// Factory method to build a Parser::Anchor; Parser::expect @p tag yourself at the end of the scope.
     /// Use like this:
@@ -195,13 +195,16 @@ protected:
     /// @name Diagnostics
     /// The defaults @p S may replace with one of its own.
     ///@{
+    fe::Error& error() { return self().driver().error(); }
+    const fe::Error& error() const { return self().driver().error(); }
+
     /// Parser::expect did not find @p what while parsing @p ctxt.
     /// Backtick @p what yourself if it is a literal token rather than a phrase.
     void syntax_err(std::string_view what, Tok tok, std::string_view ctxt) {
         static_assert(
-            requires(S& s) { s.error(); },
-            "provide `fe::Error& error()` in your parser - or a `syntax_err` of your own");
-        self().error().error(tok.loc(), "expected {}, got `{}` while parsing {}", what, tok, ctxt);
+            requires(S& s) { s.driver(); },
+            "provide `fe::Driver& driver()` in your parser - or a `syntax_err` of your own");
+        self().driver().error(tok.loc(), "expected {}, got `{}` while parsing {}", what, tok, ctxt);
     }
 
     /// As above but uses Parser::ahead as @p tok.
@@ -213,9 +216,9 @@ protected:
     /// Parser::recover discarded @p tok while parsing @p ctxt.
     void unanchored_err(Tok tok, std::string_view ctxt) {
         static_assert(
-            requires(S& s) { s.error(); },
-            "provide `fe::Error& error()` in your parser - or an `unanchored_err` of your own");
-        self().error().error(tok.loc(), "ignoring unmatched `{}` while parsing {}", tok, ctxt);
+            requires(S& s) { s.driver(); },
+            "provide `fe::Driver& driver()` in your parser - or an `unanchored_err` of your own");
+        self().driver().error(tok.loc(), "ignoring unmatched `{}` while parsing {}", tok, ctxt);
     }
     ///@}
 

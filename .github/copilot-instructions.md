@@ -47,11 +47,13 @@ The library is organized around a few reusable frontend-building blocks that are
 
 - `fe::Arena` (`arena.h`) provides arena allocation, an STL allocator adapter, and arena-backed `unique_ptr` support for AST-style ownership.
 - `fe::Sym` and `fe::SymPool` (`sym.h`) intern strings so identifiers can be compared cheaply by pointer after interning.
-- `fe::Driver` (`driver.h`) is the shared frontend context: it inherits `SymPool`, owns the `SrcMap` (`Driver::src`), the interned `Dbg`s (`Driver::dbg`), and the `fe::Diag` (`Driver::diag`).
+- `fe::Driver` (`driver.h`) is the shared frontend context: it inherits `SymPool`, owns the `SrcMap` (`Driver::src`), the interned `Dbg`s (`Driver::dbg`), the `fe::Diag` (`Driver::diag`), and the `fe::Error` every building block reports into (`Driver::error`, plus `error`/`warn`/`note` shorthands).
+  It is not movable: the `Error` - and a `Diag` of your own - point back at it.
 - `fe::Diag` (`diag.h`) owns how a diagnostic lays out: the knobs (`gutter`, `max_rows`, `max_errors`, `no_snippet`, `werror`, `loc_style` of type `Loc::Style`) plus one virtual per piece (`loc`, `header`, `snippet`, `note`, `summary`) and the `render` hook each message is formatted through.
   Adjust the knobs for the common cases; derive and `Driver::diag(std::make_unique<MyDiag>())` to lay a diagnostic out from scratch.
 - `fe::Error` (`error.h`) collects `std::format`-based diagnostics - errors and warnings, each owning the notes that hang off it - and renders each with the `Snippet` its `Loc` points at.
   It is a sink, not an exception: `Error::ack`/`Error::bail` render everything and throw the text as an `Error::Bail`, which no longer points into any `Src` and may propagate past the `Driver`.
+  Report into `Driver::error`; construct one of your own only for a diagnostic that must not join that sink.
 - `fe::Pos` and `fe::Loc` (`loc.h`) track source positions/locations and are threaded through lexers, parsers, and diagnostics.
 - `fe::Src` and `fe::SrcMap` (`src.h`) own the text of each source file and turn a `Pos` back into a row/column. A `Loc` borrows a `const Src*`, which is how it renders itself as `path:row:col`.
 - `fe::Ring` (`ring.h`) is the fixed-size lookahead buffer used by the lexer/parser blueprints.
@@ -64,10 +66,10 @@ The library is organized around a few reusable frontend-building blocks that are
 
 Support headers: `algo.h` (bit casts, padding, small string/range algorithms), `assert.h` (`assert`/`assertf`/`unreachable`), `cast.h` (checked/dynamic casts), `container.h` (`pop`/`lookup` helpers, `Stacklike`/`Queuelike` concepts), `dbg.h` (`fe::Dbg`, a `Loc`/`Sym` pair), `enum.h` (bit-flag enum ops), `format.h` (`ostream_formatter`, `std::format` glue), `hash.h` (`constexpr` hash mixing/combining), `log.h` (`fe::Log`, leveled logging; its `error`/`warn`/... shorthands capture the call site with `std::source_location`), `restore.h` (`fe::Restore`, an RAII guard that restores a reference - or a getter/setter pair - at end of scope), `span.h` (`fe::Span`/`fe::View`), `term.h` (terminal/ANSI color, incl. `fe::term::ScopedMode`), `utf8.h` (UTF-8 decode primitives), `vector.h` (`fe::Vector`, small-buffer vector), `worklist.h` (`fe::Worklist` and its `BFSWorklist`/`DFSWorklist` aliases).
 
-`fe-lib` holds the components that need a translation unit of their own: `fe::Diag` (`diag.h`) and the `fe::Driver` ctor/dtor that owns one, the default `Pos`/`Loc` streaming and `dump` (`loc.h`), `fe::Snippet` (`snippet.h`), `fe::dl` (`dl.h`, dynamic library loading), `fe::sys` (`sys.h`, locating and running external commands), and `fe::Profiler` (`profile.h`, nested wall-clock spans reported as a flat table, a tree, or Chrome Trace JSON).
+`fe-lib` holds the components that need a translation unit of their own: `fe::Diag` (`diag.h`), the `fe::Driver` ctor/dtor that owns one, `Error::diag` (`error.h`, which only forward-declares the `Driver` it reads the `Diag` from), the default `Pos`/`Loc` streaming and `dump` (`loc.h`), `fe::Snippet` (`snippet.h`), `fe::dl` (`dl.h`, dynamic library loading), `fe::sys` (`sys.h`, locating and running external commands), and `fe::Profiler` (`profile.h`, nested wall-clock spans reported as a flat table, a tree, or Chrome Trace JSON).
 It is an `OBJECT` library on purpose: link it into exactly one shared library of yours and every other consumer resolves those symbols there instead of carrying a copy.
 
-`tests/lexer.cpp` is the best end-to-end example of intended use: define a token type with `tag()` and `loc()`, derive a concrete lexer/parser from the CRTP bases, use `fe::Driver` for identifier interning and an `fe::Error` for diagnostics, and let locations flow through tokens for error reporting.
+`tests/lexer.cpp` is the best end-to-end example of intended use: define a token type with `tag()` and `loc()`, derive a concrete lexer/parser from the CRTP bases, use `fe::Driver` for identifier interning and diagnostics, and let locations flow through tokens for error reporting.
 
 ## Key conventions
 
@@ -78,7 +80,7 @@ It is an `OBJECT` library on purpose: link it into exactly one shared library of
 - `SrcMap` interns paths under `SrcMap::key` (absolute, symlink-free, normalized), so one file yields exactly one `Src`. That is what lets `Loc` compare files by pointer - do not hand a `Loc` a `Src` that some other `SrcMap` (or nobody) owns.
 - A `Loc` renders itself: `operator<<`/`std::format` spell out `path:row:col-row:col` via `Loc::src`, falling back to `path@begin-end` when it has no `Src` or the offsets do not resolve within it. Diagnostics just pass the `Loc`.
 - Non-empty symbols should be created through `SymPool::sym` / `Driver::sym`, not by constructing `Sym` manually. Use `SymMap` / `SymSet` aliases instead of concrete hash container types, especially because `FE_ABSL` switches those aliases to Abseil containers.
-- Diagnostics are `std::format`-based and go through `fe::Error::{error,warn,note}`. Follow that pattern rather than inventing separate reporting helpers.
+- Diagnostics are `std::format`-based and go through `fe::Error::{error,warn,note}` - normally reached as `Driver::{error,warn,note}`. Follow that pattern rather than inventing separate reporting helpers.
 - Put a `` `citation` `` in backticks: `fe::Diag` colors what they enclose and drops them, or keeps them verbatim without color. Escape a literal one as `` \` ``.
 - A note attaches to the error or warning that precedes it. `Error::note` without a `Loc` renders as a `= note:` continuation; with a `Loc` it points somewhere else and gets a header line and snippet of its own - and is dropped when that `Loc` overlaps the primary one and thus points nowhere new.
 - `Error::report` streams and claims everything, `Error::bail` always throws an `Error::Bail`, and `Error::ack` bails on errors and merely reports warnings. Build and throw one diagnostic in a single expression with `Error(driver).error(...).note(...).bail()`.
@@ -93,7 +95,7 @@ It is an `OBJECT` library on purpose: link it into exactly one shared library of
 The derived class `S` must provide (and `friend` the base if they are private):
 
 - `Lexer& lexer()` - where `Parser::lex` pulls the next token from.
-- `fe::Error& error()` - where the default diagnostics go.
+- `fe::Driver& driver()` - the default diagnostics go to its `Driver::error`.
 
 Both diagnostics come with a default implementation that `S` may replace with one of its own:
 

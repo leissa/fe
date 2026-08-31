@@ -7,6 +7,7 @@
 
 #include "fe/dbg.h"
 #include "fe/diag.h"
+#include "fe/error.h"
 #include "fe/src.h"
 #include "fe/sym.h"
 #include "fe/vector.h"
@@ -15,19 +16,35 @@ namespace fe {
 
 /// Use/derive from this class for "global" variables that you need all over the place.
 /// Well, there are not really global - that's the point of this class.
-/// It manages a SymPool, a SrcMap, the interned Dbg%s, and the Diag that lays out a diagnostic.
+/// It manages a SymPool, a SrcMap, the interned Dbg%s, the Diag that lays out a diagnostic, and the Error they land in.
 /// @note Deliberately free of virtual functions - Driver::diag is where you plug in behavior of your own.
+/// @warning Not movable: Driver::error - and a Diag of your own - point back here.
 struct Driver : public SymPool {
 public:
     Driver();
-    Driver(Driver&&) = default;
+
+    /// Installs @p diag right away, so Driver::error renders through it from the very first message.
+    /// @warning Never `nullptr`.
+    explicit Driver(std::unique_ptr<Diag> diag);
+
     ~Driver();
     Driver(const Driver&)     = delete;
+    Driver(Driver&&)          = delete;
     Driver& operator=(Driver) = delete;
 
     /// @name Diagnostics
-    /// @see fe::Error
+    /// Every frontend building block reports into Driver::error; Error::ack it before this Driver dies.
     ///@{
+    Error& error() { return error_; }
+    const Error& error() const { return error_; }
+
+    // clang-format off
+    template<class... Args> Error& error(Loc loc, std::format_string<Args...> fmt, Args&&... args) { return error_.error(loc, fmt, std::forward<Args>(args)...); }
+    template<class... Args> Error& warn (Loc loc, std::format_string<Args...> fmt, Args&&... args) { return error_.warn (loc, fmt, std::forward<Args>(args)...); }
+    template<class... Args> Error& note (         std::format_string<Args...> fmt, Args&&... args) { return error_.note (     fmt, std::forward<Args>(args)...); }
+    template<class... Args> Error& note (Loc loc, std::format_string<Args...> fmt, Args&&... args) { return error_.note (loc, fmt, std::forward<Args>(args)...); }
+    // clang-format on
+
     Diag& diag() { return *diag_; }
     const Diag& diag() const { return *diag_; }
 
@@ -65,6 +82,7 @@ public:
 
 private:
     std::unique_ptr<Diag> diag_;
+    Error error_;
     SrcMap src_;
     Vector<Dbg> dbgs_         = {Dbg()}; ///< Key `0` is the empty Dbg.
     DbgMap<uint32_t> dbg2key_ = {
