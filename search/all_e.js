@@ -2,8 +2,8 @@ var searchData=
 [
   ['magenta_0',['Magenta',['../namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ab91cc2c1416fcca942b61c7ac5b1a9ac',1,'fe::term']]],
   ['max_1',['Max',['../namespacefe_1_1utf8.html#a753d178a1e977540ac8cd44fe4390a58',1,'fe::utf8']]],
-  ['max_5ferrors_2',['max_errors',['../structfe_1_1Driver.html#a32750356a905a75f2ae7d1c4b1b9d76e',1,'fe::Driver::Diag']]],
-  ['max_5frows_3',['max_rows',['../structfe_1_1Driver.html#a6ef5f101de8090039fa1608440a29ec5',1,'fe::Driver::Diag::max_rows'],['../structfe_1_1Snippet.html#a731cd1d27ad93cf1199c384feda025ff',1,'fe::Snippet::max_rows']]],
+  ['max_5ferrors_2',['max_errors',['../classfe_1_1Diag.html#a6138b5dab0dabd789c7cae33cdb8c404',1,'fe::Diag']]],
+  ['max_5frows_3',['max_rows',['../classfe_1_1Diag.html#a434f144ee79de18cc1bdd1a855e39e47',1,'fe::Diag::max_rows'],['../structfe_1_1Snippet.html#a731cd1d27ad93cf1199c384feda025ff',1,'fe::Snippet::max_rows']]],
   ['memory_5fresource_4',['memory_resource',['../classstd_1_1pmr_1_1memory__resource.html',1,'std::pmr']]],
   ['memoryresource_5',['MemoryResource',['../classfe_1_1Arena_1_1MemoryResource.html',1,'fe::Arena::MemoryResource'],['../classfe_1_1Arena_1_1MemoryResource.html#a78e95720a6a254e562ea00baaf70f2f2',1,'fe::Arena::MemoryResource::MemoryResource()']]],
   ['merge_6',['merge',['../classfe_1_1XTrie.html#ae190a3bcab5c5c31dc3747474d6c7de0',1,'fe::XTrie']]],
@@ -14,5 +14,6 @@ var searchData=
   ['msg_11',['Msg',['../classfe_1_1Error.html#structfe_1_1Error_1_1Msg',1,'fe::Error']]],
   ['msg_12',['msg',['../classfe_1_1Error.html#a0be3ad6db15f4a91da361765326e508e',1,'fe::Error::msg(Loc loc, Tag tag, const std::function&lt; std::string()&gt; &amp;fmt)'],['../classfe_1_1Error.html#a7d5548075c6e6527e87f8c76034a01e8',1,'fe::Error::msg(Loc loc, Tag tag, std::format_string&lt; Args... &gt; s, Args &amp;&amp;... args)']]],
   ['msgs_13',['msgs',['../classfe_1_1Error.html#a27fe473278b55b1e3df08f10c40f748d',1,'fe::Error']]],
-  ['murmur3_14',['murmur3',['../namespacefe.html#a89ce852a3e2d3ecde80f0ed8f81a501b',1,'fe']]]
+  ['msvc_14',['MSVC',['../structfe_1_1Loc.html#aa6449f6dc2688387c0e8ed8dc2112858a0f51fc6751dcde1d4bb3760fcf465689',1,'fe::Loc']]],
+  ['murmur3_15',['murmur3',['../namespacefe.html#a89ce852a3e2d3ecde80f0ed8f81a501b',1,'fe']]]
 ];

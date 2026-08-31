@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.18.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>FE: fe::Restore&lt; T &gt; Class Template Reference</title>
+<title>FE: fe::Restore&lt; T, Get, Set &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -149,47 +149,83 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classfe_1_1Res
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classfe_1_1Restore-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">fe::Restore&lt; T &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">fe::Restore&lt; T, Get, Set &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>RAII guard that restores <code class="param">ref</code> to its current value at the end of the scope.  
+<p>RAII guard that restores a value at the end of the scope.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="restore_8h_source.html">fe/restore.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for fe::Restore&lt; T, Get, Set &gt;:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classfe_1_1Restore__inherit__graph.svg" width="428" height="182"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aedc5ff389dd48ba93f996180b22d7ded" id="r_aedc5ff389dd48ba93f996180b22d7ded"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aedc5ff389dd48ba93f996180b22d7ded">Restore</a> (T &amp;ref)</td></tr>
-<tr class="memdesc:aedc5ff389dd48ba93f996180b22d7ded"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves <code class="param">ref</code> and restores it in the destructor.  <br /></td></tr>
-<tr class="memitem:a6c9562790a3b9eaae620de533359a101" id="r_a6c9562790a3b9eaae620de533359a101"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a6c9562790a3b9eaae620de533359a101">Restore</a> (T &amp;ref, T value)</td></tr>
-<tr class="memdesc:a6c9562790a3b9eaae620de533359a101"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves <code class="param">ref</code>, sets it to <code class="param">value</code>, and restores the saved value in the destructor.  <br /></td></tr>
-<tr class="memitem:a002b61e600b9a841cdbd914b36bf8326" id="r_a002b61e600b9a841cdbd914b36bf8326"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a002b61e600b9a841cdbd914b36bf8326">~Restore</a> ()</td></tr>
-<tr class="memitem:a739e63c88247f84ddebd7393d09837a4" id="r_a739e63c88247f84ddebd7393d09837a4"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a739e63c88247f84ddebd7393d09837a4">Restore</a> (const Restore &amp;)=delete</td></tr>
-<tr class="memitem:afacf0dac6f0671081e7592941de508fe" id="r_afacf0dac6f0671081e7592941de508fe"><td class="memItemLeft"><a class="el" href="#aedc5ff389dd48ba93f996180b22d7ded">Restore</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#afacf0dac6f0671081e7592941de508fe">operator=</a> (const <a class="el" href="#aedc5ff389dd48ba93f996180b22d7ded">Restore</a> &amp;)=delete</td></tr>
+<tr class="memitem:abe038804f148a3a1783baec77710b809" id="r_abe038804f148a3a1783baec77710b809"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#abe038804f148a3a1783baec77710b809">Restore</a> ()</td></tr>
+<tr class="memdesc:abe038804f148a3a1783baec77710b809"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves what <code class="param">Get</code> yields and restores it in the destructor.  <br /></td></tr>
+<tr class="memitem:a2e556ff0b0dc914aa1e161f26448a44d" id="r_a2e556ff0b0dc914aa1e161f26448a44d"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a2e556ff0b0dc914aa1e161f26448a44d">Restore</a> (T value)</td></tr>
+<tr class="memdesc:a2e556ff0b0dc914aa1e161f26448a44d"><td class="mdescLeft">&#160;</td><td class="mdescRight">As above but <code class="param">Sets</code> <code class="param">value</code> up front.  <br /></td></tr>
+<tr class="memitem:aa63dc708549a6234345de4ae29aab3fd" id="r_aa63dc708549a6234345de4ae29aab3fd"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aa63dc708549a6234345de4ae29aab3fd">~Restore</a> ()</td></tr>
+<tr class="memitem:a72efe6b8845e3634f0bdf20b8e05e367" id="r_a72efe6b8845e3634f0bdf20b8e05e367"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a72efe6b8845e3634f0bdf20b8e05e367">Restore</a> (const Restore &amp;)=delete</td></tr>
+<tr class="memitem:a33d8085ee6dedd53112f970e46b21c81" id="r_a33d8085ee6dedd53112f970e46b21c81"><td class="memItemLeft"><a class="el" href="#abe038804f148a3a1783baec77710b809">Restore</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a33d8085ee6dedd53112f970e46b21c81">operator=</a> (const <a class="el" href="#abe038804f148a3a1783baec77710b809">Restore</a> &amp;)=delete</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;class T&gt;<br />
-class fe::Restore&lt; T &gt;</div><p>RAII guard that restores <code class="param">ref</code> to its current value at the end of the scope. </p>
-<p>The two-argument constructor additionally sets <code class="param">ref</code> to <code class="param">value</code> up front (like <span class="tt">std::exchange</span>). </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class T, auto Get = nullptr, auto Set = nullptr&gt;<br />
+class fe::Restore&lt; T, Get, Set &gt;</div><p>RAII guard that restores a value at the end of the scope. </p>
+<p>This primary template guards whatever <code class="param">Get</code> reads and <code class="param">Set</code> writes; see <a class="el" href="namespacefe_1_1term.html#a214cdb1ce076f0e6de11f6afb317c516" title="Overrides the color mode for the duration of the scope.">fe::term::ScopedMode</a>. </p>
 
 <p class="definition">Definition at line <a class="el" href="restore_8h_source.html#l00010">10</a> of file <a class="el" href="restore_8h_source.html">restore.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aedc5ff389dd48ba93f996180b22d7ded" name="aedc5ff389dd48ba93f996180b22d7ded"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aedc5ff389dd48ba93f996180b22d7ded">&#9670;&#160;</a></span>Restore() <span class="overload">[1/3]</span></h2>
+<a id="abe038804f148a3a1783baec77710b809" name="abe038804f148a3a1783baec77710b809"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe038804f148a3a1783baec77710b809">&#9670;&#160;</a></span>Restore() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T&gt; </div>
+template&lt;class T, auto Get = nullptr, auto Set = nullptr&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classfe_1_1Restore.html">fe::Restore</a>&lt; T &gt;::Restore </td>
+          <td class="memname"><a class="el" href="classfe_1_1Restore.html">fe::Restore</a>&lt; T, Get, Set &gt;::Restore </td>
           <td>(</td>
-          <td class="paramtype">T &amp;</td>          <td class="paramname"><span class="paramname"><em>ref</em></span></td><td>)</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Saves what <code class="param">Get</code> yields and restores it in the destructor. </p>
+
+<p class="definition">Definition at line <a class="el" href="restore_8h_source.html#l00013">13</a> of file <a class="el" href="restore_8h_source.html">restore.h</a>.</p>
+
+</div>
+</div>
+<a id="a2e556ff0b0dc914aa1e161f26448a44d" name="a2e556ff0b0dc914aa1e161f26448a44d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e556ff0b0dc914aa1e161f26448a44d">&#9670;&#160;</a></span>Restore() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T, auto Get = nullptr, auto Set = nullptr&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classfe_1_1Restore.html">fe::Restore</a>&lt; T, Get, Set &gt;::Restore </td>
+          <td>(</td>
+          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -200,62 +236,25 @@ template&lt;class T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Saves <code class="param">ref</code> and restores it in the destructor. </p>
+<p>As above but <code class="param">Sets</code> <code class="param">value</code> up front. </p>
 
-<p class="definition">Definition at line <a class="el" href="restore_8h_source.html#l00013">13</a> of file <a class="el" href="restore_8h_source.html">restore.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="#afacf0dac6f0671081e7592941de508fe">operator=()</a>, and <a class="el" href="#a739e63c88247f84ddebd7393d09837a4">Restore()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="restore_8h_source.html#l00017">17</a> of file <a class="el" href="restore_8h_source.html">restore.h</a>.</p>
 
 </div>
 </div>
-<a id="a6c9562790a3b9eaae620de533359a101" name="a6c9562790a3b9eaae620de533359a101"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c9562790a3b9eaae620de533359a101">&#9670;&#160;</a></span>Restore() <span class="overload">[2/3]</span></h2>
+<a id="aa63dc708549a6234345de4ae29aab3fd" name="aa63dc708549a6234345de4ae29aab3fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa63dc708549a6234345de4ae29aab3fd">&#9670;&#160;</a></span>~Restore()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T&gt; </div>
+template&lt;class T, auto Get = nullptr, auto Set = nullptr&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classfe_1_1Restore.html">fe::Restore</a>&lt; T &gt;::Restore </td>
-          <td>(</td>
-          <td class="paramtype">T &amp;</td>          <td class="paramname"><span class="paramname"><em>ref</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Saves <code class="param">ref</code>, sets it to <code class="param">value</code>, and restores the saved value in the destructor. </p>
-
-<p class="definition">Definition at line <a class="el" href="restore_8h_source.html#l00018">18</a> of file <a class="el" href="restore_8h_source.html">restore.h</a>.</p>
-
-</div>
-</div>
-<a id="a002b61e600b9a841cdbd914b36bf8326" name="a002b61e600b9a841cdbd914b36bf8326"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a002b61e600b9a841cdbd914b36bf8326">&#9670;&#160;</a></span>~Restore()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classfe_1_1Restore.html">fe::Restore</a>&lt; T &gt;::~<a class="el" href="#aedc5ff389dd48ba93f996180b22d7ded">Restore</a> </td>
+          <td class="memname"><a class="el" href="classfe_1_1Restore.html">fe::Restore</a>&lt; T, Get, Set &gt;::~<a class="el" href="#abe038804f148a3a1783baec77710b809">Restore</a> </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -272,21 +271,21 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="a739e63c88247f84ddebd7393d09837a4" name="a739e63c88247f84ddebd7393d09837a4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a739e63c88247f84ddebd7393d09837a4">&#9670;&#160;</a></span>Restore() <span class="overload">[3/3]</span></h2>
+<a id="a72efe6b8845e3634f0bdf20b8e05e367" name="a72efe6b8845e3634f0bdf20b8e05e367"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72efe6b8845e3634f0bdf20b8e05e367">&#9670;&#160;</a></span>Restore() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T&gt; </div>
+template&lt;class T, auto Get = nullptr, auto Set = nullptr&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classfe_1_1Restore.html">fe::Restore</a>&lt; T &gt;::Restore </td>
+          <td class="memname"><a class="el" href="classfe_1_1Restore.html">fe::Restore</a>&lt; T, Get, Set &gt;::Restore </td>
           <td>(</td>
-          <td class="paramtype">const Restore&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype">const Restore&lt; T, Get, Set &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -296,27 +295,25 @@ template&lt;class T&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p class="reference">References <a class="el" href="restore_8h_source.html#l00013">Restore()</a>.</p>
 
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="afacf0dac6f0671081e7592941de508fe" name="afacf0dac6f0671081e7592941de508fe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afacf0dac6f0671081e7592941de508fe">&#9670;&#160;</a></span>operator=()</h2>
+<a id="a33d8085ee6dedd53112f970e46b21c81" name="a33d8085ee6dedd53112f970e46b21c81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33d8085ee6dedd53112f970e46b21c81">&#9670;&#160;</a></span>operator=()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class T&gt; </div>
+template&lt;class T, auto Get = nullptr, auto Set = nullptr&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#aedc5ff389dd48ba93f996180b22d7ded">Restore</a> &amp; <a class="el" href="classfe_1_1Restore.html">fe::Restore</a>&lt; T &gt;::operator= </td>
+          <td class="memname"><a class="el" href="#abe038804f148a3a1783baec77710b809">Restore</a> &amp; <a class="el" href="classfe_1_1Restore.html">fe::Restore</a>&lt; T, Get, Set &gt;::operator= </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="#aedc5ff389dd48ba93f996180b22d7ded">Restore</a>&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="#abe038804f148a3a1783baec77710b809">Restore</a>&lt; T, Get, Set &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -326,8 +323,6 @@ template&lt;class T&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p class="reference">References <a class="el" href="restore_8h_source.html#l00013">Restore()</a>.</p>
 
 </div>
 </div>

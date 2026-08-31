@@ -7,17 +7,16 @@ var annotated_dup =
       [ "sys", "namespacefe_1_1sys.html", [
         [ "CmdNotFound", "classfe_1_1sys_1_1CmdNotFound.html", "classfe_1_1sys_1_1CmdNotFound" ]
       ] ],
-      [ "term", "namespacefe_1_1term.html", [
-        [ "ScopedMode", "classfe_1_1term_1_1ScopedMode.html", "classfe_1_1term_1_1ScopedMode" ]
-      ] ],
       [ "utf8", "namespacefe_1_1utf8.html", [
         [ "Char32", "structfe_1_1utf8_1_1Char32.html", "structfe_1_1utf8_1_1Char32" ]
       ] ],
       [ "Arena", "classfe_1_1Arena.html", "classfe_1_1Arena" ],
       [ "basic_ostream_formatter", "structfe_1_1basic__ostream__formatter.html", "structfe_1_1basic__ostream__formatter" ],
       [ "Bitset", "classfe_1_1Bitset.html", "classfe_1_1Bitset" ],
+      [ "CodeDiag", "classfe_1_1CodeDiag.html", "classfe_1_1CodeDiag" ],
       [ "Dbg", "structfe_1_1Dbg.html", "structfe_1_1Dbg" ],
       [ "DbgKey", "classfe_1_1DbgKey.html", "classfe_1_1DbgKey" ],
+      [ "Diag", "classfe_1_1Diag.html", "classfe_1_1Diag" ],
       [ "Driver", "structfe_1_1Driver.html", "structfe_1_1Driver" ],
       [ "Error", "classfe_1_1Error.html", "classfe_1_1Error" ],
       [ "is_bit_enum", "structfe_1_1is__bit__enum.html", null ],
@@ -30,6 +29,7 @@ var annotated_dup =
       [ "Pos", "structfe_1_1Pos.html", "structfe_1_1Pos" ],
       [ "Profiler", "classfe_1_1Profiler.html", "classfe_1_1Profiler" ],
       [ "Restore", "classfe_1_1Restore.html", "classfe_1_1Restore" ],
+      [ "Restore&lt; T, nullptr, nullptr &gt;", "classfe_1_1Restore_3_01T_00_01nullptr_00_01nullptr_01_4.html", "classfe_1_1Restore_3_01T_00_01nullptr_00_01nullptr_01_4" ],
       [ "Ring", "classfe_1_1Ring.html", "classfe_1_1Ring" ],
       [ "Ring&lt; T, 1 &gt;", "classfe_1_1Ring_3_01T_00_011_01_4.html", "classfe_1_1Ring_3_01T_00_011_01_4" ],
       [ "Ring&lt; T, 2 &gt;", "classfe_1_1Ring_3_01T_00_012_01_4.html", "classfe_1_1Ring_3_01T_00_012_01_4" ],

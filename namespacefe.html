@@ -175,14 +175,18 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make types that support ostream operators available for <span class="tt">std::format</span>.  <a href="structfe_1_1basic__ostream__formatter.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Bitset" id="r_Bitset"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Bitset.html">Bitset</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A dynamically growing set of bits with small storage optimization.  <a href="classfe_1_1Bitset.html#details">More...</a><br /></td></tr>
+<tr class="memitem:CodeDiag" id="r_CodeDiag"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1CodeDiag.html">CodeDiag</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classfe_1_1Diag.html" title="How a diagnostic lays out - and how much of it an Error keeps.">Diag</a> a <a class="el" href="structfe_1_1Driver.html" title="Use/derive from this class for &quot;global&quot; variables that you need all over the place.">Driver</a> installs by default: colors a <span class="tt"> `citation` </span> and drops its backticks - or keeps them verbatim without color; <span class="tt"> \` </span> is a literal backtick.  <a href="classfe_1_1CodeDiag.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Dbg" id="r_Dbg"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1Dbg.html">Dbg</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The debug info of an entity: where it came from and what it was called.  <a href="structfe_1_1Dbg.html#details">More...</a><br /></td></tr>
 <tr class="memitem:DbgKey" id="r_DbgKey"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1DbgKey.html">DbgKey</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opaque handle to a <a class="el" href="structfe_1_1Dbg.html" title="The debug info of an entity: where it came from and what it was called.">Dbg</a> interned in a <a class="el" href="structfe_1_1Driver.html" title="Use/derive from this class for &quot;global&quot; variables that you need all over the place.">Driver</a>; see <a class="el" href="structfe_1_1Driver.html#a100c3690b3a524c5bb8159ca6c7c9750">Driver::dbg</a>.  <a href="classfe_1_1DbgKey.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Diag" id="r_Diag"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Diag.html">Diag</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">How a diagnostic lays out - and how much of it an <a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and hands each to the Diag that lays it out.">Error</a> keeps.  <a href="classfe_1_1Diag.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Driver" id="r_Driver"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1Driver.html">Driver</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use/derive from this class for "global" variables that you need all over the place.  <a href="structfe_1_1Driver.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Error" id="r_Error"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Error.html">Error</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collects diagnostics and renders each with the source <a class="el" href="structfe_1_1Snippet.html" title="The underlined source excerpt that goes below a diagnostic.">Snippet</a> its <a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a> points at.  <a href="classfe_1_1Error.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collects diagnostics and hands each to the <a class="el" href="classfe_1_1Diag.html" title="How a diagnostic lays out - and how much of it an Error keeps.">Diag</a> that lays it out.  <a href="classfe_1_1Error.html#details">More...</a><br /></td></tr>
 <tr class="memitem:is_5Fbit_5Fenum" id="r_is_5Fbit_5Fenum"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1is__bit__enum.html">is_bit_enum</a></td></tr>
 <tr class="memitem:Join" id="r_Join"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Join.html">Join</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classfe_1_1Join.html" title="Join elements of range with sep.">Join</a> elements of <code class="param">range</code> with <code class="param">sep</code>.  <a href="classfe_1_1Join.html#details">More...</a><br /></td></tr>
@@ -201,7 +205,9 @@ Classes</h2></td></tr>
 <tr class="memitem:Profiler" id="r_Profiler"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Profiler.html">Profiler</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Records wall-clock timings for (possibly nested) named <a class="el" href="structfe_1_1Profiler_1_1Span.html" title="A single run.">Profiler::Span</a>s and reports them in various formats.  <a href="classfe_1_1Profiler.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Restore" id="r_Restore"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Restore.html">Restore</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">RAII guard that restores <code class="param">ref</code> to its current value at the end of the scope.  <a href="classfe_1_1Restore.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">RAII guard that restores a value at the end of the scope.  <a href="classfe_1_1Restore.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Restore_3C_20T_2C_20nullptr_2C_20nullptr_20_3E" id="r_Restore_3C_20T_2C_20nullptr_2C_20nullptr_20_3E"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Restore_3_01T_00_01nullptr_00_01nullptr_01_4.html">Restore&lt; T, nullptr, nullptr &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restores <code class="param">ref</code> to its current value at the end of the scope.  <a href="classfe_1_1Restore_3_01T_00_01nullptr_00_01nullptr_01_4.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Ring" id="r_Ring"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Ring.html">Ring</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A ring buffer with <code class="param">N</code> elements.  <a href="classfe_1_1Ring.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Ring_3C_20T_2C_201_20_3E" id="r_Ring_3C_20T_2C_201_20_3E"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Ring_3_01T_00_011_01_4.html">Ring&lt; T, 1 &gt;</a></td></tr>
@@ -278,14 +284,16 @@ Functions</h2></td></tr>
 <tr class="memitem:aff9df682b55afdb0f712e5a0c1ff3a2b" id="r_aff9df682b55afdb0f712e5a0c1ff3a2b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aff9df682b55afdb0f712e5a0c1ff3a2b">unreachable</a> ()</td></tr>
 <tr class="memitem:aa67601e05290c4a15e0d5d5f1f12a4a2" id="r_aa67601e05290c4a15e0d5d5f1f12a4a2"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa67601e05290c4a15e0d5d5f1f12a4a2">breakpoint</a> ()</td></tr>
 <tr class="memdesc:aa67601e05290c4a15e0d5d5f1f12a4a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raise a breakpoint in the debugger.  <br /></td></tr>
+<tr class="memitem:a499d7e2b75e472cbedd1ac272b82b3f3" id="r_a499d7e2b75e472cbedd1ac272b82b3f3"><td class="memItemLeft">FE_API std::ostream &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a499d7e2b75e472cbedd1ac272b82b3f3">operator&lt;&lt;</a> (std::ostream &amp;, <a class="el" href="classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1f">Diag::Tag</a>)</td></tr>
 <tr class="memitem:a97781f8fc269084dfd887ae2b0a475cc" id="r_a97781f8fc269084dfd887ae2b0a475cc"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="conceptfe_1_1BitEnum.html">fe::BitEnum</a> E&gt; </td></tr>
 <tr class="memitem:a97781f8fc269084dfd887ae2b0a475cc template"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a97781f8fc269084dfd887ae2b0a475cc">has_flag</a> (E value, E flag) noexcept</td></tr>
-<tr class="memitem:af7e8cf8dd305aa63c10227cadec6883d" id="r_af7e8cf8dd305aa63c10227cadec6883d"><td class="memItemLeft">std::ostream &amp;&#160;</td><td class="memItemRight"><a class="el" href="#af7e8cf8dd305aa63c10227cadec6883d">stream_code</a> (std::ostream &amp;os, std::string_view str)</td></tr>
-<tr class="memdesc:af7e8cf8dd305aa63c10227cadec6883d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Streams <code class="param">str</code>, rendering the <span class="tt"> `code` </span> spans a diagnostic cites in color.  <br /></td></tr>
 <tr class="memitem:a653a3eb512f7610b2449a4546f7e335d" id="r_a653a3eb512f7610b2449a4546f7e335d"><td class="memTemplParams" colspan="2">template&lt;class F&gt; </td></tr>
 <tr class="memitem:a653a3eb512f7610b2449a4546f7e335d template"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a653a3eb512f7610b2449a4546f7e335d">StreamFn</a> (F) -&gt; StreamFn&lt; F &gt;</td></tr>
 <tr class="memitem:afdda5f81a682643effc4dd73321bc737" id="r_afdda5f81a682643effc4dd73321bc737"><td class="memTemplParams" colspan="2">template&lt;class R&gt; </td></tr>
 <tr class="memitem:afdda5f81a682643effc4dd73321bc737 template"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#afdda5f81a682643effc4dd73321bc737">Join</a> (R &amp;&amp;, std::string_view=&quot;, &quot;) -&gt; Join&lt; R &gt;</td></tr>
+<tr class="memitem:a277b29212ca549a80257afb36b25209b" id="r_a277b29212ca549a80257afb36b25209b"><td class="memTemplParams" colspan="2">template&lt;class T&gt; </td></tr>
+<tr class="memitem:a277b29212ca549a80257afb36b25209b template"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a277b29212ca549a80257afb36b25209b">Restore</a> (T &amp;, T) -&gt; Restore&lt; T &gt;</td></tr>
+<tr class="memdesc:a277b29212ca549a80257afb36b25209b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The primary template has no two-argument constructor to deduce this one from.  <br /></td></tr>
 <tr class="memitem:a5930d90304ddc84c5adaa03126bd277c" id="r_a5930d90304ddc84c5adaa03126bd277c"><td class="memTemplParams" colspan="2">template&lt;size_t I, class T, size_t N&gt; <br />
 requires (N != std::dynamic_extent)</td></tr>
 <tr class="memitem:a5930d90304ddc84c5adaa03126bd277c template"><td class="memItemLeft">constexpr decltype(auto)&#160;</td><td class="memItemRight"><a class="el" href="#a5930d90304ddc84c5adaa03126bd277c">get</a> (<a class="el" href="classfe_1_1Span.html">Span</a>&lt; T, N &gt; span) noexcept</td></tr>
@@ -1224,6 +1232,31 @@ template&lt;class C, class K&gt; </div>
 
 </div>
 </div>
+<a id="a499d7e2b75e472cbedd1ac272b82b3f3" name="a499d7e2b75e472cbedd1ac272b82b3f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a499d7e2b75e472cbedd1ac272b82b3f3">&#9670;&#160;</a></span>operator&lt;&lt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FE_API std::ostream &amp; fe::operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1f">Diag::Tag</a></td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="reference">References <a class="el" href="#a499d7e2b75e472cbedd1ac272b82b3f3">operator&lt;&lt;()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#a499d7e2b75e472cbedd1ac272b82b3f3">operator&lt;&lt;()</a>.</p>
+
+</div>
+</div>
 <a id="ab71076f2b315aa8a0170fe386daf4d4d" name="ab71076f2b315aa8a0170fe386daf4d4d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab71076f2b315aa8a0170fe386daf4d4d">&#9670;&#160;</a></span>pad()</h2>
 
@@ -1322,6 +1355,31 @@ template&lt;Stacklike S&gt; </div>
 <p class="reference">References <a class="el" href="container_8h_source.html#l00027">pop()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="container_8h_source.html#l00034">pop()</a>, <a class="el" href="container_8h_source.html#l00027">pop()</a>, and <a class="el" href="worklist_8h_source.html#l00052">fe::Worklist&lt; Set, C &gt;::pop()</a>.</p>
+
+</div>
+</div>
+<a id="a277b29212ca549a80257afb36b25209b" name="a277b29212ca549a80257afb36b25209b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a277b29212ca549a80257afb36b25209b">&#9670;&#160;</a></span>Restore()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">fe::Restore </td>
+          <td>(</td>
+          <td class="paramtype">T &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;) -&gt;  Restore&lt; T &gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The primary template has no two-argument constructor to deduce this one from. </p>
 
 </div>
 </div>
@@ -1495,44 +1553,6 @@ template&lt;Vectorlike Vec&gt; </div>
 
 </div>
 </div>
-<a id="af7e8cf8dd305aa63c10227cadec6883d" name="af7e8cf8dd305aa63c10227cadec6883d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af7e8cf8dd305aa63c10227cadec6883d">&#9670;&#160;</a></span>stream_code()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::ostream &amp; fe::stream_code </td>
-          <td>(</td>
-          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>os</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::string_view</td>          <td class="paramname"><span class="paramname"><em>str</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Streams <code class="param">str</code>, rendering the <span class="tt"> `code` </span> spans a diagnostic cites in color. </p>
-<p>Color and backticks are alternative ways of setting a citation apart, so the backticks are dropped when coloring and kept verbatim otherwise. </p>
-
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00027">27</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
-
-<p class="reference">References <a class="el" href="term_8h_source.html#l00064">fe::term::Cyan</a>, <a class="el" href="term_8h_source.html#l00067">fe::term::Reset</a>, <a class="el" href="error_8h_source.html#l00027">stream_code()</a>, and <a class="el" href="term_8h_source.html#l00188">fe::term::use_color()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="error_8h_source.html#l00027">stream_code()</a>.</p>
-
-</div>
-</div>
 <a id="a653a3eb512f7610b2449a4546f7e335d" name="a653a3eb512f7610b2449a4546f7e335d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a653a3eb512f7610b2449a4546f7e335d">&#9670;&#160;</a></span>StreamFn()</h2>
 
@@ -1687,7 +1707,7 @@ template&lt;<a class="el" href="conceptfe_1_1BitEnum.html">fe::BitEnum</a> E&gt;
 
 <p class="reference">References <a class="el" href="assert_8h_source.html#l00030">unreachable()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="log_8h_source.html#l00136">fe::Log::level2acro()</a>, <a class="el" href="log_8h_source.html#l00148">fe::Log::level2color()</a>, <a class="el" href="xtrie_8h_source.html#l00243">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator*()</a>, <a class="el" href="xtrie_8h_source.html#l00208">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator++()</a>, <a class="el" href="error_8h_source.html#l00194">fe::Error::operator&lt;&lt;</a>, <a class="el" href="error_8h_source.html#l00183">fe::Error::tag2color()</a>, <a class="el" href="assert_8h_source.html#l00030">unreachable()</a>, and <a class="el" href="term_8h_source.html#l00188">fe::term::use_color()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="log_8h_source.html#l00136">fe::Log::level2acro()</a>, <a class="el" href="log_8h_source.html#l00148">fe::Log::level2color()</a>, <a class="el" href="xtrie_8h_source.html#l00243">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator*()</a>, <a class="el" href="xtrie_8h_source.html#l00208">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator++()</a>, <a class="el" href="assert_8h_source.html#l00030">unreachable()</a>, and <a class="el" href="term_8h_source.html#l00189">fe::term::use_color()</a>.</p>
 
 </div>
 </div>

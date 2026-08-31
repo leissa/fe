@@ -1,5 +1,11 @@
 var structfe_1_1Loc =
 [
+    [ "Style", "structfe_1_1Loc.html#aa6449f6dc2688387c0e8ed8dc2112858", [
+      [ "Full", "structfe_1_1Loc.html#aa6449f6dc2688387c0e8ed8dc2112858abbd47109890259c0127154db1af26c75", null ],
+      [ "RowCol", "structfe_1_1Loc.html#aa6449f6dc2688387c0e8ed8dc2112858a7502f49b96355b382b103f0b2cd08312", null ],
+      [ "Row", "structfe_1_1Loc.html#aa6449f6dc2688387c0e8ed8dc2112858aa70367aa7cb74e510f4f9413ccf059d3", null ],
+      [ "MSVC", "structfe_1_1Loc.html#aa6449f6dc2688387c0e8ed8dc2112858a0f51fc6751dcde1d4bb3760fcf465689", null ]
+    ] ],
     [ "Loc", "structfe_1_1Loc.html#ab5dab17265d3d01f0d87e5eecb808fd3", null ],
     [ "Loc", "structfe_1_1Loc.html#a7824e3c21f9d489a09e3da9ae001e666", null ],
     [ "Loc", "structfe_1_1Loc.html#ac6e2afc224e694f866c8816b709c7344", null ],

@@ -11,6 +11,5 @@ var error_8h =
       [ "notes", "classfe_1_1Error.html#af8377a816c1d9d97576c2af4d6bbf157", null ],
       [ "str", "classfe_1_1Error.html#ab61fb6acdf8c8cdcc5fbc09c34407edb", null ],
       [ "tag", "classfe_1_1Error.html#ab65076390cfb07fafe8520fbafbe0536", null ]
-    ] ],
-    [ "fe::stream_code", "namespacefe.html#af7e8cf8dd305aa63c10227cadec6883d", null ]
+    ] ]
 ];

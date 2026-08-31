@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['verbose_0',['Verbose',['../classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06ad4a9fa383ab700c5bdd6f31cf7df0faf',1,'fe::Log']]]
+  ['upper_0',['Upper',['../classfe_1_1Lexer.html#a99366b3ab28fff1d6a1013b1007246a6a19de5b94f7b83900d4b296d9fa491aec',1,'fe::Lexer']]]
 ];

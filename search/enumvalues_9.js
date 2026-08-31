@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['never_0',['Never',['../namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a6e7b34fa59e1bd229b207892956dc41c',1,'fe::term']]],
-  ['note_1',['Note',['../classfe_1_1Error.html#aa3c44d20a15cae1e0737b74351bf7523a3b0649c72650c313a357338dcdfb64ec',1,'fe::Error']]]
+  ['magenta_0',['Magenta',['../namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ab91cc2c1416fcca942b61c7ac5b1a9ac',1,'fe::term']]],
+  ['msvc_1',['MSVC',['../structfe_1_1Loc.html#aa6449f6dc2688387c0e8ed8dc2112858a0f51fc6751dcde1d4bb3760fcf465689',1,'fe::Loc']]]
 ];

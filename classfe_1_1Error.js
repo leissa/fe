@@ -11,11 +11,7 @@ var classfe_1_1Error =
       [ "str", "classfe_1_1Error.html#ab61fb6acdf8c8cdcc5fbc09c34407edb", null ],
       [ "tag", "classfe_1_1Error.html#ab65076390cfb07fafe8520fbafbe0536", null ]
     ] ],
-    [ "Tag", "classfe_1_1Error.html#aa3c44d20a15cae1e0737b74351bf7523", [
-      [ "Error", "classfe_1_1Error.html#aa3c44d20a15cae1e0737b74351bf7523a902b0d55fddef6f8d651fe1035b7d4bd", null ],
-      [ "Warn", "classfe_1_1Error.html#aa3c44d20a15cae1e0737b74351bf7523a56525ae64d370c0b448ac0d60710ef17", null ],
-      [ "Note", "classfe_1_1Error.html#aa3c44d20a15cae1e0737b74351bf7523a3b0649c72650c313a357338dcdfb64ec", null ]
-    ] ],
+    [ "Tag", "classfe_1_1Error.html#ab0449a47de208449e3215a08b87c8c58", null ],
     [ "Error", "classfe_1_1Error.html#a006230978a0baa2c40452a3f393c8db5", null ],
     [ "ack", "classfe_1_1Error.html#a1691ca5ebb45613d58aed573af1a75bc", null ],
     [ "bail", "classfe_1_1Error.html#a4c1692799986392837a8bb3552384eb9", null ],
@@ -33,9 +29,7 @@ var classfe_1_1Error =
     [ "ok", "classfe_1_1Error.html#afe0bb794482d9b67a4df05f683d5e302", null ],
     [ "report", "classfe_1_1Error.html#a93e4dd890a070342985279476e4e5290", null ],
     [ "str", "classfe_1_1Error.html#a08aa403d4a64879731845169dc281cb1", null ],
-    [ "tag2color", "classfe_1_1Error.html#a5182107fa755cab48952e2162d1c9e24", null ],
     [ "truncated", "classfe_1_1Error.html#a4e722a70d4cab71100fa6ea30e8e2073", null ],
     [ "warn", "classfe_1_1Error.html#a82c412556026c8f9ecd54a94add9cf4a", null ],
-    [ "operator<<", "classfe_1_1Error.html#a8a369575104a47be742d51e7d814d99b", null ],
-    [ "operator<<", "classfe_1_1Error.html#ac7b66ebd29abf065efbd59fdb8221a5f", null ]
+    [ "operator<<", "classfe_1_1Error.html#a8a369575104a47be742d51e7d814d99b", null ]
 ];

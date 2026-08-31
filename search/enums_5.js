@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tag_0',['Tag',['../classfe_1_1Error.html#aa3c44d20a15cae1e0737b74351bf7523',1,'fe::Error']]]
+  ['style_0',['Style',['../structfe_1_1Loc.html#aa6449f6dc2688387c0e8ed8dc2112858',1,'fe::Loc']]]
 ];

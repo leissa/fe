@@ -148,8 +148,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('error_8h.html'
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle"><div class="title">error.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -164,15 +163,20 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('error_8h.html'
 <code>#include &lt;string_view&gt;</code><br />
 <code>#include &lt;utility&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
+<code>#include &quot;<a class="el" href="diag_8h_source.html">fe/diag.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="driver_8h_source.html">fe/driver.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="format_8h_source.html">fe/format.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="loc_8h_source.html">fe/loc.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="snippet_8h_source.html">fe/snippet.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="term_8h_source.html">fe/term.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for error.h:</div>
 <div class="dyncontent">
 <div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="error_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="error_8h__dep__incl.svg" width="102" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="error_8h_source.html">Go to the source code of this file.</a></p>
@@ -180,22 +184,17 @@ Include dependency graph for error.h:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:fe_3A_3AError" id="r_fe_3A_3AError"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Error.html">fe::Error</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collects diagnostics and renders each with the source <a class="el" href="structfe_1_1Snippet.html" title="The underlined source excerpt that goes below a diagnostic.">Snippet</a> its <a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a> points at.  <a href="classfe_1_1Error.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collects diagnostics and hands each to the <a class="el" href="classfe_1_1Diag.html" title="How a diagnostic lays out - and how much of it an Error keeps.">Diag</a> that lays it out.  <a href="classfe_1_1Error.html#details">More...</a><br /></td></tr>
 <tr class="memitem:fe_3A_3AError_3A_3ABail" id="r_fe_3A_3AError_3A_3ABail"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Error_1_1Bail.html">fe::Error::Bail</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">What <a class="el" href="classfe_1_1Error.html#a1691ca5ebb45613d58aed573af1a75bc" title="If errors occurred, Error::bail; otherwise Error::report any warnings to os.">Error::ack</a> and <a class="el" href="classfe_1_1Error.html#a4c1692799986392837a8bb3552384eb9" title="Claims everything collected so far and throws it as a Bail rendered for os.">Error::bail</a> throw.  <a href="classfe_1_1Error_1_1Bail.html#details">More...</a><br /></td></tr>
 <tr class="memitem:fe_3A_3AError_3A_3ANote_5Fstructfe_5F1_5F1Error_5F1_5F1Note" id="r_fe_3A_3AError_3A_3ANote_5Fstructfe_5F1_5F1Error_5F1_5F1Note"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Error.html#structfe_1_1Error_1_1Note">fe::Error::Note</a></td></tr>
 <tr class="memdesc:structfe_1_1Error_1_1Note"><td class="mdescLeft">&#160;</td><td class="mdescRight">A secondary message elaborating a <a class="el" href="classfe_1_1Error.html#structfe_1_1Error_1_1Msg" title="One Tag::Error or Tag::Warn together with the Notes that belong to it.">Msg</a>.  <a href="classfe_1_1Error.html#structfe_1_1Error_1_1Note">More...</a><br /></td></tr>
 <tr class="memitem:fe_3A_3AError_3A_3AMsg_5Fstructfe_5F1_5F1Error_5F1_5F1Msg" id="r_fe_3A_3AError_3A_3AMsg_5Fstructfe_5F1_5F1Error_5F1_5F1Msg"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Error.html#structfe_1_1Error_1_1Msg">fe::Error::Msg</a></td></tr>
-<tr class="memdesc:structfe_1_1Error_1_1Msg"><td class="mdescLeft">&#160;</td><td class="mdescRight">One <a class="el" href="classfe_1_1Error.html#aa3c44d20a15cae1e0737b74351bf7523a902b0d55fddef6f8d651fe1035b7d4bd">Tag::Error</a> or <a class="el" href="classfe_1_1Error.html#aa3c44d20a15cae1e0737b74351bf7523a56525ae64d370c0b448ac0d60710ef17">Tag::Warn</a> together with the <a class="el" href="classfe_1_1Error.html#structfe_1_1Error_1_1Note" title="A secondary message elaborating a Msg.">Note</a>s that belong to it.  <a href="classfe_1_1Error.html#structfe_1_1Error_1_1Msg">More...</a><br /></td></tr>
+<tr class="memdesc:structfe_1_1Error_1_1Msg"><td class="mdescLeft">&#160;</td><td class="mdescRight">One Tag::Error or Tag::Warn together with the <a class="el" href="classfe_1_1Error.html#structfe_1_1Error_1_1Note" title="A secondary message elaborating a Msg.">Note</a>s that belong to it.  <a href="classfe_1_1Error.html#structfe_1_1Error_1_1Msg">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:fe" id="r_fe"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html">fe</a></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:af7e8cf8dd305aa63c10227cadec6883d" id="r_af7e8cf8dd305aa63c10227cadec6883d"><td class="memItemLeft">std::ostream &amp;&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#af7e8cf8dd305aa63c10227cadec6883d">fe::stream_code</a> (std::ostream &amp;os, std::string_view str)</td></tr>
-<tr class="memdesc:af7e8cf8dd305aa63c10227cadec6883d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Streams <code class="param">str</code>, rendering the <span class="tt"> `code` </span> spans a diagnostic cites in color.  <br /></td></tr>
 </table>
 <hr/><h2 id="header-inline_5Fclasses" class="groupheader">Class Documentation</h2>
 <a name="structfe_1_1Error_1_1Note" id="structfe_1_1Error_1_1Note"></a>
@@ -212,7 +211,7 @@ Functions</h2></td></tr>
 <div class="textblock"><p>A secondary message elaborating a <a class="el" href="classfe_1_1Error.html#structfe_1_1Error_1_1Msg" title="One Tag::Error or Tag::Warn together with the Notes that belong to it.">Msg</a>. </p>
 <p>A <a class="el" href="classfe_1_1Error.html#structfe_1_1Error_1_1Note" title="A secondary message elaborating a Msg.">Note</a> with a <a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a> of its own reads as a diagnostic of its own - header line plus snippet; one without has nowhere else to point and renders as a <span class="tt">= <a class="el" href="classfe_1_1Error.html#aad9cee35248ef994e08254f3714cbffa" title="A = note: continuation of the diagnostic being built; it has no Loc of its own to point at.">note</a>:</span> continuation line. </p>
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00076">76</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00055">55</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -242,9 +241,9 @@ str</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock"><p>One <a class="el" href="classfe_1_1Error.html#aa3c44d20a15cae1e0737b74351bf7523a902b0d55fddef6f8d651fe1035b7d4bd">Tag::Error</a> or <a class="el" href="classfe_1_1Error.html#aa3c44d20a15cae1e0737b74351bf7523a56525ae64d370c0b448ac0d60710ef17">Tag::Warn</a> together with the <a class="el" href="classfe_1_1Error.html#structfe_1_1Error_1_1Note" title="A secondary message elaborating a Msg.">Note</a>s that belong to it. </p>
+<div class="textblock"><p>One Tag::Error or Tag::Warn together with the <a class="el" href="classfe_1_1Error.html#structfe_1_1Error_1_1Note" title="A secondary message elaborating a Msg.">Note</a>s that belong to it. </p>
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00082">82</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00061">61</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -266,7 +265,7 @@ str</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="ab65076390cfb07fafe8520fbafbe0536" name="ab65076390cfb07fafe8520fbafbe0536"></a><a class="el" href="classfe_1_1Error.html#aa3c44d20a15cae1e0737b74351bf7523">Tag</a></td>
+<a id="ab65076390cfb07fafe8520fbafbe0536" name="ab65076390cfb07fafe8520fbafbe0536"></a><a class="el" href="classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1f">Tag</a></td>
 <td class="fieldname">
 tag</td>
 <td class="fielddoc">

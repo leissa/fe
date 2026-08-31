@@ -150,14 +150,13 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classfe_1_1Err
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#friends">Friends</a> &#124;
 <a href="classfe_1_1Error-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">fe::Error Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Collects diagnostics and renders each with the source <a class="el" href="structfe_1_1Snippet.html" title="The underlined source excerpt that goes below a diagnostic.">Snippet</a> its <a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a> points at.  
+<p>Collects diagnostics and hands each to the <a class="el" href="classfe_1_1Diag.html" title="How a diagnostic lays out - and how much of it an Error keeps.">Diag</a> that lays it out.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="error_8h_source.html">fe/error.h</a>&gt;</code></p>
@@ -169,18 +168,11 @@ Classes</h2></td></tr>
 <tr class="memitem:Note_5Fstructfe_5F1_5F1Error_5F1_5F1Note" id="r_Note_5Fstructfe_5F1_5F1Error_5F1_5F1Note"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="#structfe_1_1Error_1_1Note">Note</a></td></tr>
 <tr class="memdesc:structfe_1_1Error_1_1Note"><td class="mdescLeft">&#160;</td><td class="mdescRight">A secondary message elaborating a <a class="el" href="#structfe_1_1Error_1_1Msg" title="One Tag::Error or Tag::Warn together with the Notes that belong to it.">Msg</a>.  <a href="#structfe_1_1Error_1_1Note">More...</a><br /></td></tr>
 <tr class="memitem:Msg_5Fstructfe_5F1_5F1Error_5F1_5F1Msg" id="r_Msg_5Fstructfe_5F1_5F1Error_5F1_5F1Msg"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="#structfe_1_1Error_1_1Msg">Msg</a></td></tr>
-<tr class="memdesc:structfe_1_1Error_1_1Msg"><td class="mdescLeft">&#160;</td><td class="mdescRight">One <a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523a902b0d55fddef6f8d651fe1035b7d4bd">Tag::Error</a> or <a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523a56525ae64d370c0b448ac0d60710ef17">Tag::Warn</a> together with the <a class="el" href="#structfe_1_1Error_1_1Note" title="A secondary message elaborating a Msg.">Note</a>s that belong to it.  <a href="#structfe_1_1Error_1_1Msg">More...</a><br /></td></tr>
+<tr class="memdesc:structfe_1_1Error_1_1Msg"><td class="mdescLeft">&#160;</td><td class="mdescRight">One Tag::Error or Tag::Warn together with the <a class="el" href="#structfe_1_1Error_1_1Note" title="A secondary message elaborating a Msg.">Note</a>s that belong to it.  <a href="#structfe_1_1Error_1_1Msg">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:aa3c44d20a15cae1e0737b74351bf7523" id="r_aa3c44d20a15cae1e0737b74351bf7523"><td class="memItemLeft">enum class &#160;</td><td class="memItemRight"><a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523">Tag</a> { <br />
-&#160;&#160;<a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523a902b0d55fddef6f8d651fe1035b7d4bd">Error</a>
-, <br />
-&#160;&#160;<a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523a56525ae64d370c0b448ac0d60710ef17">Warn</a>
-, <br />
-&#160;&#160;<a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523a3b0649c72650c313a357338dcdfb64ec">Note</a>
-<br />
- }</td></tr>
+<tr class="memitem:ab0449a47de208449e3215a08b87c8c58" id="r_ab0449a47de208449e3215a08b87c8c58"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#ab0449a47de208449e3215a08b87c8c58">Tag</a> = <a class="el" href="classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1f">Diag::Tag</a></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -194,13 +186,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a964744b2e5613bed7c339b419c51f301" id="r_a964744b2e5613bed7c339b419c51f301"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a964744b2e5613bed7c339b419c51f301">num_warnings</a> () const</td></tr>
 <tr class="memitem:a00b674ddc53a6aab807f998e801dd5fa" id="r_a00b674ddc53a6aab807f998e801dd5fa"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a00b674ddc53a6aab807f998e801dd5fa">num_notes</a> () const</td></tr>
 <tr class="memitem:a4e722a70d4cab71100fa6ea30e8e2073" id="r_a4e722a70d4cab71100fa6ea30e8e2073"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a4e722a70d4cab71100fa6ea30e8e2073">truncated</a> () const</td></tr>
-<tr class="memdesc:a4e722a70d4cab71100fa6ea30e8e2073"><td class="mdescLeft">&#160;</td><td class="mdescRight">Did Diag::max_errors drop anything?  <br /></td></tr>
+<tr class="memdesc:a4e722a70d4cab71100fa6ea30e8e2073"><td class="mdescLeft">&#160;</td><td class="mdescRight">Did <a class="el" href="classfe_1_1Diag.html#a6138b5dab0dabd789c7cae33cdb8c404" title="Errors recorded before the rest is dropped; 0 keeps everything.">Diag::max_errors</a> drop anything?  <br /></td></tr>
 <tr id="pub-methods-1" class="groupHeader"><td colspan="2"><div class="groupHeader">Add a Message</div></td></tr>
-<tr><td colspan="2" class="ititle"><div class="groupText"><p>Each of these yields the <a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and renders each with the source Snippet its Loc points at.">Error</a> again, so a diagnostic, its <a class="el" href="#structfe_1_1Error_1_1Note" title="A secondary message elaborating a Msg.">Note</a>s, and a closing <a class="el" href="#a4c1692799986392837a8bb3552384eb9" title="Claims everything collected so far and throws it as a Bail rendered for os.">Error::bail</a> chain. </p>
+<tr><td colspan="2" class="ititle"><div class="groupText"><p>Each of these yields the <a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and hands each to the Diag that lays it out.">Error</a> again, so a diagnostic, its <a class="el" href="#structfe_1_1Error_1_1Note" title="A secondary message elaborating a Msg.">Note</a>s, and a closing <a class="el" href="#a4c1692799986392837a8bb3552384eb9" title="Claims everything collected so far and throws it as a Bail rendered for os.">Error::bail</a> chain. </p>
 </div></td></tr>
-<tr class="memitem:a0be3ad6db15f4a91da361765326e508e" id="r_a0be3ad6db15f4a91da361765326e508e"><td class="memItemLeft"><a class="el" href="#a006230978a0baa2c40452a3f393c8db5">Error</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a0be3ad6db15f4a91da361765326e508e">msg</a> (<a class="el" href="structfe_1_1Loc.html">Loc</a> loc, <a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523">Tag</a> tag, const std::function&lt; std::string()&gt; &amp;fmt)</td></tr>
+<tr class="memitem:a0be3ad6db15f4a91da361765326e508e" id="r_a0be3ad6db15f4a91da361765326e508e"><td class="memItemLeft"><a class="el" href="#a006230978a0baa2c40452a3f393c8db5">Error</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a0be3ad6db15f4a91da361765326e508e">msg</a> (<a class="el" href="structfe_1_1Loc.html">Loc</a> loc, <a class="el" href="classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1f">Tag</a> tag, const std::function&lt; std::string()&gt; &amp;fmt)</td></tr>
 <tr class="memitem:a7d5548075c6e6527e87f8c76034a01e8" id="r_a7d5548075c6e6527e87f8c76034a01e8"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
-<tr class="memitem:a7d5548075c6e6527e87f8c76034a01e8 template"><td class="memItemLeft"><a class="el" href="#a006230978a0baa2c40452a3f393c8db5">Error</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a7d5548075c6e6527e87f8c76034a01e8">msg</a> (<a class="el" href="structfe_1_1Loc.html">Loc</a> loc, <a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523">Tag</a> tag, std::format_string&lt; Args... &gt; s, Args &amp;&amp;... args)</td></tr>
+<tr class="memitem:a7d5548075c6e6527e87f8c76034a01e8 template"><td class="memItemLeft"><a class="el" href="#a006230978a0baa2c40452a3f393c8db5">Error</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a7d5548075c6e6527e87f8c76034a01e8">msg</a> (<a class="el" href="structfe_1_1Loc.html">Loc</a> loc, <a class="el" href="classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1f">Tag</a> tag, std::format_string&lt; Args... &gt; s, Args &amp;&amp;... args)</td></tr>
 <tr class="memitem:ad8368ada831692fd3994e6be28b6240d" id="r_ad8368ada831692fd3994e6be28b6240d"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
 <tr class="memitem:ad8368ada831692fd3994e6be28b6240d template"><td class="memItemLeft"><a class="el" href="#a006230978a0baa2c40452a3f393c8db5">Error</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ad8368ada831692fd3994e6be28b6240d">error</a> (<a class="el" href="structfe_1_1Loc.html">Loc</a> loc, std::format_string&lt; Args... &gt; s, Args &amp;&amp;... args)</td></tr>
 <tr class="memitem:a82c412556026c8f9ecd54a94add9cf4a" id="r_a82c412556026c8f9ecd54a94add9cf4a"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
@@ -222,21 +214,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1691ca5ebb45613d58aed573af1a75bc" id="r_a1691ca5ebb45613d58aed573af1a75bc"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1691ca5ebb45613d58aed573af1a75bc">ack</a> (std::ostream &amp;os=std::cerr)</td></tr>
 <tr class="memdesc:a1691ca5ebb45613d58aed573af1a75bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">If errors occurred, <a class="el" href="#a4c1692799986392837a8bb3552384eb9" title="Claims everything collected so far and throws it as a Bail rendered for os.">Error::bail</a>; otherwise <a class="el" href="#a93e4dd890a070342985279476e4e5290" title="Streams everything collected so far to os and claims it.">Error::report</a> any warnings to <code class="param">os</code>.  <br /></td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a5182107fa755cab48952e2162d1c9e24" id="r_a5182107fa755cab48952e2162d1c9e24"><td class="memItemLeft">static <a class="el" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148">term::FG</a>&#160;</td><td class="memItemRight"><a class="el" href="#a5182107fa755cab48952e2162d1c9e24">tag2color</a> (<a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523">Tag</a> tag)</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-friends" class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
-<tr class="memitem:ac7b66ebd29abf065efbd59fdb8221a5f" id="r_ac7b66ebd29abf065efbd59fdb8221a5f"><td class="memItemLeft">std::ostream &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ac7b66ebd29abf065efbd59fdb8221a5f">operator&lt;&lt;</a> (std::ostream &amp;os, <a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523">Tag</a> tag)</td></tr>
 <tr class="memitem:a8a369575104a47be742d51e7d814d99b" id="r_a8a369575104a47be742d51e7d814d99b"><td class="memItemLeft">std::ostream &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a8a369575104a47be742d51e7d814d99b">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="#a006230978a0baa2c40452a3f393c8db5">Error</a> &amp;e)</td></tr>
-<tr class="memdesc:a8a369575104a47be742d51e7d814d99b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders each <a class="el" href="#structfe_1_1Error_1_1Msg" title="One Tag::Error or Tag::Warn together with the Notes that belong to it.">Msg</a> with its source snippet and its <a class="el" href="#structfe_1_1Error_1_1Note" title="A secondary message elaborating a Msg.">Note</a>s underneath, closed by Error::summary.  <br /></td></tr>
+<tr class="memdesc:a8a369575104a47be742d51e7d814d99b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hands every <a class="el" href="#structfe_1_1Error_1_1Msg" title="One Tag::Error or Tag::Warn together with the Notes that belong to it.">Msg</a>, its <a class="el" href="#structfe_1_1Error_1_1Note" title="A secondary message elaborating a Msg.">Note</a>s, and the closing summary to <a class="el" href="classfe_1_1Diag.html" title="How a diagnostic lays out - and how much of it an Error keeps.">Diag</a>.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Collects diagnostics and renders each with the source <a class="el" href="structfe_1_1Snippet.html" title="The underlined source excerpt that goes below a diagnostic.">Snippet</a> its <a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a> points at. </p>
+<div class="textblock"><p>Collects diagnostics and hands each to the <a class="el" href="classfe_1_1Diag.html" title="How a diagnostic lays out - and how much of it an Error keeps.">Diag</a> that lays it out. </p>
 <p><a class="el" href="#a1691ca5ebb45613d58aed573af1a75bc" title="If errors occurred, Error::bail; otherwise Error::report any warnings to os.">Error::ack</a> once you are done: it throws an <a class="el" href="classfe_1_1Error_1_1Bail.html" title="What Error::ack and Error::bail throw.">Error::Bail</a> if anything went wrong. </p>
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00043">43</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00026">26</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 </div><hr/><h2 id="header-inline_5Fclasses" class="groupheader">Class Documentation</h2>
 <a name="structfe_1_1Error_1_1Note" id="structfe_1_1Error_1_1Note"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#structfe_1_1Error_1_1Note">&#9670;&#160;</a></span>fe::Error::Note</h2>
@@ -252,7 +239,7 @@ Friends</h2></td></tr>
 <div class="textblock"><p>A secondary message elaborating a <a class="el" href="#structfe_1_1Error_1_1Msg" title="One Tag::Error or Tag::Warn together with the Notes that belong to it.">Msg</a>. </p>
 <p>A <a class="el" href="#structfe_1_1Error_1_1Note" title="A secondary message elaborating a Msg.">Note</a> with a <a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a> of its own reads as a diagnostic of its own - header line plus snippet; one without has nowhere else to point and renders as a <span class="tt">= <a class="el" href="#aad9cee35248ef994e08254f3714cbffa" title="A = note: continuation of the diagnostic being built; it has no Loc of its own to point at.">note</a>:</span> continuation line. </p>
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00076">76</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00055">55</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -282,9 +269,9 @@ str</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock"><p>One <a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523a902b0d55fddef6f8d651fe1035b7d4bd">Tag::Error</a> or <a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523a56525ae64d370c0b448ac0d60710ef17">Tag::Warn</a> together with the <a class="el" href="#structfe_1_1Error_1_1Note" title="A secondary message elaborating a Msg.">Note</a>s that belong to it. </p>
+<div class="textblock"><p>One Tag::Error or Tag::Warn together with the <a class="el" href="#structfe_1_1Error_1_1Note" title="A secondary message elaborating a Msg.">Note</a>s that belong to it. </p>
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00082">82</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00061">61</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -306,7 +293,7 @@ str</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="ab65076390cfb07fafe8520fbafbe0536" name="ab65076390cfb07fafe8520fbafbe0536"></a><a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523">Tag</a></td>
+<a id="ab65076390cfb07fafe8520fbafbe0536" name="ab65076390cfb07fafe8520fbafbe0536"></a><a class="el" href="classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1f">Tag</a></td>
 <td class="fieldname">
 tag</td>
 <td class="fielddoc">
@@ -315,33 +302,20 @@ tag</td>
 
 </div>
 </div>
-<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Member Enumeration Documentation</h2>
-<a id="aa3c44d20a15cae1e0737b74351bf7523" name="aa3c44d20a15cae1e0737b74351bf7523"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa3c44d20a15cae1e0737b74351bf7523">&#9670;&#160;</a></span>Tag</h2>
+<a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a id="ab0449a47de208449e3215a08b87c8c58" name="ab0449a47de208449e3215a08b87c8c58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0449a47de208449e3215a08b87c8c58">&#9670;&#160;</a></span>Tag</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">enum class <a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523">fe::Error::Tag</a></td>
+          <td class="memname">using <a class="el" href="classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1f">fe::Error::Tag</a> = <a class="el" href="classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1f">Diag::Tag</a></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aa3c44d20a15cae1e0737b74351bf7523a902b0d55fddef6f8d651fe1035b7d4bd" name="aa3c44d20a15cae1e0737b74351bf7523a902b0d55fddef6f8d651fe1035b7d4bd"></a>Error&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa3c44d20a15cae1e0737b74351bf7523a56525ae64d370c0b448ac0d60710ef17" name="aa3c44d20a15cae1e0737b74351bf7523a56525ae64d370c0b448ac0d60710ef17"></a>Warn&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa3c44d20a15cae1e0737b74351bf7523a3b0649c72650c313a357338dcdfb64ec" name="aa3c44d20a15cae1e0737b74351bf7523a3b0649c72650c313a357338dcdfb64ec"></a>Note&#160;</td><td class="fielddoc"></td></tr>
-</table>
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00045">45</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00028">28</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 
 </div>
 </div>
@@ -368,11 +342,11 @@ tag</td>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section warning"><dt>Warning</dt><dd>A <a class="el" href="#a53f731bf71af5f30d751265cab6a3c78">Msg::loc</a> points into <code class="param">driver's</code> <a class="el" href="classfe_1_1SrcMap.html" title="Interns the text - and the std::filesystem::path - of every file a Loc may point into.">SrcMap</a> and <a class="el" href="#a0be3ad6db15f4a91da361765326e508e">Error::msg</a> renders through <a class="el" href="structfe_1_1Driver.html#a2e255ee9efb08b65174b2c551882f323">Driver::render</a>, so <code class="param">driver</code> must outlive this <a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and renders each with the source Snippet its Loc points at.">Error</a>. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>A <a class="el" href="#a53f731bf71af5f30d751265cab6a3c78">Msg::loc</a> points into <code class="param">driver's</code> <a class="el" href="classfe_1_1SrcMap.html" title="Interns the text - and the std::filesystem::path - of every file a Loc may point into.">SrcMap</a> and <a class="el" href="#a0be3ad6db15f4a91da361765326e508e">Error::msg</a> renders through <a class="el" href="classfe_1_1Diag.html#abfed89735a2b818e18f7f96947071bb6" title="Postprocesses the text of one Error::Msg; the identity here, see CodeDiag.">Diag::render</a>, so <code class="param">driver</code> must outlive this <a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and hands each to the Diag that lays it out.">Error</a>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00091">91</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00070">70</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="error_8h_source.html#l00046">Error</a>, <a class="el" href="error_8h_source.html#l00122">error()</a>, <a class="el" href="error_8h_source.html#l00110">msg()</a>, <a class="el" href="error_8h_source.html#l00117">msg()</a>, <a class="el" href="error_8h_source.html#l00135">note()</a>, <a class="el" href="error_8h_source.html#l00126">note()</a>, <a class="el" href="error_8h_source.html#l00206">operator&lt;&lt;</a>, and <a class="el" href="error_8h_source.html#l00123">warn()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="error_8h_source.html#l00101">error()</a>, <a class="el" href="error_8h_source.html#l00089">msg()</a>, <a class="el" href="error_8h_source.html#l00096">msg()</a>, <a class="el" href="error_8h_source.html#l00114">note()</a>, <a class="el" href="error_8h_source.html#l00105">note()</a>, <a class="el" href="error_8h_source.html#l00163">operator&lt;&lt;</a>, and <a class="el" href="error_8h_source.html#l00102">warn()</a>.</p>
 
 </div>
 </div>
@@ -402,9 +376,9 @@ tag</td>
 
 <p>If errors occurred, <a class="el" href="#a4c1692799986392837a8bb3552384eb9" title="Claims everything collected so far and throws it as a Bail rendered for os.">Error::bail</a>; otherwise <a class="el" href="#a93e4dd890a070342985279476e4e5290" title="Streams everything collected so far to os and claims it.">Error::report</a> any warnings to <code class="param">os</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00177">177</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00156">156</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 
-<p class="reference">References <a class="el" href="error_8h_source.html#l00170">bail()</a>, <a class="el" href="error_8h_source.html#l00099">num_errors()</a>, and <a class="el" href="error_8h_source.html#l00162">report()</a>.</p>
+<p class="reference">References <a class="el" href="error_8h_source.html#l00149">bail()</a>, <a class="el" href="error_8h_source.html#l00078">num_errors()</a>, and <a class="el" href="error_8h_source.html#l00141">report()</a>.</p>
 
 </div>
 </div>
@@ -433,11 +407,11 @@ tag</td>
 
 <p>Claims everything collected so far and throws it as a <a class="el" href="classfe_1_1Error_1_1Bail.html" title="What Error::ack and Error::bail throw.">Bail</a> rendered for <code class="param">os</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00170">170</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00149">149</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 
-<p class="reference">References <a class="el" href="error_8h_source.html#l00056">fe::Error::Bail::Bail()</a>, <a class="el" href="error_8h_source.html#l00170">bail()</a>, <a class="el" href="error_8h_source.html#l00145">clear()</a>, <a class="el" href="error_8h_source.html#l00099">num_errors()</a>, <a class="el" href="error_8h_source.html#l00100">num_warnings()</a>, and <a class="el" href="error_8h_source.html#l00153">str()</a>.</p>
+<p class="reference">References <a class="el" href="error_8h_source.html#l00035">fe::Error::Bail::Bail()</a>, <a class="el" href="error_8h_source.html#l00149">bail()</a>, <a class="el" href="error_8h_source.html#l00124">clear()</a>, <a class="el" href="error_8h_source.html#l00078">num_errors()</a>, <a class="el" href="error_8h_source.html#l00079">num_warnings()</a>, and <a class="el" href="error_8h_source.html#l00132">str()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="error_8h_source.html#l00177">ack()</a>, <a class="el" href="error_8h_source.html#l00170">bail()</a>, and <a class="el" href="error_8h_source.html#l00065">fe::Error::Bail::operator&lt;&lt;</a>.</p>
+<p class="reference">Referenced by <a class="el" href="error_8h_source.html#l00156">ack()</a>, <a class="el" href="error_8h_source.html#l00149">bail()</a>, and <a class="el" href="error_8h_source.html#l00044">fe::Error::Bail::operator&lt;&lt;</a>.</p>
 
 </div>
 </div>
@@ -464,9 +438,9 @@ tag</td>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00145">145</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00124">124</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="error_8h_source.html#l00170">bail()</a>, and <a class="el" href="error_8h_source.html#l00162">report()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="error_8h_source.html#l00149">bail()</a>, and <a class="el" href="error_8h_source.html#l00141">report()</a>.</p>
 
 </div>
 </div>
@@ -493,9 +467,9 @@ tag</td>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00097">97</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00076">76</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="error_8h_source.html#l00162">report()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="error_8h_source.html#l00141">report()</a>.</p>
 
 </div>
 </div>
@@ -533,9 +507,9 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00122">122</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00101">101</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 
-<p class="reference">References <a class="el" href="error_8h_source.html#l00091">Error()</a>, <a class="el" href="error_8h_source.html#l00046">Error</a>, and <a class="el" href="error_8h_source.html#l00110">msg()</a>.</p>
+<p class="reference">References <a class="el" href="error_8h_source.html#l00070">Error()</a>, and <a class="el" href="error_8h_source.html#l00089">msg()</a>.</p>
 
 </div>
 </div>
@@ -556,7 +530,7 @@ template&lt;class... Args&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523">Tag</a></td>          <td class="paramname"><span class="paramname"><em>tag</em></span>, </td>
+          <td class="paramtype"><a class="el" href="classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1f">Tag</a></td>          <td class="paramname"><span class="paramname"><em>tag</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -570,13 +544,13 @@ template&lt;class... Args&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Records the message <code class="param">fmt</code> renders; see <a class="el" href="structfe_1_1Driver.html#a2e255ee9efb08b65174b2c551882f323">Driver::render</a>. <code class="param">tag</code> must be <a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523a902b0d55fddef6f8d651fe1035b7d4bd">Tag::Error</a> or <a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523a56525ae64d370c0b448ac0d60710ef17">Tag::Warn</a> - a <a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523a3b0649c72650c313a357338dcdfb64ec">Tag::Note</a> belongs to <a class="el" href="#aad9cee35248ef994e08254f3714cbffa" title="A = note: continuation of the diagnostic being built; it has no Loc of its own to point at.">Error::note</a>. </p>
+<p>Records the message <code class="param">fmt</code> renders; see <a class="el" href="classfe_1_1Diag.html#abfed89735a2b818e18f7f96947071bb6" title="Postprocesses the text of one Error::Msg; the identity here, see CodeDiag.">Diag::render</a>. <code class="param">tag</code> must be Tag::Error or Tag::Warn - a Tag::Note belongs to <a class="el" href="#aad9cee35248ef994e08254f3714cbffa" title="A = note: continuation of the diagnostic being built; it has no Loc of its own to point at.">Error::note</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00110">110</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00089">89</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 
-<p class="reference">References <a class="el" href="error_8h_source.html#l00091">Error()</a>.</p>
+<p class="reference">References <a class="el" href="error_8h_source.html#l00070">Error()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="error_8h_source.html#l00122">error()</a>, and <a class="el" href="error_8h_source.html#l00123">warn()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="error_8h_source.html#l00101">error()</a>, <a class="el" href="error_8h_source.html#l00163">operator&lt;&lt;</a>, and <a class="el" href="error_8h_source.html#l00102">warn()</a>.</p>
 
 </div>
 </div>
@@ -599,7 +573,7 @@ template&lt;class... Args&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523">Tag</a></td>          <td class="paramname"><span class="paramname"><em>tag</em></span>, </td>
+          <td class="paramtype"><a class="el" href="classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1f">Tag</a></td>          <td class="paramname"><span class="paramname"><em>tag</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -618,11 +592,11 @@ template&lt;class... Args&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section note"><dt>Note</dt><dd>Formats via <span class="tt">std::vformat</span> because <a class="el" href="structfe_1_1Driver.html#a2e255ee9efb08b65174b2c551882f323">Driver::render</a> may render <code class="param">s</code> more than once. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Formats via <span class="tt">std::vformat</span> because <a class="el" href="classfe_1_1Diag.html#abfed89735a2b818e18f7f96947071bb6" title="Postprocesses the text of one Error::Msg; the identity here, see CodeDiag.">Diag::render</a> may render <code class="param">s</code> more than once. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00117">117</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00096">96</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 
-<p class="reference">References <a class="el" href="error_8h_source.html#l00091">Error()</a>.</p>
+<p class="reference">References <a class="el" href="error_8h_source.html#l00070">Error()</a>.</p>
 
 </div>
 </div>
@@ -649,7 +623,7 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00096">96</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00075">75</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 
 </div>
 </div>
@@ -690,9 +664,9 @@ template&lt;class... Args&gt; </div>
 <p>A <a class="el" href="#structfe_1_1Error_1_1Note" title="A secondary message elaborating a Msg.">Note</a> that points <em>elsewhere</em>; dropped when <code class="param">loc</code> adds nothing. </p>
 <p>A <code class="param">loc</code> overlapping the primary one is already covered by its snippet and so points nowhere new. An invalid <code class="param">loc</code> points <em>nowhere</em> and degrades to the <span class="tt">= <a class="el" href="#aad9cee35248ef994e08254f3714cbffa" title="A = note: continuation of the diagnostic being built; it has no Loc of its own to point at.">note</a>:</span> continuation above. The renderer gives <code class="param">loc</code> a header line of its own, so phrase the message to stand alone. </p>
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00135">135</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00114">114</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 
-<p class="reference">References <a class="el" href="error_8h_source.html#l00091">Error()</a>.</p>
+<p class="reference">References <a class="el" href="error_8h_source.html#l00070">Error()</a>.</p>
 
 </div>
 </div>
@@ -727,9 +701,11 @@ template&lt;class... Args&gt; </div>
 
 <p>A <span class="tt">= <a class="el" href="#aad9cee35248ef994e08254f3714cbffa" title="A = note: continuation of the diagnostic being built; it has no Loc of its own to point at.">note</a>:</span> continuation of the diagnostic being built; it has no <a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a> of its own to point at. </p>
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00126">126</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00105">105</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 
-<p class="reference">References <a class="el" href="error_8h_source.html#l00091">Error()</a>, and <a class="el" href="structfe_1_1Loc.html#ab5dab17265d3d01f0d87e5eecb808fd3">fe::Loc::Loc()</a>.</p>
+<p class="reference">References <a class="el" href="error_8h_source.html#l00070">Error()</a>, and <a class="el" href="structfe_1_1Loc.html#ab5dab17265d3d01f0d87e5eecb808fd3">fe::Loc::Loc()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="error_8h_source.html#l00163">operator&lt;&lt;</a>.</p>
 
 </div>
 </div>
@@ -756,11 +732,9 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00099">99</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00078">78</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 
-<p class="reference">References <a class="el" href="error_8h_source.html#l00046">Error</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="error_8h_source.html#l00177">ack()</a>, <a class="el" href="error_8h_source.html#l00170">bail()</a>, <a class="el" href="error_8h_source.html#l00098">ok()</a>, and <a class="el" href="error_8h_source.html#l00162">report()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="error_8h_source.html#l00156">ack()</a>, <a class="el" href="error_8h_source.html#l00149">bail()</a>, <a class="el" href="error_8h_source.html#l00077">ok()</a>, <a class="el" href="error_8h_source.html#l00163">operator&lt;&lt;</a>, and <a class="el" href="error_8h_source.html#l00141">report()</a>.</p>
 
 </div>
 </div>
@@ -787,9 +761,7 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00101">101</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
-
-<p class="reference">References <a class="el" href="error_8h_source.html#l00048">Note</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00080">80</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 
 </div>
 </div>
@@ -816,11 +788,9 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00100">100</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00079">79</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 
-<p class="reference">References <a class="el" href="error_8h_source.html#l00047">Warn</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="error_8h_source.html#l00170">bail()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="error_8h_source.html#l00149">bail()</a>, and <a class="el" href="error_8h_source.html#l00163">operator&lt;&lt;</a>.</p>
 
 </div>
 </div>
@@ -849,9 +819,9 @@ template&lt;class... Args&gt; </div>
 
 <p>Nothing recorded that must stop the compilation? </p>
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00098">98</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00077">77</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 
-<p class="reference">References <a class="el" href="error_8h_source.html#l00099">num_errors()</a>.</p>
+<p class="reference">References <a class="el" href="error_8h_source.html#l00078">num_errors()</a>.</p>
 
 </div>
 </div>
@@ -879,13 +849,13 @@ template&lt;class... Args&gt; </div>
 </div><div class="memdoc">
 
 <p>Streams everything collected so far to <code class="param">os</code> and claims it. </p>
-<dl class="section return"><dt>Returns</dt><dd>the number of <a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523a902b0d55fddef6f8d651fe1035b7d4bd">Tag::Error</a>s that were reported. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the number of Tag::Errors that were reported. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00162">162</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00141">141</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 
-<p class="reference">References <a class="el" href="error_8h_source.html#l00145">clear()</a>, <a class="el" href="error_8h_source.html#l00097">empty()</a>, and <a class="el" href="error_8h_source.html#l00099">num_errors()</a>.</p>
+<p class="reference">References <a class="el" href="error_8h_source.html#l00124">clear()</a>, <a class="el" href="error_8h_source.html#l00076">empty()</a>, and <a class="el" href="error_8h_source.html#l00078">num_errors()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="error_8h_source.html#l00177">ack()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="error_8h_source.html#l00156">ack()</a>.</p>
 
 </div>
 </div>
@@ -914,40 +884,11 @@ template&lt;class... Args&gt; </div>
 
 <p>Renders everything collected so far the way it would appear on <code class="param">os</code>; <code class="param">os</code> only decides the coloring. </p>
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00153">153</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00132">132</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 
-<p class="reference">References <a class="el" href="term_8h_source.html#l00053">fe::term::Always</a>, <a class="el" href="term_8h_source.html#l00052">fe::term::Never</a>, and <a class="el" href="term_8h_source.html#l00188">fe::term::use_color()</a>.</p>
+<p class="reference">References <a class="el" href="term_8h_source.html#l00054">fe::term::Always</a>, <a class="el" href="term_8h_source.html#l00053">fe::term::Never</a>, and <a class="el" href="term_8h_source.html#l00189">fe::term::use_color()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="error_8h_source.html#l00170">bail()</a>.</p>
-
-</div>
-</div>
-<a id="a5182107fa755cab48952e2162d1c9e24" name="a5182107fa755cab48952e2162d1c9e24"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5182107fa755cab48952e2162d1c9e24">&#9670;&#160;</a></span>tag2color()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148">term::FG</a> fe::Error::tag2color </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523">Tag</a></td>          <td class="paramname"><span class="paramname"><em>tag</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00183">183</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
-
-<p class="reference">References <a class="el" href="error_8h_source.html#l00046">Error</a>, <a class="el" href="term_8h_source.html#l00060">fe::term::Green</a>, <a class="el" href="term_8h_source.html#l00063">fe::term::Magenta</a>, <a class="el" href="error_8h_source.html#l00048">Note</a>, <a class="el" href="term_8h_source.html#l00059">fe::term::Red</a>, <a class="el" href="assert_8h_source.html#l00030">fe::unreachable()</a>, and <a class="el" href="error_8h_source.html#l00047">Warn</a>.</p>
+<p class="reference">Referenced by <a class="el" href="error_8h_source.html#l00149">bail()</a>, and <a class="el" href="error_8h_source.html#l00163">operator&lt;&lt;</a>.</p>
 
 </div>
 </div>
@@ -974,9 +915,9 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Did Diag::max_errors drop anything? </p>
+<p>Did <a class="el" href="classfe_1_1Diag.html#a6138b5dab0dabd789c7cae33cdb8c404" title="Errors recorded before the rest is dropped; 0 keeps everything.">Diag::max_errors</a> drop anything? </p>
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00102">102</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00081">81</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 
 </div>
 </div>
@@ -1014,15 +955,15 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00123">123</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00102">102</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 
-<p class="reference">References <a class="el" href="error_8h_source.html#l00091">Error()</a>, <a class="el" href="error_8h_source.html#l00110">msg()</a>, and <a class="el" href="error_8h_source.html#l00047">Warn</a>.</p>
+<p class="reference">References <a class="el" href="error_8h_source.html#l00070">Error()</a>, and <a class="el" href="error_8h_source.html#l00089">msg()</a>.</p>
 
 </div>
 </div>
 <a name="doc-related-members" id="doc-related-members"></a><h2 id="header-doc-related-members" class="groupheader">Friends And Related Symbol Documentation</h2>
 <a id="a8a369575104a47be742d51e7d814d99b" name="a8a369575104a47be742d51e7d814d99b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8a369575104a47be742d51e7d814d99b">&#9670;&#160;</a></span>operator&lt;&lt; <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a369575104a47be742d51e7d814d99b">&#9670;&#160;</a></span>operator&lt;&lt;</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1048,44 +989,11 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Renders each <a class="el" href="#structfe_1_1Error_1_1Msg" title="One Tag::Error or Tag::Warn together with the Notes that belong to it.">Msg</a> with its source snippet and its <a class="el" href="#structfe_1_1Error_1_1Note" title="A secondary message elaborating a Msg.">Note</a>s underneath, closed by Error::summary. </p>
+<p>Hands every <a class="el" href="#structfe_1_1Error_1_1Msg" title="One Tag::Error or Tag::Warn together with the Notes that belong to it.">Msg</a>, its <a class="el" href="#structfe_1_1Error_1_1Note" title="A secondary message elaborating a Msg.">Note</a>s, and the closing summary to <a class="el" href="classfe_1_1Diag.html" title="How a diagnostic lays out - and how much of it an Error keeps.">Diag</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00206">206</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00163">163</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 
-<p class="reference">References <a class="el" href="error_8h_source.html#l00091">Error()</a>.</p>
-
-</div>
-</div>
-<a id="ac7b66ebd29abf065efbd59fdb8221a5f" name="ac7b66ebd29abf065efbd59fdb8221a5f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac7b66ebd29abf065efbd59fdb8221a5f">&#9670;&#160;</a></span>operator&lt;&lt; <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::ostream &amp; operator&lt;&lt; </td>
-          <td>(</td>
-          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>os</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="#aa3c44d20a15cae1e0737b74351bf7523">Tag</a></td>          <td class="paramname"><span class="paramname"><em>tag</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel friend">friend</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00194">194</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
-
-<p class="reference">References <a class="el" href="error_8h_source.html#l00046">Error</a>, <a class="el" href="term_8h_source.html#l00060">fe::term::Green</a>, <a class="el" href="term_8h_source.html#l00063">fe::term::Magenta</a>, <a class="el" href="error_8h_source.html#l00048">Note</a>, <a class="el" href="term_8h_source.html#l00059">fe::term::Red</a>, <a class="el" href="assert_8h_source.html#l00030">fe::unreachable()</a>, and <a class="el" href="error_8h_source.html#l00047">Warn</a>.</p>
+<p class="reference">References <a class="el" href="error_8h_source.html#l00070">Error()</a>, <a class="el" href="error_8h_source.html#l00089">msg()</a>, <a class="el" href="error_8h_source.html#l00105">note()</a>, <a class="el" href="error_8h_source.html#l00078">num_errors()</a>, <a class="el" href="error_8h_source.html#l00079">num_warnings()</a>, <a class="el" href="error_8h_source.html#l00132">str()</a>, and <a class="el" href="classfe_1_1Diag.html#a1518938a083f1af30f171739da2d9083">fe::Diag::summary()</a>.</p>
 
 </div>
 </div>
