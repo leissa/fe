@@ -17,7 +17,7 @@ var searchData=
   ['dfsworklist_14',['DFSWorklist',['../namespacefe.html#a549e9d25223dacc899ddef74bf627b3f',1,'fe']]],
   ['diag_15',['Diag',['../structfe_1_1Driver.html#structfe_1_1Driver_1_1Diag',1,'fe::Driver']]],
   ['diag_16',['diag',['../structfe_1_1Driver.html#ad7f9e43fa0192ec7e4ac9dcd8098dbb3',1,'fe::Driver']]],
-  ['difference_5ftype_17',['difference_type',['../classfe_1_1XTrie_1_1Set_1_1iterator.html#a94ffa4422a31b43d9d55071c2992d2f5',1,'fe::XTrie::Set::iterator']]],
+  ['difference_5ftype_17',['difference_type',['../classfe_1_1Bitset_1_1iterator.html#a73a160b03f3b981723ad0888095b08c5',1,'fe::Bitset::iterator::difference_type'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html#a94ffa4422a31b43d9d55071c2992d2f5',1,'fe::XTrie::Set::iterator::difference_type']]],
   ['dir_18',['Dir',['../classfe_1_1lct_1_1Node.html#aafc0dc1bac212db5878282add778b971',1,'fe::lct::Node']]],
   ['dir_19',['dir',['../classfe_1_1lct_1_1Node.html#abdbc999fe7531a0e289613355f961fa3',1,'fe::lct::Node']]],
   ['direct_20vendoring_20',['Direct Vendoring',['../index.html#autotoc_md7',1,'']]],
@@ -30,6 +30,6 @@ var searchData=
   ['dot_27',['dot',['../classfe_1_1XTrie.html#a5dfa470658e4f440565a09a1297f61b4',1,'fe::XTrie::dot()'],['../classfe_1_1XTrie.html#a60256382276cdb10834b4b77cae85ef7',1,'fe::XTrie::dot(std::ostream &amp;os) const']]],
   ['driver_28',['Driver',['../structfe_1_1Driver.html',1,'fe::Driver'],['../classfe_1_1DbgKey.html#a3afe8ea439b91b50dfbe204787b990f2',1,'fe::DbgKey::Driver()'],['../structfe_1_1Driver.html#ab8f8ff9166ad88106fa274f3cc08dca3',1,'fe::Driver::Driver()=default'],['../structfe_1_1Driver.html#a44daf0a9afb42bd61eeba9acece98475',1,'fe::Driver::Driver(Driver &amp;&amp;)=default'],['../structfe_1_1Driver.html#a4884f74b43b41e78bb72a865908aeb4e',1,'fe::Driver::Driver(const Driver &amp;)=delete']]],
   ['driver_2eh_29',['driver.h',['../driver_8h.html',1,'']]],
-  ['dump_30',['dump',['../structfe_1_1Pos.html#a9a6685af4e76850af36627fd7f9a0978',1,'fe::Pos::dump()'],['../structfe_1_1Loc.html#a0531b0fe2bb2304752a1d58b80647365',1,'fe::Loc::dump()'],['../classfe_1_1XTrie_1_1Set.html#a3dd1280e0e1ee250710ad915b1310ee3',1,'fe::XTrie::Set::dump()']]],
+  ['dump_30',['dump',['../classfe_1_1Bitset.html#a832e646da4dbdbc732ec4a9665894b2a',1,'fe::Bitset::dump()'],['../structfe_1_1Pos.html#a9a6685af4e76850af36627fd7f9a0978',1,'fe::Pos::dump()'],['../structfe_1_1Loc.html#a0531b0fe2bb2304752a1d58b80647365',1,'fe::Loc::dump()'],['../classfe_1_1XTrie_1_1Set.html#a3dd1280e0e1ee250710ad915b1310ee3',1,'fe::XTrie::Set::dump()']]],
   ['duration_31',['Duration',['../classfe_1_1Profiler.html#a87cb0fa488d871a464a7b08050692611',1,'fe::Profiler']]]
 ];

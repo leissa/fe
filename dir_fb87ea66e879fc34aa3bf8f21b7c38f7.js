@@ -3,6 +3,7 @@ var dir_fb87ea66e879fc34aa3bf8f21b7c38f7 =
     [ "algo.h", "algo_8h.html", "algo_8h" ],
     [ "arena.h", "arena_8h.html", "arena_8h" ],
     [ "assert.h", "assert_8h.html", "assert_8h" ],
+    [ "bitset.h", "bitset_8h.html", "bitset_8h" ],
     [ "cast.h", "cast_8h.html", "cast_8h" ],
     [ "container.h", "container_8h.html", "container_8h" ],
     [ "dbg.h", "dbg_8h.html", "dbg_8h" ],

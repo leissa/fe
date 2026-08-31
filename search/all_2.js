@@ -19,7 +19,7 @@ var searchData=
   ['and_20testing_16',['🛠️ Building and Testing',['../index.html#autotoc_md9',1,'']]],
   ['anew_5fbegin_17',['anew_begin',['../structfe_1_1Loc.html#afaad39d7e5f676d7d562fd82fa359f13',1,'fe::Loc']]],
   ['anew_5fend_18',['anew_end',['../structfe_1_1Loc.html#a880683bdd569c8ba9f1b70e93025c70e',1,'fe::Loc']]],
-  ['any_19',['any',['../namespacefe_1_1utf8.html#a878567e47549cb6104196c7fb77413fa',1,'fe::utf8']]],
+  ['any_19',['any',['../classfe_1_1Bitset.html#a7572b2da5b9c85b0a0f20f018d948611',1,'fe::Bitset::any()'],['../namespacefe_1_1utf8.html#a878567e47549cb6104196c7fb77413fa',1,'fe::utf8::any()']]],
   ['append_20',['Append',['../classfe_1_1Lexer.html#a99366b3ab28fff1d6a1013b1007246a6',1,'fe::Lexer']]],
   ['append_21',['append',['../namespacefe_1_1utf8.html#aa8ae49725f0b51d0ff9c826a7268dfb0',1,'fe::utf8']]],
   ['append_5frange_22',['append_range',['../classfe_1_1Vector.html#a641bf1faf45096926355c1104e2a037a',1,'fe::Vector']]],

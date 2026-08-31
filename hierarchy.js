@@ -4,6 +4,7 @@ var hierarchy =
     [ "fe::Arena::Allocator&lt; T &gt;", "structfe_1_1Arena_1_1Allocator.html", null ],
     [ "fe::Parser&lt; Tok, Tag, K, S &gt;::Anchor", "classfe_1_1Parser_1_1Anchor.html", null ],
     [ "fe::Arena", "classfe_1_1Arena.html", null ],
+    [ "fe::Bitset", "classfe_1_1Bitset.html", null ],
     [ "fe::utf8::Char32", "structfe_1_1utf8_1_1Char32.html", null ],
     [ "fe::Dbg", "structfe_1_1Dbg.html", null ],
     [ "fe::DbgKey", "classfe_1_1DbgKey.html", null ],
@@ -24,6 +25,7 @@ var hierarchy =
       [ "fe::basic_ostream_formatter< char >", "structfe_1_1basic__ostream__formatter.html", null ],
       [ "fe::basic_ostream_formatter< Char >", "structfe_1_1basic__ostream__formatter.html", null ]
     ] ],
+    [ "fe::Bitset::Hash", "structfe_1_1Bitset_1_1Hash.html", null ],
     [ "fe::Dbg::Hash", "structfe_1_1Dbg_1_1Hash.html", null ],
     [ "fe::Sym::Hash", "structfe_1_1Sym_1_1Hash.html", null ],
     [ "fe::Sym::String::Hash", "structfe_1_1Sym_1_1String_1_1Hash.html", null ],
@@ -31,6 +33,7 @@ var hierarchy =
     [ "std::integral_constant", null, [
       [ "std::tuple_size< fe::Span< T, N > >", "structstd_1_1tuple__size_3_01fe_1_1Span_3_01T_00_01N_01_4_01_4.html", null ]
     ] ],
+    [ "fe::Bitset::iterator", "classfe_1_1Bitset_1_1iterator.html", null ],
     [ "fe::XTrie&lt; D, K, N &gt;::Set::iterator", "classfe_1_1XTrie_1_1Set_1_1iterator.html", null ],
     [ "fe::Join&lt; R &gt;", "classfe_1_1Join.html", null ],
     [ "fe::Lexer&lt; K, S &gt;", "classfe_1_1Lexer.html", null ],
@@ -49,6 +52,7 @@ var hierarchy =
     [ "fe::PathHash", "structfe_1_1PathHash.html", null ],
     [ "fe::Pos", "structfe_1_1Pos.html", null ],
     [ "fe::Profiler", "classfe_1_1Profiler.html", null ],
+    [ "fe::Bitset::reference", "classfe_1_1Bitset_1_1reference.html", null ],
     [ "fe::Restore&lt; T &gt;", "classfe_1_1Restore.html", null ],
     [ "fe::Ring&lt; T, N &gt;", "classfe_1_1Ring.html", null ],
     [ "fe::Ring&lt; T, 1 &gt;", "classfe_1_1Ring_3_01T_00_011_01_4.html", null ],

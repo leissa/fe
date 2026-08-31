@@ -12,6 +12,7 @@ var namespacefe =
     [ "utf8", "namespacefe_1_1utf8.html", "namespacefe_1_1utf8" ],
     [ "Arena", "classfe_1_1Arena.html", "classfe_1_1Arena" ],
     [ "basic_ostream_formatter", "structfe_1_1basic__ostream__formatter.html", "structfe_1_1basic__ostream__formatter" ],
+    [ "Bitset", "classfe_1_1Bitset.html", "classfe_1_1Bitset" ],
     [ "Dbg", "structfe_1_1Dbg.html", "structfe_1_1Dbg" ],
     [ "DbgKey", "classfe_1_1DbgKey.html", "classfe_1_1DbgKey" ],
     [ "Driver", "structfe_1_1Driver.html", "structfe_1_1Driver" ],

@@ -10,7 +10,7 @@ var searchData=
   ['pathhash_7',['PathHash',['../structfe_1_1PathHash.html',1,'fe']]],
   ['pathmap_8',['PathMap',['../namespacefe.html#abd33b4214fdd0afae828ffb1c5fc9f9e',1,'fe']]],
   ['peek_9',['peek',['../classfe_1_1Lexer.html#a28b48350669ad8380c38455d138077c3',1,'fe::Lexer']]],
-  ['pointer_10',['pointer',['../classfe_1_1XTrie_1_1Set_1_1iterator.html#a72a207dc7981ded537807c27ec3bf5d9',1,'fe::XTrie::Set::iterator']]],
+  ['pointer_10',['pointer',['../classfe_1_1Bitset_1_1iterator.html#a68ba2ecb06091dd01cae4694ef4bda84',1,'fe::Bitset::iterator::pointer'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html#a72a207dc7981ded537807c27ec3bf5d9',1,'fe::XTrie::Set::iterator::pointer']]],
   ['pop_11',['pop',['../classfe_1_1Worklist.html#a9cc45e4d95dddcc32f1ea5708d6a5adc',1,'fe::Worklist::pop()'],['../namespacefe.html#a2015189724c77cd909fa8d2ed9b4e552',1,'fe::pop(S &amp;s)'],['../namespacefe.html#a90bc9bf0b8f347e76dd29569cee16d34',1,'fe::pop(Q &amp;q)']]],
   ['pos_12',['Pos',['../structfe_1_1Pos.html',1,'fe::Pos'],['../structfe_1_1Pos.html#ad554a8f481e4c0ef6b94fa3a764b3670',1,'fe::Pos::Pos()=default'],['../structfe_1_1Pos.html#ac2e0190896cd8fb66af3274c5892203e',1,'fe::Pos::Pos(uint32_t off)']]],
   ['prev_13',['prev',['../classfe_1_1Src.html#ae149a938b0dac5fd168b64293d059e15',1,'fe::Src']]],

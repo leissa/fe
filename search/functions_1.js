@@ -13,7 +13,7 @@ var searchData=
   ['anchored_10',['anchored',['../classfe_1_1Parser.html#a46ecd5e875f8f85a493813e2c76cb8ac',1,'fe::Parser']]],
   ['anew_5fbegin_11',['anew_begin',['../structfe_1_1Loc.html#afaad39d7e5f676d7d562fd82fa359f13',1,'fe::Loc']]],
   ['anew_5fend_12',['anew_end',['../structfe_1_1Loc.html#a880683bdd569c8ba9f1b70e93025c70e',1,'fe::Loc']]],
-  ['any_13',['any',['../namespacefe_1_1utf8.html#a878567e47549cb6104196c7fb77413fa',1,'fe::utf8']]],
+  ['any_13',['any',['../classfe_1_1Bitset.html#a7572b2da5b9c85b0a0f20f018d948611',1,'fe::Bitset::any()'],['../namespacefe_1_1utf8.html#a878567e47549cb6104196c7fb77413fa',1,'fe::utf8::any(T... args)']]],
   ['append_14',['append',['../namespacefe_1_1utf8.html#aa8ae49725f0b51d0ff9c826a7268dfb0',1,'fe::utf8']]],
   ['append_5frange_15',['append_range',['../classfe_1_1Vector.html#a641bf1faf45096926355c1104e2a037a',1,'fe::Vector']]],
   ['arena_16',['Arena',['../classfe_1_1Arena.html#a31a9b29bc955003c0df7f4103bc434c1',1,'fe::Arena::Arena(const Arena &amp;)=delete'],['../classfe_1_1Arena.html#a6954c6cb8a60224261e98798a7cd5fda',1,'fe::Arena::Arena(size_t page_size=Default_Page_Size)'],['../classfe_1_1Arena.html#a35374c3e8e92a4510a78d2d51d24f5ec',1,'fe::Arena::Arena(Arena &amp;&amp;other) noexcept']]],

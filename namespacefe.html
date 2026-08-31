@@ -173,6 +173,8 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An arena pre-allocates so-called <em>pages</em> of size Arena::page_size_.  <a href="classfe_1_1Arena.html#details">More...</a><br /></td></tr>
 <tr class="memitem:basic_5Fostream_5Fformatter" id="r_basic_5Fostream_5Fformatter"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1basic__ostream__formatter.html">basic_ostream_formatter</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make types that support ostream operators available for <span class="tt">std::format</span>.  <a href="structfe_1_1basic__ostream__formatter.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Bitset" id="r_Bitset"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Bitset.html">Bitset</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A dynamically growing set of bits with small storage optimization.  <a href="classfe_1_1Bitset.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Dbg" id="r_Dbg"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1Dbg.html">Dbg</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The debug info of an entity: where it came from and what it was called.  <a href="structfe_1_1Dbg.html#details">More...</a><br /></td></tr>
 <tr class="memitem:DbgKey" id="r_DbgKey"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1DbgKey.html">DbgKey</a></td></tr>
@@ -475,7 +477,7 @@ template&lt;class Set&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00064">64</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00065">65</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1015,7 +1017,7 @@ template&lt;<a class="el" href="conceptfe_1_1BitEnum.html">fe::BitEnum</a> E&gt;
 
 <p class="reference">References <a class="el" href="hash_8h_source.html#l00059">fnv1_offset</a>, and <a class="el" href="hash_8h_source.html#l00064">hash_begin()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="hash_8h_source.html#l00064">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00074">hash_begin()</a>, <a class="el" href="dbg_8h_source.html#l00058">fe::Dbg::Hash::operator()()</a>, and <a class="el" href="xtrie_8h_source.html#l00136">fe::XTrie&lt; D, K, N &gt;::Data::Hash::operator()()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00265">fe::Bitset::hash()</a>, <a class="el" href="hash_8h_source.html#l00064">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00074">hash_begin()</a>, <a class="el" href="dbg_8h_source.html#l00058">fe::Dbg::Hash::operator()()</a>, and <a class="el" href="xtrie_8h_source.html#l00136">fe::XTrie&lt; D, K, N &gt;::Data::Hash::operator()()</a>.</p>
 
 </div>
 </div>
@@ -1087,7 +1089,7 @@ template&lt;std::integral T&gt; </div>
 
 <p class="reference">References <a class="el" href="hash_8h_source.html#l00060">fnv1_prime</a>, <a class="el" href="hash_8h_source.html#l00037">hash()</a>, and <a class="el" href="hash_8h_source.html#l00068">hash_combine()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="hash_8h_source.html#l00074">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00068">hash_combine()</a>, <a class="el" href="dbg_8h_source.html#l00058">fe::Dbg::Hash::operator()()</a>, and <a class="el" href="xtrie_8h_source.html#l00136">fe::XTrie&lt; D, K, N &gt;::Data::Hash::operator()()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00265">fe::Bitset::hash()</a>, <a class="el" href="hash_8h_source.html#l00074">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00068">hash_combine()</a>, <a class="el" href="dbg_8h_source.html#l00058">fe::Dbg::Hash::operator()()</a>, and <a class="el" href="xtrie_8h_source.html#l00136">fe::XTrie&lt; D, K, N &gt;::Data::Hash::operator()()</a>.</p>
 
 </div>
 </div>

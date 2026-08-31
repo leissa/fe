@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['value_5ftype_0',['value_type',['../structfe_1_1Arena_1_1Allocator.html#ac5c353ec9ecaf89ff9362f8e4d9124f4',1,'fe::Arena::Allocator::value_type'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html#a5e041097f36fdd16242499e0dd28ab4c',1,'fe::XTrie::Set::iterator::value_type']]],
+  ['value_5ftype_0',['value_type',['../structfe_1_1Arena_1_1Allocator.html#ac5c353ec9ecaf89ff9362f8e4d9124f4',1,'fe::Arena::Allocator::value_type'],['../classfe_1_1Bitset_1_1iterator.html#ac75c395898ff476b33ccd170de5519d2',1,'fe::Bitset::iterator::value_type'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html#a5e041097f36fdd16242499e0dd28ab4c',1,'fe::XTrie::Set::iterator::value_type']]],
   ['vector_1',['Vector',['../classfe_1_1Vector.html',1,'fe::Vector&lt; T, N, A &gt;'],['../classfe_1_1Vector.html#a83dea51e4ffb9ba888a38ac16d47ca28',1,'fe::Vector::Vector(size_t size, F &amp;&amp;f) noexcept(std::is_nothrow_invocable_r_v&lt; T, F, size_t &gt; &amp;&amp;std::is_nothrow_assignable_v&lt; T &amp;, T &gt;)'],['../classfe_1_1Vector.html#a31615df8b4b514d1a817b953a7da6d4d',1,'fe::Vector::Vector(R &amp;&amp;range, F &amp;&amp;f) noexcept(std::is_nothrow_invocable_r_v&lt; T, F, decltype(*std::ranges::begin(range))&gt; &amp;&amp;std::is_nothrow_assignable_v&lt; T &amp;, T &gt;)'],['../namespacefe.html#a2e8e999b77fa2e3c1cba77396a9e192d',1,'fe::Vector()']]],
   ['vector_2eh_2',['vector.h',['../vector_8h.html',1,'']]],
   ['vector_3c_20fe_3a_3adbg_20_3e_3',['Vector&lt; fe::Dbg &gt;',['../classfe_1_1Vector.html',1,'fe']]],
