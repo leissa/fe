@@ -1,6 +1,7 @@
 add_executable(fe-test)
 target_sources(fe-test
     PRIVATE
+        bitset.cpp
         cast.cpp
         hash.cpp
         lexer.cpp

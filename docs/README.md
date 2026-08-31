@@ -52,6 +52,7 @@ It provides a compact set of reusable, well-integrated components:
 - `fe::term` for lightweight terminal colors in diagnostics and CLI output.
 - `fe::utf8` for lightweight UTF-8 handling.
 - `fe::hash` and friends for cheap, `constexpr` hash mixing/combining.
+- `fe::Bitset` for a dynamically growing bit set that keeps small sets inline and only allocates once they grow.
 - `fe::XTrie` for interned, immutable sets - an [IndexedTrie](https://dl.acm.org/doi/10.1145/3808286) that is space-efficient and answers intersection tests fast.
 - `fe::Lexer<K, S>` for UTF-8-aware lexing with lookahead and token text accumulation.
 - `fe::Parser<Tok, Tag, K, S>` for recursive-descent-style parsing with token lookahead, span tracking, and anchor-based error recovery.

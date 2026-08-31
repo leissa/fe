@@ -12,6 +12,7 @@
 #include <string_view>
 #include <utility>
 
+#include "fe/bitset.h"
 #include "fe/loc.h"
 #include "fe/utf8.h"
 
@@ -177,6 +178,7 @@ struct std::formatter<fe::Join<R>> {
 };
 
 // clang-format off
+template<> struct std::formatter<fe::Bitset> : fe::ostream_formatter {};
 template<> struct std::formatter<fe::Pos> : fe::ostream_formatter {};
 template<> struct std::formatter<fe::Loc> : fe::ostream_formatter {};
 template<> struct std::formatter<fe::Sym> : fe::ostream_formatter {};
