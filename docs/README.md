@@ -53,7 +53,7 @@ It provides a compact set of reusable, well-integrated components:
 - `fe::Parser<Tok, Tag, K, S>` for recursive-descent-style parsing with token lookahead, span tracking, and anchor-based error recovery.
 - `fe::utf8` for lightweight UTF-8 handling.
 
-#### Source Locations & Diagnostics
+#### Diagnostics
 
 - `fe::Pos` and `fe::Loc` for source positions and source spans.
 - `fe::Src` and `fe::SrcMap` for owning source text and resolving a position back to `path:row:col`.
