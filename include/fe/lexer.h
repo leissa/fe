@@ -5,6 +5,7 @@
 #include <string>
 #include <string_view>
 
+#include "fe/driver.h"
 #include "fe/loc.h"
 #include "fe/ring.h"
 #include "fe/src.h"
@@ -16,6 +17,15 @@ namespace fe {
 /// You can "override" Lexer::next via CRTP (@p S is the child).
 /// The whole source has to sit in @p buf: a Pos is an index into it, so there is nothing left to
 /// keep track of - Lexer::next just hands out the byte range the code point it consumed occupied.
+/// @p S must provide somewhere to report to:
+/// ```
+/// class MyLexer : public fe::Lexer<K, MyLexer> {
+///     fe::Driver& driver();                ///< The default diagnostic below lands in its Driver::error.
+///
+///     friend fe::Lexer<K, MyLexer>;        ///< Otherwise, this may be private.
+/// };
+/// ```
+/// Lexer::utf8_err and Lexer::char_err come with a default; declare either in @p S to word it differently.
 template<size_t K, class S>
 class Lexer {
 private:
@@ -96,6 +106,49 @@ protected:
     template<Append append = Append::On> bool accept(char     c) { return accept<append>((char32_t)c); }
     template<Append append = Append::On> bool accept(char8_t  c) { return accept<append>((char32_t)c); }
     // clang-format on
+    ///@}
+
+    /// @name Recover
+    /// Lexer::next input that cannot be part of a token, report it, and keep the current lexer going.
+    /// Invoke after Lexer::start, so Lexer::loc_ spans exactly what was discarded.
+    ///@{
+    /// A whole run of malformed UTF-8, if any, reported as one `S::utf8_err`.
+    /// Check this *before* your token dispatch: utf8::Invalid is no code point and matches no rule of yours.
+    bool recover_utf8() {
+        if (!accept<Append::Off>(utf8::Invalid)) return false;
+        while (accept<Append::Off>(utf8::Invalid)) {}
+        self().utf8_err();
+        return true;
+    }
+
+    /// One character, reported as `S::char_err`.
+    /// This is the last resort of your token dispatch: nothing in your language starts with it.
+    /// @warning Never at utf8::EoF - accept that first or your lexer will spin.
+    void recover_char() {
+        auto c = ahead();
+        self().next();
+        self().char_err(c);
+    }
+    ///@}
+
+    /// @name Diagnostics
+    /// The defaults @p S may replace with one of its own.
+    ///@{
+    /// Lexer::recover_utf8 discarded the malformed bytes at Lexer::loc_.
+    void utf8_err() {
+        static_assert(
+            requires(S& s) { s.driver(); },
+            "provide `fe::Driver& driver()` in your lexer - or a `utf8_err` of your own");
+        self().driver().error(loc_, "invalid UTF-8 sequence");
+    }
+
+    /// Lexer::recover_char discarded @p c at Lexer::loc_.
+    void char_err(char32_t c) {
+        static_assert(
+            requires(S& s) { s.driver(); },
+            "provide `fe::Driver& driver()` in your lexer - or a `char_err` of your own");
+        self().driver().error(loc_, "invalid input character `{}`", utf8::Char32(c));
+    }
     ///@}
 
     std::string_view buf_;

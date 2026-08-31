@@ -61,7 +61,7 @@ The library is organized around a few reusable frontend-building blocks that are
 - `fe::Bitset` (`bitset.h`) is a dynamically growing set of bit indices with small storage optimization: the first 64 bits live inside the `Bitset` itself, so small sets never allocate.
 - `fe::XTrie` (`xtrie.h`) hash-conses sets of pointers - small ones as sorted arrays, large ones as paths in an [IndexedTrie](https://dl.acm.org/doi/10.1145/3808286) built on the intrusive link-cut-tree of `lct.h` - so that equal sets are pointer-equal.
   A *key* trait passed as template argument tells it how to read the `gid`/`tid` of an element.
-- `fe::Lexer<K, S>` (`lexer.h`) is a CRTP base that handles UTF-8 decoding, character lookahead, token text accumulation (`str_`), and source location tracking (`loc_`).
+- `fe::Lexer<K, S>` (`lexer.h`) is a CRTP base that handles UTF-8 decoding, character lookahead, token text accumulation (`str_`), source location tracking (`loc_`), the `recover_utf8`/`recover_char` skips below, and default `utf8_err`/`char_err` diagnostics.
 - `fe::Parser<Tok, Tag, K, S>` (`parser.h`) is a CRTP base that wraps a lexer with token lookahead, `accept`/`expect`/`eat`, `Tracker` helpers for building node spans, the anchor-based error recovery described below, and default `syntax_err`/`unanchored_err` diagnostics.
 
 Support headers: `algo.h` (bit casts, padding, small string/range algorithms), `assert.h` (`assert`/`assertf`/`unreachable`), `cast.h` (checked/dynamic casts), `container.h` (`pop`/`lookup` helpers, `Stacklike`/`Queuelike` concepts), `dbg.h` (`fe::Dbg`, a `Loc`/`Sym` pair), `enum.h` (bit-flag enum ops), `format.h` (`ostream_formatter`, `std::format` glue), `hash.h` (`constexpr` hash mixing/combining), `log.h` (`fe::Log`, leveled logging; its `error`/`warn`/... shorthands capture the call site with `std::source_location`), `restore.h` (`fe::Restore`, an RAII guard that restores a reference - or a getter/setter pair - at end of scope), `span.h` (`fe::Span`/`fe::View`), `term.h` (terminal/ANSI color, incl. `fe::term::ScopedMode`), `utf8.h` (UTF-8 decode primitives), `vector.h` (`fe::Vector`, small-buffer vector), `worklist.h` (`fe::Worklist` and its `BFSWorklist`/`DFSWorklist` aliases).
@@ -87,8 +87,20 @@ It is an `OBJECT` library on purpose: link it into exactly one shared library of
 - Keep `Driver` free of virtual functions; `Driver::diag` is where a consumer plugs in behavior of its own.
 - A vtable is a *data* symbol, and Windows resolves one exported from a shared library only through `__declspec(dllimport)` - without it the linker silently binds it to a call thunk and the first virtual dispatch jumps into hyperspace. Hence `FE_API` on `fe::Diag` - `generate_export_header` generates that macro into `fe/api.h` - and hence the `Driver` ctor lives in `fe-lib`: nothing must emit `fe::Diag`'s vtable into a consumer's shared library. Annotate any further polymorphic type on that boundary the same way.
 - If a type already has `operator<<`, expose it to `std::format` with `template<> struct std::formatter<T> : fe::ostream_formatter {};`.
-- Derived lexers/parsers pull the CRTP base helpers they use into scope with `using` declarations (`ahead`, `accept`, `next`, `loc_`, `peek`, `str_` for the lexer; `accept`, `anchor`, `eat`, `expect`, `lex`, `recover`, `tracker` for the parser), matching the pattern in `tests/lexer.cpp`.
+- Derived lexers/parsers pull the CRTP base helpers they use into scope with `using` declarations (`ahead`, `accept`, `next`, `recover_char`, `recover_utf8`, `loc_`, `peek`, `str_` for the lexer; `accept`, `anchor`, `eat`, `expect`, `lex`, `recover`, `tracker` for the parser), matching the pattern in `tests/lexer.cpp`.
 - `fe/loc.h` only declares `operator<<` for `Pos` and `Loc`: link `fe-lib` for the default rendering, or define them yourself. The same split applies to `fe::Snippet`, which `fe::Diag` puts under every diagnostic.
+
+## Lexer contract
+
+The derived class `S` must provide `fe::Driver& driver()` (and `friend` the base if it is private) - the default diagnostics go to its `Driver::error`.
+
+Both come with a default implementation that `S` may replace with one of its own:
+
+- `void utf8_err()` - `Lexer::recover_utf8` discarded the malformed bytes at `loc_`.
+- `void char_err(char32_t)` - `Lexer::recover_char` discarded that character at `loc_`.
+
+Recovery is a skip: `recover_utf8` swallows a whole run of malformed UTF-8 and reports it once - check it *before* your token dispatch, since `utf8::Invalid` is no code point and matches no rule of yours - and `recover_char` swallows the one character nothing else matched, so it belongs at the very end of your dispatch (never at `utf8::EoF`, or the lexer spins).
+Both want `Lexer::start` to have run, so `loc_` spans exactly what was discarded.
 
 ## Parser contract
 

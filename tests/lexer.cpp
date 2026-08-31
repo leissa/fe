@@ -111,9 +111,10 @@ public:
     using fe::Lexer<K, Lexer<K>>::ahead;
     using fe::Lexer<K, Lexer<K>>::accept;
     using fe::Lexer<K, Lexer<K>>::next;
+    using fe::Lexer<K, Lexer<K>>::recover_char;
+    using fe::Lexer<K, Lexer<K>>::recover_utf8;
 
     using fe::Lexer<K, Lexer<K>>::loc_;
-    using fe::Lexer<K, Lexer<K>>::peek;
     using fe::Lexer<K, Lexer<K>>::str_;
 
     Lexer(fe::Driver& driver, std::string_view buf)
@@ -123,15 +124,13 @@ public:
         : fe::Lexer<K, Lexer<K>>(src)
         , driver_(driver) {}
 
+    fe::Driver& driver() { return driver_; } ///< All the Lexer's default diagnostic needs.
+
     Tok lex() {
         while (true) {
             this->start();
 
-            if (accept(utf8::Invalid)) {
-                std::cerr << "invalid UTF-8 sequence" << std::endl;
-                continue;
-            }
-
+            if (recover_utf8()) continue;
             if (accept(utf8::EoF)) return {loc_, Tok::Tag::EoF};
             if (accept(utf8::isspace)) continue;
 
@@ -161,8 +160,7 @@ public:
                 return {loc_, u};
             }
 
-            driver_.error(peek(), "invalid input character: ''{}'", utf8::Char32(ahead()));
-            next();
+            recover_char();
         }
     }
 
