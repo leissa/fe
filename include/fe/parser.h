@@ -43,9 +43,7 @@ namespace fe {
 ///     friend fe::Parser<Tok, Tok::Tag, K, MyParser>; ///< Otherwise, these may be private.
 /// };
 /// ```
-/// Parser::syntax_err (Parser::expect did not find its Tag) and Parser::unanchored_err (Parser::recover
-/// discarded this Tok%en) come with a default implementation.
-/// Declare either one in @p S to word it differently - the Parser dispatches through @p S, so yours wins.
+/// Parser::syntax_err and Parser::unanchored_err come with a default; declare either in @p S to word it differently.
 /// @warning Declaring *any* `syntax_err` in @p S hides all of them, so keep one that takes a `Tag`.
 template<class Tok, class Tag, size_t K, class S>
 requires std::is_default_constructible_v<Tok>

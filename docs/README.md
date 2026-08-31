@@ -76,7 +76,7 @@ It provides a compact set of reusable, well-integrated components:
 #### Odds & Ends
 
 - `fe::hash` and friends for cheap, `constexpr` hash mixing/combining.
-- `fe::Restore` for RAII save/restore of a variable across a scope.
+- `fe::Restore` for RAII save/restore of a variable - or of anything a getter/setter pair reaches, like `term::ScopedMode` - across a scope.
 - `fe/algo.h` and `fe/container.h` for the odds and ends every frontend rewrites otherwise.
 
 ### Requires `FE_LIB` {#requires-fe_lib}

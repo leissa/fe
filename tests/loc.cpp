@@ -463,6 +463,18 @@ TEST_CASE("Error") {
         drv.diag().no_snippet = false;
     }
 
+    SUBCASE("the bare Diag leaves the message text alone") {
+        auto _    = fe::term::ScopedMode(fe::term::Mode::Always);
+        auto bare = fe::Driver();
+        bare.diag(std::make_unique<fe::Diag>());
+        bare.diag().no_snippet = true;
+        auto [bsrc, __]        = bare.src().add("test.let", "let x = 1;\n");
+
+        auto e = fe::Error(bare);
+        e.error(Loc(bsrc, Pos(4), Pos(5)), "a `citation` and a \\` escape");
+        CHECK(std::format("{}", e).find("a `citation` and a \\` escape") != std::string::npos);
+    }
+
     SUBCASE("a Diag of your own lays a diagnostic out from scratch") {
         struct Terse : fe::Diag {
             void header(std::ostream& os, Loc loc, Tag, std::string_view str) const override {

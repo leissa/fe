@@ -106,18 +106,16 @@ if(FE_LIB)
     )
     set_target_properties(fe-lib PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
-    # A vtable is a data symbol and Windows resolves an exported one only through __declspec(dllimport);
-    # see the FE_API annotation on fe::Diag.
+    # Windows resolves an exported vtable only through __declspec(dllimport); see FE_API on fe::Diag.
     generate_export_header(fe-lib
         BASE_NAME FE
         EXPORT_MACRO_NAME FE_API
         EXPORT_FILE_NAME ${CMAKE_CURRENT_BINARY_DIR}/include/fe/api.h
     )
-    # CMake defines <target>_EXPORTS on its own only for a SHARED or MODULE library.
-    # fe-lib is an OBJECT library, so whoever links it into a shared library of their own has to say so, too.
+    # CMake defines <target>_EXPORTS on its own only for a SHARED or MODULE library, so an OBJECT library
+    # leaves it to whoever links it into a shared library of their own.
     target_compile_definitions(fe-lib PRIVATE fe_lib_EXPORTS)
-    # A standalone build has no shared library to export from; a consumer that links fe-lib into a
-    # static one of its own defines FE_STATIC_DEFINE itself.
+    # A standalone build has no shared library to export from.
     if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
         target_compile_definitions(fe INTERFACE FE_STATIC_DEFINE)
     endif()

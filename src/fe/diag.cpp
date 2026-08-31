@@ -2,6 +2,7 @@
 
 #include <format>
 #include <ostream>
+#include <sstream>
 
 #include "fe/assert.h"
 #include "fe/snippet.h"
@@ -27,36 +28,6 @@ void stream_raw(std::ostream& os, std::string_view str, size_t begin, size_t end
         if (str[i] == '\\' && i + 1 != end && str[i + 1] == '`') ++i;
         os << str[i];
     }
-}
-
-/// Streams @p str, rendering the `` `code` `` spans a diagnostic cites in color.
-/// Color and backticks are alternative ways of setting a citation apart, so the backticks are dropped
-/// when coloring and kept verbatim otherwise; `` \` `` is a literal backtick either way.
-std::ostream& stream_code(std::ostream& os, std::string_view str) {
-    auto color = term::use_color(os);
-
-    for (size_t i = 0, e = str.size(); i != e;) {
-        auto l = tick(str, i);
-        auto r = l == std::string_view::npos ? l : tick(str, l + 1);
-        if (r == std::string_view::npos) { // unpaired: not a citation
-            stream_raw(os, str, i, e);
-            break;
-        }
-
-        stream_raw(os, str, i, l);
-        if (color)
-            os << term::FG::Cyan;
-        else
-            os << '`';
-        stream_raw(os, str, l + 1, r);
-        if (color)
-            os << term::FG::Reset;
-        else
-            os << '`';
-        i = r + 1;
-    }
-
-    return os;
 }
 
 } // namespace
@@ -114,8 +85,7 @@ void Diag::loc(std::ostream& os, Loc loc) const {
 void Diag::header(std::ostream& os, Loc l, Tag tag, std::string_view str) const {
     os << term::FG::Yellow;
     loc(os, l);
-    os << ": " << tag << ": " << term::FG::Reset;
-    stream_code(os, str) << '\n';
+    os << ": " << tag << ": " << term::FG::Reset << str << '\n';
 }
 
 void Diag::snippet(std::ostream& os, Loc l, Tag tag) const {
@@ -128,8 +98,8 @@ void Diag::note(std::ostream& os, Loc l, std::string_view str) const {
         header(os, l, Tag::Note, str);
         snippet(os, l, Tag::Note);
     } else {
-        os << term::FG::Gray << std::format("{:>{}} = ", "", gutter) << Tag::Note << ": " << term::FG::Reset;
-        stream_code(os, str) << '\n';
+        os << term::FG::Gray << std::format("{:>{}} = ", "", gutter) << Tag::Note << ": " << term::FG::Reset << str
+           << '\n';
     }
 }
 
@@ -145,6 +115,35 @@ void Diag::summary(std::ostream& os, size_t num_errors, size_t num_warnings, boo
     os << " encountered";
     if (truncated) os << "; further diagnostics dropped";
     os << '\n';
+}
+
+std::string CodeDiag::render(const std::function<std::string()>& fmt) const {
+    auto str   = fmt();
+    auto oss   = std::ostringstream();
+    auto color = term::use_color(oss);
+
+    for (size_t i = 0, e = str.size(); i != e;) {
+        auto l = tick(str, i);
+        auto r = l == std::string_view::npos ? l : tick(str, l + 1);
+        if (r == std::string_view::npos) { // unpaired: not a citation
+            stream_raw(oss, str, i, e);
+            break;
+        }
+
+        stream_raw(oss, str, i, l);
+        if (color)
+            oss << term::FG::Cyan;
+        else
+            oss << '`';
+        stream_raw(oss, str, l + 1, r);
+        if (color)
+            oss << term::FG::Reset;
+        else
+            oss << '`';
+        i = r + 1;
+    }
+
+    return oss.str();
 }
 
 } // namespace fe

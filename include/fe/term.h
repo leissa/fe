@@ -22,6 +22,7 @@
 
 #include "fe/assert.h"
 #include "fe/format.h"
+#include "fe/restore.h"
 
 /// Lightweight stream-based terminal colors for diagnostics and CLI output.
 ///
@@ -201,20 +202,7 @@ inline void set_mode(Mode m) noexcept { detail::current_mode().store(m, std::mem
 
 /// Overrides the color mode for the duration of the scope.
 /// @warning The mode is global, so this affects every stream - and every thread - while it is alive.
-class ScopedMode {
-public:
-    explicit ScopedMode(Mode m)
-        : prev_(mode()) {
-        set_mode(m);
-    }
-    ~ScopedMode() { set_mode(prev_); }
-
-    ScopedMode(const ScopedMode&)            = delete;
-    ScopedMode& operator=(const ScopedMode&) = delete;
-
-private:
-    Mode prev_;
-};
+using ScopedMode = Restore<Mode, &mode, &set_mode>;
 
 /// Resolves Mode::Auto to Mode::Always or Mode::Never, depending on whether @p os refers to a terminal.
 /// A `std::formatter` cannot see its destination stream, so FG values embedded in a
