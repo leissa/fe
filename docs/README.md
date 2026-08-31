@@ -39,11 +39,14 @@ Handwritten frontends are often the right choice when you want full control over
 
 It provides a compact set of reusable, well-integrated components:
 
-### Header-only
+### Building Blocks
+
+Header-only, except for what [Requires `FE_LIB`](#requires-fe_lib) lists below.
 
 #### Core
 
-- `fe::Driver` for shared frontend state: the SymPool, the SrcMap, the interned `Dbg`s, and how an `Error` lays out and renders a diagnostic.
+- `fe::Driver` for shared frontend state: the SymPool, the SrcMap, the interned `Dbg`s, the `Diag` that lays a diagnostic out, and the `Error` everything reports into.
+  Global variables in all but name - which is the point: they live in one object you own and pass around, not in the global namespace.
 - `fe::Arena` for fast arena allocation and arena-backed ownership.
 - `fe::Sym` and `fe::SymPool` for string interning and cheap identifier comparison.
 
@@ -51,6 +54,7 @@ It provides a compact set of reusable, well-integrated components:
 
 - `fe::Lexer<K, S>` for UTF-8-aware lexing with lookahead and token text accumulation.
 - `fe::Parser<Tok, Tag, K, S>` for recursive-descent-style parsing with token lookahead, span tracking, and anchor-based error recovery.
+  Both blueprints ask their child for a `fe::Driver& driver()` and report their default diagnostics into its `Error`; a header-only setup words all of them itself and never touches a `Driver`.
 - `fe::utf8` for lightweight UTF-8 handling.
 
 #### Diagnostics
@@ -84,7 +88,8 @@ It provides a compact set of reusable, well-integrated components:
 
 These need a translation unit of their own and hence live in `src/fe/`:
 
-- `fe::Diag` for the diagnostic layout - and hence `fe::Driver`, which owns one, and `fe::Error`, which renders through it.
+- `fe::Diag` for the diagnostic layout - and hence `fe::Driver`, whose ctor/dtor own one, and `Error::diag`, which reads it back out of the `Driver`.
+  The default `syntax_err`/`unanchored_err`/`utf8_err`/`char_err` of `fe::Parser`/`fe::Lexer` go through this, so a header-only frontend has to supply its own.
 - `fe::Snippet` for the underlined source excerpt below a diagnostic.
 - `fe::dl` and `fe::sys` for loading dynamic libraries and locating/running external commands.
 - `fe::Profiler` for nested wall-clock spans reported as a flat table, a tree, or Chrome Trace JSON.
