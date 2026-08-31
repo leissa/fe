@@ -97,10 +97,11 @@ The derived class `S` must provide (and `friend` the base if they are private):
 
 Both diagnostics come with a default implementation that `S` may replace with one of its own:
 
-- `void syntax_err(Tag, std::string_view ctxt)` - `Parser::expect` did not find its `Tag`.
+- `void syntax_err(std::string_view what, Tok, std::string_view ctxt)` - `what` was expected but that `Tok` showed up.
+  The `(std::string_view what, std::string_view ctxt)` and `(Tag, std::string_view ctxt)` overloads funnel through it, so overriding that one suffices.
 - `void unanchored_err(Tok, std::string_view ctxt)` - `Parser::recover` discarded this token.
 
-The Parser dispatches through `S`, so a declaration there wins - but it hides *all* base overloads of that name, so keep one that takes a `Tag`.
+The Parser dispatches through `S`, so a declaration there wins - but it hides *all* base overloads of that name, so add `using Super::syntax_err;`.
 
 Error recovery is anchor-based: an *anchor* is a `Tag` an enclosing context is still waiting for.
 `Parser::anchor(tag)` returns an RAII `Anchor` that anchors `tag` for the scope; `expect` it yourself at the end of that scope.

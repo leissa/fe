@@ -238,7 +238,7 @@ private:
             expect(Tok::Tag::D_paren_r, "parenthesized expression");
             return str;
         }
-        this->syntax_err(Tok::Tag::M_id, ctxt);
+        this->syntax_err("primary expression", ctxt);
         return "<error>";
     }
 

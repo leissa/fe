@@ -44,7 +44,8 @@ namespace fe {
 /// };
 /// ```
 /// Parser::syntax_err and Parser::unanchored_err come with a default; declare either in @p S to word it differently.
-/// @warning Declaring *any* `syntax_err` in @p S hides all of them, so keep one that takes a `Tag`.
+/// All Parser::syntax_err overloads funnel through the one taking a `what`/`Tok`/`ctxt`; override just that one.
+/// @warning Declaring *any* `syntax_err` in @p S hides all of them, so add `using Super::syntax_err;`.
 template<class Tok, class Tag, size_t K, class S>
 requires std::is_default_constructible_v<Tok>
       && (std::is_convertible_v<Tok, bool> || std::is_constructible_v<bool, Tok>)class Parser {
@@ -194,13 +195,20 @@ protected:
     /// @name Diagnostics
     /// The defaults @p S may replace with one of its own.
     ///@{
-    /// Parser::expect did not find @p tag while parsing @p ctxt.
-    void syntax_err(Tag tag, std::string_view ctxt) {
+    /// Parser::expect did not find @p what while parsing @p ctxt.
+    /// Backtick @p what yourself if it is a literal token rather than a phrase.
+    void syntax_err(std::string_view what, Tok tok, std::string_view ctxt) {
         static_assert(
             requires(S& s) { s.error(); },
             "provide `fe::Error& error()` in your parser - or a `syntax_err` of your own");
-        self().error().error(ahead().loc(), "expected {}, got `{}` while parsing {}", tag2str_(tag), ahead(), ctxt);
+        self().error().error(tok.loc(), "expected {}, got `{}` while parsing {}", what, tok, ctxt);
     }
+
+    /// As above but uses Parser::ahead as @p tok.
+    void syntax_err(std::string_view what, std::string_view ctxt) { self().syntax_err(what, ahead(), ctxt); }
+
+    /// As above but spells @p tag out via Parser::tag2str_.
+    void syntax_err(Tag tag, std::string_view ctxt) { self().syntax_err(tag2str_(tag), ahead(), ctxt); }
 
     /// Parser::recover discarded @p tok while parsing @p ctxt.
     void unanchored_err(Tok tok, std::string_view ctxt) {
