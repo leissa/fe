@@ -215,7 +215,7 @@ protected:
         static_assert(
             requires(S& s) { s.error(); },
             "provide `fe::Error& error()` in your parser - or an `unanchored_err` of your own");
-        self().error().error(tok.loc(), "ignoring unmatched `{}` while parsing {}", tok, ctxt);
+        self().error().error(tok.loc(), "ignoring unexpected `{}` while parsing {}", tok, ctxt);
     }
     ///@}
 
