@@ -7,6 +7,8 @@ var classfe_1_1Parser =
     [ "anchor", "classfe_1_1Parser.html#abb77f69879ac8c534434df81bf1b33a4", null ],
     [ "anchored", "classfe_1_1Parser.html#a46ecd5e875f8f85a493813e2c76cb8ac", null ],
     [ "eat", "classfe_1_1Parser.html#a7676ff550005c7f0334f6fda4067d1e0", null ],
+    [ "error", "classfe_1_1Parser.html#a84664cc5a6e288f9d507872d7e30789e", null ],
+    [ "error", "classfe_1_1Parser.html#ac10691c73f1acf9f8fce035189181a9d", null ],
     [ "expect", "classfe_1_1Parser.html#af063a3c467ab8c8072e7e717b46ac97e", null ],
     [ "expect", "classfe_1_1Parser.html#ab01ccf1dc21df6abc1df96282174e9f4", null ],
     [ "init", "classfe_1_1Parser.html#a10134258cf3c7fc081c4740ed22405cb", null ],

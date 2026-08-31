@@ -166,13 +166,25 @@ Inheritance diagram for fe::Driver:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a34716fc6c930834d8b067b3c8918c6ca" id="r_a34716fc6c930834d8b067b3c8918c6ca"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a34716fc6c930834d8b067b3c8918c6ca">Driver</a> ()</td></tr>
-<tr class="memitem:a44daf0a9afb42bd61eeba9acece98475" id="r_a44daf0a9afb42bd61eeba9acece98475"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a44daf0a9afb42bd61eeba9acece98475">Driver</a> (Driver &amp;&amp;)=default</td></tr>
+<tr class="memitem:a9fc7466725ecee8b0511c33b1963a990" id="r_a9fc7466725ecee8b0511c33b1963a990"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a9fc7466725ecee8b0511c33b1963a990">Driver</a> (std::unique_ptr&lt; <a class="el" href="classfe_1_1Diag.html">Diag</a> &gt; diag)</td></tr>
+<tr class="memdesc:a9fc7466725ecee8b0511c33b1963a990"><td class="mdescLeft">&#160;</td><td class="mdescRight">Installs <code class="param">diag</code> right away, so <a class="el" href="#ad9684c890333c19abc2ce4f4c2f8fe59">Driver::error</a> renders through it from the very first message.  <br /></td></tr>
 <tr class="memitem:a2e4e58cea12564b4f8881f54c18aec61" id="r_a2e4e58cea12564b4f8881f54c18aec61"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a2e4e58cea12564b4f8881f54c18aec61">~Driver</a> ()</td></tr>
 <tr class="memitem:a4884f74b43b41e78bb72a865908aeb4e" id="r_a4884f74b43b41e78bb72a865908aeb4e"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a4884f74b43b41e78bb72a865908aeb4e">Driver</a> (const Driver &amp;)=delete</td></tr>
+<tr class="memitem:a5bd9ffb17dc1ef4ada5cb56d139c77d9" id="r_a5bd9ffb17dc1ef4ada5cb56d139c77d9"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a5bd9ffb17dc1ef4ada5cb56d139c77d9">Driver</a> (Driver &amp;&amp;)=delete</td></tr>
 <tr class="memitem:ad9ad0328f3bba70f0d947622579a6164" id="r_ad9ad0328f3bba70f0d947622579a6164"><td class="memItemLeft"><a class="el" href="#a34716fc6c930834d8b067b3c8918c6ca">Driver</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ad9ad0328f3bba70f0d947622579a6164">operator=</a> (<a class="el" href="#a34716fc6c930834d8b067b3c8918c6ca">Driver</a>)=delete</td></tr>
 <tr id="pub-methods-0" class="groupHeader"><td colspan="2"><div class="groupHeader">Diagnostics</div></td></tr>
-<tr><td colspan="2" class="ititle"><div class="groupText"><dl class="section see"><dt>See also</dt><dd><a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and hands each to the Diag that lays it out.">fe::Error</a> </dd></dl>
+<tr><td colspan="2" class="ititle"><div class="groupText"><p>Every frontend building block reports into <a class="el" href="#ad9684c890333c19abc2ce4f4c2f8fe59">Driver::error</a>; <a class="el" href="classfe_1_1Error.html#a1691ca5ebb45613d58aed573af1a75bc" title="If errors occurred, Error::bail; otherwise Error::report any warnings to os.">Error::ack</a> it before this <a class="el" href="structfe_1_1Driver.html" title="Use/derive from this class for &quot;global&quot; variables that you need all over the place.">Driver</a> dies. </p>
 </div></td></tr>
+<tr class="memitem:ad9684c890333c19abc2ce4f4c2f8fe59" id="r_ad9684c890333c19abc2ce4f4c2f8fe59"><td class="memItemLeft"><a class="el" href="classfe_1_1Error.html">Error</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ad9684c890333c19abc2ce4f4c2f8fe59">error</a> ()</td></tr>
+<tr class="memitem:a09575ed3c928290f3d6e5866679bfba5" id="r_a09575ed3c928290f3d6e5866679bfba5"><td class="memItemLeft">const <a class="el" href="classfe_1_1Error.html">Error</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a09575ed3c928290f3d6e5866679bfba5">error</a> () const</td></tr>
+<tr class="memitem:a90a08372c2eab50f825b6071ccc876a3" id="r_a90a08372c2eab50f825b6071ccc876a3"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:a90a08372c2eab50f825b6071ccc876a3 template"><td class="memItemLeft"><a class="el" href="classfe_1_1Error.html">Error</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a90a08372c2eab50f825b6071ccc876a3">error</a> (<a class="el" href="structfe_1_1Loc.html">Loc</a> loc, std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="memitem:a19cdcffcc7a1c6aa37ad9184e0b9355a" id="r_a19cdcffcc7a1c6aa37ad9184e0b9355a"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:a19cdcffcc7a1c6aa37ad9184e0b9355a template"><td class="memItemLeft"><a class="el" href="classfe_1_1Error.html">Error</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a19cdcffcc7a1c6aa37ad9184e0b9355a">warn</a> (<a class="el" href="structfe_1_1Loc.html">Loc</a> loc, std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="memitem:ab69721007736f4ff319bd1de263ad990" id="r_ab69721007736f4ff319bd1de263ad990"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:ab69721007736f4ff319bd1de263ad990 template"><td class="memItemLeft"><a class="el" href="classfe_1_1Error.html">Error</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ab69721007736f4ff319bd1de263ad990">note</a> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="memitem:a07d65b870a743e24d9516a563dba87ab" id="r_a07d65b870a743e24d9516a563dba87ab"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:a07d65b870a743e24d9516a563dba87ab template"><td class="memItemLeft"><a class="el" href="classfe_1_1Error.html">Error</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a07d65b870a743e24d9516a563dba87ab">note</a> (<a class="el" href="structfe_1_1Loc.html">Loc</a> loc, std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
 <tr class="memitem:a577d66852cc04e41152f8e59ae8bce2b" id="r_a577d66852cc04e41152f8e59ae8bce2b"><td class="memItemLeft"><a class="el" href="classfe_1_1Diag.html">Diag</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a577d66852cc04e41152f8e59ae8bce2b">diag</a> ()</td></tr>
 <tr class="memitem:ae38ad37011df1ac498dbd133ab5b715b" id="r_ae38ad37011df1ac498dbd133ab5b715b"><td class="memItemLeft">const <a class="el" href="classfe_1_1Diag.html">Diag</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ae38ad37011df1ac498dbd133ab5b715b">diag</a> () const</td></tr>
 <tr class="memitem:ab9c973b33f1921097af053afba986e5e" id="r_ab9c973b33f1921097af053afba986e5e"><td class="memItemLeft">std::unique_ptr&lt; <a class="el" href="classfe_1_1Diag.html">Diag</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ab9c973b33f1921097af053afba986e5e">diag</a> (std::unique_ptr&lt; <a class="el" href="classfe_1_1Diag.html">Diag</a> &gt; diag)</td></tr>
@@ -206,12 +218,13 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Use/derive from this class for "global" variables that you need all over the place. </p>
-<p>Well, there are not really global - that's the point of this class. It manages a <a class="el" href="classfe_1_1SymPool.html" title="Hash set where all strings - wrapped in Symbol - live in.">SymPool</a>, a <a class="el" href="classfe_1_1SrcMap.html" title="Interns the text - and the std::filesystem::path - of every file a Loc may point into.">SrcMap</a>, the interned <a class="el" href="structfe_1_1Dbg.html" title="The debug info of an entity: where it came from and what it was called.">Dbg</a>s, and the <a class="el" href="classfe_1_1Diag.html" title="How a diagnostic lays out - and how much of it an Error keeps.">Diag</a> that lays out a diagnostic. </p><dl class="section note"><dt>Note</dt><dd>Deliberately free of virtual functions - <a class="el" href="#a577d66852cc04e41152f8e59ae8bce2b">Driver::diag</a> is where you plug in behavior of your own. </dd></dl>
+<p>Well, there are not really global - that's the point of this class. It manages a <a class="el" href="classfe_1_1SymPool.html" title="Hash set where all strings - wrapped in Symbol - live in.">SymPool</a>, a <a class="el" href="classfe_1_1SrcMap.html" title="Interns the text - and the std::filesystem::path - of every file a Loc may point into.">SrcMap</a>, the interned <a class="el" href="structfe_1_1Dbg.html" title="The debug info of an entity: where it came from and what it was called.">Dbg</a>s, the <a class="el" href="classfe_1_1Diag.html" title="How a diagnostic lays out - and how much of it an Error keeps.">Diag</a> that lays out a diagnostic, and the <a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and hands each to the Diag that lays it out.">Error</a> they land in. </p><dl class="section note"><dt>Note</dt><dd>Deliberately free of virtual functions - <a class="el" href="#a577d66852cc04e41152f8e59ae8bce2b">Driver::diag</a> is where you plug in behavior of your own. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Not movable: <a class="el" href="#ad9684c890333c19abc2ce4f4c2f8fe59">Driver::error</a> - and a <a class="el" href="classfe_1_1Diag.html" title="How a diagnostic lays out - and how much of it an Error keeps.">Diag</a> of your own - point back here. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00020">20</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00022">22</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a34716fc6c930834d8b067b3c8918c6ca" name="a34716fc6c930834d8b067b3c8918c6ca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a34716fc6c930834d8b067b3c8918c6ca">&#9670;&#160;</a></span>Driver() <span class="overload">[1/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a34716fc6c930834d8b067b3c8918c6ca">&#9670;&#160;</a></span>Driver() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -225,12 +238,12 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#a4884f74b43b41e78bb72a865908aeb4e">Driver()</a>, <a class="el" href="#a44daf0a9afb42bd61eeba9acece98475">Driver()</a>, and <a class="el" href="#ad9ad0328f3bba70f0d947622579a6164">operator=()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#a4884f74b43b41e78bb72a865908aeb4e">Driver()</a>, <a class="el" href="#a5bd9ffb17dc1ef4ada5cb56d139c77d9">Driver()</a>, and <a class="el" href="#ad9ad0328f3bba70f0d947622579a6164">operator=()</a>.</p>
 
 </div>
 </div>
-<a id="a44daf0a9afb42bd61eeba9acece98475" name="a44daf0a9afb42bd61eeba9acece98475"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a44daf0a9afb42bd61eeba9acece98475">&#9670;&#160;</a></span>Driver() <span class="overload">[2/3]</span></h2>
+<a id="a9fc7466725ecee8b0511c33b1963a990" name="a9fc7466725ecee8b0511c33b1963a990"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fc7466725ecee8b0511c33b1963a990">&#9670;&#160;</a></span>Driver() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -241,18 +254,21 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">fe::Driver::Driver </td>
           <td>(</td>
-          <td class="paramtype">Driver &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classfe_1_1Diag.html">Diag</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>diag</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#a34716fc6c930834d8b067b3c8918c6ca">Driver()</a>.</p>
+<p>Installs <code class="param">diag</code> right away, so <a class="el" href="#ad9684c890333c19abc2ce4f4c2f8fe59">Driver::error</a> renders through it from the very first message. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Never <span class="tt">nullptr</span>. </dd></dl>
+
+<p class="reference">References <a class="el" href="driver_8h_source.html#l00048">diag()</a>.</p>
 
 </div>
 </div>
@@ -274,7 +290,7 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <a id="a4884f74b43b41e78bb72a865908aeb4e" name="a4884f74b43b41e78bb72a865908aeb4e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4884f74b43b41e78bb72a865908aeb4e">&#9670;&#160;</a></span>Driver() <span class="overload">[3/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a4884f74b43b41e78bb72a865908aeb4e">&#9670;&#160;</a></span>Driver() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -286,6 +302,33 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname">fe::Driver::Driver </td>
           <td>(</td>
           <td class="paramtype">const Driver &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">References <a class="el" href="#a34716fc6c930834d8b067b3c8918c6ca">Driver()</a>.</p>
+
+</div>
+</div>
+<a id="a5bd9ffb17dc1ef4ada5cb56d139c77d9" name="a5bd9ffb17dc1ef4ada5cb56d139c77d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bd9ffb17dc1ef4ada5cb56d139c77d9">&#9670;&#160;</a></span>Driver() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">fe::Driver::Driver </td>
+          <td>(</td>
+          <td class="paramtype">Driver &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -326,9 +369,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Interns <code class="param">dbg</code> and yields its <a class="el" href="classfe_1_1DbgKey.html" title="Opaque handle to a Dbg interned in a Driver; see Driver::dbg.">DbgKey</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00057">57</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00074">74</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
 
-<p class="reference">References <a class="el" href="driver_8h_source.html#l00054">dbg()</a>, and <a class="el" href="classfe_1_1DbgKey.html#a1c8b1e07cefa33776e1b1adf31622d0f">fe::DbgKey::DbgKey()</a>.</p>
+<p class="reference">References <a class="el" href="driver_8h_source.html#l00071">dbg()</a>, and <a class="el" href="classfe_1_1DbgKey.html#a1c8b1e07cefa33776e1b1adf31622d0f">fe::DbgKey::DbgKey()</a>.</p>
 
 </div>
 </div>
@@ -355,9 +398,9 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00054">54</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00071">71</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="driver_8h_source.html#l00057">dbg()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="driver_8h_source.html#l00074">dbg()</a>.</p>
 
 </div>
 </div>
@@ -384,9 +427,9 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00031">31</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00048">48</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="driver_8h_source.html#l00036">diag()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="driver_8h_source.html#l00053">diag()</a>, and <a class="el" href="#a9fc7466725ecee8b0511c33b1963a990">Driver()</a>.</p>
 
 </div>
 </div>
@@ -413,7 +456,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00032">32</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00049">49</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
 
 </div>
 </div>
@@ -443,9 +486,178 @@ Additional Inherited Members</h2></td></tr>
 <p>Installs <code class="param">diag</code> - a subclass of your own, typically - and yields the previous one. </p>
 <dl class="section warning"><dt>Warning</dt><dd>Never <span class="tt">nullptr</span>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00036">36</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00053">53</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
 
-<p class="reference">References <a class="el" href="driver_8h_source.html#l00031">diag()</a>.</p>
+<p class="reference">References <a class="el" href="driver_8h_source.html#l00048">diag()</a>.</p>
+
+</div>
+</div>
+<a id="ad9684c890333c19abc2ce4f4c2f8fe59" name="ad9684c890333c19abc2ce4f4c2f8fe59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9684c890333c19abc2ce4f4c2f8fe59">&#9670;&#160;</a></span>error() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classfe_1_1Error.html">Error</a> &amp; fe::Driver::error </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00038">38</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
+
+</div>
+</div>
+<a id="a09575ed3c928290f3d6e5866679bfba5" name="a09575ed3c928290f3d6e5866679bfba5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09575ed3c928290f3d6e5866679bfba5">&#9670;&#160;</a></span>error() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classfe_1_1Error.html">Error</a> &amp; fe::Driver::error </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00039">39</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
+
+</div>
+</div>
+<a id="a90a08372c2eab50f825b6071ccc876a3" name="a90a08372c2eab50f825b6071ccc876a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90a08372c2eab50f825b6071ccc876a3">&#9670;&#160;</a></span>error() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classfe_1_1Error.html">Error</a> &amp; fe::Driver::error </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structfe_1_1Loc.html">Loc</a></td>          <td class="paramname"><span class="paramname"><em>loc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::format_string&lt; Args... &gt;</td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00042">42</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
+
+<p class="reference">References <a class="el" href="error_8h_source.html#l00103">fe::Error::error()</a>.</p>
+
+</div>
+</div>
+<a id="a07d65b870a743e24d9516a563dba87ab" name="a07d65b870a743e24d9516a563dba87ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07d65b870a743e24d9516a563dba87ab">&#9670;&#160;</a></span>note() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classfe_1_1Error.html">Error</a> &amp; fe::Driver::note </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structfe_1_1Loc.html">Loc</a></td>          <td class="paramname"><span class="paramname"><em>loc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::format_string&lt; Args... &gt;</td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00045">45</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
+
+<p class="reference">References <a class="el" href="error_8h_source.html#l00107">fe::Error::note()</a>.</p>
+
+</div>
+</div>
+<a id="ab69721007736f4ff319bd1de263ad990" name="ab69721007736f4ff319bd1de263ad990"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab69721007736f4ff319bd1de263ad990">&#9670;&#160;</a></span>note() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classfe_1_1Error.html">Error</a> &amp; fe::Driver::note </td>
+          <td>(</td>
+          <td class="paramtype">std::format_string&lt; Args... &gt;</td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00044">44</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
+
+<p class="reference">References <a class="el" href="error_8h_source.html#l00107">fe::Error::note()</a>.</p>
 
 </div>
 </div>
@@ -499,7 +711,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00045">45</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00062">62</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
 
 </div>
 </div>
@@ -526,7 +738,47 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00046">46</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00063">63</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
+
+</div>
+</div>
+<a id="a19cdcffcc7a1c6aa37ad9184e0b9355a" name="a19cdcffcc7a1c6aa37ad9184e0b9355a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19cdcffcc7a1c6aa37ad9184e0b9355a">&#9670;&#160;</a></span>warn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classfe_1_1Error.html">Error</a> &amp; fe::Driver::warn </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structfe_1_1Loc.html">Loc</a></td>          <td class="paramname"><span class="paramname"><em>loc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::format_string&lt; Args... &gt;</td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="driver_8h_source.html#l00043">43</a> of file <a class="el" href="driver_8h_source.html">driver.h</a>.</p>
+
+<p class="reference">References <a class="el" href="error_8h_source.html#l00104">fe::Error::warn()</a>.</p>
 
 </div>
 </div>

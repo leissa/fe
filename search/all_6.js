@@ -14,7 +14,7 @@ var searchData=
   ['erase_11',['erase',['../classfe_1_1XTrie.html#ad9012a6e842ad6ac47ec9ea81517995d',1,'fe::XTrie::erase()'],['../namespacefe.html#a32e00013e42152781f4bb035ace7af01',1,'fe::erase(Vector&lt; T, N, A &gt; &amp;c, const U &amp;value)']]],
   ['erase_5fif_12',['erase_if',['../namespacefe.html#ace6f5864e6c7ef635e260299ed16fe86',1,'fe']]],
   ['error_13',['Error',['../classfe_1_1Error.html',1,'fe::Error'],['../classfe_1_1Error.html#a006230978a0baa2c40452a3f393c8db5',1,'fe::Error::Error()'],['../classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1fa902b0d55fddef6f8d651fe1035b7d4bd',1,'fe::Diag::Error'],['../classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06a902b0d55fddef6f8d651fe1035b7d4bd',1,'fe::Log::Error']]],
-  ['error_14',['error',['../classfe_1_1Error.html#ad8368ada831692fd3994e6be28b6240d',1,'fe::Error']]],
+  ['error_14',['error',['../structfe_1_1Driver.html#ad9684c890333c19abc2ce4f4c2f8fe59',1,'fe::Driver::error()'],['../structfe_1_1Driver.html#a09575ed3c928290f3d6e5866679bfba5',1,'fe::Driver::error() const'],['../structfe_1_1Driver.html#a90a08372c2eab50f825b6071ccc876a3',1,'fe::Driver::error(Loc loc, std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)'],['../classfe_1_1Error.html#ad8368ada831692fd3994e6be28b6240d',1,'fe::Error::error()'],['../classfe_1_1Parser.html#a84664cc5a6e288f9d507872d7e30789e',1,'fe::Parser::error()'],['../classfe_1_1Parser.html#ac10691c73f1acf9f8fce035189181a9d',1,'fe::Parser::error() const']]],
   ['error_2eh_15',['error.h',['../error_8h.html',1,'']]],
   ['escape_16',['escape',['../namespacefe_1_1sys.html#a2b5fd04fba1c95bb502ef87ab95e598b',1,'fe::sys']]],
   ['exec_17',['exec',['../namespacefe_1_1sys.html#ae3e1e6c6e12f32f87cfed0a319f06bb9',1,'fe::sys']]],
