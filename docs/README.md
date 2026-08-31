@@ -60,7 +60,7 @@ It provides a compact set of reusable, well-integrated components:
 - `fe::Dbg` for the `Loc`/`Sym` pair every named entity drags along, interned in the `Driver` as a `DbgKey`.
 - `fe::Error` for collecting diagnostics - errors, warnings and their notes - and rendering each with its source snippet; `Error::ack` throws what it collected as a self-contained `Error::Bail`.
 - `fe::Log` for leveled logging with acronym, color, and origin prefix.
-    - `ELOG`/`WLOG`/... shorthands live in `fe/log_macros.h`, so you only get the macros if you ask for them.
+    - `Log::error`/`Log::warn`/... shorthands point at their call site via `std::source_location`; no macros involved.
 - `fe::term` for lightweight terminal colors in diagnostics and CLI output.
 
 #### Data Structures

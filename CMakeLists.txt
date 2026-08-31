@@ -50,7 +50,6 @@ target_sources(fe
             include/fe/lexer.h
             include/fe/loc.h
             include/fe/log.h
-            include/fe/log_macros.h
             include/fe/parser.h
             include/fe/profile.h
             include/fe/restore.h
