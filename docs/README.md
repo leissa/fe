@@ -41,27 +41,41 @@ It provides a compact set of reusable, well-integrated components:
 
 ### Header-only
 
+#### Core
+
+- `fe::Driver` for shared frontend state: the SymPool, the SrcMap, the interned `Dbg`s, and how an `Error` lays out and renders a diagnostic.
 - `fe::Arena` for fast arena allocation and arena-backed ownership.
 - `fe::Sym` and `fe::SymPool` for string interning and cheap identifier comparison.
-- `fe::Driver` for shared frontend state: the SymPool, the SrcMap, the interned `Dbg`s, and how an `Error` lays out and renders a diagnostic.
-- `fe::Pos` and `fe::Loc` for source positions and source spans.
-- `fe::Dbg` for the `Loc`/`Sym` pair every named entity drags along, interned in the `Driver` as a `DbgKey`.
-- `fe::Log` for leveled logging with acronym, color, and origin prefix.
-    - `ELOG`/`WLOG`/... shorthands live in `fe/log_macros.h`, so you only get the macros if you ask for them.
-- `fe::Src` and `fe::SrcMap` for owning source text and resolving a position back to `path:row:col`.
-- `fe::term` for lightweight terminal colors in diagnostics and CLI output.
-- `fe::utf8` for lightweight UTF-8 handling.
-- `fe::hash` and friends for cheap, `constexpr` hash mixing/combining.
-- `fe::Bitset` for a dynamically growing bit set that keeps small sets inline and only allocates once they grow.
-- `fe::XTrie` for interned, immutable sets - an [IndexedTrie](https://dl.acm.org/doi/10.1145/3808286) that is space-efficient and answers intersection tests fast.
+
+#### Lexing & Parsing
+
 - `fe::Lexer<K, S>` for UTF-8-aware lexing with lookahead and token text accumulation.
 - `fe::Parser<Tok, Tag, K, S>` for recursive-descent-style parsing with token lookahead, span tracking, and anchor-based error recovery.
+- `fe::utf8` for lightweight UTF-8 handling.
+
+#### Source Locations & Diagnostics
+
+- `fe::Pos` and `fe::Loc` for source positions and source spans.
+- `fe::Src` and `fe::SrcMap` for owning source text and resolving a position back to `path:row:col`.
+- `fe::Dbg` for the `Loc`/`Sym` pair every named entity drags along, interned in the `Driver` as a `DbgKey`.
 - `fe::Error` for collecting diagnostics - errors, warnings and their notes - and rendering each with its source snippet; `Error::ack` throws what it collected as a self-contained `Error::Bail`.
-- `fe::Restore` for RAII save/restore of a variable across a scope.
-- `fe::BFSWorklist`/`fe::DFSWorklist` for worklist traversals that visit each element at most once.
+- `fe::Log` for leveled logging with acronym, color, and origin prefix.
+    - `ELOG`/`WLOG`/... shorthands live in `fe/log_macros.h`, so you only get the macros if you ask for them.
+- `fe::term` for lightweight terminal colors in diagnostics and CLI output.
+
+#### Data Structures
+
 - `fe::Span`/`fe::View` and `fe::Vector` for spans with structured binding and small-buffer vectors.
-- `fe/algo.h` and `fe/container.h` for the odds and ends every frontend rewrites otherwise.
+- `fe::Bitset` for a dynamically growing bit set that keeps small sets inline and only allocates once they grow.
+- `fe::XTrie` for interned, immutable sets - an [IndexedTrie](https://dl.acm.org/doi/10.1145/3808286) that is space-efficient and answers intersection tests fast.
+- `fe::BFSWorklist`/`fe::DFSWorklist` for worklist traversals that visit each element at most once.
 - Optional `FE_ABSL` support for [Abseil](https://abseil.io/) hash containers.
+
+#### Odds & Ends
+
+- `fe::hash` and friends for cheap, `constexpr` hash mixing/combining.
+- `fe::Restore` for RAII save/restore of a variable across a scope.
+- `fe/algo.h` and `fe/container.h` for the odds and ends every frontend rewrites otherwise.
 
 ### Requires `FE_LIB` {#requires-fe_lib}
 
