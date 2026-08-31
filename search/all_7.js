@@ -15,10 +15,14 @@ var searchData=
   ['find_5fcmd_12',['find_cmd',['../namespacefe_1_1sys.html#a16f6555d46bc26959287262fd1dbb197',1,'fe::sys']]],
   ['first_13',['first',['../namespacefe_1_1utf8.html#a40590a11feb5a834070791ea3c080906',1,'fe::utf8']]],
   ['flip_14',['flip',['../classfe_1_1Bitset_1_1reference.html#af31465a23630f0335bb892183830f991',1,'fe::Bitset::reference::flip()'],['../classfe_1_1Bitset.html#aa67ac0e5c25658dd9669f1fdb0d93db4',1,'fe::Bitset::flip()']]],
-  ['fnv1_5foffset_15',['fnv1_offset',['../namespacefe.html#a23eca58148a59f1a33c1fa3d47e78a4f',1,'fe']]],
-  ['fnv1_5fprime_16',['fnv1_prime',['../namespacefe.html#a58095bbcff6b7ff77b3e6592838e079e',1,'fe']]],
-  ['format_17',['format',['../structfe_1_1basic__ostream__formatter.html#ace2995c6e5e2334a0f83ab90e4f84133',1,'fe::basic_ostream_formatter']]],
-  ['format_2eh_18',['format.h',['../format_8h.html',1,'']]],
-  ['formattable_19',['Formattable',['../conceptfe_1_1Formattable.html',1,'fe']]],
-  ['front_20',['front',['../classfe_1_1Ring.html#ab86228fc41dc079697e029f33e59d40f',1,'fe::Ring::front()'],['../classfe_1_1Ring.html#acb2e78a03a337d42be2a354ede5402cd',1,'fe::Ring::front() const'],['../classfe_1_1Ring_3_01T_00_011_01_4.html#a8522e0f2e73e09434da36267fb694002',1,'fe::Ring&lt; T, 1 &gt;::front()'],['../classfe_1_1Ring_3_01T_00_011_01_4.html#a1576a3573f5b1e34e217f45beea6a771',1,'fe::Ring&lt; T, 1 &gt;::front() const'],['../classfe_1_1Ring_3_01T_00_012_01_4.html#a02191e2a152d58a7c297e980e0817be5',1,'fe::Ring&lt; T, 2 &gt;::front()'],['../classfe_1_1Ring_3_01T_00_012_01_4.html#a2a982c2d80c030c60369f1f05d212919',1,'fe::Ring&lt; T, 2 &gt;::front() const'],['../classfe_1_1Sym.html#a24a85f4313c5373da06a74f7a529dc6d',1,'fe::Sym::front()'],['../classfe_1_1Worklist.html#a4a1225e7fe6f1bc841878810f1211814',1,'fe::Worklist::front()'],['../classfe_1_1Worklist.html#ab671709e4bc8ecc23098efe5c49f03c8',1,'fe::Worklist::front() const']]]
+  ['fmt_15',['Fmt',['../classfe_1_1Log.html#a35e26ca6899f1c4ca5a42fca82c30d8a',1,'fe::Log']]],
+  ['fmt_16',['fmt',['../structfe_1_1Log_1_1FmtLoc.html#aab77afd907e7fb2f82843423a7c5c4b8',1,'fe::Log::FmtLoc']]],
+  ['fmtloc_17',['FmtLoc',['../structfe_1_1Log_1_1FmtLoc.html',1,'fe::Log::FmtLoc&lt; Args &gt;'],['../structfe_1_1Log_1_1FmtLoc.html#aa4ff5bc7fc62f42b39dd9a3d9632a95b',1,'fe::Log::FmtLoc::FmtLoc()']]],
+  ['fmtloc_3c_20std_3a_3atype_5fidentity_5ft_3c_20args_20_3e_2e_2e_2e_20_3e_18',['FmtLoc&lt; std::type_identity_t&lt; Args &gt;... &gt;',['../structfe_1_1Log_1_1FmtLoc.html',1,'fe::Log']]],
+  ['fnv1_5foffset_19',['fnv1_offset',['../namespacefe.html#a23eca58148a59f1a33c1fa3d47e78a4f',1,'fe']]],
+  ['fnv1_5fprime_20',['fnv1_prime',['../namespacefe.html#a58095bbcff6b7ff77b3e6592838e079e',1,'fe']]],
+  ['format_21',['format',['../structfe_1_1basic__ostream__formatter.html#ace2995c6e5e2334a0f83ab90e4f84133',1,'fe::basic_ostream_formatter']]],
+  ['format_2eh_22',['format.h',['../format_8h.html',1,'']]],
+  ['formattable_23',['Formattable',['../conceptfe_1_1Formattable.html',1,'fe']]],
+  ['front_24',['front',['../classfe_1_1Ring.html#ab86228fc41dc079697e029f33e59d40f',1,'fe::Ring::front()'],['../classfe_1_1Ring.html#acb2e78a03a337d42be2a354ede5402cd',1,'fe::Ring::front() const'],['../classfe_1_1Ring_3_01T_00_011_01_4.html#a8522e0f2e73e09434da36267fb694002',1,'fe::Ring&lt; T, 1 &gt;::front()'],['../classfe_1_1Ring_3_01T_00_011_01_4.html#a1576a3573f5b1e34e217f45beea6a771',1,'fe::Ring&lt; T, 1 &gt;::front() const'],['../classfe_1_1Ring_3_01T_00_012_01_4.html#a02191e2a152d58a7c297e980e0817be5',1,'fe::Ring&lt; T, 2 &gt;::front()'],['../classfe_1_1Ring_3_01T_00_012_01_4.html#a2a982c2d80c030c60369f1f05d212919',1,'fe::Ring&lt; T, 2 &gt;::front() const'],['../classfe_1_1Sym.html#a24a85f4313c5373da06a74f7a529dc6d',1,'fe::Sym::front()'],['../classfe_1_1Worklist.html#a4a1225e7fe6f1bc841878810f1211814',1,'fe::Worklist::front()'],['../classfe_1_1Worklist.html#ab671709e4bc8ecc23098efe5c49f03c8',1,'fe::Worklist::front() const']]]
 ];

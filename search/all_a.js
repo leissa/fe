@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['ilog_0',['ILOG',['../log__macros_8h.html#a0c221110c77b993968e98cb53c0d652e',1,'log_macros.h']]],
+  ['i_0',['i',['../classfe_1_1Log.html#afc35b3ff205b62f276cc1fd8ca54305d',1,'fe::Log']]],
   ['indent_1',['indent',['../classfe_1_1Tab.html#a70bd0da6867a9618d9942a808a201fca',1,'fe::Tab']]],
   ['info_2',['Info',['../classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06a4059b0251f66a18cb56f544728796875',1,'fe::Log']]],
   ['init_3',['init',['../classfe_1_1Parser.html#a10134258cf3c7fc081c4740ed22405cb',1,'fe::Parser']]],

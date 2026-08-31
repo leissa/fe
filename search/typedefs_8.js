@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['t_0',['T',['../classfe_1_1Worklist.html#a78fecbbf8b034ee2765ed5e7a4f1de44',1,'fe::Worklist']]],
-  ['type_1',['type',['../namespacestd.html#ae7ea1ac935d568b31d413ae7f70c14fe',1,'std::tuple_element&lt; I, fe::Span&lt; T, N &gt; &gt;']]]
+  ['state_0',['State',['../classfe_1_1Arena.html#a5e05161e3a767ebfdecbf2cb1e21f6d4',1,'fe::Arena']]],
+  ['string_1',['String',['../classfe_1_1SymPool.html#a11d53cf665ae00f361fd8d2e4d00d100',1,'fe::SymPool']]],
+  ['symmap_2',['SymMap',['../namespacefe.html#a11fef75d471024bdbf5cfc3223146f8e',1,'fe']]],
+  ['symset_3',['SymSet',['../namespacefe.html#afc6debb6fc36d12352409c5e46ce4e55',1,'fe']]]
 ];

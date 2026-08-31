@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['hash_0',['Hash',['../structfe_1_1Bitset_1_1Hash.html',1,'fe::Bitset::Hash'],['../structfe_1_1Dbg_1_1Hash.html',1,'fe::Dbg::Hash'],['../structfe_1_1Sym_1_1Hash.html',1,'fe::Sym::Hash'],['../structfe_1_1Sym_1_1String_1_1Hash.html',1,'fe::Sym::String::Hash'],['../structfe_1_1XTrie_1_1Data_1_1Hash.html',1,'fe::XTrie&lt; D, K, N &gt;::Data::Hash']]]
+  ['fmtloc_0',['FmtLoc',['../structfe_1_1Log_1_1FmtLoc.html',1,'fe::Log']]],
+  ['fmtloc_3c_20std_3a_3atype_5fidentity_5ft_3c_20args_20_3e_2e_2e_2e_20_3e_1',['FmtLoc&lt; std::type_identity_t&lt; Args &gt;... &gt;',['../structfe_1_1Log_1_1FmtLoc.html',1,'fe::Log']]]
 ];

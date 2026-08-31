@@ -21,6 +21,7 @@ var hierarchy =
     [ "std::false_type", null, [
       [ "fe::is_bit_enum< T >", "structfe_1_1is__bit__enum.html", null ]
     ] ],
+    [ "fe::Log::FmtLoc&lt; Args &gt;", "structfe_1_1Log_1_1FmtLoc.html", null ],
     [ "std::formatter", null, [
       [ "fe::basic_ostream_formatter< char >", "structfe_1_1basic__ostream__formatter.html", null ],
       [ "fe::basic_ostream_formatter< Char >", "structfe_1_1basic__ostream__formatter.html", null ]

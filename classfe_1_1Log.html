@@ -147,6 +147,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classfe_1_1Log
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-types">Public Types</a> &#124;
 <a href="classfe_1_1Log-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">fe::Log Class Reference</div></div>
@@ -158,6 +159,11 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classfe_1_1Log
 
 <p><code>#include &lt;<a class="el" href="log_8h_source.html">fe/log.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:FmtLoc" id="r_FmtLoc"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1Log_1_1FmtLoc.html">FmtLoc</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A std::format_string that remembers where it was written.  <a href="structfe_1_1Log_1_1FmtLoc.html#details">More...</a><br /></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:aec116a9875f7cc3d51340c05c19b3d06" id="r_aec116a9875f7cc3d51340c05c19b3d06"><td class="memItemLeft">enum class &#160;</td><td class="memItemRight"><a class="el" href="#aec116a9875f7cc3d51340c05c19b3d06">Level</a> { <br />
@@ -174,6 +180,9 @@ Public Types</h2></td></tr>
 &#160;&#160;<a class="el" href="#aec116a9875f7cc3d51340c05c19b3d06add4ec0ac4e58f7c32a01244ae91150b1">Trace</a>
 <br />
  }</td></tr>
+<tr class="memitem:a35e26ca6899f1c4ca5a42fca82c30d8a" id="r_a35e26ca6899f1c4ca5a42fca82c30d8a"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:a35e26ca6899f1c4ca5a42fca82c30d8a template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a35e26ca6899f1c4ca5a42fca82c30d8a">Fmt</a> = <a class="el" href="structfe_1_1Log_1_1FmtLoc.html">FmtLoc</a>&lt;std::type_identity_t&lt;Args&gt;...&gt;</td></tr>
+<tr class="memdesc:a35e26ca6899f1c4ca5a42fca82c30d8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puts the <span class="tt">Args</span> of a <a class="el" href="structfe_1_1Log_1_1FmtLoc.html" title="A std::format_string that remembers where it was written.">Log::FmtLoc</a> parameter into a non-deduced context, so that they are deduced from the trailing arguments and the format string keeps capturing its call site.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -190,9 +199,30 @@ Public Member Functions</h2></td></tr>
 </div></td></tr>
 <tr class="memitem:adf591a141487f14ec66c37bdb1c2b92f" id="r_adf591a141487f14ec66c37bdb1c2b92f"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
 <tr class="memitem:adf591a141487f14ec66c37bdb1c2b92f template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#adf591a141487f14ec66c37bdb1c2b92f">log</a> (<a class="el" href="#aec116a9875f7cc3d51340c05c19b3d06">Level</a> level, <a class="el" href="structfe_1_1Loc.html">Loc</a> loc, std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args) const</td></tr>
-<tr class="memitem:a269be1c5b96a15858c80da993a0267c5" id="r_a269be1c5b96a15858c80da993a0267c5"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
-<tr class="memitem:a269be1c5b96a15858c80da993a0267c5 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a269be1c5b96a15858c80da993a0267c5">log</a> (<a class="el" href="#aec116a9875f7cc3d51340c05c19b3d06">Level</a> level, const char *file, uint32_t line, std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args) const</td></tr>
-<tr class="memdesc:a269be1c5b96a15858c80da993a0267c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <span class="tt">__FILE__</span>/<span class="tt">__LINE__</span> pair is no <a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a>: it points into <em>your</em> source, which has no <a class="el" href="classfe_1_1Src.html" title="The content of one source file together with the offsets its rows start at.">fe::Src</a>.  <br /></td></tr>
+<tr class="memitem:a0defeaed5ca484633d35df69324482e1" id="r_a0defeaed5ca484633d35df69324482e1"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:a0defeaed5ca484633d35df69324482e1 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0defeaed5ca484633d35df69324482e1">log</a> (<a class="el" href="#aec116a9875f7cc3d51340c05c19b3d06">Level</a> level, std::source_location where, std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args) const</td></tr>
+<tr class="memdesc:a0defeaed5ca484633d35df69324482e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">A std::source_location is no <a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a>: it points into <em>your</em> source, which has no <a class="el" href="classfe_1_1Src.html" title="The content of one source file together with the offsets its rows start at.">fe::Src</a>.  <br /></td></tr>
+<tr class="memitem:abe902baec6be1afeac687da942290b35" id="r_abe902baec6be1afeac687da942290b35"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:abe902baec6be1afeac687da942290b35 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abe902baec6be1afeac687da942290b35">log</a> (<a class="el" href="#aec116a9875f7cc3d51340c05c19b3d06">Level</a> level, <a class="el" href="#a35e26ca6899f1c4ca5a42fca82c30d8a">Fmt</a>&lt; Args... &gt; fmt, Args &amp;&amp;... args) const</td></tr>
+<tr class="memdesc:abe902baec6be1afeac687da942290b35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Points at the call site.  <br /></td></tr>
+<tr id="pub-methods-3" class="groupHeader"><td colspan="2"><div class="groupHeader">Level Shorthands</div></td></tr>
+<tr><td colspan="2" class="ititle"><div class="groupText"><p><a class="el" href="classfe_1_1Log.html" title="Facility to log what you are doing.">Log</a> at a fixed <a class="el" href="#aec116a9875f7cc3d51340c05c19b3d06">Level</a>, pointing at the call site. </p>
+</div></td></tr>
+<tr class="memitem:a09b8c2102ebfd0ea1407c41e890bfd02" id="r_a09b8c2102ebfd0ea1407c41e890bfd02"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:a09b8c2102ebfd0ea1407c41e890bfd02 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a09b8c2102ebfd0ea1407c41e890bfd02">e</a> (<a class="el" href="#a35e26ca6899f1c4ca5a42fca82c30d8a">Fmt</a>&lt; Args... &gt; fmt, Args &amp;&amp;... args) const</td></tr>
+<tr class="memitem:a9ff17172a0c0b4c3fbd094b1a8cd9b17" id="r_a9ff17172a0c0b4c3fbd094b1a8cd9b17"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:a9ff17172a0c0b4c3fbd094b1a8cd9b17 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9ff17172a0c0b4c3fbd094b1a8cd9b17">w</a> (<a class="el" href="#a35e26ca6899f1c4ca5a42fca82c30d8a">Fmt</a>&lt; Args... &gt; fmt, Args &amp;&amp;... args) const</td></tr>
+<tr class="memitem:afc35b3ff205b62f276cc1fd8ca54305d" id="r_afc35b3ff205b62f276cc1fd8ca54305d"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:afc35b3ff205b62f276cc1fd8ca54305d template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#afc35b3ff205b62f276cc1fd8ca54305d">i</a> (<a class="el" href="#a35e26ca6899f1c4ca5a42fca82c30d8a">Fmt</a>&lt; Args... &gt; fmt, Args &amp;&amp;... args) const</td></tr>
+<tr class="memitem:abd34ee636b57537f53f3f56fcfa81f42" id="r_abd34ee636b57537f53f3f56fcfa81f42"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:abd34ee636b57537f53f3f56fcfa81f42 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abd34ee636b57537f53f3f56fcfa81f42">v</a> (<a class="el" href="#a35e26ca6899f1c4ca5a42fca82c30d8a">Fmt</a>&lt; Args... &gt; fmt, Args &amp;&amp;... args) const</td></tr>
+<tr id="pub-methods-4" class="groupHeader"><td colspan="2"><div class="groupHeader">Debug Shorthands</div></td></tr>
+<tr><td colspan="2" class="ititle"><div class="groupText"><p>Vaporize to nothingness in <span class="tt">Release</span> build; the arguments are still evaluated. </p>
+</div></td></tr>
+<tr class="memitem:a43c5240d1e07b2b429e58f988e6390ad" id="r_a43c5240d1e07b2b429e58f988e6390ad"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:a43c5240d1e07b2b429e58f988e6390ad template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a43c5240d1e07b2b429e58f988e6390ad">d</a> (<a class="el" href="#a35e26ca6899f1c4ca5a42fca82c30d8a">Fmt</a>&lt; Args... &gt; fmt, Args &amp;&amp;... args) const</td></tr>
+<tr class="memitem:a5e08300600b4aeb35839a2b66f4abfd2" id="r_a5e08300600b4aeb35839a2b66f4abfd2"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:a5e08300600b4aeb35839a2b66f4abfd2 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a5e08300600b4aeb35839a2b66f4abfd2">t</a> (<a class="el" href="#a35e26ca6899f1c4ca5a42fca82c30d8a">Fmt</a>&lt; Args... &gt; fmt, Args &amp;&amp;... args) const</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -209,8 +239,29 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Facility to log what you are doing. </p>
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00017">17</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
-</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Member Enumeration Documentation</h2>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00020">20</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a id="a35e26ca6899f1c4ca5a42fca82c30d8a" name="a35e26ca6899f1c4ca5a42fca82c30d8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35e26ca6899f1c4ca5a42fca82c30d8a">&#9670;&#160;</a></span>Fmt</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a35e26ca6899f1c4ca5a42fca82c30d8a">fe::Log::Fmt</a> = <a class="el" href="structfe_1_1Log_1_1FmtLoc.html">FmtLoc</a>&lt;std::type_identity_t&lt;Args&gt;...&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Puts the <span class="tt">Args</span> of a <a class="el" href="structfe_1_1Log_1_1FmtLoc.html" title="A std::format_string that remembers where it was written.">Log::FmtLoc</a> parameter into a non-deduced context, so that they are deduced from the trailing arguments and the format string keeps capturing its call site. </p>
+
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00062">62</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+
+</div>
+</div>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Member Enumeration Documentation</h2>
 <a id="aec116a9875f7cc3d51340c05c19b3d06" name="aec116a9875f7cc3d51340c05c19b3d06"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aec116a9875f7cc3d51340c05c19b3d06">&#9670;&#160;</a></span>Level</h2>
 
@@ -239,11 +290,116 @@ Public Attributes</h2></td></tr>
 <tr><td class="fieldname"><a id="aec116a9875f7cc3d51340c05c19b3d06add4ec0ac4e58f7c32a01244ae91150b1" name="aec116a9875f7cc3d51340c05c19b3d06add4ec0ac4e58f7c32a01244ae91150b1"></a>Trace&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00019">19</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00022">22</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a43c5240d1e07b2b429e58f988e6390ad" name="a43c5240d1e07b2b429e58f988e6390ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43c5240d1e07b2b429e58f988e6390ad">&#9670;&#160;</a></span>d()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void fe::Log::d </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a35e26ca6899f1c4ca5a42fca82c30d8a">Fmt</a>&lt; Args... &gt;</td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00112">112</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+
+<p class="reference">References <a class="el" href="log_8h_source.html#l00022">Debug</a>, and <a class="el" href="log_8h_source.html#l00068">log()</a>.</p>
+
+</div>
+</div>
+<a id="a09b8c2102ebfd0ea1407c41e890bfd02" name="a09b8c2102ebfd0ea1407c41e890bfd02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09b8c2102ebfd0ea1407c41e890bfd02">&#9670;&#160;</a></span>e()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void fe::Log::e </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a35e26ca6899f1c4ca5a42fca82c30d8a">Fmt</a>&lt; Args... &gt;</td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00090">90</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+
+<p class="reference">References <a class="el" href="log_8h_source.html#l00022">Error</a>, and <a class="el" href="log_8h_source.html#l00068">log()</a>.</p>
+
+</div>
+</div>
+<a id="afc35b3ff205b62f276cc1fd8ca54305d" name="afc35b3ff205b62f276cc1fd8ca54305d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc35b3ff205b62f276cc1fd8ca54305d">&#9670;&#160;</a></span>i()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void fe::Log::i </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a35e26ca6899f1c4ca5a42fca82c30d8a">Fmt</a>&lt; Args... &gt;</td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00098">98</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+
+<p class="reference">References <a class="el" href="log_8h_source.html#l00022">Info</a>, and <a class="el" href="log_8h_source.html#l00068">log()</a>.</p>
+
+</div>
+</div>
 <a id="a86293e423fb95f888781d62fed20b497" name="a86293e423fb95f888781d62fed20b497"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a86293e423fb95f888781d62fed20b497">&#9670;&#160;</a></span>level()</h2>
 
@@ -267,9 +423,9 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00023">23</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00026">26</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="log_8h_source.html#l00068">level2acro()</a>, <a class="el" href="log_8h_source.html#l00080">level2color()</a>, <a class="el" href="log_8h_source.html#l00053">log()</a>, and <a class="el" href="log_8h_source.html#l00047">log()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="log_8h_source.html#l00136">level2acro()</a>, <a class="el" href="log_8h_source.html#l00148">level2color()</a>, <a class="el" href="log_8h_source.html#l00081">log()</a>, <a class="el" href="log_8h_source.html#l00068">log()</a>, and <a class="el" href="log_8h_source.html#l00074">log()</a>.</p>
 
 </div>
 </div>
@@ -296,9 +452,9 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00068">68</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00136">136</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
-<p class="reference">References <a class="el" href="log_8h_source.html#l00019">Debug</a>, <a class="el" href="log_8h_source.html#l00019">Error</a>, <a class="el" href="log_8h_source.html#l00019">Info</a>, <a class="el" href="log_8h_source.html#l00023">level()</a>, <a class="el" href="log_8h_source.html#l00019">Trace</a>, <a class="el" href="assert_8h_source.html#l00030">fe::unreachable()</a>, <a class="el" href="log_8h_source.html#l00019">Verbose</a>, and <a class="el" href="log_8h_source.html#l00019">Warn</a>.</p>
+<p class="reference">References <a class="el" href="log_8h_source.html#l00022">Debug</a>, <a class="el" href="log_8h_source.html#l00022">Error</a>, <a class="el" href="log_8h_source.html#l00022">Info</a>, <a class="el" href="log_8h_source.html#l00026">level()</a>, <a class="el" href="log_8h_source.html#l00022">Trace</a>, <a class="el" href="assert_8h_source.html#l00030">fe::unreachable()</a>, <a class="el" href="log_8h_source.html#l00022">Verbose</a>, and <a class="el" href="log_8h_source.html#l00022">Warn</a>.</p>
 
 </div>
 </div>
@@ -325,14 +481,14 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00080">80</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00148">148</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
-<p class="reference">References <a class="el" href="term_8h_source.html#l00062">fe::term::Blue</a>, <a class="el" href="term_8h_source.html#l00064">fe::term::Cyan</a>, <a class="el" href="log_8h_source.html#l00019">Debug</a>, <a class="el" href="log_8h_source.html#l00019">Error</a>, <a class="el" href="term_8h_source.html#l00060">fe::term::Green</a>, <a class="el" href="log_8h_source.html#l00019">Info</a>, <a class="el" href="log_8h_source.html#l00023">level()</a>, <a class="el" href="term_8h_source.html#l00063">fe::term::Magenta</a>, <a class="el" href="term_8h_source.html#l00059">fe::term::Red</a>, <a class="el" href="log_8h_source.html#l00019">Trace</a>, <a class="el" href="assert_8h_source.html#l00030">fe::unreachable()</a>, <a class="el" href="log_8h_source.html#l00019">Verbose</a>, <a class="el" href="log_8h_source.html#l00019">Warn</a>, and <a class="el" href="term_8h_source.html#l00061">fe::term::Yellow</a>.</p>
+<p class="reference">References <a class="el" href="term_8h_source.html#l00062">fe::term::Blue</a>, <a class="el" href="term_8h_source.html#l00064">fe::term::Cyan</a>, <a class="el" href="log_8h_source.html#l00022">Debug</a>, <a class="el" href="log_8h_source.html#l00022">Error</a>, <a class="el" href="term_8h_source.html#l00060">fe::term::Green</a>, <a class="el" href="log_8h_source.html#l00022">Info</a>, <a class="el" href="log_8h_source.html#l00026">level()</a>, <a class="el" href="term_8h_source.html#l00063">fe::term::Magenta</a>, <a class="el" href="term_8h_source.html#l00059">fe::term::Red</a>, <a class="el" href="log_8h_source.html#l00022">Trace</a>, <a class="el" href="assert_8h_source.html#l00030">fe::unreachable()</a>, <a class="el" href="log_8h_source.html#l00022">Verbose</a>, <a class="el" href="log_8h_source.html#l00022">Warn</a>, and <a class="el" href="term_8h_source.html#l00061">fe::term::Yellow</a>.</p>
 
 </div>
 </div>
-<a id="a269be1c5b96a15858c80da993a0267c5" name="a269be1c5b96a15858c80da993a0267c5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a269be1c5b96a15858c80da993a0267c5">&#9670;&#160;</a></span>log() <span class="overload">[1/2]</span></h2>
+<a id="abe902baec6be1afeac687da942290b35" name="abe902baec6be1afeac687da942290b35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe902baec6be1afeac687da942290b35">&#9670;&#160;</a></span>log() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -350,17 +506,7 @@ template&lt;class... Args&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>file</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>line</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::format_string&lt; Args... &gt;</td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+          <td class="paramtype"><a class="el" href="#a35e26ca6899f1c4ca5a42fca82c30d8a">Fmt</a>&lt; Args... &gt;</td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -375,16 +521,16 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>A <span class="tt">__FILE__</span>/<span class="tt">__LINE__</span> pair is no <a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a>: it points into <em>your</em> source, which has no <a class="el" href="classfe_1_1Src.html" title="The content of one source file together with the offsets its rows start at.">fe::Src</a>. </p>
+<p>Points at the call site. </p>
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00053">53</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00081">81</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
-<p class="reference">References <a class="el" href="log_8h_source.html#l00023">level()</a>.</p>
+<p class="reference">References <a class="el" href="log_8h_source.html#l00055">fe::Log::FmtLoc&lt; Args &gt;::fmt</a>, <a class="el" href="log_8h_source.html#l00026">level()</a>, <a class="el" href="log_8h_source.html#l00056">fe::Log::FmtLoc&lt; Args &gt;::loc</a>, and <a class="el" href="log_8h_source.html#l00068">log()</a>.</p>
 
 </div>
 </div>
 <a id="adf591a141487f14ec66c37bdb1c2b92f" name="adf591a141487f14ec66c37bdb1c2b92f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adf591a141487f14ec66c37bdb1c2b92f">&#9670;&#160;</a></span>log() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#adf591a141487f14ec66c37bdb1c2b92f">&#9670;&#160;</a></span>log() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -422,9 +568,58 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00047">47</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00068">68</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
-<p class="reference">References <a class="el" href="log_8h_source.html#l00023">level()</a>.</p>
+<p class="reference">References <a class="el" href="log_8h_source.html#l00026">level()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="log_8h_source.html#l00112">d()</a>, <a class="el" href="log_8h_source.html#l00090">e()</a>, <a class="el" href="log_8h_source.html#l00098">i()</a>, <a class="el" href="log_8h_source.html#l00081">log()</a>, <a class="el" href="log_8h_source.html#l00116">t()</a>, <a class="el" href="log_8h_source.html#l00102">v()</a>, and <a class="el" href="log_8h_source.html#l00094">w()</a>.</p>
+
+</div>
+</div>
+<a id="a0defeaed5ca484633d35df69324482e1" name="a0defeaed5ca484633d35df69324482e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0defeaed5ca484633d35df69324482e1">&#9670;&#160;</a></span>log() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void fe::Log::log </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#aec116a9875f7cc3d51340c05c19b3d06">Level</a></td>          <td class="paramname"><span class="paramname"><em>level</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::source_location</td>          <td class="paramname"><span class="paramname"><em>where</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::format_string&lt; Args... &gt;</td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A std::source_location is no <a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a>: it points into <em>your</em> source, which has no <a class="el" href="classfe_1_1Src.html" title="The content of one source file together with the offsets its rows start at.">fe::Src</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00074">74</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+
+<p class="reference">References <a class="el" href="log_8h_source.html#l00026">level()</a>.</p>
 
 </div>
 </div>
@@ -453,7 +648,7 @@ template&lt;class... Args&gt; </div>
 
 <p>Checks if Log::ostream_ is set. </p>
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00028">28</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00031">31</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
 </div>
 </div>
@@ -480,9 +675,9 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00024">24</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00027">27</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="log_8h_source.html#l00033">set()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="log_8h_source.html#l00036">set()</a>.</p>
 
 </div>
 </div>
@@ -509,7 +704,7 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00037">37</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00040">40</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
 </div>
 </div>
@@ -536,9 +731,114 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00033">33</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00036">36</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
-<p class="reference">References <a class="el" href="log_8h_source.html#l00024">ostream()</a>.</p>
+<p class="reference">References <a class="el" href="log_8h_source.html#l00027">ostream()</a>.</p>
+
+</div>
+</div>
+<a id="a5e08300600b4aeb35839a2b66f4abfd2" name="a5e08300600b4aeb35839a2b66f4abfd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e08300600b4aeb35839a2b66f4abfd2">&#9670;&#160;</a></span>t()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void fe::Log::t </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a35e26ca6899f1c4ca5a42fca82c30d8a">Fmt</a>&lt; Args... &gt;</td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00116">116</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+
+<p class="reference">References <a class="el" href="log_8h_source.html#l00068">log()</a>, and <a class="el" href="log_8h_source.html#l00022">Trace</a>.</p>
+
+</div>
+</div>
+<a id="abd34ee636b57537f53f3f56fcfa81f42" name="abd34ee636b57537f53f3f56fcfa81f42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd34ee636b57537f53f3f56fcfa81f42">&#9670;&#160;</a></span>v()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void fe::Log::v </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a35e26ca6899f1c4ca5a42fca82c30d8a">Fmt</a>&lt; Args... &gt;</td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00102">102</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+
+<p class="reference">References <a class="el" href="log_8h_source.html#l00068">log()</a>, and <a class="el" href="log_8h_source.html#l00022">Verbose</a>.</p>
+
+</div>
+</div>
+<a id="a9ff17172a0c0b4c3fbd094b1a8cd9b17" name="a9ff17172a0c0b4c3fbd094b1a8cd9b17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ff17172a0c0b4c3fbd094b1a8cd9b17">&#9670;&#160;</a></span>w()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void fe::Log::w </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a35e26ca6899f1c4ca5a42fca82c30d8a">Fmt</a>&lt; Args... &gt;</td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00094">94</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+
+<p class="reference">References <a class="el" href="log_8h_source.html#l00068">log()</a>, and <a class="el" href="log_8h_source.html#l00022">Warn</a>.</p>
 
 </div>
 </div>
@@ -555,7 +855,7 @@ template&lt;class... Args&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00061">61</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00129">129</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
 </div>
 </div>
@@ -571,7 +871,7 @@ template&lt;class... Args&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00062">62</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00130">130</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
 </div>
 </div>

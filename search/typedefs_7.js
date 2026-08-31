@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['state_0',['State',['../classfe_1_1Arena.html#a5e05161e3a767ebfdecbf2cb1e21f6d4',1,'fe::Arena']]],
-  ['string_1',['String',['../classfe_1_1SymPool.html#a11d53cf665ae00f361fd8d2e4d00d100',1,'fe::SymPool']]],
-  ['symmap_2',['SymMap',['../namespacefe.html#a11fef75d471024bdbf5cfc3223146f8e',1,'fe']]],
-  ['symset_3',['SymSet',['../namespacefe.html#afc6debb6fc36d12352409c5e46ce4e55',1,'fe']]]
+  ['reference_0',['reference',['../classfe_1_1Bitset_1_1iterator.html#a9062596fa622ae6edbc471d7c31249ec',1,'fe::Bitset::iterator::reference'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html#afdd862aea2bf0c44672b13bd0fdd6cde',1,'fe::XTrie::Set::iterator::reference']]],
+  ['render_1',['Render',['../structfe_1_1Driver.html#ada4296ee6fd4167b39f4f9c8acfd0515',1,'fe::Driver']]]
 ];

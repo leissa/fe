@@ -1,17 +1,18 @@
 var searchData=
 [
-  ['eat_0',['eat',['../classfe_1_1Parser.html#a7676ff550005c7f0334f6fda4067d1e0',1,'fe::Parser']]],
-  ['elapsed_1',['elapsed',['../structfe_1_1Profiler_1_1Span.html#a192b9f285bbdfc2aad6839e8340915f9',1,'fe::Profiler::Span']]],
-  ['empty_2',['empty',['../classfe_1_1Error.html#ac291fef4f4637573b438cb1188997c98',1,'fe::Error::empty()'],['../classfe_1_1Profiler.html#ab3df71f2dbc57180667d0f680b621a48',1,'fe::Profiler::empty()'],['../classfe_1_1Sym.html#a277217d7b5fbd7be2d57a11f3d5767ea',1,'fe::Sym::empty()'],['../classfe_1_1Worklist.html#a9923bf1a31218860f3406897fc965f7b',1,'fe::Worklist::empty()'],['../classfe_1_1XTrie_1_1Set.html#ab36b82ad85a6589d471c15a8e5b67f76',1,'fe::XTrie::Set::empty()']]],
-  ['encode_3',['encode',['../namespacefe_1_1utf8.html#a50c98a6d25495ac66c1a30e1ba83da99',1,'fe::utf8']]],
-  ['end_4',['end',['../classfe_1_1Bitset.html#a693a735f6a174654540129e29251d88c',1,'fe::Bitset::end()'],['../classfe_1_1Src.html#a62e933ac4895b80c6e04baf4971a7e00',1,'fe::Src::end()'],['../classfe_1_1Sym.html#ad9d10b4be1533609b0ae6b535b45bedf',1,'fe::Sym::end()'],['../classfe_1_1XTrie_1_1Set.html#a01a41367bfc75d22363b7b88ee9767a4',1,'fe::XTrie::Set::end()']]],
-  ['erase_5',['erase',['../classfe_1_1XTrie.html#ad9012a6e842ad6ac47ec9ea81517995d',1,'fe::XTrie::erase()'],['../namespacefe.html#a32e00013e42152781f4bb035ace7af01',1,'fe::erase(Vector&lt; T, N, A &gt; &amp;c, const U &amp;value)']]],
-  ['erase_5fif_6',['erase_if',['../namespacefe.html#ace6f5864e6c7ef635e260299ed16fe86',1,'fe']]],
-  ['error_7',['Error',['../classfe_1_1Error.html#a006230978a0baa2c40452a3f393c8db5',1,'fe::Error']]],
-  ['error_8',['error',['../classfe_1_1Error.html#ad8368ada831692fd3994e6be28b6240d',1,'fe::Error']]],
-  ['escape_9',['escape',['../namespacefe_1_1sys.html#a2b5fd04fba1c95bb502ef87ab95e598b',1,'fe::sys']]],
-  ['exec_10',['exec',['../namespacefe_1_1sys.html#ae3e1e6c6e12f32f87cfed0a319f06bb9',1,'fe::sys']]],
-  ['expect_11',['expect',['../classfe_1_1RuntimeCast.html#a97f66212ac0a03ef6624224cf353be56',1,'fe::RuntimeCast::expect(std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)'],['../classfe_1_1RuntimeCast.html#a3a9f9a465d191723aef6da3a3f81bddc',1,'fe::RuntimeCast::expect(std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args) const'],['../classfe_1_1Parser.html#ab01ccf1dc21df6abc1df96282174e9f4',1,'fe::Parser::expect(Tag tag, std::string_view ctxt)'],['../classfe_1_1Parser.html#af063a3c467ab8c8072e7e717b46ac97e',1,'fe::Parser::expect(Tag tag, std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)']]],
-  ['explicit_12',['explicit',['../classfe_1_1Span.html#aa502ec1dfbd1364cf56ef0413366bc1f',1,'fe::Span::explicit(N !=D) const expr Span(std'],['../classfe_1_1Span.html#a2b19787ce493b079f65d4bf0f8e837ea',1,'fe::Span::explicit(N !=D) const expr Span(Vec &amp;vec) noexcept(noexcept(vec.data()) &amp;&amp;noexcept(vec.size()))'],['../classfe_1_1Span.html#a7855392c4dce39b98fc729e3f5059f46',1,'fe::Span::explicit(N !=D) const expr Span(const Vec &amp;vec) noexcept(noexcept(vec.data()) &amp;&amp;noexcept(vec.size()))']]],
-  ['expose_13',['expose',['../classfe_1_1lct_1_1Node.html#ae37ec517abab841c5851702c10b148ec',1,'fe::lct::Node']]]
+  ['e_0',['e',['../classfe_1_1Log.html#a09b8c2102ebfd0ea1407c41e890bfd02',1,'fe::Log']]],
+  ['eat_1',['eat',['../classfe_1_1Parser.html#a7676ff550005c7f0334f6fda4067d1e0',1,'fe::Parser']]],
+  ['elapsed_2',['elapsed',['../structfe_1_1Profiler_1_1Span.html#a192b9f285bbdfc2aad6839e8340915f9',1,'fe::Profiler::Span']]],
+  ['empty_3',['empty',['../classfe_1_1Error.html#ac291fef4f4637573b438cb1188997c98',1,'fe::Error::empty()'],['../classfe_1_1Profiler.html#ab3df71f2dbc57180667d0f680b621a48',1,'fe::Profiler::empty()'],['../classfe_1_1Sym.html#a277217d7b5fbd7be2d57a11f3d5767ea',1,'fe::Sym::empty()'],['../classfe_1_1Worklist.html#a9923bf1a31218860f3406897fc965f7b',1,'fe::Worklist::empty()'],['../classfe_1_1XTrie_1_1Set.html#ab36b82ad85a6589d471c15a8e5b67f76',1,'fe::XTrie::Set::empty()']]],
+  ['encode_4',['encode',['../namespacefe_1_1utf8.html#a50c98a6d25495ac66c1a30e1ba83da99',1,'fe::utf8']]],
+  ['end_5',['end',['../classfe_1_1Bitset.html#a693a735f6a174654540129e29251d88c',1,'fe::Bitset::end()'],['../classfe_1_1Src.html#a62e933ac4895b80c6e04baf4971a7e00',1,'fe::Src::end()'],['../classfe_1_1Sym.html#ad9d10b4be1533609b0ae6b535b45bedf',1,'fe::Sym::end()'],['../classfe_1_1XTrie_1_1Set.html#a01a41367bfc75d22363b7b88ee9767a4',1,'fe::XTrie::Set::end()']]],
+  ['erase_6',['erase',['../classfe_1_1XTrie.html#ad9012a6e842ad6ac47ec9ea81517995d',1,'fe::XTrie::erase()'],['../namespacefe.html#a32e00013e42152781f4bb035ace7af01',1,'fe::erase(Vector&lt; T, N, A &gt; &amp;c, const U &amp;value)']]],
+  ['erase_5fif_7',['erase_if',['../namespacefe.html#ace6f5864e6c7ef635e260299ed16fe86',1,'fe']]],
+  ['error_8',['Error',['../classfe_1_1Error.html#a006230978a0baa2c40452a3f393c8db5',1,'fe::Error']]],
+  ['error_9',['error',['../classfe_1_1Error.html#ad8368ada831692fd3994e6be28b6240d',1,'fe::Error']]],
+  ['escape_10',['escape',['../namespacefe_1_1sys.html#a2b5fd04fba1c95bb502ef87ab95e598b',1,'fe::sys']]],
+  ['exec_11',['exec',['../namespacefe_1_1sys.html#ae3e1e6c6e12f32f87cfed0a319f06bb9',1,'fe::sys']]],
+  ['expect_12',['expect',['../classfe_1_1RuntimeCast.html#a97f66212ac0a03ef6624224cf353be56',1,'fe::RuntimeCast::expect(std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)'],['../classfe_1_1RuntimeCast.html#a3a9f9a465d191723aef6da3a3f81bddc',1,'fe::RuntimeCast::expect(std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args) const'],['../classfe_1_1Parser.html#ab01ccf1dc21df6abc1df96282174e9f4',1,'fe::Parser::expect(Tag tag, std::string_view ctxt)'],['../classfe_1_1Parser.html#af063a3c467ab8c8072e7e717b46ac97e',1,'fe::Parser::expect(Tag tag, std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)']]],
+  ['explicit_13',['explicit',['../classfe_1_1Span.html#aa502ec1dfbd1364cf56ef0413366bc1f',1,'fe::Span::explicit(N !=D) const expr Span(std'],['../classfe_1_1Span.html#a2b19787ce493b079f65d4bf0f8e837ea',1,'fe::Span::explicit(N !=D) const expr Span(Vec &amp;vec) noexcept(noexcept(vec.data()) &amp;&amp;noexcept(vec.size()))'],['../classfe_1_1Span.html#a7855392c4dce39b98fc729e3f5059f46',1,'fe::Span::explicit(N !=D) const expr Span(const Vec &amp;vec) noexcept(noexcept(vec.data()) &amp;&amp;noexcept(vec.size()))']]],
+  ['expose_14',['expose',['../classfe_1_1lct_1_1Node.html#ae37ec517abab841c5851702c10b148ec',1,'fe::lct::Node']]]
 ];

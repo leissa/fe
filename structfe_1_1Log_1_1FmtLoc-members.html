@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.18.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>FE: fe/log_macros.h Source File</title>
+<title>FE: Member List</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,6 +27,22 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+window.MathJax = {
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/ams']
+  },
+  tex: {
+    macros: {},
+    packages: ['base','configmacros','ams']
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
@@ -107,7 +123,7 @@ document.addEventListener('DOMContentLoaded', codefold.init);
   </div>
 </div>
 <script type="text/javascript">
-document.addEventListener('DOMContentLoaded',() => { initNavTree('log__macros_8h_source.html','',''); });
+document.addEventListener('DOMContentLoaded',() => { initNavTree('structfe_1_1Log_1_1FmtLoc.html','',''); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -130,40 +146,21 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('log__macros_8h
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">log_macros.h</div></div>
+  <div class="headertitle"><div class="title">fe::Log::FmtLoc&lt; Args &gt; Member List</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="log__macros_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="log_8h.html">fe/log.h</a>&quot;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"></span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">/// @name Logging Macros</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">/// Shorthands for the fe::Log::Level%s that expect a `log()` in scope.</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">/// They are in a header of their own, so including fe/log.h does not drag these macros in.</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">///@{</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// clang-format off</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="log__macros_8h.html#a16e6a53bea50271aa28355f071f7df6b">   10</a></span><span class="preprocessor">#define ELOG(...) log().log(fe::Log::Level::Error,   __FILE__, __LINE__, __VA_ARGS__)</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="log__macros_8h.html#a32648fc31390d09eaa0cc2ef0afeb02a">   11</a></span><span class="preprocessor">#define WLOG(...) log().log(fe::Log::Level::Warn,    __FILE__, __LINE__, __VA_ARGS__)</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="log__macros_8h.html#a0c221110c77b993968e98cb53c0d652e">   12</a></span><span class="preprocessor">#define ILOG(...) log().log(fe::Log::Level::Info,    __FILE__, __LINE__, __VA_ARGS__)</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="log__macros_8h.html#a35e71de09dfd64892a48e3f7c56c5619">   13</a></span><span class="preprocessor">#define VLOG(...) log().log(fe::Log::Level::Verbose, __FILE__, __LINE__, __VA_ARGS__)</span><span class="comment"></span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">/// Vaporizes to nothingness in `Release` build.</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#ifndef NDEBUG</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="log__macros_8h.html#a87fe05eb8767a6b1abf71eea0bdcfcac">   16</a></span><span class="preprocessor">#define DLOG(...) log().log(fe::Log::Level::Debug,   __FILE__, __LINE__, __VA_ARGS__)</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="log__macros_8h.html#a69dcfba03c6d43734c25d912a4f2288c">   17</a></span><span class="preprocessor">#define TLOG(...) log().log(fe::Log::Level::Trace,   __FILE__, __LINE__, __VA_ARGS__)</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#define DLOG(...) log()</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define TLOG(...) log()</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment">// clang-format on</span><span class="comment"></span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">///@}</span></div>
-<div class="ttc" id="alog_8h_html"><div class="ttname"><a href="log_8h.html">log.h</a></div></div>
-</div><!-- fragment --></div><!-- contents -->
+
+<p>This is the complete list of members for <a class="el" href="structfe_1_1Log_1_1FmtLoc.html">fe::Log::FmtLoc&lt; Args &gt;</a>, including all inherited members.</p>
+<table class="directory">
+  <tr class="even"><td class="entry"><a class="el" href="structfe_1_1Log_1_1FmtLoc.html#aab77afd907e7fb2f82843423a7c5c4b8">fmt</a></td><td class="entry"><a class="el" href="structfe_1_1Log_1_1FmtLoc.html">fe::Log::FmtLoc&lt; Args &gt;</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="structfe_1_1Log_1_1FmtLoc.html#aa4ff5bc7fc62f42b39dd9a3d9632a95b">FmtLoc</a>(const S &amp;fmt, std::source_location loc=std::source_location::current())</td><td class="entry"><a class="el" href="structfe_1_1Log_1_1FmtLoc.html">fe::Log::FmtLoc&lt; Args &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="structfe_1_1Log_1_1FmtLoc.html#a5f3ef7995312a1a4ddec23977502f5e3">loc</a></td><td class="entry"><a class="el" href="structfe_1_1Log_1_1FmtLoc.html">fe::Log::FmtLoc&lt; Args &gt;</a></td><td class="entry"></td></tr>
+</table></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="dir_fb87ea66e879fc34aa3bf8f21b7c38f7.html">fe</a></li><li class="navelem"><a href="log__macros_8h.html">log_macros.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
   </ul>
 </div>
