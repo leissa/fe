@@ -27,7 +27,7 @@ cmake --build build --target docs
 
 Formatting/lint-style checks are defined in `.pre-commit-config.yaml` and run via `pre-commit run --all-files`: `clang-format` (see `.clang-format`) plus the configured whitespace/YAML hooks. There is no separate CMake lint target.
 
-CI (`.github/workflows/`) builds Linux (gcc-14 and clang, Debug and Release), macOS, and Windows, and runs `fe-test` under Valgrind as well as ASan/LSan/UBSan.
+CI (`.github/workflows/`) builds one compiler per platform in Debug and Release - gcc-14 on Linux, Apple clang on macOS, MSVC on Windows - and runs `fe-test` under Valgrind as well as ASan/LSan/UBSan.
 A change is only done when it is leak- and UB-clean, not merely when `ctest` passes.
 
 ## Build options & toolchain
@@ -60,7 +60,7 @@ The library is organized around a few reusable frontend-building blocks that are
 - `fe::Lexer<K, S>` (`lexer.h`) is a CRTP base that handles UTF-8 decoding, character lookahead, token text accumulation (`str_`), and source location tracking (`loc_`).
 - `fe::Parser<Tok, Tag, K, S>` (`parser.h`) is a CRTP base that wraps a lexer with token lookahead, `accept`/`expect`/`eat`, `Tracker` helpers for building node spans, and the anchor-based error recovery described below.
 
-Support headers: `algo.h` (bit casts, padding, small string/range algorithms), `assert.h` (`assert`/`assertf`/`unreachable`), `cast.h` (checked/dynamic casts), `container.h` (`pop`/`lookup` helpers, `Stacklike`/`Queuelike` concepts), `dbg.h` (`fe::Dbg`, a `Loc`/`Sym` pair), `enum.h` (bit-flag enum ops), `format.h` (`ostream_formatter`, `std::format` glue), `hash.h` (`constexpr` hash mixing/combining), `log.h` (`fe::Log`, leveled logging) and `log_macros.h` (its `ELOG`/`WLOG`/... shorthands, separated so `log.h` stays macro-free), `restore.h` (`fe::Restore`, an RAII guard that restores a reference at end of scope), `span.h` (`fe::Span`/`fe::View`), `term.h` (terminal/ANSI color, incl. `fe::term::ScopedMode`), `utf8.h` (UTF-8 decode primitives), `vector.h` (`fe::Vector`, small-buffer vector), `worklist.h` (`fe::Worklist` and its `BFSWorklist`/`DFSWorklist` aliases).
+Support headers: `algo.h` (bit casts, padding, small string/range algorithms), `assert.h` (`assert`/`assertf`/`unreachable`), `cast.h` (checked/dynamic casts), `container.h` (`pop`/`lookup` helpers, `Stacklike`/`Queuelike` concepts), `dbg.h` (`fe::Dbg`, a `Loc`/`Sym` pair), `enum.h` (bit-flag enum ops), `format.h` (`ostream_formatter`, `std::format` glue), `hash.h` (`constexpr` hash mixing/combining), `log.h` (`fe::Log`, leveled logging; its `error`/`warn`/... shorthands capture the call site with `std::source_location`), `restore.h` (`fe::Restore`, an RAII guard that restores a reference at end of scope), `span.h` (`fe::Span`/`fe::View`), `term.h` (terminal/ANSI color, incl. `fe::term::ScopedMode`), `utf8.h` (UTF-8 decode primitives), `vector.h` (`fe::Vector`, small-buffer vector), `worklist.h` (`fe::Worklist` and its `BFSWorklist`/`DFSWorklist` aliases).
 
 `fe-lib` holds the components that need a translation unit of their own: the default `Pos`/`Loc` streaming and `dump` (`loc.h`), `fe::Snippet` (`snippet.h`), `fe::dl` (`dl.h`, dynamic library loading), `fe::sys` (`sys.h`, locating and running external commands), and `fe::Profiler` (`profile.h`, nested wall-clock spans reported as a flat table, a tree, or Chrome Trace JSON).
 It is an `OBJECT` library on purpose: link it into exactly one shared library of yours and every other consumer resolves those symbols there instead of carrying a copy.

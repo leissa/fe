@@ -1,10 +1,13 @@
 #pragma once
 
 #include <cassert>
-#include <cstdint>
+#include <concepts>
 
 #include <ostream>
 #include <print>
+#include <source_location>
+#include <string_view>
+#include <type_traits>
 
 #include "fe/assert.h"
 #include "fe/format.h"
@@ -40,6 +43,24 @@ public:
     }
     ///@}
 
+    /// A std::format_string that remembers where it was written.
+    template<class... Args>
+    struct FmtLoc {
+        template<class S>
+        requires std::convertible_to<const S&, std::string_view>
+        consteval FmtLoc(const S& fmt, std::source_location loc = std::source_location::current())
+            : fmt(fmt)
+            , loc(loc) {}
+
+        std::format_string<Args...> fmt;
+        std::source_location loc;
+    };
+
+    /// Puts the `Args` of a Log::FmtLoc parameter into a non-deduced context, so that they are deduced from the
+    /// trailing arguments and the format string keeps capturing its call site.
+    template<class... Args>
+    using Fmt = FmtLoc<std::type_identity_t<Args>...>;
+
     /// @name Log
     /// Output @p fmt to Log::ostream; does nothing if Log::ostream is `nullptr`.
     ///@{
@@ -48,12 +69,59 @@ public:
         if (ostream_ && level <= max_level_) emit(level, loc, fmt, std::forward<Args>(args)...);
     }
 
-    /// A `__FILE__`/`__LINE__` pair is no Loc: it points into *your* source, which has no fe::Src.
+    /// A std::source_location is no Loc: it points into *your* source, which has no fe::Src.
     template<class... Args>
-    void log(Level level, const char* file, uint32_t line, std::format_string<Args...> fmt, Args&&... args) const {
+    void log(Level level, std::source_location where, std::format_string<Args...> fmt, Args&&... args) const {
         if (ostream_ && level <= max_level_)
-            emit(level, std::format("{}:{}", file, line), fmt, std::forward<Args>(args)...);
+            emit(level, std::format("{}:{}", where.file_name(), where.line()), fmt, std::forward<Args>(args)...);
     }
+
+    /// Points at the call site.
+    template<class... Args>
+    void log(Level level, Fmt<Args...> fmt, Args&&... args) const {
+        log(level, fmt.loc, fmt.fmt, std::forward<Args>(args)...);
+    }
+    ///@}
+
+    /// @name Level Shorthands
+    /// Log at a fixed Level, pointing at the call site.
+    ///@{
+    template<class... Args>
+    void e(Fmt<Args...> fmt, Args&&... args) const {
+        log(Level::Error, fmt, std::forward<Args>(args)...);
+    }
+    template<class... Args>
+    void w(Fmt<Args...> fmt, Args&&... args) const {
+        log(Level::Warn, fmt, std::forward<Args>(args)...);
+    }
+    template<class... Args>
+    void i(Fmt<Args...> fmt, Args&&... args) const {
+        log(Level::Info, fmt, std::forward<Args>(args)...);
+    }
+    template<class... Args>
+    void v(Fmt<Args...> fmt, Args&&... args) const {
+        log(Level::Verbose, fmt, std::forward<Args>(args)...);
+    }
+    ///@}
+
+    /// @name Debug Shorthands
+    /// Vaporize to nothingness in `Release` build; the arguments are still evaluated.
+    ///@{
+#ifndef NDEBUG
+    template<class... Args>
+    void d(Fmt<Args...> fmt, Args&&... args) const {
+        log(Level::Debug, fmt, std::forward<Args>(args)...);
+    }
+    template<class... Args>
+    void t(Fmt<Args...> fmt, Args&&... args) const {
+        log(Level::Trace, fmt, std::forward<Args>(args)...);
+    }
+#else
+    template<class... Args>
+    void d(Fmt<Args...>, Args&&...) const {}
+    template<class... Args>
+    void t(Fmt<Args...>, Args&&...) const {}
+#endif
     ///@}
 
     /// @name Breakpoints

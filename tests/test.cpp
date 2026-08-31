@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <queue>
+#include <source_location>
 #include <stack>
 #include <unordered_map>
 #include <unordered_set>
@@ -884,13 +885,36 @@ TEST_CASE("Log") {
     CHECK(log);
     CHECK(log.level() == Level::Info);
 
-    log.log(Level::Info, "foo.cpp", 23, "hi {}", 42);
-    CHECK(oss.str() == expect(Level::Info, "foo.cpp:23", "hi 42"));
+    auto here = std::source_location::current();
+    log.log(Level::Info, here, "hi {}", 42);
+    auto where = std::format("{}:{}", here.file_name(), here.line());
+    CHECK(oss.str() == expect(Level::Info, where, "hi 42"));
+
+    SUBCASE("the shorthands point at their call site") {
+        oss.str({});
+        auto line = std::source_location::current().line() + 1;
+        log.i("hi {}", 42);
+        CHECK(oss.str() == expect(Level::Info, std::format("{}:{}", here.file_name(), line), "hi 42"));
+    }
 
     SUBCASE("levels above the maximum are dropped") {
         oss.str({});
-        log.log(Level::Debug, "foo.cpp", 23, "nope");
+        log.log(Level::Debug, here, "nope");
+        log.d("nope");
+        log.t("nope");
         CHECK(oss.str().empty());
+    }
+
+    SUBCASE("Error and Warn shorthands") {
+        oss.str({});
+        auto line = std::source_location::current().line() + 1;
+        log.e("boom {}", 1);
+        CHECK(oss.str() == expect(Level::Error, std::format("{}:{}", here.file_name(), line), "boom 1"));
+
+        oss.str({});
+        line = std::source_location::current().line() + 1;
+        log.w("meh");
+        CHECK(oss.str() == expect(Level::Warn, std::format("{}:{}", here.file_name(), line), "meh"));
     }
 
     SUBCASE("a Loc names the place instead") {
