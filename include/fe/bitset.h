@@ -118,11 +118,6 @@ public:
         swap(*this, other);
         return *this;
     }
-    friend constexpr void swap(Bitset& b1, Bitset& b2) noexcept {
-        using std::swap;
-        swap(b1.data_, b2.data_);
-        swap(b1.num_words_, b2.num_words_);
-    }
     ///@}
 
     /// @name Access
@@ -220,11 +215,6 @@ public:
             words()[i] &= ~other.words()[i];
         return *this;
     }
-
-    friend constexpr Bitset operator|(Bitset b1, const Bitset& b2) { return std::move(b1 |= b2); }
-    friend constexpr Bitset operator&(Bitset b1, const Bitset& b2) { return std::move(b1 &= b2); }
-    friend constexpr Bitset operator^(Bitset b1, const Bitset& b2) { return std::move(b1 ^= b2); }
-    friend constexpr Bitset operator-(Bitset b1, const Bitset& b2) { return std::move(b1 -= b2); }
     ///@}
 
     /// @name Comparisons
@@ -260,8 +250,6 @@ public:
     [[nodiscard]] constexpr iterator end() const noexcept { return {}; }
     ///@}
 
-    /// @name Hash
-    ///@{
     [[nodiscard]] constexpr size_t hash() const noexcept {
         auto res = hash_begin();
         for (size_t i = 0, e = used(); i != e; ++i) {
@@ -271,6 +259,8 @@ public:
         }
         return res;
     }
+
+    void dump() const { std::cout << (*this) << std::endl; }
 
     struct Hash {
         constexpr size_t operator()(const Bitset& bitset) const noexcept { return bitset.hash(); }
@@ -282,11 +272,11 @@ public:
         return H::combine(std::move(h), bitset.hash());
     }
 #endif
-    ///@}
 
-    /// @name Output
-    ///@{
-    void dump() const { std::cout << (*this) << std::endl; }
+    friend constexpr Bitset operator|(Bitset b1, const Bitset& b2) { return std::move(b1 |= b2); }
+    friend constexpr Bitset operator&(Bitset b1, const Bitset& b2) { return std::move(b1 &= b2); }
+    friend constexpr Bitset operator^(Bitset b1, const Bitset& b2) { return std::move(b1 ^= b2); }
+    friend constexpr Bitset operator-(Bitset b1, const Bitset& b2) { return std::move(b1 -= b2); }
 
     friend std::ostream& operator<<(std::ostream& os, const Bitset& bitset) {
         os << '{';
@@ -296,7 +286,12 @@ public:
         }
         return os << '}';
     }
-    ///@}
+
+    friend constexpr void swap(Bitset& b1, Bitset& b2) noexcept {
+        using std::swap;
+        swap(b1.data_, b2.data_);
+        swap(b1.num_words_, b2.num_words_);
+    }
 
 private:
     static constexpr uint64_t bit(size_t i) noexcept { return uint64_t(1) << (i % Bits_Per_Word); }
