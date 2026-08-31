@@ -30,7 +30,7 @@ var NAVTREE =
       [ "Header-only", "index.html#autotoc_md3", [
         [ "Core", "index.html#autotoc_md4", null ],
         [ "Lexing &amp; Parsing", "index.html#autotoc_md5", null ],
-        [ "Source Locations &amp; Diagnostics", "index.html#autotoc_md6", null ],
+        [ "Diagnostics", "index.html#autotoc_md6", null ],
         [ "Data Structures", "index.html#autotoc_md7", null ],
         [ "Odds &amp; Ends", "index.html#autotoc_md8", null ]
       ] ],

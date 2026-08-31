@@ -19,7 +19,7 @@ var searchData=
   ['dfsworklist_16',['DFSWorklist',['../namespacefe.html#a549e9d25223dacc899ddef74bf627b3f',1,'fe']]],
   ['diag_17',['Diag',['../structfe_1_1Driver.html#structfe_1_1Driver_1_1Diag',1,'fe::Driver']]],
   ['diag_18',['diag',['../structfe_1_1Driver.html#ad7f9e43fa0192ec7e4ac9dcd8098dbb3',1,'fe::Driver']]],
-  ['diagnostics_19',['Source Locations &amp;amp; Diagnostics',['../index.html#autotoc_md6',1,'']]],
+  ['diagnostics_19',['Diagnostics',['../index.html#autotoc_md6',1,'']]],
   ['difference_5ftype_20',['difference_type',['../classfe_1_1Bitset_1_1iterator.html#a73a160b03f3b981723ad0888095b08c5',1,'fe::Bitset::iterator::difference_type'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html#a94ffa4422a31b43d9d55071c2992d2f5',1,'fe::XTrie::Set::iterator::difference_type']]],
   ['dir_21',['Dir',['../classfe_1_1lct_1_1Node.html#aafc0dc1bac212db5878282add778b971',1,'fe::lct::Node']]],
   ['dir_22',['dir',['../classfe_1_1lct_1_1Node.html#abdbc999fe7531a0e289613355f961fa3',1,'fe::lct::Node']]],
