@@ -4,6 +4,7 @@ project(fe VERSION 0.12.0)
 
 include(CMakePackageConfigHelpers)
 include(CheckIncludeFileCXX)
+include(GenerateExportHeader)
 include(GNUInstallDirs)
 
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
@@ -17,13 +18,11 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     include(CTest) # defines BUILD_TESTING
-    if(BUILD_TESTING)
-        set(FE_LIB ON) # the tests rely on the default Loc rendering
-    endif()
 endif()
 
-# fe::dl, fe::sys, the default Pos/Loc rendering and fe::Snippet need a translation unit of their own.
-option(FE_LIB "If ON, additionally build fe-lib with the components that are not header-only." OFF)
+# fe::Diag - and hence fe::Driver and fe::Error - plus fe::Snippet, fe::dl, fe::sys, and fe::Profiler
+# need a translation unit of their own; everything else stays header-only either way.
+option(FE_LIB "If ON, build fe-lib with the components that are not header-only." ON)
 
 add_library(fe INTERFACE)
 
@@ -40,6 +39,7 @@ target_sources(fe
             include/fe/cast.h
             include/fe/container.h
             include/fe/dbg.h
+            include/fe/diag.h
             include/fe/dl.h
             include/fe/enum.h
             include/fe/error.h
@@ -90,7 +90,9 @@ if(FE_LIB)
     add_library(fe-lib OBJECT)
     target_sources(fe-lib
         PRIVATE
+            src/fe/diag.cpp
             src/fe/dl.cpp
+            src/fe/driver.cpp
             src/fe/loc.cpp
             src/fe/profile.cpp
             src/fe/snippet.cpp
@@ -103,6 +105,28 @@ if(FE_LIB)
             ${CMAKE_DL_LIBS}
     )
     set_target_properties(fe-lib PROPERTIES POSITION_INDEPENDENT_CODE ON)
+
+    # A vtable is a data symbol and Windows resolves an exported one only through __declspec(dllimport);
+    # see the FE_API annotation on fe::Diag.
+    generate_export_header(fe-lib
+        BASE_NAME FE
+        EXPORT_MACRO_NAME FE_API
+        EXPORT_FILE_NAME ${CMAKE_CURRENT_BINARY_DIR}/include/fe/api.h
+    )
+    # CMake defines <target>_EXPORTS on its own only for a SHARED or MODULE library.
+    # fe-lib is an OBJECT library, so whoever links it into a shared library of their own has to say so, too.
+    target_compile_definitions(fe-lib PRIVATE fe_lib_EXPORTS)
+    # A standalone build has no shared library to export from; a consumer that links fe-lib into a
+    # static one of its own defines FE_STATIC_DEFINE itself.
+    if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+        target_compile_definitions(fe INTERFACE FE_STATIC_DEFINE)
+    endif()
+    target_include_directories(fe INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>)
+
+    install(
+        FILES "${CMAKE_CURRENT_BINARY_DIR}/include/fe/api.h"
+        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/fe"
+    )
 endif()
 
 set(targets_export_name "fe-targets")

@@ -44,6 +44,14 @@ struct Pos {
 /// @warning Loc::src is only a pointer and it is your job to guarantee that the underlying
 /// fe::Src outlives this Loc%ation; fe::SrcMap owns one for you.
 struct Loc {
+    /// How much of a Loc a diagnostic spells out; see Diag::loc_style.
+    enum class Style {
+        Full,   ///< `path:row:col-row:col` - the whole range.
+        RowCol, ///< `path:row:col`
+        Row,    ///< `path:row`
+        MSVC,   ///< `path(row,col)`
+    };
+
     constexpr Loc() = default; ///< Creates an invalid Loc%ation.
     constexpr Loc(const Src* src, Pos begin, Pos end)
         : src(src)

@@ -1,11 +1,12 @@
 #pragma once
 
-#include <cstdint>
+#include <cassert>
 
-#include <functional>
-#include <string>
+#include <memory>
+#include <utility>
 
 #include "fe/dbg.h"
+#include "fe/diag.h"
 #include "fe/src.h"
 #include "fe/sym.h"
 #include "fe/vector.h"
@@ -14,39 +15,28 @@ namespace fe {
 
 /// Use/derive from this class for "global" variables that you need all over the place.
 /// Well, there are not really global - that's the point of this class.
-/// It manages a SymPool, a SrcMap, the interned Dbg%s, and how an Error lays out and renders a diagnostic.
-/// @note Deliberately free of virtual functions: a polymorphic Driver has a vtable, and a vtable exported
-/// from a shared library is a *data* symbol that Windows only resolves through `__declspec(dllimport)`.
+/// It manages a SymPool, a SrcMap, the interned Dbg%s, and the Diag that lays out a diagnostic.
+/// @note Deliberately free of virtual functions - Driver::diag is where you plug in behavior of your own.
 struct Driver : public SymPool {
 public:
-    Driver()                  = default;
-    Driver(Driver&&)          = default;
-    ~Driver()                 = default;
+    Driver();
+    Driver(Driver&&) = default;
+    ~Driver();
     Driver(const Driver&)     = delete;
     Driver& operator=(Driver) = delete;
 
     /// @name Diagnostics
     /// @see fe::Error
     ///@{
-    /// How an Error lays out - and how much of it it keeps.
-    struct Diag {
-        uint32_t gutter     = 5;     ///< Width of the line-number column.
-        uint32_t max_rows   = 8;     ///< Rows a Snippet streams before eliding its middle; `0` elides nothing.
-        uint32_t max_errors = 0;     ///< Errors recorded before the rest is dropped; `0` keeps everything.
-        bool no_snippet     = false; ///< If `true`, a diagnostic is only its header line.
-        bool werror         = false; ///< If `true`, a warning is recorded as an error.
-    };
+    Diag& diag() { return *diag_; }
+    const Diag& diag() const { return *diag_; }
 
-    /// Renders the text of one Error::Msg; a formatter is handed in and its result returned.
-    /// Defaults to the identity; assign to postprocess the result - or to invoke the formatter a second time,
-    /// e.g. once the first pass turns out to have rendered two distinct entities under the same name.
-    /// @warning Must stay callable - assign a hook, never an empty `std::function`.
-    /// @warning The formatter captures its arguments by reference and is only valid for that one call.
-    /// @warning A hook that captures its Driver does not survive a move; keep the Driver pinned.
-    using Render = std::function<std::string(const std::function<std::string()>&)>;
-
-    Diag diag;
-    Render render = [](const std::function<std::string()>& fmt) { return fmt(); };
+    /// Installs @p diag - a subclass of your own, typically - and yields the previous one.
+    /// @warning Never `nullptr`.
+    std::unique_ptr<Diag> diag(std::unique_ptr<Diag> diag) {
+        assert(diag && "a Driver always has a Diag");
+        return std::exchange(diag_, std::move(diag));
+    }
     ///@}
 
     /// @name Source Files
@@ -74,6 +64,7 @@ public:
     ///@}
 
 private:
+    std::unique_ptr<Diag> diag_;
     SrcMap src_;
     Vector<Dbg> dbgs_         = {Dbg()}; ///< Key `0` is the empty Dbg.
     DbgMap<uint32_t> dbg2key_ = {

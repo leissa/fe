@@ -308,35 +308,35 @@ TEST_CASE("Error") {
     }
 
     SUBCASE("Diag lays the diagnostic out") {
-        drv.diag.no_snippet = true;
+        drv.diag().no_snippet = true;
         err.clear();
         err.error(Loc(src, Pos(4), Pos(5)), "just the header line");
         CHECK(std::format("{}", err)
               == "test.let:1:5: error: just the header line\n"
                  "1 error(s) encountered\n");
 
-        drv.diag.no_snippet = false;
-        drv.diag.gutter     = 2;
+        drv.diag().no_snippet = false;
+        drv.diag().gutter     = 2;
         CHECK(std::format("{}", err)
               == "test.let:1:5: error: just the header line\n"
                  " 1 | let x = 1;\n"
                  "   |     ^\n"
                  "1 error(s) encountered\n");
-        drv.diag.gutter = 5;
+        drv.diag().gutter = 5;
     }
 
     SUBCASE("Diag::werror records a warning as an error") {
-        drv.diag.werror = true;
+        drv.diag().werror = true;
         err.clear();
         err.warn(Loc(src, Pos(4), Pos(5)), "promoted");
         CHECK(err.num_errors() == 1);
         CHECK(err.num_warnings() == 0);
         CHECK(!err.ok());
-        drv.diag.werror = false;
+        drv.diag().werror = false;
     }
 
     SUBCASE("Diag::max_errors drops the rest") {
-        drv.diag.max_errors = 1;
+        drv.diag().max_errors = 1;
         err.clear();
         err.error(Loc(src, Pos(4), Pos(5)), "kept").note("kept note");
         err.error(Loc(src, Pos(15), Pos(16)), "dropped").note("dropped note");
@@ -344,7 +344,7 @@ TEST_CASE("Error") {
         CHECK(err.num_notes() == 1);
         CHECK(err.truncated());
         CHECK(std::format("{}", err).ends_with("1 error(s) encountered; further diagnostics dropped\n"));
-        drv.diag.max_errors = 0;
+        drv.diag().max_errors = 0;
     }
 
     SUBCASE("report streams and claims everything") {
@@ -405,19 +405,80 @@ TEST_CASE("Error") {
         }
     }
 
-    SUBCASE("Driver::render may render a message twice") {
-        auto calls   = 0;
-        auto retry   = fe::Driver();
-        retry.render = [&](const std::function<std::string()>& fmt) {
-            ++calls;
-            fmt();
-            return fmt();
+    SUBCASE("Diag::render may render a message twice") {
+        struct Retry : fe::Diag {
+            std::string render(const std::function<std::string()>& fmt) const override {
+                ++calls;
+                fmt();
+                return fmt();
+            }
+            mutable int calls = 0;
         };
+
+        auto retry = fe::Driver();
+        auto diag  = std::make_unique<Retry>();
+        auto* raw  = diag.get();
+        retry.diag(std::move(diag));
 
         auto e = fe::Error(retry);
         e.error(Loc(), "hi");
-        CHECK(calls == 1);
+        CHECK(raw->calls == 1);
         CHECK(e.msgs().front().str == "hi");
+    }
+
+    SUBCASE("Diag::loc_style shortens the position") {
+        err.clear();
+        drv.diag().no_snippet = true;
+        err.error(Loc(src, Pos(4), Pos(5)), "oops");
+
+        drv.diag().loc_style = fe::Loc::Style::RowCol;
+        CHECK(std::format("{}", err).starts_with("test.let:1:5: error: oops\n"));
+        drv.diag().loc_style = fe::Loc::Style::Row;
+        CHECK(std::format("{}", err).starts_with("test.let:1: error: oops\n"));
+        drv.diag().loc_style = fe::Loc::Style::MSVC;
+        CHECK(std::format("{}", err).starts_with("test.let(1,5): error: oops\n"));
+
+        drv.diag().loc_style  = fe::Loc::Style::Full;
+        drv.diag().no_snippet = false;
+    }
+
+    SUBCASE("a backslash escapes a backtick") {
+        err.clear();
+        drv.diag().no_snippet = true;
+        err.error(Loc(src, Pos(4), Pos(5)), "a literal \\` and a `citation`");
+        CHECK(std::format("{}", err).starts_with("test.let:1:5: error: a literal ` and a `citation`\n"));
+
+        err.clear();
+        err.error(Loc(src, Pos(4), Pos(5)), "\\`not a citation\\`");
+        CHECK(std::format("{}", err).starts_with("test.let:1:5: error: `not a citation`\n"));
+
+        { // an escaped backtick stays plain text where a citation would be colored
+            auto _ = fe::term::ScopedMode(fe::term::Mode::Always);
+            err.clear();
+            err.error(Loc(src, Pos(4), Pos(5)), "\\`plain\\` and `cited`");
+            auto str = std::format("{}", err);
+            CHECK(str.find("`plain`") != std::string::npos);
+            CHECK(str.find("`cited`") == std::string::npos);
+        }
+        drv.diag().no_snippet = false;
+    }
+
+    SUBCASE("a Diag of your own lays a diagnostic out from scratch") {
+        struct Terse : fe::Diag {
+            void header(std::ostream& os, Loc loc, Tag, std::string_view str) const override {
+                os << loc.src->path().string() << ':' << loc.src->row(loc.begin) << ": " << str << '\n';
+            }
+            void snippet(std::ostream&, Loc, Tag) const override {}
+            void summary(std::ostream&, size_t, size_t, bool) const override {}
+        };
+
+        auto terse = fe::Driver();
+        terse.diag(std::make_unique<Terse>());
+        auto [tsrc, _] = terse.src().add("test.let", "let x = 1;\n");
+
+        auto e = fe::Error(terse);
+        e.error(Loc(tsrc, Pos(4), Pos(5)), "expected ';'");
+        CHECK(std::format("{}", e) == "test.let:1: expected ';'\n");
     }
 
     fe::term::set_mode(old_mode);
