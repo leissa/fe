@@ -194,31 +194,37 @@ protected:
 
     /// @name Diagnostics
     /// The defaults @p S may replace with one of its own.
+    /// Each yields the Error it reported into, so a Note can be chained.
     ///@{
     fe::Error& error() { return self().driver().error(); }
     const fe::Error& error() const { return self().driver().error(); }
 
     /// Parser::expect did not find @p what while parsing @p ctxt.
     /// Backtick @p what yourself if it is a literal token rather than a phrase.
-    void syntax_err(std::string_view what, Tok tok, std::string_view ctxt) {
+    fe::Error& syntax_err(std::string_view what, Tok tok, std::string_view ctxt) {
         static_assert(
             requires(S& s) { s.driver(); },
             "provide `fe::Driver& driver()` in your parser - or a `syntax_err` of your own");
-        error().e(tok.loc(), "expected {}, got `{}` while parsing {}", what, tok, ctxt);
+        return error().e(tok.loc(), "expected {}, got `{}` while parsing {}", what, tok, ctxt);
     }
 
     /// As above but uses Parser::ahead as @p tok.
-    void syntax_err(std::string_view what, std::string_view ctxt) { self().syntax_err(what, ahead(), ctxt); }
+    /// @note `decltype(auto)`, so an override of the funnel above may yield something else - or nothing.
+    decltype(auto) syntax_err(std::string_view what, std::string_view ctxt) {
+        return self().syntax_err(what, ahead(), ctxt);
+    }
 
     /// As above but spells @p tag out via Parser::tag2str_.
-    void syntax_err(Tag tag, std::string_view ctxt) { self().syntax_err(tag2str_(tag), ahead(), ctxt); }
+    decltype(auto) syntax_err(Tag tag, std::string_view ctxt) {
+        return self().syntax_err(tag2str_(tag), ahead(), ctxt);
+    }
 
     /// Parser::recover discarded @p tok while parsing @p ctxt.
-    void unanchored_err(Tok tok, std::string_view ctxt) {
+    fe::Error& unanchored_err(Tok tok, std::string_view ctxt) {
         static_assert(
             requires(S& s) { s.driver(); },
             "provide `fe::Driver& driver()` in your parser - or an `unanchored_err` of your own");
-        error().e(tok.loc(), "ignoring unmatched `{}` while parsing {}", tok, ctxt);
+        return error().e(tok.loc(), "ignoring unmatched `{}` while parsing {}", tok, ctxt);
     }
     ///@}
 

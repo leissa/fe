@@ -133,24 +133,25 @@ protected:
 
     /// @name Diagnostics
     /// The defaults @p S may replace with one of its own.
+    /// Each yields the Error it reported into, so a Note can be chained.
     ///@{
     fe::Error& error() { return self().driver().error(); }
     const fe::Error& error() const { return self().driver().error(); }
 
     /// Lexer::recover_utf8 discarded the malformed bytes at Lexer::loc_.
-    void utf8_err() {
+    fe::Error& utf8_err() {
         static_assert(
             requires(S& s) { s.driver(); },
             "provide `fe::Driver& driver()` in your lexer - or a `utf8_err` of your own");
-        error().e(loc_, "invalid UTF-8 sequence");
+        return error().e(loc_, "invalid UTF-8 sequence");
     }
 
     /// Lexer::recover_char discarded @p c at Lexer::loc_.
-    void char_err(char32_t c) {
+    fe::Error& char_err(char32_t c) {
         static_assert(
             requires(S& s) { s.driver(); },
             "provide `fe::Driver& driver()` in your lexer - or a `char_err` of your own");
-        error().e(loc_, "invalid input character `{}`", utf8::Char32(c));
+        return error().e(loc_, "invalid input character `{}`", utf8::Char32(c));
     }
     ///@}
 

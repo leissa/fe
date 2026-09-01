@@ -96,8 +96,10 @@ The derived class `S` must provide `fe::Driver& driver()` (and `friend` the base
 
 Both come with a default implementation that `S` may replace with one of its own:
 
-- `void utf8_err()` - `Lexer::recover_utf8` discarded the malformed bytes at `loc_`.
-- `void char_err(char32_t)` - `Lexer::recover_char` discarded that character at `loc_`.
+- `fe::Error& utf8_err()` - `Lexer::recover_utf8` discarded the malformed bytes at `loc_`.
+- `fe::Error& char_err(char32_t)` - `Lexer::recover_char` discarded that character at `loc_`.
+
+Each yields the `Error` it reported into, so an override - or a caller - can chain a `note` onto it.
 
 Recovery is a skip: `recover_utf8` swallows a whole run of malformed UTF-8 and reports it once - check it *before* your token dispatch, since `utf8::Invalid` is no code point and matches no rule of yours - and `recover_char` swallows the one character nothing else matched, so it belongs at the very end of your dispatch (never at `utf8::EoF`, or the lexer spins).
 Both want `Lexer::start` to have run, so `loc_` spans exactly what was discarded.
@@ -111,9 +113,11 @@ The derived class `S` must provide (and `friend` the base if they are private):
 
 Both diagnostics come with a default implementation that `S` may replace with one of its own:
 
-- `void syntax_err(std::string_view what, Tok, std::string_view ctxt)` - `what` was expected but that `Tok` showed up.
-  The `(std::string_view what, std::string_view ctxt)` and `(Tag, std::string_view ctxt)` overloads funnel through it, so overriding that one suffices.
-- `void unanchored_err(Tok, std::string_view ctxt)` - `Parser::recover` discarded this token.
+- `fe::Error& syntax_err(std::string_view what, Tok, std::string_view ctxt)` - `what` was expected but that `Tok` showed up.
+  The `(std::string_view what, std::string_view ctxt)` and `(Tag, std::string_view ctxt)` overloads funnel through it, so overriding that one suffices; they yield `decltype(auto)` and thus follow whatever the override returns.
+- `fe::Error& unanchored_err(Tok, std::string_view ctxt)` - `Parser::recover` discarded this token.
+
+Each yields the `Error` it reported into, so an override - or a caller - can chain a `note` onto it.
 
 The Parser dispatches through `S`, so a declaration there wins - but it hides *all* base overloads of that name, so add `using Super::syntax_err;`.
 
