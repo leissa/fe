@@ -22,6 +22,9 @@ public:
         Error,
         Warn,
         Note,
+        E = Error,
+        W = Warn,
+        N = Note,
     };
 
     Diag()            = default;

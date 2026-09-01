@@ -258,9 +258,9 @@ TEST_CASE("Error") {
     CHECK(err.num_errors() == 0);
     CHECK(err.num_warnings() == 0);
 
-    err.error(Loc(src, Pos(4), Pos(5)), "expected '{}'", ';');
-    err.warn(Loc(src, Pos(15), Pos(16)), "unused variable '{}'", "x");
-    err.note(Loc(src, Pos(26), Pos(27)), "declared here");
+    err.e(Loc(src, Pos(4), Pos(5)), "expected '{}'", ';')
+        .w(Loc(src, Pos(15), Pos(16)), "unused variable '{}'", "x")
+        .n(Loc(src, Pos(26), Pos(27)), "declared here");
 
     CHECK(!err.ok());
     CHECK(err.num_errors() == 1);
@@ -283,7 +283,7 @@ TEST_CASE("Error") {
 
     SUBCASE("a note without a Loc stays a continuation line") {
         err.clear();
-        err.error(Loc(src, Pos(4), Pos(5)), "expected '{}'", ';').note("inserted here");
+        err.e(Loc(src, Pos(4), Pos(5)), "expected '{}'", ';').n("inserted here");
         CHECK(err.msgs().front().notes.size() == 1);
         CHECK(std::format("{}", err)
               == "test.let:1:5: error: expected ';'\n"
@@ -296,13 +296,12 @@ TEST_CASE("Error") {
     SUBCASE("a note drops a Loc that points nowhere new") {
         err.clear();
         auto loc = Loc(src, Pos(4), Pos(5));
-        err.error(loc, "oops");
-        err.note(loc, "same spot"); // overlaps the primary Loc
+        err.e(loc, "oops").n(loc, "same spot"); // overlaps the primary Loc
         CHECK(err.num_notes() == 0);
-        err.note(Loc(), "no Loc"); // degrades to a continuation instead of vanishing
+        err.n(Loc(), "no Loc"); // degrades to a continuation instead of vanishing
         CHECK(err.num_notes() == 1);
         CHECK(!err.msgs().front().notes.front().loc);
-        err.note(Loc(src, Pos(15), Pos(16)), "elsewhere");
+        err.n(Loc(src, Pos(15), Pos(16)), "elsewhere");
         CHECK(err.num_notes() == 2);
         CHECK(err.msgs().front().notes.size() == 2);
     }
@@ -310,7 +309,7 @@ TEST_CASE("Error") {
     SUBCASE("Diag lays the diagnostic out") {
         drv.diag().no_snippet = true;
         err.clear();
-        err.error(Loc(src, Pos(4), Pos(5)), "just the header line");
+        err.e(Loc(src, Pos(4), Pos(5)), "just the header line");
         CHECK(std::format("{}", err)
               == "test.let:1:5: error: just the header line\n"
                  "1 error(s) encountered\n");
@@ -328,7 +327,7 @@ TEST_CASE("Error") {
     SUBCASE("Diag::werror records a warning as an error") {
         drv.diag().werror = true;
         err.clear();
-        err.warn(Loc(src, Pos(4), Pos(5)), "promoted");
+        err.w(Loc(src, Pos(4), Pos(5)), "promoted");
         CHECK(err.num_errors() == 1);
         CHECK(err.num_warnings() == 0);
         CHECK(!err.ok());
@@ -338,8 +337,10 @@ TEST_CASE("Error") {
     SUBCASE("Diag::max_errors drops the rest") {
         drv.diag().max_errors = 1;
         err.clear();
-        err.error(Loc(src, Pos(4), Pos(5)), "kept").note("kept note");
-        err.error(Loc(src, Pos(15), Pos(16)), "dropped").note("dropped note");
+        err.e(Loc(src, Pos(4), Pos(5)), "kept")
+            .n("kept note")
+            .e(Loc(src, Pos(15), Pos(16)), "dropped")
+            .n("dropped note");
         CHECK(err.num_errors() == 1);
         CHECK(err.num_notes() == 1);
         CHECK(err.truncated());
@@ -349,7 +350,7 @@ TEST_CASE("Error") {
 
     SUBCASE("report streams and claims everything") {
         err.clear();
-        err.warn(Loc(src, Pos(4), Pos(5)), "just a warning");
+        err.w(Loc(src, Pos(4), Pos(5)), "just a warning");
         std::ostringstream oss;
         CHECK(err.report(oss) == 0);
         CHECK(oss.str().ends_with("1 warning(s) encountered\n"));
@@ -360,13 +361,13 @@ TEST_CASE("Error") {
 
     SUBCASE("ack throws on errors and reports warnings") {
         err.clear();
-        err.warn(Loc(src, Pos(4), Pos(5)), "just a warning");
+        err.w(Loc(src, Pos(4), Pos(5)), "just a warning");
         std::ostringstream oss;
         err.ack(oss);
         CHECK(oss.str().ends_with("1 warning(s) encountered\n"));
         CHECK(err.empty()); // ack claims the messages
 
-        err.error(Loc(src, Pos(4), Pos(5)), "a real error");
+        err.e(Loc(src, Pos(4), Pos(5)), "a real error");
         CHECK_THROWS_AS(err.ack(oss), fe::Error::Bail);
         CHECK(err.empty()); // ... and claims them here, too
         CHECK(err.num_errors() == 0);
@@ -377,10 +378,10 @@ TEST_CASE("Error") {
         {
             fe::Driver tmp;
             auto [tmp_src, _] = tmp.src().add("gone.let", "let x = 1;\n");
-            auto e            = fe::Error(tmp);
-            e.error(Loc(tmp_src, Pos(4), Pos(5)), "vanishing");
+            auto err          = fe::Error(tmp);
+            err.e(Loc(tmp_src, Pos(4), Pos(5)), "vanishing");
             try {
-                e.bail();
+                err.bail();
             } catch (const fe::Error::Bail& bail) {
                 CHECK(bail.num_errors() == 1);
                 what = bail.what();
@@ -393,9 +394,9 @@ TEST_CASE("Error") {
     SUBCASE("a chain on a temporary bails out in one expression") {
         try {
             fe::Error(drv)
-                .error(Loc(src, Pos(4), Pos(5)), "boom")
-                .note("why")
-                .note(Loc(src, Pos(15), Pos(16)), "and there")
+                .e(Loc(src, Pos(4), Pos(5)), "boom")
+                .n("why")
+                .n(Loc(src, Pos(15), Pos(16)), "and there")
                 .bail();
         } catch (const fe::Error::Bail& bail) {
             auto what = std::string(bail.what());
@@ -420,16 +421,16 @@ TEST_CASE("Error") {
         auto* raw  = diag.get();
         retry.diag(std::move(diag));
 
-        auto e = fe::Error(retry);
-        e.error(Loc(), "hi");
+        auto err = fe::Error(retry);
+        err.e(Loc(), "hi");
         CHECK(raw->calls == 1);
-        CHECK(e.msgs().front().str == "hi");
+        CHECK(err.msgs().front().str == "hi");
     }
 
     SUBCASE("Diag::loc_style shortens the position") {
         err.clear();
         drv.diag().no_snippet = true;
-        err.error(Loc(src, Pos(4), Pos(5)), "oops");
+        err.e(Loc(src, Pos(4), Pos(5)), "oops");
 
         drv.diag().loc_style = fe::Loc::Style::RowCol;
         CHECK(std::format("{}", err).starts_with("test.let:1:5: error: oops\n"));
@@ -445,17 +446,17 @@ TEST_CASE("Error") {
     SUBCASE("a backslash escapes a backtick") {
         err.clear();
         drv.diag().no_snippet = true;
-        err.error(Loc(src, Pos(4), Pos(5)), "a literal \\` and a `citation`");
+        err.e(Loc(src, Pos(4), Pos(5)), "a literal \\` and a `citation`");
         CHECK(std::format("{}", err).starts_with("test.let:1:5: error: a literal ` and a `citation`\n"));
 
         err.clear();
-        err.error(Loc(src, Pos(4), Pos(5)), "\\`not a citation\\`");
+        err.e(Loc(src, Pos(4), Pos(5)), "\\`not a citation\\`");
         CHECK(std::format("{}", err).starts_with("test.let:1:5: error: `not a citation`\n"));
 
         { // an escaped backtick stays plain text where a citation would be colored
             auto _ = fe::term::ScopedMode(fe::term::Mode::Always);
             err.clear();
-            err.error(Loc(src, Pos(4), Pos(5)), "\\`plain\\` and `cited`");
+            err.e(Loc(src, Pos(4), Pos(5)), "\\`plain\\` and `cited`");
             auto str = std::format("{}", err);
             CHECK(str.find("`plain`") != std::string::npos);
             CHECK(str.find("`cited`") == std::string::npos);
@@ -470,9 +471,9 @@ TEST_CASE("Error") {
         bare.diag().no_snippet = true;
         auto [bsrc, __]        = bare.src().add("test.let", "let x = 1;\n");
 
-        auto e = fe::Error(bare);
-        e.error(Loc(bsrc, Pos(4), Pos(5)), "a `citation` and a \\` escape");
-        CHECK(std::format("{}", e).find("a `citation` and a \\` escape") != std::string::npos);
+        auto err = fe::Error(bare);
+        err.e(Loc(bsrc, Pos(4), Pos(5)), "a `citation` and a \\` escape");
+        CHECK(std::format("{}", err).find("a `citation` and a \\` escape") != std::string::npos);
     }
 
     SUBCASE("a Diag of your own lays a diagnostic out from scratch") {
@@ -488,9 +489,9 @@ TEST_CASE("Error") {
         terse.diag(std::make_unique<Terse>());
         auto [tsrc, _] = terse.src().add("test.let", "let x = 1;\n");
 
-        auto e = fe::Error(terse);
-        e.error(Loc(tsrc, Pos(4), Pos(5)), "expected ';'");
-        CHECK(std::format("{}", e) == "test.let:1: expected ';'\n");
+        auto err = fe::Error(terse);
+        err.e(Loc(tsrc, Pos(4), Pos(5)), "expected ';'");
+        CHECK(std::format("{}", err) == "test.let:1: expected ';'\n");
     }
 
     fe::term::set_mode(old_mode);

@@ -77,9 +77,9 @@ public:
     const auto& msgs() const { return msgs_; }
     bool empty() const { return msgs_.empty(); }
     bool ok() const { return num_errors() == 0; } ///< Nothing recorded that must stop the compilation?
-    size_t num_errors() const { return num_[size_t(Tag::Error)]; }
-    size_t num_warnings() const { return num_[size_t(Tag::Warn)]; }
-    size_t num_notes() const { return num_[size_t(Tag::Note)]; }
+    size_t num_errors() const { return num_[size_t(Tag::E)]; }
+    size_t num_warnings() const { return num_[size_t(Tag::W)]; }
+    size_t num_notes() const { return num_[size_t(Tag::N)]; }
     bool truncated() const { return truncated_; } ///< Did Diag::max_errors drop anything?
     ///@}
 
@@ -100,11 +100,11 @@ public:
         return *this;
     }
 
-    template<class... Args> Error& error(Loc loc, std::format_string<Args...> s, Args&&... args) { return msg(loc, Tag::Error, s, std::forward<Args>(args)...); }
-    template<class... Args> Error& warn (Loc loc, std::format_string<Args...> s, Args&&... args) { return msg(loc, Tag::Warn,  s, std::forward<Args>(args)...); }
+    template<class... Args> Error& e(Loc loc, std::format_string<Args...> s, Args&&... args) { return msg(loc, Tag::E, s, std::forward<Args>(args)...); }
+    template<class... Args> Error& w(Loc loc, std::format_string<Args...> s, Args&&... args) { return msg(loc, Tag::W, s, std::forward<Args>(args)...); }
 
     /// A `= note:` continuation of the diagnostic being built; it has no Loc of its own to point at.
-    template<class... Args> Error& note(std::format_string<Args...> s, Args&&... args) {
+    template<class... Args> Error& n(std::format_string<Args...> s, Args&&... args) {
         note_(Loc(), [&] { return std::vformat(s.get(), std::make_format_args(args...)); });
         return *this;
     }
@@ -113,22 +113,11 @@ public:
     /// A @p loc overlapping the primary one is already covered by its snippet and so points nowhere new.
     /// An invalid @p loc points *nowhere* and degrades to the `= note:` continuation above.
     /// The renderer gives @p loc a header line of its own, so phrase the message to stand alone.
-    template<class... Args> Error& note(Loc loc, std::format_string<Args...> s, Args&&... args) {
+    template<class... Args> Error& n(Loc loc, std::format_string<Args...> s, Args&&... args) {
         if (loc && (loc & primary_loc_())) return *this;
         note_(loc, [&] { return std::vformat(s.get(), std::make_format_args(args...)); });
         return *this;
     }
-    // clang-format on
-    ///@}
-
-    /// @name Shorthands
-    /// Terse aliases of the above, in the spirit of Log::e and friends.
-    ///@{
-    // clang-format off
-    template<class... Args> Error& e(Loc loc, std::format_string<Args...> s, Args&&... args) { return error(loc, s, std::forward<Args>(args)...); }
-    template<class... Args> Error& w(Loc loc, std::format_string<Args...> s, Args&&... args) { return warn (loc, s, std::forward<Args>(args)...); }
-    template<class... Args> Error& n(         std::format_string<Args...> s, Args&&... args) { return note(     s, std::forward<Args>(args)...); }
-    template<class... Args> Error& n(Loc loc, std::format_string<Args...> s, Args&&... args) { return note(loc, s, std::forward<Args>(args)...); }
     // clang-format on
     ///@}
 
@@ -194,7 +183,7 @@ private:
     Loc primary_loc_() const { return msgs_.empty() ? Loc() : msgs_.back().loc; }
 
     void msg_(Loc loc, Tag tag, const std::function<std::string()>& fmt) {
-        assert(tag != Tag::Note && "a note belongs to Error::note");
+        assert(tag != Tag::N && "a note belongs to Error::note");
         const auto& d = diag();
         if (tag == Tag::Warn && d.werror) tag = Tag::Error;
 
@@ -211,7 +200,7 @@ private:
     void note_(Loc loc, const std::function<std::string()>& fmt) {
         if (dropped_) return;
         assert(!msgs_.empty() && "a note needs an error or warning to attach to");
-        ++num_[size_t(Tag::Note)];
+        ++num_[size_t(Tag::N)];
         msgs_.back().notes.emplace_back(loc, diag().render(fmt));
     }
 
