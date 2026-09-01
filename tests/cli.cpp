@@ -3,6 +3,7 @@
 
 #include <doctest/doctest.h>
 #include <fe/cli.h>
+#include <fe/term.h>
 
 using namespace std::literals;
 
@@ -30,7 +31,7 @@ TEST_CASE("cli flags") {
 
     SUBCASE("long and short") {
         auto args = Args{"t", "-a", "--bee"};
-        CHECK(cli.parse(args.argc(), args.data()));
+        CHECK(!cli.parse(args.argc(), args.data()));
         CHECK(a);
         CHECK(b);
         CHECK(!c);
@@ -38,7 +39,7 @@ TEST_CASE("cli flags") {
 
     SUBCASE("clustered") {
         auto args = Args{"t", "-ac", "-VVV"};
-        CHECK(cli.parse(args.argc(), args.data()));
+        CHECK(!cli.parse(args.argc(), args.data()));
         CHECK(a);
         CHECK(!b);
         CHECK(c);
@@ -47,16 +48,12 @@ TEST_CASE("cli flags") {
 
     SUBCASE("a flag takes no value") {
         auto args = Args{"t", "--bee=1"};
-        auto res  = cli.parse(args.argc(), args.data());
-        CHECK(!res);
-        CHECK(res.message() == "option '--bee' does not take a value");
+        CHECK(cli.parse(args.argc(), args.data()) == "option '--bee' does not take a value");
     }
 
     SUBCASE("unknown") {
         auto args = Args{"t", "--nope"};
-        auto res  = cli.parse(args.argc(), args.data());
-        CHECK(!res);
-        CHECK(res.message() == "unknown option '--nope'");
+        CHECK(cli.parse(args.argc(), args.data()) == "unknown option '--nope'");
     }
 }
 
@@ -74,7 +71,7 @@ TEST_CASE("cli values") {
 
     SUBCASE("separate, attached, and =") {
         auto args = Args{"t", "-o", "x.txt", "-n7", "--mode=tree", "-p", "a", "-p", "b", "-g", "1", "-g", "2"};
-        CHECK(cli.parse(args.argc(), args.data()));
+        CHECK(!cli.parse(args.argc(), args.data()));
         CHECK(out == "x.txt");
         CHECK(num == 7);
         CHECK(mode == "tree");
@@ -84,15 +81,13 @@ TEST_CASE("cli values") {
 
     SUBCASE("a value may look like an option") {
         auto args = Args{"t", "-o", "-"};
-        CHECK(cli.parse(args.argc(), args.data()));
+        CHECK(!cli.parse(args.argc(), args.data()));
         CHECK(out == "-");
     }
 
     SUBCASE("missing value") {
         auto args = Args{"t", "--output"};
-        auto res  = cli.parse(args.argc(), args.data());
-        CHECK(!res);
-        CHECK(res.message() == "option '--output' requires a value <file>");
+        CHECK(cli.parse(args.argc(), args.data()) == "option '--output' requires a value <file>");
     }
 
     SUBCASE("a handler may reject a value") {
@@ -105,20 +100,16 @@ TEST_CASE("cli values") {
         auto cli2 = fe::cli::Cli("t") | fe::cli::opt(pick, "mode")["--mode"];
         auto ok   = Args{"t", "--mode", "tree"};
         auto bad  = Args{"t", "--mode", "nope"};
-        CHECK(cli2.parse(ok.argc(), ok.data()));
+        CHECK(!cli2.parse(ok.argc(), ok.data()));
         CHECK(mode2 == "tree");
 
         auto cli3 = fe::cli::Cli("t") | fe::cli::opt(pick, "mode")["--mode"];
-        auto res  = cli3.parse(bad.argc(), bad.data());
-        CHECK(!res);
-        CHECK(res.message() == "option '--mode': 'nope' is not a mode");
+        CHECK(cli3.parse(bad.argc(), bad.data()) == "option '--mode': 'nope' is not a mode");
     }
 
     SUBCASE("not a number") {
         auto args = Args{"t", "--num", "3x"};
-        auto res  = cli.parse(args.argc(), args.data());
-        CHECK(!res);
-        CHECK(res.message() == "option '--num': '3x' is not a number");
+        CHECK(cli.parse(args.argc(), args.data()) == "option '--num': '3x' is not a number");
     }
 }
 
@@ -130,7 +121,7 @@ TEST_CASE("cli args") {
         bool flag = false;
         auto cli  = fe::cli::Cli("t") | fe::cli::opt(flag)["-f"] | fe::cli::arg(in, "file");
         auto args = Args{"t", "-f", "in.txt"};
-        CHECK(cli.parse(args.argc(), args.data()));
+        CHECK(!cli.parse(args.argc(), args.data()));
         CHECK(in == "in.txt");
         CHECK(flag);
     }
@@ -138,24 +129,29 @@ TEST_CASE("cli args") {
     SUBCASE("too many positionals") {
         auto cli  = fe::cli::Cli("t") | fe::cli::arg(in, "file");
         auto args = Args{"t", "a", "b"};
-        auto res  = cli.parse(args.argc(), args.data());
-        CHECK(!res);
-        CHECK(res.message() == "unexpected argument 'b'");
+        CHECK(cli.parse(args.argc(), args.data()) == "unexpected argument 'b'");
     }
 
     SUBCASE("-- ends option processing") {
         bool flag = false;
         auto cli  = fe::cli::Cli("t") | fe::cli::opt(flag)["-f"] | fe::cli::arg(in, "file");
         auto args = Args{"t", "--", "-f"};
-        CHECK(cli.parse(args.argc(), args.data()));
+        CHECK(!cli.parse(args.argc(), args.data()));
         CHECK(in == "-f");
         CHECK(!flag);
+    }
+
+    SUBCASE("a rejected positional is an argument, not an option") {
+        int num   = 0;
+        auto cli  = fe::cli::Cli("t") | fe::cli::arg(num, "num");
+        auto args = Args{"t", "3x"};
+        CHECK(cli.parse(args.argc(), args.data()) == "argument 'num': '3x' is not a number");
     }
 
     SUBCASE("a vector soaks up the rest") {
         auto cli  = fe::cli::Cli("t") | fe::cli::arg(in, "first") | fe::cli::arg(rest, "more");
         auto args = Args{"t", "a", "b", "c"};
-        CHECK(cli.parse(args.argc(), args.data()));
+        CHECK(!cli.parse(args.argc(), args.data()));
         CHECK(in == "a");
         CHECK(rest == std::vector{"b"s, "c"s});
     }
@@ -168,14 +164,19 @@ TEST_CASE("cli cardinality") {
     auto none = Args{"t"};
     auto many = Args{"t", "-VVV"};
 
-    auto res = cli.parse(none.argc(), none.data());
-    CHECK(!res);
-    CHECK(res.message() == "missing option '-V'");
+    CHECK(cli.parse(none.argc(), none.data()) == "missing option '-V'");
 
     auto cli2 = fe::cli::Cli("t") | fe::cli::opt(inc)["-V"].cardinality(1, 2);
-    auto res2 = cli2.parse(many.argc(), many.data());
-    CHECK(!res2);
-    CHECK(res2.message() == "option '-V' must not occur more than 2 times");
+    CHECK(cli2.parse(many.argc(), many.data()) == "option '-V' must not occur more than 2 times");
+
+    std::string in;
+    auto cli3 = fe::cli::Cli("t") | fe::cli::arg(in, "file").cardinality(1, 1);
+    CHECK(cli3.parse(none.argc(), none.data()) == "missing argument 'file'");
+
+    std::vector<std::string> rest;
+    auto cli4  = fe::cli::Cli("t") | fe::cli::arg(rest, "file").cardinality(0, 2);
+    auto three = Args{"t", "a", "b", "c"};
+    CHECK(cli4.parse(three.argc(), three.data()) == "argument 'file' must not occur more than 2 times");
 }
 
 TEST_CASE("cli section") {
@@ -212,7 +213,7 @@ Options:
         });
 
         std::ostringstream oss;
-        cli2.md(oss);
+        cli2.markdown(oss);
         auto md = oss.str();
         CHECK(md.contains("\n## Plugin Arguments\n\n### -X ll:&lt;arg&gt;\n"));
 
@@ -224,7 +225,7 @@ Options:
 
     SUBCASE("markdown escapes outside code spans only") {
         std::ostringstream oss;
-        cli.md(oss);
+        cli.markdown(oss);
         auto md = oss.str();
         CHECK(md.contains("### -X ll:&lt;arg&gt;\n\n| Argument | Description |"));
         CHECK(md.contains("Passed to `--cmdline`; unlike a bare \\--cmdline outside backticks."));
@@ -243,7 +244,7 @@ TEST_CASE("cli help") {
     cli.epilog("Bye.");
 
     auto args = Args{"t", "--help"};
-    CHECK(cli.parse(args.argc(), args.data()));
+    CHECK(!cli.parse(args.argc(), args.data()));
     CHECK(show_help);
 
     SUBCASE("terminal") {
@@ -271,7 +272,7 @@ Bye.
 
     SUBCASE("markdown") {
         std::ostringstream oss;
-        cli.md(oss);
+        cli.markdown(oss);
         CHECK(oss.str() == R"(```
 t [options] <file>
 ```

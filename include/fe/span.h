@@ -119,8 +119,7 @@ template<Vectorlike Vec>    Span(const Vec&)              -> Span<const typename
 ///@}
 
 template<size_t I, class T, size_t N>
-requires(N != std::dynamic_extent)
-constexpr decltype(auto) get(Span<T, N> span) noexcept {
+requires(N != std::dynamic_extent) constexpr decltype(auto) get(Span<T, N> span) noexcept {
     static_assert(I < N, "index I out of bound N");
     return span[I];
 }
@@ -131,12 +130,10 @@ namespace std {
 /// @name Structured Binding Support for Span
 ///@{
 template<class T, size_t N>
-requires(N != std::dynamic_extent)
-struct tuple_size<fe::Span<T, N>> : std::integral_constant<size_t, N> {};
+requires(N != std::dynamic_extent) struct tuple_size<fe::Span<T, N>> : std::integral_constant<size_t, N> {};
 
 template<size_t I, class T, size_t N>
-requires(N != std::dynamic_extent)
-struct tuple_element<I, fe::Span<T, N>> {
+requires(N != std::dynamic_extent) struct tuple_element<I, fe::Span<T, N>> {
     using type = typename fe::Span<T, N>::reference;
 };
 ///@}

@@ -26,8 +26,7 @@ namespace fe {
 /// std::format("{}", greet);
 /// ```
 template<class F>
-requires std::invocable<const F&, std::ostream&>
-class StreamFn {
+requires std::invocable<const F&, std::ostream&> class StreamFn {
 public:
     constexpr StreamFn(F f)
         : f_(std::move(f)) {}
@@ -122,8 +121,7 @@ concept Formattable
 /// Join elements of @p range with @p sep.
 /// Use as a `std::format` or `operator<<` argument: `std::format("{}", fe::Join(v, ", "))`.
 template<std::ranges::input_range R>
-requires Formattable<std::remove_cvref_t<std::ranges::range_reference_t<std::views::all_t<R>>>>
-class Join {
+requires Formattable<std::remove_cvref_t<std::ranges::range_reference_t<std::views::all_t<R>>>> class Join {
 public:
     using View = std::views::all_t<R>;
 

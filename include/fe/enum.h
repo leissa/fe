@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cassert>
+
 #include <type_traits>
 
 namespace fe {
@@ -23,7 +24,10 @@ struct is_bit_enum : std::false_type {};
 template<typename E>
 concept BitEnum = std::is_enum_v<E> && is_bit_enum<E>::value;
 
-template<fe::BitEnum E> constexpr auto to_underlying(E e) noexcept { return static_cast<std::underlying_type_t<E>>(e); }
+template<fe::BitEnum E>
+constexpr auto to_underlying(E e) noexcept {
+    return static_cast<std::underlying_type_t<E>>(e);
+}
 
 } // namespace fe
 

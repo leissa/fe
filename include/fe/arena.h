@@ -66,8 +66,10 @@ public:
         /// so storage from any instance can be "freed" through any other.
         /// This also keeps allocator-aware container `swap` (e.g. in SymPool::swap) well-defined without requiring
         /// `propagate_on_container_swap`, which we cannot enable here because `arena` is a non-rebindable reference.
+        // clang-format off
         template<class U> constexpr bool operator==(const Allocator<U>&) const noexcept { return true; }
         template<class U> constexpr bool operator!=(const Allocator<U>&) const noexcept { return false; }
+        // clang-format on
 
         Arena& arena;
     };

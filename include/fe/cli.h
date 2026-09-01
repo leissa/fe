@@ -3,18 +3,15 @@
 #include <charconv>
 #include <cstddef>
 
-#include <algorithm>
-#include <filesystem>
 #include <format>
 #include <functional>
 #include <limits>
+#include <optional>
 #include <ostream>
 #include <string>
 #include <string_view>
 #include <type_traits>
 #include <vector>
-
-#include "fe/term.h"
 
 /// A small command-line parser for a single command - no subcommands.
 ///
@@ -32,42 +29,27 @@
 ///          | fe::cli::opt(out,     "file"   )["-o"]["--output" ]("Where to write the result.")
 ///          | fe::cli::arg(in,      "file"   )                   ("Input file.");
 ///
-/// if (auto res = cli.parse(argc, argv); !res) throw std::invalid_argument(res.message());
+/// if (auto err = cli.parse(argc, argv)) throw std::invalid_argument(*err);
 /// if (show_help) std::cout << cli;
 /// ```
 /// A target may be a `bool` (for a flag), a `std::string`, an integral type, a `std::vector` of those, or a callable -
 /// invoked with `true` for a flag and with the `std::string` value otherwise.
-/// Such a callable may return a `std::string` to reject that value; a non-empty one becomes the Res::message.
+/// Such a callable may return a `std::string` to reject that value; a non-empty one becomes the error of Cli::parse.
 /// An fe::cli::opt without a hint is a flag; one with a hint takes a value.
 ///
 /// The parser understands `--name value`, `--name=value`, `-n value`, `-nvalue`, clustered short flags (`-abc`), and
 /// `--` to end option processing.
 ///
-/// Cli::help lays the switches out for a terminal - wrapped to its width and colored via fe::term - whereas Cli::md
-/// renders the same information as Markdown tables; fe::cli::group splits both into sections.
+/// Cli::help lays the switches out for a terminal - wrapped to its width and colored via fe::term - whereas
+/// Cli::markdown renders the same information as Markdown tables; fe::cli::group splits both into sections.
 namespace fe::cli {
 
+// clang-format off
 class Opt;
-template<class T>
-Opt opt(T&);
-template<class T>
-Opt opt(T&, std::string);
-template<class T>
-Opt arg(T&, std::string);
-
-/// Outcome of Cli::parse: falsish and carrying a Res::message when parsing failed.
-class Res {
-public:
-    Res() = default;
-    Res(std::string message)
-        : message_(std::move(message)) {}
-
-    explicit operator bool() const noexcept { return message_.empty(); }
-    const std::string& message() const noexcept { return message_; }
-
-private:
-    std::string message_;
-};
+template<class T> Opt opt(T&);
+template<class T> Opt opt(T&, std::string);
+template<class T> Opt arg(T&, std::string);
+// clang-format on
 
 /// Starts a new section in the help output; see fe::cli::group.
 struct Group {
@@ -139,42 +121,20 @@ std::function<std::string()> dflt(T& t) {
 class Opt {
 public:
     /// Adds @p name - `"-o"` for a short, `"--output"` for a long one.
-    Opt& operator[](std::string name) {
-        names_.emplace_back(std::move(name));
-        return *this;
-    }
+    Opt& operator[](std::string name) { return names_.emplace_back(std::move(name)), *this; }
 
     /// Sets the description shown in the help.
-    Opt& operator()(std::string descr) {
-        descr_ = std::move(descr);
-        return *this;
-    }
+    Opt& operator()(std::string descr) { return descr_ = std::move(descr), *this; }
 
     /// This Opt must occur at least @p min and at most @p max times.
-    Opt& cardinality(size_t min, size_t max) {
-        min_ = min, max_ = max;
-        return *this;
-    }
+    Opt& cardinality(size_t min, size_t max) { return min_ = min, max_ = max, *this; }
 
 private:
     /// How the names are spelled out in the help - long names align under each other.
-    std::string names() const {
-        std::string shorts, longs;
-        for (const auto& name : names_) {
-            auto& to = name.starts_with("--") ? longs : shorts;
-            if (!to.empty()) to += ", ";
-            to += name;
-        }
-        if (longs.empty()) return shorts;
-        if (shorts.empty()) return "    " + longs;
-        return shorts + ", " + longs;
-    }
-
-    size_t width() const {
-        return names_.empty() ? hint_.size() + 2 : names().size() + (value_ ? hint_.size() + 3 : 0);
-    }
-
+    std::string names() const;
+    size_t width() const;
     std::string_view label() const { return names_.empty() ? std::string_view(hint_) : names_.back(); }
+    std::string_view kind() const { return names_.empty() ? "argument" : "option"; }
 
     std::vector<std::string> names_;
     std::string hint_, descr_, group_;
@@ -186,13 +146,12 @@ private:
     size_t max_ = std::numeric_limits<size_t>::max();
     size_t num_ = 0;
 
+    // clang-format off
     friend class Cli;
-    template<class T>
-    friend Opt opt(T&);
-    template<class T>
-    friend Opt opt(T&, std::string);
-    template<class T>
-    friend Opt arg(T&, std::string);
+    template<class T> friend Opt opt(T&);
+    template<class T> friend Opt opt(T&, std::string);
+    template<class T> friend Opt arg(T&, std::string);
+    // clang-format on
 };
 
 /// A flag: sets @p target to `true` - or invokes it with `true` - each time it occurs.
@@ -247,65 +206,37 @@ public:
         return *this;
     }
 
-    Cli& add(Group g) {
-        group_ = std::move(g.name);
-        return *this;
-    }
-
+    /// @name Add Option, Group, Section, or Epilog
+    ///@{
+    Cli& add(Group g) { return group_ = std::move(g.name), *this; }
     Cli& operator|(Opt o) & { return add(std::move(o)); }
     Cli& operator|(Group g) & { return add(std::move(g)); }
-
-    Cli&& operator|(Opt o) && {
-        add(std::move(o));
-        return std::move(*this);
-    }
-
-    Cli&& operator|(Group g) && {
-        add(std::move(g));
-        return std::move(*this);
-    }
+    Cli&& operator|(Opt o) && { return add(std::move(o)), std::move(*this); }
+    Cli&& operator|(Group g) && { return add(std::move(g)), std::move(*this); }
 
     /// A titled table of `term`/description rows that are not Opt%s - `ENVIRONMENT`, plugin arguments, ...
-    /// Both backends render it below the options; @p head names the first column in Cli::md.
-    /// Pass no @p rows to get a bare header that groups the Section%s below it - one level up in Cli::md.
+    /// Both backends render it below the options; @p head names the first column in Cli::markdown.
+    /// Pass no @p rows to get a bare header that groups the Section%s below it - one level up in Cli::markdown.
     Cli& section(std::string title, std::string head, std::vector<std::pair<std::string, std::string>> rows) {
-        sections_.emplace_back(std::move(title), std::move(head), std::move(rows));
-        return *this;
+        return sections_.emplace_back(std::move(title), std::move(head), std::move(rows)), *this;
     }
 
     /// Text printed below the option list.
-    Cli& epilog(std::string s) {
-        epilog_ = std::move(s);
-        return *this;
-    }
+    Cli& epilog(std::string s) { return epilog_ = std::move(s), *this; }
+    ///@}
 
-    Res parse(int argc, const char* const* argv);
-    void help(std::ostream&) const; ///< Renders the help for a terminal.
-    void md(std::ostream&) const;   ///< Renders the same information as Doxygen-flavored Markdown tables.
+    /// Parses `argc`/`argv`; returns the error message - and nothing at all if all went well.
+    std::optional<std::string> parse(int argc, const char* const* argv);
+    void help(std::ostream&) const;     ///< Renders the help for a terminal.
+    void markdown(std::ostream&) const; ///< Renders the same information as Doxygen-flavored Markdown tables.
 
 private:
-    std::string usage() const {
-        auto s = prog_;
-        if (std::ranges::any_of(opts_, [](const Opt& o) { return !o.names_.empty(); })) s += " [options]";
-        for (const auto& o : opts_)
-            if (o.names_.empty()) s += std::format(" <{}>", o.hint_);
-        return s;
-    }
+    std::string usage() const;
 
     /// Names of the Opt groups in the order they first occur; the default group is the empty name.
-    std::vector<std::string_view> groups() const {
-        std::vector<std::string_view> res;
-        for (const auto& o : opts_)
-            if (!o.names_.empty() && std::ranges::find(res, o.group_) == res.end()) res.emplace_back(o.group_);
-        return res;
-    }
+    std::vector<std::string_view> groups() const;
 
-    Opt* find(std::string_view name) {
-        for (auto& o : opts_)
-            for (const auto& n : o.names_)
-                if (n == name) return &o;
-        return nullptr;
-    }
+    Opt* find(std::string_view name);
 
     struct Section {
         std::string title, head;
@@ -315,259 +246,8 @@ private:
     std::string prog_, descr_, epilog_, group_;
     std::vector<Opt> opts_;
     std::vector<Section> sections_;
+
+    friend std::ostream& operator<<(std::ostream& os, const Cli& cli) { return cli.help(os), os; }
 };
-
-inline std::ostream& operator<<(std::ostream& os, const Cli& cli) {
-    cli.help(os);
-    return os;
-}
-
-inline Res Cli::parse(int argc, const char* const* argv) {
-    if (prog_.empty() && argc > 0) {
-        prog_ = std::filesystem::path(argv[0]).filename().string();
-        if (prog_.ends_with(".exe")) prog_.resize(prog_.size() - 4);
-    }
-
-    Opt* pos  = nullptr;
-    auto next = [&] {
-        for (auto& o : opts_)
-            if (o.names_.empty() && (o.num_ == 0 || o.multi_)) return pos = &o;
-        return pos = nullptr;
-    };
-    next();
-
-    auto set = [](Opt& o, std::string_view name, std::string_view value) -> Res {
-        ++o.num_;
-        if (auto err = o.set_(value); !err.empty()) return std::format("option '{}': {}", name, err);
-        return {};
-    };
-
-    bool only_pos = false;
-    for (int i = 1; i < argc; ++i) {
-        auto s = std::string_view(argv[i]);
-
-        if (!only_pos && s == "--") {
-            only_pos = true;
-        } else if (!only_pos && s.starts_with("--")) {
-            auto eq   = s.find('=');
-            auto name = s.substr(0, eq);
-            auto o    = find(name);
-            if (!o) return std::format("unknown option '{}'", name);
-
-            if (!o->value_) {
-                if (eq != std::string_view::npos) return std::format("option '{}' does not take a value", name);
-                if (auto res = set(*o, name, {}); !res) return res;
-            } else if (eq != std::string_view::npos) {
-                if (auto res = set(*o, name, s.substr(eq + 1)); !res) return res;
-            } else if (++i < argc) {
-                if (auto res = set(*o, name, argv[i]); !res) return res;
-            } else {
-                return std::format("option '{}' requires a value <{}>", name, o->hint_);
-            }
-        } else if (!only_pos && s.size() > 1 && s.front() == '-') {
-            for (size_t j = 1; j != s.size(); ++j) {
-                char buf[] = {'-', s[j], '\0'};
-                auto name  = std::string_view(buf, 2);
-                auto o     = find(name);
-                if (!o) return std::format("unknown option '{}'", name);
-
-                if (!o->value_) {
-                    if (auto res = set(*o, name, {}); !res) return res;
-                } else if (j + 1 != s.size()) {
-                    if (auto res = set(*o, name, s.substr(j + 1)); !res) return res;
-                    break;
-                } else if (++i < argc) {
-                    if (auto res = set(*o, name, argv[i]); !res) return res;
-                    break;
-                } else {
-                    return std::format("option '{}' requires a value <{}>", name, o->hint_);
-                }
-            }
-        } else {
-            if (!pos) return std::format("unexpected argument '{}'", s);
-            if (auto res = set(*pos, pos->hint_, s); !res) return res;
-            if (!pos->multi_) next();
-        }
-    }
-
-    for (const auto& o : opts_) {
-        if (o.num_ < o.min_) return std::format("missing option '{}'", o.label());
-        if (o.num_ > o.max_) return std::format("option '{}' must not occur more than {} times", o.label(), o.max_);
-    }
-
-    return {};
-}
-
-inline void Cli::help(std::ostream& os) const {
-    auto cols = std::clamp<size_t>(term::width(os).value_or(80), 40, 120);
-
-    // Only the specs up to a third of the line dictate the description column; longer ones get a line of their own.
-    size_t spec = 0;
-    auto fits   = [&](size_t w) {
-        if (w <= cols / 3) spec = std::max(spec, w);
-    };
-    for (const auto& o : opts_)
-        fits(o.width());
-    for (const auto& s : sections_)
-        for (const auto& [name, descr] : s.rows)
-            fits(name.size());
-    auto col = std::clamp<size_t>(spec + 4, 8, cols / 2);
-
-    auto wrap = [&](std::string_view text) {
-        for (size_t begin = 0, row = 0; begin < text.size(); ++row) {
-            while (begin < text.size() && text[begin] == ' ')
-                ++begin;
-            if (begin >= text.size()) break;
-
-            auto end = std::min(text.size(), begin + cols - col);
-            if (end < text.size())
-                if (auto space = text.rfind(' ', end); space != std::string_view::npos && space > begin) end = space;
-            if (row != 0) os << std::string(col, ' ');
-            os << text.substr(begin, end - begin) << '\n';
-            begin = end;
-        }
-    };
-
-    auto section = [&](std::string_view title) {
-        os << '\n' << term::FG::Yellow << title << ':' << term::FG::Reset << '\n';
-    };
-
-    // Pads what has just been written up to the description column - or breaks the line if it does not fit.
-    auto tail = [&](size_t w, std::string_view descr) {
-        if (w + 2 > col) {
-            os << '\n';
-            w = 0;
-        }
-        os << std::string(col - w, ' ');
-        if (descr.empty())
-            os << '\n';
-        else
-            wrap(descr);
-    };
-
-    auto entry = [&](const Opt& o) {
-        os << "  ";
-        if (o.names_.empty()) {
-            os << term::FG::Cyan << '<' << o.hint_ << '>' << term::FG::Reset;
-        } else {
-            os << term::FG::Green << o.names() << term::FG::Reset;
-            if (o.value_) os << ' ' << term::FG::Cyan << '<' << o.hint_ << '>' << term::FG::Reset;
-        }
-
-        auto descr = o.descr_;
-        if (o.dflt_)
-            if (auto d = o.dflt_(); !d.empty()) descr += std::format("{}[default: {}]", descr.empty() ? "" : " ", d);
-        tail(o.width() + 2, descr);
-    };
-
-    os << term::FG::Yellow << "Usage:" << term::FG::Reset << ' ' << usage() << '\n';
-    if (!descr_.empty()) os << '\n' << descr_ << '\n';
-
-    if (std::ranges::any_of(opts_, [](const Opt& o) { return o.names_.empty(); })) {
-        section("Arguments");
-        for (const auto& o : opts_)
-            if (o.names_.empty()) entry(o);
-    }
-
-    for (auto group : groups()) {
-        section(group.empty() ? "Options" : group);
-        for (const auto& o : opts_)
-            if (!o.names_.empty() && o.group_ == group) entry(o);
-    }
-
-    for (const auto& s : sections_) {
-        section(s.title);
-        for (const auto& [name, descr] : s.rows) {
-            os << "  " << term::FG::Green << name << term::FG::Reset;
-            tail(name.size() + 2, descr);
-        }
-    }
-
-    if (!epilog_.empty()) os << '\n' << epilog_ << '\n';
-}
-
-inline void Cli::md(std::ostream& os) const {
-    // A code span is already verbatim - only `|`, which ends the table cell, still has to go.
-    auto esc = [](std::string_view text) {
-        std::string res;
-        bool code = false;
-        for (size_t i = 0, e = text.size(); i != e; ++i) {
-            auto c = text[i];
-            if (c == '`') code = !code;
-            if (code && c != '|') {
-                res += c;
-                continue;
-            }
-            switch (c) {
-                case '&': res += "&amp;"; break;
-                case '<': res += "&lt;"; break;
-                case '>': res += "&gt;"; break;
-                case '|': res += "\\|"; break;
-                // Doxygen turns a bare `--` into an en dash.
-                case '-':
-                    if (i + 1 != e && text[i + 1] == '-') res += '\\';
-                    res += c;
-                    break;
-                default: res += c;
-            }
-        }
-        return res;
-    };
-
-    // A code span still sits in a table cell, so only `|` needs to go.
-    auto code = [](std::string_view text) {
-        std::string res;
-        for (auto c : text) {
-            if (c == '|') res += '\\';
-            res += c;
-        }
-        return res;
-    };
-
-    auto spec = [](const Opt& o) {
-        if (o.names_.empty()) return std::format("<{}>", o.hint_);
-        std::string res;
-        for (const auto& name : o.names_) {
-            if (!res.empty()) res += ", ";
-            res += name;
-        }
-        if (o.value_) res += std::format(" <{}>", o.hint_);
-        return res;
-    };
-
-    auto table = [&](std::string_view title, std::string_view head, auto&& pred) {
-        os << std::format("\n### {}\n\n| {} | Description |\n| --- | --- |\n", title, head);
-        for (const auto& o : opts_) {
-            if (!pred(o)) continue;
-            auto descr = esc(o.descr_);
-            if (o.dflt_)
-                if (auto d = o.dflt_(); !d.empty())
-                    descr += std::format("{}[default: `{}`]", descr.empty() ? "" : " ", code(d));
-            os << std::format("| `{}` | {} |\n", code(spec(o)), descr);
-        }
-    };
-
-    os << std::format("```\n{}\n```\n", usage());
-    if (!descr_.empty()) os << '\n' << esc(descr_) << '\n';
-
-    if (std::ranges::any_of(opts_, [](const Opt& o) { return o.names_.empty(); }))
-        table("Arguments", "Argument", [](const Opt& o) { return o.names_.empty(); });
-
-    for (auto group : groups())
-        table(group.empty() ? "Options" : group, "Option",
-              [&](const Opt& o) { return !o.names_.empty() && o.group_ == group; });
-
-    for (const auto& s : sections_) {
-        if (s.rows.empty()) { // a Section without rows only groups the ones below it, hence one level up
-            os << std::format("\n## {}\n", esc(s.title));
-            continue;
-        }
-        os << std::format("\n### {}\n\n| {} | Description |\n| --- | --- |\n", esc(s.title), s.head);
-        for (const auto& [name, descr] : s.rows)
-            os << std::format("| `{}` | {} |\n", code(name), esc(descr));
-    }
-
-    if (!epilog_.empty()) os << '\n' << esc(epilog_) << '\n';
-}
 
 } // namespace fe::cli

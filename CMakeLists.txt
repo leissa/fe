@@ -91,6 +91,7 @@ if(FE_LIB)
     add_library(fe-lib OBJECT)
     target_sources(fe-lib
         PRIVATE
+            src/fe/cli.cpp
             src/fe/diag.cpp
             src/fe/dl.cpp
             src/fe/driver.cpp
