@@ -9,7 +9,7 @@ var searchData=
   ['cbegin_6',['cbegin',['../classfe_1_1Sym.html#ac7b89c634f5e3515dcfe3d3e786fc286',1,'fe::Sym']]],
   ['cend_7',['cend',['../classfe_1_1Sym.html#a3308cf822fc8707a9c946335d85972cd',1,'fe::Sym']]],
   ['char32_8',['Char32',['../structfe_1_1utf8_1_1Char32.html',1,'fe::utf8::Char32'],['../structfe_1_1utf8_1_1Char32.html#af46564ecf7d2aa5557f8b452ea406abf',1,'fe::utf8::Char32::Char32()']]],
-  ['char_5ferr_9',['char_err',['../classfe_1_1Lexer.html#a8fb52926230992a7102bd394ecf0fa34',1,'fe::Lexer']]],
+  ['char_5ferr_9',['char_err',['../classfe_1_1Lexer.html#a64d16180bbc8d11a338fdae0cd56bc46',1,'fe::Lexer']]],
   ['chars_10',['chars',['../structfe_1_1Sym_1_1String.html#a86ac99bc1a5ae5670498ab589c5f0c39',1,'fe::Sym::String']]],
   ['chrome_5ftrace_11',['chrome_trace',['../classfe_1_1Profiler.html#ac8ec9c9ecca1edbaf0b7a776cb7a48fa',1,'fe::Profiler']]],
   ['clear_12',['clear',['../classfe_1_1Bitset.html#a20aa02e17999d290c3f404bf22e7c8cf',1,'fe::Bitset::clear(size_t i) noexcept'],['../classfe_1_1Bitset.html#a7d579a1bc50660c16acbe88a0474b718',1,'fe::Bitset::clear() noexcept'],['../classfe_1_1Error.html#a49f4b59762202737f27bd6e35a22d0fc',1,'fe::Error::clear()'],['../classfe_1_1Worklist.html#a7411cde381850643465a57e37ca2db1b',1,'fe::Worklist::clear()'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html#ad31ab44722c8c19df28e7216dfed1d96',1,'fe::XTrie::Set::iterator::clear()']]],
