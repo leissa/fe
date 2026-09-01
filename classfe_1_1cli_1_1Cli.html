@@ -168,6 +168,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a680ce501a65c2870ddec5a63cac9d4af" id="r_a680ce501a65c2870ddec5a63cac9d4af"><td class="memItemLeft"><a class="el" href="#a5879d31c1ebd959144e4fd7bb12f5e23">Cli</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a680ce501a65c2870ddec5a63cac9d4af">operator|</a> (<a class="el" href="namespacefe_1_1cli.html#structfe_1_1cli_1_1Group">Group</a> g) &amp;</td></tr>
 <tr class="memitem:aa66f607d508560de3505087656b67eed" id="r_aa66f607d508560de3505087656b67eed"><td class="memItemLeft"><a class="el" href="#a5879d31c1ebd959144e4fd7bb12f5e23">Cli</a> &amp;&amp;&#160;</td><td class="memItemRight"><a class="el" href="#aa66f607d508560de3505087656b67eed">operator|</a> (<a class="el" href="classfe_1_1cli_1_1Opt.html">Opt</a> o) &amp;&amp;</td></tr>
 <tr class="memitem:ab237e5038dda597157e30e0a1287ef04" id="r_ab237e5038dda597157e30e0a1287ef04"><td class="memItemLeft"><a class="el" href="#a5879d31c1ebd959144e4fd7bb12f5e23">Cli</a> &amp;&amp;&#160;</td><td class="memItemRight"><a class="el" href="#ab237e5038dda597157e30e0a1287ef04">operator|</a> (<a class="el" href="namespacefe_1_1cli.html#structfe_1_1cli_1_1Group">Group</a> g) &amp;&amp;</td></tr>
+<tr class="memitem:ae92c6a413dc4e302bec9928d8690359c" id="r_ae92c6a413dc4e302bec9928d8690359c"><td class="memItemLeft"><a class="el" href="#a5879d31c1ebd959144e4fd7bb12f5e23">Cli</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ae92c6a413dc4e302bec9928d8690359c">section</a> (std::string title, std::string head, std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt; rows)</td></tr>
+<tr class="memdesc:ae92c6a413dc4e302bec9928d8690359c"><td class="mdescLeft">&#160;</td><td class="mdescRight">A titled table of <span class="tt"><a class="el" href="namespacefe_1_1term.html" title="Lightweight stream-based terminal colors for diagnostics and CLI output.">term</a></span>/description rows that are not <a class="el" href="classfe_1_1cli_1_1Opt.html" title="One option or positional argument; build one with fe::cli::opt, fe::cli::arg, or fe::cli::help.">Opt</a>s - <span class="tt">ENVIRONMENT</span>, plugin arguments, ... Both backends render it below the options; <code class="param">head</code> names the first column in <a class="el" href="#a5ff3f957790aab7caac4abdd430c4f7b" title="Renders the same information as Doxygen-flavored Markdown tables.">Cli::md</a>.  <br /></td></tr>
 <tr class="memitem:a721ff406b127eab92a01a893e01a5417" id="r_a721ff406b127eab92a01a893e01a5417"><td class="memItemLeft"><a class="el" href="#a5879d31c1ebd959144e4fd7bb12f5e23">Cli</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a721ff406b127eab92a01a893e01a5417">epilog</a> (std::string s)</td></tr>
 <tr class="memdesc:a721ff406b127eab92a01a893e01a5417"><td class="mdescLeft">&#160;</td><td class="mdescRight">Text printed below the option list.  <br /></td></tr>
 <tr class="memitem:aca3f406d767faec72bb5b7172ae280f4" id="r_aca3f406d767faec72bb5b7172ae280f4"><td class="memItemLeft"><a class="el" href="classfe_1_1cli_1_1Res.html">Res</a>&#160;</td><td class="memItemRight"><a class="el" href="#aca3f406d767faec72bb5b7172ae280f4">parse</a> (int argc, const char *const *argv)</td></tr>
@@ -204,7 +206,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="cli_8h_source.html#l00250">add()</a>, <a class="el" href="cli_8h_source.html#l00244">add()</a>, <a class="el" href="cli_8h_source.html#l00269">epilog()</a>, <a class="el" href="cli_8h_source.html#l00256">operator|()</a>, <a class="el" href="cli_8h_source.html#l00263">operator|()</a>, <a class="el" href="cli_8h_source.html#l00255">operator|()</a>, and <a class="el" href="cli_8h_source.html#l00258">operator|()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cli_8h_source.html#l00250">add()</a>, <a class="el" href="cli_8h_source.html#l00244">add()</a>, <a class="el" href="cli_8h_source.html#l00276">epilog()</a>, <a class="el" href="cli_8h_source.html#l00256">operator|()</a>, <a class="el" href="cli_8h_source.html#l00263">operator|()</a>, <a class="el" href="cli_8h_source.html#l00255">operator|()</a>, <a class="el" href="cli_8h_source.html#l00258">operator|()</a>, and <a class="el" href="cli_8h_source.html#l00270">section()</a>.</p>
 
 </div>
 </div>
@@ -325,7 +327,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Text printed below the option list. </p>
 
-<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00269">269</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00276">276</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
 
 <p class="reference">References <a class="el" href="#a5879d31c1ebd959144e4fd7bb12f5e23">Cli()</a>.</p>
 
@@ -356,9 +358,9 @@ Public Member Functions</h2></td></tr>
 
 <p>Renders the help for a terminal. </p>
 
-<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00387">387</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00400">400</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
 
-<p class="reference">References <a class="el" href="term_8h_source.html#l00067">fe::term::Cyan</a>, <a class="el" href="term_8h_source.html#l00063">fe::term::Green</a>, <a class="el" href="cli_8h_source.html#l00078">fe::cli::group()</a>, <a class="el" href="term_8h_source.html#l00070">fe::term::Reset</a>, <a class="el" href="term_8h_source.html#l00205">fe::term::width()</a>, and <a class="el" href="term_8h_source.html#l00064">fe::term::Yellow</a>.</p>
+<p class="reference">References <a class="el" href="term_8h_source.html#l00067">fe::term::Cyan</a>, <a class="el" href="term_8h_source.html#l00063">fe::term::Green</a>, <a class="el" href="cli_8h_source.html#l00078">fe::cli::group()</a>, <a class="el" href="term_8h_source.html#l00070">fe::term::Reset</a>, <a class="el" href="cli_8h_source.html#l00270">section()</a>, <a class="el" href="term_8h_source.html#l00205">fe::term::width()</a>, and <a class="el" href="term_8h_source.html#l00064">fe::term::Yellow</a>.</p>
 
 </div>
 </div>
@@ -387,7 +389,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Renders the same information as Doxygen-flavored Markdown tables. </p>
 
-<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00458">458</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00488">488</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
 
 <p class="reference">References <a class="el" href="cli_8h_source.html#l00078">fe::cli::group()</a>.</p>
 
@@ -536,7 +538,49 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00311">311</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00324">324</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
+
+</div>
+</div>
+<a id="ae92c6a413dc4e302bec9928d8690359c" name="ae92c6a413dc4e302bec9928d8690359c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae92c6a413dc4e302bec9928d8690359c">&#9670;&#160;</a></span>section()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a5879d31c1ebd959144e4fd7bb12f5e23">Cli</a> &amp; fe::cli::Cli::section </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>title</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>head</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt;</td>          <td class="paramname"><span class="paramname"><em>rows</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A titled table of <span class="tt"><a class="el" href="namespacefe_1_1term.html" title="Lightweight stream-based terminal colors for diagnostics and CLI output.">term</a></span>/description rows that are not <a class="el" href="classfe_1_1cli_1_1Opt.html" title="One option or positional argument; build one with fe::cli::opt, fe::cli::arg, or fe::cli::help.">Opt</a>s - <span class="tt">ENVIRONMENT</span>, plugin arguments, ... Both backends render it below the options; <code class="param">head</code> names the first column in <a class="el" href="#a5ff3f957790aab7caac4abdd430c4f7b" title="Renders the same information as Doxygen-flavored Markdown tables.">Cli::md</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00270">270</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
+
+<p class="reference">References <a class="el" href="#a5879d31c1ebd959144e4fd7bb12f5e23">Cli()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="cli_8h_source.html#l00400">help()</a>.</p>
 
 </div>
 </div>

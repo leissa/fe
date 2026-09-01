@@ -11,5 +11,6 @@ var classfe_1_1cli_1_1Cli =
     [ "operator|", "classfe_1_1cli_1_1Cli.html#ab237e5038dda597157e30e0a1287ef04", null ],
     [ "operator|", "classfe_1_1cli_1_1Cli.html#ac3cba28579eca1380a4c437dc01dc3e9", null ],
     [ "operator|", "classfe_1_1cli_1_1Cli.html#aa66f607d508560de3505087656b67eed", null ],
-    [ "parse", "classfe_1_1cli_1_1Cli.html#aca3f406d767faec72bb5b7172ae280f4", null ]
+    [ "parse", "classfe_1_1cli_1_1Cli.html#aca3f406d767faec72bb5b7172ae280f4", null ],
+    [ "section", "classfe_1_1cli_1_1Cli.html#ae92c6a413dc4e302bec9928d8690359c", null ]
 ];
