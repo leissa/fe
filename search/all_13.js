@@ -9,7 +9,7 @@ var searchData=
   ['recover_5futf8_6',['recover_utf8',['../classfe_1_1Lexer.html#a134ea7d6d039572a2c98ff897ce1762b',1,'fe::Lexer']]],
   ['red_7',['Red',['../namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47',1,'fe::term']]],
   ['reference_8',['reference',['../classfe_1_1Bitset_1_1reference.html',1,'fe::Bitset::reference'],['../classfe_1_1Bitset_1_1iterator.html#a9062596fa622ae6edbc471d7c31249ec',1,'fe::Bitset::iterator::reference'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html#afdd862aea2bf0c44672b13bd0fdd6cde',1,'fe::XTrie::Set::iterator::reference']]],
-  ['related_20projects_9',['🔨 Related Projects',['../index.html#autotoc_md19',1,'']]],
+  ['related_20projects_9',['🔨 Related Projects',['../index.html#autotoc_md20',1,'']]],
   ['rend_10',['rend',['../classfe_1_1Sym.html#a1e7ad312b7d4d7f733e2ee47245b3e9b',1,'fe::Sym']]],
   ['render_11',['render',['../classfe_1_1Diag.html#abfed89735a2b818e18f7f96947071bb6',1,'fe::Diag::render()'],['../classfe_1_1CodeDiag.html#ae2d9c71d603a3c165b6ed7b0136f300d',1,'fe::CodeDiag::render()']]],
   ['report_12',['report',['../classfe_1_1Error.html#a93e4dd890a070342985279476e4e5290',1,'fe::Error']]],

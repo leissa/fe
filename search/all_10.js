@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['odds_20ends_0',['Odds &amp;amp; Ends',['../index.html#autotoc_md11',1,'']]],
+  ['odds_20ends_0',['Odds &amp;amp; Ends',['../index.html#autotoc_md12',1,'']]],
   ['off_1',['Off',['../classfe_1_1Lexer.html#a99366b3ab28fff1d6a1013b1007246a6ad15305d7a4e34e02489c74a5ef542f36',1,'fe::Lexer']]],
   ['off_2',['off',['../structfe_1_1Pos.html#a055b58d719423ee4aa8928a927970f99',1,'fe::Pos']]],
   ['ok_3',['ok',['../classfe_1_1Error.html#afe0bb794482d9b67a4df05f683d5e302',1,'fe::Error']]],

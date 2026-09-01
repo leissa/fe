@@ -35,23 +35,24 @@ var NAVTREE =
         [ "Core", "index.html#autotoc_md7", null ],
         [ "Lexing &amp; Parsing", "index.html#autotoc_md8", null ],
         [ "Diagnostics", "index.html#autotoc_md9", null ],
-        [ "Data Structures", "index.html#autotoc_md10", null ],
-        [ "Odds &amp; Ends", "index.html#autotoc_md11", null ]
+        [ "Command Line", "index.html#autotoc_md10", null ],
+        [ "Data Structures", "index.html#autotoc_md11", null ],
+        [ "Odds &amp; Ends", "index.html#autotoc_md12", null ]
       ] ],
       [ "Requires <span class=\"tt\">FE_LIB</span>", "index.html#requires-fe_lib", null ]
     ] ],
-    [ "🚀 Quick Start", "index.html#autotoc_md12", [
-      [ "Integrate into existing Project", "index.html#autotoc_md13", [
-        [ "CMake", "index.html#autotoc_md14", null ],
-        [ "Direct Vendoring", "index.html#autotoc_md15", null ]
+    [ "🚀 Quick Start", "index.html#autotoc_md13", [
+      [ "Integrate into existing Project", "index.html#autotoc_md14", [
+        [ "CMake", "index.html#autotoc_md15", null ],
+        [ "Direct Vendoring", "index.html#autotoc_md16", null ]
       ] ]
     ] ],
-    [ "🧭 Typical Workflow", "index.html#autotoc_md16", null ],
-    [ "🛠️ Building and Testing", "index.html#autotoc_md17", null ],
-    [ "📚 Building the Documentation", "index.html#autotoc_md18", null ],
-    [ "🔨 Related Projects", "index.html#autotoc_md19", null ],
-    [ "🤝 Contributing", "index.html#autotoc_md20", null ],
-    [ "⚖️ License", "index.html#autotoc_md21", null ],
+    [ "🧭 Typical Workflow", "index.html#autotoc_md17", null ],
+    [ "🛠️ Building and Testing", "index.html#autotoc_md18", null ],
+    [ "📚 Building the Documentation", "index.html#autotoc_md19", null ],
+    [ "🔨 Related Projects", "index.html#autotoc_md20", null ],
+    [ "🤝 Contributing", "index.html#autotoc_md21", null ],
+    [ "⚖️ License", "index.html#autotoc_md22", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -95,7 +96,7 @@ var NAVTREEINDEX =
 "classfe_1_1Parser_1_1Anchor.html",
 "classfe_1_1Sym.html#a3308cf822fc8707a9c946335d85972cd",
 "classfe_1_1cli_1_1Cli.html#a3db4dbe4495c17776e32d416dc0b87e6",
-"namespacefe.html#a653a3eb512f7610b2449a4546f7e335d",
+"namespacefe.html#a6001bdc1f05c56d81cf41b355f2027f6",
 "structfe_1_1Loc.html#a0531b0fe2bb2304752a1d58b80647365"
 ];
 

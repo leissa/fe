@@ -181,10 +181,13 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
             <a href="#autotoc_md9">Diagnostics </a>
           </li>
           <li class="level3">
-            <a href="#autotoc_md10">Data Structures </a>
+            <a href="#autotoc_md10">Command Line </a>
           </li>
           <li class="level3">
-            <a href="#autotoc_md11">Odds &amp; Ends </a>
+            <a href="#autotoc_md11">Data Structures </a>
+          </li>
+          <li class="level3">
+            <a href="#autotoc_md12">Odds &amp; Ends </a>
           </li>
         </ul>
       </li>
@@ -194,38 +197,38 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
     </ul>
   </li>
   <li class="level1">
-    <a href="#autotoc_md12">🚀 Quick Start </a>
+    <a href="#autotoc_md13">🚀 Quick Start </a>
     <ul>
       <li class="level2">
-        <a href="#autotoc_md13">Integrate into existing Project </a>
+        <a href="#autotoc_md14">Integrate into existing Project </a>
         <ul>
           <li class="level3">
-            <a href="#autotoc_md14">CMake </a>
+            <a href="#autotoc_md15">CMake </a>
           </li>
           <li class="level3">
-            <a href="#autotoc_md15">Direct Vendoring </a>
+            <a href="#autotoc_md16">Direct Vendoring </a>
           </li>
         </ul>
       </li>
     </ul>
   </li>
   <li class="level1">
-    <a href="#autotoc_md16">🧭 Typical Workflow </a>
+    <a href="#autotoc_md17">🧭 Typical Workflow </a>
   </li>
   <li class="level1">
-    <a href="#autotoc_md17">🛠️ Building and Testing </a>
+    <a href="#autotoc_md18">🛠️ Building and Testing </a>
   </li>
   <li class="level1">
-    <a href="#autotoc_md18">📚 Building the Documentation </a>
+    <a href="#autotoc_md19">📚 Building the Documentation </a>
   </li>
   <li class="level1">
-    <a href="#autotoc_md19">🔨 Related Projects </a>
+    <a href="#autotoc_md20">🔨 Related Projects </a>
   </li>
   <li class="level1">
-    <a href="#autotoc_md20">🤝 Contributing </a>
+    <a href="#autotoc_md21">🤝 Contributing </a>
   </li>
   <li class="level1">
-    <a href="#autotoc_md21">⚖️ License </a>
+    <a href="#autotoc_md22">⚖️ License </a>
   </li>
 </ul>
 </div>
@@ -234,7 +237,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
 <p><a href="https://github.com/leissa/fe/releases"><img src="https://img.shields.io/github/v/release/leissa/fe?style=flat-square&amp;logo=starship&amp;color=blue&amp;label=Release" alt="GitHub Release" class="inline"/></a> <a href="https://leissa.github.io/fe"><img src="https://img.shields.io/badge/Docs-main-blue?style=flat-square&amp;logo=gitbook&amp;logoColor=white" alt="Documentation" class="inline"/></a> <a href="https://en.wikipedia.org/wiki/C%2B%2B#Standardization"><img src="https://img.shields.io/badge/C%2B%2B-23-blue?style=flat-square&amp;logo=cplusplus" alt="C++23" class="inline"/></a> <a href="https://github.com/leissa/fe/blob/main/LICENSE"><img src="https://img.shields.io/github/license/leissa/fe?style=flat-square&amp;color=blue&amp;logo=opensourceinitiative&amp;logoColor=white&amp;label=License" alt="License" class="inline"/></a></p>
 <p><a href="https://github.com/leissa/fe/actions/workflows/doxygen.yml?query=branch%3Amain"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/doxygen.yml?style=flat-square&amp;logo=doxygen&amp;logoSize=auto&amp;label=&amp;labelColor=555&amp;branch=main" alt="Doxygen" class="inline"/></a> <a href="https://github.com/leissa/fe/actions/workflows/linux.yml?query=branch%3Amain"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/linux.yml?style=flat-square&amp;logo=linux&amp;label=Linux&amp;logoColor=white&amp;branch=main" alt="Linux" class="inline"/></a> <a href="https://github.com/leissa/fe/actions/workflows/macos.yml?query=branch%3Amain"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/macos.yml?style=flat-square&amp;logo=apple&amp;label=macOS&amp;branch=main" alt="macOS" class="inline"/></a> <a href="https://github.com/leissa/fe/actions/workflows/windows.yml?query=branch%3Amain"><img src="https://img.shields.io/github/actions/workflow/status/leissa/fe/windows.yml?style=flat-square&amp;label=⊞%20Windows&amp;branch=main" alt="Windows" class="inline"/></a></p>
 <p><b>FE</b> is a C++23 toolkit for building handwritten compiler and interpreter frontends. Most of it is header-only; the handful of components that need a translation unit of their own come with <span class="tt">FE_LIB</span>, which is on by default.</p>
-<p>Rather than generating lexers or parsers for you, FE focuses on the infrastructure that every frontend needs anyway: source locations, diagnostics, interning, parsing support, and efficient memory management. The goal is simple: keep handwritten frontends lightweight, explicit, and pleasant to maintain.</p>
+<p>Rather than generating lexers or parsers for you, FE focuses on the infrastructure that every frontend needs anyway: source locations, diagnostics, interning, parsing support, command-line handling, and efficient memory management. The goal is simple: keep handwritten frontends lightweight, explicit, and pleasant to maintain.</p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
 💡 Why FE?</h1>
 <p>FE is a good fit if you want to build:</p>
@@ -323,6 +326,12 @@ Diagnostics</h3>
 <li><span class="tt"><a class="el" href="namespacefe_1_1term.html" title="Lightweight stream-based terminal colors for diagnostics and CLI output.">fe::term</a></span> for lightweight terminal colors in diagnostics and CLI output.</li>
 </ul>
 <h3 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
+Command Line</h3>
+<ul>
+<li><span class="tt"><a class="el" href="namespacefe_1_1cli.html" title="A small command-line parser for a single command - no subcommands.">fe::cli</a></span> for parsing <span class="tt">argc</span>/<span class="tt">argv</span> of a single command: pipe <span class="tt"><a class="el" href="namespacefe_1_1cli.html#a69f22d0926aef3e130761de5c0f5cb8a" title="A flag: sets target to true - or invokes it with true - each time it occurs.">fe::cli::opt</a></span>/<span class="tt"><a class="el" href="namespacefe_1_1cli.html#aad377bb1d54e50ef0d5bc289ae4332bf" title="A positional argument; hint names it in the help as &lt;hint&gt;.">fe::cli::arg</a></span> into an <span class="tt"><a class="el" href="classfe_1_1cli_1_1Cli.html" title="Holds the Opts, parses argc/argv, and renders the help.">fe::cli::Cli</a></span> and bind each switch to a variable of yours - a <span class="tt">bool</span>, a <span class="tt">std::string</span>, an integral, a <span class="tt">std::vector</span> of those, or a callable. It understands <span class="tt">--name value</span>, <span class="tt">--name=value</span>, <span class="tt">-n value</span>, <span class="tt">-nvalue</span>, clustered short flags, and <span class="tt">--</span>.</li>
+<li><span class="tt">Cli::help</span> lays those switches out for a terminal - grouped into sections by <span class="tt"><a class="el" href="namespacefe_1_1cli.html#a3ad34a6615d9a46f432eb2b3be18b327" title="Opens a section named name that all following Cli options are listed under.">fe::cli::group</a></span>, wrapped to the terminal width, and colored via <span class="tt"><a class="el" href="namespacefe_1_1term.html" title="Lightweight stream-based terminal colors for diagnostics and CLI output.">fe::term</a></span>. <span class="tt">Cli::md</span> renders the very same information as Markdown tables, so <span class="tt">--help</span> and the manual cannot drift apart.</li>
+</ul>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
 Data Structures</h3>
 <ul>
 <li><span class="tt"><a class="el" href="classfe_1_1Span.html" title="This is a thin wrapper for std::span&lt;T, N&gt; with the following additional features:">fe::Span</a></span>/<span class="tt"><a class="el" href="namespacefe.html#a3fa8abec15ebc094748836707250e96e">fe::View</a></span> and <span class="tt"><a class="el" href="classfe_1_1Vector.html" title="This is a thin wrapper for absl::InlinedVector&lt;T, N, A&gt; which is a drop-in replacement for std::vecto...">fe::Vector</a></span> for spans with structured binding and small-buffer vectors.</li>
@@ -331,7 +340,7 @@ Data Structures</h3>
 <li><span class="tt"><a class="el" href="namespacefe.html#a0cf8b223e0a15d8cae20a0d8b332e8b9">fe::BFSWorklist</a></span>/<span class="tt"><a class="el" href="namespacefe.html#a549e9d25223dacc899ddef74bf627b3f">fe::DFSWorklist</a></span> for worklist traversals that visit each element at most once.</li>
 <li>Optional <span class="tt">FE_ABSL</span> support for <a href="https://abseil.io/">Abseil</a> hash containers.</li>
 </ul>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md12"></a>
 Odds &amp; Ends</h3>
 <ul>
 <li><span class="tt"><a class="el" href="namespacefe.html#a11d6f3c09be860709bc513577982fbaa" title="Mixes h with murmur3 or splitmix64 - whichever matches sizeof(size_t).">fe::hash</a></span> and friends for cheap, <span class="tt">constexpr</span> hash mixing/combining.</li>
@@ -366,7 +375,7 @@ Requires <span class="tt">FE_LIB</span></h2>
 </ul>
 <p>FE does not try to hide frontend construction behind a generator. Instead, it gives you sharp, reusable tools so you can build exactly the frontend you want.</p>
 <p>For a complete end-to-end example, see <a href="https://github.com/leissa/let"><b>Let</b></a>, a small toy language built on FE.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md12"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md13"></a>
 🚀 Quick Start</h1>
 <p>The easiest way to get going is through <a href="https://github.com/leissa/let"><b>Let</b></a>.</p>
 <p>You can either:</p>
@@ -375,9 +384,9 @@ Requires <span class="tt">FE_LIB</span></h2>
 <li>🍴 <a href="https://github.com/leissa/let/fork">fork Let directly</a>.</li>
 </ul>
 <p>That gives you a concrete, working example of how FE is intended to be used in practice.</p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md13"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md14"></a>
 Integrate into existing Project</h2>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md14"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md15"></a>
 CMake</h3>
 <p>Add FE as a subdirectory and link the <span class="tt"><a class="el" href="namespacefe.html">fe</a></span> target:</p>
 <div class="fragment"><div class="line">add_subdirectory(submodules/fe)</div>
@@ -390,12 +399,12 @@ CMake</h3>
 </div><!-- fragment --><p><span class="tt">FE_LIB</span> compiles <span class="tt">src/fe/</span> along with the headers and is on by default. Turn it off to get only the header-only building blocks; you lose the components listed under <a class="el" href="#requires-fe_lib" title="Requires &lt;tt&gt;FE_LIB&lt;/tt&gt;">Requires `FE_LIB`</a>.</p>
 <p><span class="tt">fe-lib</span> is an <span class="tt">OBJECT</span> library, so its symbols land inside a shared library of <em>yours</em>. On Windows that shared library has to export them, which CMake cannot infer: compile everything that goes into it with <span class="tt">fe_lib_EXPORTS</span>, or <span class="tt">FE_STATIC_DEFINE</span> if there is no shared library in play.</p>
 <div class="fragment"><div class="line">target_compile_definitions(my_compiler PRIVATE fe_lib_EXPORTS)</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md15"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md16"></a>
 Direct Vendoring</h3>
 <p>You can also vendor <span class="tt">include/fe/</span> directly into your project and add the <span class="tt">src/fe/*.cpp</span> you need to your build - <span class="tt"><a class="el" href="namespacefe_1_1dl.html">fe::dl</a></span> additionally wants <span class="tt">${CMAKE_DL_LIBS}</span>.</p>
 <p>If you want Abseil support in that setup, compile with:</p>
 <div class="fragment"><div class="line">-DFE_ABSL</div>
-</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md16"></a>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md17"></a>
 🧭 Typical Workflow</h1>
 <p>A typical FE-based frontend looks roughly like this:</p>
 <ol type="1">
@@ -408,7 +417,7 @@ Direct Vendoring</h3>
 <li>Use <span class="tt"><a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">fe::Arena</a></span> and symbol interning where allocation cost and identifier handling matter.</li>
 </ol>
 <p>If you want a concrete model to copy from, start with <a href="../tests/lexer.cpp"><span class="tt">tests/lexer.cpp</span></a>.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md17"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md18"></a>
 🛠️ Building and Testing</h1>
 <p>To configure, build, and run the test suite:</p>
 <div class="fragment"><div class="line">cmake -S . -B build -DBUILD_TESTING=ON</div>
@@ -419,13 +428,13 @@ Direct Vendoring</h3>
 <div class="fragment"><div class="line">ctest --test-dir build -R &#39;^Lexer$&#39; --output-on-failure</div>
 </div><!-- fragment --><p>To run a doctest case directly:</p>
 <div class="fragment"><div class="line">./build/bin/fe-test --test-case=Lexer</div>
-</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md18"></a>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md19"></a>
 📚 Building the Documentation</h1>
 <p>To build the documentation:</p>
 <div class="fragment"><div class="line">cmake -S . -B build -DFE_BUILD_DOCS=ON</div>
 <div class="line">cmake --build build --target docs</div>
 </div><!-- fragment --><p>This requires Doxygen and Graphviz (<span class="tt">dot</span>).</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md19"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md20"></a>
 🔨 Related Projects</h1>
 <p>FE is developed against three frontends of very different scale, and every change has to work for all three:</p>
 <ul>
@@ -437,10 +446,10 @@ Direct Vendoring</h3>
 <ul>
 <li><a href="https://github.com/leissa/graphtool">GraphTool</a> - a DOT-language tool using FE-style frontend infrastructure.</li>
 </ul>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md20"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md21"></a>
 🤝 Contributing</h1>
 <p>Issues and pull requests are welcome - whether that's a bug report, a new frontend building block, or a documentation fix. If you're unsure where to start, open an issue to discuss the idea first.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md21"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md22"></a>
 ⚖️ License</h1>
 <p>FE is licensed under the <a href="../LICENSE">MIT License</a>. </p>
 </div></div><!-- PageDoc -->
