@@ -18,7 +18,7 @@
 **FE** is a C++23 toolkit for building handwritten compiler and interpreter frontends.
 Most of it is header-only; the handful of components that need a translation unit of their own come with `FE_LIB`, which is on by default.
 
-Rather than generating lexers or parsers for you, FE focuses on the infrastructure that every frontend needs anyway: source locations, diagnostics, interning, parsing support, and efficient memory management.
+Rather than generating lexers or parsers for you, FE focuses on the infrastructure that every frontend needs anyway: source locations, diagnostics, interning, parsing support, command-line handling, and efficient memory management.
 The goal is simple: keep handwritten frontends lightweight, explicit, and pleasant to maintain.
 
 ## 💡 Why FE?
@@ -124,6 +124,13 @@ Header-only, except for what [Requires `FE_LIB`](#requires-fe_lib) lists below.
 - `fe::Log` for leveled logging with acronym, color, and origin prefix.
     - `Log::error`/`Log::warn`/... shorthands point at their call site via `std::source_location`; no macros involved.
 - `fe::term` for lightweight terminal colors in diagnostics and CLI output.
+
+#### Command Line
+
+- `fe::cli` for parsing `argc`/`argv` of a single command: pipe `fe::cli::opt`/`fe::cli::arg` into an `fe::cli::Cli` and bind each switch to a variable of yours - a `bool`, a `std::string`, an integral, a `std::vector` of those, or a callable.
+  It understands `--name value`, `--name=value`, `-n value`, `-nvalue`, clustered short flags, and `--`.
+- `Cli::help` lays those switches out for a terminal - grouped into sections by `fe::cli::group`, wrapped to the terminal width, and colored via `fe::term`.
+  `Cli::md` renders the very same information as Markdown tables, so `--help` and the manual cannot drift apart.
 
 #### Data Structures
 
