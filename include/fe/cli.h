@@ -37,6 +37,7 @@
 /// ```
 /// A target may be a `bool` (for a flag), a `std::string`, an integral type, a `std::vector` of those, or a callable -
 /// invoked with `true` for a flag and with the `std::string` value otherwise.
+/// Such a callable may return a `std::string` to reject that value; a non-empty one becomes the Res::message.
 /// An fe::cli::opt without a hint is a flag; one with a hint takes a value.
 ///
 /// The parser understands `--name value`, `--name=value`, `-n value`, `-nvalue`, clustered short flags (`-abc`), and
@@ -112,6 +113,8 @@ std::string scan(T& t, std::string_view s) {
         auto begin = s.data(), end = begin + s.size();
         if (auto [ptr, ec] = std::from_chars(begin, end, t); ec != std::errc{} || ptr != end)
             return std::format("'{}' is not a number", s);
+    } else if constexpr (std::is_invocable_r_v<std::string, T&, std::string>) {
+        return t(std::string(s)); // a validating handler reports what it did not like
     } else if constexpr (std::is_invocable_v<T&, std::string>) {
         t(std::string(s));
     } else {

@@ -1,3 +1,4 @@
+#include <format>
 #include <sstream>
 
 #include <doctest/doctest.h>
@@ -92,6 +93,25 @@ TEST_CASE("cli values") {
         auto res  = cli.parse(args.argc(), args.data());
         CHECK(!res);
         CHECK(res.message() == "option '--output' requires a value <file>");
+    }
+
+    SUBCASE("a handler may reject a value") {
+        std::string mode2;
+        auto pick = [&](const std::string& t) -> std::string {
+            if (t != "tree" && t != "flat") return std::format("'{}' is not a mode", t);
+            mode2 = t;
+            return {};
+        };
+        auto cli2 = fe::cli::Cli("t") | fe::cli::opt(pick, "mode")["--mode"];
+        auto ok   = Args{"t", "--mode", "tree"};
+        auto bad  = Args{"t", "--mode", "nope"};
+        CHECK(cli2.parse(ok.argc(), ok.data()));
+        CHECK(mode2 == "tree");
+
+        auto cli3 = fe::cli::Cli("t") | fe::cli::opt(pick, "mode")["--mode"];
+        auto res  = cli3.parse(bad.argc(), bad.data());
+        CHECK(!res);
+        CHECK(res.message() == "option '--mode': 'nope' is not a mode");
     }
 
     SUBCASE("not a number") {
