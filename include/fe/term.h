@@ -5,6 +5,7 @@
 
 #include <atomic>
 #include <iostream>
+#include <optional>
 #include <ostream>
 #include <string_view>
 
@@ -17,6 +18,7 @@
 #    endif
 #    include <windows.h>
 #else
+#    include <sys/ioctl.h>
 #    include <unistd.h>
 #endif
 
@@ -195,6 +197,25 @@ inline bool use_color(std::ostream& os) noexcept {
         default: fe::unreachable();
     }
     // clang-format on
+}
+
+/// Number of columns of the terminal @p os refers to.
+/// Unlike @ref use_color, this ignores @ref Mode and always asks the actual stream.
+/// @returns `std::nullopt` if @p os is not a terminal or its size cannot be determined.
+inline std::optional<size_t> width(std::ostream& os) noexcept {
+    auto s = detail::stream(os);
+    if (!detail::is_terminal(s)) return {};
+
+#ifdef _WIN32
+    auto handle = GetStdHandle(s == detail::Stream::Stdout ? STD_OUTPUT_HANDLE : STD_ERROR_HANDLE);
+    if (CONSOLE_SCREEN_BUFFER_INFO info; GetConsoleScreenBufferInfo(handle, &info)) {
+        if (auto cols = info.srWindow.Right - info.srWindow.Left + 1; cols > 0) return size_t(cols);
+    }
+#else
+    auto fd = s == detail::Stream::Stdout ? STDOUT_FILENO : STDERR_FILENO;
+    if (winsize ws; ::ioctl(fd, TIOCGWINSZ, &ws) == 0 && ws.ws_col > 0) return size_t(ws.ws_col);
+#endif
+    return {};
 }
 
 /// Overrides the current terminal color mode.

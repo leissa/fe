@@ -3,6 +3,7 @@ target_sources(fe-test
     PRIVATE
         bitset.cpp
         cast.cpp
+        cli.cpp
         hash.cpp
         lexer.cpp
         loc.cpp
