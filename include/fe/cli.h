@@ -16,7 +16,7 @@
 
 #include "fe/term.h"
 
-/// A small command-line parser for a single command - no subcommands, no required options.
+/// A small command-line parser for a single command - no subcommands.
 ///
 /// Declare the switches by piping fe::cli::opt / fe::cli::arg into an fe::cli::Cli and bind each one to a variable:
 /// ```
@@ -26,11 +26,11 @@
 ///
 /// auto cli = fe::cli::Cli("mim", "The MimIR compiler.")
 ///          | fe::cli::help(show_help)
-///          | fe::cli::opt(verbose      )["-V"]["--verbose"]("Be verbose.")
-///          | fe::cli::opt(plugins, "p" )["-p"]["--plugin" ]("Load plugin; repeatable.")
+///          | fe::cli::opt(verbose           )["-V"]["--verbose"]("Be verbose.")
+///          | fe::cli::opt(plugins, "plugin" )["-p"]["--plugin" ]("Loads a plugin; repeatable.")
 ///          | fe::cli::group("Output")
-///          | fe::cli::opt(out, "file"  )["-o"]["--output" ]("Where to write the result.")
-///          | fe::cli::arg(in,  "file"  )                   ("Input file.");
+///          | fe::cli::opt(out,     "file"   )["-o"]["--output" ]("Where to write the result.")
+///          | fe::cli::arg(in,      "file"   )                   ("Input file.");
 ///
 /// if (auto res = cli.parse(argc, argv); !res) throw std::invalid_argument(res.message());
 /// if (show_help) std::cout << cli;
@@ -41,6 +41,9 @@
 ///
 /// The parser understands `--name value`, `--name=value`, `-n value`, `-nvalue`, clustered short flags (`-abc`), and
 /// `--` to end option processing.
+///
+/// Cli::help lays the switches out for a terminal - wrapped to its width and colored via fe::term - whereas Cli::md
+/// renders the same information as Markdown tables; fe::cli::group splits both into sections.
 namespace fe::cli {
 
 class Opt;
