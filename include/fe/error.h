@@ -121,6 +121,17 @@ public:
     // clang-format on
     ///@}
 
+    /// @name Shorthands
+    /// Terse aliases of the above, in the spirit of Log::e and friends.
+    ///@{
+    // clang-format off
+    template<class... Args> Error& e(Loc loc, std::format_string<Args...> s, Args&&... args) { return error(loc, s, std::forward<Args>(args)...); }
+    template<class... Args> Error& w(Loc loc, std::format_string<Args...> s, Args&&... args) { return warn (loc, s, std::forward<Args>(args)...); }
+    template<class... Args> Error& n(         std::format_string<Args...> s, Args&&... args) { return note(     s, std::forward<Args>(args)...); }
+    template<class... Args> Error& n(Loc loc, std::format_string<Args...> s, Args&&... args) { return note(loc, s, std::forward<Args>(args)...); }
+    // clang-format on
+    ///@}
+
     /// @name Handle Errors/Warnings
     ///@{
     void clear() {

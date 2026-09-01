@@ -118,7 +118,7 @@ Header-only, except for what [Requires `FE_LIB`](#requires-fe_lib) lists below.
 - `fe::Src` and `fe::SrcMap` for owning source text and resolving a position back to `path:row:col`.
 - `fe::Dbg` for the `Loc`/`Sym` pair every named entity drags along, interned in the `Driver` as a `DbgKey`.
 - `fe::Error` for collecting diagnostics - errors, warnings and their notes - and rendering each with its source snippet; `Error::ack` throws what it collected as a self-contained `Error::Bail`.
-  The `Driver` owns the one everything reports into: `Driver::error`, with `Driver::{error,warn,note}` as shorthands.
+  The `Driver` owns the one everything reports into (`Driver::error`); `Error::{e,w,n}` are terse aliases of `Error::{error,warn,note}`, in the spirit of `Log::e` and friends.
 - `fe::Diag` for how a diagnostic lays out: `Diag::loc_style` (a `Loc::Style`), `Diag::no_snippet`, and friends cover the usual adjustments, and one virtual per piece (`loc`, `header`, `snippet`, `note`, `summary`, `render`) covers the rest.
   Derive and `Driver::diag(std::make_unique<MyDiag>())` to lay one out entirely your own way.
 - `fe::Log` for leveled logging with acronym, color, and origin prefix.

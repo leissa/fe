@@ -134,12 +134,15 @@ protected:
     /// @name Diagnostics
     /// The defaults @p S may replace with one of its own.
     ///@{
+    fe::Error& error() { return self().driver().error(); }
+    const fe::Error& error() const { return self().driver().error(); }
+
     /// Lexer::recover_utf8 discarded the malformed bytes at Lexer::loc_.
     void utf8_err() {
         static_assert(
             requires(S& s) { s.driver(); },
             "provide `fe::Driver& driver()` in your lexer - or a `utf8_err` of your own");
-        self().driver().error(loc_, "invalid UTF-8 sequence");
+        error().e(loc_, "invalid UTF-8 sequence");
     }
 
     /// Lexer::recover_char discarded @p c at Lexer::loc_.
@@ -147,7 +150,7 @@ protected:
         static_assert(
             requires(S& s) { s.driver(); },
             "provide `fe::Driver& driver()` in your lexer - or a `char_err` of your own");
-        self().driver().error(loc_, "invalid input character `{}`", utf8::Char32(c));
+        error().e(loc_, "invalid input character `{}`", utf8::Char32(c));
     }
     ///@}
 

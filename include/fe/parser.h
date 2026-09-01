@@ -204,7 +204,7 @@ protected:
         static_assert(
             requires(S& s) { s.driver(); },
             "provide `fe::Driver& driver()` in your parser - or a `syntax_err` of your own");
-        self().driver().error(tok.loc(), "expected {}, got `{}` while parsing {}", what, tok, ctxt);
+        error().e(tok.loc(), "expected {}, got `{}` while parsing {}", what, tok, ctxt);
     }
 
     /// As above but uses Parser::ahead as @p tok.
@@ -218,7 +218,7 @@ protected:
         static_assert(
             requires(S& s) { s.driver(); },
             "provide `fe::Driver& driver()` in your parser - or an `unanchored_err` of your own");
-        self().driver().error(tok.loc(), "ignoring unmatched `{}` while parsing {}", tok, ctxt);
+        error().e(tok.loc(), "ignoring unmatched `{}` while parsing {}", tok, ctxt);
     }
     ///@}
 

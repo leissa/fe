@@ -38,13 +38,6 @@ public:
     Error& error() { return error_; }
     const Error& error() const { return error_; }
 
-    // clang-format off
-    template<class... Args> Error& error(Loc loc, std::format_string<Args...> fmt, Args&&... args) { return error_.error(loc, fmt, std::forward<Args>(args)...); }
-    template<class... Args> Error& warn (Loc loc, std::format_string<Args...> fmt, Args&&... args) { return error_.warn (loc, fmt, std::forward<Args>(args)...); }
-    template<class... Args> Error& note (         std::format_string<Args...> fmt, Args&&... args) { return error_.note (     fmt, std::forward<Args>(args)...); }
-    template<class... Args> Error& note (Loc loc, std::format_string<Args...> fmt, Args&&... args) { return error_.note (loc, fmt, std::forward<Args>(args)...); }
-    // clang-format on
-
     Diag& diag() { return *diag_; }
     const Diag& diag() const { return *diag_; }
 

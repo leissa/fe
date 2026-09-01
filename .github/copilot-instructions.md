@@ -47,7 +47,7 @@ The library is organized around a few reusable frontend-building blocks that are
 
 - `fe::Arena` (`arena.h`) provides arena allocation, an STL allocator adapter, and arena-backed `unique_ptr` support for AST-style ownership.
 - `fe::Sym` and `fe::SymPool` (`sym.h`) intern strings so identifiers can be compared cheaply by pointer after interning.
-- `fe::Driver` (`driver.h`) is the shared frontend context: it inherits `SymPool`, owns the `SrcMap` (`Driver::src`), the interned `Dbg`s (`Driver::dbg`), the `fe::Diag` (`Driver::diag`), and the `fe::Error` every building block reports into (`Driver::error`, plus `error`/`warn`/`note` shorthands).
+- `fe::Driver` (`driver.h`) is the shared frontend context: it inherits `SymPool`, owns the `SrcMap` (`Driver::src`), the interned `Dbg`s (`Driver::dbg`), the `fe::Diag` (`Driver::diag`), and the `fe::Error` every building block reports into (`Driver::error`).
   It is not movable: the `Error` - and a `Diag` of your own - point back at it.
 - `fe::Diag` (`diag.h`) owns how a diagnostic lays out: the knobs (`gutter`, `max_rows`, `max_errors`, `no_snippet`, `werror`, `loc_style` of type `Loc::Style`) plus one virtual per piece (`loc`, `header`, `snippet`, `note`, `summary`) and the `render` hook each message is formatted through.
   Adjust the knobs for the common cases; derive and `Driver::diag(std::make_unique<MyDiag>())` to lay a diagnostic out from scratch.
@@ -80,7 +80,7 @@ It is an `OBJECT` library on purpose: link it into exactly one shared library of
 - `SrcMap` interns paths under `SrcMap::key` (absolute, symlink-free, normalized), so one file yields exactly one `Src`. That is what lets `Loc` compare files by pointer - do not hand a `Loc` a `Src` that some other `SrcMap` (or nobody) owns.
 - A `Loc` renders itself: `operator<<`/`std::format` spell out `path:row:col-row:col` via `Loc::src`, falling back to `path@begin-end` when it has no `Src` or the offsets do not resolve within it. Diagnostics just pass the `Loc`.
 - Non-empty symbols should be created through `SymPool::sym` / `Driver::sym`, not by constructing `Sym` manually. Use `SymMap` / `SymSet` aliases instead of concrete hash container types, especially because `FE_ABSL` switches those aliases to Abseil containers.
-- Diagnostics are `std::format`-based and go through `fe::Error::{error,warn,note}` - normally reached as `Driver::{error,warn,note}`. Follow that pattern rather than inventing separate reporting helpers.
+- Diagnostics are `std::format`-based and go through `fe::Error::{error,warn,note}` - or their terse aliases `fe::Error::{e,w,n}` - reached via the `error()` the lexer/parser blueprints provide. Follow that pattern rather than inventing separate reporting helpers.
 - Put a `` `citation` `` in backticks: `fe::Diag` colors what they enclose and drops them, or keeps them verbatim without color. Escape a literal one as `` \` ``.
 - A note attaches to the error or warning that precedes it. `Error::note` without a `Loc` renders as a `= note:` continuation; with a `Loc` it points somewhere else and gets a header line and snippet of its own - and is dropped when that `Loc` overlaps the primary one and thus points nowhere new.
 - `Error::report` streams and claims everything, `Error::bail` always throws an `Error::Bail`, and `Error::ack` bails on errors and merely reports warnings. Build and throw one diagnostic in a single expression with `Error(driver).error(...).note(...).bail()`.
