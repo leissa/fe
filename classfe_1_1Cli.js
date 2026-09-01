@@ -9,6 +9,7 @@ var classfe_1_1Cli =
     [ "help", "classfe_1_1Cli.html#a1af1bcd5a4870e3e9306986d8bcd2833", null ],
     [ "help", "classfe_1_1Cli.html#a64dd10a0ba8294a71e26371359762c1e", null ],
     [ "markdown", "classfe_1_1Cli.html#a94dc09d41006be6f204294aa18748758", null ],
+    [ "opt", "classfe_1_1Cli.html#a2faafd21ada74ce487eebf5c91723111", null ],
     [ "opt", "classfe_1_1Cli.html#a753e88d69bcd1a723ba2d56407a7f832", null ],
     [ "parse", "classfe_1_1Cli.html#ac44a54d788360af939f7921c600d4fb4", null ],
     [ "section", "classfe_1_1Cli.html#aa01511fabfde14a93b647a541108b480", null ],

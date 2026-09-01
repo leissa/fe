@@ -33,7 +33,7 @@ var searchData=
   ['operator_7c_30',['operator|',['../classfe_1_1Bitset.html#af80bbb1f7837072940bc3a97f4d2d581',1,'fe::Bitset::operator|()'],['../enum_8h.html#aa729db4cebf829cc103144123b423c86',1,'operator|():&#160;enum.h']]],
   ['operator_7c_3d_31',['operator|=',['../classfe_1_1Bitset.html#a61664a43d9641e983447317ac552710f',1,'fe::Bitset::operator|=()'],['../enum_8h.html#a6d5ff498e337573172c3f886624dd528',1,'operator|=():&#160;enum.h']]],
   ['operator_7e_32',['operator~',['../classfe_1_1Bitset_1_1reference.html#a3e7e9b3c9199e355e278ce087b1762de',1,'fe::Bitset::reference::operator~()'],['../enum_8h.html#a14c03db6837c04990ce6de219bc6e9e1',1,'operator~():&#160;enum.h']]],
-  ['opt_33',['opt',['../classfe_1_1Cli.html#a753e88d69bcd1a723ba2d56407a7f832',1,'fe::Cli']]],
+  ['opt_33',['opt',['../classfe_1_1Cli.html#a753e88d69bcd1a723ba2d56407a7f832',1,'fe::Cli::opt(T &amp;target, std::string hint={}, std::string sname={}, std::string lname={}, std::string descr={})'],['../classfe_1_1Cli.html#a2faafd21ada74ce487eebf5c91723111',1,'fe::Cli::opt(bool &amp;target, std::string sname={}, std::string lname={}, std::string descr={})']]],
   ['ostream_34',['ostream',['../classfe_1_1Log.html#aca33a8cd004ad91aa9f9f632358446c0',1,'fe::Log']]],
   ['ostream_5fformatter_35',['ostream_formatter',['../namespacefe.html#a923ce058163e2041744a84793de679c0',1,'fe']]]
 ];
