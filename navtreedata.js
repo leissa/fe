@@ -96,8 +96,8 @@ var NAVTREEINDEX =
 "classfe_1_1Parser_1_1Anchor.html",
 "classfe_1_1Sym.html#a3308cf822fc8707a9c946335d85972cd",
 "classfe_1_1cli_1_1Cli.html#a3db4dbe4495c17776e32d416dc0b87e6",
-"namespacefe.html#a58095bbcff6b7ff77b3e6592838e079e",
-"structfe_1_1Loc.html"
+"namespacefe.html#a82611dc8d24da4728eb1d636f65aea2d",
+"structfe_1_1Loc.html#a3bad4ff963770f1c006b42e944617b52"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';

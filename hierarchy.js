@@ -59,7 +59,6 @@ var hierarchy =
     [ "fe::Pos", "structfe_1_1Pos.html", null ],
     [ "fe::Profiler", "classfe_1_1Profiler.html", null ],
     [ "fe::Bitset::reference", "classfe_1_1Bitset_1_1reference.html", null ],
-    [ "fe::cli::Res", "classfe_1_1cli_1_1Res.html", null ],
     [ "fe::Restore&lt; T, Get, Set &gt;", "classfe_1_1Restore.html", null ],
     [ "fe::Restore&lt; T, nullptr, nullptr &gt;", "classfe_1_1Restore_3_01T_00_01nullptr_00_01nullptr_01_4.html", null ],
     [ "fe::Ring&lt; T, N &gt;", "classfe_1_1Ring.html", null ],

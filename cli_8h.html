@@ -155,29 +155,25 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('cli_8h.html','
 <div class="contents">
 <div class="textblock"><code>#include &lt;charconv&gt;</code><br />
 <code>#include &lt;cstddef&gt;</code><br />
-<code>#include &lt;algorithm&gt;</code><br />
-<code>#include &lt;filesystem&gt;</code><br />
 <code>#include &lt;format&gt;</code><br />
 <code>#include &lt;functional&gt;</code><br />
 <code>#include &lt;limits&gt;</code><br />
+<code>#include &lt;optional&gt;</code><br />
 <code>#include &lt;ostream&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;string_view&gt;</code><br />
 <code>#include &lt;type_traits&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
-<code>#include &quot;<a class="el" href="term_8h_source.html">fe/term.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for cli.h:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="cli_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="cli_8h__incl.svg" width="100%" height="382"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 </div>
 <p><a href="cli_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:fe_3A_3Acli_3A_3ARes" id="r_fe_3A_3Acli_3A_3ARes"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1cli_1_1Res.html">fe::cli::Res</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outcome of <a class="el" href="classfe_1_1cli_1_1Cli.html#aca3f406d767faec72bb5b7172ae280f4">Cli::parse</a>: falsish and carrying a <a class="el" href="classfe_1_1cli_1_1Res.html#a9344d9ace67306f83f23f96d6e37b9ee">Res::message</a> when parsing failed.  <a href="classfe_1_1cli_1_1Res.html#details">More...</a><br /></td></tr>
 <tr class="memitem:fe_3A_3Acli_3A_3AGroup_5Fstructfe_5F1_5F1cli_5F1_5F1Group" id="r_fe_3A_3Acli_3A_3AGroup_5Fstructfe_5F1_5F1cli_5F1_5F1Group"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1cli.html#structfe_1_1cli_1_1Group">fe::cli::Group</a></td></tr>
 <tr class="memdesc:structfe_1_1cli_1_1Group"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a new section in the help output; see <a class="el" href="namespacefe_1_1cli.html#a3ad34a6615d9a46f432eb2b3be18b327" title="Opens a section named name that all following Cli options are listed under.">fe::cli::group</a>.  <a href="namespacefe_1_1cli.html#structfe_1_1cli_1_1Group">More...</a><br /></td></tr>
 <tr class="memitem:fe_3A_3Acli_3A_3AOpt" id="r_fe_3A_3Acli_3A_3AOpt"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1cli_1_1Opt.html">fe::cli::Opt</a></td></tr>
@@ -206,7 +202,6 @@ Functions</h2></td></tr>
 <tr class="memdesc:a3ad34a6615d9a46f432eb2b3be18b327"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens a section named <code class="param">name</code> that all following <a class="el" href="classfe_1_1cli_1_1Cli.html" title="Holds the Opts, parses argc/argv, and renders the help.">Cli</a> options are listed under.  <br /></td></tr>
 <tr class="memitem:a5f58b5ed5c1a9d1a3e426d2bdb4a009a" id="r_a5f58b5ed5c1a9d1a3e426d2bdb4a009a"><td class="memItemLeft"><a class="el" href="classfe_1_1cli_1_1Opt.html">Opt</a>&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1cli.html#a5f58b5ed5c1a9d1a3e426d2bdb4a009a">fe::cli::help</a> (bool &amp;target)</td></tr>
 <tr class="memdesc:a5f58b5ed5c1a9d1a3e426d2bdb4a009a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <span class="tt">-h</span>/<span class="tt">--<a class="el" href="namespacefe_1_1cli.html#a5f58b5ed5c1a9d1a3e426d2bdb4a009a" title="The -h/--help flag; chain [&quot;-?&quot;] to give it further names.">help</a></span> flag; chain <span class="tt">["-?"]</span> to give it further names.  <br /></td></tr>
-<tr class="memitem:acd6106594f2bfdc8eec9e5e2de32a678" id="r_acd6106594f2bfdc8eec9e5e2de32a678"><td class="memItemLeft">std::ostream &amp;&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1cli.html#acd6106594f2bfdc8eec9e5e2de32a678">fe::cli::operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="classfe_1_1cli_1_1Cli.html">Cli</a> &amp;cli)</td></tr>
 </table>
 <hr/><h2 id="header-inline_5Fclasses" class="groupheader">Class Documentation</h2>
 <a name="structfe_1_1cli_1_1Group" id="structfe_1_1cli_1_1Group"></a>
@@ -222,7 +217,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <div class="textblock"><p>Starts a new section in the help output; see <a class="el" href="namespacefe_1_1cli.html#a3ad34a6615d9a46f432eb2b3be18b327" title="Opens a section named name that all following Cli options are listed under.">fe::cli::group</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00073">73</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00055">55</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
