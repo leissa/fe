@@ -177,8 +177,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a51f0af52c61264a2f7fb07fd3bbad3e8" id="r_a51f0af52c61264a2f7fb07fd3bbad3e8"><td class="memTemplParams" colspan="2">template&lt;class T&gt; </td></tr>
 <tr class="memitem:a51f0af52c61264a2f7fb07fd3bbad3e8 template"><td class="memItemLeft"><a class="el" href="#a9eeeb5d1f51087267d55c1e4ddfec310">Cli</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a51f0af52c61264a2f7fb07fd3bbad3e8">arg</a> (T &amp;target, std::string hint, std::string descr={})</td></tr>
 <tr class="memdesc:a51f0af52c61264a2f7fb07fd3bbad3e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">A positional argument; <code class="param">hint</code> names it in the help as <span class="tt">&lt;hint&gt;</span>.  <br /></td></tr>
-<tr class="memitem:a1af1bcd5a4870e3e9306986d8bcd2833" id="r_a1af1bcd5a4870e3e9306986d8bcd2833"><td class="memItemLeft"><a class="el" href="#a9eeeb5d1f51087267d55c1e4ddfec310">Cli</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a1af1bcd5a4870e3e9306986d8bcd2833">help</a> (bool &amp;target)</td></tr>
-<tr class="memdesc:a1af1bcd5a4870e3e9306986d8bcd2833"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <span class="tt">-h</span>/<span class="tt">--<a class="el" href="#a1af1bcd5a4870e3e9306986d8bcd2833" title="The -h/--help flag.">help</a></span> flag.  <br /></td></tr>
+<tr class="memitem:a2cff8ecb42aa9c5151ce67ffc0a4bfda" id="r_a2cff8ecb42aa9c5151ce67ffc0a4bfda"><td class="memItemLeft"><a class="el" href="#a9eeeb5d1f51087267d55c1e4ddfec310">Cli</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a2cff8ecb42aa9c5151ce67ffc0a4bfda">help</a> (bool &amp;target, std::string sname=&quot;-h&quot;, std::string lname=&quot;--help&quot;)</td></tr>
+<tr class="memdesc:a2cff8ecb42aa9c5151ce67ffc0a4bfda"><td class="mdescLeft">&#160;</td><td class="mdescRight">The help flag - named <span class="tt">-h</span>/<span class="tt">--<a class="el" href="#a2cff8ecb42aa9c5151ce67ffc0a4bfda" title="The help flag - named -h/--help unless sname / lname say otherwise.">help</a></span> unless <code class="param">sname</code> / <code class="param">lname</code> say otherwise.  <br /></td></tr>
 <tr class="memitem:a80ee9541c1de9e704d37a3cefc593683" id="r_a80ee9541c1de9e704d37a3cefc593683"><td class="memItemLeft"><a class="el" href="#a9eeeb5d1f51087267d55c1e4ddfec310">Cli</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a80ee9541c1de9e704d37a3cefc593683">cardinality</a> (size_t min, size_t max)</td></tr>
 <tr class="memdesc:a80ee9541c1de9e704d37a3cefc593683"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="#a753e88d69bcd1a723ba2d56407a7f832" title="An option bound to target and named sname and/or lname - &quot;-o&quot; and &quot;--output&quot;.">Cli::opt</a> / <a class="el" href="#a51f0af52c61264a2f7fb07fd3bbad3e8" title="A positional argument; hint names it in the help as &lt;hint&gt;.">Cli::arg</a> declared last must occur at least <code class="param">min</code> and at most <code class="param">max</code> times.  <br /></td></tr>
 <tr class="memitem:a9dbf1e14191060c2c440e40fd1b63141" id="r_a9dbf1e14191060c2c440e40fd1b63141"><td class="memItemLeft"><a class="el" href="#a9eeeb5d1f51087267d55c1e4ddfec310">Cli</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a9dbf1e14191060c2c440e40fd1b63141">grp</a> (std::string name)</td></tr>
@@ -199,8 +199,8 @@ Friends</h2></td></tr>
 <div class="line">std::vector&lt;std::string&gt; plugins;</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">auto</span> cli = <a class="code hl_class" href="classfe_1_1Cli.html">fe::Cli</a>(<span class="stringliteral">&quot;mim&quot;</span>, <span class="stringliteral">&quot;The MimIR compiler.&quot;</span>)</div>
-<div class="line">    .<a class="code hl_function" href="#a1af1bcd5a4870e3e9306986d8bcd2833">help</a>(show_help)</div>
-<div class="line">    .<a class="code hl_function" href="#a753e88d69bcd1a723ba2d56407a7f832">opt</a>(verbose, <span class="stringliteral">&quot;&quot;</span>      , <span class="stringliteral">&quot;-V&quot;</span>, <span class="stringliteral">&quot;--verbose&quot;</span>, <span class="stringliteral">&quot;Be verbose.&quot;</span>)</div>
+<div class="line">    .<a class="code hl_function" href="#a2cff8ecb42aa9c5151ce67ffc0a4bfda">help</a>(show_help)</div>
+<div class="line">    .<a class="code hl_function" href="#a753e88d69bcd1a723ba2d56407a7f832">opt</a>(verbose,           <span class="stringliteral">&quot;-V&quot;</span>, <span class="stringliteral">&quot;--verbose&quot;</span>, <span class="stringliteral">&quot;Be verbose.&quot;</span>)</div>
 <div class="line">    .<a class="code hl_function" href="#a753e88d69bcd1a723ba2d56407a7f832">opt</a>(plugins, <span class="stringliteral">&quot;plugin&quot;</span>, <span class="stringliteral">&quot;-p&quot;</span>, <span class="stringliteral">&quot;--plugin&quot;</span> , <span class="stringliteral">&quot;Loads a plugin; repeatable.&quot;</span>)</div>
 <div class="line">    .<a class="code hl_function" href="#a9dbf1e14191060c2c440e40fd1b63141">grp</a>(<span class="stringliteral">&quot;Output&quot;</span>)</div>
 <div class="line">    .<a class="code hl_function" href="#a753e88d69bcd1a723ba2d56407a7f832">opt</a>(out    , <span class="stringliteral">&quot;file&quot;</span>  , <span class="stringliteral">&quot;-o&quot;</span>, <span class="stringliteral">&quot;--output&quot;</span> , <span class="stringliteral">&quot;Where to write the result.&quot;</span>)</div>
@@ -208,16 +208,16 @@ Friends</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordflow">if</span> (<span class="keyword">auto</span> err = cli.parse(argc, argv)) <span class="keywordflow">throw</span> std::invalid_argument(*err);</div>
 <div class="line"><span class="keywordflow">if</span> (show_help) std::cout &lt;&lt; cli;</div>
-<div class="ttc" id="aclassfe_1_1Cli_html"><div class="ttname"><a href="classfe_1_1Cli.html">fe::Cli</a></div><div class="ttdoc">A small command-line parser for a single command - no subcommands.</div><div class="ttdef"><b>Definition</b> <a href="cli_8h_source.html#l00048">cli.h:48</a></div></div>
-<div class="ttc" id="aclassfe_1_1Cli_html_a1af1bcd5a4870e3e9306986d8bcd2833"><div class="ttname"><a href="#a1af1bcd5a4870e3e9306986d8bcd2833">fe::Cli::help</a></div><div class="ttdeci">Cli &amp; help(bool &amp;target)</div><div class="ttdoc">The -h/--help flag.</div><div class="ttdef"><b>Definition</b> <a href="cli_8h_source.html#l00086">cli.h:86</a></div></div>
-<div class="ttc" id="aclassfe_1_1Cli_html_a51f0af52c61264a2f7fb07fd3bbad3e8"><div class="ttname"><a href="#a51f0af52c61264a2f7fb07fd3bbad3e8">fe::Cli::arg</a></div><div class="ttdeci">Cli &amp; arg(T &amp;target, std::string hint, std::string descr={})</div><div class="ttdoc">A positional argument; hint names it in the help as &lt;hint&gt;.</div><div class="ttdef"><b>Definition</b> <a href="cli_8h_source.html#l00080">cli.h:80</a></div></div>
-<div class="ttc" id="aclassfe_1_1Cli_html_a753e88d69bcd1a723ba2d56407a7f832"><div class="ttname"><a href="#a753e88d69bcd1a723ba2d56407a7f832">fe::Cli::opt</a></div><div class="ttdeci">Cli &amp; opt(T &amp;target, std::string hint={}, std::string sname={}, std::string lname={}, std::string descr={})</div><div class="ttdoc">An option bound to target and named sname and/or lname - &quot;-o&quot; and &quot;--output&quot;.</div><div class="ttdef"><b>Definition</b> <a href="cli_8h_source.html#l00060">cli.h:60</a></div></div>
-<div class="ttc" id="aclassfe_1_1Cli_html_a9dbf1e14191060c2c440e40fd1b63141"><div class="ttname"><a href="#a9dbf1e14191060c2c440e40fd1b63141">fe::Cli::grp</a></div><div class="ttdeci">Cli &amp; grp(std::string name)</div><div class="ttdoc">Opens a section named name that all following options are listed under.</div><div class="ttdef"><b>Definition</b> <a href="cli_8h_source.html#l00095">cli.h:95</a></div></div>
-</div><!-- fragment --><p> A <span class="tt">bool</span> target - or a callable taking one - is a flag: it takes no hint and is set each time it occurs. Any other one needs a hint, listed as <span class="tt">&lt;hint&gt;</span> in the help, and is assigned the value: a <span class="tt">std::string</span>, an integral type, a <span class="tt">std::vector</span> of those, or a callable, which may return a <span class="tt">std::string</span> to reject the value - a non-empty one becomes the error of <a class="el" href="#ac44a54d788360af939f7921c600d4fb4" title="Parses argc/argv; returns the error message - and nothing at all if all went well.">Cli::parse</a>.</p>
+<div class="ttc" id="aclassfe_1_1Cli_html"><div class="ttname"><a href="classfe_1_1Cli.html">fe::Cli</a></div><div class="ttdoc">A small command-line parser for a single command - no subcommands.</div><div class="ttdef"><b>Definition</b> <a href="cli_8h_source.html#l00049">cli.h:49</a></div></div>
+<div class="ttc" id="aclassfe_1_1Cli_html_a2cff8ecb42aa9c5151ce67ffc0a4bfda"><div class="ttname"><a href="#a2cff8ecb42aa9c5151ce67ffc0a4bfda">fe::Cli::help</a></div><div class="ttdeci">Cli &amp; help(bool &amp;target, std::string sname=&quot;-h&quot;, std::string lname=&quot;--help&quot;)</div><div class="ttdoc">The help flag - named -h/--help unless sname / lname say otherwise.</div><div class="ttdef"><b>Definition</b> <a href="cli_8h_source.html#l00089">cli.h:89</a></div></div>
+<div class="ttc" id="aclassfe_1_1Cli_html_a51f0af52c61264a2f7fb07fd3bbad3e8"><div class="ttname"><a href="#a51f0af52c61264a2f7fb07fd3bbad3e8">fe::Cli::arg</a></div><div class="ttdeci">Cli &amp; arg(T &amp;target, std::string hint, std::string descr={})</div><div class="ttdoc">A positional argument; hint names it in the help as &lt;hint&gt;.</div><div class="ttdef"><b>Definition</b> <a href="cli_8h_source.html#l00083">cli.h:83</a></div></div>
+<div class="ttc" id="aclassfe_1_1Cli_html_a753e88d69bcd1a723ba2d56407a7f832"><div class="ttname"><a href="#a753e88d69bcd1a723ba2d56407a7f832">fe::Cli::opt</a></div><div class="ttdeci">Cli &amp; opt(T &amp;target, std::string hint={}, std::string sname={}, std::string lname={}, std::string descr={})</div><div class="ttdoc">An option bound to target and named sname and/or lname - &quot;-o&quot; and &quot;--output&quot;.</div><div class="ttdef"><b>Definition</b> <a href="cli_8h_source.html#l00061">cli.h:61</a></div></div>
+<div class="ttc" id="aclassfe_1_1Cli_html_a9dbf1e14191060c2c440e40fd1b63141"><div class="ttname"><a href="#a9dbf1e14191060c2c440e40fd1b63141">fe::Cli::grp</a></div><div class="ttdeci">Cli &amp; grp(std::string name)</div><div class="ttdoc">Opens a section named name that all following options are listed under.</div><div class="ttdef"><b>Definition</b> <a href="cli_8h_source.html#l00100">cli.h:100</a></div></div>
+</div><!-- fragment --><p> A <span class="tt">bool</span> target - or a callable taking one - is a flag: it is set each time it occurs; a <span class="tt">bool</span> takes no hint at all, a callable an empty one. Any other one needs a hint, listed as <span class="tt">&lt;hint&gt;</span> in the help, and is assigned the value: a <span class="tt">std::string</span>, an integral type, a <span class="tt">std::vector</span> of those, or a callable, which may return a <span class="tt">std::string</span> to reject the value - a non-empty one becomes the error of <a class="el" href="#ac44a54d788360af939f7921c600d4fb4" title="Parses argc/argv; returns the error message - and nothing at all if all went well.">Cli::parse</a>.</p>
 <p>The parser understands <span class="tt">--name value</span>, <span class="tt">--name=value</span>, <span class="tt">-n value</span>, <span class="tt">-nvalue</span>, clustered short flags (<span class="tt">-abc</span>), and <span class="tt">--</span> to end option processing.</p>
-<p><a class="el" href="#a1af1bcd5a4870e3e9306986d8bcd2833" title="The -h/--help flag.">Cli::help</a> lays the switches out for a terminal - wrapped to its width and colored via <a class="el" href="namespacefe_1_1term.html" title="Lightweight stream-based terminal colors for diagnostics and CLI output.">fe::term</a> - whereas <a class="el" href="#a94dc09d41006be6f204294aa18748758" title="Renders the same information as Doxygen-flavored Markdown tables.">Cli::markdown</a> renders the same information as Markdown tables; <a class="el" href="#a9dbf1e14191060c2c440e40fd1b63141" title="Opens a section named name that all following options are listed under.">Cli::grp</a> splits both into sections. </p>
+<p><a class="el" href="#a2cff8ecb42aa9c5151ce67ffc0a4bfda" title="The help flag - named -h/--help unless sname / lname say otherwise.">Cli::help</a> lays the switches out for a terminal - wrapped to its width and colored via <a class="el" href="namespacefe_1_1term.html" title="Lightweight stream-based terminal colors for diagnostics and CLI output.">fe::term</a> - whereas <a class="el" href="#a94dc09d41006be6f204294aa18748758" title="Renders the same information as Doxygen-flavored Markdown tables.">Cli::markdown</a> renders the same information as Markdown tables; <a class="el" href="#a9dbf1e14191060c2c440e40fd1b63141" title="Opens a section named name that all following options are listed under.">Cli::grp</a> splits both into sections. </p>
 
-<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00048">48</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00049">49</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a9eeeb5d1f51087267d55c1e4ddfec310" name="a9eeeb5d1f51087267d55c1e4ddfec310"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9eeeb5d1f51087267d55c1e4ddfec310">&#9670;&#160;</a></span>Cli() <span class="overload">[1/2]</span></h2>
@@ -242,7 +242,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="cli_8h_source.html#l00080">arg()</a>, <a class="el" href="cli_8h_source.html#l00089">cardinality()</a>, <a class="el" href="cli_8h_source.html#l00105">epilog()</a>, <a class="el" href="cli_8h_source.html#l00095">grp()</a>, <a class="el" href="cli_8h_source.html#l00086">help()</a>, <a class="el" href="cli_8h_source.html#l00199">operator&lt;&lt;</a>, <a class="el" href="cli_8h_source.html#l00073">opt()</a>, <a class="el" href="cli_8h_source.html#l00060">opt()</a>, and <a class="el" href="cli_8h_source.html#l00100">section()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cli_8h_source.html#l00083">arg()</a>, <a class="el" href="cli_8h_source.html#l00094">cardinality()</a>, <a class="el" href="cli_8h_source.html#l00110">epilog()</a>, <a class="el" href="cli_8h_source.html#l00100">grp()</a>, <a class="el" href="cli_8h_source.html#l00089">help()</a>, <a class="el" href="cli_8h_source.html#l00204">operator&lt;&lt;</a>, <a class="el" href="cli_8h_source.html#l00076">opt()</a>, <a class="el" href="cli_8h_source.html#l00061">opt()</a>, and <a class="el" href="cli_8h_source.html#l00105">section()</a>.</p>
 
 </div>
 </div>
@@ -273,7 +273,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00051">51</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00052">52</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
 
 </div>
 </div>
@@ -315,7 +315,7 @@ template&lt;class T&gt; </div>
 <p>A positional argument; <code class="param">hint</code> names it in the help as <span class="tt">&lt;hint&gt;</span>. </p>
 <p>Bind a <span class="tt">std::vector</span> to soak up all remaining ones. </p>
 
-<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00080">80</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00083">83</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
 
 <p class="reference">References <a class="el" href="#a9eeeb5d1f51087267d55c1e4ddfec310">Cli()</a>.</p>
 
@@ -350,7 +350,7 @@ template&lt;class T&gt; </div>
 
 <p>The <a class="el" href="#a753e88d69bcd1a723ba2d56407a7f832" title="An option bound to target and named sname and/or lname - &quot;-o&quot; and &quot;--output&quot;.">Cli::opt</a> / <a class="el" href="#a51f0af52c61264a2f7fb07fd3bbad3e8" title="A positional argument; hint names it in the help as &lt;hint&gt;.">Cli::arg</a> declared last must occur at least <code class="param">min</code> and at most <code class="param">max</code> times. </p>
 
-<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00089">89</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00094">94</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
 
 <p class="reference">References <a class="el" href="#a9eeeb5d1f51087267d55c1e4ddfec310">Cli()</a>.</p>
 
@@ -381,7 +381,7 @@ template&lt;class T&gt; </div>
 
 <p>Text printed below the option list. </p>
 
-<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00105">105</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00110">110</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
 
 <p class="reference">References <a class="el" href="#a9eeeb5d1f51087267d55c1e4ddfec310">Cli()</a>.</p>
 
@@ -412,14 +412,14 @@ template&lt;class T&gt; </div>
 
 <p>Opens a section named <code class="param">name</code> that all following options are listed under. </p>
 
-<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00095">95</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00100">100</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
 
 <p class="reference">References <a class="el" href="#a9eeeb5d1f51087267d55c1e4ddfec310">Cli()</a>.</p>
 
 </div>
 </div>
-<a id="a1af1bcd5a4870e3e9306986d8bcd2833" name="a1af1bcd5a4870e3e9306986d8bcd2833"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1af1bcd5a4870e3e9306986d8bcd2833">&#9670;&#160;</a></span>help() <span class="overload">[1/2]</span></h2>
+<a id="a2cff8ecb42aa9c5151ce67ffc0a4bfda" name="a2cff8ecb42aa9c5151ce67ffc0a4bfda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cff8ecb42aa9c5151ce67ffc0a4bfda">&#9670;&#160;</a></span>help() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -430,8 +430,17 @@ template&lt;class T&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="#a9eeeb5d1f51087267d55c1e4ddfec310">Cli</a> &amp; fe::Cli::help </td>
           <td>(</td>
-          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>target</em></span></td><td>)</td>
+          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>target</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>sname</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;-h&quot;</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>lname</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;--help&quot;</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -441,13 +450,13 @@ template&lt;class T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>The <span class="tt">-h</span>/<span class="tt">--<a class="el" href="#a1af1bcd5a4870e3e9306986d8bcd2833" title="The -h/--help flag.">help</a></span> flag. </p>
+<p>The help flag - named <span class="tt">-h</span>/<span class="tt">--<a class="el" href="#a2cff8ecb42aa9c5151ce67ffc0a4bfda" title="The help flag - named -h/--help unless sname / lname say otherwise.">help</a></span> unless <code class="param">sname</code> / <code class="param">lname</code> say otherwise. </p>
 
-<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00086">86</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00089">89</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
 
-<p class="reference">References <a class="el" href="#a9eeeb5d1f51087267d55c1e4ddfec310">Cli()</a>, and <a class="el" href="cli_8h_source.html#l00060">opt()</a>.</p>
+<p class="reference">References <a class="el" href="#a9eeeb5d1f51087267d55c1e4ddfec310">Cli()</a>, and <a class="el" href="cli_8h_source.html#l00061">opt()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cli_8h_source.html#l00199">operator&lt;&lt;</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cli_8h_source.html#l00204">operator&lt;&lt;</a>.</p>
 
 </div>
 </div>
@@ -526,7 +535,7 @@ template&lt;class T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00073">73</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00076">76</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
 
 <p class="reference">References <a class="el" href="#a9eeeb5d1f51087267d55c1e4ddfec310">Cli()</a>.</p>
 
@@ -578,11 +587,11 @@ template&lt;class T&gt; </div>
 
 <p>An option bound to <code class="param">target</code> and named <code class="param">sname</code> and/or <code class="param">lname</code> - <span class="tt">"-o"</span> and <span class="tt">"--output"</span>. </p>
 
-<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00060">60</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00061">61</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
 
 <p class="reference">References <a class="el" href="#a9eeeb5d1f51087267d55c1e4ddfec310">Cli()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cli_8h_source.html#l00086">help()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cli_8h_source.html#l00089">help()</a>.</p>
 
 </div>
 </div>
@@ -644,7 +653,7 @@ template&lt;class T&gt; </div>
 <p>A titled table of <span class="tt"><a class="el" href="namespacefe_1_1term.html" title="Lightweight stream-based terminal colors for diagnostics and CLI output.">term</a></span>/description rows that are not options - <span class="tt">ENVIRONMENT</span>, plugin arguments, ... Both backends render it below the options; <code class="param">head</code> names the first column in <a class="el" href="#a94dc09d41006be6f204294aa18748758" title="Renders the same information as Doxygen-flavored Markdown tables.">Cli::markdown</a>. </p>
 <p>Pass no <code class="param">rows</code> to get a bare header that groups the sections below it - one level up in <a class="el" href="#a94dc09d41006be6f204294aa18748758" title="Renders the same information as Doxygen-flavored Markdown tables.">Cli::markdown</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00100">100</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00105">105</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
 
 <p class="reference">References <a class="el" href="#a9eeeb5d1f51087267d55c1e4ddfec310">Cli()</a>.</p>
 
@@ -678,9 +687,9 @@ template&lt;class T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00199">199</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00204">204</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
 
-<p class="reference">References <a class="el" href="#a9eeeb5d1f51087267d55c1e4ddfec310">Cli()</a>, and <a class="el" href="cli_8h_source.html#l00086">help()</a>.</p>
+<p class="reference">References <a class="el" href="#a9eeeb5d1f51087267d55c1e4ddfec310">Cli()</a>, and <a class="el" href="cli_8h_source.html#l00089">help()</a>.</p>
 
 </div>
 </div>

@@ -6,5 +6,5 @@ var searchData=
   ['hash_5fbegin_3',['hash_begin',['../namespacefe.html#a490ea31d86af5baf49d5f00a09298f14',1,'fe::hash_begin() noexcept'],['../namespacefe.html#ac131b22cfcf0e569e4adc1bf67583358',1,'fe::hash_begin(T v) noexcept']]],
   ['hash_5fcombine_4',['hash_combine',['../namespacefe.html#abf157d266c33cbe9981f19021fbf6264',1,'fe']]],
   ['header_5',['header',['../classfe_1_1Diag.html#a22f35afdb6e78b658af599a6164c7af6',1,'fe::Diag']]],
-  ['help_6',['help',['../classfe_1_1Cli.html#a1af1bcd5a4870e3e9306986d8bcd2833',1,'fe::Cli::help(bool &amp;target)'],['../classfe_1_1Cli.html#a64dd10a0ba8294a71e26371359762c1e',1,'fe::Cli::help(std::ostream &amp;) const']]]
+  ['help_6',['help',['../classfe_1_1Cli.html#a2cff8ecb42aa9c5151ce67ffc0a4bfda',1,'fe::Cli::help(bool &amp;target, std::string sname=&quot;-h&quot;, std::string lname=&quot;--help&quot;)'],['../classfe_1_1Cli.html#a64dd10a0ba8294a71e26371359762c1e',1,'fe::Cli::help(std::ostream &amp;) const']]]
 ];
