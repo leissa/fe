@@ -37,6 +37,7 @@ target_sources(fe
             include/fe/assert.h
             include/fe/bitset.h
             include/fe/cast.h
+            include/fe/cli.h
             include/fe/container.h
             include/fe/dbg.h
             include/fe/diag.h
