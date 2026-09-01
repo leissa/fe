@@ -36,20 +36,20 @@ It is especially useful when you want the flexibility of handwritten code withou
 ### How much code is that?
 
 [**Let**](https://github.com/leissa/let) is a complete little language: lexer, parser, AST, arena-allocated nodes, evaluator, printer, CLI, and a golden-file test suite.
-`sloccount src include` says 619 lines.
+`sloccount src include` says 598 lines.
 
 | | SLOC |
 | ------------------------------------ | ---: |
 | lexer + parser                       |  203 |
 | token type: tag list and precedences |  128 |
 | AST, evaluator, printer              |  201 |
-| driver + CLI                         |   87 |
+| driver + CLI                         |   66 |
 
 A `.l`/`.y` pair for that grammar would not come out much shorter than those 203 lines - and Bison would additionally check the grammar for conflicts, which recursive descent never will.
-What a generator does *not* write for you is the other 416: the AST, the arena, the interning, the evaluator, the printer.
+What a generator does *not* write for you is the other 395: command-line parsing, the AST, the arena, the interning, the evaluator, the printer.
 Nor does it write the diagnostics, and that is where the difference actually shows up.
 
-### Diagnostics you would otherwise write yourself
+### Diagnostics
 
 Those 203 lines already produce this.
 The error line and its snippet come out of `expect`; the note that points back at the `(` is a three-line `syntax_err` override plus one `fe::Restore` to remember which `(` it was:
@@ -131,6 +131,7 @@ Header-only, except for what [Requires `FE_LIB`](#requires-fe_lib) lists below.
   It understands `--name value`, `--name=value`, `-n value`, `-nvalue`, clustered short flags, and `--`.
 - `Cli::help` lays those switches out for a terminal - grouped into sections by `fe::cli::group`, wrapped to the terminal width, and colored via `fe::term`.
   `Cli::md` renders the very same information as Markdown tables, so `--help` and the manual cannot drift apart.
+- `Cli::section` for titled `term`/description rows that aren't `Opt`s - `ENVIRONMENT`, plugin arguments, and the like - rendered below the options in both backends.
 
 #### Data Structures
 
