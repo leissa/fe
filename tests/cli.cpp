@@ -210,23 +210,6 @@ Options:
         CHECK(md.contains("### -X ll:&lt;arg&gt;\n\n| Argument | Description |"));
         CHECK(md.contains("Passed to `--cmdline`; unlike a bare \\--cmdline outside backticks."));
     }
-
-    SUBCASE("a section-only Cli has no usage block") {
-        std::ostringstream oss;
-        auto only = fe::cli::Cli();
-        only.section("ll", "Argument",
-                     {
-                         {"o=<file>", "Where to write."}
-        });
-        only.md(oss);
-        CHECK(oss.str() == R"(
-### ll
-
-| Argument | Description |
-| --- | --- |
-| `o=<file>` | Where to write. |
-)");
-    }
 }
 
 TEST_CASE("cli help") {

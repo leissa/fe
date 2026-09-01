@@ -459,7 +459,7 @@ inline void Cli::help(std::ostream& os) const {
         tail(o.width() + 2, descr);
     };
 
-    if (!opts_.empty()) os << term::FG::Yellow << "Usage:" << term::FG::Reset << ' ' << usage() << '\n';
+    os << term::FG::Yellow << "Usage:" << term::FG::Reset << ' ' << usage() << '\n';
     if (!descr_.empty()) os << '\n' << descr_ << '\n';
 
     if (std::ranges::any_of(opts_, [](const Opt& o) { return o.names_.empty(); })) {
@@ -546,7 +546,7 @@ inline void Cli::md(std::ostream& os) const {
         }
     };
 
-    if (!opts_.empty()) os << std::format("```\n{}\n```\n", usage());
+    os << std::format("```\n{}\n```\n", usage());
     if (!descr_.empty()) os << '\n' << esc(descr_) << '\n';
 
     if (std::ranges::any_of(opts_, [](const Opt& o) { return o.names_.empty(); }))
