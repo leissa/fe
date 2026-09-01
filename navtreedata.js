@@ -27,7 +27,7 @@ var NAVTREE =
   [ "FE", "index.html", [
     [ "💡 Why FE?", "index.html#autotoc_md1", [
       [ "How much code is that?", "index.html#autotoc_md2", null ],
-      [ "Diagnostics you would otherwise write yourself", "index.html#autotoc_md3", null ],
+      [ "Diagnostics", "index.html#autotoc_md3", null ],
       [ "And you can read it afterwards", "index.html#autotoc_md4", null ]
     ] ],
     [ "✨ Features", "index.html#autotoc_md5", [

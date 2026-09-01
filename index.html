@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
         <a href="#autotoc_md2">How much code is that? </a>
       </li>
       <li class="level2">
-        <a href="#autotoc_md3">Diagnostics you would otherwise write yourself </a>
+        <a href="#autotoc_md3">Diagnostics </a>
       </li>
       <li class="level2">
         <a href="#autotoc_md4">And you can read it afterwards </a>
@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
 <p>It is especially useful when you want the flexibility of handwritten code without repeatedly rebuilding the same frontend infrastructure from scratch.</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
 How much code is that?</h2>
-<p><a href="https://github.com/leissa/let"><b>Let</b></a> is a complete little language: lexer, parser, AST, arena-allocated nodes, evaluator, printer, CLI, and a golden-file test suite. <span class="tt">sloccount src include</span> says 619 lines.</p>
+<p><a href="https://github.com/leissa/let"><b>Let</b></a> is a complete little language: lexer, parser, AST, arena-allocated nodes, evaluator, printer, CLI, and a golden-file test suite. <span class="tt">sloccount src include</span> says 598 lines.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone"></th><th class="markdownTableHeadRight">SLOC  </th></tr>
@@ -262,11 +262,11 @@ How much code is that?</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">AST, evaluator, printer  </td><td class="markdownTableBodyRight">201  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">driver + CLI  </td><td class="markdownTableBodyRight">87  </td></tr>
+<td class="markdownTableBodyNone">driver + CLI  </td><td class="markdownTableBodyRight">66  </td></tr>
 </table>
-<p>A <span class="tt">.l</span>/<span class="tt">.y</span> pair for that grammar would not come out much shorter than those 203 lines - and Bison would additionally check the grammar for conflicts, which recursive descent never will. What a generator does <em>not</em> write for you is the other 416: the AST, the arena, the interning, the evaluator, the printer. Nor does it write the diagnostics, and that is where the difference actually shows up.</p>
+<p>A <span class="tt">.l</span>/<span class="tt">.y</span> pair for that grammar would not come out much shorter than those 203 lines - and Bison would additionally check the grammar for conflicts, which recursive descent never will. What a generator does <em>not</em> write for you is the other 395: command-line parsing, the AST, the arena, the interning, the evaluator, the printer. Nor does it write the diagnostics, and that is where the difference actually shows up.</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
-Diagnostics you would otherwise write yourself</h2>
+Diagnostics</h2>
 <p>Those 203 lines already produce this. The error line and its snippet come out of <span class="tt">expect</span>; the note that points back at the <span class="tt">(</span> is a three-line <span class="tt">syntax_err</span> override plus one <span class="tt"><a class="el" href="classfe_1_1Restore.html" title="RAII guard that restores a value at the end of the scope.">fe::Restore</a></span> to remember which <span class="tt">(</span> it was:</p>
 <div class="fragment"><div class="line">test/error/unclosed_paren.let:1:13: error: expected `)`, got `;` while parsing parenthesized expression</div>
 <div class="line">    1 | print (1 + 2;</div>
@@ -330,6 +330,7 @@ Command Line</h3>
 <ul>
 <li><span class="tt"><a class="el" href="namespacefe_1_1cli.html" title="A small command-line parser for a single command - no subcommands.">fe::cli</a></span> for parsing <span class="tt">argc</span>/<span class="tt">argv</span> of a single command: pipe <span class="tt"><a class="el" href="namespacefe_1_1cli.html#a69f22d0926aef3e130761de5c0f5cb8a" title="A flag: sets target to true - or invokes it with true - each time it occurs.">fe::cli::opt</a></span>/<span class="tt"><a class="el" href="namespacefe_1_1cli.html#aad377bb1d54e50ef0d5bc289ae4332bf" title="A positional argument; hint names it in the help as &lt;hint&gt;.">fe::cli::arg</a></span> into an <span class="tt"><a class="el" href="classfe_1_1cli_1_1Cli.html" title="Holds the Opts, parses argc/argv, and renders the help.">fe::cli::Cli</a></span> and bind each switch to a variable of yours - a <span class="tt">bool</span>, a <span class="tt">std::string</span>, an integral, a <span class="tt">std::vector</span> of those, or a callable. It understands <span class="tt">--name value</span>, <span class="tt">--name=value</span>, <span class="tt">-n value</span>, <span class="tt">-nvalue</span>, clustered short flags, and <span class="tt">--</span>.</li>
 <li><span class="tt">Cli::help</span> lays those switches out for a terminal - grouped into sections by <span class="tt"><a class="el" href="namespacefe_1_1cli.html#a3ad34a6615d9a46f432eb2b3be18b327" title="Opens a section named name that all following Cli options are listed under.">fe::cli::group</a></span>, wrapped to the terminal width, and colored via <span class="tt"><a class="el" href="namespacefe_1_1term.html" title="Lightweight stream-based terminal colors for diagnostics and CLI output.">fe::term</a></span>. <span class="tt">Cli::md</span> renders the very same information as Markdown tables, so <span class="tt">--help</span> and the manual cannot drift apart.</li>
+<li><span class="tt">Cli::section</span> for titled <span class="tt">term</span>/description rows that aren't <span class="tt">Opt</span>s - <span class="tt">ENVIRONMENT</span>, plugin arguments, and the like - rendered below the options in both backends.</li>
 </ul>
 <h3 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
 Data Structures</h3>

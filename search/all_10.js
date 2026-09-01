@@ -36,6 +36,5 @@ var searchData=
   ['opt_33',['Opt',['../classfe_1_1cli_1_1Opt.html',1,'fe::cli']]],
   ['opt_34',['opt',['../classfe_1_1cli_1_1Opt.html#a9c75ba76e44f60ad3f41d3c09845061f',1,'fe::cli::Opt::opt(T &amp;target)'],['../classfe_1_1cli_1_1Opt.html#a3f4882e18e0b2cd501a90151c3b7779c',1,'fe::cli::Opt::opt(T &amp;target, std::string hint)'],['../namespacefe_1_1cli.html#a69f22d0926aef3e130761de5c0f5cb8a',1,'fe::cli::opt(T &amp;target)'],['../namespacefe_1_1cli.html#ade09246addb6f113c8c02dc0574231ba',1,'fe::cli::opt(T &amp;target, std::string hint)']]],
   ['ostream_35',['ostream',['../classfe_1_1Log.html#aca33a8cd004ad91aa9f9f632358446c0',1,'fe::Log']]],
-  ['ostream_5fformatter_36',['ostream_formatter',['../namespacefe.html#a923ce058163e2041744a84793de679c0',1,'fe']]],
-  ['otherwise_20write_20yourself_37',['Diagnostics you would otherwise write yourself',['../index.html#autotoc_md3',1,'']]]
+  ['ostream_5fformatter_36',['ostream_formatter',['../namespacefe.html#a923ce058163e2041744a84793de679c0',1,'fe']]]
 ];
