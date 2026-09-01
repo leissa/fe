@@ -203,6 +203,25 @@ Options:
 )");
     }
 
+    SUBCASE("a section without rows is a bare header") {
+        auto cli2 = fe::cli::Cli("t") | fe::cli::opt(flag)["-f"]("A flag.");
+        cli2.section("Plugin Arguments", "", {});
+        cli2.section("-X ll:<arg>", "Argument",
+                     {
+                         {"o=<file>", "Where to write."}
+        });
+
+        std::ostringstream oss;
+        cli2.md(oss);
+        auto md = oss.str();
+        CHECK(md.contains("\n## Plugin Arguments\n\n### -X ll:&lt;arg&gt;\n"));
+
+        auto guard = fe::term::ScopedMode(fe::term::Mode::Never);
+        std::ostringstream term;
+        term << cli2;
+        CHECK(term.str().contains("\nPlugin Arguments:\n\n-X ll:<arg>:\n"));
+    }
+
     SUBCASE("markdown escapes outside code spans only") {
         std::ostringstream oss;
         cli.md(oss);

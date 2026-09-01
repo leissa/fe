@@ -267,6 +267,7 @@ public:
 
     /// A titled table of `term`/description rows that are not Opt%s - `ENVIRONMENT`, plugin arguments, ...
     /// Both backends render it below the options; @p head names the first column in Cli::md.
+    /// Pass no @p rows to get a bare header that groups the Section%s below it - one level up in Cli::md.
     Cli& section(std::string title, std::string head, std::vector<std::pair<std::string, std::string>> rows) {
         sections_.emplace_back(std::move(title), std::move(head), std::move(rows));
         return *this;
@@ -557,6 +558,10 @@ inline void Cli::md(std::ostream& os) const {
               [&](const Opt& o) { return !o.names_.empty() && o.group_ == group; });
 
     for (const auto& s : sections_) {
+        if (s.rows.empty()) { // a Section without rows only groups the ones below it, hence one level up
+            os << std::format("\n## {}\n", esc(s.title));
+            continue;
+        }
         os << std::format("\n### {}\n\n| {} | Description |\n| --- | --- |\n", esc(s.title), s.head);
         for (const auto& [name, descr] : s.rows)
             os << std::format("| `{}` | {} |\n", code(name), esc(descr));
