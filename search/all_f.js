@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['name_0',['name',['../namespacefe_1_1cli.html#a829fbe60b4577ffd0d354718ff6224b9',1,'fe::cli::Group::name'],['../structfe_1_1Profiler_1_1Span.html#afa964762407860dff5e87c4bff5ae79c',1,'fe::Profiler::Span::name']]],
+  ['name_0',['name',['../structfe_1_1Profiler_1_1Span.html#afa964762407860dff5e87c4bff5ae79c',1,'fe::Profiler::Span']]],
   ['never_1',['Never',['../namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a6e7b34fa59e1bd229b207892956dc41c',1,'fe::term']]],
   ['next_2',['next',['../classfe_1_1Bitset.html#a133894062d62f20943e91950387e59ff',1,'fe::Bitset::next()'],['../classfe_1_1Lexer.html#a0bbfc87be21bdd46d883002eb10303c1',1,'fe::Lexer::next()']]],
   ['no_5fparent_3',['No_Parent',['../classfe_1_1Profiler.html#ad370683c78ec9071faabe99b5e8315b5',1,'fe::Profiler']]],

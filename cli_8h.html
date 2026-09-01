@@ -148,12 +148,12 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('cli_8h.html','
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle"><div class="title">cli.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;charconv&gt;</code><br />
+<div class="textblock"><code>#include &lt;cassert&gt;</code><br />
+<code>#include &lt;charconv&gt;</code><br />
 <code>#include &lt;cstddef&gt;</code><br />
 <code>#include &lt;format&gt;</code><br />
 <code>#include &lt;functional&gt;</code><br />
@@ -174,62 +174,13 @@ Include dependency graph for cli.h:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:fe_3A_3Acli_3A_3AGroup_5Fstructfe_5F1_5F1cli_5F1_5F1Group" id="r_fe_3A_3Acli_3A_3AGroup_5Fstructfe_5F1_5F1cli_5F1_5F1Group"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1cli.html#structfe_1_1cli_1_1Group">fe::cli::Group</a></td></tr>
-<tr class="memdesc:structfe_1_1cli_1_1Group"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a new section in the help output; see <a class="el" href="namespacefe_1_1cli.html#a3ad34a6615d9a46f432eb2b3be18b327" title="Opens a section named name that all following Cli options are listed under.">fe::cli::group</a>.  <a href="namespacefe_1_1cli.html#structfe_1_1cli_1_1Group">More...</a><br /></td></tr>
-<tr class="memitem:fe_3A_3Acli_3A_3AOpt" id="r_fe_3A_3Acli_3A_3AOpt"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1cli_1_1Opt.html">fe::cli::Opt</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">One option or positional argument; build one with <a class="el" href="namespacefe_1_1cli.html#a69f22d0926aef3e130761de5c0f5cb8a" title="A flag: sets target to true - or invokes it with true - each time it occurs.">fe::cli::opt</a>, <a class="el" href="namespacefe_1_1cli.html#aad377bb1d54e50ef0d5bc289ae4332bf" title="A positional argument; hint names it in the help as &lt;hint&gt;.">fe::cli::arg</a>, or <a class="el" href="namespacefe_1_1cli.html#a5f58b5ed5c1a9d1a3e426d2bdb4a009a" title="The -h/--help flag; chain [&quot;-?&quot;] to give it further names.">fe::cli::help</a>.  <a href="classfe_1_1cli_1_1Opt.html#details">More...</a><br /></td></tr>
-<tr class="memitem:fe_3A_3Acli_3A_3ACli" id="r_fe_3A_3Acli_3A_3ACli"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1cli_1_1Cli.html">fe::cli::Cli</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds the <a class="el" href="classfe_1_1cli_1_1Opt.html" title="One option or positional argument; build one with fe::cli::opt, fe::cli::arg, or fe::cli::help.">Opt</a>s, parses <span class="tt">argc</span>/<span class="tt">argv</span>, and renders the help.  <a href="classfe_1_1cli_1_1Cli.html#details">More...</a><br /></td></tr>
+<tr class="memitem:fe_3A_3ACli" id="r_fe_3A_3ACli"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Cli.html">fe::Cli</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A small command-line parser for a single command - no subcommands.  <a href="classfe_1_1Cli.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:fe" id="r_fe"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html">fe</a></td></tr>
-<tr class="memitem:fe_3A_3Acli" id="r_fe_3A_3Acli"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1cli.html">fe::cli</a></td></tr>
-<tr class="memdesc:namespacefe_1_1cli"><td class="mdescLeft">&#160;</td><td class="mdescRight">A small command-line parser for a single command - no subcommands. <br /></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a69f22d0926aef3e130761de5c0f5cb8a" id="r_a69f22d0926aef3e130761de5c0f5cb8a"><td class="memTemplParams" colspan="2">template&lt;class T&gt; </td></tr>
-<tr class="memitem:a69f22d0926aef3e130761de5c0f5cb8a template"><td class="memItemLeft"><a class="el" href="classfe_1_1cli_1_1Opt.html">Opt</a>&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1cli.html#a69f22d0926aef3e130761de5c0f5cb8a">fe::cli::opt</a> (T &amp;target)</td></tr>
-<tr class="memdesc:a69f22d0926aef3e130761de5c0f5cb8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">A flag: sets <code class="param">target</code> to <span class="tt">true</span> - or invokes it with <span class="tt">true</span> - each time it occurs.  <br /></td></tr>
-<tr class="memitem:ade09246addb6f113c8c02dc0574231ba" id="r_ade09246addb6f113c8c02dc0574231ba"><td class="memTemplParams" colspan="2">template&lt;class T&gt; </td></tr>
-<tr class="memitem:ade09246addb6f113c8c02dc0574231ba template"><td class="memItemLeft"><a class="el" href="classfe_1_1cli_1_1Opt.html">Opt</a>&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1cli.html#ade09246addb6f113c8c02dc0574231ba">fe::cli::opt</a> (T &amp;target, std::string hint)</td></tr>
-<tr class="memdesc:ade09246addb6f113c8c02dc0574231ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">An option that takes a value; <code class="param">hint</code> names it in the help as <span class="tt">&lt;hint&gt;</span>.  <br /></td></tr>
-<tr class="memitem:aad377bb1d54e50ef0d5bc289ae4332bf" id="r_aad377bb1d54e50ef0d5bc289ae4332bf"><td class="memTemplParams" colspan="2">template&lt;class T&gt; </td></tr>
-<tr class="memitem:aad377bb1d54e50ef0d5bc289ae4332bf template"><td class="memItemLeft"><a class="el" href="classfe_1_1cli_1_1Opt.html">Opt</a>&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1cli.html#aad377bb1d54e50ef0d5bc289ae4332bf">fe::cli::arg</a> (T &amp;target, std::string hint)</td></tr>
-<tr class="memdesc:aad377bb1d54e50ef0d5bc289ae4332bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">A positional argument; <code class="param">hint</code> names it in the help as <span class="tt">&lt;hint&gt;</span>.  <br /></td></tr>
-<tr class="memitem:a3ad34a6615d9a46f432eb2b3be18b327" id="r_a3ad34a6615d9a46f432eb2b3be18b327"><td class="memItemLeft"><a class="el" href="namespacefe_1_1cli.html#structfe_1_1cli_1_1Group">Group</a>&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1cli.html#a3ad34a6615d9a46f432eb2b3be18b327">fe::cli::group</a> (std::string name)</td></tr>
-<tr class="memdesc:a3ad34a6615d9a46f432eb2b3be18b327"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens a section named <code class="param">name</code> that all following <a class="el" href="classfe_1_1cli_1_1Cli.html" title="Holds the Opts, parses argc/argv, and renders the help.">Cli</a> options are listed under.  <br /></td></tr>
-<tr class="memitem:a5f58b5ed5c1a9d1a3e426d2bdb4a009a" id="r_a5f58b5ed5c1a9d1a3e426d2bdb4a009a"><td class="memItemLeft"><a class="el" href="classfe_1_1cli_1_1Opt.html">Opt</a>&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1cli.html#a5f58b5ed5c1a9d1a3e426d2bdb4a009a">fe::cli::help</a> (bool &amp;target)</td></tr>
-<tr class="memdesc:a5f58b5ed5c1a9d1a3e426d2bdb4a009a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <span class="tt">-h</span>/<span class="tt">--<a class="el" href="namespacefe_1_1cli.html#a5f58b5ed5c1a9d1a3e426d2bdb4a009a" title="The -h/--help flag; chain [&quot;-?&quot;] to give it further names.">help</a></span> flag; chain <span class="tt">["-?"]</span> to give it further names.  <br /></td></tr>
 </table>
-<hr/><h2 id="header-inline_5Fclasses" class="groupheader">Class Documentation</h2>
-<a name="structfe_1_1cli_1_1Group" id="structfe_1_1cli_1_1Group"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#structfe_1_1cli_1_1Group">&#9670;&#160;</a></span>fe::cli::Group</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct fe::cli::Group</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="textblock"><p>Starts a new section in the help output; see <a class="el" href="namespacefe_1_1cli.html#a3ad34a6615d9a46f432eb2b3be18b327" title="Opens a section named name that all following Cli options are listed under.">fe::cli::group</a>. </p>
-
-<p class="definition">Definition at line <a class="el" href="cli_8h_source.html#l00055">55</a> of file <a class="el" href="cli_8h_source.html">cli.h</a>.</p>
-</div><table class="fieldtable">
-<tr><th colspan="3">Class Members</th></tr>
-<tr><td class="fieldtype">
-<a id="a829fbe60b4577ffd0d354718ff6224b9" name="a829fbe60b4577ffd0d354718ff6224b9"></a>string</td>
-<td class="fieldname">
-name</td>
-<td class="fielddoc">
-</td></tr>
-</table>
-
-</div>
-</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

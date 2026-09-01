@@ -6,7 +6,7 @@ var searchData=
   ['empty_3',['empty',['../classfe_1_1Error.html#ac291fef4f4637573b438cb1188997c98',1,'fe::Error::empty()'],['../classfe_1_1Profiler.html#ab3df71f2dbc57180667d0f680b621a48',1,'fe::Profiler::empty()'],['../classfe_1_1Sym.html#a277217d7b5fbd7be2d57a11f3d5767ea',1,'fe::Sym::empty()'],['../classfe_1_1Worklist.html#a9923bf1a31218860f3406897fc965f7b',1,'fe::Worklist::empty()'],['../classfe_1_1XTrie_1_1Set.html#ab36b82ad85a6589d471c15a8e5b67f76',1,'fe::XTrie::Set::empty()']]],
   ['encode_4',['encode',['../namespacefe_1_1utf8.html#a50c98a6d25495ac66c1a30e1ba83da99',1,'fe::utf8']]],
   ['end_5',['end',['../classfe_1_1Bitset.html#a693a735f6a174654540129e29251d88c',1,'fe::Bitset::end()'],['../classfe_1_1Src.html#a62e933ac4895b80c6e04baf4971a7e00',1,'fe::Src::end()'],['../classfe_1_1Sym.html#ad9d10b4be1533609b0ae6b535b45bedf',1,'fe::Sym::end()'],['../classfe_1_1XTrie_1_1Set.html#a01a41367bfc75d22363b7b88ee9767a4',1,'fe::XTrie::Set::end()']]],
-  ['epilog_6',['epilog',['../classfe_1_1cli_1_1Cli.html#a721ff406b127eab92a01a893e01a5417',1,'fe::cli::Cli']]],
+  ['epilog_6',['epilog',['../classfe_1_1Cli.html#a659c1869b63dbaf1b19f1613ac9c990b',1,'fe::Cli']]],
   ['erase_7',['erase',['../classfe_1_1XTrie.html#ad9012a6e842ad6ac47ec9ea81517995d',1,'fe::XTrie::erase()'],['../namespacefe.html#a32e00013e42152781f4bb035ace7af01',1,'fe::erase(Vector&lt; T, N, A &gt; &amp;c, const U &amp;value)']]],
   ['erase_5fif_8',['erase_if',['../namespacefe.html#ace6f5864e6c7ef635e260299ed16fe86',1,'fe']]],
   ['error_9',['Error',['../classfe_1_1Error.html#a006230978a0baa2c40452a3f393c8db5',1,'fe::Error']]],

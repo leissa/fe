@@ -1,7 +1,7 @@
 var searchData=
 [
   ['scopedmode_0',['ScopedMode',['../namespacefe_1_1term.html#a214cdb1ce076f0e6de11f6afb317c516',1,'fe::term']]],
-  ['section_1',['section',['../classfe_1_1cli_1_1Cli.html#ae92c6a413dc4e302bec9928d8690359c',1,'fe::cli::Cli']]],
+  ['section_1',['section',['../classfe_1_1Cli.html#aa01511fabfde14a93b647a541108b480',1,'fe::Cli']]],
   ['sep_2',['sep',['../classfe_1_1Join.html#a1b2d2b4827668cebaa09e7a30ef509dc',1,'fe::Join']]],
   ['set_3',['Set',['../classfe_1_1XTrie_1_1Set.html',1,'fe::XTrie&lt; D, K, N &gt;::Set'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html#a85f04e9516b9eac3a6bee506abd0d30a',1,'fe::XTrie::Set::iterator::Set()'],['../classfe_1_1XTrie_1_1Set.html#ac6ce3b9ef35699368a9f0e7c3a7a3c84',1,'fe::XTrie::Set::Set(const Set &amp;) noexcept=default'],['../classfe_1_1XTrie_1_1Set.html#afaf4315c309cb0fc38bb160a81a408a0',1,'fe::XTrie::Set::Set(Set &amp;&amp;) noexcept=default'],['../classfe_1_1XTrie_1_1Set.html#a4043a4661ff4b6bdd21cbc5343a74301',1,'fe::XTrie::Set::Set() noexcept=default'],['../classfe_1_1XTrie_1_1Set.html#a307672341473bfe907e3a2b609a8482d',1,'fe::XTrie::Set::Set(D *d) noexcept']]],
   ['set_4',['set',['../classfe_1_1Bitset.html#ac16b17212a94b3b26f18ab88d25032c6',1,'fe::Bitset::set(size_t i)'],['../classfe_1_1Bitset.html#a8b7b8e3f340cc4354d8473a69808d423',1,'fe::Bitset::set(size_t i, bool b)'],['../structfe_1_1Dbg.html#a24a77c5eaa3f6280fc5ad2bddf76afd2',1,'fe::Dbg::set(Sym sym)'],['../structfe_1_1Dbg.html#ab50cf350cae573d30dc78ec6f8dedaaa',1,'fe::Dbg::set(Loc loc)'],['../classfe_1_1Log.html#a01823679da98b233ef97d4963cef9be9',1,'fe::Log::set(std::ostream *ostream)'],['../classfe_1_1Log.html#a5e5cb77ef572c1c7aa924b00ee3e3a77',1,'fe::Log::set(Level max_level)']]],

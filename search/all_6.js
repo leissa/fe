@@ -9,7 +9,7 @@ var searchData=
   ['ends_6',['Odds &amp;amp; Ends',['../index.html#autotoc_md12',1,'']]],
   ['enum_2eh_7',['enum.h',['../enum_8h.html',1,'']]],
   ['eof_8',['EoF',['../namespacefe_1_1utf8.html#a958f5b14010ee32136a35e5534a205ce',1,'fe::utf8']]],
-  ['epilog_9',['epilog',['../classfe_1_1cli_1_1Cli.html#a721ff406b127eab92a01a893e01a5417',1,'fe::cli::Cli']]],
+  ['epilog_9',['epilog',['../classfe_1_1Cli.html#a659c1869b63dbaf1b19f1613ac9c990b',1,'fe::Cli']]],
   ['eq_10',['Eq',['../structfe_1_1Dbg_1_1Eq.html',1,'fe::Dbg::Eq'],['../structfe_1_1Sym_1_1Eq.html',1,'fe::Sym::Eq']]],
   ['equal_11',['Equal',['../structfe_1_1Sym_1_1String_1_1Equal.html',1,'fe::Sym::String::Equal'],['../structfe_1_1XTrie_1_1Data_1_1Equal.html',1,'fe::XTrie&lt; D, K, N &gt;::Data::Equal']]],
   ['erase_12',['erase',['../classfe_1_1XTrie.html#ad9012a6e842ad6ac47ec9ea81517995d',1,'fe::XTrie::erase()'],['../namespacefe.html#a32e00013e42152781f4bb035ace7af01',1,'fe::erase(Vector&lt; T, N, A &gt; &amp;c, const U &amp;value)']]],

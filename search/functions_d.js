@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['markdown_0',['markdown',['../classfe_1_1cli_1_1Cli.html#a4207111d6c1d600672c9455bcdfcf248',1,'fe::cli::Cli']]],
+  ['markdown_0',['markdown',['../classfe_1_1Cli.html#a94dc09d41006be6f204294aa18748758',1,'fe::Cli']]],
   ['memoryresource_1',['MemoryResource',['../classfe_1_1Arena_1_1MemoryResource.html#a78e95720a6a254e562ea00baaf70f2f2',1,'fe::Arena::MemoryResource']]],
   ['merge_2',['merge',['../classfe_1_1XTrie.html#ae190a3bcab5c5c31dc3747474d6c7de0',1,'fe::XTrie']]],
   ['min_5fcode_5fpoint_3',['min_code_point',['../namespacefe_1_1utf8.html#a6660a5ce2b492de5ef72a34c329aacba',1,'fe::utf8']]],

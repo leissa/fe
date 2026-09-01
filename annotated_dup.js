@@ -1,11 +1,6 @@
 var annotated_dup =
 [
     [ "fe", "namespacefe.html", [
-      [ "cli", "namespacefe_1_1cli.html", [
-        [ "Group", "namespacefe_1_1cli.html#structfe_1_1cli_1_1Group", "namespacefe_1_1cli_structfe_1_1cli_1_1Group_dup" ],
-        [ "Opt", "classfe_1_1cli_1_1Opt.html", "classfe_1_1cli_1_1Opt" ],
-        [ "Cli", "classfe_1_1cli_1_1Cli.html", "classfe_1_1cli_1_1Cli" ]
-      ] ],
       [ "lct", "namespacefe_1_1lct.html", [
         [ "Node", "classfe_1_1lct_1_1Node.html", "classfe_1_1lct_1_1Node" ]
       ] ],
@@ -18,6 +13,7 @@ var annotated_dup =
       [ "Arena", "classfe_1_1Arena.html", "classfe_1_1Arena" ],
       [ "basic_ostream_formatter", "structfe_1_1basic__ostream__formatter.html", "structfe_1_1basic__ostream__formatter" ],
       [ "Bitset", "classfe_1_1Bitset.html", "classfe_1_1Bitset" ],
+      [ "Cli", "classfe_1_1Cli.html", "classfe_1_1Cli" ],
       [ "CodeDiag", "classfe_1_1CodeDiag.html", "classfe_1_1CodeDiag" ],
       [ "Dbg", "structfe_1_1Dbg.html", "structfe_1_1Dbg" ],
       [ "DbgKey", "classfe_1_1DbgKey.html", "classfe_1_1DbgKey" ],

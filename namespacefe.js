@@ -1,6 +1,5 @@
 var namespacefe =
 [
-    [ "cli", "namespacefe_1_1cli.html", "namespacefe_1_1cli" ],
     [ "dl", "namespacefe_1_1dl.html", [
       [ "close", "namespacefe_1_1dl.html#a06893ca1a7701c45fb627831247dbc4c", null ],
       [ "get", "namespacefe_1_1dl.html#a0ed7d0d7ed093b7ed9aabdcb29e06f40", null ],
@@ -39,6 +38,7 @@ var namespacefe =
     [ "Arena", "classfe_1_1Arena.html", "classfe_1_1Arena" ],
     [ "basic_ostream_formatter", "structfe_1_1basic__ostream__formatter.html", "structfe_1_1basic__ostream__formatter" ],
     [ "Bitset", "classfe_1_1Bitset.html", "classfe_1_1Bitset" ],
+    [ "Cli", "classfe_1_1Cli.html", "classfe_1_1Cli" ],
     [ "CodeDiag", "classfe_1_1CodeDiag.html", "classfe_1_1CodeDiag" ],
     [ "Dbg", "structfe_1_1Dbg.html", "structfe_1_1Dbg" ],
     [ "DbgKey", "classfe_1_1DbgKey.html", "classfe_1_1DbgKey" ],

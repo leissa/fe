@@ -1,7 +1,7 @@
 var searchData=
 [
   ['magenta_0',['Magenta',['../namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ab91cc2c1416fcca942b61c7ac5b1a9ac',1,'fe::term']]],
-  ['markdown_1',['markdown',['../classfe_1_1cli_1_1Cli.html#a4207111d6c1d600672c9455bcdfcf248',1,'fe::cli::Cli']]],
+  ['markdown_1',['markdown',['../classfe_1_1Cli.html#a94dc09d41006be6f204294aa18748758',1,'fe::Cli']]],
   ['max_2',['Max',['../namespacefe_1_1utf8.html#a753d178a1e977540ac8cd44fe4390a58',1,'fe::utf8']]],
   ['max_5ferrors_3',['max_errors',['../classfe_1_1Diag.html#a6138b5dab0dabd789c7cae33cdb8c404',1,'fe::Diag']]],
   ['max_5frows_4',['max_rows',['../classfe_1_1Diag.html#a434f144ee79de18cc1bdd1a855e39e47',1,'fe::Diag::max_rows'],['../structfe_1_1Snippet.html#a731cd1d27ad93cf1199c384feda025ff',1,'fe::Snippet::max_rows']]],
