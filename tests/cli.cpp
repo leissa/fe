@@ -26,7 +26,7 @@ TEST_CASE("cli flags") {
     int n    = 0;
     auto inc = [&](bool) { ++n; };
 
-    auto cli = fe::Cli("t").opt(a, "", "-a").opt(b, "", "-b", "--bee").opt(c, "", "-c").opt(inc, "", "-V", "--verbose");
+    auto cli = fe::Cli("t").opt(a, "-a").opt(b, "-b", "--bee").opt(c, "-c").opt(inc, "", "-V", "--verbose");
 
     SUBCASE("long and short") {
         auto args = Args{"t", "-a", "--bee"};
@@ -121,7 +121,7 @@ TEST_CASE("cli args") {
 
     SUBCASE("one positional") {
         bool flag = false;
-        auto cli  = fe::Cli("t").opt(flag, "", "-f").arg(in, "file");
+        auto cli  = fe::Cli("t").opt(flag, "-f").arg(in, "file");
         auto args = Args{"t", "-f", "in.txt"};
         CHECK(!cli.parse(args.argc(), args.data()));
         CHECK(in == "in.txt");
@@ -136,7 +136,7 @@ TEST_CASE("cli args") {
 
     SUBCASE("-- ends option processing") {
         bool flag = false;
-        auto cli  = fe::Cli("t").opt(flag, "", "-f").arg(in, "file");
+        auto cli  = fe::Cli("t").opt(flag, "-f").arg(in, "file");
         auto args = Args{"t", "--", "-f"};
         CHECK(!cli.parse(args.argc(), args.data()));
         CHECK(in == "-f");
@@ -183,7 +183,7 @@ TEST_CASE("cli cardinality") {
 
 TEST_CASE("cli section") {
     bool flag = false;
-    auto cli  = fe::Cli("t").opt(flag, "", "-f", "--flag", "A flag.");
+    auto cli  = fe::Cli("t").opt(flag, "-f", "--flag", "A flag.");
     cli.section("-X ll:<arg>", "Argument",
                 {
                     {"o=<file>, output=<file>",                                    "Write the LLVM IR to `<file>`."},
@@ -207,7 +207,7 @@ Options:
     }
 
     SUBCASE("a section without rows is a bare header") {
-        auto cli2 = fe::Cli("t").opt(flag, "", "-f", "", "A flag.");
+        auto cli2 = fe::Cli("t").opt(flag, "-f", "", "A flag.");
         cli2.section("Plugin Arguments", "", {});
         cli2.section("-X ll:<arg>", "Argument",
                      {
@@ -241,7 +241,7 @@ TEST_CASE("cli help") {
 
     auto cli = fe::Cli("t", "Does things.")
                    .help(show_help)
-                   .opt(verbose, "", "-V", "--verbose", "Be verbose.")
+                   .opt(verbose, "-V", "--verbose", "Be verbose.")
                    .grp("Output")
                    .opt(out, "file", "-o", "--output", "Where to write the result.")
                    .opt(gutter, "width", "", "--gutter", "Column width.")
@@ -251,6 +251,23 @@ TEST_CASE("cli help") {
     auto args = Args{"t", "--help"};
     CHECK(!cli.parse(args.argc(), args.data()));
     CHECK(show_help);
+
+    SUBCASE("the help flag may be renamed") {
+        bool h2   = false;
+        auto cli2 = fe::Cli("t").help(h2, "-?", "--usage");
+        auto ren  = Args{"t", "-?"};
+        CHECK(!cli2.parse(ren.argc(), ren.data()));
+        CHECK(h2);
+
+        auto cli3 = fe::Cli("t").help(h2, "-?", "--usage");
+        auto old  = Args{"t", "--help"};
+        CHECK(cli3.parse(old.argc(), old.data()) == "unknown option '--help'");
+
+        auto guard = fe::term::ScopedMode(fe::term::Mode::Never);
+        std::ostringstream oss;
+        oss << cli2;
+        CHECK(oss.str().contains("-?, --usage  Display this help and exit."));
+    }
 
     SUBCASE("terminal") {
         auto guard = fe::term::ScopedMode(fe::term::Mode::Never);

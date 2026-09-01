@@ -26,7 +26,7 @@ namespace fe {
 ///
 /// auto cli = fe::Cli("mim", "The MimIR compiler.")
 ///     .help(show_help)
-///     .opt(verbose, ""      , "-V", "--verbose", "Be verbose.")
+///     .opt(verbose,           "-V", "--verbose", "Be verbose.")
 ///     .opt(plugins, "plugin", "-p", "--plugin" , "Loads a plugin; repeatable.")
 ///     .grp("Output")
 ///     .opt(out    , "file"  , "-o", "--output" , "Where to write the result.")
@@ -35,7 +35,8 @@ namespace fe {
 /// if (auto err = cli.parse(argc, argv)) throw std::invalid_argument(*err);
 /// if (show_help) std::cout << cli;
 /// ```
-/// A `bool` target - or a callable taking one - is a flag: it takes no hint and is set each time it occurs.
+/// A `bool` target - or a callable taking one - is a flag: it is set each time it occurs; a `bool` takes no hint at
+/// all, a callable an empty one.
 /// Any other one needs a hint, listed as `<hint>` in the help, and is assigned the value: a `std::string`, an integral
 /// type, a `std::vector` of those, or a callable, which may return a `std::string` to reject the value - a non-empty
 /// one becomes the error of Cli::parse.
@@ -64,6 +65,8 @@ public:
         auto& o = opts_.emplace_back(std::move(sname), std::move(lname), std::move(hint), std::move(descr), grp_);
         assert(is_flag<T> != o.takes_value() && "a flag takes no <hint>, anything else needs one");
         assert(!(is_flag<T> && o.is_arg()) && "a flag needs a name");
+        assert((o.sname.empty() || o.sname.starts_with('-')) && "a short name starts with `-`");
+        assert((o.lname.empty() || o.lname.starts_with("--")) && "a long name starts with `--`");
         o.multi = Vec<T>::is;
         o.dflt  = dflt(target);
         o.set   = [&target](std::string_view s) { return assign(target, s); };
@@ -82,8 +85,10 @@ public:
         return opts_.back().dflt.clear(), *this;
     }
 
-    /// The `-h`/`--help` flag.
-    Cli& help(bool& target) { return opt(target, {}, "-h", "--help", "Display this help and exit."); }
+    /// The help flag - named `-h`/`--help` unless @p sname / @p lname say otherwise.
+    Cli& help(bool& target, std::string sname = "-h", std::string lname = "--help") {
+        return opt(target, std::move(sname), std::move(lname), "Display this help and exit.");
+    }
 
     /// The Cli::opt / Cli::arg declared last must occur at least @p min and at most @p max times.
     Cli& cardinality(size_t min, size_t max) {
