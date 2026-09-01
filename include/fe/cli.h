@@ -70,6 +70,10 @@ public:
         return *this;
     }
 
+    Cli& opt(bool& target, std::string sname = {}, std::string lname = {}, std::string descr = {}) {
+        return opt<bool>(target, "", std::move(sname), std::move(lname), std::move(descr));
+    }
+
     /// A positional argument; @p hint names it in the help as `<hint>`.
     /// Bind a `std::vector` to soak up all remaining ones.
     template<class T>
