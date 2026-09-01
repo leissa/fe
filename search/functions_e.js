@@ -4,7 +4,7 @@ var searchData=
   ['next_1',['next',['../classfe_1_1Bitset.html#a133894062d62f20943e91950387e59ff',1,'fe::Bitset::next()'],['../classfe_1_1Lexer.html#a0bbfc87be21bdd46d883002eb10303c1',1,'fe::Lexer::next()']]],
   ['node_2',['Node',['../classfe_1_1lct_1_1Node.html#a0d02ac1d102e2d1af583428671e1264c',1,'fe::lct::Node']]],
   ['none_3',['none',['../classfe_1_1Bitset.html#a06de774d3a8b865462578272321b4db0',1,'fe::Bitset']]],
-  ['note_4',['note',['../classfe_1_1Diag.html#a3fbacbb7cf78557dddb16182cfd756c6',1,'fe::Diag::note()'],['../classfe_1_1Error.html#aad9cee35248ef994e08254f3714cbffa',1,'fe::Error::note(std::format_string&lt; Args... &gt; s, Args &amp;&amp;... args)'],['../classfe_1_1Error.html#aff0747094a9e80944bffd43c325f5748',1,'fe::Error::note(Loc loc, std::format_string&lt; Args... &gt; s, Args &amp;&amp;... args)']]],
+  ['note_4',['note',['../classfe_1_1Diag.html#a3fbacbb7cf78557dddb16182cfd756c6',1,'fe::Diag']]],
   ['num_5fbytes_5',['num_bytes',['../namespacefe_1_1utf8.html#a3bfd6112606e85a56fcc227b127e6c4a',1,'fe::utf8']]],
   ['num_5fcode_5fpoints_6',['num_code_points',['../namespacefe_1_1utf8.html#ada5a7d0de6f0f46d41e672c29127daaf',1,'fe::utf8']]],
   ['num_5ferrors_7',['num_errors',['../classfe_1_1Error_1_1Bail.html#a9d472ae2ed685d122de44440ebeac3d3',1,'fe::Error::Bail::num_errors()'],['../classfe_1_1Error.html#abb54459af9ba5e732ca04b79d8be7e9e',1,'fe::Error::num_errors() const']]],

@@ -3,7 +3,10 @@ var classfe_1_1Diag =
     [ "Tag", "classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1f", [
       [ "Error", "classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1fa902b0d55fddef6f8d651fe1035b7d4bd", null ],
       [ "Warn", "classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1fa56525ae64d370c0b448ac0d60710ef17", null ],
-      [ "Note", "classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1fa3b0649c72650c313a357338dcdfb64ec", null ]
+      [ "Note", "classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1fa3b0649c72650c313a357338dcdfb64ec", null ],
+      [ "E", "classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1fa3a3ea00cfc35332cedf6e5e9a32e94da", null ],
+      [ "W", "classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1fa61e9c06ea9a85a5088a499df6458d276", null ],
+      [ "N", "classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1fa8d9c307cb7f3c4a32822a51922d1ceaa", null ]
     ] ],
     [ "Diag", "classfe_1_1Diag.html#af066a275bf794436e9ecd3609e60efe4", null ],
     [ "Diag", "classfe_1_1Diag.html#ac6db9918d292a12ebc6b010284c53849", null ],
