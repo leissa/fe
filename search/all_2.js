@@ -2,7 +2,7 @@ var searchData=
 [
   ['accept_0',['accept',['../classfe_1_1Lexer.html#abdcc02fc2210e9ba86efb33616a98162',1,'fe::Lexer::accept(Pred pred)'],['../classfe_1_1Lexer.html#aff112fcbcf92e4dbb66ec7285abbdc3a',1,'fe::Lexer::accept(char32_t c)'],['../classfe_1_1Lexer.html#a440e792690fe68c243429847b2ab2659',1,'fe::Lexer::accept(char c)'],['../classfe_1_1Lexer.html#a0961016fffdf2e6e70dae5a9e8553cad',1,'fe::Lexer::accept(char8_t c)'],['../classfe_1_1Parser.html#ad7acb49705c085f2ae9e7464f03eb3c0',1,'fe::Parser::accept()']]],
   ['ack_1',['ack',['../classfe_1_1Error.html#a1691ca5ebb45613d58aed573af1a75bc',1,'fe::Error']]],
-  ['add_2',['add',['../classfe_1_1SrcMap.html#a656459b68783003316b98f69387c7f66',1,'fe::SrcMap::add(std::filesystem::path path, std::string buf)'],['../classfe_1_1SrcMap.html#a2bed7642d6dff01dea686e9d20a401f1',1,'fe::SrcMap::add(std::filesystem::path path)']]],
+  ['add_2',['add',['../classfe_1_1cli_1_1Cli.html#ad267171f0907ac12058deaff2adcc3aa',1,'fe::cli::Cli::add(Opt o)'],['../classfe_1_1cli_1_1Cli.html#a0343e6c4b41755c80b02da0964560957',1,'fe::cli::Cli::add(Group g)'],['../classfe_1_1SrcMap.html#a656459b68783003316b98f69387c7f66',1,'fe::SrcMap::add(std::filesystem::path path, std::string buf)'],['../classfe_1_1SrcMap.html#a2bed7642d6dff01dea686e9d20a401f1',1,'fe::SrcMap::add(std::filesystem::path path)']]],
   ['afterwards_3',['And you can read it afterwards',['../index.html#autotoc_md4',1,'']]],
   ['ahead_4',['Ahead',['../classfe_1_1Lexer.html#structfe_1_1Lexer_1_1Ahead',1,'fe::Lexer']]],
   ['ahead_5',['ahead',['../classfe_1_1Lexer.html#a574d6f4a890b04a422faa6a549a48687',1,'fe::Lexer::ahead()'],['../classfe_1_1Parser.html#af07368e3fabbf75a441b4e206fba2aa4',1,'fe::Parser::ahead()']]],
@@ -28,12 +28,13 @@ var searchData=
   ['arena_25',['Arena',['../classfe_1_1Arena.html',1,'fe::Arena'],['../classfe_1_1Arena.html#a31a9b29bc955003c0df7f4103bc434c1',1,'fe::Arena::Arena(const Arena &amp;)=delete'],['../classfe_1_1Arena.html#a6954c6cb8a60224261e98798a7cd5fda',1,'fe::Arena::Arena(size_t page_size=Default_Page_Size)'],['../classfe_1_1Arena.html#a35374c3e8e92a4510a78d2d51d24f5ec',1,'fe::Arena::Arena(Arena &amp;&amp;other) noexcept']]],
   ['arena_26',['arena',['../structfe_1_1Arena_1_1Allocator.html#af082bf4fe39e52f719e67aaca844f4f5',1,'fe::Arena::Allocator']]],
   ['arena_2eh_27',['arena.h',['../arena_8h.html',1,'']]],
-  ['as_28',['as',['../classfe_1_1RuntimeCast.html#a1f2d655724345f4b4e0bc4540ea78554',1,'fe::RuntimeCast::as()'],['../classfe_1_1RuntimeCast.html#af077f6cb9aef8502e4c76674a3a2666d',1,'fe::RuntimeCast::as() const']]],
-  ['assert_2eh_29',['assert.h',['../assert_8h.html',1,'']]],
-  ['assert_5femplace_30',['assert_emplace',['../namespacefe.html#a4df91557ebad4a98ce8c285e992947e1',1,'fe']]],
-  ['assert_5flookup_31',['assert_lookup',['../namespacefe.html#a7f55906d386570e1170752a24b9d28e3',1,'fe']]],
-  ['assert_5funused_32',['assert_unused',['../assert_8h.html#a1bf507325593e1ed7b3acc75596bd525',1,'assert.h']]],
-  ['assertf_33',['assertf',['../format_8h.html#a7bc6143638d489bb640260462bf07777',1,'format.h']]],
-  ['auto_34',['Auto',['../namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb',1,'fe::term']]],
-  ['aux_5fparent_35',['aux_parent',['../classfe_1_1lct_1_1Node.html#a09aa5b87ed14fc527222cfc29b83d472',1,'fe::lct::Node']]]
+  ['arg_28',['arg',['../classfe_1_1cli_1_1Opt.html#a4599af4d0563d89db60ee8be25ed47c2',1,'fe::cli::Opt::arg()'],['../namespacefe_1_1cli.html#aad377bb1d54e50ef0d5bc289ae4332bf',1,'fe::cli::arg()']]],
+  ['as_29',['as',['../classfe_1_1RuntimeCast.html#a1f2d655724345f4b4e0bc4540ea78554',1,'fe::RuntimeCast::as()'],['../classfe_1_1RuntimeCast.html#af077f6cb9aef8502e4c76674a3a2666d',1,'fe::RuntimeCast::as() const']]],
+  ['assert_2eh_30',['assert.h',['../assert_8h.html',1,'']]],
+  ['assert_5femplace_31',['assert_emplace',['../namespacefe.html#a4df91557ebad4a98ce8c285e992947e1',1,'fe']]],
+  ['assert_5flookup_32',['assert_lookup',['../namespacefe.html#a7f55906d386570e1170752a24b9d28e3',1,'fe']]],
+  ['assert_5funused_33',['assert_unused',['../assert_8h.html#a1bf507325593e1ed7b3acc75596bd525',1,'assert.h']]],
+  ['assertf_34',['assertf',['../format_8h.html#a7bc6143638d489bb640260462bf07777',1,'format.h']]],
+  ['auto_35',['Auto',['../namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb',1,'fe::term']]],
+  ['aux_5fparent_36',['aux_parent',['../classfe_1_1lct_1_1Node.html#a09aa5b87ed14fc527222cfc29b83d472',1,'fe::lct::Node']]]
 ];

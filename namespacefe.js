@@ -1,5 +1,6 @@
 var namespacefe =
 [
+    [ "cli", "namespacefe_1_1cli.html", "namespacefe_1_1cli" ],
     [ "dl", "namespacefe_1_1dl.html", [
       [ "close", "namespacefe_1_1dl.html#a06893ca1a7701c45fb627831247dbc4c", null ],
       [ "get", "namespacefe_1_1dl.html#a0ed7d0d7ed093b7ed9aabdcb29e06f40", null ],
@@ -31,7 +32,8 @@ var namespacefe =
       [ "operator<<", "namespacefe_1_1term.html#ac0ce9f4aeb844ed9e5cf41dce8dacf8a", null ],
       [ "resolve_mode", "namespacefe_1_1term.html#a787158fdb940cfa7e778863bde8f34e8", null ],
       [ "set_mode", "namespacefe_1_1term.html#aea69c469efc3010ca40cb1873ff6bec6", null ],
-      [ "use_color", "namespacefe_1_1term.html#ad2b84bd3b2fb301332ef7cae1fcd7b69", null ]
+      [ "use_color", "namespacefe_1_1term.html#ad2b84bd3b2fb301332ef7cae1fcd7b69", null ],
+      [ "width", "namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3", null ]
     ] ],
     [ "utf8", "namespacefe_1_1utf8.html", "namespacefe_1_1utf8" ],
     [ "Arena", "classfe_1_1Arena.html", "classfe_1_1Arena" ],

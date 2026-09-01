@@ -158,8 +158,10 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('term_8h.html',
 <code>#include &lt;cstring&gt;</code><br />
 <code>#include &lt;atomic&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;optional&gt;</code><br />
 <code>#include &lt;ostream&gt;</code><br />
 <code>#include &lt;string_view&gt;</code><br />
+<code>#include &lt;sys/ioctl.h&gt;</code><br />
 <code>#include &lt;unistd.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="assert_8h_source.html">fe/assert.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="format_8h_source.html">fe/format.h</a>&quot;</code><br />
@@ -172,7 +174,7 @@ Include dependency graph for term.h:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="term_8h__dep__incl.svg" width="379" height="330"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="term_8h__dep__incl.svg" width="451" height="330"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="term_8h_source.html">Go to the source code of this file.</a></p>
@@ -229,6 +231,8 @@ Functions</h2></td></tr>
 <tr class="memdesc:a028b5b02dd0708554eccc7b26a7501cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current terminal color mode.  <br /></td></tr>
 <tr class="memitem:ad2b84bd3b2fb301332ef7cae1fcd7b69" id="r_ad2b84bd3b2fb301332ef7cae1fcd7b69"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1term.html#ad2b84bd3b2fb301332ef7cae1fcd7b69">fe::term::use_color</a> (std::ostream &amp;os) noexcept</td></tr>
 <tr class="memdesc:ad2b84bd3b2fb301332ef7cae1fcd7b69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether color escape sequences are emitted for <code class="param">os</code> right now.  <br /></td></tr>
+<tr class="memitem:a5aa15cae23952d4b12161c0116cf41a3" id="r_a5aa15cae23952d4b12161c0116cf41a3"><td class="memItemLeft">std::optional&lt; size_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3">fe::term::width</a> (std::ostream &amp;os) noexcept</td></tr>
+<tr class="memdesc:a5aa15cae23952d4b12161c0116cf41a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of columns of the terminal <code class="param">os</code> refers to.  <br /></td></tr>
 <tr class="memitem:aea69c469efc3010ca40cb1873ff6bec6" id="r_aea69c469efc3010ca40cb1873ff6bec6"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1term.html#aea69c469efc3010ca40cb1873ff6bec6">fe::term::set_mode</a> (<a class="el" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087">Mode</a> m) noexcept</td></tr>
 <tr class="memdesc:aea69c469efc3010ca40cb1873ff6bec6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overrides the current terminal color mode.  <br /></td></tr>
 <tr class="memitem:a787158fdb940cfa7e778863bde8f34e8" id="r_a787158fdb940cfa7e778863bde8f34e8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1term.html#a787158fdb940cfa7e778863bde8f34e8">fe::term::resolve_mode</a> (std::ostream &amp;os=std::cerr) noexcept</td></tr>

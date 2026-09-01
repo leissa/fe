@@ -1,7 +1,14 @@
 var searchData=
 [
-  ['tab_0',['Tab',['../classfe_1_1Tab.html',1,'fe']]],
-  ['tracker_1',['Tracker',['../classfe_1_1Parser_1_1Tracker.html',1,'fe::Parser']]],
-  ['tuple_5felement_3c_20i_2c_20fe_3a_3aspan_3c_20t_2c_20n_20_3e_20_3e_2',['tuple_element&lt; I, fe::Span&lt; T, N &gt; &gt;',['../namespacestd.html#structstd_1_1tuple__element_3_01I_00_01fe_1_1Span_3_01T_00_01N_01_4_01_4',1,'std']]],
-  ['tuple_5fsize_3c_20fe_3a_3aspan_3c_20t_2c_20n_20_3e_20_3e_3',['tuple_size&lt; fe::Span&lt; T, N &gt; &gt;',['../structstd_1_1tuple__size_3_01fe_1_1Span_3_01T_00_01N_01_4_01_4.html',1,'std']]]
+  ['reference_0',['reference',['../classfe_1_1Bitset_1_1reference.html',1,'fe::Bitset']]],
+  ['res_1',['Res',['../classfe_1_1cli_1_1Res.html',1,'fe::cli']]],
+  ['restore_2',['Restore',['../classfe_1_1Restore.html',1,'fe']]],
+  ['restore_3c_20mode_2c_20_26mode_2c_20_26set_5fmode_20_3e_3',['Restore&lt; Mode, &amp;mode, &amp;set_mode &gt;',['../classfe_1_1Restore.html',1,'fe']]],
+  ['restore_3c_20t_2c_20nullptr_2c_20nullptr_20_3e_4',['Restore&lt; T, nullptr, nullptr &gt;',['../classfe_1_1Restore_3_01T_00_01nullptr_00_01nullptr_01_4.html',1,'fe']]],
+  ['ring_5',['Ring',['../classfe_1_1Ring.html',1,'fe']]],
+  ['ring_3c_20fe_3a_3alexer_3a_3aahead_2c_20k_20_3e_6',['Ring&lt; fe::Lexer::Ahead, K &gt;',['../classfe_1_1Ring.html',1,'fe']]],
+  ['ring_3c_20t_2c_201_20_3e_7',['Ring&lt; T, 1 &gt;',['../classfe_1_1Ring_3_01T_00_011_01_4.html',1,'fe']]],
+  ['ring_3c_20t_2c_202_20_3e_8',['Ring&lt; T, 2 &gt;',['../classfe_1_1Ring_3_01T_00_012_01_4.html',1,'fe']]],
+  ['ring_3c_20tok_2c_20k_20_3e_9',['Ring&lt; Tok, K &gt;',['../classfe_1_1Ring.html',1,'fe']]],
+  ['runtimecast_10',['RuntimeCast',['../classfe_1_1RuntimeCast.html',1,'fe']]]
 ];

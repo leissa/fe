@@ -1,6 +1,12 @@
 var annotated_dup =
 [
     [ "fe", "namespacefe.html", [
+      [ "cli", "namespacefe_1_1cli.html", [
+        [ "Res", "classfe_1_1cli_1_1Res.html", "classfe_1_1cli_1_1Res" ],
+        [ "Group", "namespacefe_1_1cli.html#structfe_1_1cli_1_1Group", "namespacefe_1_1cli_structfe_1_1cli_1_1Group_dup" ],
+        [ "Opt", "classfe_1_1cli_1_1Opt.html", "classfe_1_1cli_1_1Opt" ],
+        [ "Cli", "classfe_1_1cli_1_1Cli.html", "classfe_1_1cli_1_1Cli" ]
+      ] ],
       [ "lct", "namespacefe_1_1lct.html", [
         [ "Node", "classfe_1_1lct_1_1Node.html", "classfe_1_1lct_1_1Node" ]
       ] ],
