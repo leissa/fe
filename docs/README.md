@@ -127,11 +127,11 @@ Header-only, except for what [Requires `FE_LIB`](#requires-fe_lib) lists below.
 
 #### Command Line
 
-- `fe::cli` for parsing `argc`/`argv` of a single command: pipe `fe::cli::opt`/`fe::cli::arg` into an `fe::cli::Cli` and bind each switch to a variable of yours - a `bool`, a `std::string`, an integral, a `std::vector` of those, or a callable.
+- `fe::Cli` for parsing `argc`/`argv` of a single command: chain `Cli::opt`/`Cli::arg` and bind each switch to a variable of yours - a `bool`, a `std::string`, an integral, a `std::vector` of those, or a callable.
   It understands `--name value`, `--name=value`, `-n value`, `-nvalue`, clustered short flags, and `--`.
-- `Cli::help` lays those switches out for a terminal - grouped into sections by `fe::cli::group`, wrapped to the terminal width, and colored via `fe::term`.
+- `Cli::help` lays those switches out for a terminal - grouped into sections by `Cli::grp`, wrapped to the terminal width, and colored via `fe::term`.
   `Cli::md` renders the very same information as Markdown tables, so `--help` and the manual cannot drift apart.
-- `Cli::section` for titled `term`/description rows that aren't `Opt`s - `ENVIRONMENT`, plugin arguments, and the like - rendered below the options in both backends.
+- `Cli::section` for titled `term`/description rows that aren't options - `ENVIRONMENT`, plugin arguments, and the like - rendered below the options in both backends.
 
 #### Data Structures
 

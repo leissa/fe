@@ -26,8 +26,7 @@ TEST_CASE("cli flags") {
     int n    = 0;
     auto inc = [&](bool) { ++n; };
 
-    auto cli = fe::cli::Cli("t") | fe::cli::opt(a)["-a"] | fe::cli::opt(b)["-b"]["--bee"] | fe::cli::opt(c)["-c"]
-             | fe::cli::opt(inc)["-V"]["--verbose"];
+    auto cli = fe::Cli("t").opt(a, "", "-a").opt(b, "", "-b", "--bee").opt(c, "", "-c").opt(inc, "", "-V", "--verbose");
 
     SUBCASE("long and short") {
         auto args = Args{"t", "-a", "--bee"};
@@ -65,9 +64,12 @@ TEST_CASE("cli values") {
     std::string mode;
     auto set_mode = [&](const std::string& s) { mode = s; };
 
-    auto cli = fe::cli::Cli("t") | fe::cli::opt(out, "file")["-o"]["--output"] | fe::cli::opt(num, "num")["-n"]["--num"]
-             | fe::cli::opt(plugins, "plugin")["-p"] | fe::cli::opt(gids, "gid")["-g"]
-             | fe::cli::opt(set_mode, "mode")["--mode"];
+    auto cli = fe::Cli("t")
+                   .opt(out, "file", "-o", "--output")
+                   .opt(num, "num", "-n", "--num")
+                   .opt(plugins, "plugin", "-p")
+                   .opt(gids, "gid", "-g")
+                   .opt(set_mode, "mode", "", "--mode");
 
     SUBCASE("separate, attached, and =") {
         auto args = Args{"t", "-o", "x.txt", "-n7", "--mode=tree", "-p", "a", "-p", "b", "-g", "1", "-g", "2"};
@@ -97,13 +99,13 @@ TEST_CASE("cli values") {
             mode2 = t;
             return {};
         };
-        auto cli2 = fe::cli::Cli("t") | fe::cli::opt(pick, "mode")["--mode"];
+        auto cli2 = fe::Cli("t").opt(pick, "mode", "", "--mode");
         auto ok   = Args{"t", "--mode", "tree"};
         auto bad  = Args{"t", "--mode", "nope"};
         CHECK(!cli2.parse(ok.argc(), ok.data()));
         CHECK(mode2 == "tree");
 
-        auto cli3 = fe::cli::Cli("t") | fe::cli::opt(pick, "mode")["--mode"];
+        auto cli3 = fe::Cli("t").opt(pick, "mode", "", "--mode");
         CHECK(cli3.parse(bad.argc(), bad.data()) == "option '--mode': 'nope' is not a mode");
     }
 
@@ -119,7 +121,7 @@ TEST_CASE("cli args") {
 
     SUBCASE("one positional") {
         bool flag = false;
-        auto cli  = fe::cli::Cli("t") | fe::cli::opt(flag)["-f"] | fe::cli::arg(in, "file");
+        auto cli  = fe::Cli("t").opt(flag, "", "-f").arg(in, "file");
         auto args = Args{"t", "-f", "in.txt"};
         CHECK(!cli.parse(args.argc(), args.data()));
         CHECK(in == "in.txt");
@@ -127,14 +129,14 @@ TEST_CASE("cli args") {
     }
 
     SUBCASE("too many positionals") {
-        auto cli  = fe::cli::Cli("t") | fe::cli::arg(in, "file");
+        auto cli  = fe::Cli("t").arg(in, "file");
         auto args = Args{"t", "a", "b"};
         CHECK(cli.parse(args.argc(), args.data()) == "unexpected argument 'b'");
     }
 
     SUBCASE("-- ends option processing") {
         bool flag = false;
-        auto cli  = fe::cli::Cli("t") | fe::cli::opt(flag)["-f"] | fe::cli::arg(in, "file");
+        auto cli  = fe::Cli("t").opt(flag, "", "-f").arg(in, "file");
         auto args = Args{"t", "--", "-f"};
         CHECK(!cli.parse(args.argc(), args.data()));
         CHECK(in == "-f");
@@ -143,13 +145,13 @@ TEST_CASE("cli args") {
 
     SUBCASE("a rejected positional is an argument, not an option") {
         int num   = 0;
-        auto cli  = fe::cli::Cli("t") | fe::cli::arg(num, "num");
+        auto cli  = fe::Cli("t").arg(num, "num");
         auto args = Args{"t", "3x"};
         CHECK(cli.parse(args.argc(), args.data()) == "argument 'num': '3x' is not a number");
     }
 
     SUBCASE("a vector soaks up the rest") {
-        auto cli  = fe::cli::Cli("t") | fe::cli::arg(in, "first") | fe::cli::arg(rest, "more");
+        auto cli  = fe::Cli("t").arg(in, "first").arg(rest, "more");
         auto args = Args{"t", "a", "b", "c"};
         CHECK(!cli.parse(args.argc(), args.data()));
         CHECK(in == "a");
@@ -160,28 +162,28 @@ TEST_CASE("cli args") {
 TEST_CASE("cli cardinality") {
     int n     = 0;
     auto inc  = [&](bool) { ++n; };
-    auto cli  = fe::cli::Cli("t") | fe::cli::opt(inc)["-V"].cardinality(1, 2);
+    auto cli  = fe::Cli("t").opt(inc, "", "-V").cardinality(1, 2);
     auto none = Args{"t"};
     auto many = Args{"t", "-VVV"};
 
     CHECK(cli.parse(none.argc(), none.data()) == "missing option '-V'");
 
-    auto cli2 = fe::cli::Cli("t") | fe::cli::opt(inc)["-V"].cardinality(1, 2);
+    auto cli2 = fe::Cli("t").opt(inc, "", "-V").cardinality(1, 2);
     CHECK(cli2.parse(many.argc(), many.data()) == "option '-V' must not occur more than 2 times");
 
     std::string in;
-    auto cli3 = fe::cli::Cli("t") | fe::cli::arg(in, "file").cardinality(1, 1);
+    auto cli3 = fe::Cli("t").arg(in, "file").cardinality(1, 1);
     CHECK(cli3.parse(none.argc(), none.data()) == "missing argument 'file'");
 
     std::vector<std::string> rest;
-    auto cli4  = fe::cli::Cli("t") | fe::cli::arg(rest, "file").cardinality(0, 2);
+    auto cli4  = fe::Cli("t").arg(rest, "file").cardinality(0, 2);
     auto three = Args{"t", "a", "b", "c"};
     CHECK(cli4.parse(three.argc(), three.data()) == "argument 'file' must not occur more than 2 times");
 }
 
 TEST_CASE("cli section") {
     bool flag = false;
-    auto cli  = fe::cli::Cli("t") | fe::cli::opt(flag)["-f"]["--flag"]("A flag.");
+    auto cli  = fe::Cli("t").opt(flag, "", "-f", "--flag", "A flag.");
     cli.section("-X ll:<arg>", "Argument",
                 {
                     {"o=<file>, output=<file>",                                    "Write the LLVM IR to `<file>`."},
@@ -205,7 +207,7 @@ Options:
     }
 
     SUBCASE("a section without rows is a bare header") {
-        auto cli2 = fe::cli::Cli("t") | fe::cli::opt(flag)["-f"]("A flag.");
+        auto cli2 = fe::Cli("t").opt(flag, "", "-f", "", "A flag.");
         cli2.section("Plugin Arguments", "", {});
         cli2.section("-X ll:<arg>", "Argument",
                      {
@@ -237,11 +239,14 @@ TEST_CASE("cli help") {
     uint32_t gutter = 5;
     std::string in, out;
 
-    auto cli = fe::cli::Cli("t", "Does things.") | fe::cli::help(show_help)
-             | fe::cli::opt(verbose)["-V"]["--verbose"]("Be verbose.") | fe::cli::group("Output")
-             | fe::cli::opt(out, "file")["-o"]["--output"]("Where to write the result.")
-             | fe::cli::opt(gutter, "width")["--gutter"]("Column width.") | fe::cli::arg(in, "file")("Input file.");
-    cli.epilog("Bye.");
+    auto cli = fe::Cli("t", "Does things.")
+                   .help(show_help)
+                   .opt(verbose, "", "-V", "--verbose", "Be verbose.")
+                   .grp("Output")
+                   .opt(out, "file", "-o", "--output", "Where to write the result.")
+                   .opt(gutter, "width", "", "--gutter", "Column width.")
+                   .arg(in, "file", "Input file.")
+                   .epilog("Bye.");
 
     auto args = Args{"t", "--help"};
     CHECK(!cli.parse(args.argc(), args.data()));

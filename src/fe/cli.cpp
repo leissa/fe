@@ -5,43 +5,38 @@
 
 #include "fe/term.h"
 
-namespace fe::cli {
+namespace fe {
 
-std::string Opt::names() const {
-    std::string shorts, longs;
-    for (const auto& name : names_) {
-        auto& to = name.starts_with("--") ? longs : shorts;
-        if (!to.empty()) to += ", ";
-        to += name;
-    }
-    if (longs.empty()) return shorts;
-    if (shorts.empty()) return "    " + longs;
-    return shorts + ", " + longs;
+std::string Cli::Opt::names(bool pad) const {
+    if (lname.empty()) return sname;
+    if (sname.empty()) return pad ? "    " + lname : lname;
+    return sname + ", " + lname;
 }
 
-size_t Opt::width() const {
-    return names_.empty() ? hint_.size() + 2 : names().size() + (value_ ? hint_.size() + 3 : 0);
+std::string Cli::Opt::spec(bool pad) const {
+    auto res = names(pad);
+    if (takes_value()) res += std::format("{}<{}>", res.empty() ? "" : " ", hint);
+    return res;
 }
 
 std::string Cli::usage() const {
     auto s = prog_;
-    if (std::ranges::any_of(opts_, [](const Opt& o) { return !o.names_.empty(); })) s += " [options]";
+    if (std::ranges::any_of(opts_, [](const Opt& o) { return !o.is_arg(); })) s += " [options]";
     for (const auto& o : opts_)
-        if (o.names_.empty()) s += std::format(" <{}>", o.hint_);
+        if (o.is_arg()) s += std::format(" <{}>", o.hint);
     return s;
 }
 
-std::vector<std::string_view> Cli::groups() const {
+std::vector<std::string_view> Cli::grps() const {
     std::vector<std::string_view> res;
     for (const auto& o : opts_)
-        if (!o.names_.empty() && std::ranges::find(res, o.group_) == res.end()) res.emplace_back(o.group_);
+        if (!o.is_arg() && std::ranges::find(res, o.grp) == res.end()) res.emplace_back(o.grp);
     return res;
 }
 
-Opt* Cli::find(std::string_view name) {
+Cli::Opt* Cli::find(std::string_view name) {
     for (auto& o : opts_)
-        for (const auto& n : o.names_)
-            if (n == name) return &o;
+        if (o.sname == name || o.lname == name) return &o;
     return nullptr;
 }
 
@@ -54,14 +49,14 @@ std::optional<std::string> Cli::parse(int argc, const char* const* argv) {
     Opt* pos  = nullptr;
     auto next = [&] {
         for (auto& o : opts_)
-            if (o.names_.empty() && (o.num_ == 0 || o.multi_)) return pos = &o;
+            if (o.is_arg() && (o.num == 0 || o.multi)) return pos = &o;
         return pos = nullptr;
     };
     next();
 
     auto set = [](Opt& o, std::string_view name, std::string_view value) -> std::optional<std::string> {
-        ++o.num_;
-        if (auto err = o.set_(value); !err.empty()) return std::format("{} '{}': {}", o.kind(), name, err);
+        ++o.num;
+        if (auto err = o.set(value); !err.empty()) return std::format("{} '{}': {}", o.kind(), name, err);
         return {};
     };
 
@@ -77,7 +72,7 @@ std::optional<std::string> Cli::parse(int argc, const char* const* argv) {
             auto o    = find(name);
             if (!o) return std::format("unknown option '{}'", name);
 
-            if (!o->value_) {
+            if (!o->takes_value()) {
                 if (eq != std::string_view::npos) return std::format("option '{}' does not take a value", name);
                 if (auto err = set(*o, name, {})) return err;
             } else if (eq != std::string_view::npos) {
@@ -85,7 +80,7 @@ std::optional<std::string> Cli::parse(int argc, const char* const* argv) {
             } else if (++i < argc) {
                 if (auto err = set(*o, name, argv[i])) return err;
             } else {
-                return std::format("option '{}' requires a value <{}>", name, o->hint_);
+                return std::format("option '{}' requires a value <{}>", name, o->hint);
             }
         } else if (!only_pos && s.size() > 1 && s.front() == '-') {
             for (size_t j = 1; j != s.size(); ++j) {
@@ -94,7 +89,7 @@ std::optional<std::string> Cli::parse(int argc, const char* const* argv) {
                 auto o     = find(name);
                 if (!o) return std::format("unknown option '{}'", name);
 
-                if (!o->value_) {
+                if (!o->takes_value()) {
                     if (auto err = set(*o, name, {})) return err;
                 } else if (j + 1 != s.size()) {
                     if (auto err = set(*o, name, s.substr(j + 1))) return err;
@@ -103,20 +98,19 @@ std::optional<std::string> Cli::parse(int argc, const char* const* argv) {
                     if (auto err = set(*o, name, argv[i])) return err;
                     break;
                 } else {
-                    return std::format("option '{}' requires a value <{}>", name, o->hint_);
+                    return std::format("option '{}' requires a value <{}>", name, o->hint);
                 }
             }
         } else {
             if (!pos) return std::format("unexpected argument '{}'", s);
-            if (auto err = set(*pos, pos->hint_, s)) return err;
-            if (!pos->multi_) next();
+            if (auto err = set(*pos, pos->hint, s)) return err;
+            if (!pos->multi) next();
         }
     }
 
     for (const auto& o : opts_) {
-        if (o.num_ < o.min_) return std::format("missing {} '{}'", o.kind(), o.label());
-        if (o.num_ > o.max_)
-            return std::format("{} '{}' must not occur more than {} times", o.kind(), o.label(), o.max_);
+        if (o.num < o.min) return std::format("missing {} '{}'", o.kind(), o.label());
+        if (o.num > o.max) return std::format("{} '{}' must not occur more than {} times", o.kind(), o.label(), o.max);
     }
 
     return {};
@@ -171,32 +165,31 @@ void Cli::help(std::ostream& os) const {
 
     auto entry = [&](const Opt& o) {
         os << "  ";
-        if (o.names_.empty()) {
-            os << term::FG::Cyan << '<' << o.hint_ << '>' << term::FG::Reset;
+        if (o.is_arg()) {
+            os << term::FG::Cyan << '<' << o.hint << '>' << term::FG::Reset;
         } else {
-            os << term::FG::Green << o.names() << term::FG::Reset;
-            if (o.value_) os << ' ' << term::FG::Cyan << '<' << o.hint_ << '>' << term::FG::Reset;
+            os << term::FG::Green << o.names(true) << term::FG::Reset;
+            if (o.takes_value()) os << ' ' << term::FG::Cyan << '<' << o.hint << '>' << term::FG::Reset;
         }
 
-        auto descr = o.descr_;
-        if (o.dflt_)
-            if (auto d = o.dflt_(); !d.empty()) descr += std::format("{}[default: {}]", descr.empty() ? "" : " ", d);
+        auto descr = o.descr;
+        if (!o.dflt.empty()) descr += std::format("{}[default: {}]", descr.empty() ? "" : " ", o.dflt);
         tail(o.width() + 2, descr);
     };
 
     os << term::FG::Yellow << "Usage:" << term::FG::Reset << ' ' << usage() << '\n';
     if (!descr_.empty()) os << '\n' << descr_ << '\n';
 
-    if (std::ranges::any_of(opts_, [](const Opt& o) { return o.names_.empty(); })) {
+    if (std::ranges::any_of(opts_, [](const Opt& o) { return o.is_arg(); })) {
         section("Arguments");
         for (const auto& o : opts_)
-            if (o.names_.empty()) entry(o);
+            if (o.is_arg()) entry(o);
     }
 
-    for (auto group : groups()) {
-        section(group.empty() ? "Options" : group);
+    for (auto grp : grps()) {
+        section(grp.empty() ? "Options" : grp);
         for (const auto& o : opts_)
-            if (!o.names_.empty() && o.group_ == group) entry(o);
+            if (!o.is_arg() && o.grp == grp) entry(o);
     }
 
     for (const auto& s : sections_) {
@@ -248,38 +241,24 @@ void Cli::markdown(std::ostream& os) const {
         return res;
     };
 
-    auto spec = [](const Opt& o) {
-        if (o.names_.empty()) return std::format("<{}>", o.hint_);
-        std::string res;
-        for (const auto& name : o.names_) {
-            if (!res.empty()) res += ", ";
-            res += name;
-        }
-        if (o.value_) res += std::format(" <{}>", o.hint_);
-        return res;
-    };
-
     auto table = [&](std::string_view title, std::string_view head, auto&& pred) {
         os << std::format("\n### {}\n\n| {} | Description |\n| --- | --- |\n", title, head);
         for (const auto& o : opts_) {
             if (!pred(o)) continue;
-            auto descr = esc(o.descr_);
-            if (o.dflt_)
-                if (auto d = o.dflt_(); !d.empty())
-                    descr += std::format("{}[default: `{}`]", descr.empty() ? "" : " ", code(d));
-            os << std::format("| `{}` | {} |\n", code(spec(o)), descr);
+            auto descr = esc(o.descr);
+            if (!o.dflt.empty()) descr += std::format("{}[default: `{}`]", descr.empty() ? "" : " ", code(o.dflt));
+            os << std::format("| `{}` | {} |\n", code(o.spec()), descr);
         }
     };
 
     os << std::format("```\n{}\n```\n", usage());
     if (!descr_.empty()) os << '\n' << esc(descr_) << '\n';
 
-    if (std::ranges::any_of(opts_, [](const Opt& o) { return o.names_.empty(); }))
-        table("Arguments", "Argument", [](const Opt& o) { return o.names_.empty(); });
+    if (std::ranges::any_of(opts_, [](const Opt& o) { return o.is_arg(); }))
+        table("Arguments", "Argument", [](const Opt& o) { return o.is_arg(); });
 
-    for (auto group : groups())
-        table(group.empty() ? "Options" : group, "Option",
-              [&](const Opt& o) { return !o.names_.empty() && o.group_ == group; });
+    for (auto grp : grps())
+        table(grp.empty() ? "Options" : grp, "Option", [&](const Opt& o) { return !o.is_arg() && o.grp == grp; });
 
     for (const auto& s : sections_) {
         if (s.rows.empty()) { // a Section without rows only groups the ones below it, hence one level up
@@ -294,4 +273,4 @@ void Cli::markdown(std::ostream& os) const {
     if (!epilog_.empty()) os << '\n' << esc(epilog_) << '\n';
 }
 
-} // namespace fe::cli
+} // namespace fe
