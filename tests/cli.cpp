@@ -178,6 +178,57 @@ TEST_CASE("cli cardinality") {
     CHECK(res2.message() == "option '-V' must not occur more than 2 times");
 }
 
+TEST_CASE("cli section") {
+    bool flag = false;
+    auto cli  = fe::cli::Cli("t") | fe::cli::opt(flag)["-f"]["--flag"]("A flag.");
+    cli.section("-X ll:<arg>", "Argument",
+                {
+                    {"o=<file>, output=<file>",                                    "Write the LLVM IR to `<file>`."},
+                    {               "rt=embed", "Passed to `--cmdline`; unlike a bare --cmdline outside backticks."}
+    });
+
+    SUBCASE("terminal") {
+        auto guard = fe::term::ScopedMode(fe::term::Mode::Never);
+        std::ostringstream oss;
+        oss << cli;
+        CHECK(oss.str() == R"(Usage: t [options]
+
+Options:
+  -f, --flag               A flag.
+
+-X ll:<arg>:
+  o=<file>, output=<file>  Write the LLVM IR to `<file>`.
+  rt=embed                 Passed to `--cmdline`; unlike a bare --cmdline
+                           outside backticks.
+)");
+    }
+
+    SUBCASE("markdown escapes outside code spans only") {
+        std::ostringstream oss;
+        cli.md(oss);
+        auto md = oss.str();
+        CHECK(md.contains("### -X ll:&lt;arg&gt;\n\n| Argument | Description |"));
+        CHECK(md.contains("Passed to `--cmdline`; unlike a bare \\--cmdline outside backticks."));
+    }
+
+    SUBCASE("a section-only Cli has no usage block") {
+        std::ostringstream oss;
+        auto only = fe::cli::Cli();
+        only.section("ll", "Argument",
+                     {
+                         {"o=<file>", "Where to write."}
+        });
+        only.md(oss);
+        CHECK(oss.str() == R"(
+### ll
+
+| Argument | Description |
+| --- | --- |
+| `o=<file>` | Where to write. |
+)");
+    }
+}
+
 TEST_CASE("cli help") {
     bool show_help = false, verbose = false;
     uint32_t gutter = 5;

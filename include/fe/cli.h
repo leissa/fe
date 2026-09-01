@@ -265,6 +265,13 @@ public:
         return std::move(*this);
     }
 
+    /// A titled table of `term`/description rows that are not Opt%s - `ENVIRONMENT`, plugin arguments, ...
+    /// Both backends render it below the options; @p head names the first column in Cli::md.
+    Cli& section(std::string title, std::string head, std::vector<std::pair<std::string, std::string>> rows) {
+        sections_.emplace_back(std::move(title), std::move(head), std::move(rows));
+        return *this;
+    }
+
     /// Text printed below the option list.
     Cli& epilog(std::string s) {
         epilog_ = std::move(s);
@@ -299,8 +306,14 @@ private:
         return nullptr;
     }
 
+    struct Section {
+        std::string title, head;
+        std::vector<std::pair<std::string, std::string>> rows;
+    };
+
     std::string prog_, descr_, epilog_, group_;
     std::vector<Opt> opts_;
+    std::vector<Section> sections_;
 };
 
 inline std::ostream& operator<<(std::ostream& os, const Cli& cli) {
@@ -389,8 +402,14 @@ inline void Cli::help(std::ostream& os) const {
 
     // Only the specs up to a third of the line dictate the description column; longer ones get a line of their own.
     size_t spec = 0;
+    auto fits   = [&](size_t w) {
+        if (w <= cols / 3) spec = std::max(spec, w);
+    };
     for (const auto& o : opts_)
-        if (auto w = o.width(); w <= cols / 3) spec = std::max(spec, w);
+        fits(o.width());
+    for (const auto& s : sections_)
+        for (const auto& [name, descr] : s.rows)
+            fits(name.size());
     auto col = std::clamp<size_t>(spec + 4, 8, cols / 2);
 
     auto wrap = [&](std::string_view text) {
@@ -412,6 +431,19 @@ inline void Cli::help(std::ostream& os) const {
         os << '\n' << term::FG::Yellow << title << ':' << term::FG::Reset << '\n';
     };
 
+    // Pads what has just been written up to the description column - or breaks the line if it does not fit.
+    auto tail = [&](size_t w, std::string_view descr) {
+        if (w + 2 > col) {
+            os << '\n';
+            w = 0;
+        }
+        os << std::string(col - w, ' ');
+        if (descr.empty())
+            os << '\n';
+        else
+            wrap(descr);
+    };
+
     auto entry = [&](const Opt& o) {
         os << "  ";
         if (o.names_.empty()) {
@@ -421,23 +453,13 @@ inline void Cli::help(std::ostream& os) const {
             if (o.value_) os << ' ' << term::FG::Cyan << '<' << o.hint_ << '>' << term::FG::Reset;
         }
 
-        auto w = o.width() + 2;
-        if (w + 2 > col) {
-            os << '\n';
-            w = 0;
-        }
-        os << std::string(col - w, ' ');
-
         auto descr = o.descr_;
         if (o.dflt_)
             if (auto d = o.dflt_(); !d.empty()) descr += std::format("{}[default: {}]", descr.empty() ? "" : " ", d);
-        if (descr.empty())
-            os << '\n';
-        else
-            wrap(descr);
+        tail(o.width() + 2, descr);
     };
 
-    os << term::FG::Yellow << "Usage:" << term::FG::Reset << ' ' << usage() << '\n';
+    if (!opts_.empty()) os << term::FG::Yellow << "Usage:" << term::FG::Reset << ' ' << usage() << '\n';
     if (!descr_.empty()) os << '\n' << descr_ << '\n';
 
     if (std::ranges::any_of(opts_, [](const Opt& o) { return o.names_.empty(); })) {
@@ -452,14 +474,30 @@ inline void Cli::help(std::ostream& os) const {
             if (!o.names_.empty() && o.group_ == group) entry(o);
     }
 
+    for (const auto& s : sections_) {
+        section(s.title);
+        for (const auto& [name, descr] : s.rows) {
+            os << "  " << term::FG::Green << name << term::FG::Reset;
+            tail(name.size() + 2, descr);
+        }
+    }
+
     if (!epilog_.empty()) os << '\n' << epilog_ << '\n';
 }
 
 inline void Cli::md(std::ostream& os) const {
+    // A code span is already verbatim - only `|`, which ends the table cell, still has to go.
     auto esc = [](std::string_view text) {
         std::string res;
+        bool code = false;
         for (size_t i = 0, e = text.size(); i != e; ++i) {
-            switch (auto c = text[i]) {
+            auto c = text[i];
+            if (c == '`') code = !code;
+            if (code && c != '|') {
+                res += c;
+                continue;
+            }
+            switch (c) {
                 case '&': res += "&amp;"; break;
                 case '<': res += "&lt;"; break;
                 case '>': res += "&gt;"; break;
@@ -508,7 +546,7 @@ inline void Cli::md(std::ostream& os) const {
         }
     };
 
-    os << std::format("```\n{}\n```\n", usage());
+    if (!opts_.empty()) os << std::format("```\n{}\n```\n", usage());
     if (!descr_.empty()) os << '\n' << esc(descr_) << '\n';
 
     if (std::ranges::any_of(opts_, [](const Opt& o) { return o.names_.empty(); }))
@@ -517,6 +555,12 @@ inline void Cli::md(std::ostream& os) const {
     for (auto group : groups())
         table(group.empty() ? "Options" : group, "Option",
               [&](const Opt& o) { return !o.names_.empty() && o.group_ == group; });
+
+    for (const auto& s : sections_) {
+        os << std::format("\n### {}\n\n| {} | Description |\n| --- | --- |\n", esc(s.title), s.head);
+        for (const auto& [name, descr] : s.rows)
+            os << std::format("| `{}` | {} |\n", code(name), esc(descr));
+    }
 
     if (!epilog_.empty()) os << '\n' << esc(epilog_) << '\n';
 }
