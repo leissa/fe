@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['e_0',['e',['../classfe_1_1Log.html#a09b8c2102ebfd0ea1407c41e890bfd02',1,'fe::Log']]],
+  ['e_0',['e',['../classfe_1_1Error.html#aefdb6f3b2c99427d0ab463bbdf98bef4',1,'fe::Error::e()'],['../classfe_1_1Log.html#a09b8c2102ebfd0ea1407c41e890bfd02',1,'fe::Log::e()']]],
   ['eat_1',['eat',['../classfe_1_1Parser.html#a7676ff550005c7f0334f6fda4067d1e0',1,'fe::Parser']]],
   ['elapsed_2',['elapsed',['../structfe_1_1Profiler_1_1Span.html#a192b9f285bbdfc2aad6839e8340915f9',1,'fe::Profiler::Span']]],
   ['empty_3',['empty',['../classfe_1_1Error.html#ac291fef4f4637573b438cb1188997c98',1,'fe::Error::empty()'],['../classfe_1_1Profiler.html#ab3df71f2dbc57180667d0f680b621a48',1,'fe::Profiler::empty()'],['../classfe_1_1Sym.html#a277217d7b5fbd7be2d57a11f3d5767ea',1,'fe::Sym::empty()'],['../classfe_1_1Worklist.html#a9923bf1a31218860f3406897fc965f7b',1,'fe::Worklist::empty()'],['../classfe_1_1XTrie_1_1Set.html#ab36b82ad85a6589d471c15a8e5b67f76',1,'fe::XTrie::Set::empty()']]],
@@ -15,7 +15,7 @@ var searchData=
   ['erase_12',['erase',['../classfe_1_1XTrie.html#ad9012a6e842ad6ac47ec9ea81517995d',1,'fe::XTrie::erase()'],['../namespacefe.html#a32e00013e42152781f4bb035ace7af01',1,'fe::erase(Vector&lt; T, N, A &gt; &amp;c, const U &amp;value)']]],
   ['erase_5fif_13',['erase_if',['../namespacefe.html#ace6f5864e6c7ef635e260299ed16fe86',1,'fe']]],
   ['error_14',['Error',['../classfe_1_1Error.html',1,'fe::Error'],['../classfe_1_1Error.html#a006230978a0baa2c40452a3f393c8db5',1,'fe::Error::Error()'],['../classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1fa902b0d55fddef6f8d651fe1035b7d4bd',1,'fe::Diag::Error'],['../classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06a902b0d55fddef6f8d651fe1035b7d4bd',1,'fe::Log::Error']]],
-  ['error_15',['error',['../structfe_1_1Driver.html#ad9684c890333c19abc2ce4f4c2f8fe59',1,'fe::Driver::error()'],['../structfe_1_1Driver.html#a09575ed3c928290f3d6e5866679bfba5',1,'fe::Driver::error() const'],['../structfe_1_1Driver.html#a90a08372c2eab50f825b6071ccc876a3',1,'fe::Driver::error(Loc loc, std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)'],['../classfe_1_1Error.html#ad8368ada831692fd3994e6be28b6240d',1,'fe::Error::error()'],['../classfe_1_1Parser.html#a84664cc5a6e288f9d507872d7e30789e',1,'fe::Parser::error()'],['../classfe_1_1Parser.html#ac10691c73f1acf9f8fce035189181a9d',1,'fe::Parser::error() const']]],
+  ['error_15',['error',['../structfe_1_1Driver.html#ad9684c890333c19abc2ce4f4c2f8fe59',1,'fe::Driver::error()'],['../structfe_1_1Driver.html#a09575ed3c928290f3d6e5866679bfba5',1,'fe::Driver::error() const'],['../classfe_1_1Error.html#ad8368ada831692fd3994e6be28b6240d',1,'fe::Error::error()'],['../classfe_1_1Lexer.html#a64eb8bb5d03958cd555482f861298b1f',1,'fe::Lexer::error()'],['../classfe_1_1Lexer.html#a4707cb64aed5b2649a6aececccc10471',1,'fe::Lexer::error() const'],['../classfe_1_1Parser.html#a84664cc5a6e288f9d507872d7e30789e',1,'fe::Parser::error()'],['../classfe_1_1Parser.html#ac10691c73f1acf9f8fce035189181a9d',1,'fe::Parser::error() const']]],
   ['error_2eh_16',['error.h',['../error_8h.html',1,'']]],
   ['escape_17',['escape',['../namespacefe_1_1sys.html#a2b5fd04fba1c95bb502ef87ab95e598b',1,'fe::sys']]],
   ['exec_18',['exec',['../namespacefe_1_1sys.html#ae3e1e6c6e12f32f87cfed0a319f06bb9',1,'fe::sys']]],

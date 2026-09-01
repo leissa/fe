@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['w_0',['w',['../classfe_1_1Log.html#a9ff17172a0c0b4c3fbd094b1a8cd9b17',1,'fe::Log']]],
+  ['w_0',['w',['../classfe_1_1Error.html#a763eee8ce3d7df251596dff293c8571b',1,'fe::Error::w()'],['../classfe_1_1Log.html#a9ff17172a0c0b4c3fbd094b1a8cd9b17',1,'fe::Log::w()']]],
   ['warn_1',['Warn',['../classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1fa56525ae64d370c0b448ac0d60710ef17',1,'fe::Diag::Warn'],['../classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06a56525ae64d370c0b448ac0d60710ef17',1,'fe::Log::Warn']]],
-  ['warn_2',['warn',['../structfe_1_1Driver.html#a19cdcffcc7a1c6aa37ad9184e0b9355a',1,'fe::Driver::warn()'],['../classfe_1_1Error.html#a82c412556026c8f9ecd54a94add9cf4a',1,'fe::Error::warn()']]],
+  ['warn_2',['warn',['../classfe_1_1Error.html#a82c412556026c8f9ecd54a94add9cf4a',1,'fe::Error']]],
   ['werror_3',['werror',['../classfe_1_1Diag.html#a5747acf837fe2fe734f9a5ed3823f196',1,'fe::Diag']]],
   ['what_4',['what',['../classfe_1_1Error_1_1Bail.html#adcecc911f3639fc4f533253c4547b730',1,'fe::Error::Bail']]],
   ['which_5',['which',['../namespacefe_1_1sys.html#ad0bec5855efc412aae9b3eb287b4583a',1,'fe::sys']]],

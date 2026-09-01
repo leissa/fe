@@ -365,7 +365,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('parser_8h_sour
 <div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        <span class="keyword">static_assert</span>(</div>
 <div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>            <span class="keyword">requires</span>(S&amp; s) { s.driver(); },</div>
 <div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>            <span class="stringliteral">&quot;provide `fe::Driver&amp; driver()` in your parser - or a `syntax_err` of your own&quot;</span>);</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        self().driver().error(tok.loc(), <span class="stringliteral">&quot;expected {}, got `{}` while parsing {}&quot;</span>, what, tok, ctxt);</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        <a class="code hl_function" href="classfe_1_1Parser.html#a84664cc5a6e288f9d507872d7e30789e">error</a>().e(tok.loc(), <span class="stringliteral">&quot;expected {}, got `{}` while parsing {}&quot;</span>, what, tok, ctxt);</div>
 <div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    }</div>
 </div>
 <div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span><span class="comment"></span> </div>
@@ -381,7 +381,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('parser_8h_sour
 <div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>        <span class="keyword">static_assert</span>(</div>
 <div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>            <span class="keyword">requires</span>(S&amp; s) { s.driver(); },</div>
 <div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>            <span class="stringliteral">&quot;provide `fe::Driver&amp; driver()` in your parser - or an `unanchored_err` of your own&quot;</span>);</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        self().driver().error(tok.loc(), <span class="stringliteral">&quot;ignoring unmatched `{}` while parsing {}&quot;</span>, tok, ctxt);</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        <a class="code hl_function" href="classfe_1_1Parser.html#a84664cc5a6e288f9d507872d7e30789e">error</a>().e(tok.loc(), <span class="stringliteral">&quot;ignoring unmatched `{}` while parsing {}&quot;</span>, tok, ctxt);</div>
 <div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    }<span class="comment"></span></div>
 </div>
 <div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span><span class="comment">    ///@}</span></div>

@@ -12,11 +12,7 @@ var structfe_1_1Driver =
     [ "diag", "structfe_1_1Driver.html#ab9c973b33f1921097af053afba986e5e", null ],
     [ "error", "structfe_1_1Driver.html#ad9684c890333c19abc2ce4f4c2f8fe59", null ],
     [ "error", "structfe_1_1Driver.html#a09575ed3c928290f3d6e5866679bfba5", null ],
-    [ "error", "structfe_1_1Driver.html#a90a08372c2eab50f825b6071ccc876a3", null ],
-    [ "note", "structfe_1_1Driver.html#a07d65b870a743e24d9516a563dba87ab", null ],
-    [ "note", "structfe_1_1Driver.html#ab69721007736f4ff319bd1de263ad990", null ],
     [ "operator=", "structfe_1_1Driver.html#ad9ad0328f3bba70f0d947622579a6164", null ],
     [ "src", "structfe_1_1Driver.html#a29e55b6dd4f185949bca3f0f8e9c1928", null ],
-    [ "src", "structfe_1_1Driver.html#a68720a3fb52717029f0e00b80bc88009", null ],
-    [ "warn", "structfe_1_1Driver.html#a19cdcffcc7a1c6aa37ad9184e0b9355a", null ]
+    [ "src", "structfe_1_1Driver.html#a68720a3fb52717029f0e00b80bc88009", null ]
 ];

@@ -16,11 +16,14 @@ var classfe_1_1Error =
     [ "ack", "classfe_1_1Error.html#a1691ca5ebb45613d58aed573af1a75bc", null ],
     [ "bail", "classfe_1_1Error.html#a4c1692799986392837a8bb3552384eb9", null ],
     [ "clear", "classfe_1_1Error.html#a49f4b59762202737f27bd6e35a22d0fc", null ],
+    [ "e", "classfe_1_1Error.html#aefdb6f3b2c99427d0ab463bbdf98bef4", null ],
     [ "empty", "classfe_1_1Error.html#ac291fef4f4637573b438cb1188997c98", null ],
     [ "error", "classfe_1_1Error.html#ad8368ada831692fd3994e6be28b6240d", null ],
     [ "msg", "classfe_1_1Error.html#a0be3ad6db15f4a91da361765326e508e", null ],
     [ "msg", "classfe_1_1Error.html#a7d5548075c6e6527e87f8c76034a01e8", null ],
     [ "msgs", "classfe_1_1Error.html#a27fe473278b55b1e3df08f10c40f748d", null ],
+    [ "n", "classfe_1_1Error.html#a5b68ed59585357a2f4e4f2bbda85e508", null ],
+    [ "n", "classfe_1_1Error.html#a85a7eb5c9d1d42180e23d41bf78f50cb", null ],
     [ "note", "classfe_1_1Error.html#aff0747094a9e80944bffd43c325f5748", null ],
     [ "note", "classfe_1_1Error.html#aad9cee35248ef994e08254f3714cbffa", null ],
     [ "num_errors", "classfe_1_1Error.html#abb54459af9ba5e732ca04b79d8be7e9e", null ],
@@ -30,6 +33,7 @@ var classfe_1_1Error =
     [ "report", "classfe_1_1Error.html#a93e4dd890a070342985279476e4e5290", null ],
     [ "str", "classfe_1_1Error.html#a08aa403d4a64879731845169dc281cb1", null ],
     [ "truncated", "classfe_1_1Error.html#a4e722a70d4cab71100fa6ea30e8e2073", null ],
+    [ "w", "classfe_1_1Error.html#a763eee8ce3d7df251596dff293c8571b", null ],
     [ "warn", "classfe_1_1Error.html#a82c412556026c8f9ecd54a94add9cf4a", null ],
     [ "operator<<", "classfe_1_1Error.html#a8a369575104a47be742d51e7d814d99b", null ]
 ];

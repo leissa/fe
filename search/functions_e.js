@@ -1,13 +1,14 @@
 var searchData=
 [
-  ['next_0',['next',['../classfe_1_1Bitset.html#a133894062d62f20943e91950387e59ff',1,'fe::Bitset::next()'],['../classfe_1_1Lexer.html#a0bbfc87be21bdd46d883002eb10303c1',1,'fe::Lexer::next()']]],
-  ['node_1',['Node',['../classfe_1_1lct_1_1Node.html#a0d02ac1d102e2d1af583428671e1264c',1,'fe::lct::Node']]],
-  ['none_2',['none',['../classfe_1_1Bitset.html#a06de774d3a8b865462578272321b4db0',1,'fe::Bitset']]],
-  ['note_3',['note',['../classfe_1_1Diag.html#a3fbacbb7cf78557dddb16182cfd756c6',1,'fe::Diag::note()'],['../structfe_1_1Driver.html#ab69721007736f4ff319bd1de263ad990',1,'fe::Driver::note(std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)'],['../structfe_1_1Driver.html#a07d65b870a743e24d9516a563dba87ab',1,'fe::Driver::note(Loc loc, std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)'],['../classfe_1_1Error.html#aad9cee35248ef994e08254f3714cbffa',1,'fe::Error::note(std::format_string&lt; Args... &gt; s, Args &amp;&amp;... args)'],['../classfe_1_1Error.html#aff0747094a9e80944bffd43c325f5748',1,'fe::Error::note(Loc loc, std::format_string&lt; Args... &gt; s, Args &amp;&amp;... args)']]],
-  ['num_5fbytes_4',['num_bytes',['../namespacefe_1_1utf8.html#a3bfd6112606e85a56fcc227b127e6c4a',1,'fe::utf8']]],
-  ['num_5fcode_5fpoints_5',['num_code_points',['../namespacefe_1_1utf8.html#ada5a7d0de6f0f46d41e672c29127daaf',1,'fe::utf8']]],
-  ['num_5ferrors_6',['num_errors',['../classfe_1_1Error_1_1Bail.html#a9d472ae2ed685d122de44440ebeac3d3',1,'fe::Error::Bail::num_errors()'],['../classfe_1_1Error.html#abb54459af9ba5e732ca04b79d8be7e9e',1,'fe::Error::num_errors() const']]],
-  ['num_5fnotes_7',['num_notes',['../classfe_1_1Error.html#a00b674ddc53a6aab807f998e801dd5fa',1,'fe::Error']]],
-  ['num_5frows_8',['num_rows',['../classfe_1_1Src.html#a5addc7372afe322c60b82320112a6244',1,'fe::Src']]],
-  ['num_5fwarnings_9',['num_warnings',['../classfe_1_1Error_1_1Bail.html#a9434b8c9ae515236bfc38e6ce65b7f40',1,'fe::Error::Bail::num_warnings()'],['../classfe_1_1Error.html#a964744b2e5613bed7c339b419c51f301',1,'fe::Error::num_warnings()']]]
+  ['n_0',['n',['../classfe_1_1Error.html#a85a7eb5c9d1d42180e23d41bf78f50cb',1,'fe::Error::n(std::format_string&lt; Args... &gt; s, Args &amp;&amp;... args)'],['../classfe_1_1Error.html#a5b68ed59585357a2f4e4f2bbda85e508',1,'fe::Error::n(Loc loc, std::format_string&lt; Args... &gt; s, Args &amp;&amp;... args)']]],
+  ['next_1',['next',['../classfe_1_1Bitset.html#a133894062d62f20943e91950387e59ff',1,'fe::Bitset::next()'],['../classfe_1_1Lexer.html#a0bbfc87be21bdd46d883002eb10303c1',1,'fe::Lexer::next()']]],
+  ['node_2',['Node',['../classfe_1_1lct_1_1Node.html#a0d02ac1d102e2d1af583428671e1264c',1,'fe::lct::Node']]],
+  ['none_3',['none',['../classfe_1_1Bitset.html#a06de774d3a8b865462578272321b4db0',1,'fe::Bitset']]],
+  ['note_4',['note',['../classfe_1_1Diag.html#a3fbacbb7cf78557dddb16182cfd756c6',1,'fe::Diag::note()'],['../classfe_1_1Error.html#aad9cee35248ef994e08254f3714cbffa',1,'fe::Error::note(std::format_string&lt; Args... &gt; s, Args &amp;&amp;... args)'],['../classfe_1_1Error.html#aff0747094a9e80944bffd43c325f5748',1,'fe::Error::note(Loc loc, std::format_string&lt; Args... &gt; s, Args &amp;&amp;... args)']]],
+  ['num_5fbytes_5',['num_bytes',['../namespacefe_1_1utf8.html#a3bfd6112606e85a56fcc227b127e6c4a',1,'fe::utf8']]],
+  ['num_5fcode_5fpoints_6',['num_code_points',['../namespacefe_1_1utf8.html#ada5a7d0de6f0f46d41e672c29127daaf',1,'fe::utf8']]],
+  ['num_5ferrors_7',['num_errors',['../classfe_1_1Error_1_1Bail.html#a9d472ae2ed685d122de44440ebeac3d3',1,'fe::Error::Bail::num_errors()'],['../classfe_1_1Error.html#abb54459af9ba5e732ca04b79d8be7e9e',1,'fe::Error::num_errors() const']]],
+  ['num_5fnotes_8',['num_notes',['../classfe_1_1Error.html#a00b674ddc53a6aab807f998e801dd5fa',1,'fe::Error']]],
+  ['num_5frows_9',['num_rows',['../classfe_1_1Src.html#a5addc7372afe322c60b82320112a6244',1,'fe::Src']]],
+  ['num_5fwarnings_10',['num_warnings',['../classfe_1_1Error_1_1Bail.html#a9434b8c9ae515236bfc38e6ce65b7f40',1,'fe::Error::Bail::num_warnings()'],['../classfe_1_1Error.html#a964744b2e5613bed7c339b419c51f301',1,'fe::Error::num_warnings()']]]
 ];
