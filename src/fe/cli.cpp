@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <filesystem>
+#include <print>
 
 #include "fe/term.h"
 
@@ -140,12 +141,13 @@ void Cli::help(std::ostream& os) const {
             auto end = std::min(text.size(), begin + cols - col);
             if (end < text.size())
                 if (auto space = text.rfind(' ', end); space != std::string_view::npos && space > begin) end = space;
-            if (row != 0) os << std::string(col, ' ');
-            os << text.substr(begin, end - begin) << '\n';
+            if (row != 0) std::print(os, "{:{}}", "", col);
+            std::println(os, "{}", text.substr(begin, end - begin));
             begin = end;
         }
     };
 
+    // Colors are streamed, not formatted: a std::formatter cannot see its destination stream; see fe/term.h.
     auto section = [&](std::string_view title) {
         os << '\n' << term::FG::Yellow << title << ':' << term::FG::Reset << '\n';
     };
@@ -156,7 +158,7 @@ void Cli::help(std::ostream& os) const {
             os << '\n';
             w = 0;
         }
-        os << std::string(col - w, ' ');
+        std::print(os, "{:{}}", "", col - w);
         if (descr.empty())
             os << '\n';
         else
@@ -178,7 +180,7 @@ void Cli::help(std::ostream& os) const {
     };
 
     os << term::FG::Yellow << "Usage:" << term::FG::Reset << ' ' << usage() << '\n';
-    if (!descr_.empty()) os << '\n' << descr_ << '\n';
+    if (!descr_.empty()) std::println(os, "\n{}", descr_);
 
     if (std::ranges::any_of(opts_, [](const Opt& o) { return o.is_arg(); })) {
         section("Arguments");
@@ -200,7 +202,7 @@ void Cli::help(std::ostream& os) const {
         }
     }
 
-    if (!epilog_.empty()) os << '\n' << epilog_ << '\n';
+    if (!epilog_.empty()) std::println(os, "\n{}", epilog_);
 }
 
 void Cli::markdown(std::ostream& os) const {
@@ -242,17 +244,17 @@ void Cli::markdown(std::ostream& os) const {
     };
 
     auto table = [&](std::string_view title, std::string_view head, auto&& pred) {
-        os << std::format("\n### {}\n\n| {} | Description |\n| --- | --- |\n", title, head);
+        std::println(os, "\n### {}\n\n| {} | Description |\n| --- | --- |", title, head);
         for (const auto& o : opts_) {
             if (!pred(o)) continue;
             auto descr = esc(o.descr);
             if (!o.dflt.empty()) descr += std::format("{}[default: `{}`]", descr.empty() ? "" : " ", code(o.dflt));
-            os << std::format("| `{}` | {} |\n", code(o.spec()), descr);
+            std::println(os, "| `{}` | {} |", code(o.spec()), descr);
         }
     };
 
-    os << std::format("```\n{}\n```\n", usage());
-    if (!descr_.empty()) os << '\n' << esc(descr_) << '\n';
+    std::println(os, "```\n{}\n```", usage());
+    if (!descr_.empty()) std::println(os, "\n{}", esc(descr_));
 
     if (std::ranges::any_of(opts_, [](const Opt& o) { return o.is_arg(); }))
         table("Arguments", "Argument", [](const Opt& o) { return o.is_arg(); });
@@ -262,15 +264,15 @@ void Cli::markdown(std::ostream& os) const {
 
     for (const auto& s : sections_) {
         if (s.rows.empty()) { // a Section without rows only groups the ones below it, hence one level up
-            os << std::format("\n## {}\n", esc(s.title));
+            std::println(os, "\n## {}", esc(s.title));
             continue;
         }
-        os << std::format("\n### {}\n\n| {} | Description |\n| --- | --- |\n", esc(s.title), s.head);
+        std::println(os, "\n### {}\n\n| {} | Description |\n| --- | --- |", esc(s.title), s.head);
         for (const auto& [name, descr] : s.rows)
-            os << std::format("| `{}` | {} |\n", code(name), esc(descr));
+            std::println(os, "| `{}` | {} |", code(name), esc(descr));
     }
 
-    if (!epilog_.empty()) os << '\n' << esc(epilog_) << '\n';
+    if (!epilog_.empty()) std::println(os, "\n{}", esc(epilog_));
 }
 
 } // namespace fe
