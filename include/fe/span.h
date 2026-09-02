@@ -102,6 +102,7 @@ public:
 
 static_assert(std::ranges::contiguous_range<Span<int>>);
 
+/// Read-only Span; use Span itself, if you want to write through its elements.
 template<class T, size_t N = std::dynamic_extent>
 using View = Span<const T, N>;
 
