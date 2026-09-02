@@ -713,12 +713,6 @@ TEST_CASE("algo") {
     static_assert(fe::bitcast_resize<uint64_t>(3.5f) == UINT64_C(0x40600000));
     static_assert(fe::bitcast_resize<float>(UINT64_C(0x40600000)) == 3.5f);
 
-    static_assert(fe::subview("hello world", 6) == "world");
-    static_assert(fe::subview("hello world", 0, 5) == "hello");
-    static_assert(fe::subview("hello world", 6, 3) == "wor");
-    static_assert(fe::subview("hello world", 6, 99) == "world");
-    static_assert(fe::subview("hello world", 99, 3) == "");
-
     auto str = std::string("a.b.c");
     fe::find_and_replace(str, ".", "::");
     CHECK(str == "a::b::c");

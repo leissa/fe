@@ -71,12 +71,6 @@ template<std::ranges::random_access_range R, class T, class L = std::less<>>
     return binary_find(std::ranges::begin(r), std::ranges::end(r), val, lt);
 }
 
-/// Like `std::string::substr`, but works on `std::string_view` and clamps @p i instead of throwing.
-[[nodiscard]] constexpr std::string_view
-subview(std::string_view s, size_t i, size_t n = std::string_view::npos) noexcept {
-    return s.substr(std::min(i, s.size()), n);
-}
-
 /// Replaces all occurrences of @p what with @p repl.
 inline void find_and_replace(std::string& str, std::string_view what, std::string_view repl) {
     assert(!what.empty() && "would never terminate");
