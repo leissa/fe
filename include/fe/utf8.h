@@ -94,8 +94,9 @@ inline char32_t decode(std::istream& is) {
 inline char32_t decode(std::string_view str, size_t& i) noexcept {
     if (i >= str.size()) return EoF;
 
-    char32_t result = char8_t(str[i]);
-    auto n          = utf8::num_bytes(char8_t(result));
+    auto c8         = char8_t(str[i]);
+    auto n          = utf8::num_bytes(c8);
+    char32_t result = char32_t(c8);
     if (n == 0 || i + n > str.size()) return ++i, Invalid;
     if (n == 1) return ++i, result;
 
