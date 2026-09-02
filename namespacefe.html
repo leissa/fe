@@ -260,6 +260,7 @@ Typedefs</h2></td></tr>
 <tr class="memitem:a923ce058163e2041744a84793de679c0" id="r_a923ce058163e2041744a84793de679c0"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a923ce058163e2041744a84793de679c0">ostream_formatter</a> = <a class="el" href="structfe_1_1basic__ostream__formatter.html">basic_ostream_formatter</a>&lt;char&gt;</td></tr>
 <tr class="memitem:a3fa8abec15ebc094748836707250e96e" id="r_a3fa8abec15ebc094748836707250e96e"><td class="memTemplParams" colspan="2">template&lt;class T, size_t N = std::dynamic_extent&gt; </td></tr>
 <tr class="memitem:a3fa8abec15ebc094748836707250e96e template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a3fa8abec15ebc094748836707250e96e">View</a> = <a class="el" href="classfe_1_1Span.html">Span</a>&lt;const T, N&gt;</td></tr>
+<tr class="memdesc:a3fa8abec15ebc094748836707250e96e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read-only <a class="el" href="classfe_1_1Span.html" title="This is a thin wrapper for std::span&lt;T, N&gt; with the following additional features:">Span</a>; use <a class="el" href="classfe_1_1Span.html" title="This is a thin wrapper for std::span&lt;T, N&gt; with the following additional features:">Span</a> itself, if you want to write through its elements.  <br /></td></tr>
 <tr class="memitem:abd33b4214fdd0afae828ffb1c5fc9f9e" id="r_abd33b4214fdd0afae828ffb1c5fc9f9e"><td class="memTemplParams" colspan="2">template&lt;class V&gt; </td></tr>
 <tr class="memitem:abd33b4214fdd0afae828ffb1c5fc9f9e template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#abd33b4214fdd0afae828ffb1c5fc9f9e">PathMap</a> = std::unordered_map&lt;std::filesystem::path, V, <a class="el" href="structfe_1_1PathHash.html">PathHash</a>&gt;</td></tr>
 <tr class="memdesc:abd33b4214fdd0afae828ffb1c5fc9f9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps a <span class="tt">std::filesystem::path</span> to <code class="param">V</code>.  <br /></td></tr>
@@ -558,7 +559,9 @@ template&lt;class T, size_t N = std::dynamic_extent&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="span_8h_source.html#l00106">106</a> of file <a class="el" href="span_8h_source.html">span.h</a>.</p>
+<p>Read-only <a class="el" href="classfe_1_1Span.html" title="This is a thin wrapper for std::span&lt;T, N&gt; with the following additional features:">Span</a>; use <a class="el" href="classfe_1_1Span.html" title="This is a thin wrapper for std::span&lt;T, N&gt; with the following additional features:">Span</a> itself, if you want to write through its elements. </p>
+
+<p class="definition">Definition at line <a class="el" href="span_8h_source.html#l00107">107</a> of file <a class="el" href="span_8h_source.html">span.h</a>.</p>
 
 </div>
 </div>
@@ -917,11 +920,11 @@ requires (N != std::dynamic_extent)</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="span_8h_source.html#l00122">122</a> of file <a class="el" href="span_8h_source.html">span.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="span_8h_source.html#l00123">123</a> of file <a class="el" href="span_8h_source.html">span.h</a>.</p>
 
-<p class="reference">References <a class="el" href="span_8h_source.html#l00122">get()</a>.</p>
+<p class="reference">References <a class="el" href="span_8h_source.html#l00123">get()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="span_8h_source.html#l00122">get()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="span_8h_source.html#l00123">get()</a>.</p>
 
 </div>
 </div>
