@@ -313,8 +313,6 @@ requires (std::is_trivially_copyable_v&lt;S&gt; &amp;&amp; std::is_trivially_cop
 <tr class="memitem:ad7091e111867cd8228d37686aa31e372" id="r_ad7091e111867cd8228d37686aa31e372"><td class="memTemplParams" colspan="2">template&lt;std::ranges::random_access_range R, class T, class L = std::less&lt;&gt;&gt; <br />
 requires std::ranges::common_range&lt;R&gt;</td></tr>
 <tr class="memitem:ad7091e111867cd8228d37686aa31e372 template"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#ad7091e111867cd8228d37686aa31e372">binary_find</a> (R &amp;&amp;r, const T &amp;val, L lt={}) noexcept</td></tr>
-<tr class="memitem:a720f0cfe096eac4108e589e54fac9669" id="r_a720f0cfe096eac4108e589e54fac9669"><td class="memItemLeft">constexpr std::string_view&#160;</td><td class="memItemRight"><a class="el" href="#a720f0cfe096eac4108e589e54fac9669">subview</a> (std::string_view s, size_t i, size_t n=std::string_view::npos) noexcept</td></tr>
-<tr class="memdesc:a720f0cfe096eac4108e589e54fac9669"><td class="mdescLeft">&#160;</td><td class="mdescRight">Like <span class="tt">std::string::substr</span>, but works on <span class="tt">std::string_view</span> and clamps <code class="param">i</code> instead of throwing.  <br /></td></tr>
 <tr class="memitem:a1bc01939aa7352b79a0917dc535bde8a" id="r_a1bc01939aa7352b79a0917dc535bde8a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1bc01939aa7352b79a0917dc535bde8a">find_and_replace</a> (std::string &amp;str, std::string_view what, std::string_view repl)</td></tr>
 <tr class="memdesc:a1bc01939aa7352b79a0917dc535bde8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces all occurrences of <code class="param">what</code> with <code class="param">repl</code>.  <br /></td></tr>
 <tr id="func-members-2" class="groupHeader"><td colspan="2"><div class="groupHeader">Helpers for Containers</div></td></tr>
@@ -885,11 +883,11 @@ template&lt;class T, size_t N, class A, class Pred&gt; </div>
 
 <p>Replaces all occurrences of <code class="param">what</code> with <code class="param">repl</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="algo_8h_source.html#l00081">81</a> of file <a class="el" href="algo_8h_source.html">algo.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algo_8h_source.html#l00075">75</a> of file <a class="el" href="algo_8h_source.html">algo.h</a>.</p>
 
-<p class="reference">References <a class="el" href="algo_8h_source.html#l00081">find_and_replace()</a>.</p>
+<p class="reference">References <a class="el" href="algo_8h_source.html#l00075">find_and_replace()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="algo_8h_source.html#l00081">find_and_replace()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="algo_8h_source.html#l00075">find_and_replace()</a>.</p>
 
 </div>
 </div>
@@ -1571,48 +1569,6 @@ template&lt;class F&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a id="a720f0cfe096eac4108e589e54fac9669" name="a720f0cfe096eac4108e589e54fac9669"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a720f0cfe096eac4108e589e54fac9669">&#9670;&#160;</a></span>subview()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string_view fe::subview </td>
-          <td>(</td>
-          <td class="paramtype">std::string_view</td>          <td class="paramname"><span class="paramname"><em>s</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>i</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span><span class="paramdefsep"> = </span><span class="paramdefval">std::string_view::npos</span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Like <span class="tt">std::string::substr</span>, but works on <span class="tt">std::string_view</span> and clamps <code class="param">i</code> instead of throwing. </p>
-
-<p class="definition">Definition at line <a class="el" href="algo_8h_source.html#l00076">76</a> of file <a class="el" href="algo_8h_source.html">algo.h</a>.</p>
-
-<p class="reference">References <a class="el" href="algo_8h_source.html#l00076">subview()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="algo_8h_source.html#l00076">subview()</a>.</p>
 
 </div>
 </div>

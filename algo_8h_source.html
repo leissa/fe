@@ -217,33 +217,24 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('algo_8h_source
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>}</div>
 </div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment"></span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment">/// Like `std::string::substr`, but works on `std::string_view` and clamps @p i instead of throwing.</span></div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>[[nodiscard]] <span class="keyword">constexpr</span> std::string_view</div>
-<div class="foldopen" id="foldopen00076" data-start="{" data-end="}">
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="namespacefe.html#a720f0cfe096eac4108e589e54fac9669">   76</a></span><a class="code hl_function" href="namespacefe.html#a720f0cfe096eac4108e589e54fac9669">subview</a>(std::string_view s, <span class="keywordtype">size_t</span> i, <span class="keywordtype">size_t</span> n = std::string_view::npos) <span class="keyword">noexcept</span> {</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordflow">return</span> s.substr(std::min(i, s.size()), n);</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>}</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment">/// Replaces all occurrences of @p what with @p repl.</span></div>
+<div class="foldopen" id="foldopen00075" data-start="{" data-end="}">
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="namespacefe.html#a1bc01939aa7352b79a0917dc535bde8a">   75</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespacefe.html#a1bc01939aa7352b79a0917dc535bde8a">find_and_replace</a>(std::string&amp; str, std::string_view what, std::string_view repl) {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    assert(!what.empty() &amp;&amp; <span class="stringliteral">&quot;would never terminate&quot;</span>);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> pos = str.find(what); pos != std::string::npos; pos = str.find(what, pos + repl.size()))</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        str.replace(pos, what.size(), repl);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>}<span class="comment"></span></div>
 </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment"></span> </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment">/// Replaces all occurrences of @p what with @p repl.</span></div>
-<div class="foldopen" id="foldopen00081" data-start="{" data-end="}">
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="namespacefe.html#a1bc01939aa7352b79a0917dc535bde8a">   81</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespacefe.html#a1bc01939aa7352b79a0917dc535bde8a">find_and_replace</a>(std::string&amp; str, std::string_view what, std::string_view repl) {</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    assert(!what.empty() &amp;&amp; <span class="stringliteral">&quot;would never terminate&quot;</span>);</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> pos = str.find(what); pos != std::string::npos; pos = str.find(what, pos + repl.size()))</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        str.replace(pos, what.size(), repl);</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>}<span class="comment"></span></div>
-</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="comment">///@}</span></div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>} <span class="comment">// namespace fe</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="comment">///@}</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>} <span class="comment">// namespace fe</span></div>
 </div>
 <div class="ttc" id="anamespacefe_html"><div class="ttname"><a href="namespacefe.html">fe</a></div><div class="ttdef"><b>Definition</b> <a href="#l00017">algo.h:17</a></div></div>
-<div class="ttc" id="anamespacefe_html_a1bc01939aa7352b79a0917dc535bde8a"><div class="ttname"><a href="namespacefe.html#a1bc01939aa7352b79a0917dc535bde8a">fe::find_and_replace</a></div><div class="ttdeci">void find_and_replace(std::string &amp;str, std::string_view what, std::string_view repl)</div><div class="ttdoc">Replaces all occurrences of what with repl.</div><div class="ttdef"><b>Definition</b> <a href="#l00081">algo.h:81</a></div></div>
+<div class="ttc" id="anamespacefe_html_a1bc01939aa7352b79a0917dc535bde8a"><div class="ttname"><a href="namespacefe.html#a1bc01939aa7352b79a0917dc535bde8a">fe::find_and_replace</a></div><div class="ttdeci">void find_and_replace(std::string &amp;str, std::string_view what, std::string_view repl)</div><div class="ttdoc">Replaces all occurrences of what with repl.</div><div class="ttdef"><b>Definition</b> <a href="#l00075">algo.h:75</a></div></div>
 <div class="ttc" id="anamespacefe_html_a23c050efc089d138baaefe04d33562f6"><div class="ttname"><a href="namespacefe.html#a23c050efc089d138baaefe04d33562f6">fe::bitcast_resize</a></div><div class="ttdeci">constexpr D bitcast_resize(const S &amp;src) noexcept</div><div class="ttdoc">A bitcast from src of type S to D, supporting different sizes.</div><div class="ttdef"><b>Definition</b> <a href="#l00026">algo.h:26</a></div></div>
 <div class="ttc" id="anamespacefe_html_a390cae4065f52defea7585368a93d601"><div class="ttname"><a href="namespacefe.html#a390cae4065f52defea7585368a93d601">fe::binary_find</a></div><div class="ttdeci">constexpr I binary_find(I begin, I end, const T &amp;val, L lt={}) noexcept</div><div class="ttdef"><b>Definition</b> <a href="#l00059">algo.h:59</a></div></div>
 <div class="ttc" id="anamespacefe_html_a6c3387d3cb75e5620007f6f12d96429d"><div class="ttname"><a href="namespacefe.html#a6c3387d3cb75e5620007f6f12d96429d">fe::is_aligned</a></div><div class="ttdeci">constexpr bool is_aligned(std::uint64_t offset, std::uint64_t align) noexcept</div><div class="ttdef"><b>Definition</b> <a href="#l00050">algo.h:50</a></div></div>
-<div class="ttc" id="anamespacefe_html_a720f0cfe096eac4108e589e54fac9669"><div class="ttname"><a href="namespacefe.html#a720f0cfe096eac4108e589e54fac9669">fe::subview</a></div><div class="ttdeci">constexpr std::string_view subview(std::string_view s, size_t i, size_t n=std::string_view::npos) noexcept</div><div class="ttdoc">Like std::string::substr, but works on std::string_view and clamps i instead of throwing.</div><div class="ttdef"><b>Definition</b> <a href="#l00076">algo.h:76</a></div></div>
 <div class="ttc" id="anamespacefe_html_ab71076f2b315aa8a0170fe386daf4d4d"><div class="ttname"><a href="namespacefe.html#ab71076f2b315aa8a0170fe386daf4d4d">fe::pad</a></div><div class="ttdeci">constexpr std::uint64_t pad(std::uint64_t offset, std::uint64_t align) noexcept</div><div class="ttdoc">Rounds offset up to the next multiple of align.</div><div class="ttdef"><b>Definition</b> <a href="#l00042">algo.h:42</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
