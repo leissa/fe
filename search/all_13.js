@@ -31,11 +31,12 @@ var searchData=
   ['ring_3c_20t_2c_202_20_3e_28',['Ring&lt; T, 2 &gt;',['../classfe_1_1Ring_3_01T_00_012_01_4.html',1,'fe']]],
   ['ring_3c_20tok_2c_20k_20_3e_29',['Ring&lt; Tok, K &gt;',['../classfe_1_1Ring.html',1,'fe']]],
   ['rotate_30',['rotate',['../classfe_1_1lct_1_1Node.html#a5d21896a2ec253e1d8d64dd12597bc33',1,'fe::lct::Node']]],
-  ['row_31',['Row',['../structfe_1_1Loc.html#aa6449f6dc2688387c0e8ed8dc2112858aa70367aa7cb74e510f4f9413ccf059d3',1,'fe::Loc']]],
+  ['row_31',['Row',['../classfe_1_1Cli.html#a035a0ff529a7e4b4c2e5d0a776a438db',1,'fe::Cli::Row'],['../structfe_1_1Loc.html#aa6449f6dc2688387c0e8ed8dc2112858aa70367aa7cb74e510f4f9413ccf059d3',1,'fe::Loc::Row']]],
   ['row_32',['row',['../classfe_1_1Src.html#ae5999ab785d5dfbe58ac84eb3ffc4988',1,'fe::Src']]],
   ['rowcol_33',['RowCol',['../structfe_1_1Loc.html#aa6449f6dc2688387c0e8ed8dc2112858a7502f49b96355b382b103f0b2cd08312',1,'fe::Loc']]],
   ['rowcol_34',['rowcol',['../classfe_1_1Src.html#ae73eecf9ba170e53ae615cf58486af41',1,'fe::Src']]],
-  ['rsubspan_35',['rsubspan',['../classfe_1_1Span.html#aeee1f2c26925661a2a4c47238aa2b9ac',1,'fe::Span::rsubspan(size_t i, size_t n=D) const noexcept'],['../classfe_1_1Span.html#ab53827d6bae574d32de93ef41a36c2e9',1,'fe::Span::rsubspan() const noexcept']]],
-  ['run_36',['run',['../namespacefe_1_1sys.html#a102d53e2f25459ccf55e83003c8d5d43',1,'fe::sys']]],
-  ['runtimecast_37',['RuntimeCast',['../classfe_1_1RuntimeCast.html',1,'fe']]]
+  ['rows_35',['Rows',['../classfe_1_1Cli.html#a156ddac0230b9d51935aec97a6db295c',1,'fe::Cli']]],
+  ['rsubspan_36',['rsubspan',['../classfe_1_1Span.html#aeee1f2c26925661a2a4c47238aa2b9ac',1,'fe::Span::rsubspan(size_t i, size_t n=D) const noexcept'],['../classfe_1_1Span.html#ab53827d6bae574d32de93ef41a36c2e9',1,'fe::Span::rsubspan() const noexcept']]],
+  ['run_37',['run',['../namespacefe_1_1sys.html#a102d53e2f25459ccf55e83003c8d5d43',1,'fe::sys']]],
+  ['runtimecast_38',['RuntimeCast',['../classfe_1_1RuntimeCast.html',1,'fe']]]
 ];
