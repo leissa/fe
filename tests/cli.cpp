@@ -208,7 +208,7 @@ Options:
 
     SUBCASE("a section without rows is a bare header") {
         auto cli2 = fe::Cli("t").opt(flag, "-f", "", "A flag.");
-        cli2.section("Plugin Arguments", "", {});
+        cli2.section("Plugin Arguments");
         cli2.section("-X ll:<arg>", "Argument",
                      {
                          {"o=<file>", "Where to write."}

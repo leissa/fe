@@ -48,6 +48,9 @@ namespace fe {
 /// Cli::markdown renders the same information as Markdown tables; Cli::grp splits both into sections.
 class Cli {
 public:
+    using Row  = std::pair<std::string, std::string>;
+    using Rows = std::vector<Row>;
+
     Cli() = default;
     Cli(std::string prog, std::string descr = {})
         : prog_(std::move(prog))
@@ -102,7 +105,7 @@ public:
     /// A titled table of `term`/description rows that are not options - `ENVIRONMENT`, plugin arguments, ...
     /// Both backends render it below the options; @p head names the first column in Cli::markdown.
     /// Pass no @p rows to get a bare header that groups the sections below it - one level up in Cli::markdown.
-    Cli& section(std::string title, std::string head, std::vector<std::pair<std::string, std::string>> rows) {
+    Cli& section(std::string title, std::string head = {}, Rows rows = {}) {
         return sections_.emplace_back(std::move(title), std::move(head), std::move(rows)), *this;
     }
 
@@ -187,7 +190,7 @@ private:
 
     struct Section {
         std::string title, head;
-        std::vector<std::pair<std::string, std::string>> rows;
+        Rows rows;
     };
 
     std::string usage() const;
