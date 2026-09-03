@@ -441,8 +441,12 @@ TEST_CASE("enum") {
 
 TEST_CASE("term") {
     struct ModeGuard {
-        ~ModeGuard() { fe::term::set_mode(old_); }
+        ~ModeGuard() {
+            fe::term::set_mode(old_);
+            fe::term::set_auto_detached(old_detached_);
+        }
         fe::term::Mode old_ = fe::term::mode();
+        bool old_detached_  = fe::term::auto_detached();
     } guard;
 
     SUBCASE("auto mode suppresses colors for non-terminal streams") {
@@ -476,12 +480,20 @@ TEST_CASE("term") {
         CHECK(std::format("{}x{}", fe::term::FG::Red, fe::term::FG::Reset) == "x");
     }
 
-    SUBCASE("resolve_mode decides auto mode based on the given stream") {
+    SUBCASE("resolve_mode decides auto mode for detached buffers") {
         std::ostringstream oss;
         fe::term::set_mode(fe::term::Mode::Auto);
         fe::term::resolve_mode(oss); // not a terminal
-        CHECK(fe::term::mode() == fe::term::Mode::Never);
+        CHECK(fe::term::mode() == fe::term::Mode::Auto);
+        CHECK(!fe::term::auto_detached());
         CHECK(std::format("{}x{}", fe::term::FG::Red, fe::term::FG::Reset) == "x");
+    }
+
+    SUBCASE("auto mode keeps deciding per stream after resolve_mode") {
+        fe::term::set_mode(fe::term::Mode::Auto);
+        fe::term::set_auto_detached(true); // as if resolve_mode had found a terminal
+        CHECK(std::format("{}x{}", fe::term::FG::Red, fe::term::FG::Reset) == "\033[31mx\033[39m");
+        CHECK(fe::term::use_color(std::cout) == fe::term::detail::is_terminal(fe::term::detail::Stream::Stdout));
     }
 
     SUBCASE("resolve_mode leaves explicit modes untouched") {

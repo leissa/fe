@@ -100,6 +100,11 @@ inline std::atomic<Mode>& current_mode() noexcept {
     return mode;
 }
 
+inline std::atomic<bool>& current_auto_detached() noexcept {
+    static std::atomic<bool> detached(false);
+    return detached;
+}
+
 inline std::streambuf* stdout_rdbuf() noexcept {
     static std::streambuf* buf = std::cout.rdbuf();
     return buf;
@@ -183,17 +188,25 @@ constexpr std::string_view sgr(FG color) noexcept {
 /// Returns the current terminal color mode.
 inline Mode mode() noexcept { return detail::current_mode().load(std::memory_order_relaxed); }
 
+/// Whether Mode::Auto emits colors into a detached buffer - anything a `std::formatter` writes into.
+/// @ref resolve_mode is the usual way to decide this.
+inline bool auto_detached() noexcept { return detail::current_auto_detached().load(std::memory_order_relaxed); }
+
+/// Overrides @ref auto_detached.
+inline void set_auto_detached(bool b) noexcept { detail::current_auto_detached().store(b, std::memory_order_relaxed); }
+
 /// Whether color escape sequences are emitted for @p os right now.
-/// In Mode::Auto this is decided by whether @p os refers to a terminal, so a detached buffer
-/// (anything a `std::formatter` writes into) yields `false`; see @ref resolve_mode.
+/// In Mode::Auto this is decided by whether @p os refers to a terminal, while a detached buffer
+/// (anything a `std::formatter` writes into) follows @ref resolve_mode.
 /// Use this to keep a plain-text fallback in sync with what @ref operator<<(std::ostream&, FG) will emit,
 /// e.g. to spell out a marker only when it cannot be conveyed by color.
 inline bool use_color(std::ostream& os) noexcept {
+    auto s = detail::stream(os);
     // clang-format off
     switch (mode()) {
         case Mode::Always: return true;
         case Mode::Never:  return false;
-        case Mode::Auto:   return detail::is_terminal(detail::stream(os));
+        case Mode::Auto:   return s == detail::Stream::Unknown ? auto_detached() : detail::is_terminal(s);
         default: fe::unreachable();
     }
     // clang-format on
@@ -225,16 +238,17 @@ inline void set_mode(Mode m) noexcept { detail::current_mode().store(m, std::mem
 /// @warning The mode is global, so this affects every stream - and every thread - while it is alive.
 using ScopedMode = Restore<Mode, &mode, &set_mode>;
 
-/// Resolves Mode::Auto to Mode::Always or Mode::Never, depending on whether @p os refers to a terminal.
+/// Decides Mode::Auto for detached buffers, depending on whether @p os refers to a terminal.
 /// A `std::formatter` cannot see its destination stream, so FG values embedded in a
-/// `std::format`/`std::print` format string never detect a terminal in Mode::Auto.
-/// Call this once at startup to make formatted output colored as well; explicit modes are left untouched:
+/// `std::format`/`std::print` format string never detect a terminal on their own.
+/// Call this once at startup to make formatted output colored as well:
 /// ```
 /// fe::term::resolve_mode(); // decide based on stderr
 /// std::print(std::cerr, "{}error:{} ...", fe::term::FG::Red, fe::term::FG::Reset);
 /// ```
+/// A real stream still decides on its own, and explicit modes are left untouched.
 inline void resolve_mode(std::ostream& os = std::cerr) noexcept {
-    if (mode() == Mode::Auto) set_mode(detail::is_terminal(detail::stream(os)) ? Mode::Always : Mode::Never);
+    set_auto_detached(detail::is_terminal(detail::stream(os)));
 }
 
 /// Streams the ANSI escape sequence for @p color when colors are enabled for @p os.
