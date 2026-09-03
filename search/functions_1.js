@@ -21,5 +21,6 @@ var searchData=
   ['as_18',['as',['../classfe_1_1RuntimeCast.html#a1f2d655724345f4b4e0bc4540ea78554',1,'fe::RuntimeCast::as()'],['../classfe_1_1RuntimeCast.html#af077f6cb9aef8502e4c76674a3a2666d',1,'fe::RuntimeCast::as() const']]],
   ['assert_5femplace_19',['assert_emplace',['../namespacefe.html#a4df91557ebad4a98ce8c285e992947e1',1,'fe']]],
   ['assert_5flookup_20',['assert_lookup',['../namespacefe.html#a7f55906d386570e1170752a24b9d28e3',1,'fe']]],
-  ['aux_5fparent_21',['aux_parent',['../classfe_1_1lct_1_1Node.html#a09aa5b87ed14fc527222cfc29b83d472',1,'fe::lct::Node']]]
+  ['auto_5fdetached_21',['auto_detached',['../namespacefe_1_1term.html#a8dcfc2b7e35b66547dbc3cfbfe587360',1,'fe::term']]],
+  ['aux_5fparent_22',['aux_parent',['../classfe_1_1lct_1_1Node.html#a09aa5b87ed14fc527222cfc29b83d472',1,'fe::lct::Node']]]
 ];

@@ -36,5 +36,6 @@ var searchData=
   ['assert_5funused_33',['assert_unused',['../assert_8h.html#a1bf507325593e1ed7b3acc75596bd525',1,'assert.h']]],
   ['assertf_34',['assertf',['../format_8h.html#a7bc6143638d489bb640260462bf07777',1,'format.h']]],
   ['auto_35',['Auto',['../namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb',1,'fe::term']]],
-  ['aux_5fparent_36',['aux_parent',['../classfe_1_1lct_1_1Node.html#a09aa5b87ed14fc527222cfc29b83d472',1,'fe::lct::Node']]]
+  ['auto_5fdetached_36',['auto_detached',['../namespacefe_1_1term.html#a8dcfc2b7e35b66547dbc3cfbfe587360',1,'fe::term']]],
+  ['aux_5fparent_37',['aux_parent',['../classfe_1_1lct_1_1Node.html#a09aa5b87ed14fc527222cfc29b83d472',1,'fe::lct::Node']]]
 ];
