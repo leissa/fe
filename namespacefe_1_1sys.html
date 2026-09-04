@@ -180,10 +180,12 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:aeb47d052f0b69ba9e06edf12f71946ad" id="r_aeb47d052f0b69ba9e06edf12f71946ad"><td class="memItemLeft">static constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#aeb47d052f0b69ba9e06edf12f71946ad">Which</a></td></tr>
+<tr class="memitem:aeb47d052f0b69ba9e06edf12f71946ad" id="r_aeb47d052f0b69ba9e06edf12f71946ad"><td class="memItemLeft">static constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#aeb47d052f0b69ba9e06edf12f71946ad">Which</a> = &quot;which&quot;</td></tr>
 <tr class="memdesc:aeb47d052f0b69ba9e06edf12f71946ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the command that locates an executable on this platform.  <br /></td></tr>
-<tr class="memitem:a57cab2b4ca17cf6a06d7ac242bdd0ea4" id="r_a57cab2b4ca17cf6a06d7ac242bdd0ea4"><td class="memItemLeft">static constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#a57cab2b4ca17cf6a06d7ac242bdd0ea4">Path_Sep</a></td></tr>
+<tr class="memitem:a57cab2b4ca17cf6a06d7ac242bdd0ea4" id="r_a57cab2b4ca17cf6a06d7ac242bdd0ea4"><td class="memItemLeft">static constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#a57cab2b4ca17cf6a06d7ac242bdd0ea4">Path_Sep</a> = ':'</td></tr>
 <tr class="memdesc:a57cab2b4ca17cf6a06d7ac242bdd0ea4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Separates the entries of a <span class="tt">PATH</span>-like environment variable on this platform; Windows needs <span class="tt">;</span>, Unix <span class="tt">:</span>:  <br /></td></tr>
+<tr class="memitem:afe2f0743975b75eb6fddce2cbd7290e1" id="r_afe2f0743975b75eb6fddce2cbd7290e1"><td class="memItemLeft">static constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#afe2f0743975b75eb6fddce2cbd7290e1">Path_Sep_word</a> = &quot;colon&quot;</td></tr>
+<tr class="memitem:a14535943f5d31e9b72e98e8896a3a553" id="r_a14535943f5d31e9b72e98e8896a3a553"><td class="memItemLeft">static constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#a14535943f5d31e9b72e98e8896a3a553">Path_Sep_Word</a> = &quot;Colon&quot;</td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="a2b5fd04fba1c95bb502ef87ab95e598b" name="a2b5fd04fba1c95bb502ef87ab95e598b"></a>
@@ -387,7 +389,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto fe::sys::Path_Sep</td>
+          <td class="memname">auto fe::sys::Path_Sep = ':'</td>
         </tr>
       </table>
   </td>
@@ -396,15 +398,58 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">                           =</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"><span class="charliteral">&#39;:&#39;</span></div>
-</div><!-- fragment -->
+
 <p>Separates the entries of a <span class="tt">PATH</span>-like environment variable on this platform; Windows needs <span class="tt">;</span>, Unix <span class="tt">:</span>: </p>
 
 <p class="definition">Definition at line <a class="el" href="sys_8h_source.html#l00020">20</a> of file <a class="el" href="sys_8h_source.html">sys.h</a>.</p>
+
+</div>
+</div>
+<a id="a14535943f5d31e9b72e98e8896a3a553" name="a14535943f5d31e9b72e98e8896a3a553"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14535943f5d31e9b72e98e8896a3a553">&#9670;&#160;</a></span>Path_Sep_Word</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto fe::sys::Path_Sep_Word = &quot;Colon&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sys_8h_source.html#l00022">22</a> of file <a class="el" href="sys_8h_source.html">sys.h</a>.</p>
+
+</div>
+</div>
+<a id="afe2f0743975b75eb6fddce2cbd7290e1" name="afe2f0743975b75eb6fddce2cbd7290e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe2f0743975b75eb6fddce2cbd7290e1">&#9670;&#160;</a></span>Path_Sep_word</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto fe::sys::Path_Sep_word = &quot;colon&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sys_8h_source.html#l00021">21</a> of file <a class="el" href="sys_8h_source.html">sys.h</a>.</p>
 
 </div>
 </div>
@@ -418,7 +463,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto fe::sys::Which</td>
+          <td class="memname">auto fe::sys::Which = &quot;which&quot;</td>
         </tr>
       </table>
   </td>
@@ -427,15 +472,10 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">                        =</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"><span class="stringliteral">&quot;which&quot;</span></div>
-</div><!-- fragment -->
+
 <p>Name of the command that locates an executable on this platform. </p>
 
-<p class="definition">Definition at line <a class="el" href="sys_8h_source.html#l00012">12</a> of file <a class="el" href="sys_8h_source.html">sys.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sys_8h_source.html#l00018">18</a> of file <a class="el" href="sys_8h_source.html">sys.h</a>.</p>
 
 </div>
 </div>
