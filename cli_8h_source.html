@@ -201,12 +201,12 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('cli_8h_source.
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
 <div class="foldopen" id="foldopen00064" data-start="{" data-end="}">
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classfe_1_1Cli.html#a753e88d69bcd1a723ba2d56407a7f832">   64</a></span>    <a class="code hl_function" href="classfe_1_1Cli.html#a9eeeb5d1f51087267d55c1e4ddfec310">Cli</a>&amp; <a class="code hl_function" href="classfe_1_1Cli.html#a753e88d69bcd1a723ba2d56407a7f832">opt</a>(T&amp; target, std::string hint = {}, std::string sname = {}, std::string lname = {}, std::string descr = {}) {</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keyword">static_assert</span>(is_flag&lt;T&gt; || std::is_same_v&lt;T, std::string&gt; || Vec&lt;T&gt;::is</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                          || is_num&lt;T&gt; || std::is_invocable_v&lt;T&amp;, std::string&gt;,</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keyword">static_assert</span>(Is_Flag&lt;T&gt; || std::is_same_v&lt;T, std::string&gt; || Vec&lt;T&gt;::is</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                          || Is_Num&lt;T&gt; || std::is_invocable_v&lt;T&amp;, std::string&gt;,</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                      <span class="stringliteral">&quot;cannot bind this type to an option&quot;</span>);</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keyword">auto</span>&amp; o = opts_.emplace_back(std::move(sname), std::move(lname), std::move(hint), std::move(descr), grp_);</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        assert(is_flag&lt;T&gt; != o.takes_value() &amp;&amp; <span class="stringliteral">&quot;a flag takes no &lt;hint&gt;, anything else needs one&quot;</span>);</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        assert(!(is_flag&lt;T&gt; &amp;&amp; o.is_arg()) &amp;&amp; <span class="stringliteral">&quot;a flag needs a name&quot;</span>);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        assert(Is_Flag&lt;T&gt; != o.takes_value() &amp;&amp; <span class="stringliteral">&quot;a flag takes no &lt;hint&gt;, anything else needs one&quot;</span>);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        assert(!(Is_Flag&lt;T&gt; &amp;&amp; o.is_arg()) &amp;&amp; <span class="stringliteral">&quot;a flag needs a name&quot;</span>);</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        assert((o.sname.empty() || o.sname.starts_with(<span class="charliteral">&#39;-&#39;</span>)) &amp;&amp; <span class="stringliteral">&quot;a short name starts with `-`&quot;</span>);</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        assert((o.lname.empty() || o.lname.starts_with(<span class="stringliteral">&quot;--&quot;</span>)) &amp;&amp; <span class="stringliteral">&quot;a long name starts with `--`&quot;</span>);</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        o.multi = Vec&lt;T&gt;::is;</div>
@@ -276,11 +276,11 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('cli_8h_source.
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="comment">// clang-format on</span></div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">bool</span> is_num = std::is_integral_v&lt;T&gt; &amp;&amp; !std::is_same_v&lt;T, bool&gt;;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">bool</span> Is_Num = std::is_integral_v&lt;T&gt; &amp;&amp; !std::is_same_v&lt;T, bool&gt;;</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="comment"></span> </div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="comment">    /// A `bool` - or a callable taking one - is a flag; anything else is assigned the value.</span></div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">bool</span> is_flag</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">bool</span> Is_Flag</div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        = std::is_same_v&lt;T, bool&gt; || (std::is_invocable_v&lt;T&amp;, bool&gt; &amp;&amp; !std::is_invocable_v&lt;T&amp;, std::string&gt;);</div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="comment"></span> </div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="comment">    /// Applies @p s to @p t; returns a message if @p s does not scan as a `T`.</span></div>
@@ -294,7 +294,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('cli_8h_source.
 <div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>            <span class="keyword">typename</span> Vec&lt;T&gt;::Elem elem{};</div>
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>            <span class="keywordflow">if</span> (<span class="keyword">auto</span> err = assign(elem, s); !err.empty()) <span class="keywordflow">return</span> err;</div>
 <div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>            t.emplace_back(std::move(elem));</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (is_num&lt;T&gt;) {</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (Is_Num&lt;T&gt;) {</div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>            <span class="keyword">auto</span> begin = s.data(), end = begin + s.size();</div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>            <span class="keywordflow">if</span> (<span class="keyword">auto</span> [ptr, ec] = std::from_chars(begin, end, t); ec != std::errc{} || ptr != end)</div>
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>                <span class="keywordflow">return</span> std::format(<span class="stringliteral">&quot;&#39;{}&#39; is not a number&quot;</span>, s);</div>
@@ -313,7 +313,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('cli_8h_source.
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keyword">static</span> std::string dflt(<span class="keyword">const</span> T&amp; t) {</div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (std::is_same_v&lt;T, std::string&gt;)</div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>            <span class="keywordflow">return</span> t;</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (is_num&lt;T&gt;)</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (Is_Num&lt;T&gt;)</div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>            <span class="keywordflow">return</span> std::format(<span class="stringliteral">&quot;{}&quot;</span>, t);</div>
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>        <span class="keywordflow">else</span></div>
 <div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>            <span class="keywordflow">return</span> {};</div>

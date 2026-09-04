@@ -9,5 +9,6 @@ var sys_8h =
     [ "fe::sys::require_run", "namespacefe_1_1sys.html#a78a03f3257e26716d847e7c0821cb457", null ],
     [ "fe::sys::run", "namespacefe_1_1sys.html#a102d53e2f25459ccf55e83003c8d5d43", null ],
     [ "fe::sys::system", "namespacefe_1_1sys.html#a32dbb92355fcb6726986a2f850cfdbb9", null ],
-    [ "fe::sys::which", "namespacefe_1_1sys.html#ad0bec5855efc412aae9b3eb287b4583a", null ]
+    [ "fe::sys::Path_Sep", "namespacefe_1_1sys.html#a57cab2b4ca17cf6a06d7ac242bdd0ea4", null ],
+    [ "fe::sys::Which", "namespacefe_1_1sys.html#aeb47d052f0b69ba9e06edf12f71946ad", null ]
 ];

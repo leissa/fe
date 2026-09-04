@@ -4,7 +4,7 @@ var namespacefe =
       [ "close", "namespacefe_1_1dl.html#a06893ca1a7701c45fb627831247dbc4c", null ],
       [ "get", "namespacefe_1_1dl.html#a0ed7d0d7ed093b7ed9aabdcb29e06f40", null ],
       [ "open", "namespacefe_1_1dl.html#aecc9eedf6d19099de2e520cda44af8e7", null ],
-      [ "extension", "namespacefe_1_1dl.html#a90a43bf1410ff386651d4d4e40ead244", null ]
+      [ "Ext", "namespacefe_1_1dl.html#aaddc7a494d87d60abccc3ce501744b66", null ]
     ] ],
     [ "lct", "namespacefe_1_1lct.html", "namespacefe_1_1lct" ],
     [ "sys", "namespacefe_1_1sys.html", "namespacefe_1_1sys" ],

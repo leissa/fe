@@ -5,7 +5,7 @@ var searchData=
   ['warn_2',['Warn',['../classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1fa56525ae64d370c0b448ac0d60710ef17',1,'fe::Diag::Warn'],['../classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06a56525ae64d370c0b448ac0d60710ef17',1,'fe::Log::Warn']]],
   ['werror_3',['werror',['../classfe_1_1Diag.html#a5747acf837fe2fe734f9a5ed3823f196',1,'fe::Diag']]],
   ['what_4',['what',['../classfe_1_1Error_1_1Bail.html#adcecc911f3639fc4f533253c4547b730',1,'fe::Error::Bail']]],
-  ['which_5',['which',['../namespacefe_1_1sys.html#ad0bec5855efc412aae9b3eb287b4583a',1,'fe::sys']]],
+  ['which_5',['Which',['../namespacefe_1_1sys.html#aeb47d052f0b69ba9e06edf12f71946ad',1,'fe::sys']]],
   ['why_20fe_6',['💡 Why FE?',['../index.html#autotoc_md1',1,'']]],
   ['width_7',['width',['../namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3',1,'fe::term']]],
   ['workflow_8',['🧭 Typical Workflow',['../index.html#autotoc_md17',1,'']]],
