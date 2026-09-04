@@ -16,7 +16,7 @@ static constexpr auto Path_Sep_Word = "Semicolon";
 #else
 /// Name of the command that locates an executable on this platform.
 static constexpr auto Which = "which";
-/// Separates the entries of a `PATH`-like environment variable on this platform; Windows needs `;`, Unix `:`:
+/// Separates the entries of a `PATH`-like environment variable on this platform; Windows needs `;`, Unix `:`.
 static constexpr auto Path_Sep      = ':';
 static constexpr auto Path_Sep_word = "colon";
 static constexpr auto Path_Sep_Word = "Colon";
