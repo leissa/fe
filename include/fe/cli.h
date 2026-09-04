@@ -62,12 +62,12 @@ public:
     /// An option bound to @p target and named @p sname and/or @p lname - `"-o"` and `"--output"`.
     template<class T>
     Cli& opt(T& target, std::string hint = {}, std::string sname = {}, std::string lname = {}, std::string descr = {}) {
-        static_assert(is_flag<T> || std::is_same_v<T, std::string> || Vec<T>::is
-                          || is_num<T> || std::is_invocable_v<T&, std::string>,
+        static_assert(Is_Flag<T> || std::is_same_v<T, std::string> || Vec<T>::is
+                          || Is_Num<T> || std::is_invocable_v<T&, std::string>,
                       "cannot bind this type to an option");
         auto& o = opts_.emplace_back(std::move(sname), std::move(lname), std::move(hint), std::move(descr), grp_);
-        assert(is_flag<T> != o.takes_value() && "a flag takes no <hint>, anything else needs one");
-        assert(!(is_flag<T> && o.is_arg()) && "a flag needs a name");
+        assert(Is_Flag<T> != o.takes_value() && "a flag takes no <hint>, anything else needs one");
+        assert(!(Is_Flag<T> && o.is_arg()) && "a flag needs a name");
         assert((o.sname.empty() || o.sname.starts_with('-')) && "a short name starts with `-`");
         assert((o.lname.empty() || o.lname.starts_with("--")) && "a long name starts with `--`");
         o.multi = Vec<T>::is;
@@ -126,11 +126,11 @@ private:
     // clang-format on
 
     template<class T>
-    static constexpr bool is_num = std::is_integral_v<T> && !std::is_same_v<T, bool>;
+    static constexpr bool Is_Num = std::is_integral_v<T> && !std::is_same_v<T, bool>;
 
     /// A `bool` - or a callable taking one - is a flag; anything else is assigned the value.
     template<class T>
-    static constexpr bool is_flag
+    static constexpr bool Is_Flag
         = std::is_same_v<T, bool> || (std::is_invocable_v<T&, bool> && !std::is_invocable_v<T&, std::string>);
 
     /// Applies @p s to @p t; returns a message if @p s does not scan as a `T`.
@@ -144,7 +144,7 @@ private:
             typename Vec<T>::Elem elem{};
             if (auto err = assign(elem, s); !err.empty()) return err;
             t.emplace_back(std::move(elem));
-        } else if constexpr (is_num<T>) {
+        } else if constexpr (Is_Num<T>) {
             auto begin = s.data(), end = begin + s.size();
             if (auto [ptr, ec] = std::from_chars(begin, end, t); ec != std::errc{} || ptr != end)
                 return std::format("'{}' is not a number", s);
@@ -163,7 +163,7 @@ private:
     static std::string dflt(const T& t) {
         if constexpr (std::is_same_v<T, std::string>)
             return t;
-        else if constexpr (is_num<T>)
+        else if constexpr (Is_Num<T>)
             return std::format("{}", t);
         else
             return {};

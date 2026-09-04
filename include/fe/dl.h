@@ -3,7 +3,7 @@
 namespace fe::dl {
 
 /// File name extension of a dynamic library on this platform.
-static constexpr auto extension =
+static constexpr auto Ext =
 #if defined(_WIN32)
     "dll";
 #else

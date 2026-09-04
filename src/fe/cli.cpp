@@ -213,6 +213,11 @@ void Cli::markdown(std::ostream& os) const {
         for (size_t i = 0, e = text.size(); i != e; ++i) {
             auto c = text[i];
             if (c == '`') code = !code;
+            // Doxygen eats a `%` - it suppresses auto-linking - inside a code span, too.
+            if (c == '%') {
+                res += "%%";
+                continue;
+            }
             if (code && c != '|') {
                 res += c;
                 continue;
@@ -233,10 +238,14 @@ void Cli::markdown(std::ostream& os) const {
         return res;
     };
 
-    // A code span still sits in a table cell, so only `|` needs to go.
+    // A code span still sits in a table cell, so `|` has to go - and Doxygen eats a `%` even in here.
     auto code = [](std::string_view text) {
         std::string res;
         for (auto c : text) {
+            if (c == '%') {
+                res += "%%";
+                continue;
+            }
             if (c == '|') res += '\\';
             res += c;
         }
