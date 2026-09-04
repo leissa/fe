@@ -8,20 +8,18 @@
 
 namespace fe::sys {
 
+#ifdef _WIN32
+static constexpr auto Which         = "where";
+static constexpr auto Path_Sep      = ';';
+static constexpr auto Path_Sep_word = "semicolon";
+static constexpr auto Path_Sep_Word = "Semicolon";
+#else
 /// Name of the command that locates an executable on this platform.
-static constexpr auto Which =
-#ifdef _WIN32
-    "where";
-#else
-    "which";
-#endif
-
+static constexpr auto Which = "which";
 /// Separates the entries of a `PATH`-like environment variable on this platform; Windows needs `;`, Unix `:`:
-static constexpr auto Path_Sep =
-#ifdef _WIN32
-    ';';
-#else
-    ':';
+static constexpr auto Path_Sep      = ':';
+static constexpr auto Path_Sep_word = "colon";
+static constexpr auto Path_Sep_Word = "Colon";
 #endif
 
 /// Path of the executable or dynamic library that contains @p addr.
