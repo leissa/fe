@@ -18,13 +18,13 @@ class Src;
 struct Pos {
     static constexpr uint32_t Invalid = uint32_t(-1);
 
-    constexpr Pos() = default; ///< Creates an invalid Pos%ition.
-    constexpr explicit Pos(uint32_t off)
+    constexpr Pos() noexcept = default; ///< Creates an invalid Pos%ition.
+    constexpr explicit Pos(uint32_t off) noexcept
         : off(off) {}
 
-    constexpr explicit operator bool() const { return off != Invalid; } ///< Is a valid Pos%ition?
-    constexpr auto operator<=>(const Pos&) const = default;
-    constexpr Pos operator+(uint32_t n) const {
+    constexpr explicit operator bool() const noexcept { return off != Invalid; } ///< Is a valid Pos%ition?
+    constexpr auto operator<=>(const Pos&) const noexcept = default;
+    constexpr Pos operator+(uint32_t n) const noexcept {
         assert(*this && (uint64_t)off + n < Invalid);
         return Pos(off + n);
     }
@@ -52,42 +52,44 @@ struct Loc {
         MSVC,   ///< `path(row,col)`
     };
 
-    constexpr Loc() = default; ///< Creates an invalid Loc%ation.
-    constexpr Loc(const Src* src, Pos begin, Pos end)
+    constexpr Loc() noexcept = default; ///< Creates an invalid Loc%ation.
+    constexpr Loc(const Src* src, Pos begin, Pos end) noexcept
         : src(src)
         , begin(begin)
         , end(end) {}
-    constexpr Loc(const Src* src, Pos pos)
+    constexpr Loc(const Src* src, Pos pos) noexcept
         : Loc(src, pos, pos) {} ///< The empty Loc%ation at @p pos.
-    constexpr Loc(Pos begin, Pos end)
+    constexpr Loc(Pos begin, Pos end) noexcept
         : Loc(nullptr, begin, end) {}
-    constexpr Loc(Pos pos)
+    constexpr Loc(Pos pos) noexcept
         : Loc(nullptr, pos, pos) {}
 
-    constexpr Loc anew_begin() const { return {src, begin, begin}; }
-    constexpr Loc anew_end() const { return {src, end, end}; }
-    constexpr uint32_t size() const {
+    constexpr Loc anew_begin() const noexcept { return {src, begin, begin}; }
+    constexpr Loc anew_end() const noexcept { return {src, end, end}; }
+    constexpr uint32_t size() const noexcept {
         assert((bool)begin == (bool)end && begin <= end);
         return end.off - begin.off;
     }
-    constexpr Loc operator+(Pos pos) const { return {src, begin, pos}; }
-    constexpr Loc operator+(Loc loc) const { return {src, begin, loc.end}; } ///< The hull of both Loc%ations.
+    constexpr Loc operator+(Pos pos) const noexcept { return {src, begin, pos}; }
+    constexpr Loc operator+(Loc loc) const noexcept { return {src, begin, loc.end}; } ///< The hull of both Loc%ations.
 
     /// The overlap of both Loc%ations - invalid if they are disjoint or sit in different files.
     /// Dual to operator+; since an invalid Loc is falsy, `if (a & b)` also reads as "do they overlap?".
     /// An empty Loc overlaps nothing, not even itself.
     /// @note Loc::src is only compared via pointer equality - which is all it takes, as fe::SrcMap
     /// interns paths and hands out exactly one Src per file.
-    constexpr Loc operator&(Loc loc) const {
+    constexpr Loc operator&(Loc loc) const noexcept {
         auto b = std::max(begin, loc.begin);
         auto e = std::min(end, loc.end);
         if (src != loc.src || b >= e) return {};
         return {src, b, e};
     }
 
-    constexpr explicit operator bool() const { return (bool)begin; } ///< Is a valid Loc%ation?
+    constexpr explicit operator bool() const noexcept { return (bool)begin; } ///< Is a valid Loc%ation?
     /// @note Loc::src is only checked via pointer equality.
-    constexpr bool operator==(Loc other) const { return begin == other.begin && end == other.end && src == other.src; }
+    constexpr bool operator==(Loc other) const noexcept {
+        return begin == other.begin && end == other.end && src == other.src;
+    }
     void dump() const;
 
     const Src* src = {};

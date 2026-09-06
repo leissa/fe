@@ -20,13 +20,13 @@ public:
         assert(list.size() == N);
         std::copy(list.begin(), list.end(), array_.begin());
     }
-    Ring() noexcept   = default;
+    Ring()            = default; // no noexcept: we don't know whether T's operations throw
     Ring(const Ring&) = default;
-    Ring(Ring&& other) noexcept
+    Ring(Ring&& other)
         : Ring() {
         swap(*this, other);
     }
-    Ring& operator=(Ring other) noexcept { return swap(*this, other), *this; }
+    Ring& operator=(Ring other) { return swap(*this, other), *this; }
     ///@}
 
     /// @name Access
@@ -57,7 +57,7 @@ public:
     }
     ///@}
 
-    friend void swap(Ring& r1, Ring& r2) noexcept {
+    friend void swap(Ring& r1, Ring& r2) {
         using std::swap;
         swap(r1.array_, r2.array_);
         swap(r1.first_, r2.first_);
@@ -76,13 +76,13 @@ public:
     ///@{
     Ring(std::initializer_list<T> list)
         : item_(*list.begin()) {}
-    Ring()            = default; // no noexcept: we don't know whether T's default constructor throws
+    Ring()            = default;
     Ring(const Ring&) = default;
     Ring(Ring&& other)
         : Ring() {
         swap(*this, other);
     }
-    Ring& operator=(Ring other) noexcept { return swap(*this, other), *this; }
+    Ring& operator=(Ring other) { return swap(*this, other), *this; }
     ///@}
 
     /// @name Access
@@ -109,7 +109,7 @@ public:
     }
     ///@}
 
-    friend void swap(Ring& r1, Ring& r2) noexcept {
+    friend void swap(Ring& r1, Ring& r2) {
         using std::swap;
         swap(r1.item_, r2.item_);
     }
@@ -128,13 +128,13 @@ public:
         assert(list.size() == 2);
         std::copy(list.begin(), list.end(), array_.begin());
     }
-    Ring() noexcept   = default;
+    Ring()            = default;
     Ring(const Ring&) = default;
-    Ring(Ring&& other) noexcept
+    Ring(Ring&& other)
         : Ring() {
         swap(*this, other);
     }
-    Ring& operator=(Ring other) noexcept { return swap(*this, other), *this; }
+    Ring& operator=(Ring other) { return swap(*this, other), *this; }
     ///@}
 
     /// @name Access
@@ -162,7 +162,7 @@ public:
     }
     ///@}
 
-    friend void swap(Ring& r1, Ring& r2) noexcept {
+    friend void swap(Ring& r1, Ring& r2) {
         using std::swap;
         swap(r1.array_, r2.array_);
     }

@@ -173,9 +173,9 @@ public:
     // Unfortunately, this doesn't work:
     // std::string_view operator->() const { return view(); }
 
-    constexpr std::string str() const noexcept { return std::string(view()); } ///< This involves a copy.
-    constexpr explicit operator std::string() const noexcept { return str(); } ///< `explicit` as this involves a copy.
-    constexpr explicit operator bool() const noexcept { return ptr_; }         ///< Is not empty?
+    constexpr std::string str() const { return std::string(view()); }  ///< This involves a copy.
+    constexpr explicit operator std::string() const { return str(); }  ///< `explicit` as this involves a copy.
+    constexpr explicit operator bool() const noexcept { return ptr_; } ///< Is not empty?
     ///@}
 
 #ifdef FE_ABSL
@@ -198,7 +198,7 @@ public:
     };
 
     struct Eq {
-        bool operator()(Sym a, Sym b) const noexcept { return a.ptr_ == b.ptr_; }
+        constexpr bool operator()(Sym a, Sym b) const noexcept { return a.ptr_ == b.ptr_; }
     };
     ///@}
 
@@ -300,7 +300,7 @@ public:
     }
     Sym sym(const std::string& s) { return sym((std::string_view)s); }
     /// @p s is a null-terminated C-string.
-    constexpr Sym sym(const char* s) { return s == nullptr ? Sym() : sym(std::string_view(s)); }
+    Sym sym(const char* s) { return s == nullptr ? Sym() : sym(std::string_view(s)); }
     // TODO we can try to fit s in current page and hence eliminate the explicit use of strlen
     ///@}
 

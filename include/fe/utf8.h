@@ -146,7 +146,7 @@ inline bool encode(std::ostream& os, char32_t c32) {
 }
 /// Wrapper for `char32_t` with an `operator<<` that writes UTF-8.
 struct Char32 {
-    Char32(char32_t c)
+    constexpr Char32(char32_t c) noexcept
         : c(c) {}
 
     friend std::ostream& operator<<(std::ostream& os, Char32 c) {
@@ -192,13 +192,13 @@ constexpr bool isbdigit(char32_t c) noexcept { return isrange(c, '0', '1'); } //
 /// @name any
 /// Build a predicate that checks whether a code point matches any of the given values.
 ///@{
-inline bool _any(char32_t c, char32_t d) { return c == d; }
+constexpr bool _any(char32_t c, char32_t d) noexcept { return c == d; }
 template<class... T>
-inline bool _any(char32_t c, char32_t d, T... args) {
+constexpr bool _any(char32_t c, char32_t d, T... args) noexcept {
     return c == d || _any(c, args...);
 }
 template<class... T>
-inline auto any(T... args) {
+constexpr auto any(T... args) noexcept {
     return [=](char32_t c) { return _any(c, args...); };
 }
 ///@}

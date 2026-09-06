@@ -68,14 +68,14 @@ class Tab {
 public:
     /// @name Construction
     ///@{
-    Tab(const Tab&) = default;
-    Tab(std::string_view tab = {"\t"}, int indent = 0)
+    constexpr Tab(const Tab&) = default;
+    constexpr Tab(std::string_view tab = {"\t"}, int indent = 0) noexcept
         : tab_(tab)
         , indent_(indent) {
         assert(indent >= 0);
     }
 
-    static Tab spaces() { return Tab(std::string_view("    ")); }
+    static constexpr Tab spaces() noexcept { return Tab(std::string_view("    ")); }
     ///@}
 
     /// @name Getters
@@ -88,8 +88,8 @@ public:
     /// @name Creates a new Tab
     ///@{
     ///
-    [[nodiscard]] Tab operator+(int indent) const noexcept { assert(indent >= 0);                      return {tab_, indent_ + indent}; }
-    [[nodiscard]] Tab operator-(int indent) const noexcept { assert(indent >= 0 && indent_ >= indent); return {tab_, indent_ - indent}; }
+    [[nodiscard]] constexpr Tab operator+(int indent) const noexcept { assert(indent >= 0);                      return {tab_, indent_ + indent}; }
+    [[nodiscard]] constexpr Tab operator-(int indent) const noexcept { assert(indent >= 0 && indent_ >= indent); return {tab_, indent_ - indent}; }
     ///@}
 
     /// @name Modifies this Tab

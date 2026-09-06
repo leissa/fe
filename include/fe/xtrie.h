@@ -425,10 +425,10 @@ public:
     ///@{
     XTrie& operator=(const XTrie&) = delete;
 
-    constexpr XTrie() noexcept
+    XTrie()
         : root_(make_node()) {}
-    constexpr XTrie(const XTrie&) noexcept = delete;
-    constexpr XTrie(XTrie&& other) noexcept
+    XTrie(const XTrie&) = delete;
+    XTrie(XTrie&& other)
         : XTrie() {
         swap(*this, other);
     }
@@ -705,7 +705,7 @@ private:
     }
 
     // Trie helpers
-    constexpr Node* root() const noexcept { return root_.get(); }
+    Node* root() const noexcept { return root_.get(); }
     Arena::Ptr<Node> make_node() { return node_arena_.mk<Node>(id_counter_++); }
     Arena::Ptr<Node> make_node(Node* parent, D* def) { return node_arena_.mk<Node>(parent, def, id_counter_++); }
 
@@ -716,14 +716,14 @@ private:
         return i->second.get();
     }
 
-    [[nodiscard]] constexpr Node* insert(Node* n, D* d) noexcept {
+    [[nodiscard]] Node* insert(Node* n, D* d) {
         if (K::tid(d) == 0) return mount(n, set_tid(d));
         if (n->def == d) return n;
         if (n->is_root() || K::tid(n->def) < K::tid(d)) return mount(n, d);
         return mount(insert(n->parent, d), n->def);
     }
 
-    [[nodiscard]] constexpr Node* merge(Node* n, Node* m) {
+    [[nodiscard]] Node* merge(Node* n, Node* m) {
         if (n == m || m->is_root()) return n;
         if (n->is_root()) return m;
         auto nn = K::tid(n->def) < K::tid(m->def) ? n : n->parent;

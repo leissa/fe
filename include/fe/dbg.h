@@ -37,22 +37,23 @@ public:
 
     /// @name Getters
     ///@{
-    Sym sym() const { return sym_; }
-    Loc loc() const { return loc_; }
-    bool is_anon() const { return !sym() || sym() == '_'; } ///< Assumes `_` as the anonymous name.
-    explicit operator bool() const { return sym().operator bool(); }
+    constexpr Sym sym() const noexcept { return sym_; }
+    constexpr Loc loc() const noexcept { return loc_; }
+    /// Assumes `_` as the anonymous name.
+    constexpr bool is_anon() const noexcept { return !sym() || sym() == '_'; }
+    constexpr explicit operator bool() const noexcept { return sym().operator bool(); }
     ///@}
 
     /// @name Setters
     ///@{
-    Dbg& set(Sym sym) { return sym_ = sym, *this; }
-    Dbg& set(Loc loc) { return loc_ = loc, *this; }
+    constexpr Dbg& set(Sym sym) noexcept { return sym_ = sym, *this; }
+    constexpr Dbg& set(Loc loc) noexcept { return loc_ = loc, *this; }
     ///@}
 
     /// @name Comparison and Hashing
     ///@{
     /// @note Like Loc::operator==, this only compares Loc::src by pointer identity.
-    bool operator==(const Dbg& other) const noexcept { return loc_ == other.loc_ && sym_ == other.sym_; }
+    constexpr bool operator==(const Dbg& other) const noexcept { return loc_ == other.loc_ && sym_ == other.sym_; }
 
     struct Hash {
         size_t operator()(Dbg dbg) const noexcept {
@@ -64,7 +65,7 @@ public:
     };
 
     struct Eq {
-        bool operator()(Dbg d1, Dbg d2) const noexcept { return d1 == d2; }
+        constexpr bool operator()(Dbg d1, Dbg d2) const noexcept { return d1 == d2; }
     };
 
 #ifdef FE_ABSL

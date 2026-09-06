@@ -57,7 +57,7 @@ public:
         constexpr Allocator(Arena& arena) noexcept
             : arena(arena) {}
 
-        [[nodiscard]] constexpr T* allocate(size_t num_elems) { return arena.allocate<T>(num_elems); }
+        [[nodiscard]] T* allocate(size_t num_elems) { return arena.allocate<T>(num_elems); }
 
         constexpr void deallocate(T*, size_t) noexcept {}
 
@@ -102,7 +102,7 @@ public:
 
     /// Create Allocator from Arena.
     template<class T>
-    constexpr Allocator<T> allocator() noexcept {
+    Allocator<T> allocator() noexcept {
         return Allocator<T>(*this);
     }
 
@@ -119,7 +119,7 @@ public:
     /// auto ptr = arena.mk<Foo>(a, b, c); // new Foo(a, b, c) placed into arena
     /// ```
     template<class T, class... Args>
-    constexpr Ptr<T> mk(Args&&... args) {
+    Ptr<T> mk(Args&&... args) {
         auto ptr = new (allocate<std::remove_const_t<T>>(1)) T(std::forward<Args>(args)...);
         return Ptr<T>(ptr, Deleter<T>());
     }
@@ -134,7 +134,7 @@ public:
     /// aligned but may still be under-aligned relative to its request. This is a non-issue for the default
     /// (max-aligned) page size and for arenas with uniform alignment; only tiny custom arenas mixing alignments
     /// can hit it.
-    [[nodiscard]] constexpr void* allocate(size_t num_bytes, size_t align) {
+    [[nodiscard]] void* allocate(size_t num_bytes, size_t align) {
         if (num_bytes == 0) return nullptr;
         assert(align != 0);
 
@@ -150,7 +150,7 @@ public:
     }
 
     template<class T>
-    [[nodiscard]] constexpr T* allocate(size_t num_elems) {
+    [[nodiscard]] T* allocate(size_t num_elems) {
         return static_cast<T*>(allocate(num_elems * sizeof(T), alignof(T)));
     }
     ///@}
@@ -167,7 +167,7 @@ public:
     ///@{
 
     /// Removes @p num_bytes again.
-    constexpr void deallocate(size_t num_bytes) noexcept {
+    void deallocate(size_t num_bytes) noexcept {
         assert(num_bytes <= index_);
         index_ -= num_bytes;
     }
@@ -196,7 +196,7 @@ public:
     static constexpr size_t align(size_t i, size_t a) noexcept { return (i + (a - 1)) & ~(a - 1); }
 
 private:
-    constexpr Arena& align(size_t a) noexcept { return index_ = align(index_, a), *this; }
+    Arena& align(size_t a) noexcept { return index_ = align(index_, a), *this; }
 
     struct Page {
         constexpr Page() noexcept = default;

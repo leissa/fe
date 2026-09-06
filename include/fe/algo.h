@@ -56,7 +56,7 @@ constexpr D bitcast_resize(const S& src) noexcept
 /// @name Algorithms
 ///@{
 template<std::random_access_iterator I, class T, class L = std::less<>>
-[[nodiscard]] constexpr I binary_find(I begin, I end, const T& val, L lt = {}) noexcept {
+[[nodiscard]] constexpr I binary_find(I begin, I end, const T& val, L lt = {}) {
     I i;
     if (std::distance(begin, end) < 16)
         for (i = begin; i != end && lt(*i, val); ++i) {}
@@ -66,8 +66,7 @@ template<std::random_access_iterator I, class T, class L = std::less<>>
 }
 
 template<std::ranges::random_access_range R, class T, class L = std::less<>>
-[[nodiscard]] constexpr auto binary_find(R&& r, const T& val, L lt = {}) noexcept requires std::ranges::common_range<R>
-{
+[[nodiscard]] constexpr auto binary_find(R&& r, const T& val, L lt = {}) requires std::ranges::common_range<R> {
     return binary_find(std::ranges::begin(r), std::ranges::end(r), val, lt);
 }
 

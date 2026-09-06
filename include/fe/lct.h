@@ -27,8 +27,8 @@ public:
     };
 
 private:
-    P* self() { return static_cast<P*>(this); }
-    const P* self() const { return static_cast<const P*>(this); }
+    constexpr P* self() noexcept { return static_cast<P*>(this); }
+    constexpr const P* self() const noexcept { return static_cast<const P*>(this); }
 
 public:
     constexpr Node() noexcept = default;
@@ -54,7 +54,7 @@ public:
         return prev->self();
     }
 
-    [[nodiscard]] bool contains(const K& k) noexcept { return find(k)->eq(k); }
+    [[nodiscard]] constexpr bool contains(const K& k) noexcept { return find(k)->eq(k); }
     ///@}
 
     ///@name parent
