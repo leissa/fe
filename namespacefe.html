@@ -309,11 +309,11 @@ requires (std::is_trivially_copyable_v&lt;S&gt; &amp;&amp; std::is_trivially_cop
 <tr class="memdesc:ab71076f2b315aa8a0170fe386daf4d4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rounds <code class="param">offset</code> up to the next multiple of <code class="param">align</code>.  <br /></td></tr>
 <tr class="memitem:a6c3387d3cb75e5620007f6f12d96429d" id="r_a6c3387d3cb75e5620007f6f12d96429d"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a6c3387d3cb75e5620007f6f12d96429d">is_aligned</a> (std::uint64_t offset, std::uint64_t align) noexcept</td></tr>
 <tr id="func-members-1" class="groupHeader"><td colspan="2"><div class="groupHeader">Algorithms</div></td></tr>
-<tr class="memitem:a390cae4065f52defea7585368a93d601" id="r_a390cae4065f52defea7585368a93d601"><td class="memTemplParams" colspan="2">template&lt;std::random_access_iterator I, class T, class L = std::less&lt;&gt;&gt; </td></tr>
-<tr class="memitem:a390cae4065f52defea7585368a93d601 template"><td class="memItemLeft">constexpr I&#160;</td><td class="memItemRight"><a class="el" href="#a390cae4065f52defea7585368a93d601">binary_find</a> (I begin, I end, const T &amp;val, L lt={}) noexcept</td></tr>
-<tr class="memitem:ad7091e111867cd8228d37686aa31e372" id="r_ad7091e111867cd8228d37686aa31e372"><td class="memTemplParams" colspan="2">template&lt;std::ranges::random_access_range R, class T, class L = std::less&lt;&gt;&gt; <br />
+<tr class="memitem:a60e2475605f461717686998f540dc419" id="r_a60e2475605f461717686998f540dc419"><td class="memTemplParams" colspan="2">template&lt;std::random_access_iterator I, class T, class L = std::less&lt;&gt;&gt; </td></tr>
+<tr class="memitem:a60e2475605f461717686998f540dc419 template"><td class="memItemLeft">constexpr I&#160;</td><td class="memItemRight"><a class="el" href="#a60e2475605f461717686998f540dc419">binary_find</a> (I begin, I end, const T &amp;val, L lt={})</td></tr>
+<tr class="memitem:ac6de5497649ad9909d7fd09784c82699" id="r_ac6de5497649ad9909d7fd09784c82699"><td class="memTemplParams" colspan="2">template&lt;std::ranges::random_access_range R, class T, class L = std::less&lt;&gt;&gt; <br />
 requires std::ranges::common_range&lt;R&gt;</td></tr>
-<tr class="memitem:ad7091e111867cd8228d37686aa31e372 template"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#ad7091e111867cd8228d37686aa31e372">binary_find</a> (R &amp;&amp;r, const T &amp;val, L lt={}) noexcept</td></tr>
+<tr class="memitem:ac6de5497649ad9909d7fd09784c82699 template"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#ac6de5497649ad9909d7fd09784c82699">binary_find</a> (R &amp;&amp;r, const T &amp;val, L lt={})</td></tr>
 <tr class="memitem:a1bc01939aa7352b79a0917dc535bde8a" id="r_a1bc01939aa7352b79a0917dc535bde8a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1bc01939aa7352b79a0917dc535bde8a">find_and_replace</a> (std::string &amp;str, std::string_view what, std::string_view repl)</td></tr>
 <tr class="memdesc:a1bc01939aa7352b79a0917dc535bde8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces all occurrences of <code class="param">what</code> with <code class="param">repl</code>.  <br /></td></tr>
 <tr id="func-members-2" class="groupHeader"><td colspan="2"><div class="groupHeader">Helpers for Containers</div></td></tr>
@@ -436,7 +436,7 @@ template&lt;class V&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="dbg_8h_source.html#l00093">93</a> of file <a class="el" href="dbg_8h_source.html">dbg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dbg_8h_source.html#l00094">94</a> of file <a class="el" href="dbg_8h_source.html">dbg.h</a>.</p>
 
 </div>
 </div>
@@ -452,7 +452,7 @@ template&lt;class V&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="dbg_8h_source.html#l00094">94</a> of file <a class="el" href="dbg_8h_source.html">dbg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dbg_8h_source.html#l00095">95</a> of file <a class="el" href="dbg_8h_source.html">dbg.h</a>.</p>
 
 </div>
 </div>
@@ -636,8 +636,8 @@ template&lt;class C, class K&gt; </div>
 
 </div>
 </div>
-<a id="a390cae4065f52defea7585368a93d601" name="a390cae4065f52defea7585368a93d601"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a390cae4065f52defea7585368a93d601">&#9670;&#160;</a></span>binary_find() <span class="overload">[1/2]</span></h2>
+<a id="a60e2475605f461717686998f540dc419" name="a60e2475605f461717686998f540dc419"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60e2475605f461717686998f540dc419">&#9670;&#160;</a></span>binary_find() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -670,7 +670,7 @@ template&lt;std::random_access_iterator I, class T, class L = std::less&lt;&gt;&
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -683,8 +683,8 @@ template&lt;std::random_access_iterator I, class T, class L = std::less&lt;&gt;&
 
 </div>
 </div>
-<a id="ad7091e111867cd8228d37686aa31e372" name="ad7091e111867cd8228d37686aa31e372"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad7091e111867cd8228d37686aa31e372">&#9670;&#160;</a></span>binary_find() <span class="overload">[2/2]</span></h2>
+<a id="ac6de5497649ad9909d7fd09784c82699" name="ac6de5497649ad9909d7fd09784c82699"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6de5497649ad9909d7fd09784c82699">&#9670;&#160;</a></span>binary_find() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -713,7 +713,7 @@ requires std::ranges::common_range&lt;R&gt;</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -815,11 +815,11 @@ template&lt;class T, size_t N, class A, class U&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00105">105</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00102">102</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
 
-<p class="reference">References <a class="el" href="vector_8h_source.html#l00105">erase()</a>.</p>
+<p class="reference">References <a class="el" href="vector_8h_source.html#l00102">erase()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vector_8h_source.html#l00105">erase()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vector_8h_source.html#l00102">erase()</a>.</p>
 
 </div>
 </div>
@@ -844,11 +844,11 @@ template&lt;class T, size_t N, class A, class Pred&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00113">113</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00110">110</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
 
-<p class="reference">References <a class="el" href="vector_8h_source.html#l00113">erase_if()</a>.</p>
+<p class="reference">References <a class="el" href="vector_8h_source.html#l00110">erase_if()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vector_8h_source.html#l00113">erase_if()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vector_8h_source.html#l00110">erase_if()</a>.</p>
 
 </div>
 </div>
@@ -886,11 +886,11 @@ template&lt;class T, size_t N, class A, class Pred&gt; </div>
 
 <p>Replaces all occurrences of <code class="param">what</code> with <code class="param">repl</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="algo_8h_source.html#l00075">75</a> of file <a class="el" href="algo_8h_source.html">algo.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="algo_8h_source.html#l00074">74</a> of file <a class="el" href="algo_8h_source.html">algo.h</a>.</p>
 
-<p class="reference">References <a class="el" href="algo_8h_source.html#l00075">find_and_replace()</a>.</p>
+<p class="reference">References <a class="el" href="algo_8h_source.html#l00074">find_and_replace()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="algo_8h_source.html#l00075">find_and_replace()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="algo_8h_source.html#l00074">find_and_replace()</a>.</p>
 
 </div>
 </div>
@@ -1028,7 +1028,7 @@ template&lt;<a class="el" href="conceptfe_1_1BitEnum.html">fe::BitEnum</a> E&gt;
 
 <p class="reference">References <a class="el" href="hash_8h_source.html#l00059">fnv1_offset</a>, and <a class="el" href="hash_8h_source.html#l00064">hash_begin()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00265">fe::Bitset::hash()</a>, <a class="el" href="hash_8h_source.html#l00064">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00074">hash_begin()</a>, <a class="el" href="dbg_8h_source.html#l00058">fe::Dbg::Hash::operator()()</a>, and <a class="el" href="xtrie_8h_source.html#l00136">fe::XTrie&lt; D, K, N &gt;::Data::Hash::operator()()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00265">fe::Bitset::hash()</a>, <a class="el" href="hash_8h_source.html#l00064">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00074">hash_begin()</a>, <a class="el" href="dbg_8h_source.html#l00059">fe::Dbg::Hash::operator()()</a>, and <a class="el" href="xtrie_8h_source.html#l00136">fe::XTrie&lt; D, K, N &gt;::Data::Hash::operator()()</a>.</p>
 
 </div>
 </div>
@@ -1100,7 +1100,7 @@ template&lt;std::integral T&gt; </div>
 
 <p class="reference">References <a class="el" href="hash_8h_source.html#l00060">fnv1_prime</a>, <a class="el" href="hash_8h_source.html#l00037">hash()</a>, and <a class="el" href="hash_8h_source.html#l00068">hash_combine()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00265">fe::Bitset::hash()</a>, <a class="el" href="hash_8h_source.html#l00074">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00068">hash_combine()</a>, <a class="el" href="dbg_8h_source.html#l00058">fe::Dbg::Hash::operator()()</a>, and <a class="el" href="xtrie_8h_source.html#l00136">fe::XTrie&lt; D, K, N &gt;::Data::Hash::operator()()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00265">fe::Bitset::hash()</a>, <a class="el" href="hash_8h_source.html#l00074">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00068">hash_combine()</a>, <a class="el" href="dbg_8h_source.html#l00059">fe::Dbg::Hash::operator()()</a>, and <a class="el" href="xtrie_8h_source.html#l00136">fe::XTrie&lt; D, K, N &gt;::Data::Hash::operator()()</a>.</p>
 
 </div>
 </div>

@@ -9,7 +9,7 @@ var searchData=
   ['memoryresource_6',['MemoryResource',['../classfe_1_1Arena_1_1MemoryResource.html',1,'fe::Arena::MemoryResource'],['../classfe_1_1Arena_1_1MemoryResource.html#a78e95720a6a254e562ea00baaf70f2f2',1,'fe::Arena::MemoryResource::MemoryResource()']]],
   ['merge_7',['merge',['../classfe_1_1XTrie.html#ae190a3bcab5c5c31dc3747474d6c7de0',1,'fe::XTrie']]],
   ['min_5fcode_5fpoint_8',['min_code_point',['../namespacefe_1_1utf8.html#a6660a5ce2b492de5ef72a34c329aacba',1,'fe::utf8']]],
-  ['mk_9',['mk',['../classfe_1_1Arena.html#aba49d689fc2975bea37eaccc5410de8b',1,'fe::Arena']]],
+  ['mk_9',['mk',['../classfe_1_1Arena.html#ac0ed8cd6c5553d0d1e75745501221a6f',1,'fe::Arena']]],
   ['mode_10',['Mode',['../namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087',1,'fe::term']]],
   ['mode_11',['mode',['../namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf',1,'fe::term']]],
   ['msg_12',['Msg',['../classfe_1_1Error.html#structfe_1_1Error_1_1Msg',1,'fe::Error']]],

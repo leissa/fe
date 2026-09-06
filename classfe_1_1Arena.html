@@ -183,19 +183,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6954c6cb8a60224261e98798a7cd5fda" id="r_a6954c6cb8a60224261e98798a7cd5fda"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a6954c6cb8a60224261e98798a7cd5fda">Arena</a> (size_t page_size=<a class="el" href="#acf8db82af7c5e70594460ffffeaaedc6">Default_Page_Size</a>)</td></tr>
 <tr class="memitem:a35374c3e8e92a4510a78d2d51d24f5ec" id="r_a35374c3e8e92a4510a78d2d51d24f5ec"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a35374c3e8e92a4510a78d2d51d24f5ec">Arena</a> (Arena &amp;&amp;other) noexcept</td></tr>
 <tr class="memitem:a9029ff76c05dab0854198435aff06419" id="r_a9029ff76c05dab0854198435aff06419"><td class="memItemLeft"><a class="el" href="#a31a9b29bc955003c0df7f4103bc434c1">Arena</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a9029ff76c05dab0854198435aff06419">operator=</a> (<a class="el" href="#a31a9b29bc955003c0df7f4103bc434c1">Arena</a>)=delete</td></tr>
-<tr class="memitem:ac8360c39f4dd203fdb8cf21c53d5626f" id="r_ac8360c39f4dd203fdb8cf21c53d5626f"><td class="memTemplParams" colspan="2">template&lt;class T&gt; </td></tr>
-<tr class="memitem:ac8360c39f4dd203fdb8cf21c53d5626f template"><td class="memItemLeft">constexpr <a class="el" href="structfe_1_1Arena_1_1Allocator.html">Allocator</a>&lt; T &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac8360c39f4dd203fdb8cf21c53d5626f">allocator</a> () noexcept</td></tr>
-<tr class="memdesc:ac8360c39f4dd203fdb8cf21c53d5626f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create <a class="el" href="structfe_1_1Arena_1_1Allocator.html" title="An allocator in order to use this Arena for containers.">Allocator</a> from <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">Arena</a>.  <br /></td></tr>
+<tr class="memitem:a85e64d0613cd480c9bff31fcf62dfe59" id="r_a85e64d0613cd480c9bff31fcf62dfe59"><td class="memTemplParams" colspan="2">template&lt;class T&gt; </td></tr>
+<tr class="memitem:a85e64d0613cd480c9bff31fcf62dfe59 template"><td class="memItemLeft"><a class="el" href="structfe_1_1Arena_1_1Allocator.html">Allocator</a>&lt; T &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a85e64d0613cd480c9bff31fcf62dfe59">allocator</a> () noexcept</td></tr>
+<tr class="memdesc:a85e64d0613cd480c9bff31fcf62dfe59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create <a class="el" href="structfe_1_1Arena_1_1Allocator.html" title="An allocator in order to use this Arena for containers.">Allocator</a> from <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">Arena</a>.  <br /></td></tr>
 <tr class="memitem:a4ebf61d33a87088a351197f7adcf39d4" id="r_a4ebf61d33a87088a351197f7adcf39d4"><td class="memItemLeft"><a class="el" href="classstd_1_1pmr_1_1memory__resource.html">std::pmr::memory_resource</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a4ebf61d33a87088a351197f7adcf39d4">resource</a> () noexcept</td></tr>
 <tr class="memitem:aa1f1c16b55f19577e56f47927b1db684" id="r_aa1f1c16b55f19577e56f47927b1db684"><td class="memItemLeft">const <a class="el" href="classstd_1_1pmr_1_1memory__resource.html">std::pmr::memory_resource</a> *&#160;</td><td class="memItemRight"><a class="el" href="#aa1f1c16b55f19577e56f47927b1db684">resource</a> () const noexcept</td></tr>
-<tr class="memitem:aba49d689fc2975bea37eaccc5410de8b" id="r_aba49d689fc2975bea37eaccc5410de8b"><td class="memTemplParams" colspan="2">template&lt;class T, class... Args&gt; </td></tr>
-<tr class="memitem:aba49d689fc2975bea37eaccc5410de8b template"><td class="memItemLeft">constexpr <a class="el" href="#a9ec4e56220ef5a3d2d80bfcd3653bbdc">Ptr</a>&lt; T &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aba49d689fc2975bea37eaccc5410de8b">mk</a> (Args &amp;&amp;... args)</td></tr>
-<tr class="memdesc:aba49d689fc2975bea37eaccc5410de8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a <a href="https://en.cppreference.com/w/cpp/memory/unique_ptr">std::unique_ptr</a> that uses the <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">Arena</a> under the hood and whose <a class="el" href="structfe_1_1Arena_1_1Deleter.html">Deleter</a> will <em>only</em> invoke the destructor but <em>not</em> <span class="tt">delete</span> anything; memory will be released upon destruction of the <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">Arena</a>.  <br /></td></tr>
+<tr class="memitem:ac0ed8cd6c5553d0d1e75745501221a6f" id="r_ac0ed8cd6c5553d0d1e75745501221a6f"><td class="memTemplParams" colspan="2">template&lt;class T, class... Args&gt; </td></tr>
+<tr class="memitem:ac0ed8cd6c5553d0d1e75745501221a6f template"><td class="memItemLeft"><a class="el" href="#a9ec4e56220ef5a3d2d80bfcd3653bbdc">Ptr</a>&lt; T &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac0ed8cd6c5553d0d1e75745501221a6f">mk</a> (Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:ac0ed8cd6c5553d0d1e75745501221a6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a <a href="https://en.cppreference.com/w/cpp/memory/unique_ptr">std::unique_ptr</a> that uses the <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">Arena</a> under the hood and whose <a class="el" href="structfe_1_1Arena_1_1Deleter.html">Deleter</a> will <em>only</em> invoke the destructor but <em>not</em> <span class="tt">delete</span> anything; memory will be released upon destruction of the <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">Arena</a>.  <br /></td></tr>
 <tr id="pub-methods-1" class="groupHeader"><td colspan="2"><div class="groupHeader">Allocate</div></td></tr>
-<tr class="memitem:a36af29114a9b1e9b2907783d2b312b29" id="r_a36af29114a9b1e9b2907783d2b312b29"><td class="memItemLeft">constexpr void *&#160;</td><td class="memItemRight"><a class="el" href="#a36af29114a9b1e9b2907783d2b312b29">allocate</a> (size_t num_bytes, size_t align)</td></tr>
-<tr class="memdesc:a36af29114a9b1e9b2907783d2b312b29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get <code class="param">n</code> bytes of fresh memory.  <br /></td></tr>
-<tr class="memitem:aaaec30029e98b1f428d5e69639bbb3bc" id="r_aaaec30029e98b1f428d5e69639bbb3bc"><td class="memTemplParams" colspan="2">template&lt;class T&gt; </td></tr>
-<tr class="memitem:aaaec30029e98b1f428d5e69639bbb3bc template"><td class="memItemLeft">constexpr T *&#160;</td><td class="memItemRight"><a class="el" href="#aaaec30029e98b1f428d5e69639bbb3bc">allocate</a> (size_t num_elems)</td></tr>
+<tr class="memitem:a1845ff9a50156c9e4aaacb38aec6269e" id="r_a1845ff9a50156c9e4aaacb38aec6269e"><td class="memItemLeft">void *&#160;</td><td class="memItemRight"><a class="el" href="#a1845ff9a50156c9e4aaacb38aec6269e">allocate</a> (size_t num_bytes, size_t align)</td></tr>
+<tr class="memdesc:a1845ff9a50156c9e4aaacb38aec6269e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get <code class="param">n</code> bytes of fresh memory.  <br /></td></tr>
+<tr class="memitem:a821f393e0b38a3f89d8987dc3426bda8" id="r_a821f393e0b38a3f89d8987dc3426bda8"><td class="memTemplParams" colspan="2">template&lt;class T&gt; </td></tr>
+<tr class="memitem:a821f393e0b38a3f89d8987dc3426bda8 template"><td class="memItemLeft">T *&#160;</td><td class="memItemRight"><a class="el" href="#a821f393e0b38a3f89d8987dc3426bda8">allocate</a> (size_t num_elems)</td></tr>
 <tr id="pub-methods-2" class="groupHeader"><td colspan="2"><div class="groupHeader">Deallocate</div></td></tr>
 <tr><td colspan="2" class="ititle"><div class="groupText"><p>Deallocate memory again in reverse order.</p>
 <p>Use like this: </p><div class="fragment"><div class="line"><span class="keyword">auto</span> <a class="code hl_function" href="#adc11bd44aacf4c22167b1ed08d400077">state</a> = arena.state();</div>
@@ -204,8 +204,8 @@ Public Member Functions</h2></td></tr>
 <div class="ttc" id="aclassfe_1_1Arena_html_adc11bd44aacf4c22167b1ed08d400077"><div class="ttname"><a href="#adc11bd44aacf4c22167b1ed08d400077">fe::Arena::state</a></div><div class="ttdeci">State state() const noexcept</div><div class="ttdef"><b>Definition</b> <a href="arena_8h_source.html#l00174">arena.h:174</a></div></div>
 </div><!-- fragment --> <dl class="section warning"><dt>Warning</dt><dd>Only use, if you really know what you are doing. </dd></dl>
 </div></td></tr>
-<tr class="memitem:a23e2c81675c44591a623732beeb2729b" id="r_a23e2c81675c44591a623732beeb2729b"><td class="memItemLeft">constexpr void&#160;</td><td class="memItemRight"><a class="el" href="#a23e2c81675c44591a623732beeb2729b">deallocate</a> (size_t num_bytes) noexcept</td></tr>
-<tr class="memdesc:a23e2c81675c44591a623732beeb2729b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes <code class="param">num_bytes</code> again.  <br /></td></tr>
+<tr class="memitem:a405f40e484ffa011259bd6136e5c9628" id="r_a405f40e484ffa011259bd6136e5c9628"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a405f40e484ffa011259bd6136e5c9628">deallocate</a> (size_t num_bytes) noexcept</td></tr>
+<tr class="memdesc:a405f40e484ffa011259bd6136e5c9628"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes <code class="param">num_bytes</code> again.  <br /></td></tr>
 <tr class="memitem:adc11bd44aacf4c22167b1ed08d400077" id="r_adc11bd44aacf4c22167b1ed08d400077"><td class="memItemLeft"><a class="el" href="#a5e05161e3a767ebfdecbf2cb1e21f6d4">State</a>&#160;</td><td class="memItemRight"><a class="el" href="#adc11bd44aacf4c22167b1ed08d400077">state</a> () const noexcept</td></tr>
 <tr class="memitem:a27c2f6b322adf7b4db01b10c6871e1f7" id="r_a27c2f6b322adf7b4db01b10c6871e1f7"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a27c2f6b322adf7b4db01b10c6871e1f7">deallocate</a> (<a class="el" href="#a5e05161e3a767ebfdecbf2cb1e21f6d4">State</a> state) noexcept</td></tr>
 </table><table class="memberdecls">
@@ -225,7 +225,7 @@ Friends</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An arena pre-allocates so-called <em>pages</em> of size Arena::page_size_. </p>
-<p>You can use <a class="el" href="#a36af29114a9b1e9b2907783d2b312b29" title="Get n bytes of fresh memory.">Arena::allocate</a> to obtain memory from this. When a page runs out of memory, the next page will be (pre-)allocated. You cannot directly release memory obtained via this method. Instead, <em>all</em> memory acquired via this <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">Arena</a> will be released as soon as this <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">Arena</a> will be destroyed. As an exception, you can <a class="el" href="#a23e2c81675c44591a623732beeb2729b" title="Removes num_bytes again.">Arena::deallocate</a> memory that has just been acquired. </p>
+<p>You can use <a class="el" href="#a1845ff9a50156c9e4aaacb38aec6269e" title="Get n bytes of fresh memory.">Arena::allocate</a> to obtain memory from this. When a page runs out of memory, the next page will be (pre-)allocated. You cannot directly release memory obtained via this method. Instead, <em>all</em> memory acquired via this <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">Arena</a> will be released as soon as this <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">Arena</a> will be destroyed. As an exception, you can <a class="el" href="#a405f40e484ffa011259bd6136e5c9628" title="Removes num_bytes again.">Arena::deallocate</a> memory that has just been acquired. </p>
 
 <p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00021">21</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
@@ -387,8 +387,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="a36af29114a9b1e9b2907783d2b312b29" name="a36af29114a9b1e9b2907783d2b312b29"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a36af29114a9b1e9b2907783d2b312b29">&#9670;&#160;</a></span>allocate() <span class="overload">[1/2]</span></h2>
+<a id="a1845ff9a50156c9e4aaacb38aec6269e" name="a1845ff9a50156c9e4aaacb38aec6269e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1845ff9a50156c9e4aaacb38aec6269e">&#9670;&#160;</a></span>allocate() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -409,7 +409,7 @@ template&lt;class T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -425,8 +425,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="aaaec30029e98b1f428d5e69639bbb3bc" name="aaaec30029e98b1f428d5e69639bbb3bc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaaec30029e98b1f428d5e69639bbb3bc">&#9670;&#160;</a></span>allocate() <span class="overload">[2/2]</span></h2>
+<a id="a821f393e0b38a3f89d8987dc3426bda8" name="a821f393e0b38a3f89d8987dc3426bda8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a821f393e0b38a3f89d8987dc3426bda8">&#9670;&#160;</a></span>allocate() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -445,7 +445,7 @@ template&lt;class T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -456,8 +456,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="ac8360c39f4dd203fdb8cf21c53d5626f" name="ac8360c39f4dd203fdb8cf21c53d5626f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac8360c39f4dd203fdb8cf21c53d5626f">&#9670;&#160;</a></span>allocator()</h2>
+<a id="a85e64d0613cd480c9bff31fcf62dfe59" name="a85e64d0613cd480c9bff31fcf62dfe59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85e64d0613cd480c9bff31fcf62dfe59">&#9670;&#160;</a></span>allocator()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -476,7 +476,7 @@ template&lt;class T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -491,8 +491,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="a23e2c81675c44591a623732beeb2729b" name="a23e2c81675c44591a623732beeb2729b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a23e2c81675c44591a623732beeb2729b">&#9670;&#160;</a></span>deallocate() <span class="overload">[1/2]</span></h2>
+<a id="a405f40e484ffa011259bd6136e5c9628" name="a405f40e484ffa011259bd6136e5c9628"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a405f40e484ffa011259bd6136e5c9628">&#9670;&#160;</a></span>deallocate() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -509,7 +509,7 @@ template&lt;class T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -549,8 +549,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="aba49d689fc2975bea37eaccc5410de8b" name="aba49d689fc2975bea37eaccc5410de8b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba49d689fc2975bea37eaccc5410de8b">&#9670;&#160;</a></span>mk()</h2>
+<a id="ac0ed8cd6c5553d0d1e75745501221a6f" name="ac0ed8cd6c5553d0d1e75745501221a6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0ed8cd6c5553d0d1e75745501221a6f">&#9670;&#160;</a></span>mk()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -569,7 +569,7 @@ template&lt;class T, class... Args&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

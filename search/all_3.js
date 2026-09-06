@@ -8,7 +8,7 @@ var searchData=
   ['basic_5fostream_5fformatter_3c_20char_20_3e_5',['basic_ostream_formatter&lt; char &gt;',['../structfe_1_1basic__ostream__formatter.html',1,'fe']]],
   ['begin_6',['begin',['../classfe_1_1Lexer.html#af4c2ef1fbadc69195f0af79c58df65d2',1,'fe::Lexer::Ahead::begin'],['../structfe_1_1Loc.html#a7cda6af5faf94e9a9da31b95ba7f60c2',1,'fe::Loc::begin'],['../classfe_1_1Bitset.html#a707c897a250651f643b17562e10ebeb5',1,'fe::Bitset::begin()'],['../classfe_1_1Src.html#a31c97c626b05697dd272de7279ba2f46',1,'fe::Src::begin()'],['../classfe_1_1Sym.html#a20d21940d48a8d6f9fc362938d67af85',1,'fe::Sym::begin()'],['../classfe_1_1XTrie_1_1Set.html#a4d7e03fffaba8aefae918e63f43d585f',1,'fe::XTrie::Set::begin()']]],
   ['bfsworklist_7',['BFSWorklist',['../namespacefe.html#a0cf8b223e0a15d8cae20a0d8b332e8b9',1,'fe']]],
-  ['binary_5ffind_8',['binary_find',['../namespacefe.html#a390cae4065f52defea7585368a93d601',1,'fe::binary_find(I begin, I end, const T &amp;val, L lt={}) noexcept'],['../namespacefe.html#ad7091e111867cd8228d37686aa31e372',1,'fe::binary_find(R &amp;&amp;r, const T &amp;val, L lt={}) noexcept']]],
+  ['binary_5ffind_8',['binary_find',['../namespacefe.html#a60e2475605f461717686998f540dc419',1,'fe::binary_find(I begin, I end, const T &amp;val, L lt={})'],['../namespacefe.html#ac6de5497649ad9909d7fd09784c82699',1,'fe::binary_find(R &amp;&amp;r, const T &amp;val, L lt={})']]],
   ['bitcast_5fresize_9',['bitcast_resize',['../namespacefe.html#a23c050efc089d138baaefe04d33562f6',1,'fe']]],
   ['bitenum_10',['BitEnum',['../conceptfe_1_1BitEnum.html',1,'fe']]],
   ['bits_5fper_5fword_11',['Bits_Per_Word',['../classfe_1_1Bitset.html#a9bd48167463efd11816eb97209661f77',1,'fe::Bitset']]],

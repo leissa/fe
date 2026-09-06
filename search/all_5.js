@@ -9,7 +9,7 @@ var searchData=
   ['dbgkey_6',['DbgKey',['../classfe_1_1DbgKey.html',1,'fe::DbgKey'],['../classfe_1_1DbgKey.html#a1c8b1e07cefa33776e1b1adf31622d0f',1,'fe::DbgKey::DbgKey()']]],
   ['dbgmap_7',['DbgMap',['../namespacefe.html#ac1c71f6a9945566d80eb25be4812334a',1,'fe']]],
   ['dbgset_8',['DbgSet',['../namespacefe.html#a6001bdc1f05c56d81cf41b355f2027f6',1,'fe']]],
-  ['deallocate_9',['deallocate',['../structfe_1_1Arena_1_1Allocator.html#a855ffa4f57672434fefae5fb9f4baa27',1,'fe::Arena::Allocator::deallocate()'],['../classfe_1_1Arena.html#a23e2c81675c44591a623732beeb2729b',1,'fe::Arena::deallocate(size_t num_bytes) noexcept'],['../classfe_1_1Arena.html#a27c2f6b322adf7b4db01b10c6871e1f7',1,'fe::Arena::deallocate(State state) noexcept']]],
+  ['deallocate_9',['deallocate',['../structfe_1_1Arena_1_1Allocator.html#a855ffa4f57672434fefae5fb9f4baa27',1,'fe::Arena::Allocator::deallocate()'],['../classfe_1_1Arena.html#a405f40e484ffa011259bd6136e5c9628',1,'fe::Arena::deallocate(size_t num_bytes) noexcept'],['../classfe_1_1Arena.html#a27c2f6b322adf7b4db01b10c6871e1f7',1,'fe::Arena::deallocate(State state) noexcept']]],
   ['debug_10',['Debug',['../classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06aa603905470e2a5b8c13e96b579ef0dba',1,'fe::Log']]],
   ['decode_11',['decode',['../namespacefe_1_1utf8.html#a4ca17134ff0be619535e913b53a80e79',1,'fe::utf8::decode(std::istream &amp;is)'],['../namespacefe_1_1utf8.html#a7411b5c6d9f361e3a039bfb6fa673ec1',1,'fe::utf8::decode(std::string_view str, size_t &amp;i) noexcept']]],
   ['default_5finlined_5fsize_12',['Default_Inlined_Size',['../namespacefe.html#aaca9f8e93c591cf178995b1d5da5ad7c',1,'fe']]],

@@ -170,7 +170,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa2b65962d7819a6f5354d900e5a3449b" id="r_aa2b65962d7819a6f5354d900e5a3449b"><td class="memTemplParams" colspan="2">template&lt;class U&gt; </td></tr>
 <tr class="memitem:aa2b65962d7819a6f5354d900e5a3449b template"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#aa2b65962d7819a6f5354d900e5a3449b">Allocator</a> (const <a class="el" href="structfe_1_1Arena_1_1Allocator.html">Arena::Allocator</a>&lt; U &gt; &amp;allocator) noexcept</td></tr>
 <tr class="memitem:ad05417fdfb99bb1a524efddbdc767cef" id="r_ad05417fdfb99bb1a524efddbdc767cef"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#ad05417fdfb99bb1a524efddbdc767cef">Allocator</a> (<a class="el" href="classfe_1_1Arena.html#a31a9b29bc955003c0df7f4103bc434c1">Arena</a> &amp;arena) noexcept</td></tr>
-<tr class="memitem:a48f417a90b63fa70c6c2d44c4bb18ba5" id="r_a48f417a90b63fa70c6c2d44c4bb18ba5"><td class="memItemLeft">constexpr T *&#160;</td><td class="memItemRight"><a class="el" href="#a48f417a90b63fa70c6c2d44c4bb18ba5">allocate</a> (size_t num_elems)</td></tr>
+<tr class="memitem:a5a01ae641100e200cfc220e96c0d6cf2" id="r_a5a01ae641100e200cfc220e96c0d6cf2"><td class="memItemLeft">T *&#160;</td><td class="memItemRight"><a class="el" href="#a5a01ae641100e200cfc220e96c0d6cf2">allocate</a> (size_t num_elems)</td></tr>
 <tr class="memitem:a855ffa4f57672434fefae5fb9f4baa27" id="r_a855ffa4f57672434fefae5fb9f4baa27"><td class="memItemLeft">constexpr void&#160;</td><td class="memItemRight"><a class="el" href="#a855ffa4f57672434fefae5fb9f4baa27">deallocate</a> (T *, size_t) noexcept</td></tr>
 <tr class="memitem:a1ceb3c1e151546d105f7cf3eb53c8533" id="r_a1ceb3c1e151546d105f7cf3eb53c8533"><td class="memTemplParams" colspan="2">template&lt;class U&gt; </td></tr>
 <tr class="memitem:a1ceb3c1e151546d105f7cf3eb53c8533 template"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a1ceb3c1e151546d105f7cf3eb53c8533">operator==</a> (const <a class="el" href="#a7b5428de2d5645150018b0726b9aeb02">Allocator</a>&lt; U &gt; &amp;) const noexcept</td></tr>
@@ -185,7 +185,7 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class T&gt;<br />
 struct fe::Arena::Allocator&lt; T &gt;</div><p>An <a href="https://en.cppreference.com/w/cpp/named_req/Allocator">allocator</a> in order to use this <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">Arena</a> for <a href="https://en.cppreference.com/w/cpp/named_req/AllocatorAwareContainer">containers</a>. </p>
-<p>Construct it via <a class="el" href="classfe_1_1Arena.html#ac8360c39f4dd203fdb8cf21c53d5626f" title="Create Allocator from Arena.">Arena::allocator</a>. </p>
+<p>Construct it via <a class="el" href="classfe_1_1Arena.html#a85e64d0613cd480c9bff31fcf62dfe59" title="Create Allocator from Arena.">Arena::allocator</a>. </p>
 
 <p class="definition">Definition at line <a class="el" href="arena_8h_source.html#l00049">49</a> of file <a class="el" href="arena_8h_source.html">arena.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
@@ -302,8 +302,8 @@ template&lt;class T&gt; </div>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a48f417a90b63fa70c6c2d44c4bb18ba5" name="a48f417a90b63fa70c6c2d44c4bb18ba5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a48f417a90b63fa70c6c2d44c4bb18ba5">&#9670;&#160;</a></span>allocate()</h2>
+<a id="a5a01ae641100e200cfc220e96c0d6cf2" name="a5a01ae641100e200cfc220e96c0d6cf2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a01ae641100e200cfc220e96c0d6cf2">&#9670;&#160;</a></span>allocate()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -322,7 +322,7 @@ template&lt;class T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

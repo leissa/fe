@@ -1,7 +1,7 @@
 var searchData=
 [
   ['t_0',['t',['../classfe_1_1Log.html#a5e08300600b4aeb35839a2b66f4abfd2',1,'fe::Log']]],
-  ['tab_1',['Tab',['../classfe_1_1Tab.html#ad4c8eaf1bbcefb808746bddedde9e017',1,'fe::Tab::Tab(const Tab &amp;)=default'],['../classfe_1_1Tab.html#a3c41de2ecfa9f5b6af004aa2da4b208b',1,'fe::Tab::Tab(std::string_view tab={&quot;\\t&quot;}, int indent=0)']]],
+  ['tab_1',['Tab',['../classfe_1_1Tab.html#abd9963c57bccafc07d9dff17edb7c986',1,'fe::Tab::Tab(const Tab &amp;)=default'],['../classfe_1_1Tab.html#af68c5700949fa33b36e5cac908bc5f2e',1,'fe::Tab::Tab(std::string_view tab={&quot;\\t&quot;}, int indent=0) noexcept']]],
   ['tab_2',['tab',['../classfe_1_1Tab.html#a074fb56e9717dbfd38f14b50910861e2',1,'fe::Tab']]],
   ['tag2color_3',['tag2color',['../classfe_1_1Diag.html#a664bc67112dc29fab11430fe29f81d06',1,'fe::Diag']]],
   ['tag2str_5f_4',['tag2str_',['../classfe_1_1Parser.html#a729e065306271ccbfdf2b74ca8223932',1,'fe::Parser']]],

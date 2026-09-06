@@ -191,10 +191,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae4042d6fd11e3d25c511c2feb031ad2a" id="r_ae4042d6fd11e3d25c511c2feb031ad2a"><td class="memItemLeft">constexpr std::string_view&#160;</td><td class="memItemRight"><a class="el" href="#ae4042d6fd11e3d25c511c2feb031ad2a">view</a> () const noexcept</td></tr>
 <tr class="memitem:aff35eb138b2e717c637d41d1b17eba26" id="r_aff35eb138b2e717c637d41d1b17eba26"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#aff35eb138b2e717c637d41d1b17eba26">operator std::string_view</a> () const noexcept</td></tr>
 <tr class="memitem:a24ee71544ed6aebf2b24ef3f1b52d877" id="r_a24ee71544ed6aebf2b24ef3f1b52d877"><td class="memItemLeft">constexpr std::string_view&#160;</td><td class="memItemRight"><a class="el" href="#a24ee71544ed6aebf2b24ef3f1b52d877">operator*</a> () const noexcept</td></tr>
-<tr class="memitem:a924bef149f5053cf6dbc79740f48f02d" id="r_a924bef149f5053cf6dbc79740f48f02d"><td class="memItemLeft">constexpr std::string&#160;</td><td class="memItemRight"><a class="el" href="#a924bef149f5053cf6dbc79740f48f02d">str</a> () const noexcept</td></tr>
-<tr class="memdesc:a924bef149f5053cf6dbc79740f48f02d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This involves a copy.  <br /></td></tr>
-<tr class="memitem:ad4431e8655643fa0dde8661623eeaad8" id="r_ad4431e8655643fa0dde8661623eeaad8"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#ad4431e8655643fa0dde8661623eeaad8">operator std::string</a> () const noexcept</td></tr>
-<tr class="memdesc:ad4431e8655643fa0dde8661623eeaad8"><td class="mdescLeft">&#160;</td><td class="mdescRight"><span class="tt">explicit</span> as this involves a copy.  <br /></td></tr>
+<tr class="memitem:aa221972b6c2c378b931e1b68eead0498" id="r_aa221972b6c2c378b931e1b68eead0498"><td class="memItemLeft">constexpr std::string&#160;</td><td class="memItemRight"><a class="el" href="#aa221972b6c2c378b931e1b68eead0498">str</a> () const</td></tr>
+<tr class="memdesc:aa221972b6c2c378b931e1b68eead0498"><td class="mdescLeft">&#160;</td><td class="mdescRight">This involves a copy.  <br /></td></tr>
+<tr class="memitem:a263dd3fd7ac8aaec98c757ec741506f9" id="r_a263dd3fd7ac8aaec98c757ec741506f9"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#a263dd3fd7ac8aaec98c757ec741506f9">operator std::string</a> () const</td></tr>
+<tr class="memdesc:a263dd3fd7ac8aaec98c757ec741506f9"><td class="mdescLeft">&#160;</td><td class="mdescRight"><span class="tt">explicit</span> as this involves a copy.  <br /></td></tr>
 <tr class="memitem:ac184381a7d889644d33da787f7cdb0de" id="r_ac184381a7d889644d33da787f7cdb0de"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#ac184381a7d889644d33da787f7cdb0de">operator bool</a> () const noexcept</td></tr>
 <tr class="memdesc:ac184381a7d889644d33da787f7cdb0de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is not empty?  <br /></td></tr>
 </table><table class="memberdecls">
@@ -236,7 +236,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 <li>recommended: <span class="tt">std::string_view</span> (via <a class="el" href="#ae4042d6fd11e3d25c511c2feb031ad2a">Sym::view</a>)</li>
 <li>null-terminated C-strings (via <a class="el" href="#aaf1933998907b8e0b70b852e9ce4e485">Sym::c_str</a>)</li>
 </ul>
-<p>This means that retrieving a <span class="tt">std::string_view</span> or a null-terminated C-string is basically free. You can also obtain a <span class="tt">std::string</span> (via <a class="el" href="#a924bef149f5053cf6dbc79740f48f02d" title="This involves a copy.">Sym::str</a>), but this involves a copy. With the exception of the empty string, you should only create <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bols via <a class="el" href="classfe_1_1SymPool.html#a1a7c3278db18ad72926b06c1e757b865">SymPool::sym</a>. This in turn will toss all <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bols into a big hash set. This makes <a class="el" href="#a4d32de46ba12881bc6a41505f0fcd49b">Sym::operator==</a> and Sym::operator!= an O(1) operation. The empty string is internally handled as <span class="tt">nullptr</span>. Thus, you can create a <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol representing an empty string without having access to the <a class="el" href="classfe_1_1SymPool.html" title="Hash set where all strings - wrapped in Symbol - live in.">SymPool</a>. </p><dl class="section note"><dt>Note</dt><dd>The empty <span class="tt">std::string</span>/<span class="tt">std::string_view</span>, <span class="tt">nullptr</span>, and <span class="tt">"\0"</span> are all identified as <a class="el" href="#a3b4417ab3002f28d1e4f340711a8d094">Sym::Sym()</a>. </dd></dl>
+<p>This means that retrieving a <span class="tt">std::string_view</span> or a null-terminated C-string is basically free. You can also obtain a <span class="tt">std::string</span> (via <a class="el" href="#aa221972b6c2c378b931e1b68eead0498" title="This involves a copy.">Sym::str</a>), but this involves a copy. With the exception of the empty string, you should only create <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bols via <a class="el" href="classfe_1_1SymPool.html#a1a7c3278db18ad72926b06c1e757b865">SymPool::sym</a>. This in turn will toss all <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bols into a big hash set. This makes <a class="el" href="#a4d32de46ba12881bc6a41505f0fcd49b">Sym::operator==</a> and Sym::operator!= an O(1) operation. The empty string is internally handled as <span class="tt">nullptr</span>. Thus, you can create a <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol representing an empty string without having access to the <a class="el" href="classfe_1_1SymPool.html" title="Hash set where all strings - wrapped in Symbol - live in.">SymPool</a>. </p><dl class="section note"><dt>Note</dt><dd>The empty <span class="tt">std::string</span>/<span class="tt">std::string_view</span>, <span class="tt">nullptr</span>, and <span class="tt">"\0"</span> are all identified as <a class="el" href="#a3b4417ab3002f28d1e4f340711a8d094">Sym::Sym()</a>. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Big endian version has not been tested. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00036">36</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
@@ -351,7 +351,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section warning"><dt>Warning</dt><dd>For a <em>short</em> <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol (small-string-optimized, see <a class="el" href="#ae4042d6fd11e3d25c511c2feb031ad2a">Sym::view</a>) the returned pointer aliases this <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol's internal <span class="tt">ptr_</span>. It is therefore only valid as long as <em>this</em> <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol object lives - it dangles for a temporary (e.g. <span class="tt">pool.sym("ab").<a class="el" href="#aaf1933998907b8e0b70b852e9ce4e485">c_str()</a></span>). Use <a class="el" href="#a924bef149f5053cf6dbc79740f48f02d" title="This involves a copy.">Sym::str</a> if the string must outlive the <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>For a <em>short</em> <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol (small-string-optimized, see <a class="el" href="#ae4042d6fd11e3d25c511c2feb031ad2a">Sym::view</a>) the returned pointer aliases this <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol's internal <span class="tt">ptr_</span>. It is therefore only valid as long as <em>this</em> <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol object lives - it dangles for a temporary (e.g. <span class="tt">pool.sym("ab").<a class="el" href="#aaf1933998907b8e0b70b852e9ce4e485">c_str()</a></span>). Use <a class="el" href="#aa221972b6c2c378b931e1b68eead0498" title="This involves a copy.">Sym::str</a> if the string must outlive the <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00158">158</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
@@ -595,8 +595,8 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 
 </div>
 </div>
-<a id="ad4431e8655643fa0dde8661623eeaad8" name="ad4431e8655643fa0dde8661623eeaad8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4431e8655643fa0dde8661623eeaad8">&#9670;&#160;</a></span>operator std::string()</h2>
+<a id="a263dd3fd7ac8aaec98c757ec741506f9" name="a263dd3fd7ac8aaec98c757ec741506f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a263dd3fd7ac8aaec98c757ec741506f9">&#9670;&#160;</a></span>operator std::string()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -613,7 +613,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel explicit">explicit</span><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel explicit">explicit</span><span class="mlabel constexpr">constexpr</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -806,8 +806,8 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 
 </div>
 </div>
-<a id="a924bef149f5053cf6dbc79740f48f02d" name="a924bef149f5053cf6dbc79740f48f02d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a924bef149f5053cf6dbc79740f48f02d">&#9670;&#160;</a></span>str()</h2>
+<a id="aa221972b6c2c378b931e1b68eead0498" name="aa221972b6c2c378b931e1b68eead0498"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa221972b6c2c378b931e1b68eead0498">&#9670;&#160;</a></span>str()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -824,7 +824,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel constexpr">constexpr</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

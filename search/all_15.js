@@ -2,7 +2,7 @@ var searchData=
 [
   ['t_0',['T',['../classfe_1_1Worklist.html#a78fecbbf8b034ee2765ed5e7a4f1de44',1,'fe::Worklist']]],
   ['t_1',['t',['../classfe_1_1Log.html#a5e08300600b4aeb35839a2b66f4abfd2',1,'fe::Log']]],
-  ['tab_2',['Tab',['../classfe_1_1Tab.html',1,'fe::Tab'],['../classfe_1_1Tab.html#ad4c8eaf1bbcefb808746bddedde9e017',1,'fe::Tab::Tab(const Tab &amp;)=default'],['../classfe_1_1Tab.html#a3c41de2ecfa9f5b6af004aa2da4b208b',1,'fe::Tab::Tab(std::string_view tab={&quot;\\t&quot;}, int indent=0)']]],
+  ['tab_2',['Tab',['../classfe_1_1Tab.html',1,'fe::Tab'],['../classfe_1_1Tab.html#abd9963c57bccafc07d9dff17edb7c986',1,'fe::Tab::Tab(const Tab &amp;)=default'],['../classfe_1_1Tab.html#af68c5700949fa33b36e5cac908bc5f2e',1,'fe::Tab::Tab(std::string_view tab={&quot;\\t&quot;}, int indent=0) noexcept']]],
   ['tab_3',['tab',['../classfe_1_1Tab.html#a074fb56e9717dbfd38f14b50910861e2',1,'fe::Tab']]],
   ['tag_4',['Tag',['../classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1f',1,'fe::Diag::Tag'],['../classfe_1_1Error.html#ab0449a47de208449e3215a08b87c8c58',1,'fe::Error::Tag']]],
   ['tag_5',['tag',['../classfe_1_1Error.html#ab65076390cfb07fafe8520fbafbe0536',1,'fe::Error::Msg']]],
