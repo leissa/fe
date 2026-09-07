@@ -80,7 +80,9 @@ protected:
             : start_(start)
             , curr_(curr) {}
 
-        Loc loc() const { return {curr_.src, start_, curr_.end}; }
+        /// If nothing was consumed since this Tracker started (a total parse failure for whatever it was tracking),
+        /// @p curr_'s end still precedes @p start_; yield a zero-width Loc at @p start_ instead of a backwards one.
+        Loc loc() const { return {curr_.src, start_, start_ <= curr_.end ? curr_.end : start_}; }
         Loc operator()() const { return loc(); }
         operator Loc() const { return loc(); }
 
