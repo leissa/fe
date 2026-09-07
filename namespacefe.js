@@ -28,8 +28,10 @@ var namespacefe =
         [ "Always", "namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a68eec46437c384d8dad18d5464ebc35c", null ]
       ] ],
       [ "auto_detached", "namespacefe_1_1term.html#a8dcfc2b7e35b66547dbc3cfbfe587360", null ],
+      [ "cite_width", "namespacefe_1_1term.html#a947ccd2f656ac0cefd6c44cba5c9feb2", null ],
       [ "mode", "namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf", null ],
       [ "operator<<", "namespacefe_1_1term.html#ac0ce9f4aeb844ed9e5cf41dce8dacf8a", null ],
+      [ "render_cite", "namespacefe_1_1term.html#a2319c7f51a73205d048935350cd68eec", null ],
       [ "resolve_mode", "namespacefe_1_1term.html#a787158fdb940cfa7e778863bde8f34e8", null ],
       [ "set_auto_detached", "namespacefe_1_1term.html#a8684fed290af7defd8412888411d15af", null ],
       [ "set_mode", "namespacefe_1_1term.html#aea69c469efc3010ca40cb1873ff6bec6", null ],
