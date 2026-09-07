@@ -10,28 +10,6 @@
 
 namespace fe {
 
-namespace {
-
-/// Index of the next backtick at or after @p i that is not escaped as `` \` ``, or `npos`.
-size_t tick(std::string_view str, size_t i) {
-    for (; i != str.size(); ++i)
-        if (str[i] == '\\' && i + 1 != str.size() && str[i + 1] == '`')
-            ++i;
-        else if (str[i] == '`')
-            return i;
-    return std::string_view::npos;
-}
-
-/// Streams `[begin, end)` of @p str, dropping the backslash of every `` \` ``.
-void stream_raw(std::ostream& os, std::string_view str, size_t begin, size_t end) {
-    for (auto i = begin; i != end; ++i) {
-        if (str[i] == '\\' && i + 1 != end && str[i + 1] == '`') ++i;
-        os << str[i];
-    }
-}
-
-} // namespace
-
 std::ostream& operator<<(std::ostream& os, Diag::Tag tag) {
     // clang-format off
     switch (tag) {
@@ -118,31 +96,9 @@ void Diag::summary(std::ostream& os, size_t num_errors, size_t num_warnings, boo
 }
 
 std::string CodeDiag::render(const std::function<std::string()>& fmt) const {
-    auto str   = fmt();
-    auto oss   = std::ostringstream();
-    auto color = term::use_color(oss);
-
-    for (size_t i = 0, e = str.size(); i != e;) {
-        auto l = tick(str, i);
-        auto r = l == std::string_view::npos ? l : tick(str, l + 1);
-        if (r == std::string_view::npos) { // unpaired: not a citation
-            stream_raw(oss, str, i, e);
-            break;
-        }
-
-        stream_raw(oss, str, i, l);
-        if (color)
-            oss << term::FG::Cyan;
-        else
-            oss << '`';
-        stream_raw(oss, str, l + 1, r);
-        if (color)
-            oss << term::FG::Reset;
-        else
-            oss << '`';
-        i = r + 1;
-    }
-
+    auto str = fmt();
+    auto oss = std::ostringstream();
+    term::render_cite(oss, str);
     return oss.str();
 }
 

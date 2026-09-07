@@ -46,6 +46,8 @@ namespace fe {
 ///
 /// Cli::help lays the switches out for a terminal - wrapped to its width and colored via fe::term - whereas
 /// Cli::markdown renders the same information as Markdown tables; Cli::grp splits both into sections.
+/// A description may cite code as `` `this` ``: Cli::help colors it like CodeDiag does, Cli::markdown turns
+/// it into a code span.
 class Cli {
 public:
     using Row  = std::pair<std::string, std::string>;

@@ -132,17 +132,22 @@ void Cli::help(std::ostream& os) const {
             fits(name.size());
     auto col = std::clamp<size_t>(spec + 4, 8, cols / 2);
 
-    auto wrap = [&](std::string_view text) {
+    auto color = term::use_color(os);
+    auto wrap  = [&](std::string_view text) {
         for (size_t begin = 0, row = 0; begin < text.size(); ++row) {
             while (begin < text.size() && text[begin] == ' ')
                 ++begin;
             if (begin >= text.size()) break;
 
             auto end = std::min(text.size(), begin + cols - col);
+            // Citations shrink on screen, so the raw window may reach further than cols - col.
+            auto width = term::cite_width(text.substr(begin, end - begin), color);
+            end        = std::min(text.size(), end + (end - begin - width));
             if (end < text.size())
                 if (auto space = text.rfind(' ', end); space != std::string_view::npos && space > begin) end = space;
             if (row != 0) std::print(os, "{:{}}", "", col);
-            std::println(os, "{}", text.substr(begin, end - begin));
+            term::render_cite(os, text.substr(begin, end - begin));
+            std::println(os);
             begin = end;
         }
     };
@@ -165,6 +170,30 @@ void Cli::help(std::ostream& os) const {
             wrap(descr);
     };
 
+    // A Section row's name is free-form and may embed a `<hint>` of its own - color that part like Cli::entry does.
+    auto name = [&](std::string_view s) {
+        for (size_t i = 0, e = s.size(); i != e;) {
+            auto l = s.find('<', i);
+            auto r = l == std::string_view::npos ? l : s.find('>', l);
+            if (r == std::string_view::npos) { // no complete <hint> left in s
+                os << term::FG::Green << s.substr(i) << term::FG::Reset;
+                break;
+            }
+
+            os << term::FG::Green << s.substr(i, l - i) << term::FG::Reset;
+            os << term::FG::Cyan << s.substr(l, r - l + 1) << term::FG::Reset;
+            i = r + 1;
+        }
+    };
+
+    // What Cli::help prints for descr_/epilog_: a blank line, the paragraph with citations colored, another blank line.
+    auto paragraph = [&](std::string_view s) {
+        if (s.empty()) return;
+        std::println(os);
+        term::render_cite(os, s);
+        std::println(os);
+    };
+
     auto entry = [&](const Opt& o) {
         os << "  ";
         if (o.is_arg()) {
@@ -180,7 +209,7 @@ void Cli::help(std::ostream& os) const {
     };
 
     os << term::FG::Yellow << "Usage:" << term::FG::Reset << ' ' << usage() << '\n';
-    if (!descr_.empty()) std::println(os, "\n{}", descr_);
+    paragraph(descr_);
 
     if (std::ranges::any_of(opts_, [](const Opt& o) { return o.is_arg(); })) {
         section("Arguments");
@@ -196,13 +225,14 @@ void Cli::help(std::ostream& os) const {
 
     for (const auto& s : sections_) {
         section(s.title);
-        for (const auto& [name, descr] : s.rows) {
-            os << "  " << term::FG::Green << name << term::FG::Reset;
-            tail(name.size() + 2, descr);
+        for (const auto& [row, descr] : s.rows) {
+            os << "  ";
+            name(row);
+            tail(row.size() + 2, descr);
         }
     }
 
-    if (!epilog_.empty()) std::println(os, "\n{}", epilog_);
+    paragraph(epilog_);
 }
 
 void Cli::markdown(std::ostream& os) const {
