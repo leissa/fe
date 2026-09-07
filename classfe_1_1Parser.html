@@ -176,7 +176,7 @@ Protected Member Functions</h2></td></tr>
 <div class="line"><span class="keyword">auto</span> foo    = parse_foo();</div>
 <div class="line"><span class="keyword">auto</span> bar    = parse_bar();</div>
 <div class="line"><span class="keyword">auto</span> foobar = <span class="keyword">new</span> FooBar(track, foo, bar);</div>
-<div class="ttc" id="aclassfe_1_1Parser_html_aea3507b75aa247b9431256f5463a7821"><div class="ttname"><a href="#aea3507b75aa247b9431256f5463a7821">fe::Parser::tracker</a></div><div class="ttdeci">Tracker tracker()</div><div class="ttdoc">Factory method to build a Parser::Tracker.</div><div class="ttdef"><b>Definition</b> <a href="parser_8h_source.html#l00093">parser.h:93</a></div></div>
+<div class="ttc" id="aclassfe_1_1Parser_html_aea3507b75aa247b9431256f5463a7821"><div class="ttname"><a href="#aea3507b75aa247b9431256f5463a7821">fe::Parser::tracker</a></div><div class="ttdeci">Tracker tracker()</div><div class="ttdoc">Factory method to build a Parser::Tracker.</div><div class="ttdef"><b>Definition</b> <a href="parser_8h_source.html#l00095">parser.h:95</a></div></div>
 </div><!-- fragment --> </div></td></tr>
 <tr class="memitem:aea3507b75aa247b9431256f5463a7821" id="r_aea3507b75aa247b9431256f5463a7821"><td class="memItemLeft"><a class="el" href="classfe_1_1Parser_1_1Tracker.html">Tracker</a>&#160;</td><td class="memItemRight"><a class="el" href="#aea3507b75aa247b9431256f5463a7821">tracker</a> ()</td></tr>
 <tr class="memdesc:aea3507b75aa247b9431256f5463a7821"><td class="mdescLeft">&#160;</td><td class="mdescRight">Factory method to build a <a class="el" href="classfe_1_1Parser_1_1Tracker.html">Parser::Tracker</a>.  <br /></td></tr>
@@ -255,7 +255,7 @@ class fe::Parser&lt; Tok, Tag, K, S &gt;</div><p>The blueprint for a <a href="ht
 <div class="line"><span class="keywordflow">if</span> (<span class="keyword">auto</span> tok = <a class="code hl_function" href="#ad7acb49705c085f2ae9e7464f03eb3c0">accept</a>(Tok::Tag::My_Tag)) {</div>
 <div class="line">    do_something(tok);</div>
 <div class="line">}</div>
-<div class="ttc" id="aclassfe_1_1Parser_html_ad7acb49705c085f2ae9e7464f03eb3c0"><div class="ttname"><a href="#ad7acb49705c085f2ae9e7464f03eb3c0">fe::Parser::accept</a></div><div class="ttdeci">Tok accept(Tag tag)</div><div class="ttdoc">If Parser::ahead() is a tag, consume and return it, otherwise yield std::nullopt.</div><div class="ttdef"><b>Definition</b> <a href="parser_8h_source.html#l00112">parser.h:112</a></div></div>
+<div class="ttc" id="aclassfe_1_1Parser_html_ad7acb49705c085f2ae9e7464f03eb3c0"><div class="ttname"><a href="#ad7acb49705c085f2ae9e7464f03eb3c0">fe::Parser::accept</a></div><div class="ttdeci">Tok accept(Tag tag)</div><div class="ttdoc">If Parser::ahead() is a tag, consume and return it, otherwise yield std::nullopt.</div><div class="ttdef"><b>Definition</b> <a href="parser_8h_source.html#l00114">parser.h:114</a></div></div>
 </div><!-- fragment --><p> <code class="param">S</code> must provide the <a class="el" href="classfe_1_1Lexer.html" title="The blueprint for a lexer with a buffer of K tokens to peek into the future (Lexer::ahead).">Lexer</a> to pull from and the <a class="el" href="structfe_1_1Driver.html" title="Use/derive from this class for &quot;global&quot; variables that you need all over the place.">Driver</a> to report to: </p><div class="fragment"><div class="line"><span class="keyword">class </span>MyParser : <span class="keyword">public</span> <a class="code hl_class" href="classfe_1_1Parser.html">fe::Parser</a>&lt;Tok, Tok::Tag, K, MyParser&gt; {</div>
 <div class="line">    <a class="code hl_class" href="classfe_1_1Lexer.html">Lexer</a>&amp; lexer();                                <span class="comment">///&lt; Parser::lex pulls the next Tok%en from here.</span></div>
 <div class="line">    <a class="code hl_struct" href="structfe_1_1Driver.html">fe::Driver</a>&amp; driver();                          <span class="comment">///&lt; The default diagnostics below land in its Driver::error.</span></div>
@@ -296,9 +296,9 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 
 <p>If <a class="el" href="#af07368e3fabbf75a441b4e206fba2aa4">Parser::ahead()</a> is a <code class="param">tag</code>, consume and return it, otherwise yield <span class="tt">std::nullopt</span>. </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00112">112</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00114">114</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">References <a class="el" href="parser_8h_source.html#l00101">ahead()</a>, and <a class="el" href="parser_8h_source.html#l00104">lex()</a>.</p>
+<p class="reference">References <a class="el" href="parser_8h_source.html#l00103">ahead()</a>, and <a class="el" href="parser_8h_source.html#l00106">lex()</a>.</p>
 
 </div>
 </div>
@@ -328,11 +328,11 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 </div><div class="memdoc">
 <p>Get lookahead. </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00101">101</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00103">103</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">References <a class="el" href="parser_8h_source.html#l00239">ahead_</a>.</p>
+<p class="reference">References <a class="el" href="parser_8h_source.html#l00241">ahead_</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00112">accept()</a>, <a class="el" href="parser_8h_source.html#l00134">eat()</a>, <a class="el" href="parser_8h_source.html#l00127">expect()</a>, <a class="el" href="parser_8h_source.html#l00119">expect()</a>, <a class="el" href="parser_8h_source.html#l00059">init()</a>, <a class="el" href="parser_8h_source.html#l00104">lex()</a>, <a class="el" href="parser_8h_source.html#l00184">recover()</a>, <a class="el" href="parser_8h_source.html#l00213">syntax_err()</a>, <a class="el" href="parser_8h_source.html#l00218">syntax_err()</a>, and <a class="el" href="parser_8h_source.html#l00093">tracker()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00114">accept()</a>, <a class="el" href="parser_8h_source.html#l00136">eat()</a>, <a class="el" href="parser_8h_source.html#l00129">expect()</a>, <a class="el" href="parser_8h_source.html#l00121">expect()</a>, <a class="el" href="parser_8h_source.html#l00059">init()</a>, <a class="el" href="parser_8h_source.html#l00106">lex()</a>, <a class="el" href="parser_8h_source.html#l00186">recover()</a>, <a class="el" href="parser_8h_source.html#l00215">syntax_err()</a>, <a class="el" href="parser_8h_source.html#l00220">syntax_err()</a>, and <a class="el" href="parser_8h_source.html#l00095">tracker()</a>.</p>
 
 </div>
 </div>
@@ -368,10 +368,10 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 <div class="line">    <a class="code hl_function" href="#ab01ccf1dc21df6abc1df96282174e9f4">expect</a>(Tag::D_paren_r, <span class="stringliteral">&quot;parenthesized expression&quot;</span>);</div>
 <div class="line">    <span class="keywordflow">return</span> expr;</div>
 <div class="line">}</div>
-<div class="ttc" id="aclassfe_1_1Parser_html_ab01ccf1dc21df6abc1df96282174e9f4"><div class="ttname"><a href="#ab01ccf1dc21df6abc1df96282174e9f4">fe::Parser::expect</a></div><div class="ttdeci">Tok expect(Tag tag, std::string_view ctxt)</div><div class="ttdoc">Parser::lex Parser::ahead() which must be a tag.</div><div class="ttdef"><b>Definition</b> <a href="parser_8h_source.html#l00119">parser.h:119</a></div></div>
-<div class="ttc" id="aclassfe_1_1Parser_html_abb77f69879ac8c534434df81bf1b33a4"><div class="ttname"><a href="#abb77f69879ac8c534434df81bf1b33a4">fe::Parser::anchor</a></div><div class="ttdeci">Anchor anchor(Tag tag)</div><div class="ttdoc">Factory method to build a Parser::Anchor; Parser::expect tag yourself at the end of the scope.</div><div class="ttdef"><b>Definition</b> <a href="parser_8h_source.html#l00174">parser.h:174</a></div></div>
+<div class="ttc" id="aclassfe_1_1Parser_html_ab01ccf1dc21df6abc1df96282174e9f4"><div class="ttname"><a href="#ab01ccf1dc21df6abc1df96282174e9f4">fe::Parser::expect</a></div><div class="ttdeci">Tok expect(Tag tag, std::string_view ctxt)</div><div class="ttdoc">Parser::lex Parser::ahead() which must be a tag.</div><div class="ttdef"><b>Definition</b> <a href="parser_8h_source.html#l00121">parser.h:121</a></div></div>
+<div class="ttc" id="aclassfe_1_1Parser_html_abb77f69879ac8c534434df81bf1b33a4"><div class="ttname"><a href="#abb77f69879ac8c534434df81bf1b33a4">fe::Parser::anchor</a></div><div class="ttdeci">Anchor anchor(Tag tag)</div><div class="ttdoc">Factory method to build a Parser::Anchor; Parser::expect tag yourself at the end of the scope.</div><div class="ttdef"><b>Definition</b> <a href="parser_8h_source.html#l00176">parser.h:176</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00174">174</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00176">176</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
 </div>
 </div>
@@ -403,11 +403,11 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 <p>Is <code class="param">tag</code> anchored by an enclosing context? </p>
 <p>Scans the innermost anchor first, but <em>any</em> enclosing context counts. </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00178">178</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00180">180</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">References <a class="el" href="parser_8h_source.html#l00241">anchors_</a>.</p>
+<p class="reference">References <a class="el" href="parser_8h_source.html#l00243">anchors_</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00184">recover()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00186">recover()</a>.</p>
 
 </div>
 </div>
@@ -438,9 +438,9 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 
 <p>Consume <a class="el" href="#af07368e3fabbf75a441b4e206fba2aa4">Parser::ahead</a> which must be a <code class="param">tag</code>; asserts otherwise. </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00134">134</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00136">136</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">References <a class="el" href="parser_8h_source.html#l00101">ahead()</a>, and <a class="el" href="parser_8h_source.html#l00104">lex()</a>.</p>
+<p class="reference">References <a class="el" href="parser_8h_source.html#l00103">ahead()</a>, and <a class="el" href="parser_8h_source.html#l00106">lex()</a>.</p>
 
 </div>
 </div>
@@ -469,9 +469,9 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00199">199</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00201">201</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00204">syntax_err()</a>, and <a class="el" href="parser_8h_source.html#l00223">unanchored_err()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00206">syntax_err()</a>, and <a class="el" href="parser_8h_source.html#l00225">unanchored_err()</a>.</p>
 
 </div>
 </div>
@@ -500,7 +500,7 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00200">200</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00202">202</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
 </div>
 </div>
@@ -542,9 +542,9 @@ template&lt;class... Args&gt; </div>
 
 <p>As above but builds the context via std::format. </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00127">127</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00129">129</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">References <a class="el" href="parser_8h_source.html#l00101">ahead()</a>, and <a class="el" href="parser_8h_source.html#l00104">lex()</a>.</p>
+<p class="reference">References <a class="el" href="parser_8h_source.html#l00103">ahead()</a>, and <a class="el" href="parser_8h_source.html#l00106">lex()</a>.</p>
 
 </div>
 </div>
@@ -580,9 +580,9 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 <p><a class="el" href="#a5d4335bae86e3127fbf5b42fb0fcd3e7" title="Invoke Lexer to retrieve next Token.">Parser::lex</a> <a class="el" href="#af07368e3fabbf75a441b4e206fba2aa4">Parser::ahead()</a> which must be a <code class="param">tag</code>. </p>
 <p>Issue error with <code class="param">ctxt</code> otherwise. </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00119">119</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00121">121</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">References <a class="el" href="parser_8h_source.html#l00101">ahead()</a>, and <a class="el" href="parser_8h_source.html#l00104">lex()</a>.</p>
+<p class="reference">References <a class="el" href="parser_8h_source.html#l00103">ahead()</a>, and <a class="el" href="parser_8h_source.html#l00106">lex()</a>.</p>
 
 </div>
 </div>
@@ -613,7 +613,7 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00059">59</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">References <a class="el" href="parser_8h_source.html#l00101">ahead()</a>, <a class="el" href="parser_8h_source.html#l00239">ahead_</a>, and <a class="el" href="parser_8h_source.html#l00240">curr_</a>.</p>
+<p class="reference">References <a class="el" href="parser_8h_source.html#l00103">ahead()</a>, <a class="el" href="parser_8h_source.html#l00241">ahead_</a>, and <a class="el" href="parser_8h_source.html#l00242">curr_</a>.</p>
 
 </div>
 </div>
@@ -644,11 +644,11 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 
 <p>Invoke <a class="el" href="classfe_1_1Lexer.html" title="The blueprint for a lexer with a buffer of K tokens to peek into the future (Lexer::ahead).">Lexer</a> to retrieve next Token. </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00104">104</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00106">106</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">References <a class="el" href="parser_8h_source.html#l00101">ahead()</a>, <a class="el" href="parser_8h_source.html#l00239">ahead_</a>, <a class="el" href="parser_8h_source.html#l00240">curr_</a>, and <a class="el" href="parser_8h_source.html#l00104">lex()</a>.</p>
+<p class="reference">References <a class="el" href="parser_8h_source.html#l00103">ahead()</a>, <a class="el" href="parser_8h_source.html#l00241">ahead_</a>, <a class="el" href="parser_8h_source.html#l00242">curr_</a>, and <a class="el" href="parser_8h_source.html#l00106">lex()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00112">accept()</a>, <a class="el" href="parser_8h_source.html#l00134">eat()</a>, <a class="el" href="parser_8h_source.html#l00127">expect()</a>, <a class="el" href="parser_8h_source.html#l00119">expect()</a>, <a class="el" href="parser_8h_source.html#l00104">lex()</a>, and <a class="el" href="parser_8h_source.html#l00184">recover()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00114">accept()</a>, <a class="el" href="parser_8h_source.html#l00136">eat()</a>, <a class="el" href="parser_8h_source.html#l00129">expect()</a>, <a class="el" href="parser_8h_source.html#l00121">expect()</a>, <a class="el" href="parser_8h_source.html#l00106">lex()</a>, and <a class="el" href="parser_8h_source.html#l00186">recover()</a>.</p>
 
 </div>
 </div>
@@ -686,11 +686,11 @@ template&lt;std::predicate&lt; Tag &gt; P&gt; </div>
 <p><a class="el" href="#a5d4335bae86e3127fbf5b42fb0fcd3e7" title="Invoke Lexer to retrieve next Token.">Parser::lex</a> all Tokens whose Tag satisfies <code class="param">pred</code> and that are not <a class="el" href="#a46ecd5e875f8f85a493813e2c76cb8ac" title="Is tag anchored by an enclosing context?">Parser::anchored</a>; report each one as <span class="tt">S::unanchored_err</span>. </p>
 <p>This turns an otherwise fatal Token into a mere error message and keeps the current parser going. </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00184">184</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00186">186</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">References <a class="el" href="parser_8h_source.html#l00101">ahead()</a>, <a class="el" href="parser_8h_source.html#l00178">anchored()</a>, and <a class="el" href="parser_8h_source.html#l00104">lex()</a>.</p>
+<p class="reference">References <a class="el" href="parser_8h_source.html#l00103">ahead()</a>, <a class="el" href="parser_8h_source.html#l00180">anchored()</a>, and <a class="el" href="parser_8h_source.html#l00106">lex()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00190">recover()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00192">recover()</a>.</p>
 
 </div>
 </div>
@@ -725,9 +725,9 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 
 <p>As above but only recovers from <code class="param">tag</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00190">190</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00192">192</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">References <a class="el" href="parser_8h_source.html#l00184">recover()</a>.</p>
+<p class="reference">References <a class="el" href="parser_8h_source.html#l00186">recover()</a>.</p>
 
 </div>
 </div>
@@ -763,9 +763,9 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 <p>As above but uses <a class="el" href="#af07368e3fabbf75a441b4e206fba2aa4">Parser::ahead</a> as <code class="param">tok</code>. </p>
 <dl class="section note"><dt>Note</dt><dd><span class="tt">decltype(auto)</span>, so an override of the funnel above may yield something else - or nothing. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00213">213</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00215">215</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">References <a class="el" href="parser_8h_source.html#l00101">ahead()</a>.</p>
+<p class="reference">References <a class="el" href="parser_8h_source.html#l00103">ahead()</a>.</p>
 
 </div>
 </div>
@@ -806,9 +806,9 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 <p><a class="el" href="#ab01ccf1dc21df6abc1df96282174e9f4" title="Parser::lex Parser::ahead() which must be a tag.">Parser::expect</a> did not find <code class="param">what</code> while parsing <code class="param">ctxt</code>. </p>
 <p>Backtick <code class="param">what</code> yourself if it is a literal token rather than a phrase. </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00204">204</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00206">206</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">References <a class="el" href="error_8h_source.html#l00103">fe::Error::e()</a>, and <a class="el" href="parser_8h_source.html#l00199">error()</a>.</p>
+<p class="reference">References <a class="el" href="error_8h_source.html#l00103">fe::Error::e()</a>, and <a class="el" href="parser_8h_source.html#l00201">error()</a>.</p>
 
 </div>
 </div>
@@ -843,9 +843,9 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 
 <p>As above but spells <code class="param">tag</code> out via <a class="el" href="#a729e065306271ccbfdf2b74ca8223932" title="Spells tag out via Tok::tag2str if there is one - a bare enumerator would render as its number.">Parser::tag2str_</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00218">218</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00220">220</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">References <a class="el" href="parser_8h_source.html#l00101">ahead()</a>, and <a class="el" href="parser_8h_source.html#l00232">tag2str_()</a>.</p>
+<p class="reference">References <a class="el" href="parser_8h_source.html#l00103">ahead()</a>, and <a class="el" href="parser_8h_source.html#l00234">tag2str_()</a>.</p>
 
 </div>
 </div>
@@ -876,9 +876,9 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 
 <p>Spells <code class="param">tag</code> out via <span class="tt">Tok::tag2str</span> if there is one - a bare enumerator would render as its number. </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00232">232</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00234">234</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00218">syntax_err()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00220">syntax_err()</a>.</p>
 
 </div>
 </div>
@@ -909,9 +909,9 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 
 <p>Factory method to build a <a class="el" href="classfe_1_1Parser_1_1Tracker.html">Parser::Tracker</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00093">93</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00095">95</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">References <a class="el" href="parser_8h_source.html#l00101">ahead()</a>, and <a class="el" href="parser_8h_source.html#l00240">curr_</a>.</p>
+<p class="reference">References <a class="el" href="parser_8h_source.html#l00103">ahead()</a>, and <a class="el" href="parser_8h_source.html#l00242">curr_</a>.</p>
 
 </div>
 </div>
@@ -940,9 +940,9 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00095">95</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00097">97</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">References <a class="el" href="loc_8h_source.html#l00096">fe::Loc::begin</a>, and <a class="el" href="parser_8h_source.html#l00240">curr_</a>.</p>
+<p class="reference">References <a class="el" href="loc_8h_source.html#l00096">fe::Loc::begin</a>, and <a class="el" href="parser_8h_source.html#l00242">curr_</a>.</p>
 
 </div>
 </div>
@@ -973,9 +973,9 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 
 <p>As above but start tracking at <code class="param">begin</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00094">94</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00096">96</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">References <a class="el" href="parser_8h_source.html#l00240">curr_</a>.</p>
+<p class="reference">References <a class="el" href="parser_8h_source.html#l00242">curr_</a>.</p>
 
 </div>
 </div>
@@ -1010,9 +1010,9 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 
 <p><a class="el" href="#a41e9d9c41ad8485c8cd8f45405953e43" title="Parser::lex all Tokens whose Tag satisfies pred and that are not Parser::anchored; report each one as...">Parser::recover</a> discarded <code class="param">tok</code> while parsing <code class="param">ctxt</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00223">223</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00225">225</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">References <a class="el" href="error_8h_source.html#l00103">fe::Error::e()</a>, and <a class="el" href="parser_8h_source.html#l00199">error()</a>.</p>
+<p class="reference">References <a class="el" href="error_8h_source.html#l00103">fe::Error::e()</a>, and <a class="el" href="parser_8h_source.html#l00201">error()</a>.</p>
 
 </div>
 </div>
@@ -1039,9 +1039,9 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00239">239</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00241">241</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00101">ahead()</a>, <a class="el" href="parser_8h_source.html#l00059">init()</a>, and <a class="el" href="parser_8h_source.html#l00104">lex()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00103">ahead()</a>, <a class="el" href="parser_8h_source.html#l00059">init()</a>, and <a class="el" href="parser_8h_source.html#l00106">lex()</a>.</p>
 
 </div>
 </div>
@@ -1067,9 +1067,9 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00241">241</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00243">243</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00178">anchored()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00180">anchored()</a>.</p>
 
 </div>
 </div>
@@ -1095,9 +1095,9 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00240">240</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00242">242</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00059">init()</a>, <a class="el" href="parser_8h_source.html#l00104">lex()</a>, <a class="el" href="parser_8h_source.html#l00093">tracker()</a>, <a class="el" href="parser_8h_source.html#l00095">tracker()</a>, and <a class="el" href="parser_8h_source.html#l00094">tracker()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00059">init()</a>, <a class="el" href="parser_8h_source.html#l00106">lex()</a>, <a class="el" href="parser_8h_source.html#l00095">tracker()</a>, <a class="el" href="parser_8h_source.html#l00097">tracker()</a>, and <a class="el" href="parser_8h_source.html#l00096">tracker()</a>.</p>
 
 </div>
 </div>
