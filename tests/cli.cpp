@@ -286,7 +286,7 @@ Options:
 
 Output:
   -o, --output <file>   Where to write the result.
-      --gutter <width>  Column width. [default: 5]
+      --gutter <width>  Column width. [default: `5`]
 
 Bye.
 )");

@@ -204,7 +204,7 @@ void Cli::help(std::ostream& os) const {
         }
 
         auto descr = o.descr;
-        if (!o.dflt.empty()) descr += std::format("{}[default: {}]", descr.empty() ? "" : " ", o.dflt);
+        if (!o.dflt.empty()) descr += std::format("{}[default: `{}`]", descr.empty() ? "" : " ", o.dflt);
         tail(o.width() + 2, descr);
     };
 
