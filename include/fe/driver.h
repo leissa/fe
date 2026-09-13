@@ -65,11 +65,9 @@ public:
 
     /// Interns @p dbg and yields its DbgKey.
     DbgKey dbg(Dbg dbg) {
-        if (auto i = dbg2key_.find(dbg); i != dbg2key_.end()) return DbgKey(i->second);
-        auto key = uint32_t(dbgs_.size());
-        dbgs_.emplace_back(dbg);
-        dbg2key_.emplace(dbg, key);
-        return DbgKey(key);
+        auto [i, fresh] = dbg2key_.try_emplace(dbg, uint32_t(dbgs_.size()));
+        if (fresh) dbgs_.emplace_back(dbg);
+        return DbgKey(i->second);
     }
     ///@}
 

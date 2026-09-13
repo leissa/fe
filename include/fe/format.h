@@ -32,10 +32,8 @@ public:
         : f_(std::move(f)) {}
 
     friend std::ostream& operator<<(std::ostream& os, StreamFn const& s) {
-        if constexpr (std::same_as<std::invoke_result_t<F const&, std::ostream&>, std::ostream&>)
-            return std::invoke(s.f_, os);
-        else
-            return std::invoke(s.f_, os), os;
+        std::invoke(s.f_, os);
+        return os;
     }
 
 private:

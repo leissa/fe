@@ -11,11 +11,12 @@
 namespace fe {
 
 std::ostream& operator<<(std::ostream& os, Diag::Tag tag) {
+    os << Diag::tag2color(tag);
     // clang-format off
     switch (tag) {
-        case Diag::Tag::E: return os << term::FG::Red     << "error";
-        case Diag::Tag::W: return os << term::FG::Magenta << "warning";
-        case Diag::Tag::N: return os << term::FG::Green   << "note";
+        case Diag::Tag::E: return os << "error";
+        case Diag::Tag::W: return os << "warning";
+        case Diag::Tag::N: return os << "note";
         default: unreachable();
     }
     // clang-format on
@@ -35,27 +36,22 @@ term::FG Diag::tag2color(Tag tag) {
 Diag::~Diag() = default;
 
 void Diag::loc(std::ostream& os, Loc loc) const {
-    auto src = loc.src;
-    if (loc_style == Loc::Style::Full || !loc || !src || !src->contains(loc.begin)) {
-        os << loc;
-        return;
+    // Src::rowcol yields row 0 for anything it cannot resolve, which is where the raw Loc takes over.
+    if (auto src = loc.src; loc_style != Loc::Style::Full && src) {
+        if (auto [row, col] = src->rowcol(loc.begin); row != 0) {
+            auto path = src->path().string();
+            // clang-format off
+            switch (loc_style) {
+                case Loc::Style::RowCol: os << path << ':' << row << ':' << col;        return;
+                case Loc::Style::Row:    os << path << ':' << row;                      return;
+                case Loc::Style::MSVC:   os << path << '(' << row << ',' << col << ')'; return;
+                default: unreachable();
+            }
+            // clang-format on
+        }
     }
 
-    auto [row, col] = src->rowcol(loc.begin);
-    if (row == 0) {
-        os << loc;
-        return;
-    }
-
-    auto path = src->path().string();
-    // clang-format off
-    switch (loc_style) {
-        case Loc::Style::RowCol: os << path << ':' << row << ':' << col;         break;
-        case Loc::Style::Row:    os << path << ':' << row;                       break;
-        case Loc::Style::MSVC:   os << path << '(' << row << ',' << col << ')';  break;
-        default: unreachable();
-    }
-    // clang-format on
+    os << loc;
 }
 
 /// Streamed piecewise instead of via std::format: a std::formatter cannot see its destination stream,
@@ -102,9 +98,8 @@ std::string Diag::render(const std::function<std::string()>& fmt) const {
 }
 
 std::string CodeDiag::render(const std::function<std::string()>& fmt) const {
-    auto str = fmt();
     auto oss = std::ostringstream();
-    term::render_cite(oss, str);
+    term::render_cite(oss, fmt(), term::use_color(oss));
     return oss.str();
 }
 

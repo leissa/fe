@@ -8,36 +8,6 @@
 
 namespace fe {
 
-namespace {
-
-/// Streams @p row of the source and a caret run underlining the code points in `[begin, end)`.
-void stream_row(std::ostream& os,
-                std::string_view line,
-                uint32_t row,
-                size_t begin,
-                size_t end,
-                term::FG color,
-                uint32_t gutter) {
-    os << term::FG::Gray << std::format("{:>{}} | ", row, gutter) << term::FG::Reset << line << '\n';
-    if (end <= begin) return;
-
-    os << term::FG::Gray << std::format("{:>{}} | ", "", gutter) << color;
-
-    // One blank per *code point*, since that is what a column counts;
-    // a tab is echoed rather than blanked, or the carets drift by its width.
-    for (size_t i = 0, c = 0; c != begin && i < line.size(); ++c) {
-        bool tab = line[i] == '\t';
-        utf8::decode(line, i);
-        os << (tab ? '\t' : ' ');
-    }
-    for (size_t i = begin; i != end; ++i)
-        os << '^';
-
-    os << term::FG::Reset << '\n';
-}
-
-} // namespace
-
 std::ostream& operator<<(std::ostream& os, const Snippet& snippet) {
     auto [loc, color, gutter, max_rows] = snippet;
 
@@ -48,6 +18,24 @@ std::ostream& operator<<(std::ostream& os, const Snippet& snippet) {
     auto [last_row, last_col]   = src->rowcol(src->prev(loc.end));
     if (first_row == 0) return os;
     if (last_row < first_row) last_row = first_row, last_col = first_col;
+
+    // Streams one source row and a caret run underlining the code points in `[begin, end)`.
+    auto stream_row = [&](std::string_view line, uint32_t row, size_t begin, size_t end) {
+        os << term::FG::Gray << std::format("{:>{}} | ", row, gutter) << term::FG::Reset << line << '\n';
+        os << term::FG::Gray << std::format("{:>{}} | ", "", gutter) << color;
+
+        // One blank per *code point*, since that is what a column counts;
+        // a tab is echoed rather than blanked, or the carets drift by its width.
+        for (size_t i = 0, c = 0; c != begin && i < line.size(); ++c) {
+            bool tab = line[i] == '\t';
+            utf8::decode(line, i);
+            os << (tab ? '\t' : ' ');
+        }
+        for (size_t i = begin; i != end; ++i)
+            os << '^';
+
+        os << term::FG::Reset << '\n';
+    };
 
     for (auto row = first_row; row <= last_row; ++row) {
         if (max_rows != 0 && last_row - first_row + 1 > max_rows && row == first_row + max_rows / 2) {
@@ -61,7 +49,7 @@ std::ostream& operator<<(std::ostream& os, const Snippet& snippet) {
         auto end   = std::min(row == last_row ? size_t(last_col) : len, len);
 
         // A Loc past the end of the line - what a missing token points at - still gets its caret there.
-        stream_row(os, line, row, begin, std::max(end, begin + 1), color, gutter);
+        stream_row(line, row, begin, std::max(end, begin + 1));
     }
 
     return os;

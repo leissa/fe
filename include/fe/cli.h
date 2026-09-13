@@ -178,9 +178,7 @@ private:
         bool is_arg() const { return sname.empty() && lname.empty(); }
         bool takes_value() const { return !hint.empty(); }
         std::string_view kind() const { return is_arg() ? "argument" : "option"; }
-        std::string_view label() const {
-            return !lname.empty() ? lname : !sname.empty() ? std::string_view(sname) : std::string_view(hint);
-        }
+        std::string_view label() const { return !lname.empty() ? lname : sname.empty() ? hint : sname; }
 
         std::string sname, lname, hint, descr, grp, dflt;
         std::function<std::string(std::string_view)> set;

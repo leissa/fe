@@ -9,8 +9,6 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <string_view>
-#include <type_traits>
 #include <utility>
 #include <vector>
 
@@ -90,7 +88,18 @@ public:
     /// Records the message @p fmt renders; see Diag::render.
     /// @p tag must be Tag::Error or Tag::Warn - a Tag::Note belongs to Error::note.
     Error& msg(Loc loc, Tag tag, const std::function<std::string()>& fmt) {
-        msg_(loc, tag, fmt);
+        assert(tag != Tag::N && "a note belongs to Error::note");
+        const auto& d = diag();
+        if (tag == Tag::W && d.werror) tag = Tag::E;
+
+        if (tag == Tag::E && d.max_errors != 0 && num_errors() >= d.max_errors) {
+            truncated_ = dropped_ = true;
+            return *this;
+        }
+
+        dropped_ = false;
+        ++num_[size_t(tag)];
+        msgs_.emplace_back(loc, tag, d.render(fmt));
         return *this;
     }
 
@@ -98,8 +107,7 @@ public:
     /// The backticks of @p s delimit a `` `citation` ``; those of an argument are data and get escaped - see Cite.
     /// @note Formats via `std::vformat` because Diag::render may render @p s more than once.
     template<class... Args> Error& msg(Loc loc, Tag tag, cite_string<Args...> s, Args&&... args) {
-        msg_(loc, tag, [&] { return term::detail::vformat_cite(s.get(), args...); });
-        return *this;
+        return msg(loc, tag, [&] { return term::detail::vformat_cite(s.get(), args...); });
     }
 
     template<class... Args> Error& e(Loc loc, cite_string<Args...> s, Args&&... args) { return msg(loc, Tag::E, s, std::forward<Args>(args)...); }
@@ -180,21 +188,6 @@ private:
 
     /// Loc of the Msg that subsequent Note%s belong to.
     Loc primary_loc_() const { return msgs_.empty() ? Loc() : msgs_.back().loc; }
-
-    void msg_(Loc loc, Tag tag, const std::function<std::string()>& fmt) {
-        assert(tag != Tag::N && "a note belongs to Error::note");
-        const auto& d = diag();
-        if (tag == Tag::W && d.werror) tag = Tag::E;
-
-        if (tag == Tag::E && d.max_errors != 0 && num_errors() >= d.max_errors) {
-            truncated_ = dropped_ = true;
-            return;
-        }
-
-        dropped_ = false;
-        ++num_[size_t(tag)];
-        msgs_.emplace_back(loc, tag, d.render(fmt));
-    }
 
     void note_(Loc loc, const std::function<std::string()>& fmt) {
         if (dropped_) return;

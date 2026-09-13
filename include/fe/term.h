@@ -1,6 +1,5 @@
 #pragma once
 
-#include <concepts>
 #include <cstdlib>
 #include <cstring>
 
@@ -218,6 +217,21 @@ inline size_t raw_width(std::string_view str, size_t begin, size_t end) noexcept
     return width;
 }
 
+/// Splits @p str into its `` `citation` `` markup and invokes `f(begin, end, cited)` on each piece;
+/// an unpaired backtick is no citation. This is the one place that knows the grammar.
+template<class F>
+void scan_cite(std::string_view str, F&& f) {
+    for (size_t i = 0, e = str.size(); i != e;) {
+        auto l = tick(str, i);
+        auto r = l == std::string_view::npos ? l : tick(str, l + 1);
+        if (r == std::string_view::npos) return f(i, e, false);
+
+        f(i, l, false);
+        f(l + 1, r, true);
+        i = r + 1;
+    }
+}
+
 } // namespace detail
 
 /// Returns the current terminal color mode.
@@ -389,26 +403,16 @@ Cited format_cite(cite_string<Args...> fmt, Args&&... args) {
 /// fe::CodeDiag renders a diagnostic message with; use it to apply the same convention elsewhere, e.g.
 /// fe::Cli::help.
 inline void render_cite(std::ostream& os, std::string_view str, bool color) {
-    for (size_t i = 0, e = str.size(); i != e;) {
-        auto l = detail::tick(str, i);
-        auto r = l == std::string_view::npos ? l : detail::tick(str, l + 1);
-        if (r == std::string_view::npos) { // unpaired: not a citation
-            detail::stream_raw(os, str, i, e);
-            break;
-        }
+    // Written out instead of streaming an FG: @p color has already decided, whereas operator<< would
+    // ask @p os again - and a detached buffer answers differently than the stream it ends up on.
+    auto open  = color ? detail::sgr(FG::Cyan) : std::string_view("`");
+    auto close = color ? detail::sgr(FG::Reset) : std::string_view("`");
 
-        detail::stream_raw(os, str, i, l);
-        if (color)
-            os << FG::Cyan;
-        else
-            os << '`';
-        detail::stream_raw(os, str, l + 1, r);
-        if (color)
-            os << FG::Reset;
-        else
-            os << '`';
-        i = r + 1;
-    }
+    detail::scan_cite(str, [&](size_t begin, size_t end, bool cited) {
+        if (cited) os << open;
+        detail::stream_raw(os, str, begin, end);
+        if (cited) os << close;
+    });
 }
 
 /// As above but lets @p os decide the coloring; mirrors cite_width.
@@ -418,22 +422,9 @@ inline void render_cite(std::ostream& os, std::string_view str) { render_cite(os
 /// `str.size()` by the backticks/backslashes render_cite drops.
 inline size_t cite_width(std::string_view str, bool color) {
     size_t width = 0;
-
-    for (size_t i = 0, e = str.size(); i != e;) {
-        auto l = detail::tick(str, i);
-        auto r = l == std::string_view::npos ? l : detail::tick(str, l + 1);
-        if (r == std::string_view::npos) { // unpaired: not a citation
-            width += detail::raw_width(str, i, e);
-            break;
-        }
-
-        width += detail::raw_width(str, i, l);
-        width += color ? 0 : 1;
-        width += detail::raw_width(str, l + 1, r);
-        width += color ? 0 : 1;
-        i = r + 1;
-    }
-
+    detail::scan_cite(str, [&](size_t begin, size_t end, bool cited) {
+        width += detail::raw_width(str, begin, end) + (cited && !color ? 2 : 0); // the backticks stay
+    });
     return width;
 }
 

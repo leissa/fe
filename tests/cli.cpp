@@ -9,15 +9,10 @@ using namespace std::literals;
 
 namespace {
 
-struct Args {
-    Args(std::initializer_list<const char*> args)
-        : argv(args) {}
-
-    int argc() const { return int(argv.size()); }
-    const char* const* data() const { return argv.data(); }
-
-    std::vector<const char*> argv;
-};
+std::optional<std::string> parse(fe::Cli& cli, std::initializer_list<const char*> args) {
+    auto argv = std::vector<const char*>(args);
+    return cli.parse(int(argv.size()), argv.data());
+}
 
 } // namespace
 
@@ -29,31 +24,23 @@ TEST_CASE("cli flags") {
     auto cli = fe::Cli("t").opt(a, "-a").opt(b, "-b", "--bee").opt(c, "-c").opt(inc, "", "-V", "--verbose");
 
     SUBCASE("long and short") {
-        auto args = Args{"t", "-a", "--bee"};
-        CHECK(!cli.parse(args.argc(), args.data()));
+        CHECK(!parse(cli, {"t", "-a", "--bee"}));
         CHECK(a);
         CHECK(b);
         CHECK(!c);
     }
 
     SUBCASE("clustered") {
-        auto args = Args{"t", "-ac", "-VVV"};
-        CHECK(!cli.parse(args.argc(), args.data()));
+        CHECK(!parse(cli, {"t", "-ac", "-VVV"}));
         CHECK(a);
         CHECK(!b);
         CHECK(c);
         CHECK(n == 3);
     }
 
-    SUBCASE("a flag takes no value") {
-        auto args = Args{"t", "--bee=1"};
-        CHECK(cli.parse(args.argc(), args.data()) == "option '--bee' does not take a value");
-    }
+    SUBCASE("a flag takes no value") { CHECK(parse(cli, {"t", "--bee=1"}) == "option '--bee' does not take a value"); }
 
-    SUBCASE("unknown") {
-        auto args = Args{"t", "--nope"};
-        CHECK(cli.parse(args.argc(), args.data()) == "unknown option '--nope'");
-    }
+    SUBCASE("unknown") { CHECK(parse(cli, {"t", "--nope"}) == "unknown option '--nope'"); }
 }
 
 TEST_CASE("cli values") {
@@ -72,8 +59,7 @@ TEST_CASE("cli values") {
                    .opt(set_mode, "mode", "", "--mode");
 
     SUBCASE("separate, attached, and =") {
-        auto args = Args{"t", "-o", "x.txt", "-n7", "--mode=tree", "-p", "a", "-p", "b", "-g", "1", "-g", "2"};
-        CHECK(!cli.parse(args.argc(), args.data()));
+        CHECK(!parse(cli, {"t", "-o", "x.txt", "-n7", "--mode=tree", "-p", "a", "-p", "b", "-g", "1", "-g", "2"}));
         CHECK(out == "x.txt");
         CHECK(num == 7);
         CHECK(mode == "tree");
@@ -82,15 +68,11 @@ TEST_CASE("cli values") {
     }
 
     SUBCASE("a value may look like an option") {
-        auto args = Args{"t", "-o", "-"};
-        CHECK(!cli.parse(args.argc(), args.data()));
+        CHECK(!parse(cli, {"t", "-o", "-"}));
         CHECK(out == "-");
     }
 
-    SUBCASE("missing value") {
-        auto args = Args{"t", "--output"};
-        CHECK(cli.parse(args.argc(), args.data()) == "option '--output' requires a value <file>");
-    }
+    SUBCASE("missing value") { CHECK(parse(cli, {"t", "--output"}) == "option '--output' requires a value <file>"); }
 
     SUBCASE("a handler may reject a value") {
         std::string mode2;
@@ -100,19 +82,14 @@ TEST_CASE("cli values") {
             return {};
         };
         auto cli2 = fe::Cli("t").opt(pick, "mode", "", "--mode");
-        auto ok   = Args{"t", "--mode", "tree"};
-        auto bad  = Args{"t", "--mode", "nope"};
-        CHECK(!cli2.parse(ok.argc(), ok.data()));
+        CHECK(!parse(cli2, {"t", "--mode", "tree"}));
         CHECK(mode2 == "tree");
 
         auto cli3 = fe::Cli("t").opt(pick, "mode", "", "--mode");
-        CHECK(cli3.parse(bad.argc(), bad.data()) == "option '--mode': 'nope' is not a mode");
+        CHECK(parse(cli3, {"t", "--mode", "nope"}) == "option '--mode': 'nope' is not a mode");
     }
 
-    SUBCASE("not a number") {
-        auto args = Args{"t", "--num", "3x"};
-        CHECK(cli.parse(args.argc(), args.data()) == "option '--num': '3x' is not a number");
-    }
+    SUBCASE("not a number") { CHECK(parse(cli, {"t", "--num", "3x"}) == "option '--num': '3x' is not a number"); }
 }
 
 TEST_CASE("cli args") {
@@ -122,63 +99,55 @@ TEST_CASE("cli args") {
     SUBCASE("one positional") {
         bool flag = false;
         auto cli  = fe::Cli("t").opt(flag, "-f").arg(in, "file");
-        auto args = Args{"t", "-f", "in.txt"};
-        CHECK(!cli.parse(args.argc(), args.data()));
+        CHECK(!parse(cli, {"t", "-f", "in.txt"}));
         CHECK(in == "in.txt");
         CHECK(flag);
     }
 
     SUBCASE("too many positionals") {
-        auto cli  = fe::Cli("t").arg(in, "file");
-        auto args = Args{"t", "a", "b"};
-        CHECK(cli.parse(args.argc(), args.data()) == "unexpected argument 'b'");
+        auto cli = fe::Cli("t").arg(in, "file");
+        CHECK(parse(cli, {"t", "a", "b"}) == "unexpected argument 'b'");
     }
 
     SUBCASE("-- ends option processing") {
         bool flag = false;
         auto cli  = fe::Cli("t").opt(flag, "-f").arg(in, "file");
-        auto args = Args{"t", "--", "-f"};
-        CHECK(!cli.parse(args.argc(), args.data()));
+        CHECK(!parse(cli, {"t", "--", "-f"}));
         CHECK(in == "-f");
         CHECK(!flag);
     }
 
     SUBCASE("a rejected positional is an argument, not an option") {
-        int num   = 0;
-        auto cli  = fe::Cli("t").arg(num, "num");
-        auto args = Args{"t", "3x"};
-        CHECK(cli.parse(args.argc(), args.data()) == "argument 'num': '3x' is not a number");
+        int num  = 0;
+        auto cli = fe::Cli("t").arg(num, "num");
+        CHECK(parse(cli, {"t", "3x"}) == "argument 'num': '3x' is not a number");
     }
 
     SUBCASE("a vector soaks up the rest") {
-        auto cli  = fe::Cli("t").arg(in, "first").arg(rest, "more");
-        auto args = Args{"t", "a", "b", "c"};
-        CHECK(!cli.parse(args.argc(), args.data()));
+        auto cli = fe::Cli("t").arg(in, "first").arg(rest, "more");
+        CHECK(!parse(cli, {"t", "a", "b", "c"}));
         CHECK(in == "a");
         CHECK(rest == std::vector{"b"s, "c"s});
     }
 }
 
 TEST_CASE("cli cardinality") {
-    int n     = 0;
-    auto inc  = [&](bool) { ++n; };
-    auto cli  = fe::Cli("t").opt(inc, "", "-V").cardinality(1, 2);
-    auto none = Args{"t"};
-    auto many = Args{"t", "-VVV"};
+    int n    = 0;
+    auto inc = [&](bool) { ++n; };
+    auto cli = fe::Cli("t").opt(inc, "", "-V").cardinality(1, 2);
 
-    CHECK(cli.parse(none.argc(), none.data()) == "missing option '-V'");
+    CHECK(parse(cli, {"t"}) == "missing option '-V'");
 
     auto cli2 = fe::Cli("t").opt(inc, "", "-V").cardinality(1, 2);
-    CHECK(cli2.parse(many.argc(), many.data()) == "option '-V' must not occur more than 2 times");
+    CHECK(parse(cli2, {"t", "-VVV"}) == "option '-V' must not occur more than 2 times");
 
     std::string in;
     auto cli3 = fe::Cli("t").arg(in, "file").cardinality(1, 1);
-    CHECK(cli3.parse(none.argc(), none.data()) == "missing argument 'file'");
+    CHECK(parse(cli3, {"t"}) == "missing argument 'file'");
 
     std::vector<std::string> rest;
-    auto cli4  = fe::Cli("t").arg(rest, "file").cardinality(0, 2);
-    auto three = Args{"t", "a", "b", "c"};
-    CHECK(cli4.parse(three.argc(), three.data()) == "argument 'file' must not occur more than 2 times");
+    auto cli4 = fe::Cli("t").arg(rest, "file").cardinality(0, 2);
+    CHECK(parse(cli4, {"t", "a", "b", "c"}) == "argument 'file' must not occur more than 2 times");
 }
 
 TEST_CASE("cli section") {
@@ -248,20 +217,17 @@ TEST_CASE("cli help") {
                    .arg(in, "file", "Input file.")
                    .epilog("Bye.");
 
-    auto args = Args{"t", "--help"};
-    CHECK(!cli.parse(args.argc(), args.data()));
+    CHECK(!parse(cli, {"t", "--help"}));
     CHECK(show_help);
 
     SUBCASE("the help flag may be renamed") {
         bool h2   = false;
         auto cli2 = fe::Cli("t").help(h2, "-?", "--usage");
-        auto ren  = Args{"t", "-?"};
-        CHECK(!cli2.parse(ren.argc(), ren.data()));
+        CHECK(!parse(cli2, {"t", "-?"}));
         CHECK(h2);
 
         auto cli3 = fe::Cli("t").help(h2, "-?", "--usage");
-        auto old  = Args{"t", "--help"};
-        CHECK(cli3.parse(old.argc(), old.data()) == "unknown option '--help'");
+        CHECK(parse(cli3, {"t", "--help"}) == "unknown option '--help'");
 
         auto guard = fe::term::ScopedMode(fe::term::Mode::Never);
         std::ostringstream oss;
