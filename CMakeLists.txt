@@ -22,8 +22,8 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     include(CTest) # defines BUILD_TESTING
 endif()
 
-# fe::Diag - and hence fe::Driver and fe::Error - plus fe::Snippet, fe::dl, fe::sys, and fe::Profiler
-# need a translation unit of their own; everything else stays header-only either way.
+# fe::Diag - and hence fe::Driver and fe::Error - plus fe::Snippet, fe::dl, fe::sys, fe::Profiler, and the
+# color mode of fe::term need a translation unit of their own; everything else stays header-only either way.
 option(FE_LIB "If ON, build fe-lib with the components that are not header-only." ON)
 
 add_library(fe INTERFACE)
@@ -102,6 +102,7 @@ if(FE_LIB)
             src/fe/profile.cpp
             src/fe/snippet.cpp
             src/fe/sys.cpp
+            src/fe/term.cpp
     )
     target_link_libraries(fe-lib
         PUBLIC

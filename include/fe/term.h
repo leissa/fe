@@ -1,9 +1,5 @@
 #pragma once
 
-#include <cstdlib>
-#include <cstring>
-
-#include <atomic>
 #include <iostream>
 #include <iterator>
 #include <optional>
@@ -25,6 +21,7 @@
 #    include <unistd.h>
 #endif
 
+#include "fe/api.h"
 #include "fe/assert.h"
 #include "fe/format.h"
 #include "fe/restore.h"
@@ -47,6 +44,9 @@
 /// @ref fe::term::Mode::Auto to "no color".
 /// If you emit colors this way, call @ref fe::term::resolve_mode once at startup to decide
 /// @ref fe::term::Mode::Auto up front based on a representative stream.
+///
+/// The mode and @ref fe::term::auto_detached live in the fe library rather than in this header, so a
+/// shared library loaded via fe::dl sees whatever the host set instead of starting over from the defaults.
 ///
 /// Use @ref fe::term::use_color to branch on whether color will actually be emitted, e.g. to keep a
 /// plain-text fallback in sync with the colored rendering.
@@ -80,33 +80,6 @@ enum class Stream {
     Stdout,
     Stderr,
 };
-
-inline bool env_set(const char* name) noexcept {
-    auto* value = std::getenv(name);
-    return value && *value != '\0';
-}
-
-inline bool env_is(const char* name, const char* expected) noexcept {
-    auto* value = std::getenv(name);
-    return value && std::strcmp(value, expected) == 0;
-}
-
-inline Mode default_mode() noexcept {
-    if (env_set("NO_COLOR")) return Mode::Never;
-    if (env_set("CLICOLOR_FORCE") && !env_is("CLICOLOR_FORCE", "0")) return Mode::Always;
-    if (env_is("CLICOLOR", "0")) return Mode::Never;
-    return Mode::Auto;
-}
-
-inline std::atomic<Mode>& current_mode() noexcept {
-    static std::atomic<Mode> mode(default_mode());
-    return mode;
-}
-
-inline std::atomic<bool>& current_auto_detached() noexcept {
-    static std::atomic<bool> detached(false);
-    return detached;
-}
 
 inline std::streambuf* stdout_rdbuf() noexcept {
     static std::streambuf* buf = std::cout.rdbuf();
@@ -235,14 +208,14 @@ void scan_cite(std::string_view str, F&& f) {
 } // namespace detail
 
 /// Returns the current terminal color mode.
-inline Mode mode() noexcept { return detail::current_mode().load(std::memory_order_relaxed); }
+FE_API Mode mode() noexcept;
 
 /// Whether Mode::Auto emits colors into a detached buffer - anything a `std::formatter` writes into.
 /// @ref resolve_mode is the usual way to decide this.
-inline bool auto_detached() noexcept { return detail::current_auto_detached().load(std::memory_order_relaxed); }
+FE_API bool auto_detached() noexcept;
 
 /// Overrides @ref auto_detached.
-inline void set_auto_detached(bool b) noexcept { detail::current_auto_detached().store(b, std::memory_order_relaxed); }
+FE_API void set_auto_detached(bool b) noexcept;
 
 /// Whether color escape sequences are emitted for @p os right now.
 /// In Mode::Auto this is decided by whether @p os refers to a terminal, while a detached buffer
@@ -281,7 +254,7 @@ inline std::optional<size_t> width(std::ostream& os) noexcept {
 }
 
 /// Overrides the current terminal color mode.
-inline void set_mode(Mode m) noexcept { detail::current_mode().store(m, std::memory_order_relaxed); }
+FE_API void set_mode(Mode m) noexcept;
 
 /// Overrides the color mode for the duration of the scope.
 /// @warning The mode is global, so this affects every stream - and every thread - while it is alive.
