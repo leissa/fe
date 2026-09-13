@@ -16,7 +16,7 @@
 [TOC]
 
 **FE** is a C++23 toolkit for building handwritten compiler and interpreter frontends.
-Most of it is header-only; the handful of components that need a translation unit of their own come with `FE_LIB`, which is on by default.
+Most of it is header-only; the handful of components that need a translation unit of their own live in `fe-lib`.
 
 Rather than generating lexers or parsers for you, FE focuses on the infrastructure that every frontend needs anyway: source locations, diagnostics, interning, parsing support, command-line handling, and efficient memory management.
 The goal is simple: keep handwritten frontends lightweight, explicit, and pleasant to maintain.
@@ -96,7 +96,7 @@ It provides a compact set of reusable, well-integrated components:
 
 ### Building Blocks
 
-Header-only, except for what [Requires `FE_LIB`](#requires-fe_lib) lists below.
+Header-only, except for what [Requires `fe-lib`](#requires-fe-lib) lists below.
 
 #### Core
 
@@ -149,7 +149,7 @@ Header-only, except for what [Requires `FE_LIB`](#requires-fe_lib) lists below.
 - `fe::Restore` for RAII save/restore of a variable - or of anything a getter/setter pair reaches, like `term::ScopedMode` - across a scope.
 - `fe/algo.h` and `fe/container.h` for the odds and ends every frontend rewrites otherwise.
 
-### Requires `FE_LIB` {#requires-fe_lib}
+### Requires `fe-lib` {#requires-fe-lib}
 
 These need a translation unit of their own and hence live in `src/fe/`:
 
@@ -158,6 +158,7 @@ These need a translation unit of their own and hence live in `src/fe/`:
 - `fe::Snippet` for the underlined source excerpt below a diagnostic.
 - `fe::dl` and `fe::sys` for loading dynamic libraries and locating/running external commands.
 - `fe::Profiler` for nested wall-clock spans reported as a flat table, a tree, or Chrome Trace JSON.
+- `fe::term::mode` and `fe::term::auto_detached` - one setting per process, so a shared library loaded via `fe::dl` follows the host instead of starting over from the defaults.
 - The default `operator<<`/`dump` of `fe::Pos`/`fe::Loc`.
 
   `fe/loc.h` merely *declares* these.
@@ -202,14 +203,12 @@ target_link_libraries(my_compiler PRIVATE fe)
 Set any of the options below *before* adding the subdirectory:
 
 ```cmake
-set(FE_LIB  OFF) # header-only building blocks only - no fe::Driver, fe::Error, or fe::Diag
 set(FE_ABSL ON) # use Abseil-backed hash containers
 add_subdirectory(submodules/fe)
 target_link_libraries(my_compiler PRIVATE fe)
 ```
 
-`FE_LIB` compiles `src/fe/` along with the headers and is on by default.
-Turn it off to get only the header-only building blocks; you lose the components listed under [Requires `FE_LIB`](#requires-fe_lib).
+If all you want is one self-contained header such as `fe/xtrie.h`, just include it and skip the build altogether.
 
 `fe-lib` is an `OBJECT` library, so its symbols land inside a shared library of *yours*.
 On Windows that shared library has to export them, which CMake cannot infer: compile everything that goes into it with `fe_lib_EXPORTS`, or `FE_STATIC_DEFINE` if there is no shared library in play.
@@ -335,8 +334,6 @@ cmake -S . -B build -DBUILD_TESTING=ON
 cmake --build build
 ctest --test-dir build --output-on-failure
 ```
-
-The tests need `FE_LIB`, which is on by default.
 
 To run one discovered test:
 

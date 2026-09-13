@@ -22,10 +22,6 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     include(CTest) # defines BUILD_TESTING
 endif()
 
-# fe::Diag - and hence fe::Driver and fe::Error - plus fe::Snippet, fe::dl, fe::sys, fe::Profiler, and the
-# color mode of fe::term need a translation unit of their own; everything else stays header-only either way.
-option(FE_LIB "If ON, build fe-lib with the components that are not header-only." ON)
-
 add_library(fe INTERFACE)
 
 target_sources(fe
@@ -89,49 +85,47 @@ endif()
 
 # An OBJECT library so that a consumer can compile it into one shared library of its own;
 # every other consumer then resolves these symbols there instead of carrying a copy.
-if(FE_LIB)
-    add_library(fe-lib OBJECT)
-    target_sources(fe-lib
-        PRIVATE
-            src/fe/cli.cpp
-            src/fe/diag.cpp
-            src/fe/dl.cpp
-            src/fe/driver.cpp
-            src/fe/error.cpp
-            src/fe/loc.cpp
-            src/fe/profile.cpp
-            src/fe/snippet.cpp
-            src/fe/sys.cpp
-            src/fe/term.cpp
-    )
-    target_link_libraries(fe-lib
-        PUBLIC
-            fe
-        PRIVATE
-            ${CMAKE_DL_LIBS}
-    )
-    set_target_properties(fe-lib PROPERTIES POSITION_INDEPENDENT_CODE ON)
+add_library(fe-lib OBJECT)
+target_sources(fe-lib
+    PRIVATE
+        src/fe/cli.cpp
+        src/fe/diag.cpp
+        src/fe/dl.cpp
+        src/fe/driver.cpp
+        src/fe/error.cpp
+        src/fe/loc.cpp
+        src/fe/profile.cpp
+        src/fe/snippet.cpp
+        src/fe/sys.cpp
+        src/fe/term.cpp
+)
+target_link_libraries(fe-lib
+    PUBLIC
+        fe
+    PRIVATE
+        ${CMAKE_DL_LIBS}
+)
+set_target_properties(fe-lib PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
-    # Windows resolves an exported vtable only through __declspec(dllimport); see FE_API on fe::Diag.
-    generate_export_header(fe-lib
-        BASE_NAME FE
-        EXPORT_MACRO_NAME FE_API
-        EXPORT_FILE_NAME ${CMAKE_CURRENT_BINARY_DIR}/include/fe/api.h
-    )
-    # CMake defines <target>_EXPORTS on its own only for a SHARED or MODULE library, so an OBJECT library
-    # leaves it to whoever links it into a shared library of their own.
-    target_compile_definitions(fe-lib PRIVATE fe_lib_EXPORTS)
-    # A standalone build has no shared library to export from.
-    if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-        target_compile_definitions(fe INTERFACE FE_STATIC_DEFINE)
-    endif()
-    target_include_directories(fe INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>)
-
-    install(
-        FILES "${CMAKE_CURRENT_BINARY_DIR}/include/fe/api.h"
-        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/fe"
-    )
+# Windows resolves an exported vtable only through __declspec(dllimport); see FE_API on fe::Diag.
+generate_export_header(fe-lib
+    BASE_NAME FE
+    EXPORT_MACRO_NAME FE_API
+    EXPORT_FILE_NAME ${CMAKE_CURRENT_BINARY_DIR}/include/fe/api.h
+)
+# CMake defines <target>_EXPORTS on its own only for a SHARED or MODULE library, so an OBJECT library
+# leaves it to whoever links it into a shared library of their own.
+target_compile_definitions(fe-lib PRIVATE fe_lib_EXPORTS)
+# A standalone build has no shared library to export from.
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+    target_compile_definitions(fe INTERFACE FE_STATIC_DEFINE)
 endif()
+target_include_directories(fe INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>)
+
+install(
+    FILES "${CMAKE_CURRENT_BINARY_DIR}/include/fe/api.h"
+    DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/fe"
+)
 
 set(targets_export_name "fe-targets")
 
@@ -154,13 +148,11 @@ install(
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
-if(FE_LIB)
-    install(
-        TARGETS fe-lib
-        EXPORT ${targets_export_name}
-        OBJECTS DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    )
-endif()
+install(
+    TARGETS fe-lib
+    EXPORT ${targets_export_name}
+    OBJECTS DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
 install(
     FILES
         "${CMAKE_CURRENT_BINARY_DIR}/cmake/fe-config.cmake"

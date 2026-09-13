@@ -1,7 +1,7 @@
 # FE repository instructions
 
 `fe` is a CMake-based C++ library of reusable building blocks for writing language frontends (arena allocation, string interning, source locations, UTF-8 lexer/parser CRTP bases, diagnostics).
-Most of it is **header-only**; `fe-lib` (`FE_LIB=ON`, the default) builds the handful of components that cannot be (see below).
+Most of it is **header-only**; `fe-lib` builds the handful of components that cannot be (see below).
 It is typically consumed as a git submodule (a checkout may live under e.g. `submodules/fe`).
 
 ## Build, test, and formatting
@@ -33,7 +33,6 @@ A change is only done when it is leak- and UB-clean, not merely when `ctest` pas
 ## Build options & toolchain
 
 - The library requires **C++23** (`target_compile_features` in `CMakeLists.txt`).
-- `FE_LIB` (default `ON`): builds `fe-lib`, an `OBJECT` library over `src/fe/`. `OFF` keeps only the header-only building blocks; `fe::Driver`, `fe::Error`, and everything else listed under `fe-lib` below is then unavailable.
 - `FE_ABSL` (default `OFF`): switches `SymMap`/`SymSet`/`PathMap` and friends from `std` to Abseil containers.
 - `FE_BUILD_DOCS` (default `OFF`): build Doxygen docs (requires Doxygen + Graphviz `dot`).
 - `BUILD_TESTING` (CTest default `ON`): builds the only executable, `fe-test`.
@@ -41,7 +40,7 @@ A change is only done when it is leak- and UB-clean, not merely when `ctest` pas
 
 ## High-level architecture
 
-The public API lives entirely in `include/fe/`. `fe` is always an `INTERFACE` target carrying the header usage requirements; `FE_LIB` adds `fe-lib`, an `OBJECT` library over `src/fe/` that links `fe` publicly. Tests build the only executable (`fe-test`).
+The public API lives entirely in `include/fe/`. `fe` is an `INTERFACE` target carrying the header usage requirements; `fe-lib` is an `OBJECT` library over `src/fe/` that links `fe` publicly. Tests build the only executable (`fe-test`).
 
 The library is organized around a few reusable frontend-building blocks that are designed to be composed:
 

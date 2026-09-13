@@ -17,7 +17,7 @@ TEST_CASE("Pos") {
     CHECK(Pos(3) < Pos(4));
     CHECK(Pos(3) + 4 == Pos(7));
 
-    // Default operator<< from a FE_LIB build.
+    // Default operator<< from fe-lib.
     CHECK(std::format("{}", Pos(3)) == "3");
     CHECK(std::format("{}", Pos()) == "<unknown position>");
 }
