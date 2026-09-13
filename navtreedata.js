@@ -49,7 +49,9 @@ var NAVTREE =
     ] ],
     [ "🧭 Typical Workflow", "index.html#autotoc_md17", null ],
     [ "💬 Writing a Diagnostic", "index.html#autotoc_md18", [
-      [ "Citations", "index.html#citations", null ]
+      [ "Citations", "index.html#citations", [
+        [ "The Markup Language", "index.html#markup", null ]
+      ] ]
     ] ],
     [ "🛠️ Building and Testing", "index.html#autotoc_md19", null ],
     [ "📚 Building the Documentation", "index.html#autotoc_md20", null ],

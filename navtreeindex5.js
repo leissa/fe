@@ -22,6 +22,7 @@ var NAVTREEINDEX5 =
 "index.html#autotoc_md8":[1,0,1],
 "index.html#autotoc_md9":[1,0,2],
 "index.html#citations":[4,0],
+"index.html#markup":[4,0,0],
 "index.html#requires-fe_lib":[1,1],
 "lct_8h.html":[13,0,1,15],
 "lct_8h_source.html":[13,0,1,15],
@@ -248,6 +249,5 @@ var NAVTREEINDEX5 =
 "structfe_1_1Dbg.html#a887c5ecc32abaf560dae5a8dcc3a7b1f":[10,0,0,12,2],
 "structfe_1_1Dbg.html#a887c5ecc32abaf560dae5a8dcc3a7b1f":[12,0,0,11,2],
 "structfe_1_1Dbg.html#a9878ec4b6ec8b521511f18f3c5f632aa":[10,0,0,12,7],
-"structfe_1_1Dbg.html#a9878ec4b6ec8b521511f18f3c5f632aa":[12,0,0,11,7],
-"structfe_1_1Dbg.html#a9f3c7a72ab73bd3e6c96fde8db3f54e2":[10,0,0,12,4]
+"structfe_1_1Dbg.html#a9878ec4b6ec8b521511f18f3c5f632aa":[12,0,0,11,7]
 };
