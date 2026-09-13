@@ -204,7 +204,7 @@ void Cli::help(std::ostream& os) const {
         }
 
         auto descr = o.descr;
-        if (!o.dflt.empty()) descr += std::format("{}[default: `{}`]", descr.empty() ? "" : " ", o.dflt);
+        if (!o.dflt.empty()) descr += term::format_cite("{}[default: `{}`]", descr.empty() ? "" : " ", o.dflt);
         tail(o.width() + 2, descr);
     };
 
@@ -237,33 +237,56 @@ void Cli::help(std::ostream& os) const {
 
 void Cli::markdown(std::ostream& os) const {
     // A code span is already verbatim - only `|`, which ends the table cell, still has to go.
-    auto esc = [](std::string_view text) {
-        std::string res;
-        bool code = false;
-        for (size_t i = 0, e = text.size(); i != e; ++i) {
-            auto c = text[i];
-            if (c == '`') code = !code;
-            // Doxygen eats a `%` - it suppresses auto-linking - inside a code span, too.
-            if (c == '%') {
-                res += "%%";
-                continue;
-            }
-            if (code && c != '|') {
-                res += c;
-                continue;
-            }
-            switch (c) {
+    // Doxygen eats a `%` - it suppresses auto-linking - and a `|` would end the table cell.
+    auto plain = [](std::string& res, std::string_view text, size_t begin, size_t end) {
+        for (auto i = begin; i != end; ++i) {
+            if (term::detail::escape(text, i, end)) ++i;
+            switch (auto c = text[i]) {
+                case '%': res += "%%"; break;
                 case '&': res += "&amp;"; break;
                 case '<': res += "&lt;"; break;
                 case '>': res += "&gt;"; break;
                 case '|': res += "\\|"; break;
                 // Doxygen turns a bare `--` into an en dash.
                 case '-':
-                    if (i + 1 != e && text[i + 1] == '-') res += '\\';
+                    if (i + 1 != end && text[i + 1] == '-') res += '\\';
                     res += c;
                     break;
                 default: res += c;
             }
+        }
+    };
+
+    // Inside a code span only the table cell and Doxygen still need escaping.
+    auto span = [](std::string& res, std::string_view text, size_t begin, size_t end) {
+        for (auto i = begin; i != end; ++i) {
+            if (term::detail::escape(text, i, end)) ++i;
+            auto c = text[i];
+            if (c == '%') {
+                res += "%%";
+                continue;
+            }
+            if (c == '|') res += '\\';
+            res += c;
+        }
+    };
+
+    // Reads the same citation structure term::render_cite does, so the two backends cannot drift apart.
+    auto esc = [&](std::string_view text) {
+        std::string res;
+        for (size_t i = 0, e = text.size(); i != e;) {
+            auto l = term::detail::tick(text, i);
+            auto r = l == std::string_view::npos ? l : term::detail::tick(text, l + 1);
+            if (r == std::string_view::npos) { // unpaired: not a citation
+                plain(res, text, i, e);
+                break;
+            }
+
+            plain(res, text, i, l);
+            res += '`';
+            span(res, text, l + 1, r);
+            res += '`';
+            i = r + 1;
         }
         return res;
     };

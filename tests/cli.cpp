@@ -325,3 +325,28 @@ Bye.
 )");
     }
 }
+
+TEST_CASE("cli citations") {
+    auto guard = fe::term::ScopedMode(fe::term::Mode::Never);
+
+    SUBCASE("a default value is data, not markup") {
+        auto out = std::string("C:\\tmp\\");
+        auto cli = fe::Cli("t").opt(out, "file", "-o", "--output", "Where to write.");
+
+        std::ostringstream oss;
+        oss << cli;
+        CHECK(oss.str().contains("[default: `C:\\tmp\\`]"));
+    }
+
+    SUBCASE("help and markdown read the same escapes") {
+        auto cli = fe::Cli("t", "\\` then `a<b` and a|b -- end");
+
+        std::ostringstream term;
+        term << cli;
+        CHECK(term.str().contains("` then `a<b` and a|b -- end"));
+
+        std::ostringstream md;
+        cli.markdown(md);
+        CHECK(md.str().contains("` then `a<b` and a\\|b \\-- end"));
+    }
+}

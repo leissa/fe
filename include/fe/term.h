@@ -1,5 +1,6 @@
 #pragma once
 
+#include <concepts>
 #include <cstdlib>
 #include <cstring>
 
@@ -10,6 +11,7 @@
 #include <ostream>
 #include <string>
 #include <string_view>
+#include <type_traits>
 
 #ifdef _WIN32
 #    ifndef WIN32_LEAN_AND_MEAN
@@ -312,6 +314,61 @@ inline std::string escape_cite(std::string_view str) {
     return res;
 }
 
+/// An *owning* message fragment that spells `` `citations` `` of its own; what format_cite yields.
+/// Return this from a helper that assembles a fragment, and it stays valid wherever a Cite may go.
+class Cited {
+public:
+    explicit Cited(std::string str) noexcept
+        : str_(std::move(str)) {}
+
+    operator std::string_view() const noexcept { return str_; }
+
+private:
+    std::string str_;
+};
+
+/// A *borrowed* fragment whose backticks stay markup; format_cite escapes every other argument.
+/// @warning Borrows its text like a `std::string_view` does - a Cited outlives the expression, a Cite does not.
+struct Cite {
+    template<class T>
+    requires std::convertible_to<const T&, std::string_view> Cite(const T& s) noexcept
+        : str(s) {}
+
+    std::string_view str;
+};
+
+namespace detail {
+
+/// Wraps an argument whose backticks are data and must not delimit a citation.
+template<class T>
+struct Escaped {
+    const T& val;
+};
+
+template<class T, class U = std::remove_cvref_t<T>>
+using cite_arg_t = std::conditional_t<std::is_same_v<U, Cite> || std::is_same_v<U, Cited>, Cite, Escaped<U>>;
+
+/// std::vformat, but each argument renders as data instead of as markup; see Cite for the exception.
+/// @note The wrappers are lambda *parameters* because `std::make_format_args` does not bind rvalues.
+template<class... Args>
+std::string vformat_cite(std::string_view fmt, const Args&... args) {
+    auto vformat = [fmt]<class... A>(A... a) { return std::vformat(fmt, std::make_format_args(a...)); };
+    return vformat(cite_arg_t<Args>{args}...);
+}
+
+} // namespace detail
+
+/// A std::format_string whose backticks delimit a `` `citation` `` while those of its arguments are data.
+template<class... Args>
+using cite_string = std::format_string<detail::cite_arg_t<Args>...>;
+
+/// std::format for a message that follows that convention; assemble a fragment of your own with it.
+/// The Cited it yields is markup wherever it is used as an argument again - no re-wrapping needed.
+template<class... Args>
+Cited format_cite(cite_string<Args...> fmt, Args&&... args) {
+    return Cited(detail::vformat_cite(fmt.get(), args...));
+}
+
 /// Streams @p str into @p os, coloring each `` `citation` `` and dropping its backticks - or keeping them
 /// verbatim without color; `` \` `` is a literal backtick and `\\` a literal backslash. This is the convention
 /// fe::CodeDiag renders a diagnostic message with; use it to apply the same convention elsewhere, e.g.
@@ -367,6 +424,32 @@ inline size_t cite_width(std::string_view str, bool color) {
 } // namespace fe::term
 
 #ifndef DOXYGEN
+template<class T>
+struct std::formatter<fe::term::detail::Escaped<T>> {
+    std::string_view spec; ///< Borrowed from the format string, which outlives the `vformat` call.
+
+    constexpr auto parse(std::format_parse_context& ctx) {
+        auto i = ctx.begin();
+        for (; i != ctx.end() && *i != '}'; ++i)
+            if (*i == '{') throw std::format_error("fe::term::format_cite: a nested replacement field needs Cite");
+        spec = std::string_view(ctx.begin(), i);
+        return i;
+    }
+
+    auto format(const fe::term::detail::Escaped<T>& escaped, std::format_context& ctx) const {
+        auto str = spec.empty() ? std::format("{}", escaped.val)
+                                : std::vformat(std::format("{{:{}}}", spec), std::make_format_args(escaped.val));
+        return fe::term::escape_cite_to(ctx.out(), str);
+    }
+};
+
+template<>
+struct std::formatter<fe::term::Cite> : std::formatter<std::string_view> {
+    auto format(fe::term::Cite cite, std::format_context& ctx) const {
+        return std::formatter<std::string_view>::format(cite.str, ctx);
+    }
+};
+
 template<>
 struct std::formatter<fe::term::FG> : fe::ostream_formatter {};
 #endif

@@ -82,7 +82,9 @@ It is an `OBJECT` library on purpose: link it into exactly one shared library of
 - Non-empty symbols should be created through `SymPool::sym` / `Driver::sym`, not by constructing `Sym` manually. Use `SymMap` / `SymSet` aliases instead of concrete hash container types, especially because `FE_ABSL` switches those aliases to Abseil containers.
 - Diagnostics are `std::format`-based and go through `fe::Error::{e,w,n}` - an error, a warning, and a note hanging off whichever came last - reached via the `error()` the lexer/parser blueprints provide. Follow that pattern rather than inventing separate reporting helpers.
 - Put a `` `citation` `` in backticks: `fe::Diag` colors what they enclose and drops them, or keeps them verbatim without color. Escape a literal one as `` \` `` (and a literal backslash as `\\`).
-- Only the *format string* is markup. `fe::Error` escapes the backticks of every argument, so a symbol, path, or token that contains one cannot break the highlighting. Wrap an argument that deliberately spells citations of its own - a message fragment assembled elsewhere, such as a parser `ctxt` - in `fe::Cite`.
+- Only the *format string* is markup. `fe::Error` escapes the backticks of every argument, so a symbol, path, or token that contains one cannot break the highlighting. Markup is a type: `fe::cite_string` is a format string, `fe::Cited` an owning fragment (what `fe::format_cite` yields - pass it straight back in), and `fe::Cite` a borrowed one, which is how a markup *parameter* is spelled.
+- That convention lives in `term.h`, not in the diagnostics: `term::render_cite` renders it, `term::escape_cite`/`escape_cite_to` escape data into it, and `term::cite_string`/`term::format_cite`/`term::Cite`/`term::Cited` produce it (`error.h` re-exports those four as `fe::`). Splice data into a message with `format_cite`, never `std::format` - that is how `fe::Cli` stays consistent with `fe::Error`.
+- `Cli::help` and `Cli::markdown` must read that grammar through the same `term::detail::tick`/`escape` primitives, or the terminal help and the generated manual drift apart.
 - A note attaches to the error or warning that precedes it. `Error::note` without a `Loc` renders as a `= note:` continuation; with a `Loc` it points somewhere else and gets a header line and snippet of its own - and is dropped when that `Loc` overlaps the primary one and thus points nowhere new.
 - `Error::report` streams and claims everything, `Error::bail` always throws an `Error::Bail`, and `Error::ack` bails on errors and merely reports warnings. Build and throw one diagnostic in a single expression with `Error(driver).error(...).note(...).bail()`.
 - Keep `Driver` free of virtual functions; `Driver::diag` is where a consumer plugs in behavior of its own.
@@ -114,9 +116,10 @@ The derived class `S` must provide (and `friend` the base if they are private):
 
 Both diagnostics come with a default implementation that `S` may replace with one of its own:
 
-- `fe::Error& syntax_err(std::string_view what, Tok, std::string_view ctxt)` - `what` was expected but that `Tok` showed up.
-  The `(std::string_view what, std::string_view ctxt)` and `(Tag, std::string_view ctxt)` overloads funnel through it, so overriding that one suffices; they yield `decltype(auto)` and thus follow whatever the override returns.
-- `fe::Error& unanchored_err(Tok, std::string_view ctxt)` - `Parser::recover` discarded this token.
+- `fe::Error& syntax_err(Cite what, Tok, Cite ctxt)` - `what` was expected but that `Tok` showed up.
+  The `(Cite what, Cite ctxt)` and `(Tag, Cite ctxt)` overloads funnel through it, so overriding that one suffices; they yield `decltype(auto)` and thus follow whatever the override returns.
+  `Cite` says those strings are *markup*, so an override forwards them as-is - do not wrap or escape them again.
+- `fe::Error& unanchored_err(Tok, Cite ctxt)` - `Parser::recover` discarded this token.
 
 Each yields the `Error` it reported into, so an override - or a caller - can chain a `note` onto it.
 
@@ -126,7 +129,7 @@ Error recovery is anchor-based: an *anchor* is a `Tag` an enclosing context is s
 `Parser::anchor(tag)` returns an RAII `Anchor` that anchors `tag` for the scope; `expect` it yourself at the end of that scope.
 `Parser::recover` then discards only tokens that are *not* anchored, so a nested parser bails out instead of swallowing a token its caller needs.
 Prefer this over hand-rolled skip loops, and keep `expect` context strings noun phrases ("parenthesized expression"): they end up inside the message `syntax_err` builds.
-`expect` takes a `std::format_string` overload; use it instead of formatting the context yourself.
+`expect` takes a `cite_string` overload; use it instead of formatting the context yourself - it funnels through `format_cite`, so its arguments are escaped as data.
 
 ## Comments
 

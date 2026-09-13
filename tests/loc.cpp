@@ -494,6 +494,34 @@ TEST_CASE("Error") {
         drv.diag().no_snippet = false;
     }
 
+    SUBCASE("a Cited fragment is markup wherever it lands") {
+        err.clear();
+        drv.diag().no_snippet = true;
+
+        auto frag = fe::format_cite("a `{}`", "x");
+        err.e(Loc(src, Pos(4), Pos(5)), "expected {}", frag);
+        CHECK(std::format("{}", err).starts_with("test.let:1:5: error: expected a `x`\n"));
+
+        err.clear(); // a temporary survives the full expression it is used in
+        err.e(Loc(src, Pos(4), Pos(5)), "expected {}", fe::format_cite("a `{}`", "y"));
+        CHECK(std::format("{}", err).starts_with("test.let:1:5: error: expected a `y`\n"));
+
+        err.clear(); // the fragment's own argument stays data - escaping does not compound
+        err.e(Loc(src, Pos(4), Pos(5)), "expected {}", fe::format_cite("got `{}`", "`+"));
+        CHECK(std::format("{}", err).starts_with("test.let:1:5: error: expected got ``+`\n"));
+
+        { // markup is colored; an argument's own backticks stay plain text
+            auto _ = fe::term::ScopedMode(fe::term::Mode::Always);
+            err.clear();
+            err.e(Loc(src, Pos(4), Pos(5)), "{} and `{}`", fe::format_cite("a `cited`"), "`raw`");
+            auto str = std::format("{}", err);
+            CHECK(str.find("`cited`") == std::string::npos);
+            CHECK(str.find("`raw`") != std::string::npos);
+        }
+
+        drv.diag().no_snippet = false;
+    }
+
     SUBCASE("the bare Diag leaves the message text alone") {
         auto _    = fe::term::ScopedMode(fe::term::Mode::Always);
         auto bare = fe::Driver();

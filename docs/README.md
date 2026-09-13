@@ -123,7 +123,7 @@ Header-only, except for what [Requires `FE_LIB`](#requires-fe_lib) lists below.
   Derive and `Driver::diag(std::make_unique<MyDiag>())` to lay one out entirely your own way.
 - `fe::Log` for leveled logging with acronym, color, and origin prefix.
     - `Log::{e,w,i,v}` - plus `Log::{d,t}`, which vaporize in a `Release` build - point at their call site via `std::source_location`; no macros involved.
-- `fe::term` for lightweight terminal colors in diagnostics and CLI output.
+- `fe::term` for lightweight terminal colors - and for the `` `citation` `` convention every FE message is written in; see [Citations](#citations).
 
 #### Command Line
 
@@ -253,7 +253,7 @@ error().e(tok.loc(), "expected `)`, got `{}` while parsing {}", tok, Cite(ctxt))
 A note *with* a `Loc` reads as a diagnostic of its own - header line plus snippet - and is dropped when that `Loc` merely repeats the primary one; a note without one has nowhere else to point and renders as a `= note:` continuation.
 Nothing throws along the way: `Error::bail` throws what has accumulated as an `Error::Bail`, and `Error::ack` at the end of the run does that only if an error was among it and otherwise just reports the warnings.
 
-### Citations
+### Citations {#citations}
 
 A message spells the things it talks about in backticks, and `fe::CodeDiag` colors what they enclose - or keeps the backticks when there is no color to spend:
 
@@ -272,10 +272,16 @@ error().e(loc, "identifier `{}` not found", sym); // sym may be `+ - nothing to 
 | ----- | -------------- |
 | The format string | Nothing, unless you want a *literal* backtick - spell it `` \` `` - or a literal backslash - `\\`. |
 | An argument | Nothing, ever. |
-| An argument that is a message fragment of your own, with citations of its own | Wrap it in `fe::Cite`; that is what a parser `ctxt` gets. |
-| The code assembling such a fragment | Use `fe::format_cite` instead of `std::format`, so its backticks stay markup while *its* arguments are escaped. |
+| A message fragment of your own | Nothing - assemble it with `fe::format_cite` and pass the `fe::Cited` it yields; its backticks stay markup while *its* arguments are escaped. |
 
-`fe::Error::{msg,e,w,n}` take a `fe::cite_string` rather than a `std::format_string` to say so in the signature; forward one through a wrapper of your own the same way.
+Markup is a *type*, not a convention you have to remember:
+
+- `fe::cite_string` is a format string whose backticks are markup - that is what `fe::Error::{msg,e,w,n}` take instead of a `std::format_string`; forward one through a wrapper of your own the same way.
+- `fe::Cited` is an owning fragment, what `fe::format_cite` yields. Pass it straight back in as an argument - no re-wrapping, and nothing to dangle.
+- `fe::Cite` is a *borrowed* fragment, and the type to spell a markup **parameter** with: `Parser`'s `what` and `ctxt` are `Cite`, so a `syntax_err` of your own cannot forward them and silently lose the highlighting. It borrows like a `std::string_view`, so keep the `Cited` alive that it points at.
+
+The convention itself lives in `fe/term.h`, not in the diagnostics: `term::render_cite` renders it, `term::escape_cite` escapes data into it, and `term::cite_string`/`term::format_cite`/`term::Cite`/`term::Cited` produce it.
+That is what lets `fe::Cli` spell its `--help` text the same way `fe::Error` spells a diagnostic - and why `Cli::help` and `Cli::markdown` read one grammar rather than two.
 `fe::Log` renders no citations at all - a backtick in a log message is just a backtick.
 
 ## 🛠️ Building and Testing

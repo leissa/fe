@@ -118,7 +118,7 @@ protected:
 
     /// Parser::lex Parser::ahead() which must be a @p tag.
     /// Issue error with @p ctxt otherwise.
-    Tok expect(Tag tag, std::string_view ctxt) {
+    Tok expect(Tag tag, Cite ctxt) {
         if (ahead().tag() == tag) return lex();
         self().syntax_err(tag, ctxt);
         return {};
@@ -183,13 +183,13 @@ protected:
     /// report each one as `S::unanchored_err`.
     /// This turns an otherwise fatal Tok%en into a mere error message and keeps the current parser going.
     template<std::predicate<Tag> P>
-    void recover(P pred, std::string_view ctxt) {
+    void recover(P pred, Cite ctxt) {
         while (pred(ahead().tag()) && !anchored(ahead().tag()))
             self().unanchored_err(lex(), ctxt);
     }
 
     /// As above but only recovers from @p tag.
-    void recover(Tag tag, std::string_view ctxt) {
+    void recover(Tag tag, Cite ctxt) {
         recover([tag](Tag t) { return t == tag; }, ctxt);
     }
     ///@}
@@ -202,31 +202,27 @@ protected:
     const fe::Error& error() const { return self().driver().error(); }
 
     /// Parser::expect did not find @p what while parsing @p ctxt.
-    /// Backtick @p what yourself if it is a literal token rather than a phrase.
-    fe::Error& syntax_err(std::string_view what, Tok tok, std::string_view ctxt) {
+    /// Both are Cite: a context string is *markup*, so backtick a literal token within it yourself.
+    fe::Error& syntax_err(Cite what, Tok tok, Cite ctxt) {
         static_assert(
             requires(S& s) { s.driver(); },
             "provide `fe::Driver& driver()` in your parser - or a `syntax_err` of your own");
-        return error().e(tok.loc(), "expected {}, got `{}` while parsing {}", Cite(what), tok, Cite(ctxt));
+        return error().e(tok.loc(), "expected {}, got `{}` while parsing {}", what, tok, ctxt);
     }
 
     /// As above but uses Parser::ahead as @p tok.
     /// @note `decltype(auto)`, so an override of the funnel above may yield something else - or nothing.
-    decltype(auto) syntax_err(std::string_view what, std::string_view ctxt) {
-        return self().syntax_err(what, ahead(), ctxt);
-    }
+    decltype(auto) syntax_err(Cite what, Cite ctxt) { return self().syntax_err(what, ahead(), ctxt); }
 
     /// As above but spells @p tag out via Parser::tag2str_.
-    decltype(auto) syntax_err(Tag tag, std::string_view ctxt) {
-        return self().syntax_err(tag2str_(tag), ahead(), ctxt);
-    }
+    decltype(auto) syntax_err(Tag tag, Cite ctxt) { return self().syntax_err(tag2str_(tag), ahead(), ctxt); }
 
     /// Parser::recover discarded @p tok while parsing @p ctxt.
-    fe::Error& unanchored_err(Tok tok, std::string_view ctxt) {
+    fe::Error& unanchored_err(Tok tok, Cite ctxt) {
         static_assert(
             requires(S& s) { s.driver(); },
             "provide `fe::Driver& driver()` in your parser - or an `unanchored_err` of your own");
-        return error().e(tok.loc(), "ignoring unmatched `{}` while parsing {}", tok, Cite(ctxt));
+        return error().e(tok.loc(), "ignoring unmatched `{}` while parsing {}", tok, ctxt);
     }
     ///@}
 

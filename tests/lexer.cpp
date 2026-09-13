@@ -221,7 +221,7 @@ private:
     // clang-format on
     static bool left_assoc(Tok::Tag t) { return t != Tok::O_ass; } // '=' is right-associative
 
-    std::string parse_primary(std::string_view ctxt) {
+    std::string parse_primary(fe::Cite ctxt) {
         if (auto tok = accept(Tok::Tag::M_id)) return tok.to_string();
         if (auto tok = accept(Tok::Tag::M_lit)) return tok.to_string();
         if (accept(Tok::Tag::D_paren_l)) {
@@ -234,7 +234,7 @@ private:
         return "<error>";
     }
 
-    std::string parse_expr(std::string_view ctxt, Tok::Prec curr_prec) {
+    std::string parse_expr(fe::Cite ctxt, Tok::Prec curr_prec) {
         recover(Tok::Tag::D_paren_r, ctxt);
         auto lhs = parse_primary(ctxt);
         while (true) {
@@ -309,6 +309,20 @@ void test_parser() {
     }
     // ... whereas an anchored ')' still terminates the parenthesized expression
     CHECK(std::get<2>(parse("(a + b) * c")) == 0);
+
+    // A ctxt is Cite and hence markup: its backticks survive into the message as a citation,
+    // while the token the message quotes is an argument and stays data.
+    {
+        auto guard = fe::term::ScopedMode(fe::term::Mode::Never);
+        fe::Driver drv;
+        drv.diag().no_snippet = true;
+        Parser<K> parser(drv, "(a + b");
+        parser.parse();
+        auto str = drv.error().str();
+        drv.error().clear();
+        CHECK(str.contains("while parsing parenthesized expression"));
+        CHECK(str.contains("expected `)`"));
+    }
 }
 
 TEST_CASE("Parser") {
