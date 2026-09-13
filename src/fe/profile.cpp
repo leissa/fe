@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <format>
 #include <map>
+#include <ostream>
 #include <print>
 
 using namespace std::literals;
