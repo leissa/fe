@@ -184,9 +184,9 @@ private:
     void msg_(Loc loc, Tag tag, const std::function<std::string()>& fmt) {
         assert(tag != Tag::N && "a note belongs to Error::note");
         const auto& d = diag();
-        if (tag == Tag::Warn && d.werror) tag = Tag::Error;
+        if (tag == Tag::W && d.werror) tag = Tag::E;
 
-        if (tag == Tag::Error && d.max_errors != 0 && num_errors() >= d.max_errors) {
+        if (tag == Tag::E && d.max_errors != 0 && num_errors() >= d.max_errors) {
             truncated_ = dropped_ = true;
             return;
         }

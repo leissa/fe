@@ -13,9 +13,9 @@ namespace fe {
 std::ostream& operator<<(std::ostream& os, Diag::Tag tag) {
     // clang-format off
     switch (tag) {
-        case Diag::Tag::Error: return os << term::FG::Red     << "error";
-        case Diag::Tag::Warn:  return os << term::FG::Magenta << "warning";
-        case Diag::Tag::Note:  return os << term::FG::Green   << "note";
+        case Diag::Tag::E: return os << term::FG::Red     << "error";
+        case Diag::Tag::W: return os << term::FG::Magenta << "warning";
+        case Diag::Tag::N: return os << term::FG::Green   << "note";
         default: unreachable();
     }
     // clang-format on
@@ -24,9 +24,9 @@ std::ostream& operator<<(std::ostream& os, Diag::Tag tag) {
 term::FG Diag::tag2color(Tag tag) {
     // clang-format off
     switch (tag) {
-        case Tag::Error: return term::FG::Red;
-        case Tag::Warn:  return term::FG::Magenta;
-        case Tag::Note:  return term::FG::Green;
+        case Tag::E: return term::FG::Red;
+        case Tag::W: return term::FG::Magenta;
+        case Tag::N: return term::FG::Green;
         default: unreachable();
     }
     // clang-format on

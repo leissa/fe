@@ -20,7 +20,20 @@ namespace fe {
 /// Facility to log what you are doing.
 class Log {
 public:
-    enum class Level { Error, Warn, Info, Verbose, Debug, Trace };
+    enum class Level {
+        Error,
+        Warn,
+        Info,
+        Verbose,
+        Debug,
+        Trace,
+        E = Error,
+        W = Warn,
+        I = Info,
+        V = Verbose,
+        D = Debug,
+        T = Trace,
+    };
 
     /// @name Getters
     ///@{
@@ -87,42 +100,26 @@ public:
     /// @name Level Shorthands
     /// Log at a fixed Level, pointing at the call site.
     ///@{
-    template<class... Args>
-    void e(Fmt<Args...> fmt, Args&&... args) const {
-        log(Level::Error, fmt, std::forward<Args>(args)...);
-    }
-    template<class... Args>
-    void w(Fmt<Args...> fmt, Args&&... args) const {
-        log(Level::Warn, fmt, std::forward<Args>(args)...);
-    }
-    template<class... Args>
-    void i(Fmt<Args...> fmt, Args&&... args) const {
-        log(Level::Info, fmt, std::forward<Args>(args)...);
-    }
-    template<class... Args>
-    void v(Fmt<Args...> fmt, Args&&... args) const {
-        log(Level::Verbose, fmt, std::forward<Args>(args)...);
-    }
+    // clang-format off
+    template<class... Args> void e(Fmt<Args...> fmt, Args&&... args) const { log(Level::E, fmt, std::forward<Args>(args)...); }
+    template<class... Args> void w(Fmt<Args...> fmt, Args&&... args) const { log(Level::W, fmt, std::forward<Args>(args)...); }
+    template<class... Args> void i(Fmt<Args...> fmt, Args&&... args) const { log(Level::I, fmt, std::forward<Args>(args)...); }
+    template<class... Args> void v(Fmt<Args...> fmt, Args&&... args) const { log(Level::V, fmt, std::forward<Args>(args)...); }
+    // clang-format on
     ///@}
 
     /// @name Debug Shorthands
     /// Vaporize to nothingness in `Release` build; the arguments are still evaluated.
     ///@{
 #ifndef NDEBUG
-    template<class... Args>
-    void d(Fmt<Args...> fmt, Args&&... args) const {
-        log(Level::Debug, fmt, std::forward<Args>(args)...);
-    }
-    template<class... Args>
-    void t(Fmt<Args...> fmt, Args&&... args) const {
-        log(Level::Trace, fmt, std::forward<Args>(args)...);
-    }
+    // clang-format off
+    template<class... Args> void d(Fmt<Args...> fmt, Args&&... args) const { log(Level::Debug, fmt, std::forward<Args>(args)...); }
+    template<class... Args> void t(Fmt<Args...> fmt, Args&&... args) const { log(Level::Trace, fmt, std::forward<Args>(args)...); }
 #else
-    template<class... Args>
-    void d(Fmt<Args...>, Args&&...) const {}
-    template<class... Args>
-    void t(Fmt<Args...>, Args&&...) const {}
+    template<class... Args> void d(Fmt<Args...>, Args&&...) const {}
+    template<class... Args> void t(Fmt<Args...>, Args&&...) const {}
 #endif
+    // clang-format on
     ///@}
 
     /// @name Breakpoints
@@ -136,24 +133,24 @@ public:
     // clang-format off
     static char level2acro(Level level) {
         switch (level) {
-            case Level::Trace:   return 'T';
-            case Level::Debug:   return 'D';
-            case Level::Verbose: return 'V';
-            case Level::Info:    return 'I';
-            case Level::Warn:    return 'W';
-            case Level::Error:   return 'E';
+            case Level::T: return 'T';
+            case Level::D: return 'D';
+            case Level::V: return 'V';
+            case Level::I: return 'I';
+            case Level::W: return 'W';
+            case Level::E: return 'E';
             default: unreachable();
         }
     }
 
     static term::FG level2color(Level level) {
         switch (level) {
-            case Level::Trace:   return term::FG::Magenta;
-            case Level::Debug:   return term::FG::Cyan;
-            case Level::Verbose: return term::FG::Blue;
-            case Level::Info:    return term::FG::Green;
-            case Level::Warn:    return term::FG::Yellow;
-            case Level::Error:   return term::FG::Red;
+            case Level::T: return term::FG::Magenta;
+            case Level::D: return term::FG::Cyan;
+            case Level::V: return term::FG::Blue;
+            case Level::I: return term::FG::Green;
+            case Level::W: return term::FG::Yellow;
+            case Level::E: return term::FG::Red;
             default: unreachable();
         }
     }
@@ -169,11 +166,11 @@ private:
         term::render_cite(oss, term::detail::vformat_cite(fmt.get(), args...));
         std::println(ostream(), "{}{}:{}{}:{} {}", level2color(level), level2acro(level), term::FG::Gray, where,
                      term::FG::Reset, oss.str());
-        if ((level == Level::Error && break_on_error) || (level == Level::Warn && break_on_warn)) breakpoint();
+        if ((level == Level::E && break_on_error) || (level == Level::W && break_on_warn)) breakpoint();
     }
 
     std::ostream* ostream_ = nullptr;
-    Level max_level_       = Level::Error;
+    Level max_level_       = Level::E;
 };
 
 } // namespace fe
