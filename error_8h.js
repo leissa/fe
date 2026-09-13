@@ -11,9 +11,5 @@ var error_8h =
       [ "notes", "classfe_1_1Error.html#af8377a816c1d9d97576c2af4d6bbf157", null ],
       [ "str", "classfe_1_1Error.html#ab61fb6acdf8c8cdcc5fbc09c34407edb", null ],
       [ "tag", "classfe_1_1Error.html#ab65076390cfb07fafe8520fbafbe0536", null ]
-    ] ],
-    [ "fe::Cite", "structfe_1_1Cite.html", "structfe_1_1Cite" ],
-    [ "fe::Cited", "classfe_1_1Cited.html", "classfe_1_1Cited" ],
-    [ "fe::cite_string", "namespacefe.html#aa1e2ea2aa40fc5132b2c7364ee4467d8", null ],
-    [ "fe::format_cite", "namespacefe.html#a93eda7673ac1b39525af9d0fad6e6fb7", null ]
+    ] ]
 ];

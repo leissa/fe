@@ -193,11 +193,11 @@ Classes</h2></td></tr>
 <tr class="memitem:DbgKey" id="r_DbgKey"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1DbgKey.html">DbgKey</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opaque handle to a <a class="el" href="structfe_1_1Dbg.html" title="The debug info of an entity: where it came from and what it was called.">Dbg</a> interned in a <a class="el" href="structfe_1_1Driver.html" title="Use/derive from this class for &quot;global&quot; variables that you need all over the place.">Driver</a>; see <a class="el" href="structfe_1_1Driver.html#a100c3690b3a524c5bb8159ca6c7c9750">Driver::dbg</a>.  <a href="classfe_1_1DbgKey.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Diag" id="r_Diag"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Diag.html">Diag</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">How a diagnostic lays out - and how much of it an <a class="el" href="classfe_1_1Error.html" title="&lt;">Error</a> keeps.  <a href="classfe_1_1Diag.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">How a diagnostic lays out - and how much of it an <a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and hands each to the Diag that lays it out.">Error</a> keeps.  <a href="classfe_1_1Diag.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Driver" id="r_Driver"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1Driver.html">Driver</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use/derive from this class for "global" variables that you need all over the place.  <a href="structfe_1_1Driver.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Error" id="r_Error"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Error.html">Error</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;  <a href="classfe_1_1Error.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collects diagnostics and hands each to the <a class="el" href="classfe_1_1Diag.html" title="How a diagnostic lays out - and how much of it an Error keeps.">Diag</a> that lays it out.  <a href="classfe_1_1Error.html#details">More...</a><br /></td></tr>
 <tr class="memitem:is_5Fbit_5Fenum" id="r_is_5Fbit_5Fenum"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1is__bit__enum.html">is_bit_enum</a></td></tr>
 <tr class="memitem:Join" id="r_Join"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Join.html">Join</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classfe_1_1Join.html" title="Join elements of range with sep.">Join</a> elements of <code class="param">range</code> with <code class="param">sep</code>.  <a href="classfe_1_1Join.html#details">More...</a><br /></td></tr>
@@ -453,9 +453,9 @@ template&lt;class... Args&gt; </div>
 
 <p>&lt; </p>
 <p>A <em>borrowed</em> fragment whose backticks stay markup; format_cite escapes every other argument.   </p>
-<p>A literal and a <a class="el" href="classfe_1_1Cited.html" title="An owning message fragment that spells  `citations`  of its own; what format_cite yields.">Cited</a> convert implicitly - both are text someone wrote as markup. Runtime text has to say so: spell it <span class="tt">Cite(s)</span>, so data never becomes markup by accident. </p><dl class="section warning"><dt>Warning</dt><dd>Borrows its text like a <span class="tt">std::string_view</span> does - a <a class="el" href="classfe_1_1Cited.html" title="An owning message fragment that spells  `citations`  of its own; what format_cite yields.">Cited</a> outlives the expression, a <a class="el" href="structfe_1_1Cite.html" title="A borrowed fragment whose backticks stay markup; format_cite escapes every other argument.">Cite</a> does not.    </dd></dl>
+<p>A literal and a <a class="el" href="classfe_1_1Cited.html" title="An owning message fragment that spells  `citations`  of its own; what format_cite yields.">Cited</a> convert implicitly - both are text someone wrote as markup. Runtime text has to say so: spell it <span class="tt">Cite(s)</span>, so data never becomes markup by accident. A <span class="tt">const char*</span> - a ternary of two literals, say - counts as runtime text and needs <span class="tt">Cite(s)</span> too. </p><dl class="section warning"><dt>Warning</dt><dd>Borrows its text like a <span class="tt">std::string_view</span> does - a <a class="el" href="classfe_1_1Cited.html" title="An owning message fragment that spells  `citations`  of its own; what format_cite yields.">Cited</a> outlives the expression, a <a class="el" href="structfe_1_1Cite.html" title="A borrowed fragment whose backticks stay markup; format_cite escapes every other argument.">Cite</a> does not.    </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00369">369</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00374">374</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
 </div>
 </div>
@@ -956,7 +956,7 @@ template&lt;class... Args&gt; </div>
 <p>An <em>owning</em> message fragment that spells <span class="tt"> `citations` </span> of its own; what format_cite yields.   </p>
 <p>Return this from a helper that assembles a fragment, and it stays valid wherever a <a class="el" href="structfe_1_1Cite.html" title="A borrowed fragment whose backticks stay markup; format_cite escapes every other argument.">Cite</a> may go.    </p>
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00374">374</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00379">379</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00129">fe::Parser&lt; Tok, Tag, K, S &gt;::expect()</a>, and <a class="el" href="parser_8h_source.html#l00230">fe::Parser&lt; Tok, Tag, K, S &gt;::tag2str_()</a>.</p>
 
@@ -1736,7 +1736,7 @@ template&lt;<a class="el" href="conceptfe_1_1BitEnum.html">fe::BitEnum</a> E&gt;
 
 <p class="reference">References <a class="el" href="assert_8h_source.html#l00031">unreachable()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="log_8h_source.html#l00136">fe::Log::level2acro()</a>, <a class="el" href="log_8h_source.html#l00148">fe::Log::level2color()</a>, <a class="el" href="xtrie_8h_source.html#l00243">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator*()</a>, <a class="el" href="xtrie_8h_source.html#l00208">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator++()</a>, <a class="el" href="assert_8h_source.html#l00031">unreachable()</a>, and <a class="el" href="term_8h_source.html#l00238">fe::term::use_color()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="log_8h_source.html#l00137">fe::Log::level2acro()</a>, <a class="el" href="log_8h_source.html#l00149">fe::Log::level2color()</a>, <a class="el" href="xtrie_8h_source.html#l00243">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator*()</a>, <a class="el" href="xtrie_8h_source.html#l00208">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator++()</a>, <a class="el" href="assert_8h_source.html#l00031">unreachable()</a>, and <a class="el" href="term_8h_source.html#l00238">fe::term::use_color()</a>.</p>
 
 </div>
 </div>

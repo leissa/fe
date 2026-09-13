@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classfe_1_1Log
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:FmtLoc" id="r_FmtLoc"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1Log_1_1FmtLoc.html">FmtLoc</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A std::format_string that remembers where it was written.  <a href="structfe_1_1Log_1_1FmtLoc.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <a class="el" href="namespacefe_1_1term.html#aa1e2ea2aa40fc5132b2c7364ee4467d8" title="A std::format_string whose backticks delimit a  `citation`  while those of its arguments are data.">cite_string</a> that remembers where it was written.  <a href="structfe_1_1Log_1_1FmtLoc.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -187,7 +187,7 @@ Public Types</h2></td></tr>
  }</td></tr>
 <tr class="memitem:a35e26ca6899f1c4ca5a42fca82c30d8a" id="r_a35e26ca6899f1c4ca5a42fca82c30d8a"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
 <tr class="memitem:a35e26ca6899f1c4ca5a42fca82c30d8a template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a35e26ca6899f1c4ca5a42fca82c30d8a">Fmt</a> = <a class="el" href="structfe_1_1Log_1_1FmtLoc.html">FmtLoc</a>&lt;std::type_identity_t&lt;Args&gt;...&gt;</td></tr>
-<tr class="memdesc:a35e26ca6899f1c4ca5a42fca82c30d8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puts the <span class="tt">Args</span> of a <a class="el" href="structfe_1_1Log_1_1FmtLoc.html" title="A std::format_string that remembers where it was written.">Log::FmtLoc</a> parameter into a non-deduced context, so that they are deduced from the trailing arguments and the format string keeps capturing its call site.  <br /></td></tr>
+<tr class="memdesc:a35e26ca6899f1c4ca5a42fca82c30d8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puts the <span class="tt">Args</span> of a <a class="el" href="structfe_1_1Log_1_1FmtLoc.html" title="A cite_string that remembers where it was written.">Log::FmtLoc</a> parameter into a non-deduced context, so that they are deduced from the trailing arguments and the format string keeps capturing its call site.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -202,11 +202,11 @@ Public Member Functions</h2></td></tr>
 <tr id="pub-methods-2" class="groupHeader"><td colspan="2"><div class="groupHeader">Log</div></td></tr>
 <tr><td colspan="2" class="ititle"><div class="groupText"><p>Output <code class="param">fmt</code> to <a class="el" href="#aca33a8cd004ad91aa9f9f632358446c0">Log::ostream</a>; does nothing if <a class="el" href="#aca33a8cd004ad91aa9f9f632358446c0">Log::ostream</a> is <span class="tt">nullptr</span>. </p>
 </div></td></tr>
-<tr class="memitem:adf591a141487f14ec66c37bdb1c2b92f" id="r_adf591a141487f14ec66c37bdb1c2b92f"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
-<tr class="memitem:adf591a141487f14ec66c37bdb1c2b92f template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#adf591a141487f14ec66c37bdb1c2b92f">log</a> (<a class="el" href="#aec116a9875f7cc3d51340c05c19b3d06">Level</a> level, <a class="el" href="structfe_1_1Loc.html">Loc</a> loc, std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args) const</td></tr>
-<tr class="memitem:a0defeaed5ca484633d35df69324482e1" id="r_a0defeaed5ca484633d35df69324482e1"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
-<tr class="memitem:a0defeaed5ca484633d35df69324482e1 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0defeaed5ca484633d35df69324482e1">log</a> (<a class="el" href="#aec116a9875f7cc3d51340c05c19b3d06">Level</a> level, std::source_location where, std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args) const</td></tr>
-<tr class="memdesc:a0defeaed5ca484633d35df69324482e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">A std::source_location is no <a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a>: it points into <em>your</em> source, which has no <a class="el" href="classfe_1_1Src.html" title="The content of one source file together with the offsets its rows start at.">fe::Src</a>.  <br /></td></tr>
+<tr class="memitem:a695916fb821911451b9a3f3f1e044981" id="r_a695916fb821911451b9a3f3f1e044981"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:a695916fb821911451b9a3f3f1e044981 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a695916fb821911451b9a3f3f1e044981">log</a> (<a class="el" href="#aec116a9875f7cc3d51340c05c19b3d06">Level</a> level, <a class="el" href="structfe_1_1Loc.html">Loc</a> loc, <a class="el" href="namespacefe_1_1term.html#aa1e2ea2aa40fc5132b2c7364ee4467d8">cite_string</a>&lt; Args... &gt; fmt, Args &amp;&amp;... args) const</td></tr>
+<tr class="memitem:a752df5f8a9fb89e1f0744c4b7b7e4530" id="r_a752df5f8a9fb89e1f0744c4b7b7e4530"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:a752df5f8a9fb89e1f0744c4b7b7e4530 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a752df5f8a9fb89e1f0744c4b7b7e4530">log</a> (<a class="el" href="#aec116a9875f7cc3d51340c05c19b3d06">Level</a> level, std::source_location where, <a class="el" href="namespacefe_1_1term.html#aa1e2ea2aa40fc5132b2c7364ee4467d8">cite_string</a>&lt; Args... &gt; fmt, Args &amp;&amp;... args) const</td></tr>
+<tr class="memdesc:a752df5f8a9fb89e1f0744c4b7b7e4530"><td class="mdescLeft">&#160;</td><td class="mdescRight">A std::source_location is no <a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a>: it points into <em>your</em> source, which has no <a class="el" href="classfe_1_1Src.html" title="The content of one source file together with the offsets its rows start at.">fe::Src</a>.  <br /></td></tr>
 <tr class="memitem:abe902baec6be1afeac687da942290b35" id="r_abe902baec6be1afeac687da942290b35"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
 <tr class="memitem:abe902baec6be1afeac687da942290b35 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abe902baec6be1afeac687da942290b35">log</a> (<a class="el" href="#aec116a9875f7cc3d51340c05c19b3d06">Level</a> level, <a class="el" href="#a35e26ca6899f1c4ca5a42fca82c30d8a">Fmt</a>&lt; Args... &gt; fmt, Args &amp;&amp;... args) const</td></tr>
 <tr class="memdesc:abe902baec6be1afeac687da942290b35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Points at the call site.  <br /></td></tr>
@@ -244,7 +244,7 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Facility to log what you are doing. </p>
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00020">20</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00021">21</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a35e26ca6899f1c4ca5a42fca82c30d8a" name="a35e26ca6899f1c4ca5a42fca82c30d8a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a35e26ca6899f1c4ca5a42fca82c30d8a">&#9670;&#160;</a></span>Fmt</h2>
@@ -260,9 +260,9 @@ template&lt;class... Args&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Puts the <span class="tt">Args</span> of a <a class="el" href="structfe_1_1Log_1_1FmtLoc.html" title="A std::format_string that remembers where it was written.">Log::FmtLoc</a> parameter into a non-deduced context, so that they are deduced from the trailing arguments and the format string keeps capturing its call site. </p>
+<p>Puts the <span class="tt">Args</span> of a <a class="el" href="structfe_1_1Log_1_1FmtLoc.html" title="A cite_string that remembers where it was written.">Log::FmtLoc</a> parameter into a non-deduced context, so that they are deduced from the trailing arguments and the format string keeps capturing its call site. </p>
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00062">62</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00063">63</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
 </div>
 </div>
@@ -295,7 +295,7 @@ template&lt;class... Args&gt; </div>
 <tr><td class="fieldname"><a id="aec116a9875f7cc3d51340c05c19b3d06add4ec0ac4e58f7c32a01244ae91150b1" name="aec116a9875f7cc3d51340c05c19b3d06add4ec0ac4e58f7c32a01244ae91150b1"></a>Trace&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00022">22</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00023">23</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
 </div>
 </div>
@@ -329,9 +329,9 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00112">112</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00113">113</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
-<p class="reference">References <a class="el" href="log_8h_source.html#l00022">Debug</a>, and <a class="el" href="log_8h_source.html#l00068">log()</a>.</p>
+<p class="reference">References <a class="el" href="log_8h_source.html#l00023">Debug</a>, and <a class="el" href="log_8h_source.html#l00069">log()</a>.</p>
 
 </div>
 </div>
@@ -364,9 +364,9 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00090">90</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00091">91</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
-<p class="reference">References <a class="el" href="log_8h_source.html#l00022">Error</a>, and <a class="el" href="log_8h_source.html#l00068">log()</a>.</p>
+<p class="reference">References <a class="el" href="log_8h_source.html#l00023">Error</a>, and <a class="el" href="log_8h_source.html#l00069">log()</a>.</p>
 
 </div>
 </div>
@@ -399,9 +399,9 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00098">98</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00099">99</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
-<p class="reference">References <a class="el" href="log_8h_source.html#l00022">Info</a>, and <a class="el" href="log_8h_source.html#l00068">log()</a>.</p>
+<p class="reference">References <a class="el" href="log_8h_source.html#l00023">Info</a>, and <a class="el" href="log_8h_source.html#l00069">log()</a>.</p>
 
 </div>
 </div>
@@ -428,9 +428,9 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00026">26</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00027">27</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="log_8h_source.html#l00136">level2acro()</a>, <a class="el" href="log_8h_source.html#l00148">level2color()</a>, <a class="el" href="log_8h_source.html#l00081">log()</a>, <a class="el" href="log_8h_source.html#l00068">log()</a>, and <a class="el" href="log_8h_source.html#l00074">log()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="log_8h_source.html#l00137">level2acro()</a>, <a class="el" href="log_8h_source.html#l00149">level2color()</a>, <a class="el" href="log_8h_source.html#l00082">log()</a>, <a class="el" href="log_8h_source.html#l00069">log()</a>, and <a class="el" href="log_8h_source.html#l00075">log()</a>.</p>
 
 </div>
 </div>
@@ -457,9 +457,9 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00136">136</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00137">137</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
-<p class="reference">References <a class="el" href="log_8h_source.html#l00022">Debug</a>, <a class="el" href="log_8h_source.html#l00022">Error</a>, <a class="el" href="log_8h_source.html#l00022">Info</a>, <a class="el" href="log_8h_source.html#l00026">level()</a>, <a class="el" href="log_8h_source.html#l00022">Trace</a>, <a class="el" href="assert_8h_source.html#l00031">fe::unreachable()</a>, <a class="el" href="log_8h_source.html#l00022">Verbose</a>, and <a class="el" href="log_8h_source.html#l00022">Warn</a>.</p>
+<p class="reference">References <a class="el" href="log_8h_source.html#l00023">Debug</a>, <a class="el" href="log_8h_source.html#l00023">Error</a>, <a class="el" href="log_8h_source.html#l00023">Info</a>, <a class="el" href="log_8h_source.html#l00027">level()</a>, <a class="el" href="log_8h_source.html#l00023">Trace</a>, <a class="el" href="assert_8h_source.html#l00031">fe::unreachable()</a>, <a class="el" href="log_8h_source.html#l00023">Verbose</a>, and <a class="el" href="log_8h_source.html#l00023">Warn</a>.</p>
 
 </div>
 </div>
@@ -486,9 +486,9 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00148">148</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00149">149</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
-<p class="reference">References <a class="el" href="term_8h_source.html#l00069">fe::term::Blue</a>, <a class="el" href="term_8h_source.html#l00071">fe::term::Cyan</a>, <a class="el" href="log_8h_source.html#l00022">Debug</a>, <a class="el" href="log_8h_source.html#l00022">Error</a>, <a class="el" href="term_8h_source.html#l00067">fe::term::Green</a>, <a class="el" href="log_8h_source.html#l00022">Info</a>, <a class="el" href="log_8h_source.html#l00026">level()</a>, <a class="el" href="term_8h_source.html#l00070">fe::term::Magenta</a>, <a class="el" href="term_8h_source.html#l00066">fe::term::Red</a>, <a class="el" href="log_8h_source.html#l00022">Trace</a>, <a class="el" href="assert_8h_source.html#l00031">fe::unreachable()</a>, <a class="el" href="log_8h_source.html#l00022">Verbose</a>, <a class="el" href="log_8h_source.html#l00022">Warn</a>, and <a class="el" href="term_8h_source.html#l00068">fe::term::Yellow</a>.</p>
+<p class="reference">References <a class="el" href="term_8h_source.html#l00069">fe::term::Blue</a>, <a class="el" href="term_8h_source.html#l00071">fe::term::Cyan</a>, <a class="el" href="log_8h_source.html#l00023">Debug</a>, <a class="el" href="log_8h_source.html#l00023">Error</a>, <a class="el" href="term_8h_source.html#l00067">fe::term::Green</a>, <a class="el" href="log_8h_source.html#l00023">Info</a>, <a class="el" href="log_8h_source.html#l00027">level()</a>, <a class="el" href="term_8h_source.html#l00070">fe::term::Magenta</a>, <a class="el" href="term_8h_source.html#l00066">fe::term::Red</a>, <a class="el" href="log_8h_source.html#l00023">Trace</a>, <a class="el" href="assert_8h_source.html#l00031">fe::unreachable()</a>, <a class="el" href="log_8h_source.html#l00023">Verbose</a>, <a class="el" href="log_8h_source.html#l00023">Warn</a>, and <a class="el" href="term_8h_source.html#l00068">fe::term::Yellow</a>.</p>
 
 </div>
 </div>
@@ -528,14 +528,14 @@ template&lt;class... Args&gt; </div>
 
 <p>Points at the call site. </p>
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00081">81</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00082">82</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
-<p class="reference">References <a class="el" href="log_8h_source.html#l00055">fe::Log::FmtLoc&lt; Args &gt;::fmt</a>, <a class="el" href="log_8h_source.html#l00026">level()</a>, <a class="el" href="log_8h_source.html#l00056">fe::Log::FmtLoc&lt; Args &gt;::loc</a>, and <a class="el" href="log_8h_source.html#l00068">log()</a>.</p>
+<p class="reference">References <a class="el" href="log_8h_source.html#l00056">fe::Log::FmtLoc&lt; Args &gt;::fmt</a>, <a class="el" href="log_8h_source.html#l00027">level()</a>, <a class="el" href="log_8h_source.html#l00057">fe::Log::FmtLoc&lt; Args &gt;::loc</a>, and <a class="el" href="log_8h_source.html#l00069">log()</a>.</p>
 
 </div>
 </div>
-<a id="adf591a141487f14ec66c37bdb1c2b92f" name="adf591a141487f14ec66c37bdb1c2b92f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adf591a141487f14ec66c37bdb1c2b92f">&#9670;&#160;</a></span>log() <span class="overload">[2/3]</span></h2>
+<a id="a695916fb821911451b9a3f3f1e044981" name="a695916fb821911451b9a3f3f1e044981"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a695916fb821911451b9a3f3f1e044981">&#9670;&#160;</a></span>log() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -558,7 +558,7 @@ template&lt;class... Args&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::format_string&lt; Args... &gt;</td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+          <td class="paramtype"><a class="el" href="namespacefe_1_1term.html#aa1e2ea2aa40fc5132b2c7364ee4467d8">cite_string</a>&lt; Args... &gt;</td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -573,16 +573,16 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00068">68</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00069">69</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
-<p class="reference">References <a class="el" href="log_8h_source.html#l00026">level()</a>.</p>
+<p class="reference">References <a class="el" href="log_8h_source.html#l00027">level()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="log_8h_source.html#l00112">d()</a>, <a class="el" href="log_8h_source.html#l00090">e()</a>, <a class="el" href="log_8h_source.html#l00098">i()</a>, <a class="el" href="log_8h_source.html#l00081">log()</a>, <a class="el" href="log_8h_source.html#l00116">t()</a>, <a class="el" href="log_8h_source.html#l00102">v()</a>, and <a class="el" href="log_8h_source.html#l00094">w()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="log_8h_source.html#l00113">d()</a>, <a class="el" href="log_8h_source.html#l00091">e()</a>, <a class="el" href="log_8h_source.html#l00099">i()</a>, <a class="el" href="log_8h_source.html#l00082">log()</a>, <a class="el" href="log_8h_source.html#l00117">t()</a>, <a class="el" href="log_8h_source.html#l00103">v()</a>, and <a class="el" href="log_8h_source.html#l00095">w()</a>.</p>
 
 </div>
 </div>
-<a id="a0defeaed5ca484633d35df69324482e1" name="a0defeaed5ca484633d35df69324482e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0defeaed5ca484633d35df69324482e1">&#9670;&#160;</a></span>log() <span class="overload">[3/3]</span></h2>
+<a id="a752df5f8a9fb89e1f0744c4b7b7e4530" name="a752df5f8a9fb89e1f0744c4b7b7e4530"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a752df5f8a9fb89e1f0744c4b7b7e4530">&#9670;&#160;</a></span>log() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -605,7 +605,7 @@ template&lt;class... Args&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::format_string&lt; Args... &gt;</td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+          <td class="paramtype"><a class="el" href="namespacefe_1_1term.html#aa1e2ea2aa40fc5132b2c7364ee4467d8">cite_string</a>&lt; Args... &gt;</td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -622,9 +622,9 @@ template&lt;class... Args&gt; </div>
 
 <p>A std::source_location is no <a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a>: it points into <em>your</em> source, which has no <a class="el" href="classfe_1_1Src.html" title="The content of one source file together with the offsets its rows start at.">fe::Src</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00074">74</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00075">75</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
-<p class="reference">References <a class="el" href="log_8h_source.html#l00026">level()</a>.</p>
+<p class="reference">References <a class="el" href="log_8h_source.html#l00027">level()</a>.</p>
 
 </div>
 </div>
@@ -653,7 +653,7 @@ template&lt;class... Args&gt; </div>
 
 <p>Checks if Log::ostream_ is set. </p>
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00031">31</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00032">32</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
 </div>
 </div>
@@ -680,9 +680,9 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00027">27</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00028">28</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="log_8h_source.html#l00036">set()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="log_8h_source.html#l00037">set()</a>.</p>
 
 </div>
 </div>
@@ -709,7 +709,7 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00040">40</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00041">41</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
 </div>
 </div>
@@ -736,9 +736,9 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00036">36</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00037">37</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
-<p class="reference">References <a class="el" href="log_8h_source.html#l00027">ostream()</a>.</p>
+<p class="reference">References <a class="el" href="log_8h_source.html#l00028">ostream()</a>.</p>
 
 </div>
 </div>
@@ -771,9 +771,9 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00116">116</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00117">117</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
-<p class="reference">References <a class="el" href="log_8h_source.html#l00068">log()</a>, and <a class="el" href="log_8h_source.html#l00022">Trace</a>.</p>
+<p class="reference">References <a class="el" href="log_8h_source.html#l00069">log()</a>, and <a class="el" href="log_8h_source.html#l00023">Trace</a>.</p>
 
 </div>
 </div>
@@ -806,9 +806,9 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00102">102</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00103">103</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
-<p class="reference">References <a class="el" href="log_8h_source.html#l00068">log()</a>, and <a class="el" href="log_8h_source.html#l00022">Verbose</a>.</p>
+<p class="reference">References <a class="el" href="log_8h_source.html#l00069">log()</a>, and <a class="el" href="log_8h_source.html#l00023">Verbose</a>.</p>
 
 </div>
 </div>
@@ -841,9 +841,9 @@ template&lt;class... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00094">94</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00095">95</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
-<p class="reference">References <a class="el" href="log_8h_source.html#l00068">log()</a>, and <a class="el" href="log_8h_source.html#l00022">Warn</a>.</p>
+<p class="reference">References <a class="el" href="log_8h_source.html#l00069">log()</a>, and <a class="el" href="log_8h_source.html#l00023">Warn</a>.</p>
 
 </div>
 </div>
@@ -860,7 +860,7 @@ template&lt;class... Args&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00129">129</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00130">130</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
 </div>
 </div>
@@ -876,7 +876,7 @@ template&lt;class... Args&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00130">130</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="log_8h_source.html#l00131">131</a> of file <a class="el" href="log_8h_source.html">log.h</a>.</p>
 
 </div>
 </div>
