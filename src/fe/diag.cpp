@@ -95,6 +95,12 @@ void Diag::summary(std::ostream& os, size_t num_errors, size_t num_warnings, boo
     os << '\n';
 }
 
+std::string Diag::render(const std::function<std::string()>& fmt) const {
+    auto oss = std::ostringstream();
+    term::render_cite(oss, fmt(), false);
+    return oss.str();
+}
+
 std::string CodeDiag::render(const std::function<std::string()>& fmt) const {
     auto str = fmt();
     auto oss = std::ostringstream();

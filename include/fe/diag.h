@@ -49,9 +49,11 @@ public:
     virtual void summary(std::ostream&, size_t num_errors, size_t num_warnings, bool truncated) const;
     ///@}
 
-    /// Postprocesses the text of one Error::Msg; the identity here, see CodeDiag.
+    /// Postprocesses the text of one Error::Msg, which is `` `citation` `` markup - see fe::Cite.
+    /// Resolves it to plain text here, keeping the backticks; see CodeDiag for the colored rendering.
+    /// An override receives the markup itself, so a renderer of your own can read that structure.
     /// @warning @p fmt captures its arguments by reference and is only valid for that one call.
-    virtual std::string render(const std::function<std::string()>& fmt) const { return fmt(); }
+    virtual std::string render(const std::function<std::string()>& fmt) const;
 
     static term::FG tag2color(Tag);
 };

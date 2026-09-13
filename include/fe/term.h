@@ -328,10 +328,16 @@ private:
 };
 
 /// A *borrowed* fragment whose backticks stay markup; format_cite escapes every other argument.
+/// A literal and a Cited convert implicitly - both are text someone wrote as markup.
+/// Runtime text has to say so: spell it `Cite(s)`, so data never becomes markup by accident.
 /// @warning Borrows its text like a `std::string_view` does - a Cited outlives the expression, a Cite does not.
 struct Cite {
-    template<class T>
-    requires std::convertible_to<const T&, std::string_view> Cite(const T& s) noexcept
+    template<size_t N>
+    Cite(const char (&s)[N]) noexcept
+        : str(s) {}
+    Cite(const Cited& cited) noexcept
+        : str(cited) {}
+    explicit Cite(std::string_view s) noexcept
         : str(s) {}
 
     std::string_view str;
@@ -373,9 +379,7 @@ Cited format_cite(cite_string<Args...> fmt, Args&&... args) {
 /// verbatim without color; `` \` `` is a literal backtick and `\\` a literal backslash. This is the convention
 /// fe::CodeDiag renders a diagnostic message with; use it to apply the same convention elsewhere, e.g.
 /// fe::Cli::help.
-inline void render_cite(std::ostream& os, std::string_view str) {
-    auto color = use_color(os);
-
+inline void render_cite(std::ostream& os, std::string_view str, bool color) {
     for (size_t i = 0, e = str.size(); i != e;) {
         auto l = detail::tick(str, i);
         auto r = l == std::string_view::npos ? l : detail::tick(str, l + 1);
@@ -397,6 +401,9 @@ inline void render_cite(std::ostream& os, std::string_view str) {
         i = r + 1;
     }
 }
+
+/// As above but lets @p os decide the coloring; mirrors cite_width.
+inline void render_cite(std::ostream& os, std::string_view str) { render_cite(os, str, use_color(os)); }
 
 /// Number of columns @p str actually occupies once render_cite renders it with @p color - fewer than
 /// `str.size()` by the backticks/backslashes render_cite drops.

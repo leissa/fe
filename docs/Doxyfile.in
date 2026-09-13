@@ -54,7 +54,7 @@ PROJECT_NUMBER         = @PROJECT_VERSION@
 # for a project that appears at the top of each page and should give viewers a
 # quick idea about the purpose of the project. Keep the description short.
 
-PROJECT_BRIEF          = "Header-only C++ frontend library"
+PROJECT_BRIEF          = "A C++23 toolkit for writing compiler/interpreter frontends."
 
 # With the PROJECT_LOGO tag one can specify a logo or an icon that is included
 # in the documentation. The maximum height of the logo should not exceed 55
@@ -667,7 +667,7 @@ INTERNAL_DOCS          = NO
 # Possible values are: SYSTEM, NO and YES.
 # The default value is: SYSTEM.
 
-CASE_SENSE_NAMES       = SYSTEM
+CASE_SENSE_NAMES       = YES
 
 # If the HIDE_SCOPE_NAMES tag is set to NO then Doxygen will show members with
 # their full class and namespace scopes in the documentation. If set to YES, the
@@ -1026,7 +1026,7 @@ WARN_LOGFILE           =
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = @PROJECT_SOURCE_DIR@/docs \
+INPUT                  = docs \
                          @PROJECT_SOURCE_DIR@/include
 
 # This tag can be used to specify the character encoding of the source files
@@ -1496,7 +1496,6 @@ HTML_STYLESHEET        =
 HTML_EXTRA_STYLESHEET  = submodules/doxygen-awesome-css/doxygen-awesome.css \
                          submodules/doxygen-awesome-css/doxygen-awesome-sidebar-only.css \
                          submodules/doxygen-awesome-css/doxygen-awesome-sidebar-only-darkmode-toggle.css \
-                         submodules/doxygen-awesome-css/doxygen-awesome-interactive-toc.js \
                          submodules/doxygen-awesome-css/doxygen-custom/custom.css
 
 # The HTML_EXTRA_FILES tag can be used to specify one or more extra images or
@@ -1509,6 +1508,7 @@ HTML_EXTRA_STYLESHEET  = submodules/doxygen-awesome-css/doxygen-awesome.css \
 
 HTML_EXTRA_FILES       = submodules/doxygen-awesome-css/doxygen-awesome-darkmode-toggle.js \
                          submodules/doxygen-awesome-css/doxygen-awesome-fragment-copy-button.js \
+                         submodules/doxygen-awesome-css/doxygen-awesome-interactive-toc.js \
                          submodules/doxygen-awesome-css/doxygen-awesome-paragraph-link.js
 
 # The HTML_COLORSTYLE tag can be used to specify if the generated HTML output
@@ -1522,7 +1522,7 @@ HTML_EXTRA_FILES       = submodules/doxygen-awesome-css/doxygen-awesome-darkmode
 # The default value is: AUTO_LIGHT.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_COLORSTYLE        = AUTO_LIGHT
+HTML_COLORSTYLE        = LIGHT
 
 # The HTML_COLORSTYLE_HUE tag controls the color of the HTML output. Doxygen
 # will adjust the colors in the style sheet and background images according to

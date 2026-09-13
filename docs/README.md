@@ -121,6 +121,7 @@ Header-only, except for what [Requires `FE_LIB`](#requires-fe_lib) lists below.
   The `Driver` owns the one everything reports into (`Driver::error`); `Error::{e,w,n}` open an error, a warning, and a note, in the spirit of `Log::e` and friends.
 - `fe::Diag` for how a diagnostic lays out: `Diag::loc_style` (a `Loc::Style`), `Diag::no_snippet`, and friends cover the usual adjustments, and one virtual per piece (`loc`, `header`, `snippet`, `note`, `summary`, `render`) covers the rest.
   Derive and `Driver::diag(std::make_unique<MyDiag>())` to lay one out entirely your own way.
+  `Diag::render` resolves the citation markup to plain text; override it to read that structure yourself.
 - `fe::Log` for leveled logging with acronym, color, and origin prefix.
     - `Log::{e,w,i,v}` - plus `Log::{d,t}`, which vaporize in a `Release` build - point at their call site via `std::source_location`; no macros involved.
 - `fe::term` for lightweight terminal colors - and for the `` `citation` `` convention every FE message is written in; see [Citations](#citations).
@@ -278,7 +279,9 @@ Markup is a *type*, not a convention you have to remember:
 
 - `fe::cite_string` is a format string whose backticks are markup - that is what `fe::Error::{msg,e,w,n}` take instead of a `std::format_string`; forward one through a wrapper of your own the same way.
 - `fe::Cited` is an owning fragment, what `fe::format_cite` yields. Pass it straight back in as an argument - no re-wrapping, and nothing to dangle.
-- `fe::Cite` is a *borrowed* fragment, and the type to spell a markup **parameter** with: `Parser`'s `what` and `ctxt` are `Cite`, so a `syntax_err` of your own cannot forward them and silently lose the highlighting. It borrows like a `std::string_view`, so keep the `Cited` alive that it points at.
+- `fe::Cite` is a *borrowed* fragment, and the type to spell a markup **parameter** with: `Parser`'s `what` and `ctxt` are `Cite`, so a `syntax_err` of your own cannot forward them and silently lose the highlighting.
+  A string literal and a `Cited` convert implicitly - both are markup someone wrote - while runtime text has to say `fe::Cite(s)`, so data never becomes markup by accident.
+  It borrows like a `std::string_view`, so keep the `Cited` alive that it points at.
 
 The convention itself lives in `fe/term.h`, not in the diagnostics: `term::render_cite` renders it, `term::escape_cite` escapes data into it, and `term::cite_string`/`term::format_cite`/`term::Cite`/`term::Cited` produce it.
 That is what lets `fe::Cli` spell its `--help` text the same way `fe::Error` spells a diagnostic - and why `Cli::help` and `Cli::markdown` read one grammar rather than two.

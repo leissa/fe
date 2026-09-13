@@ -244,6 +244,13 @@ TEST_CASE("Driver") {
     }
 }
 
+// Markup is opt-in: a literal and a Cited are markup someone wrote, runtime text must say `Cite(s)`.
+static_assert(std::convertible_to<decltype("literal"), fe::Cite>);
+static_assert(std::convertible_to<fe::Cited, fe::Cite>);
+static_assert(!std::convertible_to<std::string, fe::Cite>);
+static_assert(!std::convertible_to<std::string_view, fe::Cite>);
+static_assert(std::constructible_from<fe::Cite, std::string_view>);
+
 TEST_CASE("Error") {
     // Disable colors so the diagnostic text is predictable.
     auto old_mode = fe::term::mode();
@@ -522,7 +529,7 @@ TEST_CASE("Error") {
         drv.diag().no_snippet = false;
     }
 
-    SUBCASE("the bare Diag leaves the message text alone") {
+    SUBCASE("the bare Diag renders the markup without color") {
         auto _    = fe::term::ScopedMode(fe::term::Mode::Always);
         auto bare = fe::Driver();
         bare.diag(std::make_unique<fe::Diag>());
@@ -531,7 +538,17 @@ TEST_CASE("Error") {
 
         auto err = fe::Error(bare);
         err.e(Loc(bsrc, Pos(4), Pos(5)), "a `citation` and a \\` escape");
-        CHECK(std::format("{}", err).find("a `citation` and a \\` escape") != std::string::npos);
+        CHECK(std::format("{}", err).find("a `citation` and a ` escape") != std::string::npos);
+
+        // an argument's backticks and backslashes reach a Diag of one's own as the data they were,
+        // not as the escaped form Error stores them in
+        err.clear();
+        err.e(Loc(bsrc, Pos(4), Pos(5)), "identifier `{}` not found", "a`b");
+        CHECK(std::format("{}", err).find("identifier `a`b` not found") != std::string::npos);
+
+        err.clear();
+        err.e(Loc(bsrc, Pos(4), Pos(5)), "path `{}`", "C:\\tmp");
+        CHECK(std::format("{}", err).find("path `C:\\tmp`") != std::string::npos);
     }
 
     SUBCASE("a Diag of your own lays a diagnostic out from scratch") {
