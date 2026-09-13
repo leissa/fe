@@ -15,7 +15,7 @@ var searchData=
   ['report_12',['report',['../classfe_1_1Error.html#a93e4dd890a070342985279476e4e5290',1,'fe::Error']]],
   ['require_5fcmd_13',['require_cmd',['../namespacefe_1_1sys.html#a8a2e6fd9be32a59f84f6e7c312f3cc03',1,'fe::sys']]],
   ['require_5frun_14',['require_run',['../namespacefe_1_1sys.html#a78a03f3257e26716d847e7c0821cb457',1,'fe::sys']]],
-  ['requires_20fe_5flib_15',['Requires &lt;span class=&quot;tt&quot;&gt;FE_LIB&lt;/span&gt;',['../index.html#requires-fe_lib',1,'']]],
+  ['requires_20fe_20lib_15',['Requires &lt;span class=&quot;tt&quot;&gt;fe-lib&lt;/span&gt;',['../index.html#requires-fe-lib',1,'']]],
   ['reset_16',['Reset',['../namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d',1,'fe::term']]],
   ['reset_17',['reset',['../classfe_1_1Ring.html#a17df98ab4ef3ce9fd2bb13a911a4ad16',1,'fe::Ring::reset()'],['../classfe_1_1Ring_3_01T_00_011_01_4.html#afa85d5e5922d3b59c79d7ebc33f8bc5b',1,'fe::Ring&lt; T, 1 &gt;::reset()'],['../classfe_1_1Ring_3_01T_00_012_01_4.html#abd21245d7479c1fc29eff7e4030f0f37',1,'fe::Ring&lt; T, 2 &gt;::reset()']]],
   ['resolve_5fmode_18',['resolve_mode',['../namespacefe_1_1term.html#a787158fdb940cfa7e778863bde8f34e8',1,'fe::term']]],

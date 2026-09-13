@@ -39,7 +39,7 @@ var NAVTREE =
         [ "Data Structures", "index.html#autotoc_md11", null ],
         [ "Odds &amp; Ends", "index.html#autotoc_md12", null ]
       ] ],
-      [ "Requires <span class=\"tt\">FE_LIB</span>", "index.html#requires-fe_lib", null ]
+      [ "Requires <span class=\"tt\">fe-lib</span>", "index.html#requires-fe-lib", null ]
     ] ],
     [ "🚀 Quick Start", "index.html#autotoc_md13", [
       [ "Integrate into a Project", "index.html#autotoc_md14", [

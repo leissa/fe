@@ -23,7 +23,7 @@ var NAVTREEINDEX5 =
 "index.html#autotoc_md9":[1,0,2],
 "index.html#citations":[4,0],
 "index.html#markup":[4,0,0],
-"index.html#requires-fe_lib":[1,1],
+"index.html#requires-fe-lib":[1,1],
 "lct_8h.html":[13,0,1,15],
 "lct_8h_source.html":[13,0,1,15],
 "lexer_8h.html":[13,0,1,16],
