@@ -135,434 +135,536 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('term_8h_source
 <div class="contents">
 <a href="term_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;cstdlib&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;cstring&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;atomic&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;iterator&gt;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;optional&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;ostream&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;string_view&gt;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#ifdef _WIN32</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#    ifndef WIN32_LEAN_AND_MEAN</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#        define WIN32_LEAN_AND_MEAN</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#    endif</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#    ifndef NOMINMAX</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#        define NOMINMAX</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#    endif</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#    include &lt;windows.h&gt;</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#    include &lt;sys/ioctl.h&gt;</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#    include &lt;unistd.h&gt;</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;<a class="code" href="assert_8h.html">fe/assert.h</a>&quot;</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &quot;<a class="code" href="format_8h.html">fe/format.h</a>&quot;</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &quot;<a class="code" href="restore_8h.html">fe/restore.h</a>&quot;</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment"></span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">/// Lightweight stream-based terminal colors for diagnostics and CLI output.</span></div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">///</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">/// Include `fe/term.h` and stream a @ref fe::term::FG value into an `std::ostream`:</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">/// ```</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">/// std::cerr &lt;&lt; fe::term::FG::Red &lt;&lt; &quot;error: &quot; &lt;&lt; fe::term::FG::Reset &lt;&lt; &quot;unexpected token\n&quot;;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;concepts&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;cstdlib&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;cstring&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;atomic&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;iterator&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;optional&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;ostream&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;string_view&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;type_traits&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#ifdef _WIN32</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#    ifndef WIN32_LEAN_AND_MEAN</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#        define WIN32_LEAN_AND_MEAN</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#    endif</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#    ifndef NOMINMAX</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#        define NOMINMAX</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#    endif</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#    include &lt;windows.h&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#    include &lt;sys/ioctl.h&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#    include &lt;unistd.h&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &quot;<a class="code" href="assert_8h.html">fe/assert.h</a>&quot;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &quot;<a class="code" href="format_8h.html">fe/format.h</a>&quot;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &quot;<a class="code" href="restore_8h.html">fe/restore.h</a>&quot;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment"></span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">/// Lightweight stream-based terminal colors for diagnostics and CLI output.</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">///</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">/// Include `fe/term.h` and stream a @ref fe::term::FG value into an `std::ostream`:</span></div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment">/// ```</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">///</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment">/// The current behavior is controlled via @ref fe::term::Mode and can be overridden with</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">/// @ref fe::term::set_mode. In @ref fe::term::Mode::Auto, colors are emitted only for</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment">/// `std::cout`, `std::cerr`, `std::clog`, or streams sharing those buffers when they refer to</span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">/// terminals. FE also respects the common environment conventions `NO_COLOR`, `CLICOLOR=0`, and</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">/// `CLICOLOR_FORCE` (unless it is set to `0`).</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">///</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">/// Note that a `std::formatter` never sees the destination stream - it formats into a detached buffer.</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">/// Hence, embedding a @ref fe::term::FG value in a `std::format`/`std::print` format string resolves</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">/// @ref fe::term::Mode::Auto to &quot;no color&quot;.</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">/// If you emit colors this way, call @ref fe::term::resolve_mode once at startup to decide</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment">/// @ref fe::term::Mode::Auto up front based on a representative stream.</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">///</span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">/// Use @ref fe::term::use_color to branch on whether color will actually be emitted, e.g. to keep a</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment">/// plain-text fallback in sync with the colored rendering.</span></div>
-<div class="foldopen" id="foldopen00052" data-start="{" data-end="}">
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html">   52</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacefe_1_1term.html">fe::term</a> {</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment"></span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="comment">/// Controls whether color escape sequences are emitted.</span></div>
-<div class="foldopen" id="foldopen00055" data-start="{" data-end="};">
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087">   55</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087">Mode</a> {</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb">   56</a></span>    <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb">Auto</a>,</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a6e7b34fa59e1bd229b207892956dc41c">   57</a></span>    <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a6e7b34fa59e1bd229b207892956dc41c">Never</a>,</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a68eec46437c384d8dad18d5464ebc35c">   58</a></span>    <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a68eec46437c384d8dad18d5464ebc35c">Always</a>,</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>};</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">/// std::cerr &lt;&lt; fe::term::FG::Red &lt;&lt; &quot;error: &quot; &lt;&lt; fe::term::FG::Reset &lt;&lt; &quot;unexpected token\n&quot;;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment">/// ```</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">///</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment">/// The current behavior is controlled via @ref fe::term::Mode and can be overridden with</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">/// @ref fe::term::set_mode. In @ref fe::term::Mode::Auto, colors are emitted only for</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">/// `std::cout`, `std::cerr`, `std::clog`, or streams sharing those buffers when they refer to</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">/// terminals. FE also respects the common environment conventions `NO_COLOR`, `CLICOLOR=0`, and</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">/// `CLICOLOR_FORCE` (unless it is set to `0`).</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">///</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">/// Note that a `std::formatter` never sees the destination stream - it formats into a detached buffer.</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">/// Hence, embedding a @ref fe::term::FG value in a `std::format`/`std::print` format string resolves</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment">/// @ref fe::term::Mode::Auto to &quot;no color&quot;.</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">/// If you emit colors this way, call @ref fe::term::resolve_mode once at startup to decide</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">/// @ref fe::term::Mode::Auto up front based on a representative stream.</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment">///</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment">/// Use @ref fe::term::use_color to branch on whether color will actually be emitted, e.g. to keep a</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment">/// plain-text fallback in sync with the colored rendering.</span></div>
+<div class="foldopen" id="foldopen00054" data-start="{" data-end="}">
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html">   54</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacefe_1_1term.html">fe::term</a> {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment"></span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment">/// Controls whether color escape sequences are emitted.</span></div>
+<div class="foldopen" id="foldopen00057" data-start="{" data-end="};">
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087">   57</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087">Mode</a> {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb">   58</a></span>    <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb">Auto</a>,</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a6e7b34fa59e1bd229b207892956dc41c">   59</a></span>    <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a6e7b34fa59e1bd229b207892956dc41c">Never</a>,</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a68eec46437c384d8dad18d5464ebc35c">   60</a></span>    <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a68eec46437c384d8dad18d5464ebc35c">Always</a>,</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>};</div>
 </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment"></span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">/// Foreground colors that can be streamed into an `std::ostream`.</span></div>
-<div class="foldopen" id="foldopen00062" data-start="{" data-end="};">
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148">   62</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148">FG</a> {</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ae90dfb84e30edf611e326eeb04d680de">   63</a></span>    <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ae90dfb84e30edf611e326eeb04d680de">Black</a>,</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47">   64</a></span>    <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47">Red</a>,</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ad382816a3cbeed082c9e216e7392eed1">   65</a></span>    <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ad382816a3cbeed082c9e216e7392eed1">Green</a>,</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a51e6cd92b6c45f9affdc158ecca2b8b8">   66</a></span>    <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a51e6cd92b6c45f9affdc158ecca2b8b8">Yellow</a>,</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a9594eec95be70e7b1710f730fdda33d9">   67</a></span>    <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a9594eec95be70e7b1710f730fdda33d9">Blue</a>,</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ab91cc2c1416fcca942b61c7ac5b1a9ac">   68</a></span>    <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ab91cc2c1416fcca942b61c7ac5b1a9ac">Magenta</a>,</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a023c239d2f2538f140a20e72c7b73f20">   69</a></span>    <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a023c239d2f2538f140a20e72c7b73f20">Cyan</a>,</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a994ae1d9731cebe455aff211bcb25b93">   70</a></span>    <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a994ae1d9731cebe455aff211bcb25b93">Gray</a>,</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148acaf3a042a037c064b7513ed640c22f77">   71</a></span>    <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148acaf3a042a037c064b7513ed640c22f77">Grey</a> = <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a994ae1d9731cebe455aff211bcb25b93">Gray</a>,</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d">   72</a></span>    <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d">Reset</a>,</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>};</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment"></span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">/// Foreground colors that can be streamed into an `std::ostream`.</span></div>
+<div class="foldopen" id="foldopen00064" data-start="{" data-end="};">
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148">   64</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148">FG</a> {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ae90dfb84e30edf611e326eeb04d680de">   65</a></span>    <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ae90dfb84e30edf611e326eeb04d680de">Black</a>,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47">   66</a></span>    <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47">Red</a>,</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ad382816a3cbeed082c9e216e7392eed1">   67</a></span>    <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ad382816a3cbeed082c9e216e7392eed1">Green</a>,</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a51e6cd92b6c45f9affdc158ecca2b8b8">   68</a></span>    <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a51e6cd92b6c45f9affdc158ecca2b8b8">Yellow</a>,</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a9594eec95be70e7b1710f730fdda33d9">   69</a></span>    <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a9594eec95be70e7b1710f730fdda33d9">Blue</a>,</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ab91cc2c1416fcca942b61c7ac5b1a9ac">   70</a></span>    <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ab91cc2c1416fcca942b61c7ac5b1a9ac">Magenta</a>,</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a023c239d2f2538f140a20e72c7b73f20">   71</a></span>    <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a023c239d2f2538f140a20e72c7b73f20">Cyan</a>,</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a994ae1d9731cebe455aff211bcb25b93">   72</a></span>    <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a994ae1d9731cebe455aff211bcb25b93">Gray</a>,</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148acaf3a042a037c064b7513ed640c22f77">   73</a></span>    <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148acaf3a042a037c064b7513ed640c22f77">Grey</a> = <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a994ae1d9731cebe455aff211bcb25b93">Gray</a>,</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d">   74</a></span>    <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d">Reset</a>,</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>};</div>
 </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="keyword">namespace </span>detail {</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keyword">enum class</span> Stream {</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    Unknown,</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    Stdout,</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    Stderr,</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>};</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="keyword">inline</span> <span class="keywordtype">bool</span> env_set(<span class="keyword">const</span> <span class="keywordtype">char</span>* name) <span class="keyword">noexcept</span> {</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keyword">auto</span>* value = std::getenv(name);</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordflow">return</span> value &amp;&amp; *value != <span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>}</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="keyword">inline</span> <span class="keywordtype">bool</span> env_is(<span class="keyword">const</span> <span class="keywordtype">char</span>* name, <span class="keyword">const</span> <span class="keywordtype">char</span>* expected) <span class="keyword">noexcept</span> {</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keyword">auto</span>* value = std::getenv(name);</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keywordflow">return</span> value &amp;&amp; std::strcmp(value, expected) == 0;</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>}</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="keyword">inline</span> <a class="code hl_enumeration" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087">Mode</a> default_mode() noexcept {</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordflow">if</span> (env_set(<span class="stringliteral">&quot;NO_COLOR&quot;</span>)) <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a6e7b34fa59e1bd229b207892956dc41c">Mode::Never</a>;</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordflow">if</span> (env_set(<span class="stringliteral">&quot;CLICOLOR_FORCE&quot;</span>) &amp;&amp; !env_is(<span class="stringliteral">&quot;CLICOLOR_FORCE&quot;</span>, <span class="stringliteral">&quot;0&quot;</span>)) <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a68eec46437c384d8dad18d5464ebc35c">Mode::Always</a>;</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keywordflow">if</span> (env_is(<span class="stringliteral">&quot;CLICOLOR&quot;</span>, <span class="stringliteral">&quot;0&quot;</span>)) <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a6e7b34fa59e1bd229b207892956dc41c">Mode::Never</a>;</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb">Mode::Auto</a>;</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>}</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="keyword">inline</span> std::atomic&lt;Mode&gt;&amp; current_mode() noexcept {</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keyword">static</span> std::atomic&lt;Mode&gt; <a class="code hl_function" href="namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf">mode</a>(default_mode());</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf">mode</a>;</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>}</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="keyword">inline</span> std::atomic&lt;bool&gt;&amp; current_auto_detached() noexcept {</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keyword">static</span> std::atomic&lt;bool&gt; detached(<span class="keyword">false</span>);</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keywordflow">return</span> detached;</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>}</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="keyword">inline</span> std::streambuf* stdout_rdbuf() noexcept {</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keyword">static</span> std::streambuf* buf = std::cout.rdbuf();</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordflow">return</span> buf;</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>}</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keyword">inline</span> std::streambuf* stderr_rdbuf() noexcept {</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keyword">static</span> std::streambuf* buf = std::cerr.rdbuf();</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keywordflow">return</span> buf;</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>}</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="keyword">inline</span> std::streambuf* clog_rdbuf() noexcept {</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keyword">static</span> std::streambuf* buf = std::clog.rdbuf();</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keywordflow">return</span> buf;</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>}</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="keyword">inline</span> Stream stream(std::ostream&amp; os) <span class="keyword">noexcept</span> {</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keyword">auto</span>* <span class="keyword">const</span> buf = os.rdbuf();</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keywordflow">if</span> (buf == stdout_rdbuf()) <span class="keywordflow">return</span> Stream::Stdout;</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keywordflow">if</span> (buf == stderr_rdbuf() || buf == clog_rdbuf()) <span class="keywordflow">return</span> Stream::Stderr;</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keywordflow">return</span> Stream::Unknown;</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>}</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="preprocessor">#ifdef _WIN32</span></div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="keyword">inline</span> <span class="keywordtype">bool</span> enable_vt(HANDLE handle) <span class="keyword">noexcept</span> {</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keywordflow">if</span> (handle == INVALID_HANDLE_VALUE) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    DWORD <a class="code hl_function" href="namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf">mode</a> = 0;</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keywordflow">if</span> (!GetConsoleMode(handle, &amp;<a class="code hl_function" href="namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf">mode</a>)) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf">mode</a> &amp; ENABLE_VIRTUAL_TERMINAL_PROCESSING) <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="keywordflow">return</span> SetConsoleMode(handle, <a class="code hl_function" href="namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf">mode</a> | ENABLE_VIRTUAL_TERMINAL_PROCESSING) != 0;</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>}</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="keyword">inline</span> <span class="keywordtype">bool</span> is_terminal(Stream s) <span class="keyword">noexcept</span> {</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="keywordflow">switch</span> (s) {</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        <span class="keywordflow">case</span> Stream::Stdout: {</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>            <span class="keyword">static</span> <span class="keywordtype">bool</span> stdout_is_terminal = enable_vt(GetStdHandle(STD_OUTPUT_HANDLE));</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>            <span class="keywordflow">return</span> stdout_is_terminal;</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        }</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        <span class="keywordflow">case</span> Stream::Stderr: {</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>            <span class="keyword">static</span> <span class="keywordtype">bool</span> stderr_is_terminal = enable_vt(GetStdHandle(STD_ERROR_HANDLE));</div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>            <span class="keywordflow">return</span> stderr_is_terminal;</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        }</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        <span class="keywordflow">default</span>: <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    }</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>}</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="keyword">inline</span> <span class="keywordtype">bool</span> is_terminal(Stream s) <span class="keyword">noexcept</span> {</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keywordflow">switch</span> (s) {</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        <span class="keywordflow">case</span> Stream::Stdout: {</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>            <span class="keyword">static</span> <span class="keywordtype">bool</span> stdout_is_terminal = ::isatty(STDOUT_FILENO) != 0;</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>            <span class="keywordflow">return</span> stdout_is_terminal;</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        }</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        <span class="keywordflow">case</span> Stream::Stderr: {</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>            <span class="keyword">static</span> <span class="keywordtype">bool</span> stderr_is_terminal = ::isatty(STDERR_FILENO) != 0;</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>            <span class="keywordflow">return</span> stderr_is_terminal;</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        }</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        <span class="keywordflow">default</span>: <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    }</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>}</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="keyword">constexpr</span> std::string_view sgr(<a class="code hl_enumeration" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148">FG</a> color) <span class="keyword">noexcept</span> {</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="comment">// clang-format off</span></div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keywordflow">switch</span> (color) {</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ae90dfb84e30edf611e326eeb04d680de">FG::Black</a>:   <span class="keywordflow">return</span> <span class="stringliteral">&quot;\033[30m&quot;</span>;</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47">FG::Red</a>:     <span class="keywordflow">return</span> <span class="stringliteral">&quot;\033[31m&quot;</span>;</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ad382816a3cbeed082c9e216e7392eed1">FG::Green</a>:   <span class="keywordflow">return</span> <span class="stringliteral">&quot;\033[32m&quot;</span>;</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a51e6cd92b6c45f9affdc158ecca2b8b8">FG::Yellow</a>:  <span class="keywordflow">return</span> <span class="stringliteral">&quot;\033[33m&quot;</span>;</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a9594eec95be70e7b1710f730fdda33d9">FG::Blue</a>:    <span class="keywordflow">return</span> <span class="stringliteral">&quot;\033[34m&quot;</span>;</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ab91cc2c1416fcca942b61c7ac5b1a9ac">FG::Magenta</a>: <span class="keywordflow">return</span> <span class="stringliteral">&quot;\033[35m&quot;</span>;</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a023c239d2f2538f140a20e72c7b73f20">FG::Cyan</a>:    <span class="keywordflow">return</span> <span class="stringliteral">&quot;\033[36m&quot;</span>;</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a994ae1d9731cebe455aff211bcb25b93">FG::Gray</a>:    <span class="keywordflow">return</span> <span class="stringliteral">&quot;\033[90m&quot;</span>;</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d">FG::Reset</a>:   <span class="keywordflow">return</span> <span class="stringliteral">&quot;\033[39m&quot;</span>;</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        <span class="keywordflow">default</span>: <a class="code hl_function" href="namespacefe.html#aff9df682b55afdb0f712e5a0c1ff3a2b">fe::unreachable</a>();</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    }</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="comment">// clang-format on</span></div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>}</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span><span class="comment"></span> </div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="comment">/// Does @p str spell an escape - `` \` `` or `\\` - at position @p i of `[i, end)`?</span></div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="keyword">constexpr</span> <span class="keywordtype">bool</span> escape(std::string_view str, <span class="keywordtype">size_t</span> i, <span class="keywordtype">size_t</span> end) <span class="keyword">noexcept</span> {</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="keywordflow">return</span> str[i] == <span class="charliteral">&#39;\\&#39;</span> &amp;&amp; i + 1 != end &amp;&amp; (str[i + 1] == <span class="charliteral">&#39;`&#39;</span> || str[i + 1] == <span class="charliteral">&#39;\\&#39;</span>);</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>}</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="comment"></span> </div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="comment">/// Index of the next backtick at or after @p i that is not escaped, or `npos`.</span></div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="keyword">inline</span> <span class="keywordtype">size_t</span> tick(std::string_view str, <span class="keywordtype">size_t</span> i) <span class="keyword">noexcept</span> {</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="keywordflow">for</span> (; i != str.size(); ++i)</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        <span class="keywordflow">if</span> (escape(str, i, str.size()))</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>            ++i;</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (str[i] == <span class="charliteral">&#39;`&#39;</span>)</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>            <span class="keywordflow">return</span> i;</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="keywordflow">return</span> std::string_view::npos;</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>}</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span><span class="comment"></span> </div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span><span class="comment">/// Streams `[begin, end)` of @p str, dropping the leading backslash of every escape.</span></div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="keyword">inline</span> <span class="keywordtype">void</span> stream_raw(std::ostream&amp; os, std::string_view str, <span class="keywordtype">size_t</span> begin, <span class="keywordtype">size_t</span> end) {</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> i = begin; i != end; ++i) {</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        <span class="keywordflow">if</span> (escape(str, i, end)) ++i;</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        os &lt;&lt; str[i];</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    }</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>}</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span><span class="comment"></span> </div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span><span class="comment">/// Columns `[begin, end)` of @p str occupies once streamed via stream_raw - one less per escape.</span></div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span><span class="keyword">inline</span> <span class="keywordtype">size_t</span> raw_width(std::string_view str, <span class="keywordtype">size_t</span> begin, <span class="keywordtype">size_t</span> end) <span class="keyword">noexcept</span> {</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="keywordtype">size_t</span> <a class="code hl_function" href="namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3">width</a> = 0;</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> i = begin; i != end; ++i, ++<a class="code hl_function" href="namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3">width</a>)</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>        <span class="keywordflow">if</span> (escape(str, i, end)) ++i;</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3">width</a>;</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>}</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>} <span class="comment">// namespace detail</span></div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span><span class="comment"></span> </div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="comment">/// Returns the current terminal color mode.</span></div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf">  222</a></span><span class="keyword">inline</span> <a class="code hl_enumeration" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087">Mode</a> <a class="code hl_function" href="namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf">mode</a>() noexcept { <span class="keywordflow">return</span> detail::current_mode().load(std::memory_order_relaxed); }</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span><span class="comment"></span> </div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="comment">/// Whether Mode::Auto emits colors into a detached buffer - anything a `std::formatter` writes into.</span></div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="comment">/// @ref resolve_mode is the usual way to decide this.</span></div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a8dcfc2b7e35b66547dbc3cfbfe587360">  226</a></span><span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="namespacefe_1_1term.html#a8dcfc2b7e35b66547dbc3cfbfe587360">auto_detached</a>() noexcept { <span class="keywordflow">return</span> detail::current_auto_detached().load(std::memory_order_relaxed); }</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="comment"></span> </div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="comment">/// Overrides @ref auto_detached.</span></div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a8684fed290af7defd8412888411d15af">  229</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespacefe_1_1term.html#a8684fed290af7defd8412888411d15af">set_auto_detached</a>(<span class="keywordtype">bool</span> b) <span class="keyword">noexcept</span> { detail::current_auto_detached().store(b, std::memory_order_relaxed); }</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="comment"></span> </div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><span class="comment">/// Whether color escape sequences are emitted for @p os right now.</span></div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span><span class="comment">/// In Mode::Auto this is decided by whether @p os refers to a terminal, while a detached buffer</span></div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span><span class="comment">/// (anything a `std::formatter` writes into) follows @ref resolve_mode.</span></div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><span class="comment">/// Use this to keep a plain-text fallback in sync with what @ref operator&lt;&lt;(std::ostream&amp;, FG) will emit,</span></div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="comment">/// e.g. to spell out a marker only when it cannot be conveyed by color.</span></div>
-<div class="foldopen" id="foldopen00236" data-start="{" data-end="}">
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#ad2b84bd3b2fb301332ef7cae1fcd7b69">  236</a></span><span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="namespacefe_1_1term.html#ad2b84bd3b2fb301332ef7cae1fcd7b69">use_color</a>(std::ostream&amp; os) <span class="keyword">noexcept</span> {</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="keyword">auto</span> s = detail::stream(os);</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="comment">// clang-format off</span></div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <span class="keywordflow">switch</span> (<a class="code hl_function" href="namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf">mode</a>()) {</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a68eec46437c384d8dad18d5464ebc35c">Mode::Always</a>: <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a6e7b34fa59e1bd229b207892956dc41c">Mode::Never</a>:  <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb">Mode::Auto</a>:   <span class="keywordflow">return</span> s == detail::Stream::Unknown ? <a class="code hl_function" href="namespacefe_1_1term.html#a8dcfc2b7e35b66547dbc3cfbfe587360">auto_detached</a>() : detail::is_terminal(s);</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        <span class="keywordflow">default</span>: <a class="code hl_function" href="namespacefe.html#aff9df682b55afdb0f712e5a0c1ff3a2b">fe::unreachable</a>();</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    }</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    <span class="comment">// clang-format on</span></div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>}</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keyword">namespace </span>detail {</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="keyword">enum class</span> Stream {</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    Unknown,</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    Stdout,</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    Stderr,</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>};</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="keyword">inline</span> <span class="keywordtype">bool</span> env_set(<span class="keyword">const</span> <span class="keywordtype">char</span>* name) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keyword">auto</span>* value = std::getenv(name);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordflow">return</span> value &amp;&amp; *value != <span class="charliteral">&#39;\0&#39;</span>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>}</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="keyword">inline</span> <span class="keywordtype">bool</span> env_is(<span class="keyword">const</span> <span class="keywordtype">char</span>* name, <span class="keyword">const</span> <span class="keywordtype">char</span>* expected) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keyword">auto</span>* value = std::getenv(name);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordflow">return</span> value &amp;&amp; std::strcmp(value, expected) == 0;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>}</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="keyword">inline</span> <a class="code hl_enumeration" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087">Mode</a> default_mode() noexcept {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keywordflow">if</span> (env_set(<span class="stringliteral">&quot;NO_COLOR&quot;</span>)) <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a6e7b34fa59e1bd229b207892956dc41c">Mode::Never</a>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordflow">if</span> (env_set(<span class="stringliteral">&quot;CLICOLOR_FORCE&quot;</span>) &amp;&amp; !env_is(<span class="stringliteral">&quot;CLICOLOR_FORCE&quot;</span>, <span class="stringliteral">&quot;0&quot;</span>)) <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a68eec46437c384d8dad18d5464ebc35c">Mode::Always</a>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordflow">if</span> (env_is(<span class="stringliteral">&quot;CLICOLOR&quot;</span>, <span class="stringliteral">&quot;0&quot;</span>)) <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a6e7b34fa59e1bd229b207892956dc41c">Mode::Never</a>;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb">Mode::Auto</a>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>}</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="keyword">inline</span> std::atomic&lt;Mode&gt;&amp; current_mode() noexcept {</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keyword">static</span> std::atomic&lt;Mode&gt; <a class="code hl_function" href="namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf">mode</a>(default_mode());</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf">mode</a>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>}</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="keyword">inline</span> std::atomic&lt;bool&gt;&amp; current_auto_detached() noexcept {</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keyword">static</span> std::atomic&lt;bool&gt; detached(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keywordflow">return</span> detached;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>}</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="keyword">inline</span> std::streambuf* stdout_rdbuf() noexcept {</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keyword">static</span> std::streambuf* buf = std::cout.rdbuf();</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keywordflow">return</span> buf;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>}</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="keyword">inline</span> std::streambuf* stderr_rdbuf() noexcept {</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keyword">static</span> std::streambuf* buf = std::cerr.rdbuf();</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordflow">return</span> buf;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>}</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="keyword">inline</span> std::streambuf* clog_rdbuf() noexcept {</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keyword">static</span> std::streambuf* buf = std::clog.rdbuf();</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keywordflow">return</span> buf;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>}</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="keyword">inline</span> Stream stream(std::ostream&amp; os) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keyword">auto</span>* <span class="keyword">const</span> buf = os.rdbuf();</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keywordflow">if</span> (buf == stdout_rdbuf()) <span class="keywordflow">return</span> Stream::Stdout;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordflow">if</span> (buf == stderr_rdbuf() || buf == clog_rdbuf()) <span class="keywordflow">return</span> Stream::Stderr;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordflow">return</span> Stream::Unknown;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>}</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="preprocessor">#ifdef _WIN32</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="keyword">inline</span> <span class="keywordtype">bool</span> enable_vt(HANDLE handle) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="keywordflow">if</span> (handle == INVALID_HANDLE_VALUE) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    DWORD <a class="code hl_function" href="namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf">mode</a> = 0;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="keywordflow">if</span> (!GetConsoleMode(handle, &amp;<a class="code hl_function" href="namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf">mode</a>)) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf">mode</a> &amp; ENABLE_VIRTUAL_TERMINAL_PROCESSING) <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keywordflow">return</span> SetConsoleMode(handle, <a class="code hl_function" href="namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf">mode</a> | ENABLE_VIRTUAL_TERMINAL_PROCESSING) != 0;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>}</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="keyword">inline</span> <span class="keywordtype">bool</span> is_terminal(Stream s) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keywordflow">switch</span> (s) {</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        <span class="keywordflow">case</span> Stream::Stdout: {</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>            <span class="keyword">static</span> <span class="keywordtype">bool</span> stdout_is_terminal = enable_vt(GetStdHandle(STD_OUTPUT_HANDLE));</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>            <span class="keywordflow">return</span> stdout_is_terminal;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        }</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        <span class="keywordflow">case</span> Stream::Stderr: {</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>            <span class="keyword">static</span> <span class="keywordtype">bool</span> stderr_is_terminal = enable_vt(GetStdHandle(STD_ERROR_HANDLE));</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>            <span class="keywordflow">return</span> stderr_is_terminal;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        }</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        <span class="keywordflow">default</span>: <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    }</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>}</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="keyword">inline</span> <span class="keywordtype">bool</span> is_terminal(Stream s) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="keywordflow">switch</span> (s) {</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        <span class="keywordflow">case</span> Stream::Stdout: {</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>            <span class="keyword">static</span> <span class="keywordtype">bool</span> stdout_is_terminal = ::isatty(STDOUT_FILENO) != 0;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>            <span class="keywordflow">return</span> stdout_is_terminal;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        }</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        <span class="keywordflow">case</span> Stream::Stderr: {</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>            <span class="keyword">static</span> <span class="keywordtype">bool</span> stderr_is_terminal = ::isatty(STDERR_FILENO) != 0;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>            <span class="keywordflow">return</span> stderr_is_terminal;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        }</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>        <span class="keywordflow">default</span>: <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    }</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>}</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span><span class="keyword">constexpr</span> std::string_view sgr(<a class="code hl_enumeration" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148">FG</a> color) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="comment">// clang-format off</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keywordflow">switch</span> (color) {</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ae90dfb84e30edf611e326eeb04d680de">FG::Black</a>:   <span class="keywordflow">return</span> <span class="stringliteral">&quot;\033[30m&quot;</span>;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47">FG::Red</a>:     <span class="keywordflow">return</span> <span class="stringliteral">&quot;\033[31m&quot;</span>;</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ad382816a3cbeed082c9e216e7392eed1">FG::Green</a>:   <span class="keywordflow">return</span> <span class="stringliteral">&quot;\033[32m&quot;</span>;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a51e6cd92b6c45f9affdc158ecca2b8b8">FG::Yellow</a>:  <span class="keywordflow">return</span> <span class="stringliteral">&quot;\033[33m&quot;</span>;</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a9594eec95be70e7b1710f730fdda33d9">FG::Blue</a>:    <span class="keywordflow">return</span> <span class="stringliteral">&quot;\033[34m&quot;</span>;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ab91cc2c1416fcca942b61c7ac5b1a9ac">FG::Magenta</a>: <span class="keywordflow">return</span> <span class="stringliteral">&quot;\033[35m&quot;</span>;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a023c239d2f2538f140a20e72c7b73f20">FG::Cyan</a>:    <span class="keywordflow">return</span> <span class="stringliteral">&quot;\033[36m&quot;</span>;</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a994ae1d9731cebe455aff211bcb25b93">FG::Gray</a>:    <span class="keywordflow">return</span> <span class="stringliteral">&quot;\033[90m&quot;</span>;</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d">FG::Reset</a>:   <span class="keywordflow">return</span> <span class="stringliteral">&quot;\033[39m&quot;</span>;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        <span class="keywordflow">default</span>: <a class="code hl_function" href="namespacefe.html#aff9df682b55afdb0f712e5a0c1ff3a2b">fe::unreachable</a>();</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    }</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="comment">// clang-format on</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>}</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="comment"></span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span><span class="comment">/// Does @p str spell an escape - `` \` `` or `\\` - at position @p i of `[i, end)`?</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="keyword">constexpr</span> <span class="keywordtype">bool</span> escape(std::string_view str, <span class="keywordtype">size_t</span> i, <span class="keywordtype">size_t</span> end) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <span class="keywordflow">return</span> str[i] == <span class="charliteral">&#39;\\&#39;</span> &amp;&amp; i + 1 != end &amp;&amp; (str[i + 1] == <span class="charliteral">&#39;`&#39;</span> || str[i + 1] == <span class="charliteral">&#39;\\&#39;</span>);</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>}</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="comment"></span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="comment">/// Index of the next backtick at or after @p i that is not escaped, or `npos`.</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="keyword">inline</span> <span class="keywordtype">size_t</span> tick(std::string_view str, <span class="keywordtype">size_t</span> i) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="keywordflow">for</span> (; i != str.size(); ++i)</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        <span class="keywordflow">if</span> (escape(str, i, str.size()))</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>            ++i;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (str[i] == <span class="charliteral">&#39;`&#39;</span>)</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>            <span class="keywordflow">return</span> i;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="keywordflow">return</span> std::string_view::npos;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>}</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="comment"></span> </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span><span class="comment">/// Streams `[begin, end)` of @p str, dropping the leading backslash of every escape.</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><span class="keyword">inline</span> <span class="keywordtype">void</span> stream_raw(std::ostream&amp; os, std::string_view str, <span class="keywordtype">size_t</span> begin, <span class="keywordtype">size_t</span> end) {</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> i = begin; i != end; ++i) {</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        <span class="keywordflow">if</span> (escape(str, i, end)) ++i;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        os &lt;&lt; str[i];</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    }</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>}</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span><span class="comment"></span> </div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span><span class="comment">/// Columns `[begin, end)` of @p str occupies once streamed via stream_raw - one less per escape.</span></div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span><span class="keyword">inline</span> <span class="keywordtype">size_t</span> raw_width(std::string_view str, <span class="keywordtype">size_t</span> begin, <span class="keywordtype">size_t</span> end) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="keywordtype">size_t</span> <a class="code hl_function" href="namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3">width</a> = 0;</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> i = begin; i != end; ++i, ++<a class="code hl_function" href="namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3">width</a>)</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        <span class="keywordflow">if</span> (escape(str, i, end)) ++i;</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3">width</a>;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>}</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>} <span class="comment">// namespace detail</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="comment"></span> </div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span><span class="comment">/// Returns the current terminal color mode.</span></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf">  224</a></span><span class="keyword">inline</span> <a class="code hl_enumeration" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087">Mode</a> <a class="code hl_function" href="namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf">mode</a>() noexcept { <span class="keywordflow">return</span> detail::current_mode().load(std::memory_order_relaxed); }</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="comment"></span> </div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span><span class="comment">/// Whether Mode::Auto emits colors into a detached buffer - anything a `std::formatter` writes into.</span></div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="comment">/// @ref resolve_mode is the usual way to decide this.</span></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a8dcfc2b7e35b66547dbc3cfbfe587360">  228</a></span><span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="namespacefe_1_1term.html#a8dcfc2b7e35b66547dbc3cfbfe587360">auto_detached</a>() noexcept { <span class="keywordflow">return</span> detail::current_auto_detached().load(std::memory_order_relaxed); }</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span><span class="comment"></span> </div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="comment">/// Overrides @ref auto_detached.</span></div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a8684fed290af7defd8412888411d15af">  231</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespacefe_1_1term.html#a8684fed290af7defd8412888411d15af">set_auto_detached</a>(<span class="keywordtype">bool</span> b) <span class="keyword">noexcept</span> { detail::current_auto_detached().store(b, std::memory_order_relaxed); }</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span><span class="comment"></span> </div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span><span class="comment">/// Whether color escape sequences are emitted for @p os right now.</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><span class="comment">/// In Mode::Auto this is decided by whether @p os refers to a terminal, while a detached buffer</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="comment">/// (anything a `std::formatter` writes into) follows @ref resolve_mode.</span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="comment">/// Use this to keep a plain-text fallback in sync with what @ref operator&lt;&lt;(std::ostream&amp;, FG) will emit,</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span><span class="comment">/// e.g. to spell out a marker only when it cannot be conveyed by color.</span></div>
+<div class="foldopen" id="foldopen00238" data-start="{" data-end="}">
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#ad2b84bd3b2fb301332ef7cae1fcd7b69">  238</a></span><span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="namespacefe_1_1term.html#ad2b84bd3b2fb301332ef7cae1fcd7b69">use_color</a>(std::ostream&amp; os) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <span class="keyword">auto</span> s = detail::stream(os);</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    <span class="comment">// clang-format off</span></div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <span class="keywordflow">switch</span> (<a class="code hl_function" href="namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf">mode</a>()) {</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a68eec46437c384d8dad18d5464ebc35c">Mode::Always</a>: <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a6e7b34fa59e1bd229b207892956dc41c">Mode::Never</a>:  <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb">Mode::Auto</a>:   <span class="keywordflow">return</span> s == detail::Stream::Unknown ? <a class="code hl_function" href="namespacefe_1_1term.html#a8dcfc2b7e35b66547dbc3cfbfe587360">auto_detached</a>() : detail::is_terminal(s);</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>        <span class="keywordflow">default</span>: <a class="code hl_function" href="namespacefe.html#aff9df682b55afdb0f712e5a0c1ff3a2b">fe::unreachable</a>();</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    }</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="comment">// clang-format on</span></div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>}</div>
 </div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span><span class="comment"></span> </div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span><span class="comment">/// Number of columns of the terminal @p os refers to.</span></div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span><span class="comment">/// Unlike @ref use_color, this ignores @ref Mode and always asks the actual stream.</span></div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span><span class="comment">/// @returns `std::nullopt` if @p os is not a terminal or its size cannot be determined.</span></div>
-<div class="foldopen" id="foldopen00251" data-start="{" data-end="}">
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3">  251</a></span><span class="keyword">inline</span> std::optional&lt;size_t&gt; <a class="code hl_function" href="namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3">width</a>(std::ostream&amp; os) <span class="keyword">noexcept</span> {</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="keyword">auto</span> s = detail::stream(os);</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    <span class="keywordflow">if</span> (!detail::is_terminal(s)) <span class="keywordflow">return</span> {};</div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span><span class="preprocessor">#ifdef _WIN32</span></div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    <span class="keyword">auto</span> handle = GetStdHandle(s == detail::Stream::Stdout ? STD_OUTPUT_HANDLE : STD_ERROR_HANDLE);</div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    <span class="keywordflow">if</span> (CONSOLE_SCREEN_BUFFER_INFO info; GetConsoleScreenBufferInfo(handle, &amp;info)) {</div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>        <span class="keywordflow">if</span> (<span class="keyword">auto</span> cols = info.srWindow.Right - info.srWindow.Left + 1; cols &gt; 0) <span class="keywordflow">return</span> size_t(cols);</div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    }</div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    <span class="keyword">auto</span> fd = s == detail::Stream::Stdout ? STDOUT_FILENO : STDERR_FILENO;</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    <span class="keywordflow">if</span> (winsize ws; ::ioctl(fd, TIOCGWINSZ, &amp;ws) == 0 &amp;&amp; ws.ws_col &gt; 0) <span class="keywordflow">return</span> <span class="keywordtype">size_t</span>(ws.ws_col);</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    <span class="keywordflow">return</span> {};</div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>}</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span><span class="comment"></span> </div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span><span class="comment">/// Number of columns of the terminal @p os refers to.</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span><span class="comment">/// Unlike @ref use_color, this ignores @ref Mode and always asks the actual stream.</span></div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span><span class="comment">/// @returns `std::nullopt` if @p os is not a terminal or its size cannot be determined.</span></div>
+<div class="foldopen" id="foldopen00253" data-start="{" data-end="}">
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3">  253</a></span><span class="keyword">inline</span> std::optional&lt;size_t&gt; <a class="code hl_function" href="namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3">width</a>(std::ostream&amp; os) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    <span class="keyword">auto</span> s = detail::stream(os);</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <span class="keywordflow">if</span> (!detail::is_terminal(s)) <span class="keywordflow">return</span> {};</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span><span class="preprocessor">#ifdef _WIN32</span></div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <span class="keyword">auto</span> handle = GetStdHandle(s == detail::Stream::Stdout ? STD_OUTPUT_HANDLE : STD_ERROR_HANDLE);</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    <span class="keywordflow">if</span> (CONSOLE_SCREEN_BUFFER_INFO info; GetConsoleScreenBufferInfo(handle, &amp;info)) {</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>        <span class="keywordflow">if</span> (<span class="keyword">auto</span> cols = info.srWindow.Right - info.srWindow.Left + 1; cols &gt; 0) <span class="keywordflow">return</span> size_t(cols);</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    }</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    <span class="keyword">auto</span> fd = s == detail::Stream::Stdout ? STDOUT_FILENO : STDERR_FILENO;</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    <span class="keywordflow">if</span> (winsize ws; ::ioctl(fd, TIOCGWINSZ, &amp;ws) == 0 &amp;&amp; ws.ws_col &gt; 0) <span class="keywordflow">return</span> <span class="keywordtype">size_t</span>(ws.ws_col);</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    <span class="keywordflow">return</span> {};</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>}</div>
 </div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span><span class="comment"></span> </div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span><span class="comment">/// Overrides the current terminal color mode.</span></div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#aea69c469efc3010ca40cb1873ff6bec6">  268</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespacefe_1_1term.html#aea69c469efc3010ca40cb1873ff6bec6">set_mode</a>(<a class="code hl_enumeration" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087">Mode</a> m) <span class="keyword">noexcept</span> { detail::current_mode().store(m, std::memory_order_relaxed); }</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span><span class="comment"></span> </div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span><span class="comment">/// Overrides the color mode for the duration of the scope.</span></div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="comment">/// @warning The mode is global, so this affects every stream - and every thread - while it is alive.</span></div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a214cdb1ce076f0e6de11f6afb317c516">  272</a></span><span class="keyword">using </span><a class="code hl_typedef" href="namespacefe_1_1term.html#a214cdb1ce076f0e6de11f6afb317c516">ScopedMode</a> = <a class="code hl_class" href="classfe_1_1Restore.html">Restore&lt;Mode, &amp;mode, &amp;set_mode&gt;</a>;</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span><span class="comment"></span> </div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span><span class="comment">/// Decides Mode::Auto for detached buffers, depending on whether @p os refers to a terminal.</span></div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span><span class="comment">/// A `std::formatter` cannot see its destination stream, so FG values embedded in a</span></div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span><span class="comment">/// `std::format`/`std::print` format string never detect a terminal on their own.</span></div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span><span class="comment">/// Call this once at startup to make formatted output colored as well:</span></div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span><span class="comment">/// ```</span></div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span><span class="comment">/// fe::term::resolve_mode(); // decide based on stderr</span></div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span><span class="comment">/// std::print(std::cerr, &quot;{}error:{} ...&quot;, fe::term::FG::Red, fe::term::FG::Reset);</span></div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span><span class="comment">/// ```</span></div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span><span class="comment">/// A real stream still decides on its own, and explicit modes are left untouched.</span></div>
-<div class="foldopen" id="foldopen00283" data-start="{" data-end="}">
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a787158fdb940cfa7e778863bde8f34e8">  283</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespacefe_1_1term.html#a787158fdb940cfa7e778863bde8f34e8">resolve_mode</a>(std::ostream&amp; os = std::cerr) <span class="keyword">noexcept</span> {</div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    <a class="code hl_function" href="namespacefe_1_1term.html#a8684fed290af7defd8412888411d15af">set_auto_detached</a>(detail::is_terminal(detail::stream(os)));</div>
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>}</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span><span class="comment"></span> </div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span><span class="comment">/// Overrides the current terminal color mode.</span></div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#aea69c469efc3010ca40cb1873ff6bec6">  270</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespacefe_1_1term.html#aea69c469efc3010ca40cb1873ff6bec6">set_mode</a>(<a class="code hl_enumeration" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087">Mode</a> m) <span class="keyword">noexcept</span> { detail::current_mode().store(m, std::memory_order_relaxed); }</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="comment"></span> </div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span><span class="comment">/// Overrides the color mode for the duration of the scope.</span></div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span><span class="comment">/// @warning The mode is global, so this affects every stream - and every thread - while it is alive.</span></div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a214cdb1ce076f0e6de11f6afb317c516">  274</a></span><span class="keyword">using </span><a class="code hl_typedef" href="namespacefe_1_1term.html#a214cdb1ce076f0e6de11f6afb317c516">ScopedMode</a> = <a class="code hl_class" href="classfe_1_1Restore.html">Restore&lt;Mode, &amp;mode, &amp;set_mode&gt;</a>;</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span><span class="comment"></span> </div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span><span class="comment">/// Decides Mode::Auto for detached buffers, depending on whether @p os refers to a terminal.</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span><span class="comment">/// A `std::formatter` cannot see its destination stream, so FG values embedded in a</span></div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span><span class="comment">/// `std::format`/`std::print` format string never detect a terminal on their own.</span></div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span><span class="comment">/// Call this once at startup to make formatted output colored as well:</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span><span class="comment">/// ```</span></div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span><span class="comment">/// fe::term::resolve_mode(); // decide based on stderr</span></div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span><span class="comment">/// std::print(std::cerr, &quot;{}error:{} ...&quot;, fe::term::FG::Red, fe::term::FG::Reset);</span></div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span><span class="comment">/// ```</span></div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span><span class="comment">/// A real stream still decides on its own, and explicit modes are left untouched.</span></div>
+<div class="foldopen" id="foldopen00285" data-start="{" data-end="}">
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a787158fdb940cfa7e778863bde8f34e8">  285</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespacefe_1_1term.html#a787158fdb940cfa7e778863bde8f34e8">resolve_mode</a>(std::ostream&amp; os = std::cerr) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    <a class="code hl_function" href="namespacefe_1_1term.html#a8684fed290af7defd8412888411d15af">set_auto_detached</a>(detail::is_terminal(detail::stream(os)));</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>}</div>
 </div>
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="comment"></span> </div>
-<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span><span class="comment">/// Streams the ANSI escape sequence for @p color when colors are enabled for @p os.</span></div>
-<div class="foldopen" id="foldopen00288" data-start="{" data-end="}">
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#ac0ce9f4aeb844ed9e5cf41dce8dacf8a">  288</a></span><span class="keyword">inline</span> std::ostream&amp; <a class="code hl_function" href="namespacefe_1_1term.html#ac0ce9f4aeb844ed9e5cf41dce8dacf8a">operator&lt;&lt;</a>(std::ostream&amp; os, <a class="code hl_enumeration" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148">FG</a> color) {</div>
-<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="namespacefe_1_1term.html#ad2b84bd3b2fb301332ef7cae1fcd7b69">use_color</a>(os)) {</div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>        <span class="keyword">auto</span> esc = detail::sgr(color);</div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>        os.write(esc.data(), esc.size());</div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    }</div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    <span class="keywordflow">return</span> os;</div>
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>}</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span><span class="comment"></span> </div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span><span class="comment">/// Streams the ANSI escape sequence for @p color when colors are enabled for @p os.</span></div>
+<div class="foldopen" id="foldopen00290" data-start="{" data-end="}">
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#ac0ce9f4aeb844ed9e5cf41dce8dacf8a">  290</a></span><span class="keyword">inline</span> std::ostream&amp; <a class="code hl_function" href="namespacefe_1_1term.html#ac0ce9f4aeb844ed9e5cf41dce8dacf8a">operator&lt;&lt;</a>(std::ostream&amp; os, <a class="code hl_enumeration" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148">FG</a> color) {</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="namespacefe_1_1term.html#ad2b84bd3b2fb301332ef7cae1fcd7b69">use_color</a>(os)) {</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>        <span class="keyword">auto</span> esc = detail::sgr(color);</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>        os.write(esc.data(), esc.size());</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    }</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    <span class="keywordflow">return</span> os;</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>}</div>
 </div>
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span><span class="comment"></span> </div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span><span class="comment">/// Escapes @p str into @p out so that render_cite reproduces it verbatim instead of reading it as markup.</span></div>
-<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span><span class="comment">/// Escaping the backslashes as well keeps a trailing one from swallowing the backtick that follows it.</span></div>
-<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> O&gt;</div>
-<div class="foldopen" id="foldopen00299" data-start="{" data-end="}">
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#aa516fca40a66d95ffc4b2457594d0550">  299</a></span>O <a class="code hl_function" href="namespacefe_1_1term.html#aa516fca40a66d95ffc4b2457594d0550">escape_cite_to</a>(O out, std::string_view str) {</div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> c : str) {</div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>        <span class="keywordflow">if</span> (c == <span class="charliteral">&#39;`&#39;</span> || c == <span class="charliteral">&#39;\\&#39;</span>) *out++ = <span class="charliteral">&#39;\\&#39;</span>;</div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>        *out++ = c;</div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    }</div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>    <span class="keywordflow">return</span> out;</div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>}</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span><span class="comment"></span> </div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span><span class="comment">/// Escapes @p str into @p out so that render_cite reproduces it verbatim instead of reading it as markup.</span></div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span><span class="comment">/// Escaping the backslashes as well keeps a trailing one from swallowing the backtick that follows it.</span></div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> O&gt;</div>
+<div class="foldopen" id="foldopen00301" data-start="{" data-end="}">
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#aa516fca40a66d95ffc4b2457594d0550">  301</a></span>O <a class="code hl_function" href="namespacefe_1_1term.html#aa516fca40a66d95ffc4b2457594d0550">escape_cite_to</a>(O out, std::string_view str) {</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> c : str) {</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>        <span class="keywordflow">if</span> (c == <span class="charliteral">&#39;`&#39;</span> || c == <span class="charliteral">&#39;\\&#39;</span>) *out++ = <span class="charliteral">&#39;\\&#39;</span>;</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>        *out++ = c;</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    }</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    <span class="keywordflow">return</span> out;</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>}</div>
 </div>
-<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span><span class="comment"></span> </div>
-<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span><span class="comment">/// As above but into a fresh `std::string`.</span></div>
-<div class="foldopen" id="foldopen00308" data-start="{" data-end="}">
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a11658a0f1a42c979b9abc3eae5e40594">  308</a></span><span class="keyword">inline</span> std::string <a class="code hl_function" href="namespacefe_1_1term.html#a11658a0f1a42c979b9abc3eae5e40594">escape_cite</a>(std::string_view str) {</div>
-<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>    <span class="keyword">auto</span> res = std::string();</div>
-<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>    res.reserve(str.size());</div>
-<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    <a class="code hl_function" href="namespacefe_1_1term.html#aa516fca40a66d95ffc4b2457594d0550">escape_cite_to</a>(std::back_inserter(res), str);</div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    <span class="keywordflow">return</span> res;</div>
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>}</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span><span class="comment"></span> </div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span><span class="comment">/// As above but into a fresh `std::string`.</span></div>
+<div class="foldopen" id="foldopen00310" data-start="{" data-end="}">
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a11658a0f1a42c979b9abc3eae5e40594">  310</a></span><span class="keyword">inline</span> std::string <a class="code hl_function" href="namespacefe_1_1term.html#a11658a0f1a42c979b9abc3eae5e40594">escape_cite</a>(std::string_view str) {</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    <span class="keyword">auto</span> res = std::string();</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    res.reserve(str.size());</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    <a class="code hl_function" href="namespacefe_1_1term.html#aa516fca40a66d95ffc4b2457594d0550">escape_cite_to</a>(std::back_inserter(res), str);</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    <span class="keywordflow">return</span> res;</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>}</div>
 </div>
-<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span><span class="comment"></span> </div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span><span class="comment">/// Streams @p str into @p os, coloring each `` `citation` `` and dropping its backticks - or keeping them</span></div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span><span class="comment">/// verbatim without color; `` \` `` is a literal backtick and `\\` a literal backslash. This is the convention</span></div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span><span class="comment">/// fe::CodeDiag renders a diagnostic message with; use it to apply the same convention elsewhere, e.g.</span></div>
-<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span><span class="comment">/// fe::Cli::help.</span></div>
-<div class="foldopen" id="foldopen00319" data-start="{" data-end="}">
-<div class="line"><a id="l00319" name="l00319"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a2319c7f51a73205d048935350cd68eec">  319</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespacefe_1_1term.html#a2319c7f51a73205d048935350cd68eec">render_cite</a>(std::ostream&amp; os, std::string_view str) {</div>
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    <span class="keyword">auto</span> color = <a class="code hl_function" href="namespacefe_1_1term.html#ad2b84bd3b2fb301332ef7cae1fcd7b69">use_color</a>(os);</div>
-<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span> </div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0, e = str.size(); i != e;) {</div>
-<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>        <span class="keyword">auto</span> l = detail::tick(str, i);</div>
-<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>        <span class="keyword">auto</span> r = l == std::string_view::npos ? l : detail::tick(str, l + 1);</div>
-<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>        <span class="keywordflow">if</span> (r == std::string_view::npos) { <span class="comment">// unpaired: not a citation</span></div>
-<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>            detail::stream_raw(os, str, i, e);</div>
-<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>        }</div>
-<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span> </div>
-<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>        detail::stream_raw(os, str, i, l);</div>
-<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>        <span class="keywordflow">if</span> (color)</div>
-<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>            os &lt;&lt; <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a023c239d2f2538f140a20e72c7b73f20">FG::Cyan</a>;</div>
-<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>        <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>            os &lt;&lt; <span class="charliteral">&#39;`&#39;</span>;</div>
-<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>        detail::stream_raw(os, str, l + 1, r);</div>
-<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>        <span class="keywordflow">if</span> (color)</div>
-<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>            os &lt;&lt; <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d">FG::Reset</a>;</div>
-<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>        <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>            os &lt;&lt; <span class="charliteral">&#39;`&#39;</span>;</div>
-<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>        i = r + 1;</div>
-<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>    }</div>
-<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>}</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span><span class="comment"></span> </div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span><span class="comment">/// An *owning* message fragment that spells `` `citations` `` of its own; what format_cite yields.</span></div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span><span class="comment">/// Return this from a helper that assembles a fragment, and it stays valid wherever a Cite may go.</span></div>
+<div class="foldopen" id="foldopen00319" data-start="{" data-end="};">
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno"><a class="line" href="classfe_1_1Cited.html">  319</a></span><span class="keyword">class </span><a class="code hl_function" href="classfe_1_1Cited.html#a8b2e8291eb27778329d4c71f119e6973">Cited</a> {</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00321" data-start="{" data-end="}">
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno"><a class="line" href="classfe_1_1term_1_1Cited.html#a8b2e8291eb27778329d4c71f119e6973">  321</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classfe_1_1term_1_1Cited.html#a8b2e8291eb27778329d4c71f119e6973">Cited</a>(std::string str) noexcept</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>        : str_(std::move(str)) {}</div>
 </div>
-<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span><span class="comment"></span> </div>
-<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span><span class="comment">/// Number of columns @p str actually occupies once render_cite renders it with @p color - fewer than</span></div>
-<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span><span class="comment">/// `str.size()` by the backticks/backslashes render_cite drops.</span></div>
-<div class="foldopen" id="foldopen00346" data-start="{" data-end="}">
-<div class="line"><a id="l00346" name="l00346"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a947ccd2f656ac0cefd6c44cba5c9feb2">  346</a></span><span class="keyword">inline</span> <span class="keywordtype">size_t</span> <a class="code hl_function" href="namespacefe_1_1term.html#a947ccd2f656ac0cefd6c44cba5c9feb2">cite_width</a>(std::string_view str, <span class="keywordtype">bool</span> color) {</div>
-<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    <span class="keywordtype">size_t</span> <a class="code hl_function" href="namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3">width</a> = 0;</div>
-<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span> </div>
-<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0, e = str.size(); i != e;) {</div>
-<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>        <span class="keyword">auto</span> l = detail::tick(str, i);</div>
-<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>        <span class="keyword">auto</span> r = l == std::string_view::npos ? l : detail::tick(str, l + 1);</div>
-<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>        <span class="keywordflow">if</span> (r == std::string_view::npos) { <span class="comment">// unpaired: not a citation</span></div>
-<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>            <a class="code hl_function" href="namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3">width</a> += detail::raw_width(str, i, e);</div>
-<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>        }</div>
-<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span> </div>
-<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>        <a class="code hl_function" href="namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3">width</a> += detail::raw_width(str, i, l);</div>
-<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>        <a class="code hl_function" href="namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3">width</a> += color ? 0 : 1;</div>
-<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>        <a class="code hl_function" href="namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3">width</a> += detail::raw_width(str, l + 1, r);</div>
-<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>        <a class="code hl_function" href="namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3">width</a> += color ? 0 : 1;</div>
-<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>        i = r + 1;</div>
-<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>    }</div>
-<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span> </div>
-<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3">width</a>;</div>
-<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>}</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span> </div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno"><a class="line" href="classfe_1_1term_1_1Cited.html#a80e391e6d905dc7c3a695bad08cd406b">  324</a></span>    <span class="keyword">operator</span> std::string_view() const noexcept { <span class="keywordflow">return</span> str_; }</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span> </div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    std::string str_;</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>};</div>
 </div>
-<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span> </div>
-<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>} <span class="comment">// namespace fe::term</span></div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span><span class="comment"></span> </div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span><span class="comment">/// A *borrowed* fragment whose backticks stay markup; format_cite escapes every other argument.</span></div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span><span class="comment">/// @warning Borrows its text like a `std::string_view` does - a Cited outlives the expression, a Cite does not.</span></div>
+<div class="foldopen" id="foldopen00332" data-start="{" data-end="};">
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno"><a class="line" href="structfe_1_1Cite.html">  332</a></span><span class="keyword">struct </span><a class="code hl_function" href="structfe_1_1Cite.html#a0550384d5a06716b8bdabd7005ff828d">Cite</a> {</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="foldopen" id="foldopen00334" data-start="{" data-end="}">
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno"><a class="line" href="structfe_1_1term_1_1Cite.html#a0550384d5a06716b8bdabd7005ff828d">  334</a></span>    <span class="keyword">requires</span> std::convertible_to&lt;const T&amp;, std::string_view&gt; <a class="code hl_function" href="structfe_1_1term_1_1Cite.html#a0550384d5a06716b8bdabd7005ff828d">Cite</a>(<span class="keyword">const</span> T&amp; s) noexcept</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>        : <a class="code hl_variable" href="structfe_1_1term_1_1Cite.html#a513b3b72a822d604dcd8c26548fc0eb6">str</a>(s) {}</div>
 </div>
-<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span> </div>
-<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span><span class="preprocessor">#ifndef DOXYGEN</span></div>
-<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span><span class="keyword">template</span>&lt;&gt;</div>
-<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span><span class="keyword">struct </span>std::formatter&lt;<a class="code hl_namespace" href="namespacefe.html">fe</a>::term::FG&gt; : <a class="code hl_typedef" href="namespacefe.html#a923ce058163e2041744a84793de679c0">fe::ostream_formatter</a> {};</div>
-<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span> </div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno"><a class="line" href="structfe_1_1term_1_1Cite.html#a513b3b72a822d604dcd8c26548fc0eb6">  337</a></span>    std::string_view <a class="code hl_variable" href="structfe_1_1term_1_1Cite.html#a513b3b72a822d604dcd8c26548fc0eb6">str</a>;</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>};</div>
+</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span> </div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span><span class="keyword">namespace </span>detail {</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span><span class="comment"></span> </div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span><span class="comment">/// Wraps an argument whose backticks are data and must not delimit a citation.</span></div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span><span class="keyword">struct </span>Escaped {</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>    <span class="keyword">const</span> T&amp; val;</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>};</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span> </div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T, <span class="keyword">class</span> U = std::remove_cvref_t&lt;T&gt;&gt;</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span><span class="keyword">using </span>cite_arg_t = std::conditional_t&lt;std::is_same_v&lt;U, Cite&gt; || std::is_same_v&lt;U, Cited&gt;, <a class="code hl_struct" href="structfe_1_1term_1_1Cite.html">Cite</a>, Escaped&lt;U&gt;&gt;;</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span><span class="comment"></span> </div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span><span class="comment">/// std::vformat, but each argument renders as data instead of as markup; see Cite for the exception.</span></div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span><span class="comment">/// @note The wrappers are lambda *parameters* because `std::make_format_args` does not bind rvalues.</span></div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span><span class="keyword">template</span>&lt;<span class="keyword">class</span>... Args&gt;</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>std::string vformat_cite(std::string_view fmt, <span class="keyword">const</span> Args&amp;... args) {</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>    <span class="keyword">auto</span> vformat = [fmt]&lt;<span class="keyword">class</span>... A&gt;(A... a) { <span class="keywordflow">return</span> std::vformat(fmt, std::make_format_args(a...)); };</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>    <span class="keywordflow">return</span> vformat(cite_arg_t&lt;Args&gt;{args}...);</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>}</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span> </div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>} <span class="comment">// namespace detail</span></div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span><span class="comment"></span> </div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span><span class="comment">/// A std::format_string whose backticks delimit a `` `citation` `` while those of its arguments are data.</span></div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span><span class="keyword">template</span>&lt;<span class="keyword">class</span>... Args&gt;</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#aa1e2ea2aa40fc5132b2c7364ee4467d8">  363</a></span><span class="keyword">using </span><a class="code hl_typedef" href="namespacefe_1_1term.html#aa1e2ea2aa40fc5132b2c7364ee4467d8">cite_string</a> = std::format_string&lt;detail::cite_arg_t&lt;Args&gt;...&gt;;</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span><span class="comment"></span> </div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span><span class="comment">/// std::format for a message that follows that convention; assemble a fragment of your own with it.</span></div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span><span class="comment">/// The Cited it yields is markup wherever it is used as an argument again - no re-wrapping needed.</span></div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span><span class="keyword">template</span>&lt;<span class="keyword">class</span>... Args&gt;</div>
+<div class="foldopen" id="foldopen00368" data-start="{" data-end="}">
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a93eda7673ac1b39525af9d0fad6e6fb7">  368</a></span><a class="code hl_class" href="classfe_1_1term_1_1Cited.html">Cited</a> <a class="code hl_function" href="namespacefe_1_1term.html#a93eda7673ac1b39525af9d0fad6e6fb7">format_cite</a>(<a class="code hl_typedef" href="namespacefe_1_1term.html#aa1e2ea2aa40fc5132b2c7364ee4467d8">cite_string&lt;Args...&gt;</a> fmt, Args&amp;&amp;... args) {</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="classfe_1_1term_1_1Cited.html#a8b2e8291eb27778329d4c71f119e6973">Cited</a>(detail::vformat_cite(fmt.get(), args...));</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>}</div>
+</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span><span class="comment"></span> </div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span><span class="comment">/// Streams @p str into @p os, coloring each `` `citation` `` and dropping its backticks - or keeping them</span></div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span><span class="comment">/// verbatim without color; `` \` `` is a literal backtick and `\\` a literal backslash. This is the convention</span></div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span><span class="comment">/// fe::CodeDiag renders a diagnostic message with; use it to apply the same convention elsewhere, e.g.</span></div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span><span class="comment">/// fe::Cli::help.</span></div>
+<div class="foldopen" id="foldopen00376" data-start="{" data-end="}">
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a2319c7f51a73205d048935350cd68eec">  376</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespacefe_1_1term.html#a2319c7f51a73205d048935350cd68eec">render_cite</a>(std::ostream&amp; os, std::string_view str) {</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>    <span class="keyword">auto</span> color = <a class="code hl_function" href="namespacefe_1_1term.html#ad2b84bd3b2fb301332ef7cae1fcd7b69">use_color</a>(os);</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span> </div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0, e = str.size(); i != e;) {</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>        <span class="keyword">auto</span> l = detail::tick(str, i);</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>        <span class="keyword">auto</span> r = l == std::string_view::npos ? l : detail::tick(str, l + 1);</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>        <span class="keywordflow">if</span> (r == std::string_view::npos) { <span class="comment">// unpaired: not a citation</span></div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>            detail::stream_raw(os, str, i, e);</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>        }</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span> </div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>        detail::stream_raw(os, str, i, l);</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>        <span class="keywordflow">if</span> (color)</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>            os &lt;&lt; <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a023c239d2f2538f140a20e72c7b73f20">FG::Cyan</a>;</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>        <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>            os &lt;&lt; <span class="charliteral">&#39;`&#39;</span>;</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>        detail::stream_raw(os, str, l + 1, r);</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>        <span class="keywordflow">if</span> (color)</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>            os &lt;&lt; <a class="code hl_enumvalue" href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d">FG::Reset</a>;</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>        <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>            os &lt;&lt; <span class="charliteral">&#39;`&#39;</span>;</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>        i = r + 1;</div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>    }</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>}</div>
+</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span><span class="comment"></span> </div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span><span class="comment">/// Number of columns @p str actually occupies once render_cite renders it with @p color - fewer than</span></div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span><span class="comment">/// `str.size()` by the backticks/backslashes render_cite drops.</span></div>
+<div class="foldopen" id="foldopen00403" data-start="{" data-end="}">
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno"><a class="line" href="namespacefe_1_1term.html#a947ccd2f656ac0cefd6c44cba5c9feb2">  403</a></span><span class="keyword">inline</span> <span class="keywordtype">size_t</span> <a class="code hl_function" href="namespacefe_1_1term.html#a947ccd2f656ac0cefd6c44cba5c9feb2">cite_width</a>(std::string_view str, <span class="keywordtype">bool</span> color) {</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>    <span class="keywordtype">size_t</span> <a class="code hl_function" href="namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3">width</a> = 0;</div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span> </div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0, e = str.size(); i != e;) {</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>        <span class="keyword">auto</span> l = detail::tick(str, i);</div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>        <span class="keyword">auto</span> r = l == std::string_view::npos ? l : detail::tick(str, l + 1);</div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>        <span class="keywordflow">if</span> (r == std::string_view::npos) { <span class="comment">// unpaired: not a citation</span></div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>            <a class="code hl_function" href="namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3">width</a> += detail::raw_width(str, i, e);</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>        }</div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span> </div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>        <a class="code hl_function" href="namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3">width</a> += detail::raw_width(str, i, l);</div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>        <a class="code hl_function" href="namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3">width</a> += color ? 0 : 1;</div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>        <a class="code hl_function" href="namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3">width</a> += detail::raw_width(str, l + 1, r);</div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>        <a class="code hl_function" href="namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3">width</a> += color ? 0 : 1;</div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>        i = r + 1;</div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>    }</div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span> </div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3">width</a>;</div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>}</div>
+</div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span> </div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>} <span class="comment">// namespace fe::term</span></div>
+</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span> </div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span><span class="preprocessor">#ifndef DOXYGEN</span></div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span><span class="keyword">struct </span>std::formatter&lt;<a class="code hl_namespace" href="namespacefe.html">fe</a>::term::detail::Escaped&lt;T&gt;&gt; {</div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>    std::string_view spec; <span class="comment">///&lt; Borrowed from the format string, which outlives the `vformat` call.</span></div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span> </div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> parse(std::format_parse_context&amp; ctx) {</div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>        <span class="keyword">auto</span> i = ctx.begin();</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>        <span class="keywordflow">for</span> (; i != ctx.end() &amp;&amp; *i != <span class="charliteral">&#39;}&#39;</span>; ++i)</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>            <span class="keywordflow">if</span> (*i == <span class="charliteral">&#39;{&#39;</span>) <span class="keywordflow">throw</span> std::format_error(<span class="stringliteral">&quot;fe::term::format_cite: a nested replacement field needs Cite&quot;</span>);</div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span>        spec = std::string_view(ctx.begin(), i);</div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>        <span class="keywordflow">return</span> i;</div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>    }</div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span> </div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>    <span class="keyword">auto</span> format(<span class="keyword">const</span> fe::term::detail::Escaped&lt;T&gt;&amp; escaped, std::format_context&amp; ctx)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>        <span class="keyword">auto</span> str = spec.empty() ? std::format(<span class="stringliteral">&quot;{}&quot;</span>, escaped.val)</div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span>                                : std::vformat(std::format(<span class="stringliteral">&quot;{{:{}}}&quot;</span>, spec), std::make_format_args(escaped.val));</div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespacefe_1_1term.html#aa516fca40a66d95ffc4b2457594d0550">fe::term::escape_cite_to</a>(ctx.out(), str);</div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span>    }</div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span>};</div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span> </div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span><span class="keyword">template</span>&lt;&gt;</div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span><span class="keyword">struct </span>std::formatter&lt;<a class="code hl_namespace" href="namespacefe.html">fe</a>::term::Cite&gt; : std::formatter&lt;std::string_view&gt; {</div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>    <span class="keyword">auto</span> format(fe::term::Cite cite, std::format_context&amp; ctx)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span>        <span class="keywordflow">return</span> std::formatter&lt;std::string_view&gt;::format(cite.<a class="code hl_variable" href="structfe_1_1term_1_1Cite.html#a513b3b72a822d604dcd8c26548fc0eb6">str</a>, ctx);</div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>    }</div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span>};</div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span> </div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span><span class="keyword">template</span>&lt;&gt;</div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span><span class="keyword">struct </span>std::formatter&lt;<a class="code hl_namespace" href="namespacefe.html">fe</a>::term::FG&gt; : <a class="code hl_typedef" href="namespacefe.html#a923ce058163e2041744a84793de679c0">fe::ostream_formatter</a> {};</div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aassert_8h_html"><div class="ttname"><a href="assert_8h.html">assert.h</a></div></div>
+<div class="ttc" id="aclassfe_1_1Cited_html_a8b2e8291eb27778329d4c71f119e6973"><div class="ttname"><a href="classfe_1_1Cited.html#a8b2e8291eb27778329d4c71f119e6973">fe::Cited::Cited</a></div><div class="ttdeci">Cited(std::string str) noexcept</div><div class="ttdef"><b>Definition</b> <a href="#l00321">term.h:321</a></div></div>
 <div class="ttc" id="aclassfe_1_1Restore_html"><div class="ttname"><a href="classfe_1_1Restore.html">fe::Restore</a></div><div class="ttdoc">RAII guard that restores a value at the end of the scope.</div><div class="ttdef"><b>Definition</b> <a href="restore_8h_source.html#l00010">restore.h:10</a></div></div>
+<div class="ttc" id="aclassfe_1_1term_1_1Cited_html"><div class="ttname"><a href="classfe_1_1term_1_1Cited.html">fe::term::Cited</a></div><div class="ttdoc">An owning message fragment that spells  `citations`  of its own; what format_cite yields.</div><div class="ttdef"><b>Definition</b> <a href="#l00319">term.h:319</a></div></div>
+<div class="ttc" id="aclassfe_1_1term_1_1Cited_html_a8b2e8291eb27778329d4c71f119e6973"><div class="ttname"><a href="classfe_1_1term_1_1Cited.html#a8b2e8291eb27778329d4c71f119e6973">fe::term::Cited::Cited</a></div><div class="ttdeci">Cited(std::string str) noexcept</div><div class="ttdef"><b>Definition</b> <a href="#l00321">term.h:321</a></div></div>
 <div class="ttc" id="aformat_8h_html"><div class="ttname"><a href="format_8h.html">format.h</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html"><div class="ttname"><a href="namespacefe_1_1term.html">fe::term</a></div><div class="ttdoc">Lightweight stream-based terminal colors for diagnostics and CLI output.</div><div class="ttdef"><b>Definition</b> <a href="#l00052">term.h:52</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_a028b5b02dd0708554eccc7b26a7501cf"><div class="ttname"><a href="namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf">fe::term::mode</a></div><div class="ttdeci">Mode mode() noexcept</div><div class="ttdoc">Returns the current terminal color mode.</div><div class="ttdef"><b>Definition</b> <a href="#l00222">term.h:222</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_a11658a0f1a42c979b9abc3eae5e40594"><div class="ttname"><a href="namespacefe_1_1term.html#a11658a0f1a42c979b9abc3eae5e40594">fe::term::escape_cite</a></div><div class="ttdeci">std::string escape_cite(std::string_view str)</div><div class="ttdoc">As above but into a fresh std::string.</div><div class="ttdef"><b>Definition</b> <a href="#l00308">term.h:308</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_a214cdb1ce076f0e6de11f6afb317c516"><div class="ttname"><a href="namespacefe_1_1term.html#a214cdb1ce076f0e6de11f6afb317c516">fe::term::ScopedMode</a></div><div class="ttdeci">Restore&lt; Mode, &amp;mode, &amp;set_mode &gt; ScopedMode</div><div class="ttdoc">Overrides the color mode for the duration of the scope.</div><div class="ttdef"><b>Definition</b> <a href="#l00272">term.h:272</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_a2319c7f51a73205d048935350cd68eec"><div class="ttname"><a href="namespacefe_1_1term.html#a2319c7f51a73205d048935350cd68eec">fe::term::render_cite</a></div><div class="ttdeci">void render_cite(std::ostream &amp;os, std::string_view str)</div><div class="ttdoc">Streams str into os, coloring each  `citation`  and dropping its backticks - or keeping them verbatim...</div><div class="ttdef"><b>Definition</b> <a href="#l00319">term.h:319</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148"><div class="ttname"><a href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148">fe::term::FG</a></div><div class="ttdeci">FG</div><div class="ttdoc">Foreground colors that can be streamed into an std::ostream.</div><div class="ttdef"><b>Definition</b> <a href="#l00062">term.h:62</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148a023c239d2f2538f140a20e72c7b73f20"><div class="ttname"><a href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a023c239d2f2538f140a20e72c7b73f20">fe::term::FG::Cyan</a></div><div class="ttdeci">@ Cyan</div><div class="ttdef"><b>Definition</b> <a href="#l00069">term.h:69</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148a51e6cd92b6c45f9affdc158ecca2b8b8"><div class="ttname"><a href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a51e6cd92b6c45f9affdc158ecca2b8b8">fe::term::FG::Yellow</a></div><div class="ttdeci">@ Yellow</div><div class="ttdef"><b>Definition</b> <a href="#l00066">term.h:66</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d"><div class="ttname"><a href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d">fe::term::FG::Reset</a></div><div class="ttdeci">@ Reset</div><div class="ttdef"><b>Definition</b> <a href="#l00072">term.h:72</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148a9594eec95be70e7b1710f730fdda33d9"><div class="ttname"><a href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a9594eec95be70e7b1710f730fdda33d9">fe::term::FG::Blue</a></div><div class="ttdeci">@ Blue</div><div class="ttdef"><b>Definition</b> <a href="#l00067">term.h:67</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148a994ae1d9731cebe455aff211bcb25b93"><div class="ttname"><a href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a994ae1d9731cebe455aff211bcb25b93">fe::term::FG::Gray</a></div><div class="ttdeci">@ Gray</div><div class="ttdef"><b>Definition</b> <a href="#l00070">term.h:70</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148ab91cc2c1416fcca942b61c7ac5b1a9ac"><div class="ttname"><a href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ab91cc2c1416fcca942b61c7ac5b1a9ac">fe::term::FG::Magenta</a></div><div class="ttdeci">@ Magenta</div><div class="ttdef"><b>Definition</b> <a href="#l00068">term.h:68</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148acaf3a042a037c064b7513ed640c22f77"><div class="ttname"><a href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148acaf3a042a037c064b7513ed640c22f77">fe::term::FG::Grey</a></div><div class="ttdeci">@ Grey</div><div class="ttdef"><b>Definition</b> <a href="#l00071">term.h:71</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148ad382816a3cbeed082c9e216e7392eed1"><div class="ttname"><a href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ad382816a3cbeed082c9e216e7392eed1">fe::term::FG::Green</a></div><div class="ttdeci">@ Green</div><div class="ttdef"><b>Definition</b> <a href="#l00065">term.h:65</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148ae90dfb84e30edf611e326eeb04d680de"><div class="ttname"><a href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ae90dfb84e30edf611e326eeb04d680de">fe::term::FG::Black</a></div><div class="ttdeci">@ Black</div><div class="ttdef"><b>Definition</b> <a href="#l00063">term.h:63</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47"><div class="ttname"><a href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47">fe::term::FG::Red</a></div><div class="ttdeci">@ Red</div><div class="ttdef"><b>Definition</b> <a href="#l00064">term.h:64</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_a36d4d673e10a305ff30ec08d94c8f087"><div class="ttname"><a href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087">fe::term::Mode</a></div><div class="ttdeci">Mode</div><div class="ttdoc">Controls whether color escape sequences are emitted.</div><div class="ttdef"><b>Definition</b> <a href="#l00055">term.h:55</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb"><div class="ttname"><a href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb">fe::term::Mode::Auto</a></div><div class="ttdeci">@ Auto</div><div class="ttdef"><b>Definition</b> <a href="#l00056">term.h:56</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_a36d4d673e10a305ff30ec08d94c8f087a68eec46437c384d8dad18d5464ebc35c"><div class="ttname"><a href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a68eec46437c384d8dad18d5464ebc35c">fe::term::Mode::Always</a></div><div class="ttdeci">@ Always</div><div class="ttdef"><b>Definition</b> <a href="#l00058">term.h:58</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_a36d4d673e10a305ff30ec08d94c8f087a6e7b34fa59e1bd229b207892956dc41c"><div class="ttname"><a href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a6e7b34fa59e1bd229b207892956dc41c">fe::term::Mode::Never</a></div><div class="ttdeci">@ Never</div><div class="ttdef"><b>Definition</b> <a href="#l00057">term.h:57</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_a5aa15cae23952d4b12161c0116cf41a3"><div class="ttname"><a href="namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3">fe::term::width</a></div><div class="ttdeci">std::optional&lt; size_t &gt; width(std::ostream &amp;os) noexcept</div><div class="ttdoc">Number of columns of the terminal os refers to.</div><div class="ttdef"><b>Definition</b> <a href="#l00251">term.h:251</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_a787158fdb940cfa7e778863bde8f34e8"><div class="ttname"><a href="namespacefe_1_1term.html#a787158fdb940cfa7e778863bde8f34e8">fe::term::resolve_mode</a></div><div class="ttdeci">void resolve_mode(std::ostream &amp;os=std::cerr) noexcept</div><div class="ttdoc">Decides Mode::Auto for detached buffers, depending on whether os refers to a terminal.</div><div class="ttdef"><b>Definition</b> <a href="#l00283">term.h:283</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_a8684fed290af7defd8412888411d15af"><div class="ttname"><a href="namespacefe_1_1term.html#a8684fed290af7defd8412888411d15af">fe::term::set_auto_detached</a></div><div class="ttdeci">void set_auto_detached(bool b) noexcept</div><div class="ttdoc">Overrides auto_detached.</div><div class="ttdef"><b>Definition</b> <a href="#l00229">term.h:229</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_a8dcfc2b7e35b66547dbc3cfbfe587360"><div class="ttname"><a href="namespacefe_1_1term.html#a8dcfc2b7e35b66547dbc3cfbfe587360">fe::term::auto_detached</a></div><div class="ttdeci">bool auto_detached() noexcept</div><div class="ttdoc">Whether Mode::Auto emits colors into a detached buffer - anything a std::formatter writes into.</div><div class="ttdef"><b>Definition</b> <a href="#l00226">term.h:226</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_a947ccd2f656ac0cefd6c44cba5c9feb2"><div class="ttname"><a href="namespacefe_1_1term.html#a947ccd2f656ac0cefd6c44cba5c9feb2">fe::term::cite_width</a></div><div class="ttdeci">size_t cite_width(std::string_view str, bool color)</div><div class="ttdoc">Number of columns str actually occupies once render_cite renders it with color - fewer than str....</div><div class="ttdef"><b>Definition</b> <a href="#l00346">term.h:346</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_aa516fca40a66d95ffc4b2457594d0550"><div class="ttname"><a href="namespacefe_1_1term.html#aa516fca40a66d95ffc4b2457594d0550">fe::term::escape_cite_to</a></div><div class="ttdeci">O escape_cite_to(O out, std::string_view str)</div><div class="ttdoc">Escapes str into out so that render_cite reproduces it verbatim instead of reading it as markup.</div><div class="ttdef"><b>Definition</b> <a href="#l00299">term.h:299</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_ac0ce9f4aeb844ed9e5cf41dce8dacf8a"><div class="ttname"><a href="namespacefe_1_1term.html#ac0ce9f4aeb844ed9e5cf41dce8dacf8a">fe::term::operator&lt;&lt;</a></div><div class="ttdeci">std::ostream &amp; operator&lt;&lt;(std::ostream &amp;os, FG color)</div><div class="ttdoc">Streams the ANSI escape sequence for color when colors are enabled for os.</div><div class="ttdef"><b>Definition</b> <a href="#l00288">term.h:288</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_ad2b84bd3b2fb301332ef7cae1fcd7b69"><div class="ttname"><a href="namespacefe_1_1term.html#ad2b84bd3b2fb301332ef7cae1fcd7b69">fe::term::use_color</a></div><div class="ttdeci">bool use_color(std::ostream &amp;os) noexcept</div><div class="ttdoc">Whether color escape sequences are emitted for os right now.</div><div class="ttdef"><b>Definition</b> <a href="#l00236">term.h:236</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_aea69c469efc3010ca40cb1873ff6bec6"><div class="ttname"><a href="namespacefe_1_1term.html#aea69c469efc3010ca40cb1873ff6bec6">fe::term::set_mode</a></div><div class="ttdeci">void set_mode(Mode m) noexcept</div><div class="ttdoc">Overrides the current terminal color mode.</div><div class="ttdef"><b>Definition</b> <a href="#l00268">term.h:268</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html"><div class="ttname"><a href="namespacefe_1_1term.html">fe::term</a></div><div class="ttdoc">Lightweight stream-based terminal colors for diagnostics and CLI output.</div><div class="ttdef"><b>Definition</b> <a href="#l00054">term.h:54</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a028b5b02dd0708554eccc7b26a7501cf"><div class="ttname"><a href="namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf">fe::term::mode</a></div><div class="ttdeci">Mode mode() noexcept</div><div class="ttdoc">Returns the current terminal color mode.</div><div class="ttdef"><b>Definition</b> <a href="#l00224">term.h:224</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a11658a0f1a42c979b9abc3eae5e40594"><div class="ttname"><a href="namespacefe_1_1term.html#a11658a0f1a42c979b9abc3eae5e40594">fe::term::escape_cite</a></div><div class="ttdeci">std::string escape_cite(std::string_view str)</div><div class="ttdoc">As above but into a fresh std::string.</div><div class="ttdef"><b>Definition</b> <a href="#l00310">term.h:310</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a214cdb1ce076f0e6de11f6afb317c516"><div class="ttname"><a href="namespacefe_1_1term.html#a214cdb1ce076f0e6de11f6afb317c516">fe::term::ScopedMode</a></div><div class="ttdeci">Restore&lt; Mode, &amp;mode, &amp;set_mode &gt; ScopedMode</div><div class="ttdoc">Overrides the color mode for the duration of the scope.</div><div class="ttdef"><b>Definition</b> <a href="#l00274">term.h:274</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a2319c7f51a73205d048935350cd68eec"><div class="ttname"><a href="namespacefe_1_1term.html#a2319c7f51a73205d048935350cd68eec">fe::term::render_cite</a></div><div class="ttdeci">void render_cite(std::ostream &amp;os, std::string_view str)</div><div class="ttdoc">Streams str into os, coloring each  `citation`  and dropping its backticks - or keeping them verbatim...</div><div class="ttdef"><b>Definition</b> <a href="#l00376">term.h:376</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148"><div class="ttname"><a href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148">fe::term::FG</a></div><div class="ttdeci">FG</div><div class="ttdoc">Foreground colors that can be streamed into an std::ostream.</div><div class="ttdef"><b>Definition</b> <a href="#l00064">term.h:64</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148a023c239d2f2538f140a20e72c7b73f20"><div class="ttname"><a href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a023c239d2f2538f140a20e72c7b73f20">fe::term::FG::Cyan</a></div><div class="ttdeci">@ Cyan</div><div class="ttdef"><b>Definition</b> <a href="#l00071">term.h:71</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148a51e6cd92b6c45f9affdc158ecca2b8b8"><div class="ttname"><a href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a51e6cd92b6c45f9affdc158ecca2b8b8">fe::term::FG::Yellow</a></div><div class="ttdeci">@ Yellow</div><div class="ttdef"><b>Definition</b> <a href="#l00068">term.h:68</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d"><div class="ttname"><a href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d">fe::term::FG::Reset</a></div><div class="ttdeci">@ Reset</div><div class="ttdef"><b>Definition</b> <a href="#l00074">term.h:74</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148a9594eec95be70e7b1710f730fdda33d9"><div class="ttname"><a href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a9594eec95be70e7b1710f730fdda33d9">fe::term::FG::Blue</a></div><div class="ttdeci">@ Blue</div><div class="ttdef"><b>Definition</b> <a href="#l00069">term.h:69</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148a994ae1d9731cebe455aff211bcb25b93"><div class="ttname"><a href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a994ae1d9731cebe455aff211bcb25b93">fe::term::FG::Gray</a></div><div class="ttdeci">@ Gray</div><div class="ttdef"><b>Definition</b> <a href="#l00072">term.h:72</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148ab91cc2c1416fcca942b61c7ac5b1a9ac"><div class="ttname"><a href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ab91cc2c1416fcca942b61c7ac5b1a9ac">fe::term::FG::Magenta</a></div><div class="ttdeci">@ Magenta</div><div class="ttdef"><b>Definition</b> <a href="#l00070">term.h:70</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148acaf3a042a037c064b7513ed640c22f77"><div class="ttname"><a href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148acaf3a042a037c064b7513ed640c22f77">fe::term::FG::Grey</a></div><div class="ttdeci">@ Grey</div><div class="ttdef"><b>Definition</b> <a href="#l00073">term.h:73</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148ad382816a3cbeed082c9e216e7392eed1"><div class="ttname"><a href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ad382816a3cbeed082c9e216e7392eed1">fe::term::FG::Green</a></div><div class="ttdeci">@ Green</div><div class="ttdef"><b>Definition</b> <a href="#l00067">term.h:67</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148ae90dfb84e30edf611e326eeb04d680de"><div class="ttname"><a href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ae90dfb84e30edf611e326eeb04d680de">fe::term::FG::Black</a></div><div class="ttdeci">@ Black</div><div class="ttdef"><b>Definition</b> <a href="#l00065">term.h:65</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47"><div class="ttname"><a href="namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47">fe::term::FG::Red</a></div><div class="ttdeci">@ Red</div><div class="ttdef"><b>Definition</b> <a href="#l00066">term.h:66</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a36d4d673e10a305ff30ec08d94c8f087"><div class="ttname"><a href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087">fe::term::Mode</a></div><div class="ttdeci">Mode</div><div class="ttdoc">Controls whether color escape sequences are emitted.</div><div class="ttdef"><b>Definition</b> <a href="#l00057">term.h:57</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb"><div class="ttname"><a href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb">fe::term::Mode::Auto</a></div><div class="ttdeci">@ Auto</div><div class="ttdef"><b>Definition</b> <a href="#l00058">term.h:58</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a36d4d673e10a305ff30ec08d94c8f087a68eec46437c384d8dad18d5464ebc35c"><div class="ttname"><a href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a68eec46437c384d8dad18d5464ebc35c">fe::term::Mode::Always</a></div><div class="ttdeci">@ Always</div><div class="ttdef"><b>Definition</b> <a href="#l00060">term.h:60</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a36d4d673e10a305ff30ec08d94c8f087a6e7b34fa59e1bd229b207892956dc41c"><div class="ttname"><a href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a6e7b34fa59e1bd229b207892956dc41c">fe::term::Mode::Never</a></div><div class="ttdeci">@ Never</div><div class="ttdef"><b>Definition</b> <a href="#l00059">term.h:59</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a5aa15cae23952d4b12161c0116cf41a3"><div class="ttname"><a href="namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3">fe::term::width</a></div><div class="ttdeci">std::optional&lt; size_t &gt; width(std::ostream &amp;os) noexcept</div><div class="ttdoc">Number of columns of the terminal os refers to.</div><div class="ttdef"><b>Definition</b> <a href="#l00253">term.h:253</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a787158fdb940cfa7e778863bde8f34e8"><div class="ttname"><a href="namespacefe_1_1term.html#a787158fdb940cfa7e778863bde8f34e8">fe::term::resolve_mode</a></div><div class="ttdeci">void resolve_mode(std::ostream &amp;os=std::cerr) noexcept</div><div class="ttdoc">Decides Mode::Auto for detached buffers, depending on whether os refers to a terminal.</div><div class="ttdef"><b>Definition</b> <a href="#l00285">term.h:285</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a8684fed290af7defd8412888411d15af"><div class="ttname"><a href="namespacefe_1_1term.html#a8684fed290af7defd8412888411d15af">fe::term::set_auto_detached</a></div><div class="ttdeci">void set_auto_detached(bool b) noexcept</div><div class="ttdoc">Overrides auto_detached.</div><div class="ttdef"><b>Definition</b> <a href="#l00231">term.h:231</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a8dcfc2b7e35b66547dbc3cfbfe587360"><div class="ttname"><a href="namespacefe_1_1term.html#a8dcfc2b7e35b66547dbc3cfbfe587360">fe::term::auto_detached</a></div><div class="ttdeci">bool auto_detached() noexcept</div><div class="ttdoc">Whether Mode::Auto emits colors into a detached buffer - anything a std::formatter writes into.</div><div class="ttdef"><b>Definition</b> <a href="#l00228">term.h:228</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a93eda7673ac1b39525af9d0fad6e6fb7"><div class="ttname"><a href="namespacefe_1_1term.html#a93eda7673ac1b39525af9d0fad6e6fb7">fe::term::format_cite</a></div><div class="ttdeci">Cited format_cite(cite_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</div><div class="ttdoc">std::format for a message that follows that convention; assemble a fragment of your own with it.</div><div class="ttdef"><b>Definition</b> <a href="#l00368">term.h:368</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a947ccd2f656ac0cefd6c44cba5c9feb2"><div class="ttname"><a href="namespacefe_1_1term.html#a947ccd2f656ac0cefd6c44cba5c9feb2">fe::term::cite_width</a></div><div class="ttdeci">size_t cite_width(std::string_view str, bool color)</div><div class="ttdoc">Number of columns str actually occupies once render_cite renders it with color - fewer than str....</div><div class="ttdef"><b>Definition</b> <a href="#l00403">term.h:403</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_aa1e2ea2aa40fc5132b2c7364ee4467d8"><div class="ttname"><a href="namespacefe_1_1term.html#aa1e2ea2aa40fc5132b2c7364ee4467d8">fe::term::cite_string</a></div><div class="ttdeci">std::format_string&lt; detail::cite_arg_t&lt; Args &gt;... &gt; cite_string</div><div class="ttdoc">A std::format_string whose backticks delimit a  `citation`  while those of its arguments are data.</div><div class="ttdef"><b>Definition</b> <a href="#l00363">term.h:363</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_aa516fca40a66d95ffc4b2457594d0550"><div class="ttname"><a href="namespacefe_1_1term.html#aa516fca40a66d95ffc4b2457594d0550">fe::term::escape_cite_to</a></div><div class="ttdeci">O escape_cite_to(O out, std::string_view str)</div><div class="ttdoc">Escapes str into out so that render_cite reproduces it verbatim instead of reading it as markup.</div><div class="ttdef"><b>Definition</b> <a href="#l00301">term.h:301</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_ac0ce9f4aeb844ed9e5cf41dce8dacf8a"><div class="ttname"><a href="namespacefe_1_1term.html#ac0ce9f4aeb844ed9e5cf41dce8dacf8a">fe::term::operator&lt;&lt;</a></div><div class="ttdeci">std::ostream &amp; operator&lt;&lt;(std::ostream &amp;os, FG color)</div><div class="ttdoc">Streams the ANSI escape sequence for color when colors are enabled for os.</div><div class="ttdef"><b>Definition</b> <a href="#l00290">term.h:290</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_ad2b84bd3b2fb301332ef7cae1fcd7b69"><div class="ttname"><a href="namespacefe_1_1term.html#ad2b84bd3b2fb301332ef7cae1fcd7b69">fe::term::use_color</a></div><div class="ttdeci">bool use_color(std::ostream &amp;os) noexcept</div><div class="ttdoc">Whether color escape sequences are emitted for os right now.</div><div class="ttdef"><b>Definition</b> <a href="#l00238">term.h:238</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_aea69c469efc3010ca40cb1873ff6bec6"><div class="ttname"><a href="namespacefe_1_1term.html#aea69c469efc3010ca40cb1873ff6bec6">fe::term::set_mode</a></div><div class="ttdeci">void set_mode(Mode m) noexcept</div><div class="ttdoc">Overrides the current terminal color mode.</div><div class="ttdef"><b>Definition</b> <a href="#l00270">term.h:270</a></div></div>
 <div class="ttc" id="anamespacefe_html"><div class="ttname"><a href="namespacefe.html">fe</a></div><div class="ttdef"><b>Definition</b> <a href="algo_8h_source.html#l00017">algo.h:17</a></div></div>
 <div class="ttc" id="anamespacefe_html_a923ce058163e2041744a84793de679c0"><div class="ttname"><a href="namespacefe.html#a923ce058163e2041744a84793de679c0">fe::ostream_formatter</a></div><div class="ttdeci">basic_ostream_formatter&lt; char &gt; ostream_formatter</div><div class="ttdef"><b>Definition</b> <a href="format_8h_source.html#l00064">format.h:64</a></div></div>
 <div class="ttc" id="anamespacefe_html_aff9df682b55afdb0f712e5a0c1ff3a2b"><div class="ttname"><a href="namespacefe.html#aff9df682b55afdb0f712e5a0c1ff3a2b">fe::unreachable</a></div><div class="ttdeci">void unreachable()</div><div class="ttdef"><b>Definition</b> <a href="assert_8h_source.html#l00031">assert.h:31</a></div></div>
 <div class="ttc" id="arestore_8h_html"><div class="ttname"><a href="restore_8h.html">restore.h</a></div></div>
+<div class="ttc" id="astructfe_1_1Cite_html_a0550384d5a06716b8bdabd7005ff828d"><div class="ttname"><a href="structfe_1_1Cite.html#a0550384d5a06716b8bdabd7005ff828d">fe::Cite::Cite</a></div><div class="ttdeci">Cite(const T &amp;s) noexcept</div><div class="ttdef"><b>Definition</b> <a href="#l00334">term.h:334</a></div></div>
+<div class="ttc" id="astructfe_1_1term_1_1Cite_html"><div class="ttname"><a href="structfe_1_1term_1_1Cite.html">fe::term::Cite</a></div><div class="ttdoc">A borrowed fragment whose backticks stay markup; format_cite escapes every other argument.</div><div class="ttdef"><b>Definition</b> <a href="#l00332">term.h:332</a></div></div>
+<div class="ttc" id="astructfe_1_1term_1_1Cite_html_a0550384d5a06716b8bdabd7005ff828d"><div class="ttname"><a href="structfe_1_1term_1_1Cite.html#a0550384d5a06716b8bdabd7005ff828d">fe::term::Cite::Cite</a></div><div class="ttdeci">Cite(const T &amp;s) noexcept</div><div class="ttdef"><b>Definition</b> <a href="#l00334">term.h:334</a></div></div>
+<div class="ttc" id="astructfe_1_1term_1_1Cite_html_a513b3b72a822d604dcd8c26548fc0eb6"><div class="ttname"><a href="structfe_1_1term_1_1Cite.html#a513b3b72a822d604dcd8c26548fc0eb6">fe::term::Cite::str</a></div><div class="ttdeci">std::string_view str</div><div class="ttdef"><b>Definition</b> <a href="#l00337">term.h:337</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

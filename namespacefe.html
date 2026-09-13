@@ -175,8 +175,10 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make types that support ostream operators available for <span class="tt">std::format</span>.  <a href="structfe_1_1basic__ostream__formatter.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Bitset" id="r_Bitset"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Bitset.html">Bitset</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A dynamically growing set of bits with small storage optimization.  <a href="classfe_1_1Bitset.html#details">More...</a><br /></td></tr>
-<tr class="memitem:Cite_5Fstructfe_5F1_5F1Cite" id="r_Cite_5Fstructfe_5F1_5F1Cite"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="#structfe_1_1Cite">Cite</a></td></tr>
-<tr class="memdesc:structfe_1_1Cite"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps a diagnostic argument that spells <span class="tt"> `citations` </span> of its own, such as a message fragment assembled elsewhere; <a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and hands each to the Diag that lays it out.">Error</a> escapes the backticks of every other argument.  <a href="#structfe_1_1Cite">More...</a><br /></td></tr>
+<tr class="memitem:Cite" id="r_Cite"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1Cite.html">Cite</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <em>borrowed</em> fragment whose backticks stay markup; format_cite escapes every other argument.  <a href="structfe_1_1Cite.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Cited" id="r_Cited"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Cited.html">Cited</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An <em>owning</em> message fragment that spells <span class="tt"> `citations` </span> of its own; what format_cite yields.  <a href="classfe_1_1Cited.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Cli" id="r_Cli"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Cli.html">Cli</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A small command-line parser for a single command - no subcommands.  <a href="classfe_1_1Cli.html#details">More...</a><br /></td></tr>
 <tr class="memitem:CodeDiag" id="r_CodeDiag"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1CodeDiag.html">CodeDiag</a></td></tr>
@@ -186,11 +188,11 @@ Classes</h2></td></tr>
 <tr class="memitem:DbgKey" id="r_DbgKey"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1DbgKey.html">DbgKey</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opaque handle to a <a class="el" href="structfe_1_1Dbg.html" title="The debug info of an entity: where it came from and what it was called.">Dbg</a> interned in a <a class="el" href="structfe_1_1Driver.html" title="Use/derive from this class for &quot;global&quot; variables that you need all over the place.">Driver</a>; see <a class="el" href="structfe_1_1Driver.html#a100c3690b3a524c5bb8159ca6c7c9750">Driver::dbg</a>.  <a href="classfe_1_1DbgKey.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Diag" id="r_Diag"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Diag.html">Diag</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">How a diagnostic lays out - and how much of it an <a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and hands each to the Diag that lays it out.">Error</a> keeps.  <a href="classfe_1_1Diag.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">How a diagnostic lays out - and how much of it an <a class="el" href="classfe_1_1Error.html" title="&lt;">Error</a> keeps.  <a href="classfe_1_1Diag.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Driver" id="r_Driver"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1Driver.html">Driver</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use/derive from this class for "global" variables that you need all over the place.  <a href="structfe_1_1Driver.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Error" id="r_Error"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Error.html">Error</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collects diagnostics and hands each to the <a class="el" href="classfe_1_1Diag.html" title="How a diagnostic lays out - and how much of it an Error keeps.">Diag</a> that lays it out.  <a href="classfe_1_1Error.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;  <a href="classfe_1_1Error.html#details">More...</a><br /></td></tr>
 <tr class="memitem:is_5Fbit_5Fenum" id="r_is_5Fbit_5Fenum"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1is__bit__enum.html">is_bit_enum</a></td></tr>
 <tr class="memitem:Join" id="r_Join"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Join.html">Join</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classfe_1_1Join.html" title="Join elements of range with sep.">Join</a> elements of <code class="param">range</code> with <code class="param">sep</code>.  <a href="classfe_1_1Join.html#details">More...</a><br /></td></tr>
@@ -259,9 +261,6 @@ Concepts</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ac5311297f0fae3e2cffa984ccbdfcbd9" id="r_ac5311297f0fae3e2cffa984ccbdfcbd9"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
-<tr class="memitem:ac5311297f0fae3e2cffa984ccbdfcbd9 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#ac5311297f0fae3e2cffa984ccbdfcbd9">cite_string</a> = std::format_string&lt;detail::cite_arg_t&lt;Args&gt;...&gt;</td></tr>
-<tr class="memdesc:ac5311297f0fae3e2cffa984ccbdfcbd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">A std::format_string whose backticks delimit a <span class="tt"> `citation` </span> while those of its arguments are data.  <br /></td></tr>
 <tr class="memitem:a923ce058163e2041744a84793de679c0" id="r_a923ce058163e2041744a84793de679c0"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a923ce058163e2041744a84793de679c0">ostream_formatter</a> = <a class="el" href="structfe_1_1basic__ostream__formatter.html">basic_ostream_formatter</a>&lt;char&gt;</td></tr>
 <tr class="memitem:a3fa8abec15ebc094748836707250e96e" id="r_a3fa8abec15ebc094748836707250e96e"><td class="memTemplParams" colspan="2">template&lt;class T, size_t N = std::dynamic_extent&gt; </td></tr>
 <tr class="memitem:a3fa8abec15ebc094748836707250e96e template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a3fa8abec15ebc094748836707250e96e">View</a> = <a class="el" href="classfe_1_1Span.html">Span</a>&lt;const T, N&gt;</td></tr>
@@ -273,6 +272,9 @@ Typedefs</h2></td></tr>
 <tr class="memitem:a0cf8b223e0a15d8cae20a0d8b332e8b9 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a0cf8b223e0a15d8cae20a0d8b332e8b9">BFSWorklist</a> = <a class="el" href="classfe_1_1Worklist.html">Worklist</a>&lt;Set, std::queue&lt;detail::WorklistElem&lt;Set&gt;&gt;&gt;</td></tr>
 <tr class="memitem:a549e9d25223dacc899ddef74bf627b3f" id="r_a549e9d25223dacc899ddef74bf627b3f"><td class="memTemplParams" colspan="2">template&lt;class Set&gt; </td></tr>
 <tr class="memitem:a549e9d25223dacc899ddef74bf627b3f template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a549e9d25223dacc899ddef74bf627b3f">DFSWorklist</a> = <a class="el" href="classfe_1_1Worklist.html">Worklist</a>&lt;Set, std::stack&lt;detail::WorklistElem&lt;Set&gt;&gt;&gt;</td></tr>
+<tr class="memitem:aa1e2ea2aa40fc5132b2c7364ee4467d8" id="r_aa1e2ea2aa40fc5132b2c7364ee4467d8"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:aa1e2ea2aa40fc5132b2c7364ee4467d8 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#aa1e2ea2aa40fc5132b2c7364ee4467d8">cite_string</a></td></tr>
+<tr class="memdesc:aa1e2ea2aa40fc5132b2c7364ee4467d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;  <br /></td></tr>
 <tr id="typedef-members-0" class="groupHeader"><td colspan="2"><div class="groupHeader">DbgMap/DbgSet</div></td></tr>
 <tr class="memitem:ac1c71f6a9945566d80eb25be4812334a" id="r_ac1c71f6a9945566d80eb25be4812334a"><td class="memTemplParams" colspan="2">template&lt;class V&gt; </td></tr>
 <tr class="memitem:ac1c71f6a9945566d80eb25be4812334a template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#ac1c71f6a9945566d80eb25be4812334a">DbgMap</a> = std::unordered_map&lt;<a class="el" href="structfe_1_1Dbg.html">Dbg</a>, V, <a class="el" href="structfe_1_1Dbg_1_1Hash.html">Dbg::Hash</a>, <a class="el" href="structfe_1_1Dbg_1_1Eq.html">Dbg::Eq</a>&gt;</td></tr>
@@ -295,9 +297,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a499d7e2b75e472cbedd1ac272b82b3f3" id="r_a499d7e2b75e472cbedd1ac272b82b3f3"><td class="memItemLeft">FE_API std::ostream &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a499d7e2b75e472cbedd1ac272b82b3f3">operator&lt;&lt;</a> (std::ostream &amp;, <a class="el" href="classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1f">Diag::Tag</a>)</td></tr>
 <tr class="memitem:a97781f8fc269084dfd887ae2b0a475cc" id="r_a97781f8fc269084dfd887ae2b0a475cc"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="conceptfe_1_1BitEnum.html">fe::BitEnum</a> E&gt; </td></tr>
 <tr class="memitem:a97781f8fc269084dfd887ae2b0a475cc template"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a97781f8fc269084dfd887ae2b0a475cc">has_flag</a> (E value, E flag) noexcept</td></tr>
-<tr class="memitem:ae2721e1a60effd60b200ef8f10a664fc" id="r_ae2721e1a60effd60b200ef8f10a664fc"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
-<tr class="memitem:ae2721e1a60effd60b200ef8f10a664fc template"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#ae2721e1a60effd60b200ef8f10a664fc">format_cite</a> (<a class="el" href="#ac5311297f0fae3e2cffa984ccbdfcbd9">cite_string</a>&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
-<tr class="memdesc:ae2721e1a60effd60b200ef8f10a664fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">std::format for a message that follows that convention; assemble a fragment for <a class="el" href="#structfe_1_1Cite" title="Wraps a diagnostic argument that spells  `citations`  of its own, such as a message fragment assemble...">fe::Cite</a> with it.  <br /></td></tr>
 <tr class="memitem:a653a3eb512f7610b2449a4546f7e335d" id="r_a653a3eb512f7610b2449a4546f7e335d"><td class="memTemplParams" colspan="2">template&lt;class F&gt; </td></tr>
 <tr class="memitem:a653a3eb512f7610b2449a4546f7e335d template"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a653a3eb512f7610b2449a4546f7e335d">StreamFn</a> (F) -&gt; StreamFn&lt; F &gt;</td></tr>
 <tr class="memitem:afdda5f81a682643effc4dd73321bc737" id="r_afdda5f81a682643effc4dd73321bc737"><td class="memTemplParams" colspan="2">template&lt;class R&gt; </td></tr>
@@ -308,6 +307,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a5930d90304ddc84c5adaa03126bd277c" id="r_a5930d90304ddc84c5adaa03126bd277c"><td class="memTemplParams" colspan="2">template&lt;size_t I, class T, size_t N&gt; <br />
 requires (N != std::dynamic_extent)</td></tr>
 <tr class="memitem:a5930d90304ddc84c5adaa03126bd277c template"><td class="memItemLeft">constexpr decltype(auto)&#160;</td><td class="memItemRight"><a class="el" href="#a5930d90304ddc84c5adaa03126bd277c">get</a> (<a class="el" href="classfe_1_1Span.html">Span</a>&lt; T, N &gt; span) noexcept</td></tr>
+<tr class="memitem:a93eda7673ac1b39525af9d0fad6e6fb7" id="r_a93eda7673ac1b39525af9d0fad6e6fb7"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:a93eda7673ac1b39525af9d0fad6e6fb7 template"><td class="memItemLeft"><a class="el" href="classfe_1_1term_1_1Cited.html">Cited</a>&#160;</td><td class="memItemRight"><a class="el" href="#a93eda7673ac1b39525af9d0fad6e6fb7">format_cite</a> (<a class="el" href="namespacefe_1_1term.html#aa1e2ea2aa40fc5132b2c7364ee4467d8">cite_string</a>&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:a93eda7673ac1b39525af9d0fad6e6fb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;  <br /></td></tr>
 <tr id="func-members-0" class="groupHeader"><td colspan="2"><div class="groupHeader">Utility Functions</div></td></tr>
 <tr class="memitem:a23c050efc089d138baaefe04d33562f6" id="r_a23c050efc089d138baaefe04d33562f6"><td class="memTemplParams" colspan="2">template&lt;class D, class S&gt; <br />
 requires (std::is_trivially_copyable_v&lt;S&gt; &amp;&amp; std::is_trivially_copyable_v&lt;D&gt;)</td></tr>
@@ -411,33 +413,6 @@ FNV-1 Hash</h2></td></tr>
 <tr class="memitem:ac131b22cfcf0e569e4adc1bf67583358 template"><td class="memItemLeft">constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="#ac131b22cfcf0e569e4adc1bf67583358">hash_begin</a> (T v) noexcept</td></tr>
 <tr class="memdesc:ac131b22cfcf0e569e4adc1bf67583358"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shorthand for <span class="tt">hash_combine(hash_begin(), v)</span>.  <br /></td></tr>
 </table>
-<hr/><h2 id="header-inline_5Fclasses" class="groupheader">Class Documentation</h2>
-<a name="structfe_1_1Cite" id="structfe_1_1Cite"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#structfe_1_1Cite">&#9670;&#160;</a></span>fe::Cite</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct fe::Cite</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="textblock"><p>Wraps a diagnostic argument that spells <span class="tt"> `citations` </span> of its own, such as a message fragment assembled elsewhere; <a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and hands each to the Diag that lays it out.">Error</a> escapes the backticks of every other argument. </p>
-
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00028">28</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
-</div><table class="fieldtable">
-<tr><th colspan="3">Class Members</th></tr>
-<tr><td class="fieldtype">
-<a id="ae0ca8b7b1e1b4332adb153d93f90a37c" name="ae0ca8b7b1e1b4332adb153d93f90a37c"></a>string_view</td>
-<td class="fieldname">
-str</td>
-<td class="fielddoc">
-</td></tr>
-</table>
-
-</div>
-</div>
 <a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
 <a id="a0cf8b223e0a15d8cae20a0d8b332e8b9" name="a0cf8b223e0a15d8cae20a0d8b332e8b9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0cf8b223e0a15d8cae20a0d8b332e8b9">&#9670;&#160;</a></span>BFSWorklist</h2>
@@ -457,8 +432,8 @@ template&lt;class Set&gt; </div>
 
 </div>
 </div>
-<a id="ac5311297f0fae3e2cffa984ccbdfcbd9" name="ac5311297f0fae3e2cffa984ccbdfcbd9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac5311297f0fae3e2cffa984ccbdfcbd9">&#9670;&#160;</a></span>cite_string</h2>
+<a id="aa1e2ea2aa40fc5132b2c7364ee4467d8" name="aa1e2ea2aa40fc5132b2c7364ee4467d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1e2ea2aa40fc5132b2c7364ee4467d8">&#9670;&#160;</a></span>cite_string</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -466,14 +441,16 @@ template&lt;class Set&gt; </div>
 template&lt;class... Args&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="#ac5311297f0fae3e2cffa984ccbdfcbd9">fe::cite_string</a> = std::format_string&lt;detail::cite_arg_t&lt;Args&gt;...&gt;</td>
+          <td class="memname">using <a class="el" href="namespacefe_1_1term.html#aa1e2ea2aa40fc5132b2c7364ee4467d8">fe::term::cite_string</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>A std::format_string whose backticks delimit a <span class="tt"> `citation` </span> while those of its arguments are data. </p>
+<p>&lt; </p>
+<p>A <em>borrowed</em> fragment whose backticks stay markup; format_cite escapes every other argument.   </p>
+<dl class="section warning"><dt>Warning</dt><dd>Borrows its text like a <span class="tt">std::string_view</span> does - a <a class="el" href="classfe_1_1Cited.html" title="An owning message fragment that spells  `citations`  of its own; what format_cite yields.">Cited</a> outlives the expression, a <a class="el" href="structfe_1_1Cite.html" title="A borrowed fragment whose backticks stay markup; format_cite escapes every other argument.">Cite</a> does not.    </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00055">55</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00363">363</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
 </div>
 </div>
@@ -949,8 +926,8 @@ template&lt;class T, size_t N, class A, class Pred&gt; </div>
 
 </div>
 </div>
-<a id="ae2721e1a60effd60b200ef8f10a664fc" name="ae2721e1a60effd60b200ef8f10a664fc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae2721e1a60effd60b200ef8f10a664fc">&#9670;&#160;</a></span>format_cite()</h2>
+<a id="a93eda7673ac1b39525af9d0fad6e6fb7" name="a93eda7673ac1b39525af9d0fad6e6fb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93eda7673ac1b39525af9d0fad6e6fb7">&#9670;&#160;</a></span>format_cite()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -958,9 +935,9 @@ template&lt;class T, size_t N, class A, class Pred&gt; </div>
 template&lt;class... Args&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::string fe::format_cite </td>
+          <td class="memname"><a class="el" href="classfe_1_1term_1_1Cited.html">Cited</a> <a class="el" href="namespacefe_1_1term.html#a93eda7673ac1b39525af9d0fad6e6fb7">fe::term::format_cite</a> </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="#ac5311297f0fae3e2cffa984ccbdfcbd9">cite_string</a>&lt; Args... &gt;</td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+          <td class="paramtype"><a class="el" href="namespacefe_1_1term.html#aa1e2ea2aa40fc5132b2c7364ee4467d8">cite_string</a>&lt; Args... &gt;</td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -970,13 +947,13 @@ template&lt;class... Args&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>std::format for a message that follows that convention; assemble a fragment for <a class="el" href="#structfe_1_1Cite" title="Wraps a diagnostic argument that spells  `citations`  of its own, such as a message fragment assemble...">fe::Cite</a> with it. </p>
+<p>&lt; </p>
+<p>An <em>owning</em> message fragment that spells <span class="tt"> `citations` </span> of its own; what format_cite yields.   </p>
+<p>Return this from a helper that assembles a fragment, and it stays valid wherever a <a class="el" href="structfe_1_1Cite.html" title="A borrowed fragment whose backticks stay markup; format_cite escapes every other argument.">Cite</a> may go.    </p>
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00059">59</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00368">368</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
-<p class="reference">References <a class="el" href="error_8h_source.html#l00059">format_cite()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00129">fe::Parser&lt; Tok, Tag, K, S &gt;::expect()</a>, <a class="el" href="error_8h_source.html#l00059">format_cite()</a>, and <a class="el" href="parser_8h_source.html#l00234">fe::Parser&lt; Tok, Tag, K, S &gt;::tag2str_()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00129">fe::Parser&lt; Tok, Tag, K, S &gt;::expect()</a>, and <a class="el" href="parser_8h_source.html#l00230">fe::Parser&lt; Tok, Tag, K, S &gt;::tag2str_()</a>.</p>
 
 </div>
 </div>
@@ -1754,7 +1731,7 @@ template&lt;<a class="el" href="conceptfe_1_1BitEnum.html">fe::BitEnum</a> E&gt;
 
 <p class="reference">References <a class="el" href="assert_8h_source.html#l00031">unreachable()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="log_8h_source.html#l00136">fe::Log::level2acro()</a>, <a class="el" href="log_8h_source.html#l00148">fe::Log::level2color()</a>, <a class="el" href="xtrie_8h_source.html#l00243">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator*()</a>, <a class="el" href="xtrie_8h_source.html#l00208">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator++()</a>, <a class="el" href="assert_8h_source.html#l00031">unreachable()</a>, and <a class="el" href="term_8h_source.html#l00236">fe::term::use_color()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="log_8h_source.html#l00136">fe::Log::level2acro()</a>, <a class="el" href="log_8h_source.html#l00148">fe::Log::level2color()</a>, <a class="el" href="xtrie_8h_source.html#l00243">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator*()</a>, <a class="el" href="xtrie_8h_source.html#l00208">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator++()</a>, <a class="el" href="assert_8h_source.html#l00031">unreachable()</a>, and <a class="el" href="term_8h_source.html#l00238">fe::term::use_color()</a>.</p>
 
 </div>
 </div>

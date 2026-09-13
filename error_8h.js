@@ -1,8 +1,5 @@
 var error_8h =
 [
-    [ "fe::Cite", "namespacefe.html#structfe_1_1Cite", [
-      [ "str", "namespacefe.html#ae0ca8b7b1e1b4332adb153d93f90a37c", null ]
-    ] ],
     [ "fe::Error", "classfe_1_1Error.html", "classfe_1_1Error" ],
     [ "fe::Error::Bail", "classfe_1_1Error_1_1Bail.html", "classfe_1_1Error_1_1Bail" ],
     [ "fe::Error::Note", "classfe_1_1Error.html#structfe_1_1Error_1_1Note", [
@@ -15,6 +12,8 @@ var error_8h =
       [ "str", "classfe_1_1Error.html#ab61fb6acdf8c8cdcc5fbc09c34407edb", null ],
       [ "tag", "classfe_1_1Error.html#ab65076390cfb07fafe8520fbafbe0536", null ]
     ] ],
-    [ "fe::cite_string", "namespacefe.html#ac5311297f0fae3e2cffa984ccbdfcbd9", null ],
-    [ "fe::format_cite", "namespacefe.html#ae2721e1a60effd60b200ef8f10a664fc", null ]
+    [ "fe::Cite", "structfe_1_1Cite.html", "structfe_1_1Cite" ],
+    [ "fe::Cited", "classfe_1_1Cited.html", "classfe_1_1Cited" ],
+    [ "fe::cite_string", "namespacefe.html#aa1e2ea2aa40fc5132b2c7364ee4467d8", null ],
+    [ "fe::format_cite", "namespacefe.html#a93eda7673ac1b39525af9d0fad6e6fb7", null ]
 ];

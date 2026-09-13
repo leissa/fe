@@ -2,5 +2,5 @@ var searchData=
 [
   ['parsing_0',['Lexing &amp;amp; Parsing',['../index.html#autotoc_md8',1,'']]],
   ['project_1',['Integrate into a Project',['../index.html#autotoc_md14',1,'']]],
-  ['projects_2',['🔨 Related Projects',['../index.html#autotoc_md22',1,'']]]
+  ['projects_2',['🔨 Related Projects',['../index.html#autotoc_md21',1,'']]]
 ];

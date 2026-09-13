@@ -10,7 +10,7 @@ var searchData=
   ['lexer_7',['Lexer',['../classfe_1_1Lexer.html',1,'fe::Lexer&lt; K, S &gt;'],['../classfe_1_1Lexer.html#a278891a635d9f4c7ff1d789302fbfeb6',1,'fe::Lexer::Lexer(std::string_view buf)'],['../classfe_1_1Lexer.html#a02cec6b71642819b66f0b275aadeba61',1,'fe::Lexer::Lexer(const Src &amp;src)'],['../classfe_1_1Lexer.html#a762507392bfee9dc3c32776cff0a6528',1,'fe::Lexer::Lexer(std::string_view buf, const Src *src)']]],
   ['lexer_2eh_8',['lexer.h',['../lexer_8h.html',1,'']]],
   ['lexing_20parsing_9',['Lexing &amp;amp; Parsing',['../index.html#autotoc_md8',1,'']]],
-  ['license_10',['⚖️ License',['../index.html#autotoc_md24',1,'']]],
+  ['license_10',['⚖️ License',['../index.html#autotoc_md23',1,'']]],
   ['line_11',['Command Line',['../index.html#autotoc_md10',1,'']]],
   ['line_12',['line',['../classfe_1_1Src.html#a43d4b3c20f03d005d423f559ff69e1d7',1,'fe::Src']]],
   ['link_13',['link',['../classfe_1_1lct_1_1Node.html#a9d5163bbbb591e574df5b2c7960c7c71',1,'fe::lct::Node']]],

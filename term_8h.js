@@ -1,5 +1,8 @@
 var term_8h =
 [
+    [ "fe::term::Cited", "classfe_1_1term_1_1Cited.html", "classfe_1_1term_1_1Cited" ],
+    [ "fe::term::Cite", "structfe_1_1term_1_1Cite.html", "structfe_1_1term_1_1Cite" ],
+    [ "fe::term::cite_string", "namespacefe_1_1term.html#aa1e2ea2aa40fc5132b2c7364ee4467d8", null ],
     [ "fe::term::ScopedMode", "namespacefe_1_1term.html#a214cdb1ce076f0e6de11f6afb317c516", null ],
     [ "fe::term::FG", "namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148", [
       [ "fe::term::FG::Black", "namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148ae90dfb84e30edf611e326eeb04d680de", null ],
@@ -22,6 +25,7 @@ var term_8h =
     [ "fe::term::cite_width", "namespacefe_1_1term.html#a947ccd2f656ac0cefd6c44cba5c9feb2", null ],
     [ "fe::term::escape_cite", "namespacefe_1_1term.html#a11658a0f1a42c979b9abc3eae5e40594", null ],
     [ "fe::term::escape_cite_to", "namespacefe_1_1term.html#aa516fca40a66d95ffc4b2457594d0550", null ],
+    [ "fe::term::format_cite", "namespacefe_1_1term.html#a93eda7673ac1b39525af9d0fad6e6fb7", null ],
     [ "fe::term::mode", "namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf", null ],
     [ "fe::term::operator<<", "namespacefe_1_1term.html#ac0ce9f4aeb844ed9e5cf41dce8dacf8a", null ],
     [ "fe::term::render_cite", "namespacefe_1_1term.html#a2319c7f51a73205d048935350cd68eec", null ],

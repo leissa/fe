@@ -33,7 +33,7 @@ var searchData=
   ['do_5fallocate_30',['do_allocate',['../classfe_1_1Arena_1_1MemoryResource.html#a8e71a597b41a12d7a3a66c588b065e1e',1,'fe::Arena::MemoryResource']]],
   ['do_5fdeallocate_31',['do_deallocate',['../classfe_1_1Arena_1_1MemoryResource.html#a8612aaa7c927034b57091ee96f4f85da',1,'fe::Arena::MemoryResource']]],
   ['do_5fis_5fequal_32',['do_is_equal',['../classfe_1_1Arena_1_1MemoryResource.html#a670b91798198a06fce1a2bb3625a9b01',1,'fe::Arena::MemoryResource']]],
-  ['documentation_33',['📚 Building the Documentation',['../index.html#autotoc_md21',1,'']]],
+  ['documentation_33',['📚 Building the Documentation',['../index.html#autotoc_md20',1,'']]],
   ['dot_34',['dot',['../classfe_1_1XTrie.html#a5dfa470658e4f440565a09a1297f61b4',1,'fe::XTrie::dot()'],['../classfe_1_1XTrie.html#a60256382276cdb10834b4b77cae85ef7',1,'fe::XTrie::dot(std::ostream &amp;os) const']]],
   ['driver_35',['Driver',['../structfe_1_1Driver.html',1,'fe::Driver'],['../classfe_1_1DbgKey.html#a3afe8ea439b91b50dfbe204787b990f2',1,'fe::DbgKey::Driver()'],['../structfe_1_1Driver.html#a34716fc6c930834d8b067b3c8918c6ca',1,'fe::Driver::Driver()'],['../structfe_1_1Driver.html#a9fc7466725ecee8b0511c33b1963a990',1,'fe::Driver::Driver(std::unique_ptr&lt; Diag &gt; diag)'],['../structfe_1_1Driver.html#a4884f74b43b41e78bb72a865908aeb4e',1,'fe::Driver::Driver(const Driver &amp;)=delete'],['../structfe_1_1Driver.html#a5bd9ffb17dc1ef4ada5cb56d139c77d9',1,'fe::Driver::Driver(Driver &amp;&amp;)=delete']]],
   ['driver_2eh_36',['driver.h',['../driver_8h.html',1,'']]],

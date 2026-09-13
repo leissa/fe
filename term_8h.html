@@ -147,6 +147,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('term_8h.html',
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
@@ -154,7 +155,8 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('term_8h.html',
   <div class="headertitle"><div class="title">term.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;cstdlib&gt;</code><br />
+<div class="textblock"><code>#include &lt;concepts&gt;</code><br />
+<code>#include &lt;cstdlib&gt;</code><br />
 <code>#include &lt;cstring&gt;</code><br />
 <code>#include &lt;atomic&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
@@ -163,6 +165,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('term_8h.html',
 <code>#include &lt;ostream&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;string_view&gt;</code><br />
+<code>#include &lt;type_traits&gt;</code><br />
 <code>#include &lt;sys/ioctl.h&gt;</code><br />
 <code>#include &lt;unistd.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="assert_8h_source.html">fe/assert.h</a>&quot;</code><br />
@@ -181,6 +184,13 @@ This graph shows which files directly or indirectly include this file:</div>
 </div>
 <p><a href="term_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:fe_3A_3Aterm_3A_3ACited" id="r_fe_3A_3Aterm_3A_3ACited"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1term_1_1Cited.html">fe::term::Cited</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An <em>owning</em> message fragment that spells <span class="tt"> `citations` </span> of its own; what format_cite yields.  <a href="classfe_1_1term_1_1Cited.html#details">More...</a><br /></td></tr>
+<tr class="memitem:fe_3A_3Aterm_3A_3ACite" id="r_fe_3A_3Aterm_3A_3ACite"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1term_1_1Cite.html">fe::term::Cite</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <em>borrowed</em> fragment whose backticks stay markup; format_cite escapes every other argument.  <a href="structfe_1_1term_1_1Cite.html#details">More...</a><br /></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:fe" id="r_fe"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html">fe</a></td></tr>
@@ -191,6 +201,9 @@ Namespaces</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:a214cdb1ce076f0e6de11f6afb317c516" id="r_a214cdb1ce076f0e6de11f6afb317c516"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1term.html#a214cdb1ce076f0e6de11f6afb317c516">fe::term::ScopedMode</a> = <a class="el" href="classfe_1_1Restore.html">Restore</a>&lt;<a class="el" href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087">Mode</a>, &amp;<a class="el" href="namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf">mode</a>, &amp;<a class="el" href="namespacefe_1_1term.html#aea69c469efc3010ca40cb1873ff6bec6">set_mode</a>&gt;</td></tr>
 <tr class="memdesc:a214cdb1ce076f0e6de11f6afb317c516"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overrides the color mode for the duration of the scope.  <br /></td></tr>
+<tr class="memitem:aa1e2ea2aa40fc5132b2c7364ee4467d8" id="r_aa1e2ea2aa40fc5132b2c7364ee4467d8"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:aa1e2ea2aa40fc5132b2c7364ee4467d8 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1term.html#aa1e2ea2aa40fc5132b2c7364ee4467d8">fe::term::cite_string</a> = std::format_string&lt;detail::cite_arg_t&lt;Args&gt;...&gt;</td></tr>
+<tr class="memdesc:aa1e2ea2aa40fc5132b2c7364ee4467d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">A std::format_string whose backticks delimit a <span class="tt"> `citation` </span> while those of its arguments are data.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -250,6 +263,9 @@ Functions</h2></td></tr>
 <tr class="memdesc:aa516fca40a66d95ffc4b2457594d0550"><td class="mdescLeft">&#160;</td><td class="mdescRight">Escapes <code class="param">str</code> into <code class="param">out</code> so that render_cite reproduces it verbatim instead of reading it as markup.  <br /></td></tr>
 <tr class="memitem:a11658a0f1a42c979b9abc3eae5e40594" id="r_a11658a0f1a42c979b9abc3eae5e40594"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1term.html#a11658a0f1a42c979b9abc3eae5e40594">fe::term::escape_cite</a> (std::string_view str)</td></tr>
 <tr class="memdesc:a11658a0f1a42c979b9abc3eae5e40594"><td class="mdescLeft">&#160;</td><td class="mdescRight">As above but into a fresh <span class="tt">std::string</span>.  <br /></td></tr>
+<tr class="memitem:a93eda7673ac1b39525af9d0fad6e6fb7" id="r_a93eda7673ac1b39525af9d0fad6e6fb7"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:a93eda7673ac1b39525af9d0fad6e6fb7 template"><td class="memItemLeft"><a class="el" href="classfe_1_1term_1_1Cited.html">Cited</a>&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1term.html#a93eda7673ac1b39525af9d0fad6e6fb7">fe::term::format_cite</a> (<a class="el" href="namespacefe_1_1term.html#aa1e2ea2aa40fc5132b2c7364ee4467d8">cite_string</a>&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:a93eda7673ac1b39525af9d0fad6e6fb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">std::format for a message that follows that convention; assemble a fragment of your own with it.  <br /></td></tr>
 <tr class="memitem:a2319c7f51a73205d048935350cd68eec" id="r_a2319c7f51a73205d048935350cd68eec"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1term.html#a2319c7f51a73205d048935350cd68eec">fe::term::render_cite</a> (std::ostream &amp;os, std::string_view str)</td></tr>
 <tr class="memdesc:a2319c7f51a73205d048935350cd68eec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Streams <code class="param">str</code> into <code class="param">os</code>, coloring each <span class="tt"> `citation` </span> and dropping its backticks - or keeping them verbatim without color; <span class="tt"> \` </span> is a literal backtick and <span class="tt">\\</span> a literal backslash.  <br /></td></tr>
 <tr class="memitem:a947ccd2f656ac0cefd6c44cba5c9feb2" id="r_a947ccd2f656ac0cefd6c44cba5c9feb2"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1term.html#a947ccd2f656ac0cefd6c44cba5c9feb2">fe::term::cite_width</a> (std::string_view str, bool color)</td></tr>

@@ -49,13 +49,13 @@ var NAVTREE =
     ] ],
     [ "🧭 Typical Workflow", "index.html#autotoc_md17", null ],
     [ "💬 Writing a Diagnostic", "index.html#autotoc_md18", [
-      [ "Citations", "index.html#autotoc_md19", null ]
+      [ "Citations", "index.html#citations", null ]
     ] ],
-    [ "🛠️ Building and Testing", "index.html#autotoc_md20", null ],
-    [ "📚 Building the Documentation", "index.html#autotoc_md21", null ],
-    [ "🔨 Related Projects", "index.html#autotoc_md22", null ],
-    [ "🤝 Contributing", "index.html#autotoc_md23", null ],
-    [ "⚖️ License", "index.html#autotoc_md24", null ],
+    [ "🛠️ Building and Testing", "index.html#autotoc_md19", null ],
+    [ "📚 Building the Documentation", "index.html#autotoc_md20", null ],
+    [ "🔨 Related Projects", "index.html#autotoc_md21", null ],
+    [ "🤝 Contributing", "index.html#autotoc_md22", null ],
+    [ "⚖️ License", "index.html#autotoc_md23", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -95,12 +95,12 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "algo_8h.html",
-"classfe_1_1Diag.html#aaa5ba3c6b584a4da2c8a7699bbe3b062",
-"classfe_1_1Parser.html#a205ed2e6edb75d00c352c41a399b7593",
-"classfe_1_1Src.html#ae149a938b0dac5fd168b64293d059e15",
-"classfe_1_1XTrie_1_1Set.html#aa6d578531bc83831bff1b1f7c09f2af5",
-"namespacefe.html#a82611dc8d24da4728eb1d636f65aea2d",
-"structfe_1_1Loc.html#a510a88ca7073eb0d98879364b7b0e0ef"
+"classfe_1_1Diag.html#a61da1285824fdbd9b1da05d265126e93",
+"classfe_1_1Parser.html",
+"classfe_1_1Src.html#aa3b5f99f7e3b97c5c04d3ad52d98c18d",
+"classfe_1_1XTrie_1_1Set.html#a8fca7927052548d6cdf264212f07b558",
+"namespacefe.html#a490ea31d86af5baf49d5f00a09298f14",
+"structfe_1_1Driver.html#ad9684c890333c19abc2ce4f4c2f8fe59"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';

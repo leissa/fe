@@ -7,5 +7,5 @@ var searchData=
   ['diagnostics_20you_20did_20not_20write_4',['Diagnostics you did not write',['../index.html#autotoc_md3',1,'']]],
   ['did_20not_20write_5',['Diagnostics you did not write',['../index.html#autotoc_md3',1,'']]],
   ['direct_20vendoring_6',['Direct Vendoring',['../index.html#autotoc_md16',1,'']]],
-  ['documentation_7',['📚 Building the Documentation',['../index.html#autotoc_md21',1,'']]]
+  ['documentation_7',['📚 Building the Documentation',['../index.html#autotoc_md20',1,'']]]
 ];
