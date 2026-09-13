@@ -20,7 +20,7 @@ var searchData=
   ['start_17',['start',['../classfe_1_1Lexer.html#a0ecd9086f866aa9a8d849620aba195a0',1,'fe::Lexer::start()'],['../classfe_1_1Profiler.html#ab61d4b5a3f4c1435b31f65e755c6ca0f',1,'fe::Profiler::start()']]],
   ['state_18',['state',['../classfe_1_1Arena.html#adc11bd44aacf4c22167b1ed08d400077',1,'fe::Arena']]],
   ['stop_19',['stop',['../classfe_1_1Profiler.html#ab6c5c63abe26861a4c17f3ed39e449f0',1,'fe::Profiler']]],
-  ['str_20',['str',['../classfe_1_1Error.html#a08aa403d4a64879731845169dc281cb1',1,'fe::Error::str()'],['../classfe_1_1Sym.html#aa221972b6c2c378b931e1b68eead0498',1,'fe::Sym::str()'],['../classfe_1_1term_1_1Cited.html#a06e3dc01abd08e9c0876f7ce8a527d3b',1,'fe::term::Cited::str()'],['../classfe_1_1term_1_1Cite.html#a1a95a23de3cdafb3d552cb7ec39199e6',1,'fe::term::Cite::str()'],['../classfe_1_1Cite.html#a1a95a23de3cdafb3d552cb7ec39199e6',1,'fe::Cite::str()'],['../classfe_1_1Cited.html#a06e3dc01abd08e9c0876f7ce8a527d3b',1,'fe::Cited::str()']]],
+  ['str_20',['str',['../classfe_1_1Error.html#a08aa403d4a64879731845169dc281cb1',1,'fe::Error::str()'],['../classfe_1_1Sym.html#aa221972b6c2c378b931e1b68eead0498',1,'fe::Sym::str()']]],
   ['stream_21',['stream',['../classfe_1_1XTrie_1_1Set.html#a8fca7927052548d6cdf264212f07b558',1,'fe::XTrie::Set']]],
   ['streamfn_22',['StreamFn',['../classfe_1_1StreamFn.html#a68d490240269c9a6d0347bd071fc0867',1,'fe::StreamFn::StreamFn()'],['../namespacefe.html#a653a3eb512f7610b2449a4546f7e335d',1,'fe::StreamFn()']]],
   ['string_23',['String',['../structfe_1_1Sym_1_1String.html#a551bd30c8aceef146168764ee45238c4',1,'fe::Sym::String::String() noexcept=default'],['../structfe_1_1Sym_1_1String.html#a53744c058aad60d3cd8adee02bdeedbc',1,'fe::Sym::String::String(size_t size) noexcept']]],

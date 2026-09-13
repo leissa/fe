@@ -9,5 +9,5 @@ var searchData=
   ['vendoring_6',['Direct Vendoring',['../index.html#autotoc_md16',1,'']]],
   ['verbose_7',['Verbose',['../classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06ad4a9fa383ab700c5bdd6f31cf7df0faf',1,'fe::Log']]],
   ['view_8',['View',['../classfe_1_1Join.html#ada5d411581bc9cf1e7a466020755c497',1,'fe::Join::View'],['../namespacefe.html#a3fa8abec15ebc094748836707250e96e',1,'fe::View']]],
-  ['view_9',['view',['../classfe_1_1Sym.html#ae4042d6fd11e3d25c511c2feb031ad2a',1,'fe::Sym::view()'],['../classfe_1_1Vector.html#a4b22e3073984242fc9e70ab3e65b0bba',1,'fe::Vector::view()']]]
+  ['view_9',['view',['../classfe_1_1Sym.html#ae4042d6fd11e3d25c511c2feb031ad2a',1,'fe::Sym::view()'],['../classfe_1_1term_1_1Cited.html#a09b9d95c53aa63254856b35a44b85049',1,'fe::term::Cited::view()'],['../classfe_1_1term_1_1Cite.html#ad9220fb06e2f38135bbf2754579788b7',1,'fe::term::Cite::view()'],['../classfe_1_1Vector.html#a4b22e3073984242fc9e70ab3e65b0bba',1,'fe::Vector::view()'],['../classfe_1_1Cite.html#ad9220fb06e2f38135bbf2754579788b7',1,'fe::Cite::view()'],['../classfe_1_1Cited.html#a09b9d95c53aa63254856b35a44b85049',1,'fe::Cited::view()']]]
 ];

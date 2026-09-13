@@ -6,5 +6,5 @@ var classfe_1_1term_1_1Cite =
     [ "Cite", "classfe_1_1term_1_1Cite.html#a496f54f2805ffd6b238eea3c4eb9d0e2", null ],
     [ "empty", "classfe_1_1term_1_1Cite.html#a7269080eeb9343b14272a9aeb4dad479", null ],
     [ "operator bool", "classfe_1_1term_1_1Cite.html#a79fbb0c6de50658fe565842b13372ec1", null ],
-    [ "str", "classfe_1_1term_1_1Cite.html#a1a95a23de3cdafb3d552cb7ec39199e6", null ]
+    [ "view", "classfe_1_1term_1_1Cite.html#ad9220fb06e2f38135bbf2754579788b7", null ]
 ];
