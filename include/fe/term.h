@@ -321,7 +321,7 @@ public:
     explicit Cited(std::string str) noexcept
         : str_(std::move(str)) {}
 
-    [[nodiscard]] constexpr std::string_view str() const noexcept { return str_; }
+    [[nodiscard]] constexpr std::string_view view() const noexcept { return str_; }
     constexpr operator std::string_view() const noexcept { return str_; }
 
 private:
@@ -344,7 +344,7 @@ public:
     constexpr explicit Cite(std::string_view s) noexcept
         : str_(s) {}
 
-    [[nodiscard]] constexpr std::string_view str() const noexcept { return str_; }
+    [[nodiscard]] constexpr std::string_view view() const noexcept { return str_; }
     [[nodiscard]] constexpr bool empty() const noexcept { return str_.empty(); }
     constexpr explicit operator bool() const noexcept { return !str_.empty(); } ///< Is not empty?
 
@@ -470,7 +470,7 @@ struct std::formatter<fe::term::detail::Escaped<T>> {
 template<>
 struct std::formatter<fe::term::Cite> : std::formatter<std::string_view> {
     auto format(fe::term::Cite cite, std::format_context& ctx) const {
-        return std::formatter<std::string_view>::format(cite.str(), ctx);
+        return std::formatter<std::string_view>::format(cite.view(), ctx);
     }
 };
 
