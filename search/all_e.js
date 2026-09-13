@@ -13,7 +13,7 @@ var searchData=
   ['mode_10',['Mode',['../namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087',1,'fe::term']]],
   ['mode_11',['mode',['../namespacefe_1_1term.html#a028b5b02dd0708554eccc7b26a7501cf',1,'fe::term']]],
   ['msg_12',['Msg',['../classfe_1_1Error.html#structfe_1_1Error_1_1Msg',1,'fe::Error']]],
-  ['msg_13',['msg',['../classfe_1_1Error.html#a0be3ad6db15f4a91da361765326e508e',1,'fe::Error::msg(Loc loc, Tag tag, const std::function&lt; std::string()&gt; &amp;fmt)'],['../classfe_1_1Error.html#a7d5548075c6e6527e87f8c76034a01e8',1,'fe::Error::msg(Loc loc, Tag tag, std::format_string&lt; Args... &gt; s, Args &amp;&amp;... args)']]],
+  ['msg_13',['msg',['../classfe_1_1Error.html#a0be3ad6db15f4a91da361765326e508e',1,'fe::Error::msg(Loc loc, Tag tag, const std::function&lt; std::string()&gt; &amp;fmt)'],['../classfe_1_1Error.html#ad73db5f766b07a2b35a0b0ddd1f9d304',1,'fe::Error::msg(Loc loc, Tag tag, cite_string&lt; Args... &gt; s, Args &amp;&amp;... args)']]],
   ['msgs_14',['msgs',['../classfe_1_1Error.html#a27fe473278b55b1e3df08f10c40f748d',1,'fe::Error']]],
   ['msvc_15',['MSVC',['../structfe_1_1Loc.html#aa6449f6dc2688387c0e8ed8dc2112858a0f51fc6751dcde1d4bb3760fcf465689',1,'fe::Loc']]],
   ['much_20code_20is_20that_16',['How much code is that?',['../index.html#autotoc_md2',1,'']]],

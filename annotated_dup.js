@@ -13,6 +13,7 @@ var annotated_dup =
       [ "Arena", "classfe_1_1Arena.html", "classfe_1_1Arena" ],
       [ "basic_ostream_formatter", "structfe_1_1basic__ostream__formatter.html", "structfe_1_1basic__ostream__formatter" ],
       [ "Bitset", "classfe_1_1Bitset.html", "classfe_1_1Bitset" ],
+      [ "Cite", "namespacefe.html#structfe_1_1Cite", "namespacefe_structfe_1_1Cite_dup" ],
       [ "Cli", "classfe_1_1Cli.html", "classfe_1_1Cli" ],
       [ "CodeDiag", "classfe_1_1CodeDiag.html", "classfe_1_1CodeDiag" ],
       [ "Dbg", "structfe_1_1Dbg.html", "structfe_1_1Dbg" ],

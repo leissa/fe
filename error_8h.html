@@ -148,7 +148,9 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('error_8h.html'
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">error.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -161,6 +163,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('error_8h.html'
 <code>#include &lt;sstream&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;string_view&gt;</code><br />
+<code>#include &lt;type_traits&gt;</code><br />
 <code>#include &lt;utility&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &quot;<a class="el" href="diag_8h_source.html">fe/diag.h</a>&quot;</code><br />
@@ -182,6 +185,8 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:fe_3A_3ACite_5Fstructfe_5F1_5F1Cite" id="r_fe_3A_3ACite_5Fstructfe_5F1_5F1Cite"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#structfe_1_1Cite">fe::Cite</a></td></tr>
+<tr class="memdesc:structfe_1_1Cite"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps a diagnostic argument that spells <span class="tt"> `citations` </span> of its own, such as a message fragment assembled elsewhere; <a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and hands each to the Diag that lays it out.">Error</a> escapes the backticks of every other argument.  <a href="namespacefe.html#structfe_1_1Cite">More...</a><br /></td></tr>
 <tr class="memitem:fe_3A_3AError" id="r_fe_3A_3AError"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Error.html">fe::Error</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collects diagnostics and hands each to the <a class="el" href="classfe_1_1Diag.html" title="How a diagnostic lays out - and how much of it an Error keeps.">Diag</a> that lays it out.  <a href="classfe_1_1Error.html#details">More...</a><br /></td></tr>
 <tr class="memitem:fe_3A_3AError_3A_3ABail" id="r_fe_3A_3AError_3A_3ABail"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Error_1_1Bail.html">fe::Error::Bail</a></td></tr>
@@ -194,8 +199,46 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:fe" id="r_fe"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html">fe</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ac5311297f0fae3e2cffa984ccbdfcbd9" id="r_ac5311297f0fae3e2cffa984ccbdfcbd9"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:ac5311297f0fae3e2cffa984ccbdfcbd9 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#ac5311297f0fae3e2cffa984ccbdfcbd9">fe::cite_string</a> = std::format_string&lt;detail::cite_arg_t&lt;Args&gt;...&gt;</td></tr>
+<tr class="memdesc:ac5311297f0fae3e2cffa984ccbdfcbd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">A std::format_string whose backticks delimit a <span class="tt"> `citation` </span> while those of its arguments are data.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ae2721e1a60effd60b200ef8f10a664fc" id="r_ae2721e1a60effd60b200ef8f10a664fc"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:ae2721e1a60effd60b200ef8f10a664fc template"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#ae2721e1a60effd60b200ef8f10a664fc">fe::format_cite</a> (<a class="el" href="namespacefe.html#ac5311297f0fae3e2cffa984ccbdfcbd9">cite_string</a>&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:ae2721e1a60effd60b200ef8f10a664fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">std::format for a message that follows that convention; assemble a fragment for <a class="el" href="namespacefe.html#structfe_1_1Cite" title="Wraps a diagnostic argument that spells  `citations`  of its own, such as a message fragment assemble...">fe::Cite</a> with it.  <br /></td></tr>
 </table>
 <hr/><h2 id="header-inline_5Fclasses" class="groupheader">Class Documentation</h2>
+<a name="structfe_1_1Cite" id="structfe_1_1Cite"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#structfe_1_1Cite">&#9670;&#160;</a></span>fe::Cite</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct fe::Cite</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="textblock"><p>Wraps a diagnostic argument that spells <span class="tt"> `citations` </span> of its own, such as a message fragment assembled elsewhere; <a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and hands each to the Diag that lays it out.">Error</a> escapes the backticks of every other argument. </p>
+
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00028">28</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+</div><table class="fieldtable">
+<tr><th colspan="3">Class Members</th></tr>
+<tr><td class="fieldtype">
+<a id="ae0ca8b7b1e1b4332adb153d93f90a37c" name="ae0ca8b7b1e1b4332adb153d93f90a37c"></a>string_view</td>
+<td class="fieldname">
+str</td>
+<td class="fielddoc">
+</td></tr>
+</table>
+
+</div>
+</div>
 <a name="structfe_1_1Error_1_1Note" id="structfe_1_1Error_1_1Note"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#structfe_1_1Error_1_1Note">&#9670;&#160;</a></span>fe::Error::Note</h2>
 
@@ -210,7 +253,7 @@ Namespaces</h2></td></tr>
 <div class="textblock"><p>A secondary message elaborating a <a class="el" href="classfe_1_1Error.html#structfe_1_1Error_1_1Msg" title="One Tag::Error or Tag::Warn together with the Notes that belong to it.">Msg</a>. </p>
 <p>A <a class="el" href="classfe_1_1Error.html#structfe_1_1Error_1_1Note" title="A secondary message elaborating a Msg.">Note</a> with a <a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a> of its own reads as a diagnostic of its own - header line plus snippet; one without has nowhere else to point and renders as a <span class="tt">= note:</span> continuation line. </p>
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00056">56</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00094">94</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -242,7 +285,7 @@ str</td>
 </div><div class="memdoc">
 <div class="textblock"><p>One Tag::Error or Tag::Warn together with the <a class="el" href="classfe_1_1Error.html#structfe_1_1Error_1_1Note" title="A secondary message elaborating a Msg.">Note</a>s that belong to it. </p>
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00062">62</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00100">100</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">

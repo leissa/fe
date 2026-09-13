@@ -7,9 +7,9 @@ var searchData=
   ['inline_5fbits_4',['Inline_Bits',['../classfe_1_1Bitset.html#a7f531b9611298166514620918fd7b789',1,'fe::Bitset']]],
   ['insert_5',['insert',['../classfe_1_1XTrie.html#aa08e5b98d358fbd162f231227b008751',1,'fe::XTrie']]],
   ['insert_5frange_6',['insert_range',['../classfe_1_1Vector.html#a87675139d0fc5ad66f6c4f784792cd1a',1,'fe::Vector']]],
-  ['integrate_20into_20existing_20project_7',['Integrate into existing Project',['../index.html#autotoc_md14',1,'']]],
+  ['integrate_20into_20a_20project_7',['Integrate into a Project',['../index.html#autotoc_md14',1,'']]],
   ['intersects_8',['intersects',['../classfe_1_1Bitset.html#a797aaff9cca30f534d31501c799e8173',1,'fe::Bitset']]],
-  ['into_20existing_20project_9',['Integrate into existing Project',['../index.html#autotoc_md14',1,'']]],
+  ['into_20a_20project_9',['Integrate into a Project',['../index.html#autotoc_md14',1,'']]],
   ['invalid_10',['Invalid',['../structfe_1_1Pos.html#a16e3b89c05cd157b2f0886421b09ac76',1,'fe::Pos::Invalid'],['../namespacefe_1_1utf8.html#a12b7d1cbb7960728a558b5bb26255b3d',1,'fe::utf8::Invalid']]],
   ['is_20that_11',['How much code is that?',['../index.html#autotoc_md2',1,'']]],
   ['is_5faligned_12',['is_aligned',['../namespacefe.html#a6c3387d3cb75e5620007f6f12d96429d',1,'fe']]],
@@ -36,7 +36,6 @@ var searchData=
   ['isspace_33',['isspace',['../namespacefe_1_1utf8.html#ae73e646b50448236b4eccacd7d798839',1,'fe::utf8']]],
   ['isupper_34',['isupper',['../namespacefe_1_1utf8.html#a7681ccacf336d09b0580dad0503f911a',1,'fe::utf8']]],
   ['isxdigit_35',['isxdigit',['../namespacefe_1_1utf8.html#a508776758a043af7871049a6ada71571',1,'fe::utf8']]],
-  ['it_20afterwards_36',['And you can read it afterwards',['../index.html#autotoc_md4',1,'']]],
-  ['iterator_37',['iterator',['../classfe_1_1Bitset_1_1iterator.html',1,'fe::Bitset::iterator'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html',1,'fe::XTrie&lt; D, K, N &gt;::Set::iterator'],['../classfe_1_1Bitset_1_1iterator.html#a38024f9030af019caec3fdf0ac98ea75',1,'fe::Bitset::iterator::iterator()'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html#a57c00b8c969a7f22c8347be2497813a8',1,'fe::XTrie::Set::iterator::iterator()']]],
-  ['iterator_5fcategory_38',['iterator_category',['../classfe_1_1Bitset_1_1iterator.html#a3b86d48cffd4cb9d6a576b26cf2e5ab1',1,'fe::Bitset::iterator::iterator_category'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html#a477d7360e29c7fb371869da9b69d7c1f',1,'fe::XTrie::Set::iterator::iterator_category']]]
+  ['iterator_36',['iterator',['../classfe_1_1Bitset_1_1iterator.html',1,'fe::Bitset::iterator'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html',1,'fe::XTrie&lt; D, K, N &gt;::Set::iterator'],['../classfe_1_1Bitset_1_1iterator.html#a38024f9030af019caec3fdf0ac98ea75',1,'fe::Bitset::iterator::iterator()'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html#a57c00b8c969a7f22c8347be2497813a8',1,'fe::XTrie::Set::iterator::iterator()']]],
+  ['iterator_5fcategory_37',['iterator_category',['../classfe_1_1Bitset_1_1iterator.html#a3b86d48cffd4cb9d6a576b26cf2e5ab1',1,'fe::Bitset::iterator::iterator_category'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html#a477d7360e29c7fb371869da9b69d7c1f',1,'fe::XTrie::Set::iterator::iterator_category']]]
 ];

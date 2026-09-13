@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['n_0',['n',['../classfe_1_1Error.html#a85a7eb5c9d1d42180e23d41bf78f50cb',1,'fe::Error::n(std::format_string&lt; Args... &gt; s, Args &amp;&amp;... args)'],['../classfe_1_1Error.html#a5b68ed59585357a2f4e4f2bbda85e508',1,'fe::Error::n(Loc loc, std::format_string&lt; Args... &gt; s, Args &amp;&amp;... args)']]],
+  ['n_0',['n',['../classfe_1_1Error.html#a00f09b90a0881ae86f805ec546d81ac3',1,'fe::Error::n(cite_string&lt; Args... &gt; s, Args &amp;&amp;... args)'],['../classfe_1_1Error.html#a19c05a577986233e9f13dd24cb6b96ba',1,'fe::Error::n(Loc loc, cite_string&lt; Args... &gt; s, Args &amp;&amp;... args)']]],
   ['next_1',['next',['../classfe_1_1Bitset.html#a133894062d62f20943e91950387e59ff',1,'fe::Bitset::next()'],['../classfe_1_1Lexer.html#a0bbfc87be21bdd46d883002eb10303c1',1,'fe::Lexer::next()']]],
   ['node_2',['Node',['../classfe_1_1lct_1_1Node.html#a0d02ac1d102e2d1af583428671e1264c',1,'fe::lct::Node']]],
   ['none_3',['none',['../classfe_1_1Bitset.html#a06de774d3a8b865462578272321b4db0',1,'fe::Bitset']]],

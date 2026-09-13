@@ -158,10 +158,10 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
         <a href="#autotoc_md2">How much code is that? </a>
       </li>
       <li class="level2">
-        <a href="#autotoc_md3">Diagnostics </a>
+        <a href="#autotoc_md3">Diagnostics you did not write </a>
       </li>
       <li class="level2">
-        <a href="#autotoc_md4">And you can read it afterwards </a>
+        <a href="#autotoc_md4">No generated code to debug </a>
       </li>
     </ul>
   </li>
@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
     <a href="#autotoc_md13">🚀 Quick Start </a>
     <ul>
       <li class="level2">
-        <a href="#autotoc_md14">Integrate into existing Project </a>
+        <a href="#autotoc_md14">Integrate into a Project </a>
         <ul>
           <li class="level3">
             <a href="#autotoc_md15">CMake </a>
@@ -216,19 +216,27 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
     <a href="#autotoc_md17">🧭 Typical Workflow </a>
   </li>
   <li class="level1">
-    <a href="#autotoc_md18">🛠️ Building and Testing </a>
+    <a href="#autotoc_md18">💬 Writing a Diagnostic </a>
+    <ul>
+      <li class="level2">
+        <a href="#autotoc_md19">Citations </a>
+      </li>
+    </ul>
   </li>
   <li class="level1">
-    <a href="#autotoc_md19">📚 Building the Documentation </a>
+    <a href="#autotoc_md20">🛠️ Building and Testing </a>
   </li>
   <li class="level1">
-    <a href="#autotoc_md20">🔨 Related Projects </a>
+    <a href="#autotoc_md21">📚 Building the Documentation </a>
   </li>
   <li class="level1">
-    <a href="#autotoc_md21">🤝 Contributing </a>
+    <a href="#autotoc_md22">🔨 Related Projects </a>
   </li>
   <li class="level1">
-    <a href="#autotoc_md22">⚖️ License </a>
+    <a href="#autotoc_md23">🤝 Contributing </a>
+  </li>
+  <li class="level1">
+    <a href="#autotoc_md24">⚖️ License </a>
   </li>
 </ul>
 </div>
@@ -266,7 +274,7 @@ How much code is that?</h2>
 </table>
 <p>A <span class="tt">.l</span>/<span class="tt">.y</span> pair for that grammar would not come out much shorter than those 203 lines - and Bison would additionally check the grammar for conflicts, which recursive descent never will. What a generator does <em>not</em> write for you is the other 395: command-line parsing, the AST, the arena, the interning, the evaluator, the printer. Nor does it write the diagnostics, and that is where the difference actually shows up.</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
-Diagnostics</h2>
+Diagnostics you did not write</h2>
 <p>Those 203 lines already produce this. The error line and its snippet come out of <span class="tt">expect</span>; the note that points back at the <span class="tt">(</span> is a three-line <span class="tt">syntax_err</span> override plus one <span class="tt"><a class="el" href="classfe_1_1Restore.html" title="RAII guard that restores a value at the end of the scope.">fe::Restore</a></span> to remember which <span class="tt">(</span> it was:</p>
 <div class="fragment"><div class="line">test/error/unclosed_paren.let:1:13: error: expected `)`, got `;` while parsing parenthesized expression</div>
 <div class="line">    1 | print (1 + 2;</div>
@@ -288,7 +296,7 @@ Diagnostics</h2>
 <div class="line">3 error(s) encountered</div>
 </div><!-- fragment --><p>Every message above is FE's own wording, summary line included; the only text Let contributes is that one note. A generator hands you the parse and <span class="tt">yyerror("syntax error")</span> - the snippets, the notes, the recovery, and the <span class="tt">--max-errors</span> truncation are yours to build.</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
-And you can read it afterwards</h2>
+No generated code to debug</h2>
 <p>There is no code generation step, so there is no generated code to debug and no build-time dependency on a tool. <span class="tt">parse_expr</span> is a function that says what it does, in the language the rest of your compiler is written in.</p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
 ✨ Features</h1>
@@ -317,10 +325,10 @@ Diagnostics</h3>
 <li><span class="tt"><a class="el" href="structfe_1_1Pos.html" title="Byte offset into a Src; pass around as value.">fe::Pos</a></span> and <span class="tt"><a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">fe::Loc</a></span> for source positions and source spans.</li>
 <li><span class="tt"><a class="el" href="classfe_1_1Src.html" title="The content of one source file together with the offsets its rows start at.">fe::Src</a></span> and <span class="tt"><a class="el" href="classfe_1_1SrcMap.html" title="Interns the text - and the std::filesystem::path - of every file a Loc may point into.">fe::SrcMap</a></span> for owning source text and resolving a position back to <span class="tt">path:row:col</span>.</li>
 <li><span class="tt"><a class="el" href="structfe_1_1Dbg.html" title="The debug info of an entity: where it came from and what it was called.">fe::Dbg</a></span> for the <span class="tt">Loc</span>/<span class="tt">Sym</span> pair every named entity drags along, interned in the <span class="tt">Driver</span> as a <span class="tt">DbgKey</span>.</li>
-<li><span class="tt"><a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and hands each to the Diag that lays it out.">fe::Error</a></span> for collecting diagnostics - errors, warnings and their notes - and rendering each with its source snippet; <span class="tt">Error::ack</span> throws what it collected as a self-contained <span class="tt">Error::Bail</span>. The <span class="tt">Driver</span> owns the one everything reports into (<span class="tt">Driver::error</span>); <span class="tt">Error::{e,w,n}</span> are terse aliases of <span class="tt">Error::{error,warn,note}</span>, in the spirit of <span class="tt">Log::e</span> and friends.</li>
+<li><span class="tt"><a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and hands each to the Diag that lays it out.">fe::Error</a></span> for collecting diagnostics - errors, warnings and their notes - and rendering each with its source snippet; <span class="tt">Error::ack</span> throws what it collected as a self-contained <span class="tt">Error::Bail</span>. The <span class="tt">Driver</span> owns the one everything reports into (<span class="tt">Driver::error</span>); <span class="tt">Error::{e,w,n}</span> open an error, a warning, and a note, in the spirit of <span class="tt">Log::e</span> and friends.</li>
 <li><span class="tt"><a class="el" href="classfe_1_1Diag.html" title="How a diagnostic lays out - and how much of it an Error keeps.">fe::Diag</a></span> for how a diagnostic lays out: <span class="tt">Diag::loc_style</span> (a <span class="tt">Loc::Style</span>), <span class="tt">Diag::no_snippet</span>, and friends cover the usual adjustments, and one virtual per piece (<span class="tt">loc</span>, <span class="tt">header</span>, <span class="tt">snippet</span>, <span class="tt">note</span>, <span class="tt">summary</span>, <span class="tt">render</span>) covers the rest. Derive and <span class="tt">Driver::diag(std::make_unique&lt;MyDiag&gt;())</span> to lay one out entirely your own way.</li>
 <li><span class="tt"><a class="el" href="classfe_1_1Log.html" title="Facility to log what you are doing.">fe::Log</a></span> for leveled logging with acronym, color, and origin prefix.<ul>
-<li><span class="tt">Log::error</span>/<span class="tt">Log::warn</span>/... shorthands point at their call site via <span class="tt">std::source_location</span>; no macros involved.</li>
+<li><span class="tt">Log::{e,w,i,v}</span> - plus <span class="tt">Log::{d,t}</span>, which vaporize in a <span class="tt">Release</span> build - point at their call site via <span class="tt">std::source_location</span>; no macros involved.</li>
 </ul>
 </li>
 <li><span class="tt"><a class="el" href="namespacefe_1_1term.html" title="Lightweight stream-based terminal colors for diagnostics and CLI output.">fe::term</a></span> for lightweight terminal colors in diagnostics and CLI output.</li>
@@ -329,7 +337,7 @@ Diagnostics</h3>
 Command Line</h3>
 <ul>
 <li><span class="tt"><a class="el" href="classfe_1_1Cli.html" title="A small command-line parser for a single command - no subcommands.">fe::Cli</a></span> for parsing <span class="tt">argc</span>/<span class="tt">argv</span> of a single command: chain <span class="tt">Cli::opt</span>/<span class="tt">Cli::arg</span> and bind each switch to a variable of yours - a <span class="tt">bool</span>, a <span class="tt">std::string</span>, an integral, a <span class="tt">std::vector</span> of those, or a callable. It understands <span class="tt">--name value</span>, <span class="tt">--name=value</span>, <span class="tt">-n value</span>, <span class="tt">-nvalue</span>, clustered short flags, and <span class="tt">--</span>.</li>
-<li><span class="tt">Cli::help</span> lays those switches out for a terminal - grouped into sections by <span class="tt">Cli::grp</span>, wrapped to the terminal width, and colored via <span class="tt"><a class="el" href="namespacefe_1_1term.html" title="Lightweight stream-based terminal colors for diagnostics and CLI output.">fe::term</a></span>. <span class="tt">Cli::md</span> renders the very same information as Markdown tables, so <span class="tt">--help</span> and the manual cannot drift apart.</li>
+<li><span class="tt">Cli::help</span> lays those switches out for a terminal - grouped into sections by <span class="tt">Cli::grp</span>, wrapped to the terminal width, and colored via <span class="tt"><a class="el" href="namespacefe_1_1term.html" title="Lightweight stream-based terminal colors for diagnostics and CLI output.">fe::term</a></span>. <span class="tt">Cli::markdown</span> renders the very same information as Markdown tables, so <span class="tt">--help</span> and the manual cannot drift apart.</li>
 <li><span class="tt">Cli::section</span> for titled <span class="tt">term</span>/description rows that aren't options - <span class="tt">ENVIRONMENT</span>, plugin arguments, and the like - rendered below the options in both backends.</li>
 </ul>
 <h3 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
@@ -374,8 +382,6 @@ Requires <span class="tt">FE_LIB</span></h2>
 </div><!-- fragment --><p class="startli">Otherwise you will run into a link error for <span class="tt">operator&lt;&lt;(std::ostream&amp;, <a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">fe::Loc</a>)</span> and friends.</p>
 </li>
 </ul>
-<p>FE does not try to hide frontend construction behind a generator. Instead, it gives you sharp, reusable tools so you can build exactly the frontend you want.</p>
-<p>For a complete end-to-end example, see <a href="https://github.com/leissa/let"><b>Let</b></a>, a small toy language built on FE.</p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md13"></a>
 🚀 Quick Start</h1>
 <p>The easiest way to get going is through <a href="https://github.com/leissa/let"><b>Let</b></a>.</p>
@@ -386,7 +392,7 @@ Requires <span class="tt">FE_LIB</span></h2>
 </ul>
 <p>That gives you a concrete, working example of how FE is intended to be used in practice.</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md14"></a>
-Integrate into existing Project</h2>
+Integrate into a Project</h2>
 <h3 class="doxsection"><a class="anchor" id="autotoc_md15"></a>
 CMake</h3>
 <p>Add FE as a subdirectory and link the <span class="tt"><a class="el" href="namespacefe.html">fe</a></span> target:</p>
@@ -419,6 +425,31 @@ Direct Vendoring</h3>
 </ol>
 <p>If you want a concrete model to copy from, start with <a href="../tests/lexer.cpp"><span class="tt">tests/lexer.cpp</span></a>.</p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md18"></a>
+💬 Writing a Diagnostic</h1>
+<p>Everything reports into the one <span class="tt"><a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and hands each to the Diag that lays it out.">fe::Error</a></span> the <span class="tt">Driver</span> owns, and one diagnostic is one chained expression:</p>
+<div class="fragment"><div class="line">error().e(tok.loc(), <span class="stringliteral">&quot;expected `)`, got `{}` while parsing {}&quot;</span>, tok, Cite(ctxt))</div>
+<div class="line">       .n(open.loc(), <span class="stringliteral">&quot;unmatched `(` opened here&quot;</span>);</div>
+</div><!-- fragment --><p><span class="tt">Error::e</span> opens an error and <span class="tt">Error::w</span> a warning; <span class="tt">Error::n</span> hangs a note off whichever came last. A note <em>with</em> a <span class="tt">Loc</span> reads as a diagnostic of its own - header line plus snippet - and is dropped when that <span class="tt">Loc</span> merely repeats the primary one; a note without one has nowhere else to point and renders as a <span class="tt">= note:</span> continuation. Nothing throws along the way: <span class="tt">Error::bail</span> throws what has accumulated as an <span class="tt">Error::Bail</span>, and <span class="tt">Error::ack</span> at the end of the run does that only if an error was among it and otherwise just reports the warnings.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md19"></a>
+Citations</h2>
+<p>A message spells the things it talks about in backticks, and <span class="tt"><a class="el" href="classfe_1_1CodeDiag.html" title="The Diag a Driver installs by default: colors a  `citation`  and drops its backticks - or keeps them ...">fe::CodeDiag</a></span> colors what they enclose - or keeps the backticks when there is no color to spend:</p>
+<div class="fragment"><div class="line">test.let:1:11: error: identifier `+` not found</div>
+</div><!-- fragment --><p>Only the <b>format string</b> is markup that way. <b>Arguments are data</b>, and <span class="tt"><a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and hands each to the Diag that lays it out.">fe::Error</a></span> escapes their backticks for you, so a symbol, path, or token that happens to contain one cannot break the highlighting of the message around it:</p>
+<div class="fragment"><div class="line">error().e(loc, <span class="stringliteral">&quot;identifier `{}` not found&quot;</span>, sym); <span class="comment">// sym may be `+ - nothing to do</span></div>
+</div><!-- fragment --><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Where  </th><th class="markdownTableHeadNone">What to escape  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">The format string  </td><td class="markdownTableBodyNone">Nothing, unless you want a <em>literal</em> backtick - spell it <span class="tt"> \` </span> - or a literal backslash - <span class="tt">\\</span>.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">An argument  </td><td class="markdownTableBodyNone">Nothing, ever.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">An argument that is a message fragment of your own, with citations of its own  </td><td class="markdownTableBodyNone">Wrap it in <span class="tt"><a class="el" href="namespacefe.html#structfe_1_1Cite" title="Wraps a diagnostic argument that spells  `citations`  of its own, such as a message fragment assemble...">fe::Cite</a></span>; that is what a parser <span class="tt">ctxt</span> gets.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">The code assembling such a fragment  </td><td class="markdownTableBodyNone">Use <span class="tt"><a class="el" href="namespacefe.html#ae2721e1a60effd60b200ef8f10a664fc" title="std::format for a message that follows that convention; assemble a fragment for fe::Cite with it.">fe::format_cite</a></span> instead of <span class="tt">std::format</span>, so its backticks stay markup while <em>its</em> arguments are escaped.  </td></tr>
+</table>
+<p><span class="tt"><a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and hands each to the Diag that lays it out.">fe::Error</a>::{msg,e,w,n}</span> take a <span class="tt"><a class="el" href="namespacefe.html#ac5311297f0fae3e2cffa984ccbdfcbd9" title="A std::format_string whose backticks delimit a  `citation`  while those of its arguments are data.">fe::cite_string</a></span> rather than a <span class="tt">std::format_string</span> to say so in the signature; forward one through a wrapper of your own the same way. <span class="tt"><a class="el" href="classfe_1_1Log.html" title="Facility to log what you are doing.">fe::Log</a></span> renders no citations at all - a backtick in a log message is just a backtick.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md20"></a>
 🛠️ Building and Testing</h1>
 <p>To configure, build, and run the test suite:</p>
 <div class="fragment"><div class="line">cmake -S . -B build -DBUILD_TESTING=ON</div>
@@ -429,17 +460,17 @@ Direct Vendoring</h3>
 <div class="fragment"><div class="line">ctest --test-dir build -R &#39;^Lexer$&#39; --output-on-failure</div>
 </div><!-- fragment --><p>To run a doctest case directly:</p>
 <div class="fragment"><div class="line">./build/bin/fe-test --test-case=Lexer</div>
-</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md19"></a>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md21"></a>
 📚 Building the Documentation</h1>
 <p>To build the documentation:</p>
 <div class="fragment"><div class="line">cmake -S . -B build -DFE_BUILD_DOCS=ON</div>
 <div class="line">cmake --build build --target docs</div>
 </div><!-- fragment --><p>This requires Doxygen and Graphviz (<span class="tt">dot</span>).</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md20"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md22"></a>
 🔨 Related Projects</h1>
 <p>FE is developed against three frontends of very different scale, and every change has to work for all three:</p>
 <ul>
-<li><a href="https://github.com/leissa/let">Let</a> - the 619-line demo language above, and the template to fork.</li>
+<li><a href="https://github.com/leissa/let">Let</a> - the demo language above, and the template to fork.</li>
 <li><a href="https://github.com/leissa/sql">SQL</a> - a SQL parser: two-token lookahead, reserved versus non-reserved words, and anchor-based recovery through comma-separated lists.</li>
 <li><a href="https://anydsl.github.io/MimIR/">MimIR</a> - the author's compiler IR: three-token lookahead, a Unicode-heavy surface syntax, and plugins loaded mid-parse that bring their own vocabulary.</li>
 </ul>
@@ -447,10 +478,10 @@ Direct Vendoring</h3>
 <ul>
 <li><a href="https://github.com/leissa/graphtool">GraphTool</a> - a DOT-language tool using FE-style frontend infrastructure.</li>
 </ul>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md21"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md23"></a>
 🤝 Contributing</h1>
 <p>Issues and pull requests are welcome - whether that's a bug report, a new frontend building block, or a documentation fix. If you're unsure where to start, open an issue to discuss the idea first.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md22"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md24"></a>
 ⚖️ License</h1>
 <p>FE is licensed under the <a href="../LICENSE">MIT License</a>. </p>
 </div></div><!-- PageDoc -->

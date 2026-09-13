@@ -6,6 +6,7 @@ var hierarchy =
     [ "fe::Arena", "classfe_1_1Arena.html", null ],
     [ "fe::Bitset", "classfe_1_1Bitset.html", null ],
     [ "fe::utf8::Char32", "structfe_1_1utf8_1_1Char32.html", null ],
+    [ "fe::Cite", "namespacefe.html#structfe_1_1Cite", null ],
     [ "fe::Cli", "classfe_1_1Cli.html", null ],
     [ "fe::Dbg", "structfe_1_1Dbg.html", null ],
     [ "fe::DbgKey", "classfe_1_1DbgKey.html", null ],

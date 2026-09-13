@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['afterwards_0',['And you can read it afterwards',['../index.html#autotoc_md4',1,'']]],
-  ['and_20testing_1',['🛠️ Building and Testing',['../index.html#autotoc_md18',1,'']]],
-  ['and_20you_20can_20read_20it_20afterwards_2',['And you can read it afterwards',['../index.html#autotoc_md4',1,'']]]
+  ['a_20diagnostic_0',['💬 Writing a Diagnostic',['../index.html#autotoc_md18',1,'']]],
+  ['a_20project_1',['Integrate into a Project',['../index.html#autotoc_md14',1,'']]],
+  ['and_20testing_2',['🛠️ Building and Testing',['../index.html#autotoc_md20',1,'']]]
 ];

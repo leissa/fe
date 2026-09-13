@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['parsing_0',['Lexing &amp;amp; Parsing',['../index.html#autotoc_md8',1,'']]],
-  ['project_1',['Integrate into existing Project',['../index.html#autotoc_md14',1,'']]],
-  ['projects_2',['🔨 Related Projects',['../index.html#autotoc_md20',1,'']]]
+  ['no_20generated_20code_20to_20debug_0',['No generated code to debug',['../index.html#autotoc_md4',1,'']]],
+  ['not_20write_1',['Diagnostics you did not write',['../index.html#autotoc_md3',1,'']]]
 ];

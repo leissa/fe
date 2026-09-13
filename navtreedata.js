@@ -27,8 +27,8 @@ var NAVTREE =
   [ "FE", "index.html", [
     [ "💡 Why FE?", "index.html#autotoc_md1", [
       [ "How much code is that?", "index.html#autotoc_md2", null ],
-      [ "Diagnostics", "index.html#autotoc_md3", null ],
-      [ "And you can read it afterwards", "index.html#autotoc_md4", null ]
+      [ "Diagnostics you did not write", "index.html#autotoc_md3", null ],
+      [ "No generated code to debug", "index.html#autotoc_md4", null ]
     ] ],
     [ "✨ Features", "index.html#autotoc_md5", [
       [ "Building Blocks", "index.html#autotoc_md6", [
@@ -42,17 +42,20 @@ var NAVTREE =
       [ "Requires <span class=\"tt\">FE_LIB</span>", "index.html#requires-fe_lib", null ]
     ] ],
     [ "🚀 Quick Start", "index.html#autotoc_md13", [
-      [ "Integrate into existing Project", "index.html#autotoc_md14", [
+      [ "Integrate into a Project", "index.html#autotoc_md14", [
         [ "CMake", "index.html#autotoc_md15", null ],
         [ "Direct Vendoring", "index.html#autotoc_md16", null ]
       ] ]
     ] ],
     [ "🧭 Typical Workflow", "index.html#autotoc_md17", null ],
-    [ "🛠️ Building and Testing", "index.html#autotoc_md18", null ],
-    [ "📚 Building the Documentation", "index.html#autotoc_md19", null ],
-    [ "🔨 Related Projects", "index.html#autotoc_md20", null ],
-    [ "🤝 Contributing", "index.html#autotoc_md21", null ],
-    [ "⚖️ License", "index.html#autotoc_md22", null ],
+    [ "💬 Writing a Diagnostic", "index.html#autotoc_md18", [
+      [ "Citations", "index.html#autotoc_md19", null ]
+    ] ],
+    [ "🛠️ Building and Testing", "index.html#autotoc_md20", null ],
+    [ "📚 Building the Documentation", "index.html#autotoc_md21", null ],
+    [ "🔨 Related Projects", "index.html#autotoc_md22", null ],
+    [ "🤝 Contributing", "index.html#autotoc_md23", null ],
+    [ "⚖️ License", "index.html#autotoc_md24", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -96,8 +99,8 @@ var NAVTREEINDEX =
 "classfe_1_1Parser.html#a205ed2e6edb75d00c352c41a399b7593",
 "classfe_1_1Src.html#ae149a938b0dac5fd168b64293d059e15",
 "classfe_1_1XTrie_1_1Set.html#aa6d578531bc83831bff1b1f7c09f2af5",
-"namespacefe.html#a90bc9bf0b8f347e76dd29569cee16d34",
-"structfe_1_1Loc.html#a936010fb8aff531356c2480fe835ad70"
+"namespacefe.html#a82611dc8d24da4728eb1d636f65aea2d",
+"structfe_1_1Loc.html#a510a88ca7073eb0d98879364b7b0e0ef"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';

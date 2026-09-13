@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['much_20code_20is_20that_0',['How much code is that?',['../index.html#autotoc_md2',1,'']]]
+  ['lexing_20parsing_0',['Lexing &amp;amp; Parsing',['../index.html#autotoc_md8',1,'']]],
+  ['license_1',['⚖️ License',['../index.html#autotoc_md24',1,'']]],
+  ['line_2',['Command Line',['../index.html#autotoc_md10',1,'']]]
 ];
