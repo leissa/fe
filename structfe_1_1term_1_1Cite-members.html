@@ -8,7 +8,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>FE: Member List</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+// Doxygen no longer ships jQuery, but doxygen-awesome's extensions still expect it.
+window.$ = (() => {
+    const ready = fn => document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', fn) : fn();
+    return target => typeof target === 'function' ? ready(target) : {ready, resize: fn => window.addEventListener('resize', fn)};
+})();
+</script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
 <script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
@@ -47,7 +53,6 @@ window.MathJax = {
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen-awesome-interactive-toc.js" rel="stylesheet" type="text/css"/>
 <link href="custom.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
@@ -64,7 +69,7 @@ window.MathJax = {
   <td id="projectalign">
    <div id="projectname">FE<span id="projectnumber">&#160;0.13.1</span>
    </div>
-   <div id="projectbrief">Header-only C++ frontend library</div>
+   <div id="projectbrief">A C++23 toolkit for writing compiler/interpreter frontends.</div>
   </td>
  </tr>
  </tbody>
@@ -152,7 +157,9 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('structfe_1_1te
 
 <p>This is the complete list of members for <a class="el" href="structfe_1_1term_1_1Cite.html">fe::term::Cite</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="structfe_1_1term_1_1Cite.html#a0550384d5a06716b8bdabd7005ff828d">Cite</a>(const T &amp;s) noexcept</td><td class="entry"><a class="el" href="structfe_1_1term_1_1Cite.html">fe::term::Cite</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="structfe_1_1term_1_1Cite.html#ac2870f0d23c503df3a6442fca0868f0e">Cite</a>(const char(&amp;s)[N]) noexcept</td><td class="entry"><a class="el" href="structfe_1_1term_1_1Cite.html">fe::term::Cite</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="structfe_1_1term_1_1Cite.html#a820b7996b2b40b1986fb273b530595a2">Cite</a>(const Cited &amp;cited) noexcept</td><td class="entry"><a class="el" href="structfe_1_1term_1_1Cite.html">fe::term::Cite</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="structfe_1_1term_1_1Cite.html#a4235e864c61b1f10a6e0d2c247aaf03e">Cite</a>(std::string_view s) noexcept</td><td class="entry"><a class="el" href="structfe_1_1term_1_1Cite.html">fe::term::Cite</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">explicit</span></td></tr>
   <tr class="odd"><td class="entry"><a class="el" href="structfe_1_1term_1_1Cite.html#a513b3b72a822d604dcd8c26548fc0eb6">str</a></td><td class="entry"><a class="el" href="structfe_1_1term_1_1Cite.html">fe::term::Cite</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->

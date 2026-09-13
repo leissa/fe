@@ -8,7 +8,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>FE: fe::Error Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+// Doxygen no longer ships jQuery, but doxygen-awesome's extensions still expect it.
+window.$ = (() => {
+    const ready = fn => document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', fn) : fn();
+    return target => typeof target === 'function' ? ready(target) : {ready, resize: fn => window.addEventListener('resize', fn)};
+})();
+</script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
 <script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
@@ -47,7 +53,6 @@ window.MathJax = {
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen-awesome-interactive-toc.js" rel="stylesheet" type="text/css"/>
 <link href="custom.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
@@ -64,7 +69,7 @@ window.MathJax = {
   <td id="projectalign">
    <div id="projectname">FE<span id="projectnumber">&#160;0.13.1</span>
    </div>
-   <div id="projectbrief">Header-only C++ frontend library</div>
+   <div id="projectbrief">A C++23 toolkit for writing compiler/interpreter frontends.</div>
   </td>
  </tr>
  </tbody>
@@ -347,7 +352,7 @@ tag</td>
 </div><div class="memdoc">
 
 <p>A sink of your own; <a class="el" href="structfe_1_1Driver.html#ad9684c890333c19abc2ce4f4c2f8fe59">Driver::error</a> is the one every frontend building block already reports to. </p>
-<dl class="section warning"><dt>Warning</dt><dd>A <a class="el" href="#a53f731bf71af5f30d751265cab6a3c78">Msg::loc</a> points into <code class="param">driver's</code> <a class="el" href="classfe_1_1SrcMap.html" title="Interns the text - and the std::filesystem::path - of every file a Loc may point into.">SrcMap</a> and <a class="el" href="#a0be3ad6db15f4a91da361765326e508e">Error::msg</a> renders through <a class="el" href="classfe_1_1Diag.html#abfed89735a2b818e18f7f96947071bb6" title="Postprocesses the text of one Error::Msg; the identity here, see CodeDiag.">Diag::render</a>, so <code class="param">driver</code> must outlive this <a class="el" href="classfe_1_1Error.html" title="&lt;">Error</a>. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>A <a class="el" href="#a53f731bf71af5f30d751265cab6a3c78">Msg::loc</a> points into <code class="param">driver's</code> <a class="el" href="classfe_1_1SrcMap.html" title="Interns the text - and the std::filesystem::path - of every file a Loc may point into.">SrcMap</a> and <a class="el" href="#a0be3ad6db15f4a91da361765326e508e">Error::msg</a> renders through <a class="el" href="classfe_1_1Diag.html#abfed89735a2b818e18f7f96947071bb6" title="Postprocesses the text of one Error::Msg, which is  `citation`  markup - see fe::Cite.">Diag::render</a>, so <code class="param">driver</code> must outlive this <a class="el" href="classfe_1_1Error.html" title="&lt;">Error</a>. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00079">79</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 
@@ -560,7 +565,7 @@ template&lt;class... Args&gt; </div>
 </div><div class="memdoc">
 
 <p>The backticks of <code class="param">s</code> delimit a <span class="tt"> `citation` </span>; those of an argument are data and get escaped - see <a class="el" href="structfe_1_1Cite.html" title="A borrowed fragment whose backticks stay markup; format_cite escapes every other argument.">Cite</a>. </p>
-<dl class="section note"><dt>Note</dt><dd>Formats via <span class="tt">std::vformat</span> because <a class="el" href="classfe_1_1Diag.html#abfed89735a2b818e18f7f96947071bb6" title="Postprocesses the text of one Error::Msg; the identity here, see CodeDiag.">Diag::render</a> may render <code class="param">s</code> more than once. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Formats via <span class="tt">std::vformat</span> because <a class="el" href="classfe_1_1Diag.html#abfed89735a2b818e18f7f96947071bb6" title="Postprocesses the text of one Error::Msg, which is  `citation`  markup - see fe::Cite.">Diag::render</a> may render <code class="param">s</code> more than once. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00106">106</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 
@@ -599,7 +604,7 @@ template&lt;class... Args&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Records the message <code class="param">fmt</code> renders; see <a class="el" href="classfe_1_1Diag.html#abfed89735a2b818e18f7f96947071bb6" title="Postprocesses the text of one Error::Msg; the identity here, see CodeDiag.">Diag::render</a>. <code class="param">tag</code> must be Tag::Error or Tag::Warn - a Tag::Note belongs to Error::note. </p>
+<p>Records the message <code class="param">fmt</code> renders; see <a class="el" href="classfe_1_1Diag.html#abfed89735a2b818e18f7f96947071bb6" title="Postprocesses the text of one Error::Msg, which is  `citation`  markup - see fe::Cite.">Diag::render</a>. <code class="param">tag</code> must be Tag::Error or Tag::Warn - a Tag::Note belongs to Error::note. </p>
 
 <p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00098">98</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 

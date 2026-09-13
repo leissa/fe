@@ -7,7 +7,7 @@ var searchData=
   ['recover_5futf8_4',['recover_utf8',['../classfe_1_1Lexer.html#a134ea7d6d039572a2c98ff897ce1762b',1,'fe::Lexer']]],
   ['rend_5',['rend',['../classfe_1_1Sym.html#a1e7ad312b7d4d7f733e2ee47245b3e9b',1,'fe::Sym']]],
   ['render_6',['render',['../classfe_1_1Diag.html#abfed89735a2b818e18f7f96947071bb6',1,'fe::Diag::render()'],['../classfe_1_1CodeDiag.html#ae2d9c71d603a3c165b6ed7b0136f300d',1,'fe::CodeDiag::render()']]],
-  ['render_5fcite_7',['render_cite',['../namespacefe_1_1term.html#a2319c7f51a73205d048935350cd68eec',1,'fe::term']]],
+  ['render_5fcite_7',['render_cite',['../namespacefe_1_1term.html#a54acad7c1ee559281cf0fd64aa6ba3ac',1,'fe::term::render_cite(std::ostream &amp;os, std::string_view str, bool color)'],['../namespacefe_1_1term.html#a2319c7f51a73205d048935350cd68eec',1,'fe::term::render_cite(std::ostream &amp;os, std::string_view str)']]],
   ['report_8',['report',['../classfe_1_1Error.html#a93e4dd890a070342985279476e4e5290',1,'fe::Error']]],
   ['require_5fcmd_9',['require_cmd',['../namespacefe_1_1sys.html#a8a2e6fd9be32a59f84f6e7c312f3cc03',1,'fe::sys']]],
   ['require_5frun_10',['require_run',['../namespacefe_1_1sys.html#a78a03f3257e26716d847e7c0821cb457',1,'fe::sys']]],

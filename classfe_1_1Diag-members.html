@@ -8,7 +8,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>FE: Member List</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+// Doxygen no longer ships jQuery, but doxygen-awesome's extensions still expect it.
+window.$ = (() => {
+    const ready = fn => document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', fn) : fn();
+    return target => typeof target === 'function' ? ready(target) : {ready, resize: fn => window.addEventListener('resize', fn)};
+})();
+</script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
 <script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
@@ -47,7 +53,6 @@ window.MathJax = {
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen-awesome-interactive-toc.js" rel="stylesheet" type="text/css"/>
 <link href="custom.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
@@ -64,7 +69,7 @@ window.MathJax = {
   <td id="projectalign">
    <div id="projectname">FE<span id="projectnumber">&#160;0.13.1</span>
    </div>
-   <div id="projectbrief">Header-only C++ frontend library</div>
+   <div id="projectbrief">A C++23 toolkit for writing compiler/interpreter frontends.</div>
   </td>
  </tr>
  </tbody>
@@ -162,7 +167,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classfe_1_1Dia
   <tr class="odd"><td class="entry"><a class="el" href="classfe_1_1Diag.html#a434f144ee79de18cc1bdd1a855e39e47">max_rows</a></td><td class="entry"><a class="el" href="classfe_1_1Diag.html">fe::Diag</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classfe_1_1Diag.html#aaa5ba3c6b584a4da2c8a7699bbe3b062">no_snippet</a></td><td class="entry"><a class="el" href="classfe_1_1Diag.html">fe::Diag</a></td><td class="entry"></td></tr>
   <tr class="odd"><td class="entry"><a class="el" href="classfe_1_1Diag.html#a3fbacbb7cf78557dddb16182cfd756c6">note</a>(std::ostream &amp;, Loc, std::string_view) const</td><td class="entry"><a class="el" href="classfe_1_1Diag.html">fe::Diag</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classfe_1_1Diag.html#abfed89735a2b818e18f7f96947071bb6">render</a>(const std::function&lt; std::string()&gt; &amp;fmt) const</td><td class="entry"><a class="el" href="classfe_1_1Diag.html">fe::Diag</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classfe_1_1Diag.html#abfed89735a2b818e18f7f96947071bb6">render</a>(const std::function&lt; std::string()&gt; &amp;fmt) const</td><td class="entry"><a class="el" href="classfe_1_1Diag.html">fe::Diag</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
   <tr class="odd"><td class="entry"><a class="el" href="classfe_1_1Diag.html#a61da1285824fdbd9b1da05d265126e93">snippet</a>(std::ostream &amp;, Loc, Tag) const</td><td class="entry"><a class="el" href="classfe_1_1Diag.html">fe::Diag</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classfe_1_1Diag.html#a1518938a083f1af30f171739da2d9083">summary</a>(std::ostream &amp;, size_t num_errors, size_t num_warnings, bool truncated) const</td><td class="entry"><a class="el" href="classfe_1_1Diag.html">fe::Diag</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
   <tr class="odd"><td class="entry"><a class="el" href="classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1f">Tag</a> enum name</td><td class="entry"><a class="el" href="classfe_1_1Diag.html">fe::Diag</a></td><td class="entry"></td></tr>

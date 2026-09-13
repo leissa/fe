@@ -8,7 +8,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>FE: fe/error.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+// Doxygen no longer ships jQuery, but doxygen-awesome's extensions still expect it.
+window.$ = (() => {
+    const ready = fn => document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', fn) : fn();
+    return target => typeof target === 'function' ? ready(target) : {ready, resize: fn => window.addEventListener('resize', fn)};
+})();
+</script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
 <script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
@@ -31,7 +37,6 @@
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen-awesome-interactive-toc.js" rel="stylesheet" type="text/css"/>
 <link href="custom.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
@@ -48,7 +53,7 @@
   <td id="projectalign">
    <div id="projectname">FE<span id="projectnumber">&#160;0.13.1</span>
    </div>
-   <div id="projectbrief">Header-only C++ frontend library</div>
+   <div id="projectbrief">A C++23 toolkit for writing compiler/interpreter frontends.</div>
   </td>
  </tr>
  </tbody>
@@ -432,8 +437,8 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('error_8h_sourc
 <div class="ttc" id="anamespacefe_1_1term_html_a214cdb1ce076f0e6de11f6afb317c516"><div class="ttname"><a href="namespacefe_1_1term.html#a214cdb1ce076f0e6de11f6afb317c516">fe::term::ScopedMode</a></div><div class="ttdeci">Restore&lt; Mode, &amp;mode, &amp;set_mode &gt; ScopedMode</div><div class="ttdoc">Overrides the color mode for the duration of the scope.</div><div class="ttdef"><b>Definition</b> <a href="term_8h_source.html#l00274">term.h:274</a></div></div>
 <div class="ttc" id="anamespacefe_1_1term_html_a36d4d673e10a305ff30ec08d94c8f087a68eec46437c384d8dad18d5464ebc35c"><div class="ttname"><a href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a68eec46437c384d8dad18d5464ebc35c">fe::term::Mode::Always</a></div><div class="ttdeci">@ Always</div><div class="ttdef"><b>Definition</b> <a href="term_8h_source.html#l00060">term.h:60</a></div></div>
 <div class="ttc" id="anamespacefe_1_1term_html_a36d4d673e10a305ff30ec08d94c8f087a6e7b34fa59e1bd229b207892956dc41c"><div class="ttname"><a href="namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a6e7b34fa59e1bd229b207892956dc41c">fe::term::Mode::Never</a></div><div class="ttdeci">@ Never</div><div class="ttdef"><b>Definition</b> <a href="term_8h_source.html#l00059">term.h:59</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_a93eda7673ac1b39525af9d0fad6e6fb7"><div class="ttname"><a href="namespacefe_1_1term.html#a93eda7673ac1b39525af9d0fad6e6fb7">fe::term::format_cite</a></div><div class="ttdeci">Cited format_cite(cite_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</div><div class="ttdoc">std::format for a message that follows that convention; assemble a fragment of your own with it.</div><div class="ttdef"><b>Definition</b> <a href="term_8h_source.html#l00368">term.h:368</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_aa1e2ea2aa40fc5132b2c7364ee4467d8"><div class="ttname"><a href="namespacefe_1_1term.html#aa1e2ea2aa40fc5132b2c7364ee4467d8">fe::term::cite_string</a></div><div class="ttdeci">std::format_string&lt; detail::cite_arg_t&lt; Args &gt;... &gt; cite_string</div><div class="ttdoc">A std::format_string whose backticks delimit a  `citation`  while those of its arguments are data.</div><div class="ttdef"><b>Definition</b> <a href="term_8h_source.html#l00363">term.h:363</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a93eda7673ac1b39525af9d0fad6e6fb7"><div class="ttname"><a href="namespacefe_1_1term.html#a93eda7673ac1b39525af9d0fad6e6fb7">fe::term::format_cite</a></div><div class="ttdeci">Cited format_cite(cite_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</div><div class="ttdoc">std::format for a message that follows that convention; assemble a fragment of your own with it.</div><div class="ttdef"><b>Definition</b> <a href="term_8h_source.html#l00374">term.h:374</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_aa1e2ea2aa40fc5132b2c7364ee4467d8"><div class="ttname"><a href="namespacefe_1_1term.html#aa1e2ea2aa40fc5132b2c7364ee4467d8">fe::term::cite_string</a></div><div class="ttdeci">std::format_string&lt; detail::cite_arg_t&lt; Args &gt;... &gt; cite_string</div><div class="ttdoc">A std::format_string whose backticks delimit a  `citation`  while those of its arguments are data.</div><div class="ttdef"><b>Definition</b> <a href="term_8h_source.html#l00369">term.h:369</a></div></div>
 <div class="ttc" id="anamespacefe_1_1term_html_ad2b84bd3b2fb301332ef7cae1fcd7b69"><div class="ttname"><a href="namespacefe_1_1term.html#ad2b84bd3b2fb301332ef7cae1fcd7b69">fe::term::use_color</a></div><div class="ttdeci">bool use_color(std::ostream &amp;os) noexcept</div><div class="ttdoc">Whether color escape sequences are emitted for os right now.</div><div class="ttdef"><b>Definition</b> <a href="term_8h_source.html#l00238">term.h:238</a></div></div>
 <div class="ttc" id="anamespacefe_html"><div class="ttname"><a href="namespacefe.html">fe</a></div><div class="ttdef"><b>Definition</b> <a href="algo_8h_source.html#l00017">algo.h:17</a></div></div>
 <div class="ttc" id="anamespacefe_html_a923ce058163e2041744a84793de679c0"><div class="ttname"><a href="namespacefe.html#a923ce058163e2041744a84793de679c0">fe::ostream_formatter</a></div><div class="ttdeci">basic_ostream_formatter&lt; char &gt; ostream_formatter</div><div class="ttdef"><b>Definition</b> <a href="format_8h_source.html#l00064">format.h:64</a></div></div>
@@ -441,7 +446,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('error_8h_sourc
 <div class="ttc" id="astructfe_1_1Driver_html"><div class="ttname"><a href="structfe_1_1Driver.html">fe::Driver</a></div><div class="ttdoc">Use/derive from this class for &quot;global&quot; variables that you need all over the place.</div><div class="ttdef"><b>Definition</b> <a href="driver_8h_source.html#l00022">driver.h:22</a></div></div>
 <div class="ttc" id="astructfe_1_1Loc_html"><div class="ttname"><a href="structfe_1_1Loc.html">fe::Loc</a></div><div class="ttdoc">Location within a Src: the half-open byte range [Loc::begin, Loc::end).</div><div class="ttdef"><b>Definition</b> <a href="loc_8h_source.html#l00046">loc.h:46</a></div></div>
 <div class="ttc" id="astructfe_1_1Loc_html_a4a054900bf8334046c7652a12a55852f"><div class="ttname"><a href="structfe_1_1Loc.html#a4a054900bf8334046c7652a12a55852f">fe::Loc::Loc</a></div><div class="ttdeci">constexpr Loc() noexcept=default</div><div class="ttdoc">Creates an invalid Location.</div></div>
-<div class="ttc" id="astructfe_1_1term_1_1Cite_html"><div class="ttname"><a href="structfe_1_1term_1_1Cite.html">fe::term::Cite</a></div><div class="ttdoc">A borrowed fragment whose backticks stay markup; format_cite escapes every other argument.</div><div class="ttdef"><b>Definition</b> <a href="term_8h_source.html#l00332">term.h:332</a></div></div>
+<div class="ttc" id="astructfe_1_1term_1_1Cite_html"><div class="ttname"><a href="structfe_1_1term_1_1Cite.html">fe::term::Cite</a></div><div class="ttdoc">A borrowed fragment whose backticks stay markup; format_cite escapes every other argument.</div><div class="ttdef"><b>Definition</b> <a href="term_8h_source.html#l00334">term.h:334</a></div></div>
 <div class="ttc" id="aterm_8h_html"><div class="ttname"><a href="term_8h.html">term.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

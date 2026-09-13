@@ -8,7 +8,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>FE: fe/parser.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+// Doxygen no longer ships jQuery, but doxygen-awesome's extensions still expect it.
+window.$ = (() => {
+    const ready = fn => document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', fn) : fn();
+    return target => typeof target === 'function' ? ready(target) : {ready, resize: fn => window.addEventListener('resize', fn)};
+})();
+</script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
 <script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
@@ -31,7 +37,6 @@
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen-awesome-interactive-toc.js" rel="stylesheet" type="text/css"/>
 <link href="custom.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
@@ -48,7 +53,7 @@
   <td id="projectalign">
    <div id="projectname">FE<span id="projectnumber">&#160;0.13.1</span>
    </div>
-   <div id="projectbrief">Header-only C++ frontend library</div>
+   <div id="projectbrief">A C++23 toolkit for writing compiler/interpreter frontends.</div>
   </td>
  </tr>
  </tbody>
@@ -446,14 +451,14 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('parser_8h_sour
 <div class="ttc" id="aclassfe_1_1Ring_html"><div class="ttname"><a href="classfe_1_1Ring.html">fe::Ring</a></div><div class="ttdoc">A ring buffer with N elements.</div><div class="ttdef"><b>Definition</b> <a href="ring_8h_source.html#l00015">ring.h:15</a></div></div>
 <div class="ttc" id="adriver_8h_html"><div class="ttname"><a href="driver_8h.html">driver.h</a></div></div>
 <div class="ttc" id="aloc_8h_html"><div class="ttname"><a href="loc_8h.html">loc.h</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_aa1e2ea2aa40fc5132b2c7364ee4467d8"><div class="ttname"><a href="namespacefe_1_1term.html#aa1e2ea2aa40fc5132b2c7364ee4467d8">fe::term::cite_string</a></div><div class="ttdeci">std::format_string&lt; detail::cite_arg_t&lt; Args &gt;... &gt; cite_string</div><div class="ttdoc">A std::format_string whose backticks delimit a  `citation`  while those of its arguments are data.</div><div class="ttdef"><b>Definition</b> <a href="term_8h_source.html#l00363">term.h:363</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_aa1e2ea2aa40fc5132b2c7364ee4467d8"><div class="ttname"><a href="namespacefe_1_1term.html#aa1e2ea2aa40fc5132b2c7364ee4467d8">fe::term::cite_string</a></div><div class="ttdeci">std::format_string&lt; detail::cite_arg_t&lt; Args &gt;... &gt; cite_string</div><div class="ttdoc">A std::format_string whose backticks delimit a  `citation`  while those of its arguments are data.</div><div class="ttdef"><b>Definition</b> <a href="term_8h_source.html#l00369">term.h:369</a></div></div>
 <div class="ttc" id="anamespacefe_html"><div class="ttname"><a href="namespacefe.html">fe</a></div><div class="ttdef"><b>Definition</b> <a href="algo_8h_source.html#l00017">algo.h:17</a></div></div>
-<div class="ttc" id="anamespacefe_html_a93eda7673ac1b39525af9d0fad6e6fb7"><div class="ttname"><a href="namespacefe.html#a93eda7673ac1b39525af9d0fad6e6fb7">fe::format_cite</a></div><div class="ttdeci">Cited format_cite(cite_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</div><div class="ttdoc">&lt;</div><div class="ttdef"><b>Definition</b> <a href="term_8h_source.html#l00368">term.h:368</a></div></div>
+<div class="ttc" id="anamespacefe_html_a93eda7673ac1b39525af9d0fad6e6fb7"><div class="ttname"><a href="namespacefe.html#a93eda7673ac1b39525af9d0fad6e6fb7">fe::format_cite</a></div><div class="ttdeci">Cited format_cite(cite_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</div><div class="ttdoc">&lt;</div><div class="ttdef"><b>Definition</b> <a href="term_8h_source.html#l00374">term.h:374</a></div></div>
 <div class="ttc" id="aring_8h_html"><div class="ttname"><a href="ring_8h.html">ring.h</a></div></div>
 <div class="ttc" id="astructfe_1_1Loc_html"><div class="ttname"><a href="structfe_1_1Loc.html">fe::Loc</a></div><div class="ttdoc">Location within a Src: the half-open byte range [Loc::begin, Loc::end).</div><div class="ttdef"><b>Definition</b> <a href="loc_8h_source.html#l00046">loc.h:46</a></div></div>
 <div class="ttc" id="astructfe_1_1Loc_html_a7cda6af5faf94e9a9da31b95ba7f60c2"><div class="ttname"><a href="structfe_1_1Loc.html#a7cda6af5faf94e9a9da31b95ba7f60c2">fe::Loc::begin</a></div><div class="ttdeci">Pos begin</div><div class="ttdef"><b>Definition</b> <a href="loc_8h_source.html#l00096">loc.h:96</a></div></div>
 <div class="ttc" id="astructfe_1_1Pos_html"><div class="ttname"><a href="structfe_1_1Pos.html">fe::Pos</a></div><div class="ttdoc">Byte offset into a Src; pass around as value.</div><div class="ttdef"><b>Definition</b> <a href="loc_8h_source.html#l00018">loc.h:18</a></div></div>
-<div class="ttc" id="astructfe_1_1term_1_1Cite_html"><div class="ttname"><a href="structfe_1_1term_1_1Cite.html">fe::term::Cite</a></div><div class="ttdoc">A borrowed fragment whose backticks stay markup; format_cite escapes every other argument.</div><div class="ttdef"><b>Definition</b> <a href="term_8h_source.html#l00332">term.h:332</a></div></div>
+<div class="ttc" id="astructfe_1_1term_1_1Cite_html"><div class="ttname"><a href="structfe_1_1term_1_1Cite.html">fe::term::Cite</a></div><div class="ttdoc">A borrowed fragment whose backticks stay markup; format_cite escapes every other argument.</div><div class="ttdef"><b>Definition</b> <a href="term_8h_source.html#l00334">term.h:334</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->
