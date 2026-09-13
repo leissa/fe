@@ -263,6 +263,43 @@ A message spells the things it talks about in backticks, and `fe::CodeDiag` colo
 test.let:1:11: error: identifier `+` not found
 ```
 
+#### The Markup Language {#markup}
+
+The whole language is: a `` ` `` opens a citation and the next one closes it.
+
+```
+message  ::= piece*
+piece    ::= text | citation
+citation ::= '`' text '`'
+text     ::= (char | '\`' | '\\')*   -- any char except an unescaped '`'
+```
+
+- Citations are paired left to right and do **not** nest: in `` `a` `b` `` the 1st and 2nd backtick delimit one citation, the 3rd and 4th the next.
+- A backtick with no partner left in the message is not markup and renders as itself: the rest of the message comes out uncited instead of being swallowed.
+- `` \` `` is a literal backtick and `\\` a literal backslash; both render as the single character and neither opens or closes a citation.
+- A backslash before anything else is just a backslash: `C:\tmp` needs no escaping, and no other escape sequence exists.
+- A citation may be empty, may contain a newline, and may sit anywhere in the message; there are no other metacharacters.
+
+What that means in C++, where the compiler eats one level of backslashes:
+
+```cpp
+error().e(loc, "expected `)`, got `{}`", tok); // two citations; `{}` cites whatever tok renders as
+error().e(loc, "write it as \\`foo\\`");       // no citation: two literal backticks
+error().e(loc, "C:\\tmp is fine");             // one literal backslash - `\t` is no escape
+```
+
+The same markup drives every backend, which is the point of writing it once:
+
+| Backend | `` `x` `` renders as |
+| ------- | -------------------- |
+| `fe::CodeDiag` on a terminal, `fe::Cli::help`, `fe::Log` | `x`, colored, backticks dropped |
+| the same, with color off (`NO_COLOR`, a pipe, `term::Mode::Never`) | `` `x` ``, verbatim |
+| `fe::Diag` - the plain-text base | `` `x` ``, verbatim |
+| `Cli::markdown` | `` `x` ``, a Markdown code span |
+
+`Cli::markdown` additionally escapes whatever Markdown and Doxygen would otherwise eat (`%`, `|`, `<`, `&`, `--`, ...) - inside a code span and outside it by different rules, both of which are its business, not yours.
+You only ever write the two escapes above.
+
 Only the **format string** is markup that way.
 **Arguments are data**, and `fe::Error` escapes their backticks for you, so a symbol, path, or token that happens to contain one cannot break the highlighting of the message around it:
 
@@ -284,8 +321,9 @@ Markup is a *type*, not a convention you have to remember:
   A string literal and a `Cited` convert implicitly - both are markup someone wrote - while runtime text has to say `fe::Cite(s)`, so data never becomes markup by accident.
   It borrows like a `std::string_view`, so keep the `Cited` alive that it points at.
 
-The convention itself lives in `fe/term.h`, not in the diagnostics: `term::render_cite` renders it, `term::escape_cite` escapes data into it, and `term::cite_string`/`term::format_cite`/`term::Cite`/`term::Cited` produce it.
-That is what lets `fe::Cli` spell its `--help` text the same way `fe::Error` spells a diagnostic - and why `Cli::help` and `Cli::markdown` read one grammar rather than two.
+The language itself lives in `fe/term.h`, not in the diagnostics: `term::render_cite` renders it, `term::cite_width` measures what it will occupy, `term::escape_cite` escapes data into it, and `term::cite_string`/`term::format_cite`/`term::Cite`/`term::Cited` produce it.
+All of them - and `Cli::markdown` - read the grammar above through the one scanner that implements it, so the terminal help, the generated manual, and a diagnostic cannot drift apart.
+That is what lets `fe::Cli` spell its `--help` text the same way `fe::Error` spells a diagnostic.
 `fe::Log` reads the very same convention, so a log message quotes a plugin, phase, or path exactly the way a diagnostic does.
 
 ## 🛠️ Building and Testing
