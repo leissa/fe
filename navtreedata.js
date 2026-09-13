@@ -37,27 +37,24 @@ var NAVTREE =
         [ "Diagnostics", "index.html#autotoc_md9", null ],
         [ "Command Line", "index.html#autotoc_md10", null ],
         [ "Data Structures", "index.html#autotoc_md11", null ],
-        [ "Odds &amp; Ends", "index.html#autotoc_md12", null ]
-      ] ],
-      [ "Requires <span class=\"tt\">fe-lib</span>", "index.html#requires-fe-lib", null ]
-    ] ],
-    [ "🚀 Quick Start", "index.html#autotoc_md13", [
-      [ "Integrate into a Project", "index.html#autotoc_md14", [
-        [ "CMake", "index.html#autotoc_md15", null ],
-        [ "Direct Vendoring", "index.html#autotoc_md16", null ]
+        [ "Algorithms", "index.html#autotoc_md12", null ],
+        [ "System", "index.html#autotoc_md13", null ]
       ] ]
     ] ],
-    [ "🧭 Typical Workflow", "index.html#autotoc_md17", null ],
-    [ "💬 Writing a Diagnostic", "index.html#autotoc_md18", [
+    [ "🚀 Quick Start", "index.html#autotoc_md14", [
+      [ "CMake", "index.html#autotoc_md15", null ]
+    ] ],
+    [ "🧭 Typical Workflow", "index.html#autotoc_md16", null ],
+    [ "💬 Writing a Diagnostic", "index.html#autotoc_md17", [
       [ "Citations", "index.html#citations", [
         [ "The Markup Language", "index.html#markup", null ]
       ] ]
     ] ],
-    [ "🛠️ Building and Testing", "index.html#autotoc_md19", null ],
-    [ "📚 Building the Documentation", "index.html#autotoc_md20", null ],
-    [ "🔨 Related Projects", "index.html#autotoc_md21", null ],
-    [ "🤝 Contributing", "index.html#autotoc_md22", null ],
-    [ "⚖️ License", "index.html#autotoc_md23", null ],
+    [ "🛠️ Building and Testing", "index.html#autotoc_md18", null ],
+    [ "📚 Building the Documentation", "index.html#autotoc_md19", null ],
+    [ "🔨 Related Projects", "index.html#autotoc_md20", null ],
+    [ "🤝 Contributing", "index.html#autotoc_md21", null ],
+    [ "⚖️ License", "index.html#autotoc_md22", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -102,7 +99,7 @@ var NAVTREEINDEX =
 "classfe_1_1Span.html#a9c5921a1fbbe25e7a937c2b42cad5c84",
 "classfe_1_1XTrie.html#aa08e5b98d358fbd162f231227b008751",
 "index.html#autotoc_md11",
-"structfe_1_1Dbg.html#a9f3c7a72ab73bd3e6c96fde8db3f54e2"
+"structfe_1_1Dbg.html#aad528ecd391ec69e51e45844e63f6658"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['ends_0',['Odds &amp;amp; Ends',['../index.html#autotoc_md12',1,'']]]
+  ['fe_0',['FE',['../index.html#autotoc_md1',1,'💡 Why FE?'],['../index.html',1,'FE']]],
+  ['features_1',['✨ Features',['../index.html#autotoc_md5',1,'']]]
 ];

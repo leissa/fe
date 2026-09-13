@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['start_0',['🚀 Quick Start',['../index.html#autotoc_md13',1,'']]],
-  ['structures_1',['Data Structures',['../index.html#autotoc_md11',1,'']]]
+  ['why_20fe_0',['💡 Why FE?',['../index.html#autotoc_md1',1,'']]],
+  ['workflow_1',['🧭 Typical Workflow',['../index.html#autotoc_md16',1,'']]],
+  ['write_2',['Diagnostics you did not write',['../index.html#autotoc_md3',1,'']]],
+  ['writing_20a_20diagnostic_3',['💬 Writing a Diagnostic',['../index.html#autotoc_md17',1,'']]]
 ];

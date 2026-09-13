@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['🔨_20related_20projects_0',['🔨 Related Projects',['../index.html#autotoc_md21',1,'']]]
+  ['🤝_20contributing_0',['🤝 Contributing',['../index.html#autotoc_md21',1,'']]]
 ];

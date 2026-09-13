@@ -455,7 +455,7 @@ template&lt;class... Args&gt; </div>
 <p>A <em>borrowed</em> fragment whose backticks stay markup; format_cite escapes every other argument.   </p>
 <p>A literal and a <a class="el" href="classfe_1_1Cited.html" title="An owning message fragment that spells  `citations`  of its own; what format_cite yields.">Cited</a> convert implicitly - both are text someone wrote as markup. Runtime text has to say so: spell it <span class="tt">Cite(s)</span>, so data never becomes markup by accident. A <span class="tt">const char*</span> - a ternary of two literals, say - counts as runtime text and needs <span class="tt">Cite(s)</span> too. </p><dl class="section warning"><dt>Warning</dt><dd>Borrows its text like a <span class="tt">std::string_view</span> does - a <a class="el" href="classfe_1_1Cited.html" title="An owning message fragment that spells  `citations`  of its own; what format_cite yields.">Cited</a> outlives the expression, a <a class="el" href="classfe_1_1Cite.html" title="A borrowed fragment whose backticks stay markup; format_cite escapes every other argument.">Cite</a> does not.    </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00365">365</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00241">241</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
 </div>
 </div>
@@ -544,7 +544,7 @@ template&lt;class V&gt; </div>
 <p>Maps a <span class="tt">std::filesystem::path</span> to <code class="param">V</code>. </p>
 <dl class="section warning"><dt>Warning</dt><dd>Node-based on purpose: <a class="el" href="classfe_1_1SrcMap.html" title="Interns the text - and the std::filesystem::path - of every file a Loc may point into.">fe::SrcMap</a> stores its <a class="el" href="classfe_1_1Src.html" title="The content of one source file together with the offsets its rows start at.">Src</a>s in here and a <a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a> points to one, so the values must never move. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="src_8h_source.html#l00039">39</a> of file <a class="el" href="src_8h_source.html">src.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="src_8h_source.html#l00035">35</a> of file <a class="el" href="src_8h_source.html">src.h</a>.</p>
 
 </div>
 </div>
@@ -827,7 +827,7 @@ requires (std::is_trivially_copyable_v&lt;S&gt; &amp;&amp; std::is_trivially_cop
 
 <p class="reference">References <a class="el" href="assert_8h_source.html#l00041">breakpoint()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="assert_8h_source.html#l00041">breakpoint()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="assert_8h_source.html#l00041">breakpoint()</a>, and <a class="el" href="classfe_1_1Log.html#a3d38295eecbc510b2b4f1d81842dc73d">fe::Log::level2color()</a>.</p>
 
 </div>
 </div>
@@ -956,7 +956,7 @@ template&lt;class... Args&gt; </div>
 <p>An <em>owning</em> message fragment that spells <span class="tt"> `citations` </span> of its own; what format_cite yields.   </p>
 <p>Return this from a helper that assembles a fragment, and it stays valid wherever a <a class="el" href="classfe_1_1Cite.html" title="A borrowed fragment whose backticks stay markup; format_cite escapes every other argument.">Cite</a> may go.    </p>
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00370">370</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00246">246</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00129">fe::Parser&lt; Tok, Tag, K, S &gt;::expect()</a>, and <a class="el" href="parser_8h_source.html#l00230">fe::Parser&lt; Tok, Tag, K, S &gt;::tag2str_()</a>.</p>
 
@@ -1096,7 +1096,7 @@ template&lt;<a class="el" href="conceptfe_1_1BitEnum.html">fe::BitEnum</a> E&gt;
 
 <p class="reference">References <a class="el" href="hash_8h_source.html#l00059">fnv1_offset</a>, and <a class="el" href="hash_8h_source.html#l00064">hash_begin()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00265">fe::Bitset::hash()</a>, <a class="el" href="hash_8h_source.html#l00064">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00074">hash_begin()</a>, <a class="el" href="dbg_8h_source.html#l00059">fe::Dbg::Hash::operator()()</a>, and <a class="el" href="xtrie_8h_source.html#l00136">fe::XTrie&lt; D, K, N &gt;::Data::Hash::operator()()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00264">fe::Bitset::hash()</a>, <a class="el" href="hash_8h_source.html#l00064">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00074">hash_begin()</a>, <a class="el" href="dbg_8h_source.html#l00059">fe::Dbg::Hash::operator()()</a>, and <a class="el" href="xtrie_8h_source.html#l00136">fe::XTrie&lt; D, K, N &gt;::Data::Hash::operator()()</a>.</p>
 
 </div>
 </div>
@@ -1168,7 +1168,7 @@ template&lt;std::integral T&gt; </div>
 
 <p class="reference">References <a class="el" href="hash_8h_source.html#l00060">fnv1_prime</a>, <a class="el" href="hash_8h_source.html#l00037">hash()</a>, and <a class="el" href="hash_8h_source.html#l00068">hash_combine()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00265">fe::Bitset::hash()</a>, <a class="el" href="hash_8h_source.html#l00074">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00068">hash_combine()</a>, <a class="el" href="dbg_8h_source.html#l00059">fe::Dbg::Hash::operator()()</a>, and <a class="el" href="xtrie_8h_source.html#l00136">fe::XTrie&lt; D, K, N &gt;::Data::Hash::operator()()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00264">fe::Bitset::hash()</a>, <a class="el" href="hash_8h_source.html#l00074">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00068">hash_combine()</a>, <a class="el" href="dbg_8h_source.html#l00059">fe::Dbg::Hash::operator()()</a>, and <a class="el" href="xtrie_8h_source.html#l00136">fe::XTrie&lt; D, K, N &gt;::Data::Hash::operator()()</a>.</p>
 
 </div>
 </div>
@@ -1736,7 +1736,7 @@ template&lt;<a class="el" href="conceptfe_1_1BitEnum.html">fe::BitEnum</a> E&gt;
 
 <p class="reference">References <a class="el" href="assert_8h_source.html#l00031">unreachable()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="log_8h_source.html#l00134">fe::Log::level2acro()</a>, <a class="el" href="log_8h_source.html#l00146">fe::Log::level2color()</a>, <a class="el" href="xtrie_8h_source.html#l00243">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator*()</a>, <a class="el" href="xtrie_8h_source.html#l00208">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator++()</a>, <a class="el" href="assert_8h_source.html#l00031">unreachable()</a>, and <a class="el" href="term_8h_source.html#l00225">fe::term::use_color()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="xtrie_8h_source.html#l00243">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator*()</a>, <a class="el" href="xtrie_8h_source.html#l00208">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator++()</a>, and <a class="el" href="assert_8h_source.html#l00031">unreachable()</a>.</p>
 
 </div>
 </div>

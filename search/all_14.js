@@ -28,7 +28,7 @@ var searchData=
   ['src_5f_25',['src_',['../classfe_1_1Lexer.html#a73ae2eae3990ed437d4ed041b3fb5e8b',1,'fe::Lexer']]],
   ['srcmap_26',['SrcMap',['../classfe_1_1SrcMap.html',1,'fe']]],
   ['stacklike_27',['Stacklike',['../conceptfe_1_1Stacklike.html',1,'fe']]],
-  ['start_28',['🚀 Quick Start',['../index.html#autotoc_md13',1,'']]],
+  ['start_28',['🚀 Quick Start',['../index.html#autotoc_md14',1,'']]],
   ['start_29',['start',['../structfe_1_1Profiler_1_1Span.html#a07250141fbbe9ab07f8746f0cdbdadb8',1,'fe::Profiler::Span::start'],['../classfe_1_1Lexer.html#a0ecd9086f866aa9a8d849620aba195a0',1,'fe::Lexer::start()'],['../classfe_1_1Profiler.html#ab61d4b5a3f4c1435b31f65e755c6ca0f',1,'fe::Profiler::start()']]],
   ['state_30',['State',['../classfe_1_1Arena.html#a5e05161e3a767ebfdecbf2cb1e21f6d4',1,'fe::Arena']]],
   ['state_31',['state',['../classfe_1_1Arena.html#adc11bd44aacf4c22167b1ed08d400077',1,'fe::Arena']]],
@@ -53,5 +53,6 @@ var searchData=
   ['symset_50',['SymSet',['../namespacefe.html#afc6debb6fc36d12352409c5e46ce4e55',1,'fe']]],
   ['syntax_5ferr_51',['syntax_err',['../classfe_1_1Parser.html#a947bf829998cb9add97d7408f9a87a8c',1,'fe::Parser::syntax_err(Cite what, Tok tok, Cite ctxt)'],['../classfe_1_1Parser.html#a10973fb456a4516a27c9f4f35963fa4b',1,'fe::Parser::syntax_err(Cite what, Cite ctxt)'],['../classfe_1_1Parser.html#a527a47d8fb1b8e158c55a6e5e4d09c5e',1,'fe::Parser::syntax_err(Tag tag, Cite ctxt)']]],
   ['sys_2eh_52',['sys.h',['../sys_8h.html',1,'']]],
-  ['system_53',['system',['../namespacefe_1_1sys.html#a32dbb92355fcb6726986a2f850cfdbb9',1,'fe::sys']]]
+  ['system_53',['System',['../index.html#autotoc_md13',1,'']]],
+  ['system_54',['system',['../namespacefe_1_1sys.html#a32dbb92355fcb6726986a2f850cfdbb9',1,'fe::sys']]]
 ];

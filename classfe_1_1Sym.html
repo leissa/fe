@@ -212,7 +212,7 @@ Static Public Attributes</h2></td></tr>
 Friends</h2></td></tr>
 <tr class="memitem:a4c865acde4de25ac1247eeaac18710b5" id="r_a4c865acde4de25ac1247eeaac18710b5"><td class="memItemLeft">struct&#160;</td><td class="memItemRight"><a class="el" href="#a4c865acde4de25ac1247eeaac18710b5">::std::hash&lt; fe::Sym &gt;</a></td></tr>
 <tr class="memitem:a5379cdd60ce3c910e14da02defe0a1aa" id="r_a5379cdd60ce3c910e14da02defe0a1aa"><td class="memItemLeft">class&#160;</td><td class="memItemRight"><a class="el" href="#a5379cdd60ce3c910e14da02defe0a1aa">SymPool</a></td></tr>
-<tr class="memitem:a46b4e3d6859821564fa612901a84300e" id="r_a46b4e3d6859821564fa612901a84300e"><td class="memItemLeft">std::ostream &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a46b4e3d6859821564fa612901a84300e">operator&lt;&lt;</a> (std::ostream &amp;o, Sym sym)</td></tr>
+<tr class="memitem:a8cabe81bac727f8cac7eaa68cf2ecec8" id="r_a8cabe81bac727f8cac7eaa68cf2ecec8"><td class="memItemLeft">std::ostream &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a8cabe81bac727f8cac7eaa68cf2ecec8">operator&lt;&lt;</a> (std::ostream &amp;os, Sym sym)</td></tr>
 <tr id="friends-0" class="groupHeader"><td colspan="2"><div class="groupHeader">Comparison: Sym w/ Sym</div></td></tr>
 <tr class="memitem:a1159509cba1ced1970da8b57c51387c8" id="r_a1159509cba1ced1970da8b57c51387c8"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#a1159509cba1ced1970da8b57c51387c8">operator&lt;=&gt;</a> (Sym s1, Sym s2) noexcept</td></tr>
 <tr class="memitem:a4d32de46ba12881bc6a41505f0fcd49b" id="r_a4d32de46ba12881bc6a41505f0fcd49b"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a4d32de46ba12881bc6a41505f0fcd49b">operator==</a> (Sym s1, Sym s2) noexcept</td></tr>
@@ -269,7 +269,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00303">fe::SymPool::sym()</a>, and <a class="el" href="sym_8h_source.html#l00275">fe::SymPool::sym()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00278">fe::SymPool::sym()</a>.</p>
 
 </div>
 </div>
@@ -872,7 +872,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 
 <p class="reference">References <a class="el" href="sym_8h_source.html#l00083">empty()</a>, <a class="el" href="sym_8h_source.html#l00039">Short_String_Mask</a>, and <a class="el" href="sym_8h_source.html#l00084">size()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00158">c_str()</a>, <a class="el" href="sym_8h_source.html#l00171">operator std::string_view()</a>, <a class="el" href="sym_8h_source.html#l00172">operator*()</a>, <a class="el" href="sym_8h_source.html#l00188">operator&lt;&lt;</a>, and <a class="el" href="sym_8h_source.html#l00176">str()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00158">c_str()</a>, <a class="el" href="sym_8h_source.html#l00171">operator std::string_view()</a>, <a class="el" href="sym_8h_source.html#l00172">operator*()</a>, and <a class="el" href="sym_8h_source.html#l00176">str()</a>.</p>
 
 </div>
 </div>
@@ -901,8 +901,8 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 
 </div>
 </div>
-<a id="a46b4e3d6859821564fa612901a84300e" name="a46b4e3d6859821564fa612901a84300e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a46b4e3d6859821564fa612901a84300e">&#9670;&#160;</a></span>operator&lt;&lt;</h2>
+<a id="a8cabe81bac727f8cac7eaa68cf2ecec8" name="a8cabe81bac727f8cac7eaa68cf2ecec8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cabe81bac727f8cac7eaa68cf2ecec8">&#9670;&#160;</a></span>operator&lt;&lt;</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -913,7 +913,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
         <tr>
           <td class="memname">std::ostream &amp; operator&lt;&lt; </td>
           <td>(</td>
-          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>o</em></span>, </td>
+          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>os</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -927,10 +927,6 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00188">188</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
-
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00162">view()</a>.</p>
 
 </div>
 </div>
@@ -1306,8 +1302,6 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</div>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00038">38</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00275">fe::SymPool::sym()</a>.</p>
 
 </div>
 </div>

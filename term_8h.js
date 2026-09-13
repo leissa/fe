@@ -25,18 +25,18 @@ var term_8h =
       [ "fe::term::Mode::Always", "namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a68eec46437c384d8dad18d5464ebc35c", null ]
     ] ],
     [ "fe::term::auto_detached", "namespacefe_1_1term.html#ae5b6b47661d8593fc66824d6665f2154", null ],
-    [ "fe::term::cite_width", "namespacefe_1_1term.html#a947ccd2f656ac0cefd6c44cba5c9feb2", null ],
-    [ "fe::term::escape_cite", "namespacefe_1_1term.html#a11658a0f1a42c979b9abc3eae5e40594", null ],
+    [ "fe::term::cite_width", "namespacefe_1_1term.html#a1b862580e3b45d83aaf0a194130caabe", null ],
+    [ "fe::term::escape_cite", "namespacefe_1_1term.html#a0b2e8a5a5394c9c81bbff69b0f40d8c6", null ],
     [ "fe::term::escape_cite_to", "namespacefe_1_1term.html#aa516fca40a66d95ffc4b2457594d0550", null ],
     [ "fe::format_cite", "namespacefe.html#a93eda7673ac1b39525af9d0fad6e6fb7", null ],
     [ "fe::term::format_cite", "namespacefe_1_1term.html#a93eda7673ac1b39525af9d0fad6e6fb7", null ],
     [ "fe::term::mode", "namespacefe_1_1term.html#aba316509e7e9d35ab1316e47869ad856", null ],
-    [ "fe::term::operator<<", "namespacefe_1_1term.html#ac0ce9f4aeb844ed9e5cf41dce8dacf8a", null ],
-    [ "fe::term::render_cite", "namespacefe_1_1term.html#a2319c7f51a73205d048935350cd68eec", null ],
-    [ "fe::term::render_cite", "namespacefe_1_1term.html#a54acad7c1ee559281cf0fd64aa6ba3ac", null ],
-    [ "fe::term::resolve_mode", "namespacefe_1_1term.html#a787158fdb940cfa7e778863bde8f34e8", null ],
+    [ "fe::term::operator<<", "namespacefe_1_1term.html#a7819a5384920d166a8be7c815845da77", null ],
+    [ "fe::term::render_cite", "namespacefe_1_1term.html#a8e278c2f9e70e4d2d00e887e40727a10", null ],
+    [ "fe::term::render_cite", "namespacefe_1_1term.html#aedc72cd2cb9b72c919afeedce535d935", null ],
+    [ "fe::term::resolve_mode", "namespacefe_1_1term.html#a5a9bda2e33e1a4c3eec8ad926e16fa02", null ],
     [ "fe::term::set_auto_detached", "namespacefe_1_1term.html#af7c5ecd3a2ff27481258b4d73e7622a5", null ],
     [ "fe::term::set_mode", "namespacefe_1_1term.html#a43b4926e20406fc7b4f64ba7497064e2", null ],
-    [ "fe::term::use_color", "namespacefe_1_1term.html#ad2b84bd3b2fb301332ef7cae1fcd7b69", null ],
-    [ "fe::term::width", "namespacefe_1_1term.html#a5aa15cae23952d4b12161c0116cf41a3", null ]
+    [ "fe::term::use_color", "namespacefe_1_1term.html#a52b95eff166b87b52238c9f72416c3bb", null ],
+    [ "fe::term::width", "namespacefe_1_1term.html#aa553472665f575bceb82bdbbac9b8837", null ]
 ];
