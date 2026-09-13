@@ -9,7 +9,7 @@ var annotated_dup =
       ] ],
       [ "term", "namespacefe_1_1term.html", [
         [ "Cited", "classfe_1_1term_1_1Cited.html", "classfe_1_1term_1_1Cited" ],
-        [ "Cite", "structfe_1_1term_1_1Cite.html", "structfe_1_1term_1_1Cite" ]
+        [ "Cite", "classfe_1_1term_1_1Cite.html", "classfe_1_1term_1_1Cite" ]
       ] ],
       [ "utf8", "namespacefe_1_1utf8.html", [
         [ "Char32", "structfe_1_1utf8_1_1Char32.html", "structfe_1_1utf8_1_1Char32" ]
@@ -17,7 +17,7 @@ var annotated_dup =
       [ "Arena", "classfe_1_1Arena.html", "classfe_1_1Arena" ],
       [ "basic_ostream_formatter", "structfe_1_1basic__ostream__formatter.html", "structfe_1_1basic__ostream__formatter" ],
       [ "Bitset", "classfe_1_1Bitset.html", "classfe_1_1Bitset" ],
-      [ "Cite", "structfe_1_1Cite.html", "structfe_1_1Cite" ],
+      [ "Cite", "classfe_1_1Cite.html", "classfe_1_1Cite" ],
       [ "Cited", "classfe_1_1Cited.html", "classfe_1_1Cited" ],
       [ "Cli", "classfe_1_1Cli.html", "classfe_1_1Cli" ],
       [ "CodeDiag", "classfe_1_1CodeDiag.html", "classfe_1_1CodeDiag" ],

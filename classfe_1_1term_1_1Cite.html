@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.18.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>FE: fe::Cite Struct Reference</title>
+<title>FE: fe::term::Cite Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript">
 // Doxygen no longer ships jQuery, but doxygen-awesome's extensions still expect it.
@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', codefold.init);
   </div>
 </div>
 <script type="text/javascript">
-document.addEventListener('DOMContentLoaded',() => { initNavTree('structfe_1_1Cite.html','','structfe_1_1Cite-members'); });
+document.addEventListener('DOMContentLoaded',() => { initNavTree('classfe_1_1term_1_1Cite.html','','classfe_1_1term_1_1Cite-members'); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -153,9 +153,8 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('structfe_1_1Ci
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="structfe_1_1Cite-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">fe::Cite Struct Reference</div></div>
+<a href="classfe_1_1term_1_1Cite-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">fe::term::Cite Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -172,20 +171,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a20c71f8b4fed3ce6cf592b978094c33d template"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#a20c71f8b4fed3ce6cf592b978094c33d">Cite</a> (const char(&amp;s)[N]) noexcept</td></tr>
 <tr class="memitem:a32702a03a2b3afef64e90eaf87209117" id="r_a32702a03a2b3afef64e90eaf87209117"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#a32702a03a2b3afef64e90eaf87209117">Cite</a> (const <a class="el" href="classfe_1_1term_1_1Cited.html">Cited</a> &amp;cited) noexcept</td></tr>
 <tr class="memitem:a496f54f2805ffd6b238eea3c4eb9d0e2" id="r_a496f54f2805ffd6b238eea3c4eb9d0e2"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#a496f54f2805ffd6b238eea3c4eb9d0e2">Cite</a> (std::string_view s) noexcept</td></tr>
+<tr class="memitem:a1a95a23de3cdafb3d552cb7ec39199e6" id="r_a1a95a23de3cdafb3d552cb7ec39199e6"><td class="memItemLeft">constexpr std::string_view&#160;</td><td class="memItemRight"><a class="el" href="#a1a95a23de3cdafb3d552cb7ec39199e6">str</a> () const noexcept</td></tr>
 <tr class="memitem:a7269080eeb9343b14272a9aeb4dad479" id="r_a7269080eeb9343b14272a9aeb4dad479"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a7269080eeb9343b14272a9aeb4dad479">empty</a> () const noexcept</td></tr>
 <tr class="memitem:a79fbb0c6de50658fe565842b13372ec1" id="r_a79fbb0c6de50658fe565842b13372ec1"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#a79fbb0c6de50658fe565842b13372ec1">operator bool</a> () const noexcept</td></tr>
 <tr class="memdesc:a79fbb0c6de50658fe565842b13372ec1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is not empty?  <br /></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a513b3b72a822d604dcd8c26548fc0eb6" id="r_a513b3b72a822d604dcd8c26548fc0eb6"><td class="memItemLeft">std::string_view&#160;</td><td class="memItemRight"><a class="el" href="#a513b3b72a822d604dcd8c26548fc0eb6">str</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A <em>borrowed</em> fragment whose backticks stay markup; format_cite escapes every other argument. </p>
-<p>The <span class="tt"> `citation` </span> convention lives in <a class="el" href="namespacefe_1_1term.html" title="Lightweight stream-based terminal colors for diagnostics and CLI output.">fe::term</a>, next to the renderer that reads it.</p>
-<p>A literal and a <a class="el" href="classfe_1_1Cited.html" title="An owning message fragment that spells  `citations`  of its own; what format_cite yields.">Cited</a> convert implicitly - both are text someone wrote as markup. Runtime text has to say so: spell it <span class="tt">Cite(s)</span>, so data never becomes markup by accident. A <span class="tt">const char*</span> - a ternary of two literals, say - counts as runtime text and needs <span class="tt">Cite(s)</span> too. </p><dl class="section warning"><dt>Warning</dt><dd>Borrows its text like a <span class="tt">std::string_view</span> does - a <a class="el" href="classfe_1_1Cited.html" title="An owning message fragment that spells  `citations`  of its own; what format_cite yields.">Cited</a> outlives the expression, a <a class="el" href="structfe_1_1Cite.html" title="A borrowed fragment whose backticks stay markup; format_cite escapes every other argument.">Cite</a> does not. </dd></dl>
+<p>A literal and a <a class="el" href="classfe_1_1term_1_1Cited.html" title="An owning message fragment that spells  `citations`  of its own; what format_cite yields.">Cited</a> convert implicitly - both are text someone wrote as markup. Runtime text has to say so: spell it <span class="tt">Cite(s)</span>, so data never becomes markup by accident. A <span class="tt">const char*</span> - a ternary of two literals, say - counts as runtime text and needs <span class="tt">Cite(s)</span> too. </p><dl class="section warning"><dt>Warning</dt><dd>Borrows its text like a <span class="tt">std::string_view</span> does - a <a class="el" href="classfe_1_1term_1_1Cited.html" title="An owning message fragment that spells  `citations`  of its own; what format_cite yields.">Cited</a> outlives the expression, a <a class="el" href="classfe_1_1term_1_1Cite.html" title="A borrowed fragment whose backticks stay markup; format_cite escapes every other argument.">Cite</a> does not. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00335">335</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00336">336</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a87042c1c5ee1a98918eafe27b919ad67" name="a87042c1c5ee1a98918eafe27b919ad67"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a87042c1c5ee1a98918eafe27b919ad67">&#9670;&#160;</a></span>Cite() <span class="overload">[1/4]</span></h2>
@@ -197,7 +192,7 @@ Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">fe::term::Cite::Cite </td>
+          <td class="memname"><a class="el" href="classfe_1_1Cite.html#a87042c1c5ee1a98918eafe27b919ad67">fe::term::Cite::Cite</a> </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -211,6 +206,8 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The empty fragment - a context that says nothing. </p>
+
+<p class="reference">Referenced by <a class="el" href="term_8h_source.html#l00340">Cite()</a>.</p>
 
 </div>
 </div>
@@ -226,7 +223,7 @@ template&lt;size_t N&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">fe::term::Cite::Cite </td>
+          <td class="memname"><a class="el" href="classfe_1_1Cite.html#a87042c1c5ee1a98918eafe27b919ad67">fe::term::Cite::Cite</a> </td>
           <td>(</td>
           <td class="paramtype">const char(&amp;)</td>          <td class="paramname"><span class="paramname"><em>s</em></span>[N]</td><td>)</td>
           <td></td>
@@ -239,7 +236,9 @@ template&lt;size_t N&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00338">338</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00340">340</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+
+<p class="reference">References <a class="el" href="#a87042c1c5ee1a98918eafe27b919ad67">Cite()</a>.</p>
 
 </div>
 </div>
@@ -253,7 +252,7 @@ template&lt;size_t N&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">fe::term::Cite::Cite </td>
+          <td class="memname"><a class="el" href="classfe_1_1Cite.html#a87042c1c5ee1a98918eafe27b919ad67">fe::term::Cite::Cite</a> </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classfe_1_1term_1_1Cited.html">Cited</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>cited</em></span></td><td>)</td>
           <td></td>
@@ -266,7 +265,7 @@ template&lt;size_t N&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00340">340</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00342">342</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
 </div>
 </div>
@@ -280,7 +279,7 @@ template&lt;size_t N&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">fe::term::Cite::Cite </td>
+          <td class="memname"><a class="el" href="classfe_1_1Cite.html#a87042c1c5ee1a98918eafe27b919ad67">fe::term::Cite::Cite</a> </td>
           <td>(</td>
           <td class="paramtype">std::string_view</td>          <td class="paramname"><span class="paramname"><em>s</em></span></td><td>)</td>
           <td></td>
@@ -293,7 +292,7 @@ template&lt;size_t N&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00342">342</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00344">344</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
 </div>
 </div>
@@ -308,7 +307,7 @@ template&lt;size_t N&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool fe::term::Cite::empty </td>
+          <td class="memname">bool <a class="el" href="classfe_1_1Cite.html#a7269080eeb9343b14272a9aeb4dad479">fe::term::Cite::empty</a> </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -321,7 +320,7 @@ template&lt;size_t N&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00345">345</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00348">348</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
 </div>
 </div>
@@ -350,28 +349,38 @@ template&lt;size_t N&gt; </div>
 
 <p>Is not empty? </p>
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00346">346</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00349">349</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
 </div>
 </div>
-<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="a513b3b72a822d604dcd8c26548fc0eb6" name="a513b3b72a822d604dcd8c26548fc0eb6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a513b3b72a822d604dcd8c26548fc0eb6">&#9670;&#160;</a></span>str</h2>
+<a id="a1a95a23de3cdafb3d552cb7ec39199e6" name="a1a95a23de3cdafb3d552cb7ec39199e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a95a23de3cdafb3d552cb7ec39199e6">&#9670;&#160;</a></span>str()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::string_view fe::term::Cite::str</td>
+          <td class="memname">std::string_view <a class="el" href="classfe_1_1Cite.html#a1a95a23de3cdafb3d552cb7ec39199e6">fe::term::Cite::str</a> </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00348">348</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00347">347</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
 </div>
 </div>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>fe/<a class="el" href="term_8h_source.html">term.h</a></li>
 </ul>
 </div><!-- contents -->
@@ -380,7 +389,7 @@ template&lt;size_t N&gt; </div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="namespacefe.html">fe</a></li><li class="navelem"><a href="structfe_1_1Cite.html">Cite</a></li>
+    <li class="navelem"><a href="namespacefe.html">fe</a></li><li class="navelem"><a href="namespacefe_1_1term.html">term</a></li><li class="navelem"><a href="classfe_1_1term_1_1Cite.html">Cite</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
   </ul>
 </div>

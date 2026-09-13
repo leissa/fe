@@ -180,8 +180,8 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make types that support ostream operators available for <span class="tt">std::format</span>.  <a href="structfe_1_1basic__ostream__formatter.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Bitset" id="r_Bitset"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Bitset.html">Bitset</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A dynamically growing set of bits with small storage optimization.  <a href="classfe_1_1Bitset.html#details">More...</a><br /></td></tr>
-<tr class="memitem:Cite" id="r_Cite"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1Cite.html">Cite</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <em>borrowed</em> fragment whose backticks stay markup; format_cite escapes every other argument.  <a href="structfe_1_1Cite.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Cite" id="r_Cite"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Cite.html">Cite</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <em>borrowed</em> fragment whose backticks stay markup; format_cite escapes every other argument.  <a href="classfe_1_1Cite.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Cited" id="r_Cited"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Cited.html">Cited</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An <em>owning</em> message fragment that spells <span class="tt"> `citations` </span> of its own; what format_cite yields.  <a href="classfe_1_1Cited.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Cli" id="r_Cli"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Cli.html">Cli</a></td></tr>
@@ -453,9 +453,9 @@ template&lt;class... Args&gt; </div>
 
 <p>&lt; </p>
 <p>A <em>borrowed</em> fragment whose backticks stay markup; format_cite escapes every other argument.   </p>
-<p>A literal and a <a class="el" href="classfe_1_1Cited.html" title="An owning message fragment that spells  `citations`  of its own; what format_cite yields.">Cited</a> convert implicitly - both are text someone wrote as markup. Runtime text has to say so: spell it <span class="tt">Cite(s)</span>, so data never becomes markup by accident. A <span class="tt">const char*</span> - a ternary of two literals, say - counts as runtime text and needs <span class="tt">Cite(s)</span> too. </p><dl class="section warning"><dt>Warning</dt><dd>Borrows its text like a <span class="tt">std::string_view</span> does - a <a class="el" href="classfe_1_1Cited.html" title="An owning message fragment that spells  `citations`  of its own; what format_cite yields.">Cited</a> outlives the expression, a <a class="el" href="structfe_1_1Cite.html" title="A borrowed fragment whose backticks stay markup; format_cite escapes every other argument.">Cite</a> does not.    </dd></dl>
+<p>A literal and a <a class="el" href="classfe_1_1Cited.html" title="An owning message fragment that spells  `citations`  of its own; what format_cite yields.">Cited</a> convert implicitly - both are text someone wrote as markup. Runtime text has to say so: spell it <span class="tt">Cite(s)</span>, so data never becomes markup by accident. A <span class="tt">const char*</span> - a ternary of two literals, say - counts as runtime text and needs <span class="tt">Cite(s)</span> too. </p><dl class="section warning"><dt>Warning</dt><dd>Borrows its text like a <span class="tt">std::string_view</span> does - a <a class="el" href="classfe_1_1Cited.html" title="An owning message fragment that spells  `citations`  of its own; what format_cite yields.">Cited</a> outlives the expression, a <a class="el" href="classfe_1_1Cite.html" title="A borrowed fragment whose backticks stay markup; format_cite escapes every other argument.">Cite</a> does not.    </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00374">374</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00378">378</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
 </div>
 </div>
@@ -954,9 +954,9 @@ template&lt;class... Args&gt; </div>
 
 <p>&lt; </p>
 <p>An <em>owning</em> message fragment that spells <span class="tt"> `citations` </span> of its own; what format_cite yields.   </p>
-<p>Return this from a helper that assembles a fragment, and it stays valid wherever a <a class="el" href="structfe_1_1Cite.html" title="A borrowed fragment whose backticks stay markup; format_cite escapes every other argument.">Cite</a> may go.    </p>
+<p>Return this from a helper that assembles a fragment, and it stays valid wherever a <a class="el" href="classfe_1_1Cite.html" title="A borrowed fragment whose backticks stay markup; format_cite escapes every other argument.">Cite</a> may go.    </p>
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00379">379</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00383">383</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00129">fe::Parser&lt; Tok, Tag, K, S &gt;::expect()</a>, and <a class="el" href="parser_8h_source.html#l00230">fe::Parser&lt; Tok, Tag, K, S &gt;::tag2str_()</a>.</p>
 

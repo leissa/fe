@@ -1,8 +1,8 @@
 var term_8h =
 [
     [ "fe::term::Cited", "classfe_1_1term_1_1Cited.html", "classfe_1_1term_1_1Cited" ],
-    [ "fe::term::Cite", "structfe_1_1term_1_1Cite.html", "structfe_1_1term_1_1Cite" ],
-    [ "fe::Cite", "structfe_1_1Cite.html", "structfe_1_1Cite" ],
+    [ "fe::term::Cite", "classfe_1_1term_1_1Cite.html", "classfe_1_1term_1_1Cite" ],
+    [ "fe::Cite", "classfe_1_1Cite.html", "classfe_1_1Cite" ],
     [ "fe::Cited", "classfe_1_1Cited.html", "classfe_1_1Cited" ],
     [ "fe::cite_string", "namespacefe.html#aa1e2ea2aa40fc5132b2c7364ee4467d8", null ],
     [ "fe::term::cite_string", "namespacefe_1_1term.html#aa1e2ea2aa40fc5132b2c7364ee4467d8", null ],

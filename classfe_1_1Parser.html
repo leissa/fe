@@ -194,7 +194,7 @@ Protected Member Functions</h2></td></tr>
 <tr class="memdesc:a5d4335bae86e3127fbf5b42fb0fcd3e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invoke <a class="el" href="classfe_1_1Lexer.html" title="The blueprint for a lexer with a buffer of K tokens to peek into the future (Lexer::ahead).">Lexer</a> to retrieve next Token.  <br /></td></tr>
 <tr class="memitem:ad7acb49705c085f2ae9e7464f03eb3c0" id="r_ad7acb49705c085f2ae9e7464f03eb3c0"><td class="memItemLeft">Tok&#160;</td><td class="memItemRight"><a class="el" href="#ad7acb49705c085f2ae9e7464f03eb3c0">accept</a> (Tag tag)</td></tr>
 <tr class="memdesc:ad7acb49705c085f2ae9e7464f03eb3c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">If <a class="el" href="#af07368e3fabbf75a441b4e206fba2aa4">Parser::ahead()</a> is a <code class="param">tag</code>, consume and return it, otherwise yield <span class="tt">std::nullopt</span>.  <br /></td></tr>
-<tr class="memitem:a8d3515757df0b24385e51e953b9c3899" id="r_a8d3515757df0b24385e51e953b9c3899"><td class="memItemLeft">Tok&#160;</td><td class="memItemRight"><a class="el" href="#a8d3515757df0b24385e51e953b9c3899">expect</a> (Tag tag, <a class="el" href="structfe_1_1term_1_1Cite.html">Cite</a> ctxt)</td></tr>
+<tr class="memitem:a8d3515757df0b24385e51e953b9c3899" id="r_a8d3515757df0b24385e51e953b9c3899"><td class="memItemLeft">Tok&#160;</td><td class="memItemRight"><a class="el" href="#a8d3515757df0b24385e51e953b9c3899">expect</a> (Tag tag, <a class="el" href="classfe_1_1term_1_1Cite.html">Cite</a> ctxt)</td></tr>
 <tr class="memdesc:a8d3515757df0b24385e51e953b9c3899"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="#a5d4335bae86e3127fbf5b42fb0fcd3e7" title="Invoke Lexer to retrieve next Token.">Parser::lex</a> <a class="el" href="#af07368e3fabbf75a441b4e206fba2aa4">Parser::ahead()</a> which must be a <code class="param">tag</code>.  <br /></td></tr>
 <tr class="memitem:ad860769be026fc186110adf1ac63d446" id="r_ad860769be026fc186110adf1ac63d446"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
 <tr class="memitem:ad860769be026fc186110adf1ac63d446 template"><td class="memItemLeft">Tok&#160;</td><td class="memItemRight"><a class="el" href="#ad860769be026fc186110adf1ac63d446">expect</a> (Tag tag, <a class="el" href="namespacefe_1_1term.html#aa1e2ea2aa40fc5132b2c7364ee4467d8">cite_string</a>&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
@@ -210,9 +210,9 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a46ecd5e875f8f85a493813e2c76cb8ac" id="r_a46ecd5e875f8f85a493813e2c76cb8ac"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a46ecd5e875f8f85a493813e2c76cb8ac">anchored</a> (Tag tag) const</td></tr>
 <tr class="memdesc:a46ecd5e875f8f85a493813e2c76cb8ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is <code class="param">tag</code> anchored by an enclosing context?  <br /></td></tr>
 <tr class="memitem:a32505015e6aee87c21b8c2ec6bc920a2" id="r_a32505015e6aee87c21b8c2ec6bc920a2"><td class="memTemplParams" colspan="2">template&lt;std::predicate&lt; Tag &gt; P&gt; </td></tr>
-<tr class="memitem:a32505015e6aee87c21b8c2ec6bc920a2 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a32505015e6aee87c21b8c2ec6bc920a2">recover</a> (P pred, <a class="el" href="structfe_1_1term_1_1Cite.html">Cite</a> ctxt)</td></tr>
+<tr class="memitem:a32505015e6aee87c21b8c2ec6bc920a2 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a32505015e6aee87c21b8c2ec6bc920a2">recover</a> (P pred, <a class="el" href="classfe_1_1term_1_1Cite.html">Cite</a> ctxt)</td></tr>
 <tr class="memdesc:a32505015e6aee87c21b8c2ec6bc920a2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="#a5d4335bae86e3127fbf5b42fb0fcd3e7" title="Invoke Lexer to retrieve next Token.">Parser::lex</a> all Tokens whose Tag satisfies <code class="param">pred</code> and that are not <a class="el" href="#a46ecd5e875f8f85a493813e2c76cb8ac" title="Is tag anchored by an enclosing context?">Parser::anchored</a>; report each one as <span class="tt">S::unanchored_err</span>.  <br /></td></tr>
-<tr class="memitem:a9cc6a9f60154118843b33c06b91e5aae" id="r_a9cc6a9f60154118843b33c06b91e5aae"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9cc6a9f60154118843b33c06b91e5aae">recover</a> (Tag tag, <a class="el" href="structfe_1_1term_1_1Cite.html">Cite</a> ctxt)</td></tr>
+<tr class="memitem:a9cc6a9f60154118843b33c06b91e5aae" id="r_a9cc6a9f60154118843b33c06b91e5aae"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9cc6a9f60154118843b33c06b91e5aae">recover</a> (Tag tag, <a class="el" href="classfe_1_1term_1_1Cite.html">Cite</a> ctxt)</td></tr>
 <tr class="memdesc:a9cc6a9f60154118843b33c06b91e5aae"><td class="mdescLeft">&#160;</td><td class="mdescRight">As above but only recovers from <code class="param">tag</code>.  <br /></td></tr>
 <tr id="pro-methods-4" class="groupHeader"><td colspan="2"><div class="groupHeader">Diagnostics</div></td></tr>
 <tr><td colspan="2" class="ititle"><div class="groupText"><p>The defaults <code class="param">S</code> may replace with one of its own.</p>
@@ -220,13 +220,13 @@ Protected Member Functions</h2></td></tr>
 </div></td></tr>
 <tr class="memitem:a84664cc5a6e288f9d507872d7e30789e" id="r_a84664cc5a6e288f9d507872d7e30789e"><td class="memItemLeft"><a class="el" href="classfe_1_1Error.html">fe::Error</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a84664cc5a6e288f9d507872d7e30789e">error</a> ()</td></tr>
 <tr class="memitem:ac10691c73f1acf9f8fce035189181a9d" id="r_ac10691c73f1acf9f8fce035189181a9d"><td class="memItemLeft">const <a class="el" href="classfe_1_1Error.html">fe::Error</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ac10691c73f1acf9f8fce035189181a9d">error</a> () const</td></tr>
-<tr class="memitem:a947bf829998cb9add97d7408f9a87a8c" id="r_a947bf829998cb9add97d7408f9a87a8c"><td class="memItemLeft"><a class="el" href="classfe_1_1Error.html">fe::Error</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a947bf829998cb9add97d7408f9a87a8c">syntax_err</a> (<a class="el" href="structfe_1_1term_1_1Cite.html">Cite</a> what, Tok tok, <a class="el" href="structfe_1_1term_1_1Cite.html">Cite</a> ctxt)</td></tr>
+<tr class="memitem:a947bf829998cb9add97d7408f9a87a8c" id="r_a947bf829998cb9add97d7408f9a87a8c"><td class="memItemLeft"><a class="el" href="classfe_1_1Error.html">fe::Error</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a947bf829998cb9add97d7408f9a87a8c">syntax_err</a> (<a class="el" href="classfe_1_1term_1_1Cite.html">Cite</a> what, Tok tok, <a class="el" href="classfe_1_1term_1_1Cite.html">Cite</a> ctxt)</td></tr>
 <tr class="memdesc:a947bf829998cb9add97d7408f9a87a8c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="#a8d3515757df0b24385e51e953b9c3899" title="Parser::lex Parser::ahead() which must be a tag.">Parser::expect</a> did not find <code class="param">what</code> while parsing <code class="param">ctxt</code>.  <br /></td></tr>
-<tr class="memitem:a10973fb456a4516a27c9f4f35963fa4b" id="r_a10973fb456a4516a27c9f4f35963fa4b"><td class="memItemLeft">decltype(auto)&#160;</td><td class="memItemRight"><a class="el" href="#a10973fb456a4516a27c9f4f35963fa4b">syntax_err</a> (<a class="el" href="structfe_1_1term_1_1Cite.html">Cite</a> what, <a class="el" href="structfe_1_1term_1_1Cite.html">Cite</a> ctxt)</td></tr>
+<tr class="memitem:a10973fb456a4516a27c9f4f35963fa4b" id="r_a10973fb456a4516a27c9f4f35963fa4b"><td class="memItemLeft">decltype(auto)&#160;</td><td class="memItemRight"><a class="el" href="#a10973fb456a4516a27c9f4f35963fa4b">syntax_err</a> (<a class="el" href="classfe_1_1term_1_1Cite.html">Cite</a> what, <a class="el" href="classfe_1_1term_1_1Cite.html">Cite</a> ctxt)</td></tr>
 <tr class="memdesc:a10973fb456a4516a27c9f4f35963fa4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">As above but uses <a class="el" href="#af07368e3fabbf75a441b4e206fba2aa4">Parser::ahead</a> as <code class="param">tok</code>.  <br /></td></tr>
-<tr class="memitem:a527a47d8fb1b8e158c55a6e5e4d09c5e" id="r_a527a47d8fb1b8e158c55a6e5e4d09c5e"><td class="memItemLeft">decltype(auto)&#160;</td><td class="memItemRight"><a class="el" href="#a527a47d8fb1b8e158c55a6e5e4d09c5e">syntax_err</a> (Tag tag, <a class="el" href="structfe_1_1term_1_1Cite.html">Cite</a> ctxt)</td></tr>
+<tr class="memitem:a527a47d8fb1b8e158c55a6e5e4d09c5e" id="r_a527a47d8fb1b8e158c55a6e5e4d09c5e"><td class="memItemLeft">decltype(auto)&#160;</td><td class="memItemRight"><a class="el" href="#a527a47d8fb1b8e158c55a6e5e4d09c5e">syntax_err</a> (Tag tag, <a class="el" href="classfe_1_1term_1_1Cite.html">Cite</a> ctxt)</td></tr>
 <tr class="memdesc:a527a47d8fb1b8e158c55a6e5e4d09c5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">As above but spells <code class="param">tag</code> out via <a class="el" href="#a729e065306271ccbfdf2b74ca8223932" title="Spells tag out via Tok::tag2str if there is one - a bare enumerator would render as its number.">Parser::tag2str_</a>.  <br /></td></tr>
-<tr class="memitem:a1e35d3ce5e1c88104602673fb654034c" id="r_a1e35d3ce5e1c88104602673fb654034c"><td class="memItemLeft"><a class="el" href="classfe_1_1Error.html">fe::Error</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a1e35d3ce5e1c88104602673fb654034c">unanchored_err</a> (Tok tok, <a class="el" href="structfe_1_1term_1_1Cite.html">Cite</a> ctxt)</td></tr>
+<tr class="memitem:a1e35d3ce5e1c88104602673fb654034c" id="r_a1e35d3ce5e1c88104602673fb654034c"><td class="memItemLeft"><a class="el" href="classfe_1_1Error.html">fe::Error</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a1e35d3ce5e1c88104602673fb654034c">unanchored_err</a> (Tok tok, <a class="el" href="classfe_1_1term_1_1Cite.html">Cite</a> ctxt)</td></tr>
 <tr class="memdesc:a1e35d3ce5e1c88104602673fb654034c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="#a32505015e6aee87c21b8c2ec6bc920a2" title="Parser::lex all Tokens whose Tag satisfies pred and that are not Parser::anchored; report each one as...">Parser::recover</a> discarded <code class="param">tok</code> while parsing <code class="param">ctxt</code>.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-static-methods" class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
@@ -528,7 +528,7 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structfe_1_1term_1_1Cite.html">Cite</a></td>          <td class="paramname"><span class="paramname"><em>ctxt</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="classfe_1_1term_1_1Cite.html">Cite</a></td>          <td class="paramname"><span class="paramname"><em>ctxt</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -587,7 +587,7 @@ template&lt;class... Args&gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00129">129</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">References <a class="el" href="parser_8h_source.html#l00103">ahead()</a>, <a class="el" href="term_8h_source.html#l00379">fe::format_cite()</a>, and <a class="el" href="parser_8h_source.html#l00106">lex()</a>.</p>
+<p class="reference">References <a class="el" href="parser_8h_source.html#l00103">ahead()</a>, <a class="el" href="term_8h_source.html#l00383">fe::format_cite()</a>, and <a class="el" href="parser_8h_source.html#l00106">lex()</a>.</p>
 
 </div>
 </div>
@@ -678,7 +678,7 @@ template&lt;std::predicate&lt; Tag &gt; P&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structfe_1_1term_1_1Cite.html">Cite</a></td>          <td class="paramname"><span class="paramname"><em>ctxt</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="classfe_1_1term_1_1Cite.html">Cite</a></td>          <td class="paramname"><span class="paramname"><em>ctxt</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -718,7 +718,7 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structfe_1_1term_1_1Cite.html">Cite</a></td>          <td class="paramname"><span class="paramname"><em>ctxt</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="classfe_1_1term_1_1Cite.html">Cite</a></td>          <td class="paramname"><span class="paramname"><em>ctxt</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -750,12 +750,12 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
         <tr>
           <td class="memname">decltype(auto) <a class="el" href="classfe_1_1Parser.html">fe::Parser</a>&lt; Tok, Tag, K, S &gt;::syntax_err </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structfe_1_1term_1_1Cite.html">Cite</a></td>          <td class="paramname"><span class="paramname"><em>what</em></span>, </td>
+          <td class="paramtype"><a class="el" href="classfe_1_1term_1_1Cite.html">Cite</a></td>          <td class="paramname"><span class="paramname"><em>what</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structfe_1_1term_1_1Cite.html">Cite</a></td>          <td class="paramname"><span class="paramname"><em>ctxt</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="classfe_1_1term_1_1Cite.html">Cite</a></td>          <td class="paramname"><span class="paramname"><em>ctxt</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -788,7 +788,7 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="classfe_1_1Error.html">fe::Error</a> &amp; <a class="el" href="classfe_1_1Parser.html">fe::Parser</a>&lt; Tok, Tag, K, S &gt;::syntax_err </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structfe_1_1term_1_1Cite.html">Cite</a></td>          <td class="paramname"><span class="paramname"><em>what</em></span>, </td>
+          <td class="paramtype"><a class="el" href="classfe_1_1term_1_1Cite.html">Cite</a></td>          <td class="paramname"><span class="paramname"><em>what</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -798,7 +798,7 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structfe_1_1term_1_1Cite.html">Cite</a></td>          <td class="paramname"><span class="paramname"><em>ctxt</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="classfe_1_1term_1_1Cite.html">Cite</a></td>          <td class="paramname"><span class="paramname"><em>ctxt</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -809,7 +809,7 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 </div><div class="memdoc">
 
 <p><a class="el" href="#a8d3515757df0b24385e51e953b9c3899" title="Parser::lex Parser::ahead() which must be a tag.">Parser::expect</a> did not find <code class="param">what</code> while parsing <code class="param">ctxt</code>. </p>
-<p>Both are <a class="el" href="structfe_1_1Cite.html" title="A borrowed fragment whose backticks stay markup; format_cite escapes every other argument.">Cite</a>: a context string is <em>markup</em>, so backtick a literal token within it yourself. </p>
+<p>Both are <a class="el" href="classfe_1_1Cite.html" title="A borrowed fragment whose backticks stay markup; format_cite escapes every other argument.">Cite</a>: a context string is <em>markup</em>, so backtick a literal token within it yourself. </p>
 
 <p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00206">206</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
@@ -836,7 +836,7 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structfe_1_1term_1_1Cite.html">Cite</a></td>          <td class="paramname"><span class="paramname"><em>ctxt</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="classfe_1_1term_1_1Cite.html">Cite</a></td>          <td class="paramname"><span class="paramname"><em>ctxt</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -883,7 +883,7 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00230">230</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">References <a class="el" href="term_8h_source.html#l00379">fe::format_cite()</a>.</p>
+<p class="reference">References <a class="el" href="term_8h_source.html#l00383">fe::format_cite()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00218">syntax_err()</a>.</p>
 
@@ -1005,7 +1005,7 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structfe_1_1term_1_1Cite.html">Cite</a></td>          <td class="paramname"><span class="paramname"><em>ctxt</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="classfe_1_1term_1_1Cite.html">Cite</a></td>          <td class="paramname"><span class="paramname"><em>ctxt</em></span>&#160;)</td>
         </tr>
       </table>
   </td>

@@ -1,7 +1,7 @@
 var namespacefe_1_1term =
 [
     [ "Cited", "classfe_1_1term_1_1Cited.html", "classfe_1_1term_1_1Cited" ],
-    [ "Cite", "structfe_1_1term_1_1Cite.html", "structfe_1_1term_1_1Cite" ],
+    [ "Cite", "classfe_1_1term_1_1Cite.html", "classfe_1_1term_1_1Cite" ],
     [ "cite_string", "namespacefe_1_1term.html#aa1e2ea2aa40fc5132b2c7364ee4467d8", null ],
     [ "ScopedMode", "namespacefe_1_1term.html#a214cdb1ce076f0e6de11f6afb317c516", null ],
     [ "FG", "namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148", [
