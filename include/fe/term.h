@@ -321,6 +321,7 @@ public:
     explicit Cited(std::string str) noexcept
         : str_(std::move(str)) {}
 
+    [[nodiscard]] constexpr std::string_view str() const noexcept { return str_; }
     constexpr operator std::string_view() const noexcept { return str_; }
 
 private:
@@ -332,20 +333,23 @@ private:
 /// Runtime text has to say so: spell it `Cite(s)`, so data never becomes markup by accident.
 /// A `const char*` - a ternary of two literals, say - counts as runtime text and needs `Cite(s)` too.
 /// @warning Borrows its text like a `std::string_view` does - a Cited outlives the expression, a Cite does not.
-struct Cite {
+class Cite {
+public:
     constexpr Cite() noexcept = default; ///< The empty fragment - a context that says nothing.
     template<size_t N>
     constexpr Cite(const char (&s)[N]) noexcept
-        : str(s) {}
+        : str_(s) {}
     constexpr Cite(const Cited& cited) noexcept
-        : str(cited) {}
+        : str_(cited) {}
     constexpr explicit Cite(std::string_view s) noexcept
-        : str(s) {}
+        : str_(s) {}
 
-    [[nodiscard]] constexpr bool empty() const noexcept { return str.empty(); }
-    constexpr explicit operator bool() const noexcept { return !str.empty(); } ///< Is not empty?
+    [[nodiscard]] constexpr std::string_view str() const noexcept { return str_; }
+    [[nodiscard]] constexpr bool empty() const noexcept { return str_.empty(); }
+    constexpr explicit operator bool() const noexcept { return !str_.empty(); } ///< Is not empty?
 
-    std::string_view str;
+private:
+    std::string_view str_;
 };
 
 namespace detail {
@@ -466,7 +470,7 @@ struct std::formatter<fe::term::detail::Escaped<T>> {
 template<>
 struct std::formatter<fe::term::Cite> : std::formatter<std::string_view> {
     auto format(fe::term::Cite cite, std::format_context& ctx) const {
-        return std::formatter<std::string_view>::format(cite.str, ctx);
+        return std::formatter<std::string_view>::format(cite.str(), ctx);
     }
 };
 
