@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['e_0',['E',['../classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1fa3a3ea00cfc35332cedf6e5e9a32e94da',1,'fe::Diag']]],
+  ['e_0',['E',['../classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1fa3a3ea00cfc35332cedf6e5e9a32e94da',1,'fe::Diag::E'],['../classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06a3a3ea00cfc35332cedf6e5e9a32e94da',1,'fe::Log::E']]],
   ['e_1',['e',['../classfe_1_1Error.html#ae9a7170ef235d91d84b34ce8ffe0ef05',1,'fe::Error::e()'],['../classfe_1_1Log.html#a09b8c2102ebfd0ea1407c41e890bfd02',1,'fe::Log::e()']]],
   ['eat_2',['eat',['../classfe_1_1Parser.html#a7676ff550005c7f0334f6fda4067d1e0',1,'fe::Parser']]],
   ['elapsed_3',['elapsed',['../structfe_1_1Profiler_1_1Span.html#a192b9f285bbdfc2aad6839e8340915f9',1,'fe::Profiler::Span']]],

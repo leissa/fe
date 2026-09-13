@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['d_0',['D',['../classfe_1_1Span.html#ad3d298be01ccb495b85d7bffdaf05daa',1,'fe::Span']]],
+  ['d_0',['D',['../classfe_1_1Span.html#ad3d298be01ccb495b85d7bffdaf05daa',1,'fe::Span::D'],['../classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06af623e75af30e62bbd73d6df5b50bb7b5',1,'fe::Log::D']]],
   ['d_1',['d',['../classfe_1_1Log.html#a43c5240d1e07b2b429e58f988e6390ad',1,'fe::Log']]],
   ['data_20structures_2',['Data Structures',['../index.html#autotoc_md11',1,'']]],
   ['dbg_3',['Dbg',['../structfe_1_1Dbg.html',1,'fe::Dbg'],['../structfe_1_1Dbg.html#a887c5ecc32abaf560dae5a8dcc3a7b1f',1,'fe::Dbg::Dbg() noexcept=default'],['../structfe_1_1Dbg.html#a7c8391efb0ddbd8382edcc407ebcbcb3',1,'fe::Dbg::Dbg(const Dbg &amp;) noexcept=default'],['../structfe_1_1Dbg.html#a9f3c7a72ab73bd3e6c96fde8db3f54e2',1,'fe::Dbg::Dbg(Loc loc, Sym sym) noexcept'],['../structfe_1_1Dbg.html#a8206e452b550e4ef1e8a865556f5b64b',1,'fe::Dbg::Dbg(Loc loc) noexcept'],['../structfe_1_1Dbg.html#aeb1827a86d8e86d8785fbc28d8fa81c3',1,'fe::Dbg::Dbg(Sym sym) noexcept']]],

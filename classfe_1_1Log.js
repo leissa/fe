@@ -8,7 +8,13 @@ var classfe_1_1Log =
       [ "Info", "classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06a4059b0251f66a18cb56f544728796875", null ],
       [ "Verbose", "classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06ad4a9fa383ab700c5bdd6f31cf7df0faf", null ],
       [ "Debug", "classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06aa603905470e2a5b8c13e96b579ef0dba", null ],
-      [ "Trace", "classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06add4ec0ac4e58f7c32a01244ae91150b1", null ]
+      [ "Trace", "classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06add4ec0ac4e58f7c32a01244ae91150b1", null ],
+      [ "E", "classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06a3a3ea00cfc35332cedf6e5e9a32e94da", null ],
+      [ "W", "classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06a61e9c06ea9a85a5088a499df6458d276", null ],
+      [ "I", "classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06add7536794b63bf90eccfd37f9b147d7f", null ],
+      [ "V", "classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06a5206560a306a2e085a437fd258eb57ce", null ],
+      [ "D", "classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06af623e75af30e62bbd73d6df5b50bb7b5", null ],
+      [ "T", "classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06ab9ece18c950afbfa6b0fdbfa4ff731d3", null ]
     ] ],
     [ "d", "classfe_1_1Log.html#a43c5240d1e07b2b429e58f988e6390ad", null ],
     [ "e", "classfe_1_1Log.html#a09b8c2102ebfd0ea1407c41e890bfd02", null ],
