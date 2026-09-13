@@ -321,7 +321,7 @@ public:
     explicit Cited(std::string str) noexcept
         : str_(std::move(str)) {}
 
-    operator std::string_view() const noexcept { return str_; }
+    constexpr operator std::string_view() const noexcept { return str_; }
 
 private:
     std::string str_;
@@ -330,15 +330,20 @@ private:
 /// A *borrowed* fragment whose backticks stay markup; format_cite escapes every other argument.
 /// A literal and a Cited convert implicitly - both are text someone wrote as markup.
 /// Runtime text has to say so: spell it `Cite(s)`, so data never becomes markup by accident.
+/// A `const char*` - a ternary of two literals, say - counts as runtime text and needs `Cite(s)` too.
 /// @warning Borrows its text like a `std::string_view` does - a Cited outlives the expression, a Cite does not.
 struct Cite {
+    constexpr Cite() noexcept = default; ///< The empty fragment - a context that says nothing.
     template<size_t N>
-    Cite(const char (&s)[N]) noexcept
+    constexpr Cite(const char (&s)[N]) noexcept
         : str(s) {}
-    Cite(const Cited& cited) noexcept
+    constexpr Cite(const Cited& cited) noexcept
         : str(cited) {}
-    explicit Cite(std::string_view s) noexcept
+    constexpr explicit Cite(std::string_view s) noexcept
         : str(s) {}
+
+    [[nodiscard]] constexpr bool empty() const noexcept { return str.empty(); }
+    constexpr explicit operator bool() const noexcept { return !str.empty(); } ///< Is not empty?
 
     std::string_view str;
 };
@@ -429,6 +434,14 @@ inline size_t cite_width(std::string_view str, bool color) {
 }
 
 } // namespace fe::term
+
+namespace fe {
+/// The `` `citation` `` convention lives in fe::term, next to the renderer that reads it.
+using term::Cite;        ///< @copydoc fe::term::Cite
+using term::cite_string; ///< @copydoc fe::term::cite_string
+using term::Cited;       ///< @copydoc fe::term::Cited
+using term::format_cite; ///< @copydoc fe::term::format_cite
+} // namespace fe
 
 #ifndef DOXYGEN
 template<class T>

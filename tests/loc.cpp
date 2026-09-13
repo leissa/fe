@@ -250,6 +250,9 @@ static_assert(std::convertible_to<fe::Cited, fe::Cite>);
 static_assert(!std::convertible_to<std::string, fe::Cite>);
 static_assert(!std::convertible_to<std::string_view, fe::Cite>);
 static_assert(std::constructible_from<fe::Cite, std::string_view>);
+static_assert(std::default_initializable<fe::Cite>); // the empty fragment is a usable sentinel
+static_assert(fe::Cite().empty() && !fe::Cite());
+static_assert(!fe::Cite("x").empty() && bool(fe::Cite("x")));
 
 TEST_CASE("Error") {
     // Disable colors so the diagnostic text is predictable.

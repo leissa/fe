@@ -23,12 +23,6 @@ namespace fe {
 
 struct Driver;
 
-/// The `` `citation` `` convention lives in fe/term.h - the renderer and the producer in one place.
-using term::Cite;        ///< @copydoc fe::term::Cite
-using term::cite_string; ///< @copydoc fe::term::cite_string
-using term::Cited;       ///< @copydoc fe::term::Cited
-using term::format_cite; ///< @copydoc fe::term::format_cite
-
 /// Collects diagnostics and hands each to the Diag that lays it out.
 /// Error::ack once you are done: it throws an Error::Bail if anything went wrong.
 class Error {

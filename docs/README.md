@@ -124,6 +124,7 @@ Header-only, except for what [Requires `FE_LIB`](#requires-fe_lib) lists below.
   `Diag::render` resolves the citation markup to plain text; override it to read that structure yourself.
 - `fe::Log` for leveled logging with acronym, color, and origin prefix.
     - `Log::{e,w,i,v}` - plus `Log::{d,t}`, which vaporize in a `Release` build - point at their call site via `std::source_location`; no macros involved.
+    - They take a `cite_string` like `fe::Error` does, so a `` `citation` `` is colored and an argument is data.
 - `fe::term` for lightweight terminal colors - and for the `` `citation` `` convention every FE message is written in; see [Citations](#citations).
 
 #### Command Line
@@ -285,7 +286,7 @@ Markup is a *type*, not a convention you have to remember:
 
 The convention itself lives in `fe/term.h`, not in the diagnostics: `term::render_cite` renders it, `term::escape_cite` escapes data into it, and `term::cite_string`/`term::format_cite`/`term::Cite`/`term::Cited` produce it.
 That is what lets `fe::Cli` spell its `--help` text the same way `fe::Error` spells a diagnostic - and why `Cli::help` and `Cli::markdown` read one grammar rather than two.
-`fe::Log` renders no citations at all - a backtick in a log message is just a backtick.
+`fe::Log` reads the very same convention, so a log message quotes a plugin, phase, or path exactly the way a diagnostic does.
 
 ## 🛠️ Building and Testing
 

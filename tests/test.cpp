@@ -936,4 +936,32 @@ TEST_CASE("Log") {
         CHECK(fe::Log::level2color(Level::Error) == fe::term::FG::Red);
         CHECK(fe::Log::level2color(Level::Trace) == fe::term::FG::Magenta);
     }
+
+    SUBCASE("a log message follows the citation convention") {
+        auto guard = fe::term::ScopedMode(fe::term::Mode::Never);
+
+        oss.str({});
+        log.i("load plugin `{}`", "core");
+        CHECK(oss.str().ends_with("load plugin `core`\n"));
+
+        oss.str({}); // an argument is data: its backticks cannot open a citation of their own
+        log.i("annex `{}`", "a`b");
+        CHECK(oss.str().ends_with("annex `a`b`\n"));
+
+        oss.str({}); // ... and a trailing backslash does not swallow the closing delimiter
+        log.i("read `{}`", "C:\\tmp\\");
+        CHECK(oss.str().ends_with("read `C:\\tmp\\`\n"));
+
+        oss.str({}); // the format string's own escapes resolve
+        log.i("a \\` backtick and a \\\\ backslash");
+        CHECK(oss.str().ends_with("a ` backtick and a \\ backslash\n"));
+
+        { // a citation is colored where there is color to spend
+            auto _ = fe::term::ScopedMode(fe::term::Mode::Always);
+            oss.str({});
+            log.i("load plugin `{}`", "core");
+            CHECK(oss.str().find("`core`") == std::string::npos);
+            CHECK(oss.str().contains("core"));
+        }
+    }
 }

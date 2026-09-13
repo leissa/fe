@@ -6,6 +6,7 @@
 #include <ostream>
 #include <print>
 #include <source_location>
+#include <sstream>
 #include <string_view>
 #include <type_traits>
 
@@ -43,7 +44,7 @@ public:
     }
     ///@}
 
-    /// A std::format_string that remembers where it was written.
+    /// A cite_string that remembers where it was written.
     template<class... Args>
     struct FmtLoc {
         template<class S>
@@ -52,7 +53,7 @@ public:
             : fmt(fmt)
             , loc(loc) {}
 
-        std::format_string<Args...> fmt;
+        cite_string<Args...> fmt;
         std::source_location loc;
     };
 
@@ -65,13 +66,13 @@ public:
     /// Output @p fmt to Log::ostream; does nothing if Log::ostream is `nullptr`.
     ///@{
     template<class... Args>
-    void log(Level level, Loc loc, std::format_string<Args...> fmt, Args&&... args) const {
+    void log(Level level, Loc loc, cite_string<Args...> fmt, Args&&... args) const {
         if (ostream_ && level <= max_level_) emit(level, loc, fmt, std::forward<Args>(args)...);
     }
 
     /// A std::source_location is no Loc: it points into *your* source, which has no fe::Src.
     template<class... Args>
-    void log(Level level, std::source_location where, std::format_string<Args...> fmt, Args&&... args) const {
+    void log(Level level, std::source_location where, cite_string<Args...> fmt, Args&&... args) const {
         if (ostream_ && level <= max_level_)
             emit(level, std::format("{}:{}", where.file_name(), where.line()), fmt, std::forward<Args>(args)...);
     }
@@ -160,11 +161,14 @@ public:
     ///@}
 
 private:
+    /// Renders into a detached buffer, so a `` `citation` `` follows the same Mode::Auto decision the
+    /// term::FG values of the prefix do; see fe/term.h.
     template<class W, class... Args>
-    void emit(Level level, const W& where, std::format_string<Args...> fmt, Args&&... args) const {
-        std::print(ostream(), "{}{}:{}{}:{} ", level2color(level), level2acro(level), term::FG::Gray, where,
-                   term::FG::Reset);
-        std::println(ostream(), fmt, std::forward<Args>(args)...);
+    void emit(Level level, const W& where, cite_string<Args...> fmt, Args&&... args) const {
+        auto oss = std::ostringstream();
+        term::render_cite(oss, term::detail::vformat_cite(fmt.get(), args...));
+        std::println(ostream(), "{}{}:{}{}:{} {}", level2color(level), level2acro(level), term::FG::Gray, where,
+                     term::FG::Reset, oss.str());
         if ((level == Level::Error && break_on_error) || (level == Level::Warn && break_on_warn)) breakpoint();
     }
 
