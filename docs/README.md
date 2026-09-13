@@ -49,7 +49,7 @@ A `.l`/`.y` pair for that grammar would not come out much shorter than those 203
 What a generator does *not* write for you is the other 395: command-line parsing, the AST, the arena, the interning, the evaluator, the printer.
 Nor does it write the diagnostics, and that is where the difference actually shows up.
 
-### Diagnostics
+### Diagnostics you did not write
 
 Those 203 lines already produce this.
 The error line and its snippet come out of `expect`; the note that points back at the `(` is a three-line `syntax_err` override plus one `fe::Restore` to remember which `(` it was:
@@ -83,7 +83,7 @@ test/error/stray_paren.let:3:7: error: ignoring unmatched `)` while parsing prin
 Every message above is FE's own wording, summary line included; the only text Let contributes is that one note.
 A generator hands you the parse and `yyerror("syntax error")` - the snippets, the notes, the recovery, and the `--max-errors` truncation are yours to build.
 
-### And you can read it afterwards
+### No generated code to debug
 
 There is no code generation step, so there is no generated code to debug and no build-time dependency on a tool.
 `parse_expr` is a function that says what it does, in the language the rest of your compiler is written in.
@@ -118,11 +118,11 @@ Header-only, except for what [Requires `FE_LIB`](#requires-fe_lib) lists below.
 - `fe::Src` and `fe::SrcMap` for owning source text and resolving a position back to `path:row:col`.
 - `fe::Dbg` for the `Loc`/`Sym` pair every named entity drags along, interned in the `Driver` as a `DbgKey`.
 - `fe::Error` for collecting diagnostics - errors, warnings and their notes - and rendering each with its source snippet; `Error::ack` throws what it collected as a self-contained `Error::Bail`.
-  The `Driver` owns the one everything reports into (`Driver::error`); `Error::{e,w,n}` are terse aliases of `Error::{error,warn,note}`, in the spirit of `Log::e` and friends.
+  The `Driver` owns the one everything reports into (`Driver::error`); `Error::{e,w,n}` open an error, a warning, and a note, in the spirit of `Log::e` and friends.
 - `fe::Diag` for how a diagnostic lays out: `Diag::loc_style` (a `Loc::Style`), `Diag::no_snippet`, and friends cover the usual adjustments, and one virtual per piece (`loc`, `header`, `snippet`, `note`, `summary`, `render`) covers the rest.
   Derive and `Driver::diag(std::make_unique<MyDiag>())` to lay one out entirely your own way.
 - `fe::Log` for leveled logging with acronym, color, and origin prefix.
-    - `Log::error`/`Log::warn`/... shorthands point at their call site via `std::source_location`; no macros involved.
+    - `Log::{e,w,i,v}` - plus `Log::{d,t}`, which vaporize in a `Release` build - point at their call site via `std::source_location`; no macros involved.
 - `fe::term` for lightweight terminal colors in diagnostics and CLI output.
 
 #### Command Line
@@ -130,7 +130,7 @@ Header-only, except for what [Requires `FE_LIB`](#requires-fe_lib) lists below.
 - `fe::Cli` for parsing `argc`/`argv` of a single command: chain `Cli::opt`/`Cli::arg` and bind each switch to a variable of yours - a `bool`, a `std::string`, an integral, a `std::vector` of those, or a callable.
   It understands `--name value`, `--name=value`, `-n value`, `-nvalue`, clustered short flags, and `--`.
 - `Cli::help` lays those switches out for a terminal - grouped into sections by `Cli::grp`, wrapped to the terminal width, and colored via `fe::term`.
-  `Cli::md` renders the very same information as Markdown tables, so `--help` and the manual cannot drift apart.
+  `Cli::markdown` renders the very same information as Markdown tables, so `--help` and the manual cannot drift apart.
 - `Cli::section` for titled `term`/description rows that aren't options - `ENVIRONMENT`, plugin arguments, and the like - rendered below the options in both backends.
 
 #### Data Structures
@@ -175,11 +175,6 @@ These need a translation unit of their own and hence live in `src/fe/`:
 
   Otherwise you will run into a link error for `operator<<(std::ostream&, fe::Loc)` and friends.
 
-FE does not try to hide frontend construction behind a generator.
-Instead, it gives you sharp, reusable tools so you can build exactly the frontend you want.
-
-For a complete end-to-end example, see [**Let**](https://github.com/leissa/let), a small toy language built on FE.
-
 ## 🚀 Quick Start
 
 The easiest way to get going is through [**Let**](https://github.com/leissa/let).
@@ -191,7 +186,7 @@ You can either:
 
 That gives you a concrete, working example of how FE is intended to be used in practice.
 
-### Integrate into existing Project
+### Integrate into a Project
 
 #### CMake
 
@@ -245,6 +240,44 @@ A typical FE-based frontend looks roughly like this:
 
 If you want a concrete model to copy from, start with [`tests/lexer.cpp`](../tests/lexer.cpp).
 
+## 💬 Writing a Diagnostic
+
+Everything reports into the one `fe::Error` the `Driver` owns, and one diagnostic is one chained expression:
+
+```cpp
+error().e(tok.loc(), "expected `)`, got `{}` while parsing {}", tok, Cite(ctxt))
+       .n(open.loc(), "unmatched `(` opened here");
+```
+
+`Error::e` opens an error and `Error::w` a warning; `Error::n` hangs a note off whichever came last.
+A note *with* a `Loc` reads as a diagnostic of its own - header line plus snippet - and is dropped when that `Loc` merely repeats the primary one; a note without one has nowhere else to point and renders as a `= note:` continuation.
+Nothing throws along the way: `Error::bail` throws what has accumulated as an `Error::Bail`, and `Error::ack` at the end of the run does that only if an error was among it and otherwise just reports the warnings.
+
+### Citations
+
+A message spells the things it talks about in backticks, and `fe::CodeDiag` colors what they enclose - or keeps the backticks when there is no color to spend:
+
+```
+test.let:1:11: error: identifier `+` not found
+```
+
+Only the **format string** is markup that way.
+**Arguments are data**, and `fe::Error` escapes their backticks for you, so a symbol, path, or token that happens to contain one cannot break the highlighting of the message around it:
+
+```cpp
+error().e(loc, "identifier `{}` not found", sym); // sym may be `+ - nothing to do
+```
+
+| Where | What to escape |
+| ----- | -------------- |
+| The format string | Nothing, unless you want a *literal* backtick - spell it `` \` `` - or a literal backslash - `\\`. |
+| An argument | Nothing, ever. |
+| An argument that is a message fragment of your own, with citations of its own | Wrap it in `fe::Cite`; that is what a parser `ctxt` gets. |
+| The code assembling such a fragment | Use `fe::format_cite` instead of `std::format`, so its backticks stay markup while *its* arguments are escaped. |
+
+`fe::Error::{msg,e,w,n}` take a `fe::cite_string` rather than a `std::format_string` to say so in the signature; forward one through a wrapper of your own the same way.
+`fe::Log` renders no citations at all - a backtick in a log message is just a backtick.
+
 ## 🛠️ Building and Testing
 
 To configure, build, and run the test suite:
@@ -284,7 +317,7 @@ This requires Doxygen and Graphviz (`dot`).
 
 FE is developed against three frontends of very different scale, and every change has to work for all three:
 
-- [Let](https://github.com/leissa/let) - the 619-line demo language above, and the template to fork.
+- [Let](https://github.com/leissa/let) - the demo language above, and the template to fork.
 - [SQL](https://github.com/leissa/sql) - a SQL parser: two-token lookahead, reserved versus non-reserved words, and anchor-based recovery through comma-separated lists.
 - [MimIR](https://anydsl.github.io/MimIR/) - the author's compiler IR: three-token lookahead, a Unicode-heavy surface syntax, and plugins loaded mid-parse that bring their own vocabulary.
 

@@ -5,8 +5,10 @@
 
 #include <atomic>
 #include <iostream>
+#include <iterator>
 #include <optional>
 #include <ostream>
+#include <string>
 #include <string_view>
 
 #ifdef _WIN32
@@ -183,29 +185,34 @@ constexpr std::string_view sgr(FG color) noexcept {
     // clang-format on
 }
 
-/// Index of the next backtick at or after @p i that is not escaped as `` \` ``, or `npos`.
+/// Does @p str spell an escape - `` \` `` or `\\` - at position @p i of `[i, end)`?
+constexpr bool escape(std::string_view str, size_t i, size_t end) noexcept {
+    return str[i] == '\\' && i + 1 != end && (str[i + 1] == '`' || str[i + 1] == '\\');
+}
+
+/// Index of the next backtick at or after @p i that is not escaped, or `npos`.
 inline size_t tick(std::string_view str, size_t i) noexcept {
     for (; i != str.size(); ++i)
-        if (str[i] == '\\' && i + 1 != str.size() && str[i + 1] == '`')
+        if (escape(str, i, str.size()))
             ++i;
         else if (str[i] == '`')
             return i;
     return std::string_view::npos;
 }
 
-/// Streams `[begin, end)` of @p str, dropping the backslash of every `` \` ``.
+/// Streams `[begin, end)` of @p str, dropping the leading backslash of every escape.
 inline void stream_raw(std::ostream& os, std::string_view str, size_t begin, size_t end) {
     for (auto i = begin; i != end; ++i) {
-        if (str[i] == '\\' && i + 1 != end && str[i + 1] == '`') ++i;
+        if (escape(str, i, end)) ++i;
         os << str[i];
     }
 }
 
-/// Columns `[begin, end)` of @p str occupies once streamed via stream_raw - one less per `` \` ``.
+/// Columns `[begin, end)` of @p str occupies once streamed via stream_raw - one less per escape.
 inline size_t raw_width(std::string_view str, size_t begin, size_t end) noexcept {
     size_t width = 0;
     for (auto i = begin; i != end; ++i, ++width)
-        if (str[i] == '\\' && i + 1 != end && str[i + 1] == '`') ++i;
+        if (escape(str, i, end)) ++i;
     return width;
 }
 
@@ -286,9 +293,29 @@ inline std::ostream& operator<<(std::ostream& os, FG color) {
     return os;
 }
 
+/// Escapes @p str into @p out so that render_cite reproduces it verbatim instead of reading it as markup.
+/// Escaping the backslashes as well keeps a trailing one from swallowing the backtick that follows it.
+template<class O>
+O escape_cite_to(O out, std::string_view str) {
+    for (auto c : str) {
+        if (c == '`' || c == '\\') *out++ = '\\';
+        *out++ = c;
+    }
+    return out;
+}
+
+/// As above but into a fresh `std::string`.
+inline std::string escape_cite(std::string_view str) {
+    auto res = std::string();
+    res.reserve(str.size());
+    escape_cite_to(std::back_inserter(res), str);
+    return res;
+}
+
 /// Streams @p str into @p os, coloring each `` `citation` `` and dropping its backticks - or keeping them
-/// verbatim without color; `` \` `` is a literal backtick. This is the convention fe::CodeDiag renders a
-/// diagnostic message with; use it to apply the same convention elsewhere, e.g. fe::Cli::help.
+/// verbatim without color; `` \` `` is a literal backtick and `\\` a literal backslash. This is the convention
+/// fe::CodeDiag renders a diagnostic message with; use it to apply the same convention elsewhere, e.g.
+/// fe::Cli::help.
 inline void render_cite(std::ostream& os, std::string_view str) {
     auto color = use_color(os);
 

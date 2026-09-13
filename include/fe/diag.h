@@ -57,7 +57,7 @@ public:
 };
 
 /// The Diag a Driver installs by default: colors a `` `citation` `` and drops its backticks - or keeps them
-/// verbatim without color; `` \` `` is a literal backtick.
+/// verbatim without color; `` \` `` is a literal backtick and `\\` a literal backslash.
 /// @warning Renders when the message is *recorded*, so Mode::Auto needs term::resolve_mode up front.
 class FE_API CodeDiag : public Diag {
 public:

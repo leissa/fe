@@ -124,11 +124,11 @@ protected:
         return {};
     }
 
-    /// As above but builds the context via std::format.
+    /// As above but builds the context via fe::format_cite.
     template<class... Args>
-    Tok expect(Tag tag, std::format_string<Args...> fmt, Args&&... args) {
+    Tok expect(Tag tag, cite_string<Args...> fmt, Args&&... args) {
         if (ahead().tag() == tag) return lex();
-        self().syntax_err(tag, std::format(fmt, std::forward<Args>(args)...));
+        self().syntax_err(tag, format_cite(fmt, std::forward<Args>(args)...));
         return {};
     }
 
@@ -207,7 +207,7 @@ protected:
         static_assert(
             requires(S& s) { s.driver(); },
             "provide `fe::Driver& driver()` in your parser - or a `syntax_err` of your own");
-        return error().e(tok.loc(), "expected {}, got `{}` while parsing {}", what, tok, ctxt);
+        return error().e(tok.loc(), "expected {}, got `{}` while parsing {}", Cite(what), tok, Cite(ctxt));
     }
 
     /// As above but uses Parser::ahead as @p tok.
@@ -226,16 +226,16 @@ protected:
         static_assert(
             requires(S& s) { s.driver(); },
             "provide `fe::Driver& driver()` in your parser - or an `unanchored_err` of your own");
-        return error().e(tok.loc(), "ignoring unmatched `{}` while parsing {}", tok, ctxt);
+        return error().e(tok.loc(), "ignoring unmatched `{}` while parsing {}", tok, Cite(ctxt));
     }
     ///@}
 
     /// Spells @p tag out via `Tok::tag2str` if there is one - a bare enumerator would render as its number.
     static auto tag2str_(Tag tag) {
         if constexpr (requires { Tok::tag2str(tag); })
-            return std::format("`{}`", Tok::tag2str(tag));
+            return format_cite("`{}`", Tok::tag2str(tag));
         else
-            return std::format("`{}`", tag);
+            return format_cite("`{}`", tag);
     }
 
     Ring<Tok, K> ahead_;

@@ -10,6 +10,7 @@
 #include <sstream>
 #include <string>
 #include <string_view>
+#include <type_traits>
 #include <utility>
 #include <vector>
 
@@ -21,6 +22,43 @@
 namespace fe {
 
 struct Driver;
+
+/// Wraps a diagnostic argument that spells `` `citations` `` of its own, such as a message fragment
+/// assembled elsewhere; Error escapes the backticks of every other argument.
+struct Cite {
+    std::string_view str;
+};
+
+namespace detail {
+
+/// Wraps a diagnostic argument whose backticks are data and must not delimit a citation.
+template<class T>
+struct Escaped {
+    const T& val;
+};
+
+template<class T, class U = std::remove_cvref_t<T>>
+using cite_arg_t = std::conditional_t<std::is_same_v<U, Cite>, Cite, Escaped<U>>;
+
+/// std::vformat, but each argument renders as data instead of as markup; see Cite for the exception.
+/// @note The wrappers are lambda *parameters* because `std::make_format_args` does not bind rvalues.
+template<class... Args>
+std::string vformat_cite(std::string_view fmt, const Args&... args) {
+    auto vformat = [fmt]<class... A>(A... a) { return std::vformat(fmt, std::make_format_args(a...)); };
+    return vformat(cite_arg_t<Args>{args}...);
+}
+
+} // namespace detail
+
+/// A std::format_string whose backticks delimit a `` `citation` `` while those of its arguments are data.
+template<class... Args>
+using cite_string = std::format_string<detail::cite_arg_t<Args>...>;
+
+/// std::format for a message that follows that convention; assemble a fragment for fe::Cite with it.
+template<class... Args>
+std::string format_cite(cite_string<Args...> fmt, Args&&... args) {
+    return detail::vformat_cite(fmt.get(), args...);
+}
 
 /// Collects diagnostics and hands each to the Diag that lays it out.
 /// Error::ack once you are done: it throws an Error::Bail if anything went wrong.
@@ -94,28 +132,26 @@ public:
     }
 
     // clang-format off
+    /// The backticks of @p s delimit a `` `citation` ``; those of an argument are data and get escaped - see Cite.
     /// @note Formats via `std::vformat` because Diag::render may render @p s more than once.
-    template<class... Args> Error& msg(Loc loc, Tag tag, std::format_string<Args...> s, Args&&... args) {
-        msg_(loc, tag, [&] { return std::vformat(s.get(), std::make_format_args(args...)); });
+    template<class... Args> Error& msg(Loc loc, Tag tag, cite_string<Args...> s, Args&&... args) {
+        msg_(loc, tag, [&] { return detail::vformat_cite(s.get(), args...); });
         return *this;
     }
 
-    template<class... Args> Error& e(Loc loc, std::format_string<Args...> s, Args&&... args) { return msg(loc, Tag::E, s, std::forward<Args>(args)...); }
-    template<class... Args> Error& w(Loc loc, std::format_string<Args...> s, Args&&... args) { return msg(loc, Tag::W, s, std::forward<Args>(args)...); }
+    template<class... Args> Error& e(Loc loc, cite_string<Args...> s, Args&&... args) { return msg(loc, Tag::E, s, std::forward<Args>(args)...); }
+    template<class... Args> Error& w(Loc loc, cite_string<Args...> s, Args&&... args) { return msg(loc, Tag::W, s, std::forward<Args>(args)...); }
 
     /// A `= note:` continuation of the diagnostic being built; it has no Loc of its own to point at.
-    template<class... Args> Error& n(std::format_string<Args...> s, Args&&... args) {
-        note_(Loc(), [&] { return std::vformat(s.get(), std::make_format_args(args...)); });
-        return *this;
-    }
+    template<class... Args> Error& n(cite_string<Args...> s, Args&&... args) { return n(Loc(), s, std::forward<Args>(args)...); }
 
     /// A Note that points *elsewhere*; dropped when @p loc adds nothing.
     /// A @p loc overlapping the primary one is already covered by its snippet and so points nowhere new.
     /// An invalid @p loc points *nowhere* and degrades to the `= note:` continuation above.
     /// The renderer gives @p loc a header line of its own, so phrase the message to stand alone.
-    template<class... Args> Error& n(Loc loc, std::format_string<Args...> s, Args&&... args) {
+    template<class... Args> Error& n(Loc loc, cite_string<Args...> s, Args&&... args) {
         if (loc && (loc & primary_loc_())) return *this;
-        note_(loc, [&] { return std::vformat(s.get(), std::make_format_args(args...)); });
+        note_(loc, [&] { return detail::vformat_cite(s.get(), args...); });
         return *this;
     }
     // clang-format on
@@ -213,7 +249,34 @@ private:
 
 } // namespace fe
 
-#ifndef DOXYGEN // clang-format off
+#ifndef DOXYGEN
+template<class T>
+struct std::formatter<fe::detail::Escaped<T>> {
+    std::string_view spec; ///< Borrowed from the format string, which outlives the `vformat` call.
+
+    constexpr auto parse(std::format_parse_context& ctx) {
+        auto i = ctx.begin();
+        for (; i != ctx.end() && *i != '}'; ++i)
+            if (*i == '{') throw std::format_error("fe::Error: a nested replacement field needs fe::Cite");
+        spec = std::string_view(ctx.begin(), i);
+        return i;
+    }
+
+    auto format(const fe::detail::Escaped<T>& escaped, std::format_context& ctx) const {
+        auto str = spec.empty() ? std::format("{}", escaped.val)
+                                : std::vformat(std::format("{{:{}}}", spec), std::make_format_args(escaped.val));
+        return fe::term::escape_cite_to(ctx.out(), str);
+    }
+};
+
+template<>
+struct std::formatter<fe::Cite> : std::formatter<std::string_view> {
+    auto format(fe::Cite cite, std::format_context& ctx) const {
+        return std::formatter<std::string_view>::format(cite.str, ctx);
+    }
+};
+
+// clang-format off
 template<> struct std::formatter<fe::Error      > : fe::ostream_formatter {};
 template<> struct std::formatter<fe::Error::Bail> : fe::ostream_formatter {};
 template<> struct std::formatter<fe::Diag::Tag  > : fe::ostream_formatter {};

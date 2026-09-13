@@ -464,6 +464,36 @@ TEST_CASE("Error") {
         drv.diag().no_snippet = false;
     }
 
+    SUBCASE("an argument is data, not markup") {
+        err.clear();
+        drv.diag().no_snippet = true;
+        err.e(Loc(src, Pos(4), Pos(5)), "identifier `{}` not found", "`+");
+        CHECK(std::format("{}", err).starts_with("test.let:1:5: error: identifier ``+` not found\n"));
+
+        err.clear(); // a trailing backslash must not swallow the closing delimiter
+        err.e(Loc(src, Pos(4), Pos(5)), "cannot read `{}`", "C:\\tmp\\");
+        CHECK(std::format("{}", err).starts_with("test.let:1:5: error: cannot read `C:\\tmp\\`\n"));
+
+        err.clear(); // fe::Cite opts an already rendered fragment out
+        err.e(Loc(src, Pos(4), Pos(5)), "expected {}", fe::Cite("a `;`"));
+        CHECK(std::format("{}", err).starts_with("test.let:1:5: error: expected a `;`\n"));
+
+        { // an argument's backticks stay plain text where a citation would be colored
+            auto _ = fe::term::ScopedMode(fe::term::Mode::Always);
+            err.clear();
+            err.e(Loc(src, Pos(4), Pos(5)), "`{}` and `cited`", "`raw`");
+            auto str = std::format("{}", err);
+            CHECK(str.find("`raw`") != std::string::npos);
+            CHECK(str.find("`cited`") == std::string::npos);
+        }
+
+        err.clear(); // a format spec still applies - to the argument, before it is escaped
+        err.e(Loc(src, Pos(4), Pos(5)), "{:>4}", 42);
+        CHECK(std::format("{}", err).starts_with("test.let:1:5: error:   42\n"));
+
+        drv.diag().no_snippet = false;
+    }
+
     SUBCASE("the bare Diag leaves the message text alone") {
         auto _    = fe::term::ScopedMode(fe::term::Mode::Always);
         auto bare = fe::Driver();
