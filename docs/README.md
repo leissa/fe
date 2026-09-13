@@ -16,7 +16,7 @@
 [TOC]
 
 **FE** is a C++23 toolkit for building handwritten compiler and interpreter frontends.
-Most of it is header-only; the handful of components that need a translation unit of their own live in `fe-lib`.
+It is one library target - `fe` - that you add as a subdirectory and link.
 
 Rather than generating lexers or parsers for you, FE focuses on the infrastructure that every frontend needs anyway: source locations, diagnostics, interning, parsing support, command-line handling, and efficient memory management.
 The goal is simple: keep handwritten frontends lightweight, explicit, and pleasant to maintain.
@@ -96,8 +96,6 @@ It provides a compact set of reusable, well-integrated components:
 
 ### Building Blocks
 
-Header-only, except for what [Requires `fe-lib`](#requires-fe-lib) lists below.
-
 #### Core
 
 - `fe::Driver` for shared frontend state: the SymPool, the SrcMap, the interned `Dbg`s, the `Diag` that lays a diagnostic out, and the `Error` everything reports into.
@@ -109,7 +107,7 @@ Header-only, except for what [Requires `fe-lib`](#requires-fe-lib) lists below.
 
 - `fe::Lexer<K, S>` for UTF-8-aware lexing with lookahead and token text accumulation.
 - `fe::Parser<Tok, Tag, K, S>` for recursive-descent-style parsing with token lookahead, span tracking, and anchor-based error recovery.
-  Both blueprints ask their child for a `fe::Driver& driver()` and report their default diagnostics into its `Error`; a header-only setup words all of them itself and never touches a `Driver`.
+  Both blueprints ask their child for a `fe::Driver& driver()` and report their default diagnostics into its `Error`.
 - `fe::utf8` for lightweight UTF-8 handling.
 
 #### Diagnostics
@@ -122,10 +120,12 @@ Header-only, except for what [Requires `fe-lib`](#requires-fe-lib) lists below.
 - `fe::Diag` for how a diagnostic lays out: `Diag::loc_style` (a `Loc::Style`), `Diag::no_snippet`, and friends cover the usual adjustments, and one virtual per piece (`loc`, `header`, `snippet`, `note`, `summary`, `render`) covers the rest.
   Derive and `Driver::diag(std::make_unique<MyDiag>())` to lay one out entirely your own way.
   `Diag::render` resolves the citation markup to plain text; override it to read that structure yourself.
+- `fe::Snippet` for the underlined source excerpt `fe::Diag` puts below a diagnostic.
 - `fe::Log` for leveled logging with acronym, color, and origin prefix.
     - `Log::{e,w,i,v}` - plus `Log::{d,t}`, which vaporize in a `Release` build - point at their call site via `std::source_location`; no macros involved.
     - They take a `cite_string` like `fe::Error` does, so a `` `citation` `` is colored and an argument is data.
 - `fe::term` for lightweight terminal colors - and for the `` `citation` `` convention every FE message is written in; see [Citations](#citations).
+  `term::mode` and `term::auto_detached` are one setting per process, so a shared library loaded via `fe::dl` follows the host instead of starting over from the defaults.
 
 #### Command Line
 
@@ -142,41 +142,19 @@ Header-only, except for what [Requires `fe-lib`](#requires-fe-lib) lists below.
 - `fe::XTrie` for interned, immutable sets - an [IndexedTrie](https://dl.acm.org/doi/10.1145/3808286) that is space-efficient and answers intersection tests fast.
 - `fe::BFSWorklist`/`fe::DFSWorklist` for worklist traversals that visit each element at most once.
 - Optional `FE_ABSL` support for [Abseil](https://abseil.io/) hash containers.
+- `fe/container.h` for some helpers.
 
-#### Odds & Ends
+#### Algorithms
 
 - `fe::hash` and friends for cheap, `constexpr` hash mixing/combining.
 - `fe::Restore` for RAII save/restore of a variable - or of anything a getter/setter pair reaches, like `term::ScopedMode` - across a scope.
-- `fe/algo.h` and `fe/container.h` for the odds and ends every frontend rewrites otherwise.
+- `fe/algo.h` for some helpers.
 
-### Requires `fe-lib` {#requires-fe-lib}
+#### System
 
-These need a translation unit of their own and hence live in `src/fe/`:
-
-- `fe::Diag` for the diagnostic layout - and hence `fe::Driver`, whose ctor/dtor own one, and `Error::diag`, which reads it back out of the `Driver`.
-  The default `syntax_err`/`unanchored_err`/`utf8_err`/`char_err` of `fe::Parser`/`fe::Lexer` go through this, so a header-only frontend has to supply its own.
-- `fe::Snippet` for the underlined source excerpt below a diagnostic.
-- `fe::dl` and `fe::sys` for loading dynamic libraries and locating/running external commands.
 - `fe::Profiler` for nested wall-clock spans reported as a flat table, a tree, or Chrome Trace JSON.
-- `fe::term::mode` and `fe::term::auto_detached` - one setting per process, so a shared library loaded via `fe::dl` follows the host instead of starting over from the defaults.
-- The default `operator<<`/`dump` of `fe::Pos`/`fe::Loc`.
-
-  `fe/loc.h` merely *declares* these.
-  So in a header-only setup you have to hand-roll your own rendering - as a hidden friend, it must be defined in namespace `fe`:
-
-  ```cpp
-  namespace fe {
-
-  std::ostream& operator<<(std::ostream& os, Loc loc) { /* ... */ }
-  std::ostream& operator<<(std::ostream& os, Pos pos) { /* ... */ }
-
-  void Loc::dump() const { std::cout << *this << std::endl; }
-  void Pos::dump() const { std::cout << *this << std::endl; }
-
-  } // namespace fe
-  ```
-
-  Otherwise you will run into a link error for `operator<<(std::ostream&, fe::Loc)` and friends.
+- `fe::dl` for loading dynamic libraries.
+- `fe::sys` for locating/running external commands.
 
 ## 🚀 Quick Start
 
@@ -189,9 +167,7 @@ You can either:
 
 That gives you a concrete, working example of how FE is intended to be used in practice.
 
-### Integrate into a Project
-
-#### CMake
+### CMake
 
 Add FE as a subdirectory and link the `fe` target:
 
@@ -208,23 +184,12 @@ add_subdirectory(submodules/fe)
 target_link_libraries(my_compiler PRIVATE fe)
 ```
 
-If all you want is one self-contained header such as `fe/xtrie.h`, just include it and skip the build altogether.
-
-`fe-lib` is an `OBJECT` library, so its symbols land inside a shared library of *yours*.
-On Windows that shared library has to export them, which CMake cannot infer: compile everything that goes into it with `fe_lib_EXPORTS`, or `FE_STATIC_DEFINE` if there is no shared library in play.
+`fe` is an `OBJECT` library, so its objects land inside whichever target links it directly, while everything downstream just gets the headers.
+Link it into exactly one shared library of yours and every other consumer resolves its symbols there instead of carrying a copy.
+On Windows that shared library has to export them, which CMake cannot infer: compile everything that goes into it with `fe_EXPORTS`, or `FE_STATIC_DEFINE` if there is no shared library in play.
 
 ```cmake
-target_compile_definitions(my_compiler PRIVATE fe_lib_EXPORTS)
-```
-
-#### Direct Vendoring
-
-You can also vendor `include/fe/` directly into your project and add the `src/fe/*.cpp` you need to your build - `fe::dl` additionally wants `${CMAKE_DL_LIBS}`.
-
-If you want Abseil support in that setup, compile with:
-
-```sh
--DFE_ABSL
+set_target_properties(my_lib PROPERTIES DEFINE_SYMBOL fe_EXPORTS)
 ```
 
 ## 🧭 Typical Workflow

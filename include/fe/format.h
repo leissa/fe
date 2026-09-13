@@ -6,7 +6,6 @@
 #include <functional>
 #include <iostream>
 #include <ostream>
-#include <print>
 #include <ranges>
 #include <sstream>
 #include <string_view>
@@ -14,6 +13,7 @@
 
 #include "fe/bitset.h"
 #include "fe/loc.h"
+#include "fe/sym.h"
 #include "fe/utf8.h"
 
 namespace fe {

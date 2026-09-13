@@ -22,10 +22,28 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     include(CTest) # defines BUILD_TESTING
 endif()
 
-add_library(fe INTERFACE)
+# An OBJECT library so that a consumer can compile it into one shared library of its own;
+# every other consumer then resolves these symbols there instead of carrying a copy.
+add_library(fe OBJECT)
 
 target_sources(fe
-    INTERFACE
+    PRIVATE
+        src/fe/bitset.cpp
+        src/fe/cli.cpp
+        src/fe/diag.cpp
+        src/fe/dl.cpp
+        src/fe/driver.cpp
+        src/fe/error.cpp
+        src/fe/loc.cpp
+        src/fe/log.cpp
+        src/fe/profile.cpp
+        src/fe/snippet.cpp
+        src/fe/src.cpp
+        src/fe/sym.cpp
+        src/fe/sys.cpp
+        src/fe/term.cpp
+        src/fe/utf8.cpp
+    PUBLIC
         FILE_SET headers
         BASE_DIRS include
         TYPE HEADERS
@@ -64,63 +82,44 @@ target_sources(fe
             include/fe/worklist.h
             include/fe/xtrie.h
 )
-target_include_directories(fe INTERFACE $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
-target_compile_features(fe INTERFACE cxx_std_23)
+target_include_directories(fe
+    PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+)
+target_compile_features(fe PUBLIC cxx_std_23)
+target_link_libraries(fe PRIVATE ${CMAKE_DL_LIBS})
+set_target_properties(fe PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
 if(MSVC)
-    target_compile_definitions(fe INTERFACE _CTYPE_DISABLE_MACROS)
-    target_compile_options(fe INTERFACE /utf-8 /wd4146 /wd4245)
+    target_compile_definitions(fe PUBLIC _CTYPE_DISABLE_MACROS)
+    target_compile_options(fe PUBLIC /utf-8 /wd4146 /wd4245)
 endif()
 
 option(FE_ABSL "If ON, use abseil containers, otherwise use std containers" OFF)
 if(FE_ABSL)
-    target_compile_definitions(fe INTERFACE FE_ABSL)
+    target_compile_definitions(fe PUBLIC FE_ABSL)
     target_link_libraries(fe
-        INTERFACE
+        PUBLIC
             absl::flat_hash_map absl::flat_hash_set
             absl::inlined_vector
             absl::node_hash_map absl::node_hash_set
     )
 endif()
 
-# An OBJECT library so that a consumer can compile it into one shared library of its own;
-# every other consumer then resolves these symbols there instead of carrying a copy.
-add_library(fe-lib OBJECT)
-target_sources(fe-lib
-    PRIVATE
-        src/fe/cli.cpp
-        src/fe/diag.cpp
-        src/fe/dl.cpp
-        src/fe/driver.cpp
-        src/fe/error.cpp
-        src/fe/loc.cpp
-        src/fe/profile.cpp
-        src/fe/snippet.cpp
-        src/fe/sys.cpp
-        src/fe/term.cpp
-)
-target_link_libraries(fe-lib
-    PUBLIC
-        fe
-    PRIVATE
-        ${CMAKE_DL_LIBS}
-)
-set_target_properties(fe-lib PROPERTIES POSITION_INDEPENDENT_CODE ON)
-
 # Windows resolves an exported vtable only through __declspec(dllimport); see FE_API on fe::Diag.
-generate_export_header(fe-lib
+generate_export_header(fe
     BASE_NAME FE
     EXPORT_MACRO_NAME FE_API
     EXPORT_FILE_NAME ${CMAKE_CURRENT_BINARY_DIR}/include/fe/api.h
 )
 # CMake defines <target>_EXPORTS on its own only for a SHARED or MODULE library, so an OBJECT library
 # leaves it to whoever links it into a shared library of their own.
-target_compile_definitions(fe-lib PRIVATE fe_lib_EXPORTS)
+target_compile_definitions(fe PRIVATE fe_EXPORTS)
 # A standalone build has no shared library to export from.
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-    target_compile_definitions(fe INTERFACE FE_STATIC_DEFINE)
+    target_compile_definitions(fe PUBLIC FE_STATIC_DEFINE)
 endif()
-target_include_directories(fe INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>)
 
 install(
     FILES "${CMAKE_CURRENT_BINARY_DIR}/include/fe/api.h"
@@ -143,15 +142,11 @@ install(
     TARGETS fe
     EXPORT ${targets_export_name}
     FILE_SET headers
+    OBJECTS DESTINATION ${CMAKE_INSTALL_LIBDIR}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-)
-install(
-    TARGETS fe-lib
-    EXPORT ${targets_export_name}
-    OBJECTS DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 install(
     FILES

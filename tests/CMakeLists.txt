@@ -12,7 +12,7 @@ target_sources(fe-test
 )
 target_link_libraries(fe-test
     PRIVATE
-        fe-lib
+        fe
         doctest::doctest
 )
 include(../submodules/doctest/scripts/cmake/doctest.cmake)

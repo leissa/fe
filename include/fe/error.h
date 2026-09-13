@@ -1,13 +1,10 @@
 #pragma once
 
-#include <cassert>
-
 #include <array>
 #include <exception>
 #include <format>
 #include <functional>
 #include <iostream>
-#include <sstream>
 #include <string>
 #include <utility>
 #include <vector>
@@ -87,21 +84,7 @@ public:
     ///@{
     /// Records the message @p fmt renders; see Diag::render.
     /// @p tag must be Tag::Error or Tag::Warn - a Tag::Note belongs to Error::note.
-    Error& msg(Loc loc, Tag tag, const std::function<std::string()>& fmt) {
-        assert(tag != Tag::N && "a note belongs to Error::note");
-        const auto& d = diag();
-        if (tag == Tag::W && d.werror) tag = Tag::E;
-
-        if (tag == Tag::E && d.max_errors != 0 && num_errors() >= d.max_errors) {
-            truncated_ = dropped_ = true;
-            return *this;
-        }
-
-        dropped_ = false;
-        ++num_[size_t(tag)];
-        msgs_.emplace_back(loc, tag, d.render(fmt));
-        return *this;
-    }
+    Error& msg(Loc loc, Tag tag, const std::function<std::string()>& fmt);
 
     // clang-format off
     /// The backticks of @p s delimit a `` `citation` ``; those of an argument are data and get escaped - see Cite.
@@ -130,58 +113,24 @@ public:
 
     /// @name Handle Errors/Warnings
     ///@{
-    void clear() {
-        msgs_.clear();
-        num_       = {};
-        truncated_ = false;
-        dropped_   = false;
-    }
+    void clear();
 
     /// Renders everything collected so far the way it would appear on @p os; @p os only decides the coloring.
-    std::string str(std::ostream& os = std::cerr) const {
-        auto scope = term::ScopedMode(term::use_color(os) ? term::Mode::Always : term::Mode::Never);
-        auto oss   = std::ostringstream();
-        oss << *this;
-        return oss.str();
-    }
+    std::string str(std::ostream& os = std::cerr) const;
 
     /// Streams everything collected so far to @p os and claims it.
     /// @returns the number of Tag::Error%s that were reported.
-    size_t report(std::ostream& os = std::cerr) {
-        auto num = num_errors();
-        if (!empty()) os << *this;
-        clear();
-        return num;
-    }
+    size_t report(std::ostream& os = std::cerr);
 
     /// Claims everything collected so far and throws it as a Bail rendered for @p os.
-    [[noreturn]] void bail(std::ostream& os = std::cerr) {
-        auto bail = Bail(str(os), num_errors(), num_warnings());
-        clear();
-        throw bail;
-    }
+    [[noreturn]] void bail(std::ostream& os = std::cerr);
 
     /// If errors occurred, Error::bail; otherwise Error::report any warnings to @p os.
-    void ack(std::ostream& os = std::cerr) {
-        if (num_errors() != 0) bail(os);
-        report(os);
-    }
+    void ack(std::ostream& os = std::cerr);
     ///@}
 
     /// Hands every Msg, its Note%s, and the closing summary to Diag.
-    friend std::ostream& operator<<(std::ostream& os, const Error& e) {
-        const auto& diag = e.diag();
-
-        for (const auto& msg : e.msgs_) {
-            diag.header(os, msg.loc, msg.tag, msg.str);
-            diag.snippet(os, msg.loc, msg.tag);
-            for (const auto& note : msg.notes)
-                diag.note(os, note.loc, note.str);
-        }
-
-        diag.summary(os, e.num_errors(), e.num_warnings(), e.truncated_);
-        return os;
-    }
+    friend std::ostream& operator<<(std::ostream& os, const Error& e);
 
 private:
     const Diag& diag() const; ///< Driver is incomplete here - it owns an Error of its own.
@@ -189,12 +138,7 @@ private:
     /// Loc of the Msg that subsequent Note%s belong to.
     Loc primary_loc_() const { return msgs_.empty() ? Loc() : msgs_.back().loc; }
 
-    void note_(Loc loc, const std::function<std::string()>& fmt) {
-        if (dropped_) return;
-        assert(!msgs_.empty() && "a note needs an error or warning to attach to");
-        ++num_[size_t(Tag::N)];
-        msgs_.back().notes.emplace_back(loc, diag().render(fmt));
-    }
+    void note_(Loc loc, const std::function<std::string()>& fmt);
 
     const Driver* driver_;
     std::vector<Msg> msgs_;

@@ -3,8 +3,8 @@
 #include <chrono>
 #include <cstdint>
 
+#include <iosfwd>
 #include <limits>
-#include <ostream>
 #include <string>
 #include <string_view>
 #include <utility>
@@ -49,32 +49,13 @@ public:
     /// Bracket a run with Profiler::start / Profiler::stop; the calls must nest like a stack.
     ///@{
     /// Marks the start of a run named @p name.
-    void start(std::string_view name) {
-        auto parent = stack_.empty() ? No_Parent : stack_.back();
-        stack_.emplace_back(spans_.size());
-        spans_.emplace_back(std::string(name), Clock::now(), Clock::time_point{}, stack_.size() - 1, parent);
-    }
+    void start(std::string_view name);
 
     /// Marks the end of the most recently started run; no-op if no Span is running.
-    void stop() {
-        if (stack_.empty()) return;
-        auto id = stack_.back();
-        stack_.pop_back();
-        spans_[id].stop = Clock::now();
-    }
+    void stop();
 
     /// Adds @p n to counter @p key of the currently running Span; no-op if no Span is running or @p n is `0`.
-    void count(std::string_view key, uint64_t n = 1) {
-        if (stack_.empty() || n == 0) return;
-        auto& counters = spans_[stack_.back()].counters;
-        for (auto& [k, v] : counters) {
-            if (k == key) {
-                v += n;
-                return;
-            }
-        }
-        counters.emplace_back(std::string(key), n);
-    }
+    void count(std::string_view key, uint64_t n = 1);
     ///@}
 
     /// @name Reporting

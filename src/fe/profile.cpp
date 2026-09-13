@@ -35,6 +35,31 @@ std::string json_escape(std::string_view str) {
 }
 } // namespace
 
+void Profiler::start(std::string_view name) {
+    auto parent = stack_.empty() ? No_Parent : stack_.back();
+    stack_.emplace_back(spans_.size());
+    spans_.emplace_back(std::string(name), Clock::now(), Clock::time_point{}, stack_.size() - 1, parent);
+}
+
+void Profiler::stop() {
+    if (stack_.empty()) return;
+    auto id = stack_.back();
+    stack_.pop_back();
+    spans_[id].stop = Clock::now();
+}
+
+void Profiler::count(std::string_view key, uint64_t n) {
+    if (stack_.empty() || n == 0) return;
+    auto& counters = spans_[stack_.back()].counters;
+    for (auto& [k, v] : counters) {
+        if (k == key) {
+            v += n;
+            return;
+        }
+    }
+    counters.emplace_back(std::string(key), n);
+}
+
 std::vector<Profiler::Duration> Profiler::children_durations() const {
     auto children = std::vector<Duration>(spans_.size(), Duration::zero());
     for (const auto& span : spans_)

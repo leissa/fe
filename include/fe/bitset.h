@@ -7,9 +7,8 @@
 #include <algorithm>
 #include <bit>
 #include <initializer_list>
-#include <iostream>
+#include <iosfwd>
 #include <iterator>
-#include <ostream>
 #include <ranges>
 #include <utility>
 
@@ -286,16 +285,9 @@ public:
 
     /// @name Output
     ///@{
-    void dump() const { std::cout << (*this) << std::endl; }
+    void dump() const;
 
-    friend std::ostream& operator<<(std::ostream& os, const Bitset& bitset) {
-        os << '{';
-        for (auto sep = ""; auto i : bitset) {
-            os << sep << i;
-            sep = ", ";
-        }
-        return os << '}';
-    }
+    friend std::ostream& operator<<(std::ostream& os, const Bitset& bitset);
     ///@}
 
 private:

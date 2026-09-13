@@ -1,7 +1,7 @@
 # FE repository instructions
 
 `fe` is a CMake-based C++ library of reusable building blocks for writing language frontends (arena allocation, string interning, source locations, UTF-8 lexer/parser CRTP bases, diagnostics).
-Most of it is **header-only**; `fe-lib` builds the handful of components that cannot be (see below).
+It builds as a single target, `fe`: the API lives in `include/fe/`, the implementations in `src/fe/`.
 It is typically consumed as a git submodule (a checkout may live under e.g. `submodules/fe`).
 
 ## Build, test, and formatting
@@ -40,7 +40,7 @@ A change is only done when it is leak- and UB-clean, not merely when `ctest` pas
 
 ## High-level architecture
 
-The public API lives entirely in `include/fe/`. `fe` is an `INTERFACE` target carrying the header usage requirements; `fe-lib` is an `OBJECT` library over `src/fe/` that links `fe` publicly. Tests build the only executable (`fe-test`).
+The public API lives entirely in `include/fe/`, implemented by `src/fe/`. `fe` is an `OBJECT` library carrying both, along with the usage requirements a consumer needs. Tests build the only executable (`fe-test`).
 
 The library is organized around a few reusable frontend-building blocks that are designed to be composed:
 
@@ -64,16 +64,16 @@ The library is organized around a few reusable frontend-building blocks that are
 - `fe::Lexer<K, S>` (`lexer.h`) is a CRTP base that handles UTF-8 decoding, character lookahead, token text accumulation (`str_`), source location tracking (`loc_`), the `recover_utf8`/`recover_char` skips below, and default `utf8_err`/`char_err` diagnostics.
 - `fe::Parser<Tok, Tag, K, S>` (`parser.h`) is a CRTP base that wraps a lexer with token lookahead, `accept`/`expect`/`eat`, `Tracker` helpers for building node spans, the anchor-based error recovery described below, and default `syntax_err`/`unanchored_err` diagnostics.
 
-Support headers: `algo.h` (bit casts, padding, small string/range algorithms), `assert.h` (`assert`/`assertf`/`unreachable`), `cast.h` (checked/dynamic casts), `cli.h` (`fe::Cli`, a single-command `argc`/`argv` parser that renders its help for a terminal or as Markdown tables; needs `fe-lib`), `container.h` (`pop`/`lookup` helpers, `Stacklike`/`Queuelike` concepts), `dbg.h` (`fe::Dbg`, a `Loc`/`Sym` pair), `enum.h` (bit-flag enum ops), `format.h` (`ostream_formatter`, `std::format` glue), `hash.h` (`constexpr` hash mixing/combining), `log.h` (`fe::Log`, leveled logging; its `e`/`w`/... shorthands capture the call site with `std::source_location` and take a `cite_string` like `fe::Error`), `restore.h` (`fe::Restore`, an RAII guard that restores a reference - or a getter/setter pair - at end of scope), `span.h` (`fe::Span`/`fe::View`), `term.h` (terminal/ANSI color, incl. `fe::term::ScopedMode`), `utf8.h` (UTF-8 decode primitives), `vector.h` (`fe::Vector`, small-buffer vector), `worklist.h` (`fe::Worklist` and its `BFSWorklist`/`DFSWorklist` aliases).
+Support headers: `algo.h` (bit casts, padding, small string/range algorithms), `assert.h` (`assert`/`assertf`/`unreachable`), `cast.h` (checked/dynamic casts), `cli.h` (`fe::Cli`, a single-command `argc`/`argv` parser that renders its help for a terminal or as Markdown tables), `container.h` (`pop`/`lookup` helpers, `Stacklike`/`Queuelike` concepts), `dbg.h` (`fe::Dbg`, a `Loc`/`Sym` pair), `enum.h` (bit-flag enum ops), `format.h` (`ostream_formatter`, `std::format` glue), `hash.h` (`constexpr` hash mixing/combining), `log.h` (`fe::Log`, leveled logging; its `e`/`w`/... shorthands capture the call site with `std::source_location` and take a `cite_string` like `fe::Error`), `restore.h` (`fe::Restore`, an RAII guard that restores a reference - or a getter/setter pair - at end of scope), `span.h` (`fe::Span`/`fe::View`), `term.h` (terminal/ANSI color, incl. `fe::term::ScopedMode`), `utf8.h` (UTF-8 decode primitives), `vector.h` (`fe::Vector`, small-buffer vector), `worklist.h` (`fe::Worklist` and its `BFSWorklist`/`DFSWorklist` aliases).
 
-`fe-lib` holds the components that need a translation unit of their own: `fe::Diag` (`diag.h`), the `fe::Driver` ctor/dtor that owns one, `Error::diag` (`error.h`, which only forward-declares the `Driver` it reads the `Diag` from), the default `Pos`/`Loc` streaming and `dump` (`loc.h`), `fe::Snippet` (`snippet.h`), `Cli::parse`/`Cli::help`/`Cli::markdown` (`cli.h`, the only part of `fe::Cli` that is not header-only), `fe::dl` (`dl.h`, dynamic library loading), `fe::sys` (`sys.h`, locating and running external commands), and `fe::Profiler` (`profile.h`, nested wall-clock spans reported as a flat table, a tree, or Chrome Trace JSON).
-It is an `OBJECT` library on purpose: link it into exactly one shared library of yours and every other consumer resolves those symbols there instead of carrying a copy.
+Beyond the blocks above, `src/fe/` implements `fe::dl` (`dl.h`, dynamic library loading), `fe::sys` (`sys.h`, locating and running external commands), and `fe::Profiler` (`profile.h`, nested wall-clock spans reported as a flat table, a tree, or Chrome Trace JSON).
+`fe` is an `OBJECT` library on purpose: link it into exactly one shared library of yours and every other consumer resolves those symbols there instead of carrying a copy - CMake hands the objects only to whoever links `fe` directly.
 
 `tests/lexer.cpp` is the best end-to-end example of intended use: define a token type with `tag()` and `loc()`, derive a concrete lexer/parser from the CRTP bases, use `fe::Driver` for identifier interning and diagnostics, and let locations flow through tokens for error reporting.
 
 ## Key conventions
 
-- Keep library code header-only unless it genuinely cannot be; then declare it in `include/fe/` and implement it in `src/fe/`, which is what `fe-lib` compiles. Public headers are listed explicitly in `CMakeLists.txt` and installed from `include/fe/`.
+- Declare in `include/fe/` and implement in `src/fe/`; only a template, a `constexpr` function, or a one-line accessor belongs in the header. Both lists are spelled out explicitly in `CMakeLists.txt`, and the headers are installed from `include/fe/`.
 - Default-constructed values are meaningful sentinels across the API: `Tok{}` means parse failure, `Sym{}` is the empty symbol, and default `Pos`/`Loc` are invalid. `Parser::accept` and `Parser::expect` rely on this pattern.
 - `Loc::end` is **exclusive** (the byte one past the span), just like an STL iterator. `Loc::src` is a borrowed `const Src*`, so the `Src` must outlive the `Loc`; a `SrcMap` owns one for you.
 - `Loc` is kept at two machine words (`static_assert` in `loc.h`) so it stays a value passed in registers - do not grow it.
@@ -88,10 +88,9 @@ It is an `OBJECT` library on purpose: link it into exactly one shared library of
 - A note attaches to the error or warning that precedes it. `Error::note` without a `Loc` renders as a `= note:` continuation; with a `Loc` it points somewhere else and gets a header line and snippet of its own - and is dropped when that `Loc` overlaps the primary one and thus points nowhere new.
 - `Error::report` streams and claims everything, `Error::bail` always throws an `Error::Bail`, and `Error::ack` bails on errors and merely reports warnings. Build and throw one diagnostic in a single expression with `Error(driver).error(...).note(...).bail()`.
 - Keep `Driver` free of virtual functions; `Driver::diag` is where a consumer plugs in behavior of its own.
-- A vtable is a *data* symbol, and Windows resolves one exported from a shared library only through `__declspec(dllimport)` - without it the linker silently binds it to a call thunk and the first virtual dispatch jumps into hyperspace. Hence `FE_API` on `fe::Diag` - `generate_export_header` generates that macro into `fe/api.h` - and hence the `Driver` ctor lives in `fe-lib`: nothing must emit `fe::Diag`'s vtable into a consumer's shared library. Annotate any further polymorphic type on that boundary the same way.
+- A vtable is a *data* symbol, and Windows resolves one exported from a shared library only through `__declspec(dllimport)` - without it the linker silently binds it to a call thunk and the first virtual dispatch jumps into hyperspace. Hence `FE_API` on `fe::Diag` - `generate_export_header` generates that macro into `fe/api.h` - and hence the `Driver` ctor lives in `src/fe/driver.cpp`: nothing must emit `fe::Diag`'s vtable into a consumer's shared library. Annotate any further polymorphic type on that boundary the same way.
 - If a type already has `operator<<`, expose it to `std::format` with `template<> struct std::formatter<T> : fe::ostream_formatter {};`.
 - Derived lexers/parsers pull the CRTP base helpers they use into scope with `using` declarations (`ahead`, `accept`, `next`, `recover_char`, `recover_utf8`, `loc_`, `peek`, `str_` for the lexer; `accept`, `anchor`, `eat`, `expect`, `lex`, `recover`, `tracker` for the parser), matching the pattern in `tests/lexer.cpp`.
-- `fe/loc.h` only declares `operator<<` for `Pos` and `Loc`: link `fe-lib` for the default rendering, or define them yourself. The same split applies to `fe::Snippet`, which `fe::Diag` puts under every diagnostic.
 
 ## Lexer contract
 

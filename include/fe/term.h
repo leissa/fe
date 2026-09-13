@@ -1,25 +1,10 @@
 #pragma once
 
 #include <iostream>
-#include <iterator>
 #include <optional>
-#include <ostream>
 #include <string>
 #include <string_view>
 #include <type_traits>
-
-#ifdef _WIN32
-#    ifndef WIN32_LEAN_AND_MEAN
-#        define WIN32_LEAN_AND_MEAN
-#    endif
-#    ifndef NOMINMAX
-#        define NOMINMAX
-#    endif
-#    include <windows.h>
-#else
-#    include <sys/ioctl.h>
-#    include <unistd.h>
-#endif
 
 #include "fe/api.h"
 #include "fe/assert.h"
@@ -81,66 +66,11 @@ enum class Stream {
     Stderr,
 };
 
-inline std::streambuf* stdout_rdbuf() noexcept {
-    static std::streambuf* buf = std::cout.rdbuf();
-    return buf;
-}
+/// Which of the standard streams @p os writes to, if any.
+FE_API Stream stream(std::ostream& os) noexcept;
 
-inline std::streambuf* stderr_rdbuf() noexcept {
-    static std::streambuf* buf = std::cerr.rdbuf();
-    return buf;
-}
-
-inline std::streambuf* clog_rdbuf() noexcept {
-    static std::streambuf* buf = std::clog.rdbuf();
-    return buf;
-}
-
-inline Stream stream(std::ostream& os) noexcept {
-    auto* const buf = os.rdbuf();
-    if (buf == stdout_rdbuf()) return Stream::Stdout;
-    if (buf == stderr_rdbuf() || buf == clog_rdbuf()) return Stream::Stderr;
-    return Stream::Unknown;
-}
-
-#ifdef _WIN32
-inline bool enable_vt(HANDLE handle) noexcept {
-    if (handle == INVALID_HANDLE_VALUE) return false;
-
-    DWORD mode = 0;
-    if (!GetConsoleMode(handle, &mode)) return false;
-    if (mode & ENABLE_VIRTUAL_TERMINAL_PROCESSING) return true;
-    return SetConsoleMode(handle, mode | ENABLE_VIRTUAL_TERMINAL_PROCESSING) != 0;
-}
-
-inline bool is_terminal(Stream s) noexcept {
-    switch (s) {
-        case Stream::Stdout: {
-            static bool stdout_is_terminal = enable_vt(GetStdHandle(STD_OUTPUT_HANDLE));
-            return stdout_is_terminal;
-        }
-        case Stream::Stderr: {
-            static bool stderr_is_terminal = enable_vt(GetStdHandle(STD_ERROR_HANDLE));
-            return stderr_is_terminal;
-        }
-        default: return false;
-    }
-}
-#else
-inline bool is_terminal(Stream s) noexcept {
-    switch (s) {
-        case Stream::Stdout: {
-            static bool stdout_is_terminal = ::isatty(STDOUT_FILENO) != 0;
-            return stdout_is_terminal;
-        }
-        case Stream::Stderr: {
-            static bool stderr_is_terminal = ::isatty(STDERR_FILENO) != 0;
-            return stderr_is_terminal;
-        }
-        default: return false;
-    }
-}
-#endif
+/// Does @p s refer to a terminal? Decided once per stream and cached.
+FE_API bool is_terminal(Stream s) noexcept;
 
 constexpr std::string_view sgr(FG color) noexcept {
     // clang-format off
@@ -165,30 +95,13 @@ constexpr bool escape(std::string_view str, size_t i, size_t end) noexcept {
 }
 
 /// Index of the next backtick at or after @p i that is not escaped, or `npos`.
-inline size_t tick(std::string_view str, size_t i) noexcept {
-    for (; i != str.size(); ++i)
-        if (escape(str, i, str.size()))
-            ++i;
-        else if (str[i] == '`')
-            return i;
-    return std::string_view::npos;
-}
+FE_API size_t tick(std::string_view str, size_t i) noexcept;
 
 /// Streams `[begin, end)` of @p str, dropping the leading backslash of every escape.
-inline void stream_raw(std::ostream& os, std::string_view str, size_t begin, size_t end) {
-    for (auto i = begin; i != end; ++i) {
-        if (escape(str, i, end)) ++i;
-        os << str[i];
-    }
-}
+FE_API void stream_raw(std::ostream& os, std::string_view str, size_t begin, size_t end);
 
 /// Columns `[begin, end)` of @p str occupies once streamed via stream_raw - one less per escape.
-inline size_t raw_width(std::string_view str, size_t begin, size_t end) noexcept {
-    size_t width = 0;
-    for (auto i = begin; i != end; ++i, ++width)
-        if (escape(str, i, end)) ++i;
-    return width;
-}
+FE_API size_t raw_width(std::string_view str, size_t begin, size_t end) noexcept;
 
 /// Splits @p str into its `` `citation` `` markup and invokes `f(begin, end, cited)` on each piece;
 /// an unpaired backtick is no citation. This is the one place that knows the grammar.
@@ -222,36 +135,12 @@ FE_API void set_auto_detached(bool b) noexcept;
 /// (anything a `std::formatter` writes into) follows @ref resolve_mode.
 /// Use this to keep a plain-text fallback in sync with what @ref operator<<(std::ostream&, FG) will emit,
 /// e.g. to spell out a marker only when it cannot be conveyed by color.
-inline bool use_color(std::ostream& os) noexcept {
-    auto s = detail::stream(os);
-    // clang-format off
-    switch (mode()) {
-        case Mode::Always: return true;
-        case Mode::Never:  return false;
-        case Mode::Auto:   return s == detail::Stream::Unknown ? auto_detached() : detail::is_terminal(s);
-        default: fe::unreachable();
-    }
-    // clang-format on
-}
+FE_API bool use_color(std::ostream& os) noexcept;
 
 /// Number of columns of the terminal @p os refers to.
 /// Unlike @ref use_color, this ignores @ref Mode and always asks the actual stream.
 /// @returns `std::nullopt` if @p os is not a terminal or its size cannot be determined.
-inline std::optional<size_t> width(std::ostream& os) noexcept {
-    auto s = detail::stream(os);
-    if (!detail::is_terminal(s)) return {};
-
-#ifdef _WIN32
-    auto handle = GetStdHandle(s == detail::Stream::Stdout ? STD_OUTPUT_HANDLE : STD_ERROR_HANDLE);
-    if (CONSOLE_SCREEN_BUFFER_INFO info; GetConsoleScreenBufferInfo(handle, &info)) {
-        if (auto cols = info.srWindow.Right - info.srWindow.Left + 1; cols > 0) return size_t(cols);
-    }
-#else
-    auto fd = s == detail::Stream::Stdout ? STDOUT_FILENO : STDERR_FILENO;
-    if (winsize ws; ::ioctl(fd, TIOCGWINSZ, &ws) == 0 && ws.ws_col > 0) return size_t(ws.ws_col);
-#endif
-    return {};
-}
+FE_API std::optional<size_t> width(std::ostream& os) noexcept;
 
 /// Overrides the current terminal color mode.
 FE_API void set_mode(Mode m) noexcept;
@@ -269,18 +158,10 @@ using ScopedMode = Restore<Mode, &mode, &set_mode>;
 /// std::print(std::cerr, "{}error:{} ...", fe::term::FG::Red, fe::term::FG::Reset);
 /// ```
 /// A real stream still decides on its own, and explicit modes are left untouched.
-inline void resolve_mode(std::ostream& os = std::cerr) noexcept {
-    set_auto_detached(detail::is_terminal(detail::stream(os)));
-}
+FE_API void resolve_mode(std::ostream& os = std::cerr) noexcept;
 
 /// Streams the ANSI escape sequence for @p color when colors are enabled for @p os.
-inline std::ostream& operator<<(std::ostream& os, FG color) {
-    if (use_color(os)) {
-        auto esc = detail::sgr(color);
-        os.write(esc.data(), esc.size());
-    }
-    return os;
-}
+FE_API std::ostream& operator<<(std::ostream& os, FG color);
 
 /// Escapes @p str into @p out so that render_cite reproduces it verbatim instead of reading it as markup.
 /// Escaping the backslashes as well keeps a trailing one from swallowing the backtick that follows it.
@@ -294,12 +175,7 @@ O escape_cite_to(O out, std::string_view str) {
 }
 
 /// As above but into a fresh `std::string`.
-inline std::string escape_cite(std::string_view str) {
-    auto res = std::string();
-    res.reserve(str.size());
-    escape_cite_to(std::back_inserter(res), str);
-    return res;
-}
+FE_API std::string escape_cite(std::string_view str);
 
 /// An *owning* message fragment that spells `` `citations` `` of its own; what format_cite yields.
 /// Return this from a helper that assembles a fragment, and it stays valid wherever a Cite may go.
@@ -375,31 +251,14 @@ Cited format_cite(cite_string<Args...> fmt, Args&&... args) {
 /// verbatim without color; `` \` `` is a literal backtick and `\\` a literal backslash. This is the convention
 /// fe::CodeDiag renders a diagnostic message with; use it to apply the same convention elsewhere, e.g.
 /// fe::Cli::help.
-inline void render_cite(std::ostream& os, std::string_view str, bool color) {
-    // Written out instead of streaming an FG: @p color has already decided, whereas operator<< would
-    // ask @p os again - and a detached buffer answers differently than the stream it ends up on.
-    auto open  = color ? detail::sgr(FG::Cyan) : std::string_view("`");
-    auto close = color ? detail::sgr(FG::Reset) : std::string_view("`");
-
-    detail::scan_cite(str, [&](size_t begin, size_t end, bool cited) {
-        if (cited) os << open;
-        detail::stream_raw(os, str, begin, end);
-        if (cited) os << close;
-    });
-}
+FE_API void render_cite(std::ostream& os, std::string_view str, bool color);
 
 /// As above but lets @p os decide the coloring; mirrors cite_width.
-inline void render_cite(std::ostream& os, std::string_view str) { render_cite(os, str, use_color(os)); }
+FE_API void render_cite(std::ostream& os, std::string_view str);
 
 /// Number of columns @p str actually occupies once render_cite renders it with @p color - fewer than
 /// `str.size()` by the backticks/backslashes render_cite drops.
-inline size_t cite_width(std::string_view str, bool color) {
-    size_t width = 0;
-    detail::scan_cite(str, [&](size_t begin, size_t end, bool cited) {
-        width += detail::raw_width(str, begin, end) + (cited && !color ? 2 : 0); // the backticks stay
-    });
-    return width;
-}
+FE_API size_t cite_width(std::string_view str, bool color);
 
 } // namespace fe::term
 

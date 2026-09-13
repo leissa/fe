@@ -18,8 +18,6 @@ struct Snippet {
     uint32_t gutter   = 5; ///< Width of the line-number column.
     uint32_t max_rows = 8; ///< Rows streamed before the middle is elided; `0` elides nothing.
 
-    /// `fe/snippet.h` merely *declares* this.
-    /// Link `fe-lib` for the default implementation, or provide your own in namespace `fe`.
     friend std::ostream& operator<<(std::ostream&, const Snippet&);
 };
 

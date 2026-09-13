@@ -4,7 +4,7 @@
 #include <cstring>
 
 #include <bit>
-#include <iostream>
+#include <iosfwd>
 #include <string>
 
 #ifdef FE_ABSL
@@ -185,7 +185,7 @@ public:
     }
 #endif
     friend struct ::std::hash<fe::Sym>;
-    friend std::ostream& operator<<(std::ostream& o, Sym sym) { return o << sym.view(); }
+    friend std::ostream& operator<<(std::ostream& os, Sym sym);
 
     /// @name Hash/Eq for hash tables.
     /// Both work on the interned pointer, so they are O(1).
@@ -272,32 +272,7 @@ public:
 
     /// @name sym
     ///@{
-    Sym sym(std::string_view s) {
-        if (s.empty()) return Sym();
-        auto size = s.size();
-
-        if (size <= Sym::Short_String_Bytes - 2) { // small string: need two more bytes for `\0' and size
-            uintptr_t ptr = size;
-            // Little endian: 2 a b 0 register: 0ba2
-            // Big endian:    a b 0 2 register: ab02
-            if constexpr (std::endian::native == std::endian::little)
-                for (uintptr_t i = 0, shift = 8; i != size; ++i, shift += 8)
-                    ptr |= (uintptr_t(s[i]) << shift);
-            else
-                for (uintptr_t i = 0, shift = (Sym::Short_String_Bytes - 1) * 8; i != size; ++i, shift -= 8)
-                    ptr |= (uintptr_t(s[i]) << shift);
-            return Sym(ptr);
-        }
-
-        auto state = strings_.state();
-        auto ptr   = (String*)strings_.allocate(sizeof(String) + s.size() + 1 /*'\0'*/, Sym::Short_String_Bytes);
-        new (ptr) String(s.size());
-        *std::copy(s.begin(), s.end(), ptr->chars) = '\0';
-        auto [i, ins]                              = pool_.emplace(ptr);
-        if (ins) return Sym(std::bit_cast<uintptr_t>(ptr));
-        strings_.deallocate(state);
-        return Sym(std::bit_cast<uintptr_t>(*i));
-    }
+    Sym sym(std::string_view s);
     Sym sym(const std::string& s) { return sym((std::string_view)s); }
     /// @p s is a null-terminated C-string.
     Sym sym(const char* s) { return s == nullptr ? Sym() : sym(std::string_view(s)); }

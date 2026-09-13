@@ -6,8 +6,6 @@
 #include <algorithm>
 #include <iosfwd>
 
-#include "fe/sym.h"
-
 namespace fe {
 
 class Src;
@@ -32,8 +30,6 @@ struct Pos {
 
     uint32_t off = Invalid;
 
-    /// `fe/loc.h` only declares the stream output and dump helpers.
-    /// Link `fe-lib` for the default implementation, or provide your own.
     friend std::ostream& operator<<(std::ostream& os, Pos pos);
 };
 
@@ -99,8 +95,6 @@ struct Loc {
     /// one **past** the last one within this Loc%ation.
 
     /// Streams as `path:row:col-row:col`, resolved through Loc::src - or as raw offsets if it has none.
-    /// `fe/loc.h` only declares the stream output and dump helpers.
-    /// Link `fe-lib` for the default implementation, or provide your own.
     friend std::ostream& operator<<(std::ostream& os, Loc loc);
 };
 
