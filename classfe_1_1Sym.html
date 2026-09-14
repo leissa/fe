@@ -211,6 +211,8 @@ Static Public Attributes</h2></td></tr>
 Friends</h2></td></tr>
 <tr class="memitem:a4c865acde4de25ac1247eeaac18710b5" id="r_a4c865acde4de25ac1247eeaac18710b5"><td class="memItemLeft">struct&#160;</td><td class="memItemRight"><a class="el" href="#a4c865acde4de25ac1247eeaac18710b5">::std::hash&lt; fe::Sym &gt;</a></td></tr>
 <tr class="memitem:a5379cdd60ce3c910e14da02defe0a1aa" id="r_a5379cdd60ce3c910e14da02defe0a1aa"><td class="memItemLeft">class&#160;</td><td class="memItemRight"><a class="el" href="#a5379cdd60ce3c910e14da02defe0a1aa">SymPool</a></td></tr>
+<tr class="memitem:a9bf56c781ba51b3eaf7d11d6aeb080f5" id="r_a9bf56c781ba51b3eaf7d11d6aeb080f5"><td class="memTemplParams" colspan="2">template&lt;class H&gt; </td></tr>
+<tr class="memitem:a9bf56c781ba51b3eaf7d11d6aeb080f5 template"><td class="memItemLeft">constexpr H&#160;</td><td class="memItemRight"><a class="el" href="#a9bf56c781ba51b3eaf7d11d6aeb080f5">AbslHashValue</a> (H h, Sym sym) noexcept</td></tr>
 <tr class="memitem:a8cabe81bac727f8cac7eaa68cf2ecec8" id="r_a8cabe81bac727f8cac7eaa68cf2ecec8"><td class="memItemLeft">std::ostream &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a8cabe81bac727f8cac7eaa68cf2ecec8">operator&lt;&lt;</a> (std::ostream &amp;os, Sym sym)</td></tr>
 <tr id="friends-0" class="groupHeader"><td colspan="2"><div class="groupHeader">Comparison: Sym w/ Sym</div></td></tr>
 <tr class="memitem:a1159509cba1ced1970da8b57c51387c8" id="r_a1159509cba1ced1970da8b57c51387c8"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#a1159509cba1ced1970da8b57c51387c8">operator&lt;=&gt;</a> (Sym s1, Sym s2) noexcept</td></tr>
@@ -239,7 +241,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 <p>Retrieving a <span class="tt">std::string_view</span> (via <a class="el" href="#ae4042d6fd11e3d25c511c2feb031ad2a">Sym::view</a>) is basically free. You can also obtain a <span class="tt">std::string</span> (via <a class="el" href="#aa221972b6c2c378b931e1b68eead0498" title="This involves a copy.">Sym::str</a>), but this involves a copy. The characters are <em>not</em> null-terminated. With the exception of the empty string, you should only create <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bols via <a class="el" href="classfe_1_1SymPool.html#a1a7c3278db18ad72926b06c1e757b865">SymPool::sym</a>. This in turn will toss all <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bols into a big hash set. This makes <a class="el" href="#a4d32de46ba12881bc6a41505f0fcd49b">Sym::operator==</a> and Sym::operator!= an O(1) operation. The empty string is internally handled as <span class="tt">nullptr</span>. Thus, you can create a <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol representing an empty string without having access to the <a class="el" href="classfe_1_1SymPool.html" title="Hash set where all strings - wrapped in Symbol - live in.">SymPool</a>. </p><dl class="section note"><dt>Note</dt><dd>The empty <span class="tt">std::string</span>/<span class="tt">std::string_view</span> and <span class="tt">nullptr</span> are all identified as <a class="el" href="#a3b4417ab3002f28d1e4f340711a8d094">Sym::Sym()</a>. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Big endian version has not been tested. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00032">32</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00033">33</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3b4417ab3002f28d1e4f340711a8d094" name="a3b4417ab3002f28d1e4f340711a8d094"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3b4417ab3002f28d1e4f340711a8d094">&#9670;&#160;</a></span>Sym()</h2>
@@ -264,7 +266,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00270">fe::SymPool::sym()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00268">fe::SymPool::sym()</a>.</p>
 
 </div>
 </div>
@@ -592,6 +594,8 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 
 <p class="reference">References <a class="el" href="sym_8h_source.html#l00168">str()</a>.</p>
 
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00063">fe::Sym::String::AbslHashValue</a>.</p>
+
 </div>
 </div>
 <a id="aff35eb138b2e717c637d41d1b17eba26" name="aff35eb138b2e717c637d41d1b17eba26"></a>
@@ -768,7 +772,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 
 <p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00080">80</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00079">empty()</a>, <a class="el" href="sym_8h_source.html#l00035">Short_String_Mask</a>, and <a class="el" href="sym_8h_source.html#l00080">size()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00079">empty()</a>, <a class="el" href="sym_8h_source.html#l00036">Short_String_Mask</a>, and <a class="el" href="sym_8h_source.html#l00080">size()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00094">back()</a>, <a class="el" href="sym_8h_source.html#l00100">end()</a>, <a class="el" href="sym_8h_source.html#l00089">operator[]()</a>, <a class="el" href="sym_8h_source.html#l00080">size()</a>, and <a class="el" href="sym_8h_source.html#l00154">view()</a>.</p>
 
@@ -833,7 +837,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 
 <p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00154">154</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00079">empty()</a>, <a class="el" href="sym_8h_source.html#l00035">Short_String_Mask</a>, and <a class="el" href="sym_8h_source.html#l00080">size()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00079">empty()</a>, <a class="el" href="sym_8h_source.html#l00036">Short_String_Mask</a>, and <a class="el" href="sym_8h_source.html#l00080">size()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00099">begin()</a>, <a class="el" href="sym_8h_source.html#l00163">operator std::string_view()</a>, <a class="el" href="sym_8h_source.html#l00164">operator*()</a>, <a class="el" href="sym_8h_source.html#l00089">operator[]()</a>, and <a class="el" href="sym_8h_source.html#l00168">str()</a>.</p>
 
@@ -860,7 +864,44 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00170">170</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00174">174</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00174">AbslHashValue</a>.</p>
+
+</div>
+</div>
+<a id="a9bf56c781ba51b3eaf7d11d6aeb080f5" name="a9bf56c781ba51b3eaf7d11d6aeb080f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bf56c781ba51b3eaf7d11d6aeb080f5">&#9670;&#160;</a></span>AbslHashValue</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class H&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">H AbslHashValue </td>
+          <td>(</td>
+          <td class="paramtype">H</td>          <td class="paramname"><span class="paramname"><em>h</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Sym</td>          <td class="paramname"><span class="paramname"><em>sym</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel friend">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00174">174</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00177">::std::hash&lt; fe::Sym &gt;</a>.</p>
 
 </div>
 </div>
@@ -1235,11 +1276,11 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00214">214</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00212">212</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00214">SymPool</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00212">SymPool</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00214">SymPool</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00212">SymPool</a>.</p>
 
 </div>
 </div>
@@ -1264,7 +1305,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00034">34</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00035">35</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -1288,7 +1329,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00035">35</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00036">36</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00080">size()</a>, and <a class="el" href="sym_8h_source.html#l00154">view()</a>.</p>
 

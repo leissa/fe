@@ -1,5 +1,7 @@
 var NAVTREEINDEX4 =
 {
+"classfe_1_1XTrie.html#aa59dad3fa3aa722992c41455c7071225":[12,0,0,41,4],
+"classfe_1_1XTrie.html#acf03a27da8603e2f66e85d144f5b7a92":[10,0,0,42,12],
 "classfe_1_1XTrie.html#acf03a27da8603e2f66e85d144f5b7a92":[12,0,0,41,12],
 "classfe_1_1XTrie.html#ad713de0f61e2ddf2b0e3e06b2be72970":[10,0,0,42,13],
 "classfe_1_1XTrie.html#ad713de0f61e2ddf2b0e3e06b2be72970":[12,0,0,41,13],
@@ -247,7 +249,5 @@ var NAVTREEINDEX4 =
 "index.html#autotoc_md1":[0],
 "index.html#autotoc_md10":[1,0,3],
 "index.html#autotoc_md11":[1,0,4],
-"index.html#autotoc_md12":[1,0,5],
-"index.html#autotoc_md13":[1,0,6],
-"index.html#autotoc_md14":[2]
+"index.html#autotoc_md12":[1,0,5]
 };

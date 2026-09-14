@@ -187,12 +187,16 @@ Public Member Functions</h2></td></tr>
 <tr id="pub-methods-2" class="groupHeader"><td colspan="2"><div class="groupHeader">Setters</div></td></tr>
 <tr class="memitem:a70e4fdd9580b7e38d7ae6a1d251e38c5" id="r_a70e4fdd9580b7e38d7ae6a1d251e38c5"><td class="memItemLeft">constexpr <a class="el" href="#a887c5ecc32abaf560dae5a8dcc3a7b1f">Dbg</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a70e4fdd9580b7e38d7ae6a1d251e38c5">set</a> (<a class="el" href="classfe_1_1Sym.html">Sym</a> sym) noexcept</td></tr>
 <tr class="memitem:af7241ade58dffbc1a2385a07cd18ab51" id="r_af7241ade58dffbc1a2385a07cd18ab51"><td class="memItemLeft">constexpr <a class="el" href="#a887c5ecc32abaf560dae5a8dcc3a7b1f">Dbg</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#af7241ade58dffbc1a2385a07cd18ab51">set</a> (<a class="el" href="structfe_1_1Loc.html">Loc</a> loc) noexcept</td></tr>
-<tr id="pub-methods-3" class="groupHeader"><td colspan="2"><div class="groupHeader">Comparison and Hashing</div></td></tr>
-<tr class="memitem:a786c563adf7750f4aa98c8a692a16476" id="r_a786c563adf7750f4aa98c8a692a16476"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a786c563adf7750f4aa98c8a692a16476">operator==</a> (const <a class="el" href="#a887c5ecc32abaf560dae5a8dcc3a7b1f">Dbg</a> &amp;other) const noexcept</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-friends" class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
 <tr class="memitem:a829fc089b5e57f3d0251fa96a9b77a6f" id="r_a829fc089b5e57f3d0251fa96a9b77a6f"><td class="memItemLeft">std::ostream &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a829fc089b5e57f3d0251fa96a9b77a6f">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="#a887c5ecc32abaf560dae5a8dcc3a7b1f">Dbg</a> &amp;dbg)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-member-group" class="groupheader"><a id="member-group" name="member-group"></a>
+Comparison and Hashing</h2></td></tr>
+<tr class="memitem:a786c563adf7750f4aa98c8a692a16476" id="r_a786c563adf7750f4aa98c8a692a16476"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a786c563adf7750f4aa98c8a692a16476">operator==</a> (const <a class="el" href="#a887c5ecc32abaf560dae5a8dcc3a7b1f">Dbg</a> &amp;other) const noexcept</td></tr>
+<tr class="memitem:a9d6abb2ddcdfb375745cd11a85eda040" id="r_a9d6abb2ddcdfb375745cd11a85eda040"><td class="memTemplParams" colspan="2">template&lt;class H&gt; </td></tr>
+<tr class="memitem:a9d6abb2ddcdfb375745cd11a85eda040 template"><td class="memItemLeft">H&#160;</td><td class="memItemRight"><a class="el" href="#a9d6abb2ddcdfb375745cd11a85eda040">AbslHashValue</a> (H h, <a class="el" href="#a887c5ecc32abaf560dae5a8dcc3a7b1f">Dbg</a> dbg) noexcept</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The debug info of an entity: where it came from and what it was called. </p>
@@ -222,7 +226,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#a7c8391efb0ddbd8382edcc407ebcbcb3">Dbg()</a>, <a class="el" href="dbg_8h_source.html#l00028">Dbg()</a>, <a class="el" href="dbg_8h_source.html#l00068">fe::Dbg::Eq::operator()()</a>, <a class="el" href="dbg_8h_source.html#l00059">fe::Dbg::Hash::operator()()</a>, <a class="el" href="dbg_8h_source.html#l00083">operator&lt;&lt;</a>, <a class="el" href="#a737372e9d153b30e57e690d5dba15a02">operator=()</a>, <a class="el" href="dbg_8h_source.html#l00056">operator==()</a>, <a class="el" href="dbg_8h_source.html#l00050">set()</a>, and <a class="el" href="dbg_8h_source.html#l00049">set()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="dbg_8h_source.html#l00072">AbslHashValue</a>, <a class="el" href="#a7c8391efb0ddbd8382edcc407ebcbcb3">Dbg()</a>, <a class="el" href="dbg_8h_source.html#l00028">Dbg()</a>, <a class="el" href="dbg_8h_source.html#l00068">fe::Dbg::Eq::operator()()</a>, <a class="el" href="dbg_8h_source.html#l00059">fe::Dbg::Hash::operator()()</a>, <a class="el" href="dbg_8h_source.html#l00081">operator&lt;&lt;</a>, <a class="el" href="#a737372e9d153b30e57e690d5dba15a02">operator=()</a>, <a class="el" href="dbg_8h_source.html#l00056">operator==()</a>, <a class="el" href="dbg_8h_source.html#l00050">set()</a>, and <a class="el" href="dbg_8h_source.html#l00049">set()</a>.</p>
 
 </div>
 </div>
@@ -574,11 +578,46 @@ Friends</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="dbg_8h_source.html#l00040">40</a> of file <a class="el" href="dbg_8h_source.html">dbg.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="dbg_8h_source.html#l00028">Dbg()</a>, <a class="el" href="dbg_8h_source.html#l00033">Dbg()</a>, <a class="el" href="dbg_8h_source.html#l00043">is_anon()</a>, <a class="el" href="dbg_8h_source.html#l00044">operator bool()</a>, <a class="el" href="dbg_8h_source.html#l00083">operator&lt;&lt;</a>, and <a class="el" href="dbg_8h_source.html#l00049">set()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="dbg_8h_source.html#l00028">Dbg()</a>, <a class="el" href="dbg_8h_source.html#l00033">Dbg()</a>, <a class="el" href="dbg_8h_source.html#l00043">is_anon()</a>, <a class="el" href="dbg_8h_source.html#l00044">operator bool()</a>, <a class="el" href="dbg_8h_source.html#l00081">operator&lt;&lt;</a>, and <a class="el" href="dbg_8h_source.html#l00049">set()</a>.</p>
 
 </div>
 </div>
 <a name="doc-related-members" id="doc-related-members"></a><h2 id="header-doc-related-members" class="groupheader">Friends And Related Symbol Documentation</h2>
+<a id="a9d6abb2ddcdfb375745cd11a85eda040" name="a9d6abb2ddcdfb375745cd11a85eda040"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d6abb2ddcdfb375745cd11a85eda040">&#9670;&#160;</a></span>AbslHashValue</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class H&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">H AbslHashValue </td>
+          <td>(</td>
+          <td class="paramtype">H</td>          <td class="paramname"><span class="paramname"><em>h</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a887c5ecc32abaf560dae5a8dcc3a7b1f">Dbg</a></td>          <td class="paramname"><span class="paramname"><em>dbg</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel friend">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="dbg_8h_source.html#l00072">72</a> of file <a class="el" href="dbg_8h_source.html">dbg.h</a>.</p>
+
+<p class="reference">References <a class="el" href="#a887c5ecc32abaf560dae5a8dcc3a7b1f">Dbg()</a>.</p>
+
+</div>
+</div>
 <a id="a829fc089b5e57f3d0251fa96a9b77a6f" name="a829fc089b5e57f3d0251fa96a9b77a6f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a829fc089b5e57f3d0251fa96a9b77a6f">&#9670;&#160;</a></span>operator&lt;&lt;</h2>
 
@@ -606,7 +645,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="dbg_8h_source.html#l00083">83</a> of file <a class="el" href="dbg_8h_source.html">dbg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dbg_8h_source.html#l00081">81</a> of file <a class="el" href="dbg_8h_source.html">dbg.h</a>.</p>
 
 <p class="reference">References <a class="el" href="#a887c5ecc32abaf560dae5a8dcc3a7b1f">Dbg()</a>, and <a class="el" href="dbg_8h_source.html#l00040">sym()</a>.</p>
 

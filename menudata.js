@@ -156,6 +156,7 @@ var menudata={children:[
 {text:"Enumerator",url:"functions_eval.html"},
 {text:"Related Symbols",url:"functions_rela.html",children:[
 {text:":",url:"functions_rela.html#index__3A"},
+{text:"a",url:"functions_rela.html#index_a"},
 {text:"b",url:"functions_rela.html#index_b"},
 {text:"d",url:"functions_rela.html#index_d"},
 {text:"o",url:"functions_rela.html#index_o"},
