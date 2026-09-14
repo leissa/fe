@@ -83,6 +83,7 @@ public:
         if (auto size = ptr_ & Short_String_Mask) return size;
         return ((const String*)ptr_)->size;
     }
+    [[nodiscard]] constexpr uintptr_t raw() const noexcept { return ptr_; }
     ///@}
 
     /// @name Access

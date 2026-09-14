@@ -1,5 +1,7 @@
 #pragma once
 
+#include <concepts>
+
 #include <algorithm>
 #include <list>
 #include <memory>
@@ -9,6 +11,8 @@
 #include <utility>
 
 #include "fe/assert.h"
+#include "fe/span.h"
+#include "fe/trailing.h"
 
 namespace fe {
 
@@ -83,6 +87,30 @@ public:
         constexpr void operator()(T* ptr) const noexcept(noexcept(ptr->~T())) { ptr->~T(); }
     };
 
+    /// A non-owning pointer into an Arena.
+    /// The Arena outlives it and releases everything at once, so nothing is ever destroyed
+    /// through it - unlike Arena::Ptr, which at least runs the destructor.
+    template<class T>
+    class Ref {
+    public:
+        constexpr Ref() noexcept = default;
+        constexpr Ref(std::nullptr_t) noexcept {}
+        constexpr explicit Ref(T* ptr) noexcept
+            : ptr_(ptr) {}
+        template<class U>
+        requires std::convertible_to<U*, T*> constexpr Ref(Ref<U> ref) noexcept
+            : ptr_(ref.get()) {}
+
+        constexpr T* get() const noexcept { return ptr_; }
+        constexpr T* operator->() const noexcept { return ptr_; }
+        constexpr T& operator*() const noexcept { return *ptr_; }
+        constexpr explicit operator bool() const noexcept { return ptr_ != nullptr; }
+        constexpr bool operator==(const Ref&) const noexcept = default;
+
+    private:
+        T* ptr_ = nullptr;
+    };
+
     template<class T>
     using Ptr   = std::unique_ptr<T, Deleter<T>>;
     using State = std::pair<size_t, size_t>;
@@ -120,8 +148,29 @@ public:
     /// ```
     template<class T, class... Args>
     Ptr<T> mk(Args&&... args) {
-        auto ptr = new (allocate<std::remove_const_t<T>>(1)) T(std::forward<Args>(args)...);
-        return Ptr<T>(ptr, Deleter<T>());
+        return Ptr<T>(create<T>(std::forward<Args>(args)...), Deleter<T>());
+    }
+
+    /// Like Arena::mk, but yields a Ref: nothing will ever destroy the object.
+    /// Use like this:
+    /// ```
+    /// auto ref = arena.ref<Foo>(a, b, c); // new Foo(a, b, c) placed into arena, never destroyed
+    /// ```
+    template<class T, class... Args>
+    Ref<T> ref(Args&&... args) {
+        static_assert(std::is_trivially_destructible_v<std::remove_const_t<T>>,
+                      "a Ref never destroys - use Arena::mk for a type with a destructor");
+        return Ref<T>(create<T>(std::forward<Args>(args)...));
+    }
+
+    /// An Arena-allocated copy of @p range.
+    template<std::ranges::input_range R, class T = std::ranges::range_value_t<R>>
+    [[nodiscard]] Span<T> copy(const R& range) {
+        static_assert(std::is_trivially_destructible_v<T>);
+        auto n   = std::ranges::size(range);
+        auto ptr = allocate<T>(n);
+        std::uninitialized_copy(std::ranges::begin(range), std::ranges::end(range), ptr);
+        return {ptr, n};
     }
     ///@}
 
@@ -196,6 +245,29 @@ public:
     static constexpr size_t align(size_t i, size_t a) noexcept { return (i + (a - 1)) & ~(a - 1); }
 
 private:
+    /// Placement-new%s a `T`, allocating and filling its fe::Trailing arrays, if it has any.
+    template<class T, class... Args>
+    std::remove_const_t<T>* create(Args&&... args) {
+        using U = std::remove_const_t<T>;
+        if constexpr (Trailed<U>) {
+            static_assert(sizeof...(Args) >= U::num_trail(), "one range per trailing array, as the last arguments");
+            constexpr auto n = sizeof...(Args) - U::num_trail();
+            return create_trail<U>(std::make_index_sequence<n>(), std::make_index_sequence<U::num_trail()>(),
+                                   std::forward_as_tuple(std::forward<Args>(args)...));
+        } else {
+            return new (allocate<U>(1)) U(std::forward<Args>(args)...);
+        }
+    }
+
+    template<class U, size_t... Hs, size_t... Ts, class Tuple>
+    U* create_trail(std::index_sequence<Hs...>, std::index_sequence<Ts...>, Tuple&& tuple) {
+        auto counts = std::array<size_t, sizeof...(Ts)>{std::ranges::size(std::get<sizeof...(Hs) + Ts>(tuple))...};
+        auto align  = std::max(alignof(U), U::trail_align());
+        auto ptr    = new (allocate(U::trail_bytes(counts), align)) U(std::get<Hs>(std::forward<Tuple>(tuple))...);
+        ptr->fill_trail(std::get<sizeof...(Hs) + Ts>(tuple)...);
+        return ptr;
+    }
+
     Arena& align(size_t a) noexcept { return index_ = align(index_, a), *this; }
 
     struct Page {

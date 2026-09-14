@@ -18,6 +18,7 @@
 #include <fe/span.h>
 #include <fe/sym.h>
 #include <fe/term.h>
+#include <fe/trailing.h>
 #include <fe/utf8.h>
 #include <fe/vector.h>
 #include <fe/worklist.h>
@@ -963,4 +964,117 @@ TEST_CASE("Log") {
             CHECK(oss.str().contains("core"));
         }
     }
+}
+
+namespace {
+
+struct Trail3 : fe::Trailing<Trail3> {
+    using Trail_Types = std::tuple<int, char, double*>;
+
+    Trail3(int tag)
+        : tag(tag) {}
+
+    auto ints() const { return trail<0>(); }
+    auto chars() const { return trail<1>(); }
+    auto ptrs() const { return trail<2>(); }
+
+    int tag;
+};
+
+struct Poly {
+    Poly(int tag)
+        : tag(tag) {}
+    virtual int get() const { return tag; }
+    int tag;
+};
+
+struct Derived : Poly, fe::Trailing<Derived> {
+    using Trail_Types = std::tuple<const Poly*>;
+
+    Derived(int tag)
+        : Poly(tag) {}
+    auto kids() const { return trail<0>(); }
+};
+
+} // namespace
+
+TEST_CASE("Trailing") {
+    fe::Arena arena;
+
+    SUBCASE("several arrays of different type") {
+        auto ints  = std::vector{1, 2, 3};
+        auto chars = std::vector{'a', 'b'};
+        auto d     = 23.0;
+        auto ptrs  = std::vector{&d};
+        auto t     = arena.ref<const Trail3>(42, ints, chars, ptrs);
+
+        CHECK(t->tag == 42);
+        CHECK(std::ranges::equal(t->ints(), ints));
+        CHECK(std::ranges::equal(t->chars(), chars));
+        CHECK(t->ptrs().size() == 1);
+        CHECK(*t->ptrs()[0] == 23.0);
+
+        // every array sits inside the allocation and behind the object itself
+        auto base = (const char*)t.get();
+        CHECK((const char*)t->ints().data() >= base + sizeof(Trail3));
+        CHECK((const char*)t->chars().data() + t->chars().size()
+              <= base + Trail3::trail_bytes(std::array<size_t, 3>{3, 2, 1}));
+    }
+
+    SUBCASE("empty arrays") {
+        auto empty = std::vector<int>{};
+        auto t     = arena.ref<const Trail3>(0, empty, std::vector<char>{}, std::vector<double*>{});
+        CHECK(t->ints().empty());
+        CHECK(t->chars().empty());
+        CHECK(t->ptrs().empty());
+    }
+
+    SUBCASE("alignment holds for every array") {
+        auto d = 0.0;
+        for (size_t i = 0; i != 8; ++i) {
+            auto chars = std::vector<char>(i, 'x');
+            auto t     = arena.ref<const Trail3>((int)i, std::vector{1}, chars, std::vector{&d});
+            CHECK(fe::is_aligned((uintptr_t)t.get(), alignof(Trail3)));
+            CHECK(fe::is_aligned((uintptr_t)t->ints().data(), alignof(int)));
+            CHECK(fe::is_aligned((uintptr_t)t->ptrs().data(), alignof(double*)));
+            CHECK(t->chars().size() == i);
+        }
+    }
+
+    SUBCASE("a polymorphic node with a trailing array") {
+        auto a    = arena.ref<const Poly>(1);
+        auto b    = arena.ref<const Poly>(2);
+        auto kids = std::vector<const Poly*>{a.get(), b.get()};
+        auto d    = arena.ref<const Derived>(3, kids);
+        CHECK(d->tag == 3);
+        CHECK(d->kids().size() == 2);
+        CHECK(d->kids()[0]->tag == 1);
+        CHECK(d->kids()[1]->tag == 2);
+
+        fe::Arena::Ref<const Poly> up = d; // Ref converts along the hierarchy
+        CHECK(up->tag == 3);
+    }
+
+    SUBCASE("many nodes across page boundaries") {
+        auto arena = fe::Arena(64);
+        auto refs  = std::vector<fe::Arena::Ref<const Trail3>>();
+        for (int i = 0; i != 100; ++i) {
+            auto ints = std::vector<int>(i % 7, i);
+            refs.emplace_back(arena.ref<const Trail3>(i, ints, std::vector<char>{}, std::vector<double*>{}));
+        }
+        for (int i = 0; i != 100; ++i) {
+            CHECK(refs[i]->tag == i);
+            CHECK(refs[i]->ints().size() == size_t(i % 7));
+            for (auto x : refs[i]->ints())
+                CHECK(x == i);
+        }
+    }
+}
+
+TEST_CASE("Arena::copy") {
+    fe::Arena arena;
+    auto v    = std::vector{1, 2, 3, 4};
+    auto span = arena.copy(v);
+    CHECK(std::ranges::equal(span, v));
+    CHECK(arena.copy(std::vector<int>{}).empty());
 }
