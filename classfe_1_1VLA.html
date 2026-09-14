@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.18.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>FE: fe::Trailing&lt; Self &gt; Class Template Reference</title>
+<title>FE: fe::VLA&lt; Self &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript">
 // Doxygen no longer ships jQuery, but doxygen-awesome's extensions still expect it.
@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', codefold.init);
   </div>
 </div>
 <script type="text/javascript">
-document.addEventListener('DOMContentLoaded',() => { initNavTree('classfe_1_1Trailing.html','','classfe_1_1Trailing-members'); });
+document.addEventListener('DOMContentLoaded',() => { initNavTree('classfe_1_1VLA.html','','classfe_1_1VLA-members'); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -156,37 +156,37 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classfe_1_1Tra
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#friends">Friends</a> &#124;
-<a href="classfe_1_1Trailing-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">fe::Trailing&lt; Self &gt; Class Template Reference</div></div>
+<a href="classfe_1_1VLA-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">fe::VLA&lt; Self &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>CRTP base that gives <code class="param">Self</code> one array per element type in <span class="tt">Self::Trail_Types</span> directly behind it in memory - the C flexible array member, generalized to several arrays of different type.  
+<p>CRTP base that gives <code class="param">Self</code> one <a href="https://en.wikipedia.org/wiki/Variable-length_array">VLA</a> per element type in <span class="tt">Self::VLA_Types</span> directly behind it in memory - the C flexible array member, generalized to several arrays of different type.  
  <a href="#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="trailing_8h_source.html">fe/trailing.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="vla_8h_source.html">fe/vla.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:ac8e7c48196ab3cdcf1d25db399aef140" id="r_ac8e7c48196ab3cdcf1d25db399aef140"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#ac8e7c48196ab3cdcf1d25db399aef140">Trail_Self</a> = Self</td></tr>
-<tr class="memdesc:ac8e7c48196ab3cdcf1d25db399aef140"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type this base was instantiated with - <code class="param">Self</code> itself, unless a class deriving from it inherited it.  <br /></td></tr>
-<tr class="memitem:a3f37f697be33956bfb73fd9ab82692c3" id="r_a3f37f697be33956bfb73fd9ab82692c3"><td class="memTemplParams" colspan="2">template&lt;size_t I, class S = Self&gt; </td></tr>
-<tr class="memitem:a3f37f697be33956bfb73fd9ab82692c3 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a3f37f697be33956bfb73fd9ab82692c3">Trail_Type</a> = std::tuple_element_t&lt;I, typename S::Trail_Types&gt;</td></tr>
-<tr class="memdesc:a3f37f697be33956bfb73fd9ab82692c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Element type of the <code class="param">I</code> th trailing array.  <br /></td></tr>
+<tr class="memitem:afcb2b7dad2e5903068fb2e17a492020e" id="r_afcb2b7dad2e5903068fb2e17a492020e"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#afcb2b7dad2e5903068fb2e17a492020e">VLA_Self</a> = Self</td></tr>
+<tr class="memdesc:afcb2b7dad2e5903068fb2e17a492020e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type this base was instantiated with - <code class="param">Self</code> itself, unless a class deriving from it inherited it.  <br /></td></tr>
+<tr class="memitem:a71ada1da77afebdcae069f2a37b348cc" id="r_a71ada1da77afebdcae069f2a37b348cc"><td class="memTemplParams" colspan="2">template&lt;size_t I, class S = Self&gt; </td></tr>
+<tr class="memitem:a71ada1da77afebdcae069f2a37b348cc template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a71ada1da77afebdcae069f2a37b348cc">VLA_Type</a> = std::tuple_element_t&lt;I, typename S::VLA_Types&gt;</td></tr>
+<tr class="memdesc:a71ada1da77afebdcae069f2a37b348cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Element type of the <code class="param">I</code> th <a class="el" href="classfe_1_1VLA.html" title="CRTP base that gives Self one VLA per element type in Self::VLA_Types directly behind it in memory - ...">VLA</a>.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac971076261204855c7d1771d81dab540" id="r_ac971076261204855c7d1771d81dab540"><td class="memTemplParams" colspan="2">template&lt;size_t I&gt; </td></tr>
-<tr class="memitem:ac971076261204855c7d1771d81dab540 template"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#ac971076261204855c7d1771d81dab540">trail</a> () const noexcept</td></tr>
-<tr class="memdesc:ac971076261204855c7d1771d81dab540"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <code class="param">I</code> th trailing array as a <span class="tt"><a class="el" href="namespacefe.html#a3fa8abec15ebc094748836707250e96e" title="Read-only Span; use Span itself, if you want to write through its elements.">View</a>&lt;<a class="el" href="#a3f37f697be33956bfb73fd9ab82692c3" title="Element type of the I th trailing array.">Trail_Type</a>&lt;I&gt;&gt;</span>.  <br /></td></tr>
+<tr class="memitem:a94587c2142d9516bbf1e123a14cb3b35" id="r_a94587c2142d9516bbf1e123a14cb3b35"><td class="memTemplParams" colspan="2">template&lt;size_t I&gt; </td></tr>
+<tr class="memitem:a94587c2142d9516bbf1e123a14cb3b35 template"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#a94587c2142d9516bbf1e123a14cb3b35">vla</a> () const noexcept</td></tr>
+<tr class="memdesc:a94587c2142d9516bbf1e123a14cb3b35"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <code class="param">I</code> th <a class="el" href="classfe_1_1VLA.html" title="CRTP base that gives Self one VLA per element type in Self::VLA_Types directly behind it in memory - ...">VLA</a> as a <span class="tt"><a class="el" href="namespacefe.html#a3fa8abec15ebc094748836707250e96e" title="Read-only Span; use Span itself, if you want to write through its elements.">View</a>&lt;<a class="el" href="#a71ada1da77afebdcae069f2a37b348cc" title="Element type of the I th VLA.">VLA_Type</a>&lt;I&gt;&gt;</span>.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a620837fbf7c1e697cbf5b5fc45c4a23a" id="r_a620837fbf7c1e697cbf5b5fc45c4a23a"><td class="memItemLeft">static constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="#a620837fbf7c1e697cbf5b5fc45c4a23a">num_trail</a> () noexcept</td></tr>
-<tr class="memitem:ace68dc5a4618a226d705043bc0934f4b" id="r_ace68dc5a4618a226d705043bc0934f4b"><td class="memItemLeft">static constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="#ace68dc5a4618a226d705043bc0934f4b">trail_align</a> () noexcept</td></tr>
-<tr class="memitem:ab4130c9b90ac8bc1b2f101c5faa713e0" id="r_ab4130c9b90ac8bc1b2f101c5faa713e0"><td class="memTemplParams" colspan="2">template&lt;class C&gt; </td></tr>
-<tr class="memitem:ab4130c9b90ac8bc1b2f101c5faa713e0 template"><td class="memItemLeft">static constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="#ab4130c9b90ac8bc1b2f101c5faa713e0">trail_bytes</a> (const C &amp;counts) noexcept</td></tr>
-<tr class="memdesc:ab4130c9b90ac8bc1b2f101c5faa713e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bytes an <code class="param">Self</code> with these element counts occupies, <span class="tt">sizeof(Self)</span> included.  <br /></td></tr>
+<tr class="memitem:acc627251359efa023f778d36963e8b3c" id="r_acc627251359efa023f778d36963e8b3c"><td class="memItemLeft">static constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="#acc627251359efa023f778d36963e8b3c">num_vlas</a> () noexcept</td></tr>
+<tr class="memitem:a0156087295ff1ec2af12007415e5fb12" id="r_a0156087295ff1ec2af12007415e5fb12"><td class="memItemLeft">static constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="#a0156087295ff1ec2af12007415e5fb12">vla_align</a> () noexcept</td></tr>
+<tr class="memitem:a4c9ccddf0942986eea1200387c203ebb" id="r_a4c9ccddf0942986eea1200387c203ebb"><td class="memTemplParams" colspan="2">template&lt;class C&gt; </td></tr>
+<tr class="memitem:a4c9ccddf0942986eea1200387c203ebb template"><td class="memItemLeft">static constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="#a4c9ccddf0942986eea1200387c203ebb">vla_bytes</a> (const C &amp;counts) noexcept</td></tr>
+<tr class="memdesc:a4c9ccddf0942986eea1200387c203ebb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bytes an <code class="param">Self</code> with these element counts occupies, <span class="tt">sizeof(Self)</span> included.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-friends" class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
@@ -194,25 +194,25 @@ Friends</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class Self&gt;<br />
-class fe::Trailing&lt; Self &gt;</div><p>CRTP base that gives <code class="param">Self</code> one array per element type in <span class="tt">Self::Trail_Types</span> directly behind it in memory - the C flexible array member, generalized to several arrays of different type. </p>
-<p><code class="param">Self</code> must be created through <a class="el" href="classfe_1_1Arena.html#ac0ed8cd6c5553d0d1e75745501221a6f" title="This is a std::unique_ptr that uses the Arena under the hood and whose Deleter will only invoke the d...">Arena::mk</a> or <a class="el" href="classfe_1_1Arena.html#a2a530cfca1470ed2be58139542bff87f" title="Like Arena::mk, but yields a Ref: nothing will ever destroy the object.">Arena::ref</a>, which allocate the arrays along with <code class="param">Self</code> and fill them from the <em>last</em> <span class="tt">Self::Trail_Types</span> arguments, in that order. This base is empty - the element counts live at the front of the trailing block - so that <span class="tt">Self::Trail_Types</span> may name types only declared inside <code class="param">Self</code>. </p><div class="fragment"><div class="line"><span class="keyword">class </span>Interval : <span class="keyword">public</span> Node, <span class="keyword">public</span> <a class="code hl_class" href="classfe_1_1Trailing.html">fe::Trailing</a>&lt;Interval&gt; {</div>
+class fe::VLA&lt; Self &gt;</div><p>CRTP base that gives <code class="param">Self</code> one <a href="https://en.wikipedia.org/wiki/Variable-length_array">VLA</a> per element type in <span class="tt">Self::VLA_Types</span> directly behind it in memory - the C flexible array member, generalized to several arrays of different type. </p>
+<p><code class="param">Self</code> must be created through <a class="el" href="classfe_1_1Arena.html#ac0ed8cd6c5553d0d1e75745501221a6f" title="This is a std::unique_ptr that uses the Arena under the hood and whose Deleter will only invoke the d...">Arena::mk</a> or <a class="el" href="classfe_1_1Arena.html#a2a530cfca1470ed2be58139542bff87f" title="Like Arena::mk, but yields a Ref: nothing will ever destroy the object.">Arena::ref</a>, which allocate the arrays along with <code class="param">Self</code> and fill them from the <em>last</em> <span class="tt">Self::VLA_Types</span> arguments, in that order. This base is empty - the element counts live at the front of the <a class="el" href="classfe_1_1VLA.html" title="CRTP base that gives Self one VLA per element type in Self::VLA_Types directly behind it in memory - ...">VLA</a> block - so that <span class="tt">Self::VLA_Types</span> may name types only declared inside <code class="param">Self</code>. </p><div class="fragment"><div class="line"><span class="keyword">class </span>Interval : <span class="keyword">public</span> Node, <span class="keyword">public</span> <a class="code hl_class" href="classfe_1_1VLA.html">fe::VLA</a>&lt;Interval&gt; {</div>
 <div class="line"><span class="keyword">public</span>:</div>
-<div class="line">    <span class="keyword">using </span>Trail_Types = std::tuple&lt;const Expr*, const Expr*&gt;;</div>
+<div class="line">    <span class="keyword">using </span>VLA_Types = std::tuple&lt;const Expr*, const Expr*&gt;;</div>
 <div class="line">    Interval(<a class="code hl_struct" href="structfe_1_1Loc.html">Loc</a> loc, Tag from, Tag to);          <span class="comment">// no parameter for either array</span></div>
-<div class="line">    <span class="keyword">auto</span> from_args()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="#ac971076261204855c7d1771d81dab540">trail&lt;0&gt;</a>(); } <span class="comment">// fe::View&lt;const Expr*&gt;</span></div>
-<div class="line">    <span class="keyword">auto</span> to_args()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="#ac971076261204855c7d1771d81dab540">trail&lt;1&gt;</a>(); }</div>
+<div class="line">    <span class="keyword">auto</span> from_args()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="#a94587c2142d9516bbf1e123a14cb3b35">vla&lt;0&gt;</a>(); } <span class="comment">// fe::View&lt;const Expr*&gt;</span></div>
+<div class="line">    <span class="keyword">auto</span> to_args()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="#a94587c2142d9516bbf1e123a14cb3b35">vla&lt;1&gt;</a>(); }</div>
 <div class="line">};</div>
 <div class="line"> </div>
 <div class="line">arena.ref&lt;Interval&gt;(loc, from, to, from_args, to_args);</div>
-<div class="ttc" id="aclassfe_1_1Trailing_html"><div class="ttname"><a href="classfe_1_1Trailing.html">fe::Trailing</a></div><div class="ttdoc">CRTP base that gives Self one array per element type in Self::Trail_Types directly behind it in memor...</div><div class="ttdef"><b>Definition</b> <a href="trailing_8h_source.html#l00037">trailing.h:37</a></div></div>
-<div class="ttc" id="aclassfe_1_1Trailing_html_ac971076261204855c7d1771d81dab540"><div class="ttname"><a href="#ac971076261204855c7d1771d81dab540">fe::Trailing::trail</a></div><div class="ttdeci">auto trail() const noexcept</div><div class="ttdoc">The I th trailing array as a View&lt;Trail_Type&lt;I&gt;&gt;.</div><div class="ttdef"><b>Definition</b> <a href="trailing_8h_source.html#l00059">trailing.h:59</a></div></div>
+<div class="ttc" id="aclassfe_1_1VLA_html"><div class="ttname"><a href="classfe_1_1VLA.html">fe::VLA</a></div><div class="ttdoc">CRTP base that gives Self one VLA per element type in Self::VLA_Types directly behind it in memory - ...</div><div class="ttdef"><b>Definition</b> <a href="vla_8h_source.html#l00038">vla.h:38</a></div></div>
+<div class="ttc" id="aclassfe_1_1VLA_html_a94587c2142d9516bbf1e123a14cb3b35"><div class="ttname"><a href="#a94587c2142d9516bbf1e123a14cb3b35">fe::VLA::vla</a></div><div class="ttdeci">auto vla() const noexcept</div><div class="ttdoc">The I th VLA as a View&lt;VLA_Type&lt;I&gt;&gt;.</div><div class="ttdef"><b>Definition</b> <a href="vla_8h_source.html#l00060">vla.h:60</a></div></div>
 <div class="ttc" id="astructfe_1_1Loc_html"><div class="ttname"><a href="structfe_1_1Loc.html">fe::Loc</a></div><div class="ttdoc">Location within a Src: the half-open byte range [Loc::begin, Loc::end).</div><div class="ttdef"><b>Definition</b> <a href="loc_8h_source.html#l00042">loc.h:42</a></div></div>
 </div><!-- fragment --> <dl class="section warning"><dt>Warning</dt><dd>Only the most derived class may carry them. A class deriving from <code class="param">Self</code> would inherit this base and place its arrays at <code class="param">Self's</code> offset - on top of its own members - so <a class="el" href="classfe_1_1Arena.html#ac0ed8cd6c5553d0d1e75745501221a6f" title="This is a std::unique_ptr that uses the Arena under the hood and whose Deleter will only invoke the d...">Arena::mk</a> and <a class="el" href="classfe_1_1Arena.html#a2a530cfca1470ed2be58139542bff87f" title="Like Arena::mk, but yields a Ref: nothing will ever destroy the object.">Arena::ref</a> reject it. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="trailing_8h_source.html#l00037">37</a> of file <a class="el" href="trailing_8h_source.html">trailing.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vla_8h_source.html#l00038">38</a> of file <a class="el" href="vla_8h_source.html">vla.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
-<a id="ac8e7c48196ab3cdcf1d25db399aef140" name="ac8e7c48196ab3cdcf1d25db399aef140"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac8e7c48196ab3cdcf1d25db399aef140">&#9670;&#160;</a></span>Trail_Self</h2>
+<a id="afcb2b7dad2e5903068fb2e17a492020e" name="afcb2b7dad2e5903068fb2e17a492020e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcb2b7dad2e5903068fb2e17a492020e">&#9670;&#160;</a></span>VLA_Self</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -220,19 +220,19 @@ class fe::Trailing&lt; Self &gt;</div><p>CRTP base that gives <code class="param
 template&lt;class Self&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classfe_1_1Trailing.html">fe::Trailing</a>&lt; Self &gt;::Trail_Self = Self</td>
+          <td class="memname">using <a class="el" href="classfe_1_1VLA.html">fe::VLA</a>&lt; Self &gt;::VLA_Self = Self</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>The type this base was instantiated with - <code class="param">Self</code> itself, unless a class deriving from it inherited it. </p>
 
-<p class="definition">Definition at line <a class="el" href="trailing_8h_source.html#l00040">40</a> of file <a class="el" href="trailing_8h_source.html">trailing.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vla_8h_source.html#l00041">41</a> of file <a class="el" href="vla_8h_source.html">vla.h</a>.</p>
 
 </div>
 </div>
-<a id="a3f37f697be33956bfb73fd9ab82692c3" name="a3f37f697be33956bfb73fd9ab82692c3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3f37f697be33956bfb73fd9ab82692c3">&#9670;&#160;</a></span>Trail_Type</h2>
+<a id="a71ada1da77afebdcae069f2a37b348cc" name="a71ada1da77afebdcae069f2a37b348cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71ada1da77afebdcae069f2a37b348cc">&#9670;&#160;</a></span>VLA_Type</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -242,21 +242,21 @@ template&lt;class Self&gt; </div>
 template&lt;size_t I, class S = Self&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classfe_1_1Trailing.html">fe::Trailing</a>&lt; Self &gt;::Trail_Type = std::tuple_element_t&lt;I, typename S::Trail_Types&gt;</td>
+          <td class="memname">using <a class="el" href="classfe_1_1VLA.html">fe::VLA</a>&lt; Self &gt;::VLA_Type = std::tuple_element_t&lt;I, typename S::VLA_Types&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Element type of the <code class="param">I</code> th trailing array. </p>
+<p>Element type of the <code class="param">I</code> th <a class="el" href="classfe_1_1VLA.html" title="CRTP base that gives Self one VLA per element type in Self::VLA_Types directly behind it in memory - ...">VLA</a>. </p>
 <p><code class="param">S</code> defers the lookup: <span class="tt">Self</span> is still incomplete while this base is instantiated. </p>
 
-<p class="definition">Definition at line <a class="el" href="trailing_8h_source.html#l00045">45</a> of file <a class="el" href="trailing_8h_source.html">trailing.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vla_8h_source.html#l00046">46</a> of file <a class="el" href="vla_8h_source.html">vla.h</a>.</p>
 
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a620837fbf7c1e697cbf5b5fc45c4a23a" name="a620837fbf7c1e697cbf5b5fc45c4a23a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a620837fbf7c1e697cbf5b5fc45c4a23a">&#9670;&#160;</a></span>num_trail()</h2>
+<a id="acc627251359efa023f778d36963e8b3c" name="acc627251359efa023f778d36963e8b3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc627251359efa023f778d36963e8b3c">&#9670;&#160;</a></span>num_vlas()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -267,7 +267,7 @@ template&lt;class Self&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr size_t <a class="el" href="classfe_1_1Trailing.html">fe::Trailing</a>&lt; Self &gt;::num_trail </td>
+          <td class="memname">constexpr size_t <a class="el" href="classfe_1_1VLA.html">fe::VLA</a>&lt; Self &gt;::num_vlas </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -280,14 +280,14 @@ template&lt;class Self&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="trailing_8h_source.html#l00047">47</a> of file <a class="el" href="trailing_8h_source.html">trailing.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vla_8h_source.html#l00048">48</a> of file <a class="el" href="vla_8h_source.html">vla.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="trailing_8h_source.html#l00053">trail_bytes()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vla_8h_source.html#l00054">vla_bytes()</a>.</p>
 
 </div>
 </div>
-<a id="ac971076261204855c7d1771d81dab540" name="ac971076261204855c7d1771d81dab540"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac971076261204855c7d1771d81dab540">&#9670;&#160;</a></span>trail()</h2>
+<a id="a94587c2142d9516bbf1e123a14cb3b35" name="a94587c2142d9516bbf1e123a14cb3b35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94587c2142d9516bbf1e123a14cb3b35">&#9670;&#160;</a></span>vla()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -300,7 +300,7 @@ template&lt;size_t I&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto <a class="el" href="classfe_1_1Trailing.html">fe::Trailing</a>&lt; Self &gt;::trail </td>
+          <td class="memname">auto <a class="el" href="classfe_1_1VLA.html">fe::VLA</a>&lt; Self &gt;::vla </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -313,14 +313,14 @@ template&lt;size_t I&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>The <code class="param">I</code> th trailing array as a <span class="tt"><a class="el" href="namespacefe.html#a3fa8abec15ebc094748836707250e96e" title="Read-only Span; use Span itself, if you want to write through its elements.">View</a>&lt;<a class="el" href="#a3f37f697be33956bfb73fd9ab82692c3" title="Element type of the I th trailing array.">Trail_Type</a>&lt;I&gt;&gt;</span>. </p>
+<p>The <code class="param">I</code> th <a class="el" href="classfe_1_1VLA.html" title="CRTP base that gives Self one VLA per element type in Self::VLA_Types directly behind it in memory - ...">VLA</a> as a <span class="tt"><a class="el" href="namespacefe.html#a3fa8abec15ebc094748836707250e96e" title="Read-only Span; use Span itself, if you want to write through its elements.">View</a>&lt;<a class="el" href="#a71ada1da77afebdcae069f2a37b348cc" title="Element type of the I th VLA.">VLA_Type</a>&lt;I&gt;&gt;</span>. </p>
 
-<p class="definition">Definition at line <a class="el" href="trailing_8h_source.html#l00059">59</a> of file <a class="el" href="trailing_8h_source.html">trailing.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vla_8h_source.html#l00060">60</a> of file <a class="el" href="vla_8h_source.html">vla.h</a>.</p>
 
 </div>
 </div>
-<a id="ace68dc5a4618a226d705043bc0934f4b" name="ace68dc5a4618a226d705043bc0934f4b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ace68dc5a4618a226d705043bc0934f4b">&#9670;&#160;</a></span>trail_align()</h2>
+<a id="a0156087295ff1ec2af12007415e5fb12" name="a0156087295ff1ec2af12007415e5fb12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0156087295ff1ec2af12007415e5fb12">&#9670;&#160;</a></span>vla_align()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -331,7 +331,7 @@ template&lt;class Self&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr size_t <a class="el" href="classfe_1_1Trailing.html">fe::Trailing</a>&lt; Self &gt;::trail_align </td>
+          <td class="memname">constexpr size_t <a class="el" href="classfe_1_1VLA.html">fe::VLA</a>&lt; Self &gt;::vla_align </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -344,16 +344,16 @@ template&lt;class Self&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="trailing_8h_source.html#l00049">49</a> of file <a class="el" href="trailing_8h_source.html">trailing.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vla_8h_source.html#l00050">50</a> of file <a class="el" href="vla_8h_source.html">vla.h</a>.</p>
 
-<p class="reference">References <a class="el" href="trailing_8h_source.html#l00049">trail_align()</a>.</p>
+<p class="reference">References <a class="el" href="vla_8h_source.html#l00050">vla_align()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="trailing_8h_source.html#l00049">trail_align()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vla_8h_source.html#l00050">vla_align()</a>.</p>
 
 </div>
 </div>
-<a id="ab4130c9b90ac8bc1b2f101c5faa713e0" name="ab4130c9b90ac8bc1b2f101c5faa713e0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab4130c9b90ac8bc1b2f101c5faa713e0">&#9670;&#160;</a></span>trail_bytes()</h2>
+<a id="a4c9ccddf0942986eea1200387c203ebb" name="a4c9ccddf0942986eea1200387c203ebb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c9ccddf0942986eea1200387c203ebb">&#9670;&#160;</a></span>vla_bytes()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -366,7 +366,7 @@ template&lt;class C&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr size_t <a class="el" href="classfe_1_1Trailing.html">fe::Trailing</a>&lt; Self &gt;::trail_bytes </td>
+          <td class="memname">constexpr size_t <a class="el" href="classfe_1_1VLA.html">fe::VLA</a>&lt; Self &gt;::vla_bytes </td>
           <td>(</td>
           <td class="paramtype">const C &amp;</td>          <td class="paramname"><span class="paramname"><em>counts</em></span></td><td>)</td>
           <td></td>
@@ -381,9 +381,9 @@ template&lt;class C&gt; </div>
 
 <p>Bytes an <code class="param">Self</code> with these element counts occupies, <span class="tt">sizeof(Self)</span> included. </p>
 
-<p class="definition">Definition at line <a class="el" href="trailing_8h_source.html#l00053">53</a> of file <a class="el" href="trailing_8h_source.html">trailing.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vla_8h_source.html#l00054">54</a> of file <a class="el" href="vla_8h_source.html">vla.h</a>.</p>
 
-<p class="reference">References <a class="el" href="trailing_8h_source.html#l00047">num_trail()</a>.</p>
+<p class="reference">References <a class="el" href="vla_8h_source.html#l00048">num_vlas()</a>.</p>
 
 </div>
 </div>
@@ -410,16 +410,16 @@ template&lt;class Self&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="trailing_8h_source.html#l00115">115</a> of file <a class="el" href="trailing_8h_source.html">trailing.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vla_8h_source.html#l00116">116</a> of file <a class="el" href="vla_8h_source.html">vla.h</a>.</p>
 
-<p class="reference">References <a class="el" href="trailing_8h_source.html#l00115">Arena</a>.</p>
+<p class="reference">References <a class="el" href="vla_8h_source.html#l00116">Arena</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="trailing_8h_source.html#l00115">Arena</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vla_8h_source.html#l00116">Arena</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>fe/<a class="el" href="trailing_8h_source.html">trailing.h</a></li>
+<li>fe/<a class="el" href="vla_8h_source.html">vla.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -427,7 +427,7 @@ template&lt;class Self&gt; </div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="namespacefe.html">fe</a></li><li class="navelem"><a href="classfe_1_1Trailing.html">Trailing</a></li>
+    <li class="navelem"><a href="namespacefe.html">fe</a></li><li class="navelem"><a href="classfe_1_1VLA.html">VLA</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
   </ul>
 </div>

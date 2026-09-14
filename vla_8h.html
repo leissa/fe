@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.18.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>FE: Member List</title>
+<title>FE: fe/vla.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript">
 // Doxygen no longer ships jQuery, but doxygen-awesome's extensions still expect it.
@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', codefold.init);
   </div>
 </div>
 <script type="text/javascript">
-document.addEventListener('DOMContentLoaded',() => { initNavTree('classfe_1_1Trailing.html','',''); });
+document.addEventListener('DOMContentLoaded',() => { initNavTree('vla_8h.html','',''); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -151,25 +151,55 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classfe_1_1Tra
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">fe::Trailing&lt; Self &gt; Member List</div></div>
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#concepts">Concepts</a>  </div>
+  <div class="headertitle"><div class="title">vla.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>This is the complete list of members for <a class="el" href="classfe_1_1Trailing.html">fe::Trailing&lt; Self &gt;</a>, including all inherited members.</p>
-<table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="classfe_1_1Trailing.html#a5f488c25aa439166d145713c67e7d085">Arena</a> class</td><td class="entry"><a class="el" href="classfe_1_1Trailing.html">fe::Trailing&lt; Self &gt;</a></td><td class="entry"><span class="mlabel">friend</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="classfe_1_1Trailing.html#a620837fbf7c1e697cbf5b5fc45c4a23a">num_trail</a>() noexcept</td><td class="entry"><a class="el" href="classfe_1_1Trailing.html">fe::Trailing&lt; Self &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">static</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classfe_1_1Trailing.html#ac971076261204855c7d1771d81dab540">trail</a>() const noexcept</td><td class="entry"><a class="el" href="classfe_1_1Trailing.html">fe::Trailing&lt; Self &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="classfe_1_1Trailing.html#ace68dc5a4618a226d705043bc0934f4b">trail_align</a>() noexcept</td><td class="entry"><a class="el" href="classfe_1_1Trailing.html">fe::Trailing&lt; Self &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">static</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classfe_1_1Trailing.html#ab4130c9b90ac8bc1b2f101c5faa713e0">trail_bytes</a>(const C &amp;counts) noexcept</td><td class="entry"><a class="el" href="classfe_1_1Trailing.html">fe::Trailing&lt; Self &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">static</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="classfe_1_1Trailing.html#ac8e7c48196ab3cdcf1d25db399aef140">Trail_Self</a> typedef</td><td class="entry"><a class="el" href="classfe_1_1Trailing.html">fe::Trailing&lt; Self &gt;</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classfe_1_1Trailing.html#a3f37f697be33956bfb73fd9ab82692c3">Trail_Type</a> typedef</td><td class="entry"><a class="el" href="classfe_1_1Trailing.html">fe::Trailing&lt; Self &gt;</a></td><td class="entry"></td></tr>
-</table></div><!-- contents -->
+<div class="textblock"><code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;array&gt;</code><br />
+<code>#include &lt;memory&gt;</code><br />
+<code>#include &lt;ranges&gt;</code><br />
+<code>#include &lt;tuple&gt;</code><br />
+<code>#include &lt;type_traits&gt;</code><br />
+<code>#include &quot;<a class="el" href="algo_8h_source.html">fe/algo.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="span_8h_source.html">fe/span.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for vla.h:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="vla_8h__incl.svg" width="100%" height="437"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="vla_8h__dep__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+</div>
+<p><a href="vla_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:fe_3A_3AVLA_3C_20Self_20_3E" id="r_fe_3A_3AVLA_3C_20Self_20_3E"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1VLA.html">fe::VLA&lt; Self &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">CRTP base that gives <code class="param">Self</code> one <a href="https://en.wikipedia.org/wiki/Variable-length_array">VLA</a> per element type in <span class="tt">Self::VLA_Types</span> directly behind it in memory - the C flexible array member, generalized to several arrays of different type.  <a href="classfe_1_1VLA.html#details">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:fe" id="r_fe"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html">fe</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-concepts" class="groupheader"><a id="concepts" name="concepts"></a>
+Concepts</h2></td></tr>
+<tr class="memitem:fe_3A_3AVLAed" id="r_fe_3A_3AVLAed"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="conceptfe_1_1VLAed.html">fe::VLAed</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does <code class="param">T</code> carry VLAs? <br /></td></tr>
+</table>
+</div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+    <li class="navelem"><a href="dir_fb87ea66e879fc34aa3bf8f21b7c38f7.html">fe</a></li><li class="navelem"><a href="vla_8h.html">vla.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
   </ul>
 </div>

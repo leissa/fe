@@ -29,9 +29,9 @@ var dir_fb87ea66e879fc34aa3bf8f21b7c38f7 =
     [ "sym.h", "sym_8h.html", "sym_8h" ],
     [ "sys.h", "sys_8h.html", "sys_8h" ],
     [ "term.h", "term_8h.html", "term_8h" ],
-    [ "trailing.h", "trailing_8h.html", "trailing_8h" ],
     [ "utf8.h", "utf8_8h.html", "utf8_8h" ],
     [ "vector.h", "vector_8h.html", "vector_8h" ],
+    [ "vla.h", "vla_8h.html", "vla_8h" ],
     [ "worklist.h", "worklist_8h.html", "worklist_8h" ],
     [ "xtrie.h", "xtrie_8h.html", "xtrie_8h" ]
 ];

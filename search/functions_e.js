@@ -10,6 +10,6 @@ var searchData=
   ['num_5ferrors_7',['num_errors',['../classfe_1_1Error_1_1Bail.html#a9d472ae2ed685d122de44440ebeac3d3',1,'fe::Error::Bail::num_errors()'],['../classfe_1_1Error.html#abb54459af9ba5e732ca04b79d8be7e9e',1,'fe::Error::num_errors() const']]],
   ['num_5fnotes_8',['num_notes',['../classfe_1_1Error.html#a00b674ddc53a6aab807f998e801dd5fa',1,'fe::Error']]],
   ['num_5frows_9',['num_rows',['../classfe_1_1Src.html#a5addc7372afe322c60b82320112a6244',1,'fe::Src']]],
-  ['num_5ftrail_10',['num_trail',['../classfe_1_1Trailing.html#a620837fbf7c1e697cbf5b5fc45c4a23a',1,'fe::Trailing']]],
+  ['num_5fvlas_10',['num_vlas',['../classfe_1_1VLA.html#acc627251359efa023f778d36963e8b3c',1,'fe::VLA']]],
   ['num_5fwarnings_11',['num_warnings',['../classfe_1_1Error_1_1Bail.html#a9434b8c9ae515236bfc38e6ce65b7f40',1,'fe::Error::Bail::num_warnings()'],['../classfe_1_1Error.html#a964744b2e5613bed7c339b419c51f301',1,'fe::Error::num_warnings()']]]
 ];

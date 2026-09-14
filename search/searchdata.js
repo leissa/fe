@@ -12,7 +12,7 @@ var indexSectionsWithContent =
   9: ":abdosx",
   10: "a",
   11: "abcdfghilmnpqrstwy⚖✨💡💬📚🔨🚀🛠🤝🧭",
-  12: "bfnqstv"
+  12: "bfnqsv"
 };
 
 var indexSectionNames =

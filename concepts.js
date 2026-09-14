@@ -7,7 +7,7 @@ var concepts =
       [ "NodeSetable", "conceptfe_1_1NodeSetable.html", null ],
       [ "Queuelike", "conceptfe_1_1Queuelike.html", null ],
       [ "Stacklike", "conceptfe_1_1Stacklike.html", null ],
-      [ "Trailed", "conceptfe_1_1Trailed.html", null ],
-      [ "Vectorlike", "conceptfe_1_1Vectorlike.html", null ]
+      [ "Vectorlike", "conceptfe_1_1Vectorlike.html", null ],
+      [ "VLAed", "conceptfe_1_1VLAed.html", null ]
     ] ]
 ];
