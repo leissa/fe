@@ -52,17 +52,12 @@ public:
             }
         };
 
+        /// Hashes the characters, not the pointer - String::Equal compares them, and the two have to agree.
         struct Hash {
             size_t operator()(const String* s) const noexcept {
-                return std::hash<std::string_view>()(std::string_view(s->chars, s->size));
+                return hash_begin(std::string_view(s->chars, s->size));
             }
         };
-
-        /// Abseil hashes by content, which is what makes String::Equal sound as its equality.
-        template<class H>
-        friend constexpr H AbslHashValue(H h, const String* string) noexcept {
-            return H::combine(std::move(h), std::string_view(string->chars, string->size));
-        }
     };
 
     static_assert(sizeof(String) == sizeof(size_t), "String.chars should be 0");
@@ -247,12 +242,7 @@ public:
     /// @name Constructor & Destruction
     ///@{
     SymPool(const SymPool&) = delete;
-#ifdef FE_ABSL
     SymPool() noexcept {}
-#else
-    SymPool() noexcept
-        : pool_(container_.allocator<const String*>()) {}
-#endif
     SymPool(SymPool&& other) noexcept
         : SymPool() {
         swap(*this, other);
@@ -272,21 +262,17 @@ public:
     friend void swap(SymPool& p1, SymPool& p2) noexcept {
         using std::swap;
         // clang-format off
-        swap(p1.strings_,   p2.strings_  );
-#ifndef FE_ABSL
-        swap(p1.container_, p2.container_);
-#endif
-        swap(p1.pool_,      p2.pool_     );
+        swap(p1.strings_, p2.strings_);
+        swap(p1.pool_,    p2.pool_   );
         // clang-format on
     }
 
 private:
     Arena strings_;
 #ifdef FE_ABSL
-    absl::flat_hash_set<const String*, absl::Hash<const String*>, String::Equal> pool_;
+    absl::flat_hash_set<const String*, String::Hash, String::Equal> pool_;
 #else
-    Arena container_;
-    std::unordered_set<const String*, String::Hash, String::Equal, Arena::Allocator<const String*>> pool_;
+    std::unordered_set<const String*, String::Hash, String::Equal> pool_;
 #endif
 };
 

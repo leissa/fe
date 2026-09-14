@@ -1,9 +1,12 @@
 #include <cstdint>
 
+#include <string>
 #include <unordered_set>
 
 #include <doctest/doctest.h>
 #include <fe/hash.h>
+
+using namespace std::literals;
 
 namespace {
 
@@ -58,6 +61,26 @@ TEST_CASE("hash") {
             for (size_t j = 0; j != 100; ++j)
                 seen.emplace(fe::hash_combine(fe::hash_begin(i), j));
         CHECK(seen.size() == 1000 * 100);
+    }
+
+    SUBCASE("hash_combine over a string_view") {
+        // Constant-evaluated and run-time hashing must agree - bit_cast makes that so.
+        static_assert(fe::hash_begin("abc"sv) == fe::hash_combine(fe::hash_begin(), "abc"sv));
+        static_assert(fe::hash_begin("abcdefghij"sv) != fe::hash_begin("abcdefghik"sv));
+        CHECK(fe::hash_begin("abc"sv) == fe::hash_begin("abc"sv));
+        CHECK(fe::hash_begin("ab"sv) != fe::hash_begin("ba"sv)); // order matters
+        CHECK(fe::hash_begin("a"sv) != fe::hash_begin("aa"sv));  // so does length
+        CHECK(fe::hash_begin("a\0"sv) != fe::hash_begin("a"sv)); // including a trailing NUL
+        CHECK(fe::hash_begin(""sv) == fe::hash_begin(""sv));
+
+        // Every length crosses the word loop and its tail; distinct content must stay distinct.
+        std::unordered_set<size_t> seen;
+        std::string str;
+        for (size_t i = 0; i != 4 * sizeof(size_t); ++i) {
+            seen.emplace(fe::hash_begin(std::string_view(str)));
+            str += char('a' + i % 26);
+        }
+        CHECK(seen.size() == 4 * sizeof(size_t));
     }
 
     SUBCASE("hash_combine accepts any integral type") {

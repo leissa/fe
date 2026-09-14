@@ -4,6 +4,11 @@
 #include <cstddef>
 #include <cstdint>
 
+#include <algorithm>
+#include <array>
+#include <bit>
+#include <string_view>
+
 namespace fe {
 
 static_assert(sizeof(size_t) == 4 || sizeof(size_t) == 8, "unsupported sizeof(size_t)");
@@ -74,6 +79,28 @@ template<std::integral T>
 constexpr size_t hash_begin(T v) noexcept {
     return hash_combine(hash_begin(), v);
 }
+
+/// Mixes the bytes of @p sv into @p seed a machine word at a time.
+constexpr size_t hash_combine(size_t seed, std::string_view sv) noexcept {
+    auto h = seed ^ (sv.size() * fnv1_prime); // the size too, or "a" and "a\0" would agree
+
+    for (; sv.size() >= sizeof(size_t); sv.remove_prefix(sizeof(size_t))) {
+        std::array<char, sizeof(size_t)> bytes;
+        std::copy_n(sv.begin(), bytes.size(), bytes.begin());
+        h = (h ^ std::bit_cast<size_t>(bytes)) * fnv1_prime;
+    }
+
+    if (!sv.empty()) {
+        std::array<char, sizeof(size_t)> bytes{}; // the last word is a partial one, so zero-pad it
+        std::copy(sv.begin(), sv.end(), bytes.begin());
+        h = (h ^ std::bit_cast<size_t>(bytes)) * fnv1_prime;
+    }
+
+    return hash(h); // one finalizer for the whole range instead of one per word
+}
+
+/// Shorthand for `hash_combine(hash_begin(), sv)`.
+constexpr size_t hash_begin(std::string_view sv) noexcept { return hash_combine(hash_begin(), sv); }
 ///@}
 
 } // namespace fe
