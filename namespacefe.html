@@ -241,6 +241,8 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol just wraps a pointer to <a class="el" href="structfe_1_1Sym_1_1String.html">Sym::String</a>, so pass <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a> itself around as value.  <a href="classfe_1_1Sym.html#details">More...</a><br /></td></tr>
 <tr class="memitem:SymPool" id="r_SymPool"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1SymPool.html">SymPool</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hash set where all strings - wrapped in <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol - live in.  <a href="classfe_1_1SymPool.html#details">More...</a><br /></td></tr>
+<tr class="memitem:SymTab" id="r_SymTab"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1SymTab.html">SymTab</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A fixed-capacity <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol -&gt; <code class="param">V</code> map for a <em>closed</em> set of <code class="param">Size</code> entries: filled once, then only looked up - a <a class="el" href="classfe_1_1Lexer.html" title="The blueprint for a lexer with a buffer of K tokens to peek into the future (Lexer::ahead).">Lexer</a>'s reserved words, say.  <a href="classfe_1_1SymTab.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Tab" id="r_Tab"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Tab.html">Tab</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keeps track of indentation level during output.  <a href="classfe_1_1Tab.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Trailing" id="r_Trailing"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Trailing.html">Trailing</a></td></tr>
@@ -570,7 +572,7 @@ template&lt;class V&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00238">238</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00240">240</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -586,7 +588,7 @@ template&lt;class V&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00239">239</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00241">241</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -1071,7 +1073,7 @@ template&lt;<a class="el" href="conceptfe_1_1BitEnum.html">fe::BitEnum</a> E&gt;
 
 <p class="reference">References <a class="el" href="hash_8h_source.html#l00042">hash()</a>, <a class="el" href="hash_8h_source.html#l00022">murmur3()</a>, and <a class="el" href="hash_8h_source.html#l00032">splitmix64()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="hash_8h_source.html#l00042">hash()</a>, <a class="el" href="hash_8h_source.html#l00084">hash_combine()</a>, <a class="el" href="hash_8h_source.html#l00073">hash_combine()</a>, and <a class="el" href="sym_8h_source.html#l00189">fe::Sym::Hash::operator()()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="hash_8h_source.html#l00042">hash()</a>, <a class="el" href="hash_8h_source.html#l00084">hash_combine()</a>, <a class="el" href="hash_8h_source.html#l00073">hash_combine()</a>, and <a class="el" href="sym_8h_source.html#l00191">fe::Sym::Hash::operator()()</a>.</p>
 
 </div>
 </div>
@@ -1104,7 +1106,7 @@ template&lt;<a class="el" href="conceptfe_1_1BitEnum.html">fe::BitEnum</a> E&gt;
 
 <p class="reference">References <a class="el" href="hash_8h_source.html#l00064">fnv1_offset</a>, and <a class="el" href="hash_8h_source.html#l00069">hash_begin()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00264">fe::Bitset::hash()</a>, <a class="el" href="hash_8h_source.html#l00069">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00103">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00079">hash_begin()</a>, <a class="el" href="dbg_8h_source.html#l00059">fe::Dbg::Hash::operator()()</a>, <a class="el" href="sym_8h_source.html#l00058">fe::Sym::String::Hash::operator()()</a>, and <a class="el" href="xtrie_8h_source.html#l00136">fe::XTrie&lt; D, K, N &gt;::Data::Hash::operator()()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00264">fe::Bitset::hash()</a>, <a class="el" href="hash_8h_source.html#l00069">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00103">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00079">hash_begin()</a>, <a class="el" href="dbg_8h_source.html#l00059">fe::Dbg::Hash::operator()()</a>, <a class="el" href="sym_8h_source.html#l00060">fe::Sym::String::Hash::operator()()</a>, and <a class="el" href="xtrie_8h_source.html#l00136">fe::XTrie&lt; D, K, N &gt;::Data::Hash::operator()()</a>.</p>
 
 </div>
 </div>

@@ -291,21 +291,41 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('span_8h_source
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>} <span class="comment">// namespace fe</span></div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
-<div class="foldopen" id="foldopen00130" data-start="{" data-end="}">
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="namespacestd.html">  130</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacestd.html">std</a> {<span class="comment"></span></div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="comment">/// @name Structured Binding Support for Span</span></div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="comment">///@{</span></div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T, <span class="keywordtype">size_t</span> N&gt;</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="structstd_1_1tuple__size_3_01fe_1_1Span_3_01T_00_01N_01_4_01_4.html">  134</a></span><span class="keyword">requires</span>(N != std::dynamic_extent) <span class="keyword">struct</span> tuple_size&lt;<a class="code hl_class" href="classfe_1_1Span.html">fe::Span&lt;T, N&gt;</a>&gt; : <a class="code hl_namespace" href="namespacestd.html">std</a>::integral_constant&lt;size_t, N&gt; {};</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="keyword">template</span>&lt;<span class="keywordtype">size_t</span> I, <span class="keyword">class</span> T, <span class="keywordtype">size_t</span> N&gt;</div>
-<div class="foldopen" id="foldopen00137" data-start="{" data-end="};">
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="namespacestd.html">  137</a></span><span class="keyword">requires</span>(N != std::dynamic_extent) <span class="keyword">struct</span> tuple_element&lt;I, <a class="code hl_class" href="classfe_1_1Span.html">fe::Span&lt;T, N&gt;</a>&gt; {</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="namespacestd.html#ae7ea1ac935d568b31d413ae7f70c14fe">  138</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="namespacestd.html#ae7ea1ac935d568b31d413ae7f70c14fe">type</a> = <span class="keyword">typename</span> <a class="code hl_class" href="classfe_1_1Span.html">fe::Span&lt;T, N&gt;::reference</a>;</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>};<span class="comment"></span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="preprocessor">#ifndef DOXYGEN</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="comment"></span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="comment">/// @name Range Properties of Span</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="comment">/// Span inherits from `std::span` but *is* a different type, so the specializations `std::span` has</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="comment">/// do not carry over - and without them `std::views::all` would wrap an lvalue Span in a `ref_view`</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="comment">/// that dangles as soon as the Span it refers to goes out of scope.</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="comment">///@{</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="comment">// clang-format off</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T, <span class="keywordtype">size_t</span> N&gt; <span class="keyword">constexpr</span> <span class="keywordtype">bool</span> std::ranges::enable_view&lt;fe::Span&lt;T, N&gt;&gt;            = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T, <span class="keywordtype">size_t</span> N&gt; <span class="keyword">constexpr</span> <span class="keywordtype">bool</span> std::ranges::enable_borrowed_range&lt;fe::Span&lt;T, N&gt;&gt;  = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="comment">// clang-format on</span><span class="comment"></span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="comment">///@}</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacefe.html">fe</a> {</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="keyword">static_assert</span>(std::ranges::view&lt;Span&lt;int&gt;&gt;);</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="keyword">static_assert</span>(std::ranges::borrowed_range&lt;Span&lt;int&gt;&gt;);</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>} <span class="comment">// namespace fe</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="foldopen" id="foldopen00150" data-start="{" data-end="}">
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="namespacestd.html">  150</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacestd.html">std</a> {<span class="comment"></span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="comment">/// @name Structured Binding Support for Span</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="comment">///@{</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T, <span class="keywordtype">size_t</span> N&gt;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="structstd_1_1tuple__size_3_01fe_1_1Span_3_01T_00_01N_01_4_01_4.html">  154</a></span><span class="keyword">requires</span>(N != std::dynamic_extent) <span class="keyword">struct</span> tuple_size&lt;<a class="code hl_class" href="classfe_1_1Span.html">fe::Span&lt;T, N&gt;</a>&gt; : <a class="code hl_namespace" href="namespacestd.html">std</a>::integral_constant&lt;size_t, N&gt; {};</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="keyword">template</span>&lt;<span class="keywordtype">size_t</span> I, <span class="keyword">class</span> T, <span class="keywordtype">size_t</span> N&gt;</div>
+<div class="foldopen" id="foldopen00157" data-start="{" data-end="};">
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="namespacestd.html">  157</a></span><span class="keyword">requires</span>(N != std::dynamic_extent) <span class="keyword">struct</span> tuple_element&lt;I, <a class="code hl_class" href="classfe_1_1Span.html">fe::Span&lt;T, N&gt;</a>&gt; {</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="namespacestd.html#ae7ea1ac935d568b31d413ae7f70c14fe">  158</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="namespacestd.html#ae7ea1ac935d568b31d413ae7f70c14fe">type</a> = <span class="keyword">typename</span> <a class="code hl_class" href="classfe_1_1Span.html">fe::Span&lt;T, N&gt;::reference</a>;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>};<span class="comment"></span></div>
 </div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="comment">///@}</span></div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>} <span class="comment">// namespace std</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="comment">///@}</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>} <span class="comment">// namespace std</span></div>
 </div>
 <div class="ttc" id="aclassfe_1_1Span_html"><div class="ttname"><a href="classfe_1_1Span.html">fe::Span</a></div><div class="ttdoc">This is a thin wrapper for std::span&lt;T, N&gt; with the following additional features:</div><div class="ttdef"><b>Definition</b> <a href="#l00033">span.h:33</a></div></div>
 <div class="ttc" id="aclassfe_1_1Span_html_a1a3ad2b4a84bc4c726a5fd6eaf3df630"><div class="ttname"><a href="classfe_1_1Span.html#a1a3ad2b4a84bc4c726a5fd6eaf3df630">fe::Span::Span</a></div><div class="ttdeci">constexpr Span(typename Base::pointer p) noexcept</div><div class="ttdef"><b>Definition</b> <a href="#l00057">span.h:57</a></div></div>
@@ -321,8 +341,8 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('span_8h_source
 <div class="ttc" id="anamespacefe_html"><div class="ttname"><a href="namespacefe.html">fe</a></div><div class="ttdef"><b>Definition</b> <a href="algo_8h_source.html#l00017">algo.h:17</a></div></div>
 <div class="ttc" id="anamespacefe_html_a3fa8abec15ebc094748836707250e96e"><div class="ttname"><a href="namespacefe.html#a3fa8abec15ebc094748836707250e96e">fe::View</a></div><div class="ttdeci">Span&lt; const T, N &gt; View</div><div class="ttdoc">Read-only Span; use Span itself, if you want to write through its elements.</div><div class="ttdef"><b>Definition</b> <a href="#l00107">span.h:107</a></div></div>
 <div class="ttc" id="anamespacefe_html_a5930d90304ddc84c5adaa03126bd277c"><div class="ttname"><a href="namespacefe.html#a5930d90304ddc84c5adaa03126bd277c">fe::get</a></div><div class="ttdeci">constexpr decltype(auto) get(Span&lt; T, N &gt; span) noexcept</div><div class="ttdef"><b>Definition</b> <a href="#l00123">span.h:123</a></div></div>
-<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition</b> <a href="#l00130">span.h:130</a></div></div>
-<div class="ttc" id="anamespacestd_html_ae7ea1ac935d568b31d413ae7f70c14fe"><div class="ttname"><a href="namespacestd.html#ae7ea1ac935d568b31d413ae7f70c14fe">std::tuple_element&lt; I, fe::Span&lt; T, N &gt; &gt;::type</a></div><div class="ttdeci">typename fe::Span&lt; T, N &gt;::reference type</div><div class="ttdef"><b>Definition</b> <a href="#l00138">span.h:138</a></div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition</b> <a href="#l00150">span.h:150</a></div></div>
+<div class="ttc" id="anamespacestd_html_ae7ea1ac935d568b31d413ae7f70c14fe"><div class="ttname"><a href="namespacestd.html#ae7ea1ac935d568b31d413ae7f70c14fe">std::tuple_element&lt; I, fe::Span&lt; T, N &gt; &gt;::type</a></div><div class="ttdeci">typename fe::Span&lt; T, N &gt;::reference type</div><div class="ttdef"><b>Definition</b> <a href="#l00158">span.h:158</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

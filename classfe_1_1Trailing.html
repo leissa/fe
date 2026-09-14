@@ -168,6 +168,8 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classfe_1_1Tra
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
+<tr class="memitem:ac8e7c48196ab3cdcf1d25db399aef140" id="r_ac8e7c48196ab3cdcf1d25db399aef140"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#ac8e7c48196ab3cdcf1d25db399aef140">Trail_Self</a> = Self</td></tr>
+<tr class="memdesc:ac8e7c48196ab3cdcf1d25db399aef140"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type this base was instantiated with - <code class="param">Self</code> itself, unless a class deriving from it inherited it.  <br /></td></tr>
 <tr class="memitem:a3f37f697be33956bfb73fd9ab82692c3" id="r_a3f37f697be33956bfb73fd9ab82692c3"><td class="memTemplParams" colspan="2">template&lt;size_t I, class S = Self&gt; </td></tr>
 <tr class="memitem:a3f37f697be33956bfb73fd9ab82692c3 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a3f37f697be33956bfb73fd9ab82692c3">Trail_Type</a> = std::tuple_element_t&lt;I, typename S::Trail_Types&gt;</td></tr>
 <tr class="memdesc:a3f37f697be33956bfb73fd9ab82692c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Element type of the <code class="param">I</code> th trailing array.  <br /></td></tr>
@@ -202,12 +204,33 @@ class fe::Trailing&lt; Self &gt;</div><p>CRTP base that gives <code class="param
 <div class="line">};</div>
 <div class="line"> </div>
 <div class="line">arena.ref&lt;Interval&gt;(loc, from, to, from_args, to_args);</div>
-<div class="ttc" id="aclassfe_1_1Trailing_html"><div class="ttname"><a href="classfe_1_1Trailing.html">fe::Trailing</a></div><div class="ttdoc">CRTP base that gives Self one array per element type in Self::Trail_Types directly behind it in memor...</div><div class="ttdef"><b>Definition</b> <a href="trailing_8h_source.html#l00033">trailing.h:33</a></div></div>
-<div class="ttc" id="aclassfe_1_1Trailing_html_ac971076261204855c7d1771d81dab540"><div class="ttname"><a href="#ac971076261204855c7d1771d81dab540">fe::Trailing::trail</a></div><div class="ttdeci">auto trail() const noexcept</div><div class="ttdoc">The I th trailing array as a View&lt;Trail_Type&lt;I&gt;&gt;.</div><div class="ttdef"><b>Definition</b> <a href="trailing_8h_source.html#l00052">trailing.h:52</a></div></div>
+<div class="ttc" id="aclassfe_1_1Trailing_html"><div class="ttname"><a href="classfe_1_1Trailing.html">fe::Trailing</a></div><div class="ttdoc">CRTP base that gives Self one array per element type in Self::Trail_Types directly behind it in memor...</div><div class="ttdef"><b>Definition</b> <a href="trailing_8h_source.html#l00037">trailing.h:37</a></div></div>
+<div class="ttc" id="aclassfe_1_1Trailing_html_ac971076261204855c7d1771d81dab540"><div class="ttname"><a href="#ac971076261204855c7d1771d81dab540">fe::Trailing::trail</a></div><div class="ttdeci">auto trail() const noexcept</div><div class="ttdoc">The I th trailing array as a View&lt;Trail_Type&lt;I&gt;&gt;.</div><div class="ttdef"><b>Definition</b> <a href="trailing_8h_source.html#l00059">trailing.h:59</a></div></div>
 <div class="ttc" id="astructfe_1_1Loc_html"><div class="ttname"><a href="structfe_1_1Loc.html">fe::Loc</a></div><div class="ttdoc">Location within a Src: the half-open byte range [Loc::begin, Loc::end).</div><div class="ttdef"><b>Definition</b> <a href="loc_8h_source.html#l00042">loc.h:42</a></div></div>
-</div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="trailing_8h_source.html#l00033">33</a> of file <a class="el" href="trailing_8h_source.html">trailing.h</a>.</p>
+</div><!-- fragment --> <dl class="section warning"><dt>Warning</dt><dd>Only the most derived class may carry them. A class deriving from <code class="param">Self</code> would inherit this base and place its arrays at <code class="param">Self's</code> offset - on top of its own members - so <a class="el" href="classfe_1_1Arena.html#ac0ed8cd6c5553d0d1e75745501221a6f" title="This is a std::unique_ptr that uses the Arena under the hood and whose Deleter will only invoke the d...">Arena::mk</a> and <a class="el" href="classfe_1_1Arena.html#a2a530cfca1470ed2be58139542bff87f" title="Like Arena::mk, but yields a Ref: nothing will ever destroy the object.">Arena::ref</a> reject it. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="trailing_8h_source.html#l00037">37</a> of file <a class="el" href="trailing_8h_source.html">trailing.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a id="ac8e7c48196ab3cdcf1d25db399aef140" name="ac8e7c48196ab3cdcf1d25db399aef140"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8e7c48196ab3cdcf1d25db399aef140">&#9670;&#160;</a></span>Trail_Self</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Self&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classfe_1_1Trailing.html">fe::Trailing</a>&lt; Self &gt;::Trail_Self = Self</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The type this base was instantiated with - <code class="param">Self</code> itself, unless a class deriving from it inherited it. </p>
+
+<p class="definition">Definition at line <a class="el" href="trailing_8h_source.html#l00040">40</a> of file <a class="el" href="trailing_8h_source.html">trailing.h</a>.</p>
+
+</div>
+</div>
 <a id="a3f37f697be33956bfb73fd9ab82692c3" name="a3f37f697be33956bfb73fd9ab82692c3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3f37f697be33956bfb73fd9ab82692c3">&#9670;&#160;</a></span>Trail_Type</h2>
 
@@ -227,7 +250,7 @@ template&lt;size_t I, class S = Self&gt; </div>
 <p>Element type of the <code class="param">I</code> th trailing array. </p>
 <p><code class="param">S</code> defers the lookup: <span class="tt">Self</span> is still incomplete while this base is instantiated. </p>
 
-<p class="definition">Definition at line <a class="el" href="trailing_8h_source.html#l00038">38</a> of file <a class="el" href="trailing_8h_source.html">trailing.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="trailing_8h_source.html#l00045">45</a> of file <a class="el" href="trailing_8h_source.html">trailing.h</a>.</p>
 
 </div>
 </div>
@@ -257,9 +280,9 @@ template&lt;class Self&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="trailing_8h_source.html#l00040">40</a> of file <a class="el" href="trailing_8h_source.html">trailing.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="trailing_8h_source.html#l00047">47</a> of file <a class="el" href="trailing_8h_source.html">trailing.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="trailing_8h_source.html#l00046">trail_bytes()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="trailing_8h_source.html#l00053">trail_bytes()</a>.</p>
 
 </div>
 </div>
@@ -292,7 +315,7 @@ template&lt;size_t I&gt; </div>
 
 <p>The <code class="param">I</code> th trailing array as a <span class="tt"><a class="el" href="namespacefe.html#a3fa8abec15ebc094748836707250e96e" title="Read-only Span; use Span itself, if you want to write through its elements.">View</a>&lt;<a class="el" href="#a3f37f697be33956bfb73fd9ab82692c3" title="Element type of the I th trailing array.">Trail_Type</a>&lt;I&gt;&gt;</span>. </p>
 
-<p class="definition">Definition at line <a class="el" href="trailing_8h_source.html#l00052">52</a> of file <a class="el" href="trailing_8h_source.html">trailing.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="trailing_8h_source.html#l00059">59</a> of file <a class="el" href="trailing_8h_source.html">trailing.h</a>.</p>
 
 </div>
 </div>
@@ -321,11 +344,11 @@ template&lt;class Self&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="trailing_8h_source.html#l00042">42</a> of file <a class="el" href="trailing_8h_source.html">trailing.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="trailing_8h_source.html#l00049">49</a> of file <a class="el" href="trailing_8h_source.html">trailing.h</a>.</p>
 
-<p class="reference">References <a class="el" href="trailing_8h_source.html#l00042">trail_align()</a>.</p>
+<p class="reference">References <a class="el" href="trailing_8h_source.html#l00049">trail_align()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="trailing_8h_source.html#l00042">trail_align()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="trailing_8h_source.html#l00049">trail_align()</a>.</p>
 
 </div>
 </div>
@@ -358,9 +381,9 @@ template&lt;class C&gt; </div>
 
 <p>Bytes an <code class="param">Self</code> with these element counts occupies, <span class="tt">sizeof(Self)</span> included. </p>
 
-<p class="definition">Definition at line <a class="el" href="trailing_8h_source.html#l00046">46</a> of file <a class="el" href="trailing_8h_source.html">trailing.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="trailing_8h_source.html#l00053">53</a> of file <a class="el" href="trailing_8h_source.html">trailing.h</a>.</p>
 
-<p class="reference">References <a class="el" href="trailing_8h_source.html#l00040">num_trail()</a>.</p>
+<p class="reference">References <a class="el" href="trailing_8h_source.html#l00047">num_trail()</a>.</p>
 
 </div>
 </div>
@@ -387,11 +410,11 @@ template&lt;class Self&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="trailing_8h_source.html#l00107">107</a> of file <a class="el" href="trailing_8h_source.html">trailing.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="trailing_8h_source.html#l00115">115</a> of file <a class="el" href="trailing_8h_source.html">trailing.h</a>.</p>
 
-<p class="reference">References <a class="el" href="trailing_8h_source.html#l00107">Arena</a>.</p>
+<p class="reference">References <a class="el" href="trailing_8h_source.html#l00115">Arena</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="trailing_8h_source.html#l00107">Arena</a>.</p>
+<p class="reference">Referenced by <a class="el" href="trailing_8h_source.html#l00115">Arena</a>.</p>
 
 </div>
 </div>

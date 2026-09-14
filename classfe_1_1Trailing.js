@@ -1,5 +1,6 @@
 var classfe_1_1Trailing =
 [
+    [ "Trail_Self", "classfe_1_1Trailing.html#ac8e7c48196ab3cdcf1d25db399aef140", null ],
     [ "Trail_Type", "classfe_1_1Trailing.html#a3f37f697be33956bfb73fd9ab82692c3", null ],
     [ "num_trail", "classfe_1_1Trailing.html#a620837fbf7c1e697cbf5b5fc45c4a23a", null ],
     [ "trail", "classfe_1_1Trailing.html#ac971076261204855c7d1771d81dab540", null ],

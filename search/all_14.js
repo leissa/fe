@@ -50,8 +50,9 @@ var searchData=
   ['symmap_47',['SymMap',['../namespacefe.html#a11fef75d471024bdbf5cfc3223146f8e',1,'fe']]],
   ['sympool_48',['SymPool',['../classfe_1_1SymPool.html',1,'fe::SymPool'],['../classfe_1_1Sym.html#a5379cdd60ce3c910e14da02defe0a1aa',1,'fe::Sym::SymPool()'],['../classfe_1_1SymPool.html#a9446b07a54c8892bc6135608d0321af7',1,'fe::SymPool::SymPool(const SymPool &amp;)=delete'],['../classfe_1_1SymPool.html#ad760b218bdbfd83a596a4482be8df1a4',1,'fe::SymPool::SymPool() noexcept'],['../classfe_1_1SymPool.html#ab59d67329468787346189016e67794b2',1,'fe::SymPool::SymPool(SymPool &amp;&amp;other) noexcept']]],
   ['symset_49',['SymSet',['../namespacefe.html#afc6debb6fc36d12352409c5e46ce4e55',1,'fe']]],
-  ['syntax_5ferr_50',['syntax_err',['../classfe_1_1Parser.html#a947bf829998cb9add97d7408f9a87a8c',1,'fe::Parser::syntax_err(Cite what, Tok tok, Cite ctxt)'],['../classfe_1_1Parser.html#a10973fb456a4516a27c9f4f35963fa4b',1,'fe::Parser::syntax_err(Cite what, Cite ctxt)'],['../classfe_1_1Parser.html#a527a47d8fb1b8e158c55a6e5e4d09c5e',1,'fe::Parser::syntax_err(Tag tag, Cite ctxt)']]],
-  ['sys_2eh_51',['sys.h',['../sys_8h.html',1,'']]],
-  ['system_52',['System',['../index.html#autotoc_md13',1,'']]],
-  ['system_53',['system',['../namespacefe_1_1sys.html#a32dbb92355fcb6726986a2f850cfdbb9',1,'fe::sys']]]
+  ['symtab_50',['SymTab',['../classfe_1_1SymTab.html',1,'fe']]],
+  ['syntax_5ferr_51',['syntax_err',['../classfe_1_1Parser.html#a947bf829998cb9add97d7408f9a87a8c',1,'fe::Parser::syntax_err(Cite what, Tok tok, Cite ctxt)'],['../classfe_1_1Parser.html#a10973fb456a4516a27c9f4f35963fa4b',1,'fe::Parser::syntax_err(Cite what, Cite ctxt)'],['../classfe_1_1Parser.html#a527a47d8fb1b8e158c55a6e5e4d09c5e',1,'fe::Parser::syntax_err(Tag tag, Cite ctxt)']]],
+  ['sys_2eh_52',['sys.h',['../sys_8h.html',1,'']]],
+  ['system_53',['System',['../index.html#autotoc_md13',1,'']]],
+  ['system_54',['system',['../namespacefe_1_1sys.html#a32dbb92355fcb6726986a2f850cfdbb9',1,'fe::sys']]]
 ];

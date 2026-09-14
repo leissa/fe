@@ -1,5 +1,17 @@
 var NAVTREEINDEX7 =
 {
+"structfe_1_1utf8_1_1Char32.html#add2c71204e4cf443767a79c919b45177":[10,0,0,4,0,0],
+"structfe_1_1utf8_1_1Char32.html#add2c71204e4cf443767a79c919b45177":[12,0,0,3,0,0],
+"structstd_1_1tuple__size_3_01fe_1_1Span_3_01T_00_01N_01_4_01_4.html":[10,0,1,0],
+"structstd_1_1tuple__size_3_01fe_1_1Span_3_01T_00_01N_01_4_01_4.html":[12,0,1,0],
+"sym_8h.html":[13,0,1,26],
+"sym_8h_source.html":[13,0,1,26],
+"sys_8h.html":[13,0,1,27],
+"sys_8h_source.html":[13,0,1,27],
+"term_8h.html":[13,0,1,28],
+"term_8h_source.html":[13,0,1,28],
+"trailing_8h.html":[13,0,1,29],
+"trailing_8h_source.html":[13,0,1,29],
 "utf8_8h.html":[13,0,1,30],
 "utf8_8h_source.html":[13,0,1,30],
 "vector_8h.html":[13,0,1,31],

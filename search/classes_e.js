@@ -9,5 +9,6 @@ var searchData=
   ['streamfn_6',['StreamFn',['../classfe_1_1StreamFn.html',1,'fe']]],
   ['string_7',['String',['../structfe_1_1Sym_1_1String.html',1,'fe::Sym']]],
   ['sym_8',['Sym',['../classfe_1_1Sym.html',1,'fe']]],
-  ['sympool_9',['SymPool',['../classfe_1_1SymPool.html',1,'fe']]]
+  ['sympool_9',['SymPool',['../classfe_1_1SymPool.html',1,'fe']]],
+  ['symtab_10',['SymTab',['../classfe_1_1SymTab.html',1,'fe']]]
 ];

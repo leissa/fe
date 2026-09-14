@@ -158,8 +158,10 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('sym_8h.html','
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;cassert&gt;</code><br />
+<code>#include &lt;array&gt;</code><br />
 <code>#include &lt;bit&gt;</code><br />
 <code>#include &lt;iosfwd&gt;</code><br />
+<code>#include &lt;optional&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;unordered_map&gt;</code><br />
 <code>#include &lt;unordered_set&gt;</code><br />
@@ -188,6 +190,8 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hashes the characters, not the pointer - <a class="el" href="structfe_1_1Sym_1_1String_1_1Equal.html">String::Equal</a> compares them, and the two have to agree.  <a href="structfe_1_1Sym_1_1String_1_1Hash.html#details">More...</a><br /></td></tr>
 <tr class="memitem:fe_3A_3ASym_3A_3AHash" id="r_fe_3A_3ASym_3A_3AHash"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1Sym_1_1Hash.html">fe::Sym::Hash</a></td></tr>
 <tr class="memitem:fe_3A_3ASym_3A_3AEq" id="r_fe_3A_3ASym_3A_3AEq"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1Sym_1_1Eq.html">fe::Sym::Eq</a></td></tr>
+<tr class="memitem:fe_3A_3ASymTab_3C_20V_2C_20Size_20_3E" id="r_fe_3A_3ASymTab_3C_20V_2C_20Size_20_3E"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1SymTab.html">fe::SymTab&lt; V, Size &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A fixed-capacity <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol -&gt; <code class="param">V</code> map for a <em>closed</em> set of <code class="param">Size</code> entries: filled once, then only looked up - a <a class="el" href="classfe_1_1Lexer.html" title="The blueprint for a lexer with a buffer of K tokens to peek into the future (Lexer::ahead).">Lexer</a>'s reserved words, say.  <a href="classfe_1_1SymTab.html#details">More...</a><br /></td></tr>
 <tr class="memitem:fe_3A_3ASymPool" id="r_fe_3A_3ASymPool"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1SymPool.html">fe::SymPool</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hash set where all strings - wrapped in <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol - live in.  <a href="classfe_1_1SymPool.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">

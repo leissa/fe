@@ -83,6 +83,7 @@ var hierarchy =
     [ "fe::SymPool", "classfe_1_1SymPool.html", [
       [ "fe::Driver", "structfe_1_1Driver.html", null ]
     ] ],
+    [ "fe::SymTab&lt; V, Size &gt;", "classfe_1_1SymTab.html", null ],
     [ "fe::Tab", "classfe_1_1Tab.html", null ],
     [ "fe::Parser&lt; Tok, Tag, K, S &gt;::Tracker", "classfe_1_1Parser_1_1Tracker.html", null ],
     [ "fe::Trailing&lt; Self &gt;", "classfe_1_1Trailing.html", null ],
