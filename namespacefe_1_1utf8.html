@@ -189,27 +189,25 @@ Functions</h2></td></tr>
 <tr class="memdesc:ada5a7d0de6f0f46d41e672c29127daaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of UTF-8 code points in <code class="param">str</code>.  <br /></td></tr>
 <tr class="memitem:a50c98a6d25495ac66c1a30e1ba83da99" id="r_a50c98a6d25495ac66c1a30e1ba83da99"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a50c98a6d25495ac66c1a30e1ba83da99">encode</a> (std::ostream &amp;os, char32_t c32)</td></tr>
 <tr class="memdesc:a50c98a6d25495ac66c1a30e1ba83da99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes <code class="param">c32</code> as UTF-8 and writes the resulting bytes to <code class="param">os</code>.  <br /></td></tr>
-<tr id="func-members-0" class="groupHeader"><td colspan="2"><div class="groupHeader">Wrappers</div></td></tr>
-<tr><td colspan="2" class="ititle"><div class="groupText"><p>Safe <span class="tt">char32_t</span>-style wrappers for &lt;<a href="https://en.cppreference.com/w/cpp/header/cctype">ctype</a>&gt; functions:</p>
-<blockquote class="doxtable">
-<p>Like all other functions from <span class="tt">&lt;cctype&gt;</span>, the behavior of <span class="tt">std::isalnum</span> is undefined if the argument's value is neither representable as <span class="tt">unsigned char</span> nor equal to <span class="tt">EOF</span>. </p>
-</blockquote>
+<tr id="func-members-0" class="groupHeader"><td colspan="2"><div class="groupHeader">Character classification</div></td></tr>
+<tr><td colspan="2" class="ititle"><div class="groupText"><p><span class="tt">char32_t</span>-style counterparts of the &lt;<a href="https://en.cppreference.com/w/cpp/header/cctype">ctype</a>&gt; functions, for a code point of any width - everything above U+00FF belongs to no class.</p>
+<p>These do <em>not</em> call into <span class="tt">&lt;cctype&gt;</span>. Those are locale-dependent, so what counts as a letter would shift under someone else's <span class="tt">std::setlocale</span> - no way to run a lexer. They are also out-of-line calls through a locale table, which is a lot of ceremony for a question about one byte. What is baked into the table below is the <span class="tt">"C"</span> locale, and it stays that way. </p>
 </div></td></tr>
-<tr class="memitem:a0c410fb0c4d48b49319177fc4a4e6aa8" id="r_a0c410fb0c4d48b49319177fc4a4e6aa8"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a0c410fb0c4d48b49319177fc4a4e6aa8">isalnum</a> (char32_t c) noexcept</td></tr>
-<tr class="memitem:a748331cc98d0ac4876409aab9c76c649" id="r_a748331cc98d0ac4876409aab9c76c649"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a748331cc98d0ac4876409aab9c76c649">isalpha</a> (char32_t c) noexcept</td></tr>
-<tr class="memitem:a6761044826483a58bd9a0e402989b3fa" id="r_a6761044826483a58bd9a0e402989b3fa"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a6761044826483a58bd9a0e402989b3fa">isblank</a> (char32_t c) noexcept</td></tr>
-<tr class="memitem:a8f08b2d8a9f7fe85078a1edec5387b9d" id="r_a8f08b2d8a9f7fe85078a1edec5387b9d"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a8f08b2d8a9f7fe85078a1edec5387b9d">iscntrl</a> (char32_t c) noexcept</td></tr>
-<tr class="memitem:a0f225454b3bed8a1f08dd6e000ef6f21" id="r_a0f225454b3bed8a1f08dd6e000ef6f21"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a0f225454b3bed8a1f08dd6e000ef6f21">isdigit</a> (char32_t c) noexcept</td></tr>
-<tr class="memitem:ae9b1dccb7ac6d3bc62a6e6c7b3d64f37" id="r_ae9b1dccb7ac6d3bc62a6e6c7b3d64f37"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ae9b1dccb7ac6d3bc62a6e6c7b3d64f37">isgraph</a> (char32_t c) noexcept</td></tr>
-<tr class="memitem:ac8381896895f8b2946b07ea6a9bf37b6" id="r_ac8381896895f8b2946b07ea6a9bf37b6"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ac8381896895f8b2946b07ea6a9bf37b6">islower</a> (char32_t c) noexcept</td></tr>
-<tr class="memitem:a5edfb02e76bad9edbf1ff3297c88e201" id="r_a5edfb02e76bad9edbf1ff3297c88e201"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a5edfb02e76bad9edbf1ff3297c88e201">isprint</a> (char32_t c) noexcept</td></tr>
-<tr class="memitem:a93b679fe754982802a0a3163beaf5857" id="r_a93b679fe754982802a0a3163beaf5857"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a93b679fe754982802a0a3163beaf5857">ispunct</a> (char32_t c) noexcept</td></tr>
-<tr class="memitem:ae73e646b50448236b4eccacd7d798839" id="r_ae73e646b50448236b4eccacd7d798839"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ae73e646b50448236b4eccacd7d798839">isspace</a> (char32_t c) noexcept</td></tr>
-<tr class="memitem:a7681ccacf336d09b0580dad0503f911a" id="r_a7681ccacf336d09b0580dad0503f911a"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a7681ccacf336d09b0580dad0503f911a">isupper</a> (char32_t c) noexcept</td></tr>
-<tr class="memitem:a508776758a043af7871049a6ada71571" id="r_a508776758a043af7871049a6ada71571"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a508776758a043af7871049a6ada71571">isxdigit</a> (char32_t c) noexcept</td></tr>
-<tr class="memitem:a38168d7138c492f97b47280d5ce73268" id="r_a38168d7138c492f97b47280d5ce73268"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a38168d7138c492f97b47280d5ce73268">isascii</a> (char32_t c) noexcept</td></tr>
-<tr class="memitem:a2dc258776e743dd1204f68bfe2baed2b" id="r_a2dc258776e743dd1204f68bfe2baed2b"><td class="memItemLeft">char32_t&#160;</td><td class="memItemRight"><a class="el" href="#a2dc258776e743dd1204f68bfe2baed2b">tolower</a> (char32_t c) noexcept</td></tr>
-<tr class="memitem:a7907975b61b06db27b14fe2a912f8f8c" id="r_a7907975b61b06db27b14fe2a912f8f8c"><td class="memItemLeft">char32_t&#160;</td><td class="memItemRight"><a class="el" href="#a7907975b61b06db27b14fe2a912f8f8c">toupper</a> (char32_t c) noexcept</td></tr>
+<tr class="memitem:af7e32833d3aad548805f20e33d47bf98" id="r_af7e32833d3aad548805f20e33d47bf98"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#af7e32833d3aad548805f20e33d47bf98">isalnum</a> (char32_t c) noexcept</td></tr>
+<tr class="memitem:a57c4f8f7a1865c0d3865c63a26dca8a0" id="r_a57c4f8f7a1865c0d3865c63a26dca8a0"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a57c4f8f7a1865c0d3865c63a26dca8a0">isalpha</a> (char32_t c) noexcept</td></tr>
+<tr class="memitem:a515dcd40064b3182181c382a2e83cd04" id="r_a515dcd40064b3182181c382a2e83cd04"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a515dcd40064b3182181c382a2e83cd04">isblank</a> (char32_t c) noexcept</td></tr>
+<tr class="memitem:a4ad4c6c21c537aa71877ac4269890d7d" id="r_a4ad4c6c21c537aa71877ac4269890d7d"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a4ad4c6c21c537aa71877ac4269890d7d">iscntrl</a> (char32_t c) noexcept</td></tr>
+<tr class="memitem:ab5dedb13469a3a7f1ad3ee0334f2f2e5" id="r_ab5dedb13469a3a7f1ad3ee0334f2f2e5"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#ab5dedb13469a3a7f1ad3ee0334f2f2e5">isdigit</a> (char32_t c) noexcept</td></tr>
+<tr class="memitem:aae7172ec783fab23d83a78263707e392" id="r_aae7172ec783fab23d83a78263707e392"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#aae7172ec783fab23d83a78263707e392">isgraph</a> (char32_t c) noexcept</td></tr>
+<tr class="memitem:ad59805468651df718f2a6e1f5acd0441" id="r_ad59805468651df718f2a6e1f5acd0441"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#ad59805468651df718f2a6e1f5acd0441">islower</a> (char32_t c) noexcept</td></tr>
+<tr class="memitem:a05648d9937ae8f866dff76fbc7a154ab" id="r_a05648d9937ae8f866dff76fbc7a154ab"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a05648d9937ae8f866dff76fbc7a154ab">ispunct</a> (char32_t c) noexcept</td></tr>
+<tr class="memitem:ab3da2126bd3f33219b485681a53856f3" id="r_ab3da2126bd3f33219b485681a53856f3"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#ab3da2126bd3f33219b485681a53856f3">isspace</a> (char32_t c) noexcept</td></tr>
+<tr class="memitem:a4bf9edb56efe268b0358301dca735e8a" id="r_a4bf9edb56efe268b0358301dca735e8a"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a4bf9edb56efe268b0358301dca735e8a">isupper</a> (char32_t c) noexcept</td></tr>
+<tr class="memitem:a5056617ed4d6812e2db515e6f7f5770e" id="r_a5056617ed4d6812e2db515e6f7f5770e"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a5056617ed4d6812e2db515e6f7f5770e">isxdigit</a> (char32_t c) noexcept</td></tr>
+<tr class="memitem:a1e927f2a17bc81751a93652fa9fc5b3a" id="r_a1e927f2a17bc81751a93652fa9fc5b3a"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a1e927f2a17bc81751a93652fa9fc5b3a">isprint</a> (char32_t c) noexcept</td></tr>
+<tr class="memitem:a7d9ab2216b1cf544f6eab00dcff0d27c" id="r_a7d9ab2216b1cf544f6eab00dcff0d27c"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a7d9ab2216b1cf544f6eab00dcff0d27c">isascii</a> (char32_t c) noexcept</td></tr>
+<tr class="memitem:ae585cc1899751df0f6baffc16ef5243e" id="r_ae585cc1899751df0f6baffc16ef5243e"><td class="memItemLeft">constexpr char32_t&#160;</td><td class="memItemRight"><a class="el" href="#ae585cc1899751df0f6baffc16ef5243e">tolower</a> (char32_t c) noexcept</td></tr>
+<tr class="memitem:ae1aff09fac8ea6289eaf537b61ad6114" id="r_ae1aff09fac8ea6289eaf537b61ad6114"><td class="memItemLeft">constexpr char32_t&#160;</td><td class="memItemRight"><a class="el" href="#ae1aff09fac8ea6289eaf537b61ad6114">toupper</a> (char32_t c) noexcept</td></tr>
 <tr class="memitem:ac5545b37232e0a17c78fd4f53d888e13" id="r_ac5545b37232e0a17c78fd4f53d888e13"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#ac5545b37232e0a17c78fd4f53d888e13">isrange</a> (char32_t c, char32_t begin, char32_t finis) noexcept</td></tr>
 <tr class="memdesc:ac5545b37232e0a17c78fd4f53d888e13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is <code class="param">c</code> within [begin, finis]?  <br /></td></tr>
 <tr class="memitem:a1dc530016223bbd3b70578c1045101e9" id="r_a1dc530016223bbd3b70578c1045101e9"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#a1dc530016223bbd3b70578c1045101e9">isrange</a> (char32_t begin, char32_t finis) noexcept</td></tr>
@@ -272,11 +270,11 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00174">174</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00223">223</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00174">_any()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00223">_any()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00174">_any()</a>, <a class="el" href="utf8_8h_source.html#l00176">_any()</a>, and <a class="el" href="utf8_8h_source.html#l00180">any()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00223">_any()</a>, <a class="el" href="utf8_8h_source.html#l00225">_any()</a>, and <a class="el" href="utf8_8h_source.html#l00229">any()</a>.</p>
 
 </div>
 </div>
@@ -314,9 +312,9 @@ template&lt;class... T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00176">176</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00225">225</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00174">_any()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00223">_any()</a>.</p>
 
 </div>
 </div>
@@ -345,11 +343,11 @@ template&lt;class... T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00180">180</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00229">229</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00174">_any()</a>, and <a class="el" href="utf8_8h_source.html#l00180">any()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00223">_any()</a>, and <a class="el" href="utf8_8h_source.html#l00229">any()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00180">any()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00229">any()</a>.</p>
 
 </div>
 </div>
@@ -592,8 +590,8 @@ template&lt;class... T&gt; </div>
 
 </div>
 </div>
-<a id="a0c410fb0c4d48b49319177fc4a4e6aa8" name="a0c410fb0c4d48b49319177fc4a4e6aa8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0c410fb0c4d48b49319177fc4a4e6aa8">&#9670;&#160;</a></span>isalnum()</h2>
+<a id="af7e32833d3aad548805f20e33d47bf98" name="af7e32833d3aad548805f20e33d47bf98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7e32833d3aad548805f20e33d47bf98">&#9670;&#160;</a></span>isalnum()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -610,21 +608,21 @@ template&lt;class... T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00146">146</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00195">195</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00146">isalnum()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00195">isalnum()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00146">isalnum()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00195">isalnum()</a>.</p>
 
 </div>
 </div>
-<a id="a748331cc98d0ac4876409aab9c76c649" name="a748331cc98d0ac4876409aab9c76c649"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a748331cc98d0ac4876409aab9c76c649">&#9670;&#160;</a></span>isalpha()</h2>
+<a id="a57c4f8f7a1865c0d3865c63a26dca8a0" name="a57c4f8f7a1865c0d3865c63a26dca8a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57c4f8f7a1865c0d3865c63a26dca8a0">&#9670;&#160;</a></span>isalpha()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -641,21 +639,21 @@ template&lt;class... T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00147">147</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00196">196</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00147">isalpha()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00196">isalpha()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00147">isalpha()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00196">isalpha()</a>.</p>
 
 </div>
 </div>
-<a id="a38168d7138c492f97b47280d5ce73268" name="a38168d7138c492f97b47280d5ce73268"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a38168d7138c492f97b47280d5ce73268">&#9670;&#160;</a></span>isascii()</h2>
+<a id="a7d9ab2216b1cf544f6eab00dcff0d27c" name="a7d9ab2216b1cf544f6eab00dcff0d27c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d9ab2216b1cf544f6eab00dcff0d27c">&#9670;&#160;</a></span>isascii()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -672,16 +670,16 @@ template&lt;class... T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00158">158</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00207">207</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00158">isascii()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00207">isascii()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00158">isascii()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00207">isascii()</a>.</p>
 
 </div>
 </div>
@@ -710,16 +708,16 @@ template&lt;class... T&gt; </div>
 
 <p>Is binary digit? </p>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00167">167</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00216">216</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00167">isbdigit()</a>, and <a class="el" href="utf8_8h_source.html#l00163">isrange()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00216">isbdigit()</a>, and <a class="el" href="utf8_8h_source.html#l00212">isrange()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00167">isbdigit()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00216">isbdigit()</a>.</p>
 
 </div>
 </div>
-<a id="a6761044826483a58bd9a0e402989b3fa" name="a6761044826483a58bd9a0e402989b3fa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6761044826483a58bd9a0e402989b3fa">&#9670;&#160;</a></span>isblank()</h2>
+<a id="a515dcd40064b3182181c382a2e83cd04" name="a515dcd40064b3182181c382a2e83cd04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a515dcd40064b3182181c382a2e83cd04">&#9670;&#160;</a></span>isblank()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -736,21 +734,21 @@ template&lt;class... T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00148">148</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00197">197</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00148">isblank()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00197">isblank()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00148">isblank()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00197">isblank()</a>.</p>
 
 </div>
 </div>
-<a id="a8f08b2d8a9f7fe85078a1edec5387b9d" name="a8f08b2d8a9f7fe85078a1edec5387b9d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8f08b2d8a9f7fe85078a1edec5387b9d">&#9670;&#160;</a></span>iscntrl()</h2>
+<a id="a4ad4c6c21c537aa71877ac4269890d7d" name="a4ad4c6c21c537aa71877ac4269890d7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ad4c6c21c537aa71877ac4269890d7d">&#9670;&#160;</a></span>iscntrl()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -767,21 +765,21 @@ template&lt;class... T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00149">149</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00198">198</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00149">iscntrl()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00198">iscntrl()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00149">iscntrl()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00198">iscntrl()</a>.</p>
 
 </div>
 </div>
-<a id="a0f225454b3bed8a1f08dd6e000ef6f21" name="a0f225454b3bed8a1f08dd6e000ef6f21"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0f225454b3bed8a1f08dd6e000ef6f21">&#9670;&#160;</a></span>isdigit()</h2>
+<a id="ab5dedb13469a3a7f1ad3ee0334f2f2e5" name="ab5dedb13469a3a7f1ad3ee0334f2f2e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5dedb13469a3a7f1ad3ee0334f2f2e5">&#9670;&#160;</a></span>isdigit()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -798,21 +796,21 @@ template&lt;class... T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00150">150</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00199">199</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00150">isdigit()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00199">isdigit()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00150">isdigit()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00199">isdigit()</a>.</p>
 
 </div>
 </div>
-<a id="ae9b1dccb7ac6d3bc62a6e6c7b3d64f37" name="ae9b1dccb7ac6d3bc62a6e6c7b3d64f37"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae9b1dccb7ac6d3bc62a6e6c7b3d64f37">&#9670;&#160;</a></span>isgraph()</h2>
+<a id="aae7172ec783fab23d83a78263707e392" name="aae7172ec783fab23d83a78263707e392"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae7172ec783fab23d83a78263707e392">&#9670;&#160;</a></span>isgraph()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -829,21 +827,21 @@ template&lt;class... T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00151">151</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00200">200</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00151">isgraph()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00200">isgraph()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00151">isgraph()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00200">isgraph()</a>, and <a class="el" href="utf8_8h_source.html#l00206">isprint()</a>.</p>
 
 </div>
 </div>
-<a id="ac8381896895f8b2946b07ea6a9bf37b6" name="ac8381896895f8b2946b07ea6a9bf37b6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac8381896895f8b2946b07ea6a9bf37b6">&#9670;&#160;</a></span>islower()</h2>
+<a id="ad59805468651df718f2a6e1f5acd0441" name="ad59805468651df718f2a6e1f5acd0441"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad59805468651df718f2a6e1f5acd0441">&#9670;&#160;</a></span>islower()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -860,16 +858,16 @@ template&lt;class... T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00152">152</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00201">201</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00152">islower()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00201">islower()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00152">islower()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00201">islower()</a>, and <a class="el" href="utf8_8h_source.html#l00209">toupper()</a>.</p>
 
 </div>
 </div>
@@ -898,16 +896,16 @@ template&lt;class... T&gt; </div>
 
 <p>Is octal digit? </p>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00166">166</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00215">215</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00166">isodigit()</a>, and <a class="el" href="utf8_8h_source.html#l00163">isrange()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00215">isodigit()</a>, and <a class="el" href="utf8_8h_source.html#l00212">isrange()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00166">isodigit()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00215">isodigit()</a>.</p>
 
 </div>
 </div>
-<a id="a5edfb02e76bad9edbf1ff3297c88e201" name="a5edfb02e76bad9edbf1ff3297c88e201"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5edfb02e76bad9edbf1ff3297c88e201">&#9670;&#160;</a></span>isprint()</h2>
+<a id="a1e927f2a17bc81751a93652fa9fc5b3a" name="a1e927f2a17bc81751a93652fa9fc5b3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e927f2a17bc81751a93652fa9fc5b3a">&#9670;&#160;</a></span>isprint()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -924,21 +922,21 @@ template&lt;class... T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00153">153</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00206">206</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00153">isprint()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00200">isgraph()</a>, and <a class="el" href="utf8_8h_source.html#l00206">isprint()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00153">isprint()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00206">isprint()</a>.</p>
 
 </div>
 </div>
-<a id="a93b679fe754982802a0a3163beaf5857" name="a93b679fe754982802a0a3163beaf5857"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a93b679fe754982802a0a3163beaf5857">&#9670;&#160;</a></span>ispunct()</h2>
+<a id="a05648d9937ae8f866dff76fbc7a154ab" name="a05648d9937ae8f866dff76fbc7a154ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05648d9937ae8f866dff76fbc7a154ab">&#9670;&#160;</a></span>ispunct()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -955,16 +953,16 @@ template&lt;class... T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00154">154</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00202">202</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00154">ispunct()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00202">ispunct()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00154">ispunct()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00202">ispunct()</a>.</p>
 
 </div>
 </div>
@@ -995,9 +993,9 @@ template&lt;class... T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00164">164</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00213">213</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00163">isrange()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00212">isrange()</a>.</p>
 
 </div>
 </div>
@@ -1035,16 +1033,16 @@ template&lt;class... T&gt; </div>
 
 <p>Is <code class="param">c</code> within [begin, finis]? </p>
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00163">163</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00212">212</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00163">isrange()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00212">isrange()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00167">isbdigit()</a>, <a class="el" href="utf8_8h_source.html#l00166">isodigit()</a>, <a class="el" href="utf8_8h_source.html#l00164">isrange()</a>, and <a class="el" href="utf8_8h_source.html#l00163">isrange()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00216">isbdigit()</a>, <a class="el" href="utf8_8h_source.html#l00215">isodigit()</a>, <a class="el" href="utf8_8h_source.html#l00213">isrange()</a>, and <a class="el" href="utf8_8h_source.html#l00212">isrange()</a>.</p>
 
 </div>
 </div>
-<a id="ae73e646b50448236b4eccacd7d798839" name="ae73e646b50448236b4eccacd7d798839"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae73e646b50448236b4eccacd7d798839">&#9670;&#160;</a></span>isspace()</h2>
+<a id="ab3da2126bd3f33219b485681a53856f3" name="ab3da2126bd3f33219b485681a53856f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3da2126bd3f33219b485681a53856f3">&#9670;&#160;</a></span>isspace()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1061,21 +1059,21 @@ template&lt;class... T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00155">155</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00203">203</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00155">isspace()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00203">isspace()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00155">isspace()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00203">isspace()</a>.</p>
 
 </div>
 </div>
-<a id="a7681ccacf336d09b0580dad0503f911a" name="a7681ccacf336d09b0580dad0503f911a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7681ccacf336d09b0580dad0503f911a">&#9670;&#160;</a></span>isupper()</h2>
+<a id="a4bf9edb56efe268b0358301dca735e8a" name="a4bf9edb56efe268b0358301dca735e8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4bf9edb56efe268b0358301dca735e8a">&#9670;&#160;</a></span>isupper()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1092,21 +1090,21 @@ template&lt;class... T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00156">156</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00204">204</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00156">isupper()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00204">isupper()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00156">isupper()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00204">isupper()</a>, and <a class="el" href="utf8_8h_source.html#l00208">tolower()</a>.</p>
 
 </div>
 </div>
-<a id="a508776758a043af7871049a6ada71571" name="a508776758a043af7871049a6ada71571"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a508776758a043af7871049a6ada71571">&#9670;&#160;</a></span>isxdigit()</h2>
+<a id="a5056617ed4d6812e2db515e6f7f5770e" name="a5056617ed4d6812e2db515e6f7f5770e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5056617ed4d6812e2db515e6f7f5770e">&#9670;&#160;</a></span>isxdigit()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1123,16 +1121,16 @@ template&lt;class... T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00157">157</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00205">205</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00157">isxdigit()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00205">isxdigit()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00157">isxdigit()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="utf8_8h_source.html#l00205">isxdigit()</a>.</p>
 
 </div>
 </div>
@@ -1235,8 +1233,8 @@ template&lt;class... T&gt; </div>
 
 </div>
 </div>
-<a id="a2dc258776e743dd1204f68bfe2baed2b" name="a2dc258776e743dd1204f68bfe2baed2b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2dc258776e743dd1204f68bfe2baed2b">&#9670;&#160;</a></span>tolower()</h2>
+<a id="ae585cc1899751df0f6baffc16ef5243e" name="ae585cc1899751df0f6baffc16ef5243e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae585cc1899751df0f6baffc16ef5243e">&#9670;&#160;</a></span>tolower()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1253,21 +1251,21 @@ template&lt;class... T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00159">159</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00208">208</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00159">tolower()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00204">isupper()</a>, and <a class="el" href="utf8_8h_source.html#l00208">tolower()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00091">fe::Lexer&lt; K, S &gt;::accept()</a>, and <a class="el" href="utf8_8h_source.html#l00159">tolower()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00091">fe::Lexer&lt; K, S &gt;::accept()</a>, and <a class="el" href="utf8_8h_source.html#l00208">tolower()</a>.</p>
 
 </div>
 </div>
-<a id="a7907975b61b06db27b14fe2a912f8f8c" name="a7907975b61b06db27b14fe2a912f8f8c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7907975b61b06db27b14fe2a912f8f8c">&#9670;&#160;</a></span>toupper()</h2>
+<a id="ae1aff09fac8ea6289eaf537b61ad6114" name="ae1aff09fac8ea6289eaf537b61ad6114"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1aff09fac8ea6289eaf537b61ad6114">&#9670;&#160;</a></span>toupper()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1284,16 +1282,16 @@ template&lt;class... T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00160">160</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="utf8_8h_source.html#l00209">209</a> of file <a class="el" href="utf8_8h_source.html">utf8.h</a>.</p>
 
-<p class="reference">References <a class="el" href="utf8_8h_source.html#l00160">toupper()</a>.</p>
+<p class="reference">References <a class="el" href="utf8_8h_source.html#l00201">islower()</a>, and <a class="el" href="utf8_8h_source.html#l00209">toupper()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00091">fe::Lexer&lt; K, S &gt;::accept()</a>, and <a class="el" href="utf8_8h_source.html#l00160">toupper()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00091">fe::Lexer&lt; K, S &gt;::accept()</a>, and <a class="el" href="utf8_8h_source.html#l00209">toupper()</a>.</p>
 
 </div>
 </div>
