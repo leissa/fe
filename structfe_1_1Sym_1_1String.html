@@ -155,7 +155,6 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('structfe_1_1Sy
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="#friends">Friends</a> &#124;
 <a href="structfe_1_1Sym_1_1String-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">fe::Sym::String Struct Reference</div></div>
 </div><!--header-->
@@ -167,6 +166,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('structfe_1_1Sy
 Classes</h2></td></tr>
 <tr class="memitem:Equal" id="r_Equal"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1Sym_1_1String_1_1Equal.html">Equal</a></td></tr>
 <tr class="memitem:Hash" id="r_Hash"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1Sym_1_1String_1_1Hash.html">Hash</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hashes the characters, not the pointer - <a class="el" href="structfe_1_1Sym_1_1String_1_1Equal.html">String::Equal</a> compares them, and the two have to agree.  <a href="structfe_1_1Sym_1_1String_1_1Hash.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -177,16 +177,10 @@ Public Member Functions</h2></td></tr>
 Public Attributes</h2></td></tr>
 <tr class="memitem:aa0db4d8f8fc3944406f4ff41891100c0" id="r_aa0db4d8f8fc3944406f4ff41891100c0"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#aa0db4d8f8fc3944406f4ff41891100c0">size</a> = 0</td></tr>
 <tr class="memitem:a86ac99bc1a5ae5670498ab589c5f0c39" id="r_a86ac99bc1a5ae5670498ab589c5f0c39"><td class="memItemLeft">char&#160;</td><td class="memItemRight"><a class="el" href="#a86ac99bc1a5ae5670498ab589c5f0c39">chars</a> []</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-friends" class="groupheader"><a id="friends" name="friends"></a>
-Friends</h2></td></tr>
-<tr class="memitem:ad56b9af220c3dbcb02681eedb2fea896" id="r_ad56b9af220c3dbcb02681eedb2fea896"><td class="memTemplParams" colspan="2">template&lt;class H&gt; </td></tr>
-<tr class="memitem:ad56b9af220c3dbcb02681eedb2fea896 template"><td class="memItemLeft">constexpr H&#160;</td><td class="memItemRight"><a class="el" href="#ad56b9af220c3dbcb02681eedb2fea896">AbslHashValue</a> (H h, const <a class="el" href="#a551bd30c8aceef146168764ee45238c4">String</a> *string) noexcept</td></tr>
-<tr class="memdesc:ad56b9af220c3dbcb02681eedb2fea896"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abseil hashes by content, which is what makes <a class="el" href="structfe_1_1Sym_1_1String_1_1Equal.html">String::Equal</a> sound as its equality.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00038">38</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00039">39</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a551bd30c8aceef146168764ee45238c4" name="a551bd30c8aceef146168764ee45238c4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a551bd30c8aceef146168764ee45238c4">&#9670;&#160;</a></span>String() <span class="overload">[1/2]</span></h2>
@@ -211,7 +205,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00063">AbslHashValue</a>, <a class="el" href="sym_8h_source.html#l00047">fe::Sym::String::Equal::operator()()</a>, <a class="el" href="sym_8h_source.html#l00056">fe::Sym::String::Hash::operator()()</a>, and <a class="el" href="sym_8h_source.html#l00040">String()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00048">fe::Sym::String::Equal::operator()()</a>, <a class="el" href="sym_8h_source.html#l00058">fe::Sym::String::Hash::operator()()</a>, and <a class="el" href="sym_8h_source.html#l00041">String()</a>.</p>
 
 </div>
 </div>
@@ -238,47 +232,9 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00040">40</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00041">41</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00043">size</a>, and <a class="el" href="#a551bd30c8aceef146168764ee45238c4">String()</a>.</p>
-
-</div>
-</div>
-<a name="doc-related-members" id="doc-related-members"></a><h2 id="header-doc-related-members" class="groupheader">Friends And Related Symbol Documentation</h2>
-<a id="ad56b9af220c3dbcb02681eedb2fea896" name="ad56b9af220c3dbcb02681eedb2fea896"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad56b9af220c3dbcb02681eedb2fea896">&#9670;&#160;</a></span>AbslHashValue</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class H&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">H AbslHashValue </td>
-          <td>(</td>
-          <td class="paramtype">H</td>          <td class="paramname"><span class="paramname"><em>h</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="#a551bd30c8aceef146168764ee45238c4">String</a> *</td>          <td class="paramname"><span class="paramname"><em>string</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel friend">friend</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Abseil hashes by content, which is what makes <a class="el" href="structfe_1_1Sym_1_1String_1_1Equal.html">String::Equal</a> sound as its equality. </p>
-
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00063">63</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
-
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00169">fe::Sym::operator std::string()</a>, and <a class="el" href="#a551bd30c8aceef146168764ee45238c4">String()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00044">size</a>, and <a class="el" href="#a551bd30c8aceef146168764ee45238c4">String()</a>.</p>
 
 </div>
 </div>
@@ -295,7 +251,7 @@ template&lt;class H&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00044">44</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00045">45</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -311,9 +267,9 @@ template&lt;class H&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00043">43</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00044">44</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00040">String()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00041">String()</a>.</p>
 
 </div>
 </div>

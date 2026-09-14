@@ -159,10 +159,14 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('hash_8h.html',
 <div class="textblock"><code>#include &lt;concepts&gt;</code><br />
 <code>#include &lt;cstddef&gt;</code><br />
 <code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;array&gt;</code><br />
+<code>#include &lt;bit&gt;</code><br />
+<code>#include &lt;string_view&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for hash.h:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="hash_8h__incl.svg" width="278" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="hash_8h__incl.svg" width="652" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -194,8 +198,8 @@ FNV-1 Hash</h2></td></tr>
 <tr><td class="ititle" colspan="2"><p>See <a href="https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function#FNV-1_hash">Wikipedia</a>.</p>
 <p>Use hash_begin to seed a hash chain and hash_combine to fold in one value after another: </p><div class="fragment"><div class="line"><span class="keyword">auto</span> h = <a class="code hl_function" href="namespacefe.html#a490ea31d86af5baf49d5f00a09298f14">fe::hash_begin</a>(x);</div>
 <div class="line"><span class="keywordflow">for</span> (<span class="keyword">auto</span> elem : elems) h = <a class="code hl_function" href="namespacefe.html#abf157d266c33cbe9981f19021fbf6264">fe::hash_combine</a>(h, elem);</div>
-<div class="ttc" id="anamespacefe_html_a490ea31d86af5baf49d5f00a09298f14"><div class="ttname"><a href="namespacefe.html#a490ea31d86af5baf49d5f00a09298f14">fe::hash_begin</a></div><div class="ttdeci">constexpr size_t hash_begin() noexcept</div><div class="ttdoc">Seeds a hash chain with the FNV-1 offset basis.</div><div class="ttdef"><b>Definition</b> <a href="hash_8h_source.html#l00064">hash.h:64</a></div></div>
-<div class="ttc" id="anamespacefe_html_abf157d266c33cbe9981f19021fbf6264"><div class="ttname"><a href="namespacefe.html#abf157d266c33cbe9981f19021fbf6264">fe::hash_combine</a></div><div class="ttdeci">constexpr size_t hash_combine(size_t seed, T v) noexcept</div><div class="ttdoc">Mixes v into seed word-wise, reusing the FNV-1 prime as multiplier.</div><div class="ttdef"><b>Definition</b> <a href="hash_8h_source.html#l00068">hash.h:68</a></div></div>
+<div class="ttc" id="anamespacefe_html_a490ea31d86af5baf49d5f00a09298f14"><div class="ttname"><a href="namespacefe.html#a490ea31d86af5baf49d5f00a09298f14">fe::hash_begin</a></div><div class="ttdeci">constexpr size_t hash_begin() noexcept</div><div class="ttdoc">Seeds a hash chain with the FNV-1 offset basis.</div><div class="ttdef"><b>Definition</b> <a href="hash_8h_source.html#l00069">hash.h:69</a></div></div>
+<div class="ttc" id="anamespacefe_html_abf157d266c33cbe9981f19021fbf6264"><div class="ttname"><a href="namespacefe.html#abf157d266c33cbe9981f19021fbf6264">fe::hash_combine</a></div><div class="ttdeci">constexpr size_t hash_combine(size_t seed, T v) noexcept</div><div class="ttdoc">Mixes v into seed word-wise, reusing the FNV-1 prime as multiplier.</div><div class="ttdef"><b>Definition</b> <a href="hash_8h_source.html#l00073">hash.h:73</a></div></div>
 </div><!-- fragment --> <dl class="section note"><dt>Note</dt><dd>These hashes are <em>not</em> stable: they differ between 32- and 64-bit builds and may change between fe releases. Never serialize them and never rely on the iteration order they induce. </dd></dl>
 </td></tr>
 <tr class="memitem:a23eca58148a59f1a33c1fa3d47e78a4f" id="r_a23eca58148a59f1a33c1fa3d47e78a4f"><td class="memItemLeft">constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a23eca58148a59f1a33c1fa3d47e78a4f">fe::fnv1_offset</a> = sizeof(size_t) == 4 ? size_t(UINT32_C(2166136261)) : size_t(UINT64_C(14695981039346656037))</td></tr>
@@ -209,6 +213,10 @@ FNV-1 Hash</h2></td></tr>
 <tr class="memitem:ac131b22cfcf0e569e4adc1bf67583358" id="r_ac131b22cfcf0e569e4adc1bf67583358"><td class="memTemplParams" colspan="2">template&lt;std::integral T&gt; </td></tr>
 <tr class="memitem:ac131b22cfcf0e569e4adc1bf67583358 template"><td class="memItemLeft">constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#ac131b22cfcf0e569e4adc1bf67583358">fe::hash_begin</a> (T v) noexcept</td></tr>
 <tr class="memdesc:ac131b22cfcf0e569e4adc1bf67583358"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shorthand for <span class="tt">hash_combine(hash_begin(), v)</span>.  <br /></td></tr>
+<tr class="memitem:a281749b3266771e19616bfec1b9c4d08" id="r_a281749b3266771e19616bfec1b9c4d08"><td class="memItemLeft">constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a281749b3266771e19616bfec1b9c4d08">fe::hash_combine</a> (size_t seed, std::string_view sv) noexcept</td></tr>
+<tr class="memdesc:a281749b3266771e19616bfec1b9c4d08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mixes the bytes of <code class="param">sv</code> into <code class="param">seed</code> a machine word at a time.  <br /></td></tr>
+<tr class="memitem:ad6de12009a2f2e8e9cd71878c79cf9dc" id="r_ad6de12009a2f2e8e9cd71878c79cf9dc"><td class="memItemLeft">constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#ad6de12009a2f2e8e9cd71878c79cf9dc">fe::hash_begin</a> (std::string_view sv) noexcept</td></tr>
+<tr class="memdesc:ad6de12009a2f2e8e9cd71878c79cf9dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shorthand for <span class="tt">hash_combine(hash_begin(), sv)</span>.  <br /></td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

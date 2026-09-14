@@ -3,8 +3,8 @@ var searchData=
   ['has_5fflag_0',['has_flag',['../namespacefe.html#a97781f8fc269084dfd887ae2b0a475cc',1,'fe']]],
   ['has_5fintersection_1',['has_intersection',['../classfe_1_1XTrie_1_1Set.html#a925d66f45e55d3ded3a93752298e9695',1,'fe::XTrie::Set']]],
   ['hash_2',['hash',['../classfe_1_1Bitset.html#a7b1fd3d5425bee0594909518be33ee04',1,'fe::Bitset::hash()'],['../namespacefe.html#a11d6f3c09be860709bc513577982fbaa',1,'fe::hash(size_t h) noexcept']]],
-  ['hash_5fbegin_3',['hash_begin',['../namespacefe.html#a490ea31d86af5baf49d5f00a09298f14',1,'fe::hash_begin() noexcept'],['../namespacefe.html#ac131b22cfcf0e569e4adc1bf67583358',1,'fe::hash_begin(T v) noexcept']]],
-  ['hash_5fcombine_4',['hash_combine',['../namespacefe.html#abf157d266c33cbe9981f19021fbf6264',1,'fe']]],
+  ['hash_5fbegin_3',['hash_begin',['../namespacefe.html#a490ea31d86af5baf49d5f00a09298f14',1,'fe::hash_begin() noexcept'],['../namespacefe.html#ac131b22cfcf0e569e4adc1bf67583358',1,'fe::hash_begin(T v) noexcept'],['../namespacefe.html#ad6de12009a2f2e8e9cd71878c79cf9dc',1,'fe::hash_begin(std::string_view sv) noexcept']]],
+  ['hash_5fcombine_4',['hash_combine',['../namespacefe.html#abf157d266c33cbe9981f19021fbf6264',1,'fe::hash_combine(size_t seed, T v) noexcept'],['../namespacefe.html#a281749b3266771e19616bfec1b9c4d08',1,'fe::hash_combine(size_t seed, std::string_view sv) noexcept']]],
   ['header_5',['header',['../classfe_1_1Diag.html#a22f35afdb6e78b658af599a6164c7af6',1,'fe::Diag']]],
   ['help_6',['help',['../classfe_1_1Cli.html#a2cff8ecb42aa9c5151ce67ffc0a4bfda',1,'fe::Cli::help(bool &amp;target, std::string sname=&quot;-h&quot;, std::string lname=&quot;--help&quot;)'],['../classfe_1_1Cli.html#a64dd10a0ba8294a71e26371359762c1e',1,'fe::Cli::help(std::ostream &amp;) const']]]
 ];

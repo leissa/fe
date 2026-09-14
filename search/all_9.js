@@ -5,8 +5,8 @@ var searchData=
   ['hash_2',['Hash',['../structfe_1_1Bitset_1_1Hash.html',1,'fe::Bitset::Hash'],['../structfe_1_1Dbg_1_1Hash.html',1,'fe::Dbg::Hash'],['../structfe_1_1Sym_1_1Hash.html',1,'fe::Sym::Hash'],['../structfe_1_1Sym_1_1String_1_1Hash.html',1,'fe::Sym::String::Hash'],['../structfe_1_1XTrie_1_1Data_1_1Hash.html',1,'fe::XTrie&lt; D, K, N &gt;::Data::Hash']]],
   ['hash_3',['hash',['../classfe_1_1Bitset.html#a7b1fd3d5425bee0594909518be33ee04',1,'fe::Bitset::hash()'],['../namespacefe.html#a11d6f3c09be860709bc513577982fbaa',1,'fe::hash()']]],
   ['hash_2eh_4',['hash.h',['../hash_8h.html',1,'']]],
-  ['hash_5fbegin_5',['hash_begin',['../namespacefe.html#a490ea31d86af5baf49d5f00a09298f14',1,'fe::hash_begin() noexcept'],['../namespacefe.html#ac131b22cfcf0e569e4adc1bf67583358',1,'fe::hash_begin(T v) noexcept']]],
-  ['hash_5fcombine_6',['hash_combine',['../namespacefe.html#abf157d266c33cbe9981f19021fbf6264',1,'fe']]],
+  ['hash_5fbegin_5',['hash_begin',['../namespacefe.html#a490ea31d86af5baf49d5f00a09298f14',1,'fe::hash_begin() noexcept'],['../namespacefe.html#ac131b22cfcf0e569e4adc1bf67583358',1,'fe::hash_begin(T v) noexcept'],['../namespacefe.html#ad6de12009a2f2e8e9cd71878c79cf9dc',1,'fe::hash_begin(std::string_view sv) noexcept']]],
+  ['hash_5fcombine_6',['hash_combine',['../namespacefe.html#abf157d266c33cbe9981f19021fbf6264',1,'fe::hash_combine(size_t seed, T v) noexcept'],['../namespacefe.html#a281749b3266771e19616bfec1b9c4d08',1,'fe::hash_combine(size_t seed, std::string_view sv) noexcept']]],
   ['header_7',['header',['../classfe_1_1Diag.html#a22f35afdb6e78b658af599a6164c7af6',1,'fe::Diag']]],
   ['help_8',['help',['../classfe_1_1Cli.html#a2cff8ecb42aa9c5151ce67ffc0a4bfda',1,'fe::Cli::help(bool &amp;target, std::string sname=&quot;-h&quot;, std::string lname=&quot;--help&quot;)'],['../classfe_1_1Cli.html#a64dd10a0ba8294a71e26371359762c1e',1,'fe::Cli::help(std::ostream &amp;) const']]],
   ['how_20much_20code_20is_20that_9',['How much code is that?',['../index.html#autotoc_md2',1,'']]]
