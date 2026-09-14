@@ -192,7 +192,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5d5f386e69be60f34a1f34b1c04d5416" id="r_a5d5f386e69be60f34a1f34b1c04d5416"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#a5d5f386e69be60f34a1f34b1c04d5416">crbegin</a> () const noexcept</td></tr>
 <tr class="memitem:a8644db50ad05ef62b82cc05f1688bc80" id="r_a8644db50ad05ef62b82cc05f1688bc80"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#a8644db50ad05ef62b82cc05f1688bc80">crend</a> () const noexcept</td></tr>
 <tr id="pub-methods-3" class="groupHeader"><td colspan="2"><div class="groupHeader">Conversions</div></td></tr>
-<tr class="memitem:aaf1933998907b8e0b70b852e9ce4e485" id="r_aaf1933998907b8e0b70b852e9ce4e485"><td class="memItemLeft">constexpr const char *&#160;</td><td class="memItemRight"><a class="el" href="#aaf1933998907b8e0b70b852e9ce4e485">c_str</a> () const noexcept</td></tr>
 <tr class="memitem:ae4042d6fd11e3d25c511c2feb031ad2a" id="r_ae4042d6fd11e3d25c511c2feb031ad2a"><td class="memItemLeft">constexpr std::string_view&#160;</td><td class="memItemRight"><a class="el" href="#ae4042d6fd11e3d25c511c2feb031ad2a">view</a> () const noexcept</td></tr>
 <tr class="memitem:aff35eb138b2e717c637d41d1b17eba26" id="r_aff35eb138b2e717c637d41d1b17eba26"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#aff35eb138b2e717c637d41d1b17eba26">operator std::string_view</a> () const noexcept</td></tr>
 <tr class="memitem:a24ee71544ed6aebf2b24ef3f1b52d877" id="r_a24ee71544ed6aebf2b24ef3f1b52d877"><td class="memItemLeft">constexpr std::string_view&#160;</td><td class="memItemRight"><a class="el" href="#a24ee71544ed6aebf2b24ef3f1b52d877">operator*</a> () const noexcept</td></tr>
@@ -237,14 +236,10 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol just wraps a pointer to <a class="el" href="structfe_1_1Sym_1_1String.html">Sym::String</a>, so pass <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a> itself around as value. </p>
-<p><a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a> is compatible with:</p><ul>
-<li>recommended: <span class="tt">std::string_view</span> (via <a class="el" href="#ae4042d6fd11e3d25c511c2feb031ad2a">Sym::view</a>)</li>
-<li>null-terminated C-strings (via <a class="el" href="#aaf1933998907b8e0b70b852e9ce4e485">Sym::c_str</a>)</li>
-</ul>
-<p>This means that retrieving a <span class="tt">std::string_view</span> or a null-terminated C-string is basically free. You can also obtain a <span class="tt">std::string</span> (via <a class="el" href="#aa221972b6c2c378b931e1b68eead0498" title="This involves a copy.">Sym::str</a>), but this involves a copy. With the exception of the empty string, you should only create <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bols via <a class="el" href="classfe_1_1SymPool.html#a1a7c3278db18ad72926b06c1e757b865">SymPool::sym</a>. This in turn will toss all <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bols into a big hash set. This makes <a class="el" href="#a4d32de46ba12881bc6a41505f0fcd49b">Sym::operator==</a> and Sym::operator!= an O(1) operation. The empty string is internally handled as <span class="tt">nullptr</span>. Thus, you can create a <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol representing an empty string without having access to the <a class="el" href="classfe_1_1SymPool.html" title="Hash set where all strings - wrapped in Symbol - live in.">SymPool</a>. </p><dl class="section note"><dt>Note</dt><dd>The empty <span class="tt">std::string</span>/<span class="tt">std::string_view</span>, <span class="tt">nullptr</span>, and <span class="tt">"\0"</span> are all identified as <a class="el" href="#a3b4417ab3002f28d1e4f340711a8d094">Sym::Sym()</a>. </dd></dl>
+<p>Retrieving a <span class="tt">std::string_view</span> (via <a class="el" href="#ae4042d6fd11e3d25c511c2feb031ad2a">Sym::view</a>) is basically free. You can also obtain a <span class="tt">std::string</span> (via <a class="el" href="#aa221972b6c2c378b931e1b68eead0498" title="This involves a copy.">Sym::str</a>), but this involves a copy. The characters are <em>not</em> null-terminated. With the exception of the empty string, you should only create <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bols via <a class="el" href="classfe_1_1SymPool.html#a1a7c3278db18ad72926b06c1e757b865">SymPool::sym</a>. This in turn will toss all <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bols into a big hash set. This makes <a class="el" href="#a4d32de46ba12881bc6a41505f0fcd49b">Sym::operator==</a> and Sym::operator!= an O(1) operation. The empty string is internally handled as <span class="tt">nullptr</span>. Thus, you can create a <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol representing an empty string without having access to the <a class="el" href="classfe_1_1SymPool.html" title="Hash set where all strings - wrapped in Symbol - live in.">SymPool</a>. </p><dl class="section note"><dt>Note</dt><dd>The empty <span class="tt">std::string</span>/<span class="tt">std::string_view</span> and <span class="tt">nullptr</span> are all identified as <a class="el" href="#a3b4417ab3002f28d1e4f340711a8d094">Sym::Sym()</a>. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Big endian version has not been tested. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00036">36</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00032">32</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3b4417ab3002f28d1e4f340711a8d094" name="a3b4417ab3002f28d1e4f340711a8d094"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3b4417ab3002f28d1e4f340711a8d094">&#9670;&#160;</a></span>Sym()</h2>
@@ -269,7 +264,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00278">fe::SymPool::sym()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00270">fe::SymPool::sym()</a>.</p>
 
 </div>
 </div>
@@ -297,9 +292,9 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00098">98</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00094">94</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00084">size()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00080">size()</a>.</p>
 
 </div>
 </div>
@@ -326,43 +321,11 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00103">103</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00099">99</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00158">c_str()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00154">view()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00105">cbegin()</a>, and <a class="el" href="sym_8h_source.html#l00108">rend()</a>.</p>
-
-</div>
-</div>
-<a id="aaf1933998907b8e0b70b852e9ce4e485" name="aaf1933998907b8e0b70b852e9ce4e485"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf1933998907b8e0b70b852e9ce4e485">&#9670;&#160;</a></span>c_str()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const char * fe::Sym::c_str </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span><span class="mlabel noexcept">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="section warning"><dt>Warning</dt><dd>For a <em>short</em> <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol (small-string-optimized, see <a class="el" href="#ae4042d6fd11e3d25c511c2feb031ad2a">Sym::view</a>) the returned pointer aliases this <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol's internal <span class="tt">ptr_</span>. It is therefore only valid as long as <em>this</em> <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol object lives - it dangles for a temporary (e.g. <span class="tt">pool.sym("ab").<a class="el" href="#aaf1933998907b8e0b70b852e9ce4e485">c_str()</a></span>). Use <a class="el" href="#aa221972b6c2c378b931e1b68eead0498" title="This involves a copy.">Sym::str</a> if the string must outlive the <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00158">158</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
-
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00162">view()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00103">begin()</a>, <a class="el" href="sym_8h_source.html#l00104">end()</a>, and <a class="el" href="sym_8h_source.html#l00093">operator[]()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00101">cbegin()</a>, <a class="el" href="sym_8h_source.html#l00100">end()</a>, and <a class="el" href="sym_8h_source.html#l00104">rend()</a>.</p>
 
 </div>
 </div>
@@ -389,9 +352,9 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00105">105</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00101">101</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00103">begin()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00099">begin()</a>.</p>
 
 </div>
 </div>
@@ -418,9 +381,9 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00106">106</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00102">102</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00104">end()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00100">end()</a>.</p>
 
 </div>
 </div>
@@ -447,9 +410,9 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00109">109</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00105">105</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00107">rbegin()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00103">rbegin()</a>.</p>
 
 </div>
 </div>
@@ -476,9 +439,9 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00110">110</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00106">106</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00108">rend()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00104">rend()</a>.</p>
 
 </div>
 </div>
@@ -505,11 +468,11 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00083">83</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00079">79</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00083">empty()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00079">empty()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00083">empty()</a>, <a class="el" href="sym_8h_source.html#l00084">size()</a>, and <a class="el" href="sym_8h_source.html#l00162">view()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00079">empty()</a>, <a class="el" href="sym_8h_source.html#l00080">size()</a>, and <a class="el" href="sym_8h_source.html#l00154">view()</a>.</p>
 
 </div>
 </div>
@@ -536,11 +499,11 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00104">104</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00100">100</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00158">c_str()</a>, and <a class="el" href="sym_8h_source.html#l00084">size()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00099">begin()</a>, and <a class="el" href="sym_8h_source.html#l00080">size()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00106">cend()</a>, and <a class="el" href="sym_8h_source.html#l00107">rbegin()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00102">cend()</a>, and <a class="el" href="sym_8h_source.html#l00103">rbegin()</a>.</p>
 
 </div>
 </div>
@@ -567,7 +530,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00097">97</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00093">93</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -596,7 +559,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 
 <p>Is not empty? </p>
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00178">178</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00170">170</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -625,9 +588,9 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 
 <p><span class="tt">explicit</span> as this involves a copy. </p>
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00177">177</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00169">169</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00176">str()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00168">str()</a>.</p>
 
 </div>
 </div>
@@ -654,9 +617,9 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00171">171</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00163">163</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00162">view()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00154">view()</a>.</p>
 
 </div>
 </div>
@@ -683,9 +646,9 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00172">172</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00164">164</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00162">view()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00154">view()</a>.</p>
 
 </div>
 </div>
@@ -712,9 +675,9 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00093">93</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00089">89</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00158">c_str()</a>, and <a class="el" href="sym_8h_source.html#l00084">size()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00080">size()</a>, and <a class="el" href="sym_8h_source.html#l00154">view()</a>.</p>
 
 </div>
 </div>
@@ -741,11 +704,11 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00107">107</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00103">103</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00104">end()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00100">end()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00109">crbegin()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00105">crbegin()</a>.</p>
 
 </div>
 </div>
@@ -772,11 +735,11 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00108">108</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00104">104</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00103">begin()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00099">begin()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00110">crend()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00106">crend()</a>.</p>
 
 </div>
 </div>
@@ -803,11 +766,11 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00084">84</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00080">80</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00083">empty()</a>, <a class="el" href="sym_8h_source.html#l00039">Short_String_Mask</a>, and <a class="el" href="sym_8h_source.html#l00084">size()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00079">empty()</a>, <a class="el" href="sym_8h_source.html#l00035">Short_String_Mask</a>, and <a class="el" href="sym_8h_source.html#l00080">size()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00098">back()</a>, <a class="el" href="sym_8h_source.html#l00104">end()</a>, <a class="el" href="sym_8h_source.html#l00093">operator[]()</a>, <a class="el" href="sym_8h_source.html#l00084">size()</a>, and <a class="el" href="sym_8h_source.html#l00162">view()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00094">back()</a>, <a class="el" href="sym_8h_source.html#l00100">end()</a>, <a class="el" href="sym_8h_source.html#l00089">operator[]()</a>, <a class="el" href="sym_8h_source.html#l00080">size()</a>, and <a class="el" href="sym_8h_source.html#l00154">view()</a>.</p>
 
 </div>
 </div>
@@ -836,11 +799,11 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 
 <p>This involves a copy. </p>
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00176">176</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00168">168</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00162">view()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00154">view()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00177">operator std::string()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00169">operator std::string()</a>.</p>
 
 </div>
 </div>
@@ -866,13 +829,13 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section note"><dt>Note</dt><dd>For a short <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol (size fits into <a class="el" href="#a2d6e0bb54a5a9513e4a064dd38011863">Sym::Short_String_Bytes</a>) the characters are stored inline within this object's <span class="tt">ptr_</span>, so the returned view points into <em>this</em> <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol and dangles once it dies; see <a class="el" href="#aaf1933998907b8e0b70b852e9ce4e485">Sym::c_str</a>. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>For a <em>short</em> <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol (size &lt; <a class="el" href="#a2d6e0bb54a5a9513e4a064dd38011863">Sym::Short_String_Bytes</a>) the characters are stored inline within this object's <span class="tt">ptr_</span>, so the returned view points into <em>this</em> <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol and is only valid as long as it lives - it dangles for a temporary (e.g. <span class="tt">pool.sym("ab").<a class="el" href="#ae4042d6fd11e3d25c511c2feb031ad2a">view()</a></span>). Use <a class="el" href="#aa221972b6c2c378b931e1b68eead0498" title="This involves a copy.">Sym::str</a> if the string must outlive the <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00162">162</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00154">154</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00083">empty()</a>, <a class="el" href="sym_8h_source.html#l00039">Short_String_Mask</a>, and <a class="el" href="sym_8h_source.html#l00084">size()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00079">empty()</a>, <a class="el" href="sym_8h_source.html#l00035">Short_String_Mask</a>, and <a class="el" href="sym_8h_source.html#l00080">size()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00158">c_str()</a>, <a class="el" href="sym_8h_source.html#l00171">operator std::string_view()</a>, <a class="el" href="sym_8h_source.html#l00172">operator*()</a>, and <a class="el" href="sym_8h_source.html#l00176">str()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00099">begin()</a>, <a class="el" href="sym_8h_source.html#l00163">operator std::string_view()</a>, <a class="el" href="sym_8h_source.html#l00164">operator*()</a>, <a class="el" href="sym_8h_source.html#l00089">operator[]()</a>, and <a class="el" href="sym_8h_source.html#l00168">str()</a>.</p>
 
 </div>
 </div>
@@ -897,7 +860,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00178">178</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00170">170</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -957,7 +920,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00122">122</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00118">118</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -991,7 +954,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00136">136</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00132">132</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -1025,7 +988,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00131">131</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00127">127</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -1056,7 +1019,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00121">121</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00117">117</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -1087,7 +1050,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00115">115</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00111">111</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -1118,7 +1081,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00124">124</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00120">120</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -1152,7 +1115,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00148">148</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00144">144</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -1186,7 +1149,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00142">142</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00138">138</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -1217,7 +1180,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00123">123</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00119">119</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -1248,7 +1211,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00116">116</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00112">112</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -1272,11 +1235,11 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00222">222</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00214">214</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00222">SymPool</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00214">SymPool</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00222">SymPool</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00214">SymPool</a>.</p>
 
 </div>
 </div>
@@ -1301,7 +1264,7 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00038">38</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00034">34</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -1325,9 +1288,9 @@ requires std::is_convertible_v&lt;T, std::string_view&gt;</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00039">39</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00035">35</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00084">size()</a>, and <a class="el" href="sym_8h_source.html#l00162">view()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00080">size()</a>, and <a class="el" href="sym_8h_source.html#l00154">view()</a>.</p>
 
 </div>
 </div>

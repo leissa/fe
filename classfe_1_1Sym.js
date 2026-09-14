@@ -6,7 +6,6 @@ var classfe_1_1Sym =
     [ "Sym", "classfe_1_1Sym.html#a3b4417ab3002f28d1e4f340711a8d094", null ],
     [ "back", "classfe_1_1Sym.html#a3e0afe054d407542069a0b631704d372", null ],
     [ "begin", "classfe_1_1Sym.html#a20d21940d48a8d6f9fc362938d67af85", null ],
-    [ "c_str", "classfe_1_1Sym.html#aaf1933998907b8e0b70b852e9ce4e485", null ],
     [ "cbegin", "classfe_1_1Sym.html#ac7b89c634f5e3515dcfe3d3e786fc286", null ],
     [ "cend", "classfe_1_1Sym.html#a3308cf822fc8707a9c946335d85972cd", null ],
     [ "crbegin", "classfe_1_1Sym.html#a5d5f386e69be60f34a1f34b1c04d5416", null ],
