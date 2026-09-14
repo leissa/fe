@@ -1,7 +1,8 @@
 #pragma once
 
-#include <array>
 #include <cstdint>
+
+#include <array>
 #include <memory>
 #include <ranges>
 #include <tuple>
@@ -50,7 +51,7 @@ public:
     /// The @p I th trailing array as a `View<Trail_Type<I>>`.
     template<size_t I>
     [[nodiscard]] auto trail() const noexcept {
-        auto block = (const char*)static_cast<const Self*>(this) + trail_begin();
+        auto block  = (const char*)static_cast<const Self*>(this) + trail_begin();
         auto counts = (const uint32_t*)block;
         return View<Trail_Type<I>>((const Trail_Type<I>*)(block + offset(I, counts)), counts[I]);
     }
@@ -76,7 +77,8 @@ private:
         constexpr size_t aligns[] = {alignof(Trail_Type<Is>)...};
 
         size_t off = sizeof...(Is) * sizeof(uint32_t);
-        for (size_t i = 0; i != n; ++i) off = pad(off, aligns[i]) + counts[i] * sizes[i];
+        for (size_t i = 0; i != n; ++i)
+            off = pad(off, aligns[i]) + counts[i] * sizes[i];
         return n == sizeof...(Is) ? off : pad(off, aligns[n]);
     }
 

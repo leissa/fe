@@ -127,6 +127,22 @@ requires(N != std::dynamic_extent) constexpr decltype(auto) get(Span<T, N> span)
 
 } // namespace fe
 
+/// @name Range Properties of Span
+/// Span inherits from `std::span` but *is* a different type, so the specializations `std::span` has
+/// do not carry over - and without them `std::views::all` would wrap an lvalue Span in a `ref_view`
+/// that dangles as soon as the Span it refers to goes out of scope.
+///@{
+// clang-format off
+template<class T, size_t N> constexpr bool std::ranges::enable_view<fe::Span<T, N>>            = true;
+template<class T, size_t N> constexpr bool std::ranges::enable_borrowed_range<fe::Span<T, N>>  = true;
+// clang-format on
+///@}
+
+namespace fe {
+static_assert(std::ranges::view<Span<int>>);
+static_assert(std::ranges::borrowed_range<Span<int>>);
+} // namespace fe
+
 namespace std {
 /// @name Structured Binding Support for Span
 ///@{

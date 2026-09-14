@@ -573,6 +573,12 @@ TEST_CASE("format") {
 }
 
 TEST_CASE("Span") {
+    SUBCASE("a view adaptor copies the Span instead of referring to it") {
+        int a[3] = {1, 2, 3};
+        auto f   = [](fe::View<int> span) { return span | std::views::transform([](int i) { return i * 2; }); };
+        CHECK(std::ranges::equal(f(fe::View<int>(a)), std::vector{2, 4, 6}));
+    }
+
     SUBCASE("structured binding writes through") {
         int a[3]        = {0, 1, 2};
         auto s          = fe::Span(a);
