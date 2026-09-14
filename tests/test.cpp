@@ -1,5 +1,6 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 
+#include <format>
 #include <memory>
 #include <queue>
 #include <source_location>
@@ -308,6 +309,35 @@ TEST_CASE("Sym") {
         set.insert(syms.sym("elem"));
         CHECK(set.contains(syms.sym("elem")));
         CHECK(!set.contains(fe::Sym()));
+    }
+
+    SUBCASE("SymTab maps a closed set of symbols, short and long alike") {
+        fe::SymTab<int, 3> tab;
+        CHECK(tab.Capacity == 8);
+
+        tab.emplace(syms.sym("short"), 1);
+        tab.emplace(syms.sym("a-rather-long-symbol-name"), 2);
+        tab.emplace(syms.sym("x"), 3);
+
+        CHECK(tab.find(syms.sym("short")) == 1);
+        CHECK(tab.find(syms.sym("a-rather-long-symbol-name")) == 2);
+        CHECK(tab.find(syms.sym("x")) == 3);
+        CHECK(!tab.find(syms.sym("absent")));
+        CHECK(!tab.find(fe::Sym()));
+        CHECK(tab.contains(syms.sym("x")));
+        CHECK(!tab.contains(syms.sym("absent")));
+    }
+
+    SUBCASE("SymTab probes past a full run of collisions") {
+        static constexpr size_t N = 64;
+        fe::SymTab<size_t, N> tab;
+
+        for (size_t i = 0; i != N; ++i)
+            tab.emplace(syms.sym(std::format("sym_{}", i)), i);
+        for (size_t i = 0; i != N; ++i)
+            CHECK(tab.find(syms.sym(std::format("sym_{}", i))) == i);
+        for (size_t i = N; i != 2 * N; ++i)
+            CHECK(!tab.find(syms.sym(std::format("sym_{}", i))));
     }
 
     SUBCASE("moving a SymPool keeps interned symbols valid") {

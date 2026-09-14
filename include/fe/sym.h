@@ -2,8 +2,10 @@
 
 #include <cassert>
 
+#include <array>
 #include <bit>
 #include <iosfwd>
+#include <optional>
 #include <string>
 
 #ifdef FE_ABSL
@@ -239,6 +241,61 @@ using SymMap = std::unordered_map<Sym, V, Sym::Hash, Sym::Eq>;
 using SymSet = std::unordered_set<Sym, Sym::Hash, Sym::Eq>;
 #endif
 ///@}
+
+/// A fixed-capacity Sym%bol -> @p V map for a *closed* set of @p Size entries: filled once, then only
+/// looked up - a Lexer's reserved words, say.
+/// Prefer this over SymMap for that use: both hash and compare the same interned pointer, but SymMap
+/// pays a full finalizer and a SwissTable group probe where this pays one multiply and one probe of
+/// a table whose capacity is a compile-time constant.
+/// @note @p V has to be default-constructible; an absent key yields no @p V at all - see SymTab::find.
+/// @warning Insert-only: there is no erase, and SymTab::emplace asserts on a key already present.
+template<class V, size_t Size>
+class SymTab {
+public:
+    /// Twice @p Size, rounded up to a power of two, so the load factor stays below `1/2`.
+    static constexpr size_t Capacity = std::bit_ceil(2 * Size);
+
+    /// @name Access
+    ///@{
+    void emplace(Sym sym, V v) {
+        assert(!sym.empty() && "the empty Sym%bol marks a free slot");
+        for (auto i = idx(sym);; i = (i + 1) & Mask) {
+            assert(slots_[i].sym != sym && "already present");
+            if (slots_[i].sym.empty()) {
+                slots_[i] = {sym, std::move(v)};
+                return;
+            }
+        }
+    }
+
+    /// Yields nothing if @p sym is not present - the empty Sym%bol never is.
+    /// @note The free-slot test comes first: the empty Sym%bol *is* a free slot's key.
+    std::optional<V> find(Sym sym) const {
+        for (auto i = idx(sym);; i = (i + 1) & Mask) {
+            if (slots_[i].sym.empty()) return {};
+            if (slots_[i].sym == sym) return slots_[i].v;
+        }
+    }
+
+    bool contains(Sym sym) const { return (bool)find(sym); }
+    ///@}
+
+private:
+    static constexpr size_t Mask    = Capacity - 1;
+    static constexpr size_t Shift   = 64 - std::bit_width(Mask);
+    static constexpr uint64_t Magic = 0x9E3779B97F4A7C15ull; ///< `2^64/phi` - Fibonacci hashing.
+
+    /// Takes the *high* bits of the product: a long Sym%bol is an 8-byte aligned pointer and a short
+    /// one's low byte is a size of `1 .. Sym::Short_String_Bytes-1`, so the low bits cluster.
+    static size_t idx(Sym sym) { return size_t((uint64_t(sym.raw()) * Magic) >> Shift); }
+
+    struct Slot {
+        Sym sym;
+        V v = {};
+    };
+
+    std::array<Slot, Capacity> slots_ = {};
+};
 
 /// Hash set where all strings - wrapped in Sym%bol - live in.
 /// You can access the SymPool from Driver.
