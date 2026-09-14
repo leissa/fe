@@ -1,7 +1,7 @@
 #pragma once
 
-#include <cctype>
-
+#include <array>
+#include <cstdint>
 #include <istream>
 #include <ostream>
 #include <string_view>
@@ -137,27 +137,76 @@ struct Char32 {
     char32_t c;
 };
 
-/// @name Wrappers
-/// Safe `char32_t`-style wrappers for <[ctype](https://en.cppreference.com/w/cpp/header/cctype)> functions:
-/// > Like all other functions from `<cctype>`, the behavior of `std::isalnum` is undefined if the argument's value is
-/// neither representable as `unsigned char` nor equal to `EOF`.
+/// @name Character classification
+/// `char32_t`-style counterparts of the <[ctype](https://en.cppreference.com/w/cpp/header/cctype)>
+/// functions, for a code point of any width - everything above U+00FF belongs to no class.
+///
+/// These do *not* call into `<cctype>`. Those are locale-dependent, so what counts as a letter would
+/// shift under someone else's `std::setlocale` - no way to run a lexer. They are also out-of-line
+/// calls through a locale table, which is a lot of ceremony for a question about one byte. What is
+/// baked into the table below is the `"C"` locale, and it stays that way.
 ///@{
+namespace detail {
+
+enum Class : uint8_t {
+    Cntrl  = 1 << 0,
+    Space  = 1 << 1,
+    Blank  = 1 << 2,
+    Digit  = 1 << 3,
+    Lower  = 1 << 4,
+    Upper  = 1 << 5,
+    Punct  = 1 << 6,
+    XDigit = 1 << 7,
+    Alpha  = Lower | Upper,
+    Alnum  = Alpha | Digit,
+    Graph  = Alnum | Punct,
+};
+
+/// The class of every byte, as the `"C"` locale has it; U+0080 and up belong to none.
+inline constexpr auto Classes = [] {
+    std::array<uint8_t, 256> res{};
+    auto set = [&res](char32_t lo, char32_t hi, uint8_t bits) {
+        for (auto c = lo; c <= hi; ++c) res[c] |= bits;
+    };
+
+    set(0x00, 0x1F, Cntrl);
+    set(0x7F, 0x7F, Cntrl);
+    set('\t', '\r', Space); // \t \n \v \f \r
+    set('\t', '\t', Blank);
+    set(' ', ' ', Space | Blank);
+    set('0', '9', Digit | XDigit);
+    set('A', 'F', XDigit);
+    set('a', 'f', XDigit);
+    set('A', 'Z', Upper);
+    set('a', 'z', Lower);
+    set('!', '/', Punct);
+    set(':', '@', Punct);
+    set('[', '`', Punct);
+    set('{', '~', Punct);
+    return res;
+}();
+
+/// Does @p c carry any of @p bits?
+constexpr bool isa(char32_t c, uint8_t bits) noexcept { return (c & ~0xFF) == 0 && (Classes[c] & bits) != 0; }
+
+} // namespace detail
+
 // clang-format off
-inline bool isalnum (char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::isalnum (c) : false; }
-inline bool isalpha (char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::isalpha (c) : false; }
-inline bool isblank (char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::isblank (c) : false; }
-inline bool iscntrl (char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::iscntrl (c) : false; }
-inline bool isdigit (char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::isdigit (c) : false; }
-inline bool isgraph (char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::isgraph (c) : false; }
-inline bool islower (char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::islower (c) : false; }
-inline bool isprint (char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::isprint (c) : false; }
-inline bool ispunct (char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::ispunct (c) : false; }
-inline bool isspace (char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::isspace (c) : false; }
-inline bool isupper (char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::isupper (c) : false; }
-inline bool isxdigit(char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::isxdigit(c) : false; }
-inline bool isascii (char32_t c) noexcept { return c <= 0x7F; }
-inline char32_t tolower(char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::tolower(c) : c; }
-inline char32_t toupper(char32_t c) noexcept { return (c & ~0xFF) == 0 ? std::toupper(c) : c; }
+constexpr bool isalnum (char32_t c) noexcept { return detail::isa(c, detail::Alnum ); }
+constexpr bool isalpha (char32_t c) noexcept { return detail::isa(c, detail::Alpha ); }
+constexpr bool isblank (char32_t c) noexcept { return detail::isa(c, detail::Blank ); }
+constexpr bool iscntrl (char32_t c) noexcept { return detail::isa(c, detail::Cntrl ); }
+constexpr bool isdigit (char32_t c) noexcept { return detail::isa(c, detail::Digit ); }
+constexpr bool isgraph (char32_t c) noexcept { return detail::isa(c, detail::Graph ); }
+constexpr bool islower (char32_t c) noexcept { return detail::isa(c, detail::Lower ); }
+constexpr bool ispunct (char32_t c) noexcept { return detail::isa(c, detail::Punct ); }
+constexpr bool isspace (char32_t c) noexcept { return detail::isa(c, detail::Space ); }
+constexpr bool isupper (char32_t c) noexcept { return detail::isa(c, detail::Upper ); }
+constexpr bool isxdigit(char32_t c) noexcept { return detail::isa(c, detail::XDigit); }
+constexpr bool isprint (char32_t c) noexcept { return c == ' ' || isgraph(c); }
+constexpr bool isascii (char32_t c) noexcept { return c <= 0x7F; }
+constexpr char32_t tolower(char32_t c) noexcept { return isupper(c) ? c - 'A' + 'a' : c; }
+constexpr char32_t toupper(char32_t c) noexcept { return islower(c) ? c - 'a' + 'A' : c; }
 
 /// Is @p c within [begin, finis]?
 constexpr bool isrange(char32_t c, char32_t begin, char32_t finis) noexcept { return begin <= c && c <= finis; }
