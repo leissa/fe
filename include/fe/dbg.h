@@ -68,12 +68,10 @@ public:
         constexpr bool operator()(Dbg d1, Dbg d2) const noexcept { return d1 == d2; }
     };
 
-#ifdef FE_ABSL
     template<class H>
     friend H AbslHashValue(H h, Dbg dbg) noexcept {
         return H::combine(std::move(h), dbg.loc_.src, dbg.loc_.begin.off, dbg.loc_.end.off, dbg.sym_);
     }
-#endif
     ///@}
 
 private:

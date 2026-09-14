@@ -15,6 +15,7 @@
 #endif
 
 #include "fe/arena.h"
+#include "fe/hash.h"
 
 namespace fe {
 
@@ -57,12 +58,11 @@ public:
             }
         };
 
-#ifdef FE_ABSL
+        /// Abseil hashes by content, which is what makes String::Equal sound as its equality.
         template<class H>
         friend constexpr H AbslHashValue(H h, const String* string) noexcept {
             return H::combine(std::move(h), std::string_view(string->chars, string->size));
         }
-#endif
     };
 
     static_assert(sizeof(String) == sizeof(size_t), "String.chars should be 0");
@@ -170,12 +170,10 @@ public:
     constexpr explicit operator bool() const noexcept { return ptr_; } ///< Is not empty?
     ///@}
 
-#ifdef FE_ABSL
     template<class H>
     friend constexpr H AbslHashValue(H h, Sym sym) noexcept {
         return H::combine(std::move(h), sym.ptr_);
     }
-#endif
     friend struct ::std::hash<fe::Sym>;
     friend std::ostream& operator<<(std::ostream& os, Sym sym);
 
@@ -186,7 +184,7 @@ public:
     /// Intern via SymPool::sym first, then look up with the resulting Sym.
     ///@{
     struct Hash {
-        size_t operator()(Sym s) const noexcept { return std::hash<uintptr_t>()(s.ptr_); }
+        size_t operator()(Sym s) const noexcept { return fe::hash(s.ptr_); }
     };
 
     struct Eq {
@@ -219,7 +217,7 @@ private:
 
 template<>
 struct std::hash<fe::Sym> {
-    size_t operator()(fe::Sym sym) const noexcept { return std::hash<uintptr_t>()(sym.ptr_); }
+    size_t operator()(fe::Sym sym) const noexcept { return fe::hash(sym.ptr_); }
 };
 
 namespace fe {
