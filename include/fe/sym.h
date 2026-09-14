@@ -9,6 +9,7 @@
 #ifdef FE_ABSL
 #    include <absl/container/flat_hash_map.h>
 #    include <absl/container/flat_hash_set.h>
+#    include <absl/hash/hash.h>
 #else
 #    include <unordered_map>
 #    include <unordered_set>
@@ -55,7 +56,12 @@ public:
         /// Hashes the characters, not the pointer - String::Equal compares them, and the two have to agree.
         struct Hash {
             size_t operator()(const String* s) const noexcept {
-                return hash_begin(std::string_view(s->chars, s->size));
+                auto sv = std::string_view(s->chars, s->size);
+#ifdef FE_ABSL
+                return absl::HashOf(sv); // a few percent ahead of ours, and we link it anyway
+#else
+                return hash_begin(sv);
+#endif
             }
         };
     };
