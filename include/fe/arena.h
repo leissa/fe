@@ -255,6 +255,10 @@ private:
             return create_trail<U>(std::make_index_sequence<n>(), std::make_index_sequence<U::num_trail()>(),
                                    std::forward_as_tuple(std::forward<Args>(args)...));
         } else {
+            static_assert(
+                !requires { typename U::Trail_Self; },
+                "this inherits the fe::Trailing of a base class, so its arrays would sit at that base's "
+                "offset - only the most derived class may declare Trail_Types");
             return new (allocate<U>(1)) U(std::forward<Args>(args)...);
         }
     }

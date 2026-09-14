@@ -30,9 +30,15 @@ namespace fe {
 ///
 /// arena.ref<Interval>(loc, from, to, from_args, to_args);
 /// ```
+/// @warning Only the most derived class may carry them.
+/// A class deriving from @p Self would inherit this base and place its arrays at @p Self's offset - on top of its
+/// own members - so Arena::mk and Arena::ref reject it.
 template<class Self>
 class Trailing {
 public:
+    /// The type this base was instantiated with - @p Self itself, unless a class deriving from it inherited it.
+    using Trail_Self = Self;
+
     /// Element type of the @p I th trailing array.
     /// @p S defers the lookup: `Self` is still incomplete while this base is instantiated.
     template<size_t I, class S = Self>
