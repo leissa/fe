@@ -15,12 +15,13 @@ Sym SymPool::sym(std::string_view s) {
         uintptr_t ptr = size;
         // Little endian: 2 a b 0 register: 0ba2
         // Big endian:    a b 0 2 register: ab02
+        // `char` is signed here, so a byte >= 0x80 would sign-extend and flood every higher byte.
         if constexpr (std::endian::native == std::endian::little)
             for (uintptr_t i = 0, shift = 8; i != size; ++i, shift += 8)
-                ptr |= (uintptr_t(s[i]) << shift);
+                ptr |= (uintptr_t(uint8_t(s[i])) << shift);
         else
             for (uintptr_t i = 0, shift = (Sym::Short_String_Bytes - 1) * 8; i != size; ++i, shift -= 8)
-                ptr |= (uintptr_t(s[i]) << shift);
+                ptr |= (uintptr_t(uint8_t(s[i])) << shift);
         return Sym(ptr);
     }
 
