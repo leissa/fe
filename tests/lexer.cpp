@@ -115,7 +115,7 @@ public:
     using fe::Lexer<K, Lexer<K>>::recover_utf8;
 
     using fe::Lexer<K, Lexer<K>>::loc_;
-    using fe::Lexer<K, Lexer<K>>::str_;
+    using fe::Lexer<K, Lexer<K>>::view;
 
     Lexer(fe::Driver& driver, std::string_view buf)
         : fe::Lexer<K, Lexer<K>>(buf)
@@ -151,12 +151,12 @@ public:
 
             if (accept([](char32_t c) { return c == '_' || utf8::isalpha(c); })) {
                 while (accept([](char32_t c) { return c == '_' || c == '.' || utf8::isalnum(c); })) {}
-                return {loc_, driver_.sym(str_)};
+                return {loc_, driver_.sym(view())};
             }
 
             if (accept(utf8::isdigit)) {
                 while (accept(utf8::isdigit)) {}
-                auto u = strtoull(str_.c_str(), nullptr, 10);
+                auto u = strtoull(std::string(view()).c_str(), nullptr, 10);
                 return {loc_, u};
             }
 
@@ -416,23 +416,26 @@ TEST_CASE("Lexer buffer starts") {
     test_bom<3>();
 }
 
-/// Minimal lexer to exercise the Lexer::Append policies of fe::Lexer::accept.
+/// Minimal lexer to exercise Lexer::view and the case folds on top of it.
 class FoldLexer : public fe::Lexer<1, FoldLexer> {
 public:
-    using Super  = fe::Lexer<1, FoldLexer>;
-    using Append = Super::Append;
+    using Super = fe::Lexer<1, FoldLexer>;
     using Super::accept;
-    using Super::str_;
+    using Super::lower;
+    using Super::upper;
+    using Super::view;
 
     FoldLexer(std::string_view buf)
         : Super(buf) {}
 
-    template<Append append>
-    std::string lex_word() {
-        while (accept<Append::Off>(utf8::isspace)) {}
+    using Super::accept_while;
+    using Super::ahead;
+    using Super::start;
+
+    void next_word() {
+        accept_while(utf8::isspace);
         this->start();
-        while (accept<append>(utf8::isalpha)) {}
-        return str_;
+        accept_while(utf8::isalpha);
     }
 };
 
@@ -452,11 +455,57 @@ TEST_CASE("utf8::num_code_points") {
     CHECK(utf8::num_code_points(std::string_view("aλ").substr(0, 2)) == 2);
 }
 
-TEST_CASE("Lexer Append policies") {
-    FoldLexer lexer("MiXeD MiXeD MiXeD MiXeD");
+TEST_CASE("Lexer accept_while") {
+    SUBCASE("ascii run") {
+        FoldLexer lexer("abc def");
+        lexer.start();
+        CHECK(lexer.accept_while(utf8::isalpha) == "abc");
+        CHECK(lexer.ahead() == ' ');
+        CHECK(lexer.accept_while(utf8::isalpha) == ""); // consumes nothing, so the run stays put
+        CHECK(lexer.ahead() == ' ');
+    }
 
-    CHECK(lexer.lex_word<FoldLexer::Append::On>() == "MiXeD");
-    CHECK(lexer.lex_word<FoldLexer::Append::Lower>() == "mixed");
-    CHECK(lexer.lex_word<FoldLexer::Append::Upper>() == "MIXED");
-    CHECK(lexer.lex_word<FoldLexer::Append::Off>() == "");
+    SUBCASE("straddles a non-ascii character the predicate matches") {
+        FoldLexer lexer("a\u00e4b!");
+        lexer.start();
+        auto alpha = [](char32_t c) { return utf8::isalpha(c) || c == U'\u00e4'; };
+        CHECK(lexer.accept_while(alpha) == "a\u00e4b");
+        CHECK(lexer.ahead() == '!');
+    }
+
+    SUBCASE("stops at a non-ascii character the predicate rejects") {
+        FoldLexer lexer("ab\u00e4");
+        lexer.start();
+        CHECK(lexer.accept_while(utf8::isalpha) == "ab");
+        CHECK(lexer.ahead() == U'\u00e4');
+    }
+
+    SUBCASE("runs into EoF") {
+        FoldLexer lexer("abc");
+        lexer.start();
+        CHECK(lexer.accept_while(utf8::isalpha) == "abc");
+        CHECK(lexer.ahead() == utf8::EoF);
+        CHECK(lexer.accept_while(utf8::isalpha) == "");
+    }
+
+    SUBCASE("extends what was already consumed") {
+        FoldLexer lexer("abc");
+        lexer.start();
+        CHECK(lexer.accept('a'));
+        CHECK(lexer.accept_while(utf8::isalpha) == "bc"); // the run, not the whole token
+        CHECK(lexer.view() == "abc");
+    }
+}
+
+TEST_CASE("Lexer view") {
+    FoldLexer lexer("MiXeD sch\u00f6n");
+
+    lexer.next_word();
+    CHECK(lexer.view() == "MiXeD");
+    CHECK(lexer.lower() == "mixed");
+    CHECK(lexer.upper() == "MIXED");
+
+    lexer.next_word();
+    CHECK(lexer.view() == "sch");
+    CHECK(lexer.lower() == "sch");
 }

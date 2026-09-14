@@ -61,10 +61,27 @@ protected:
     Loc peek() const { return {src_, ahead_[0].begin, ahead_[0].end}; }
 
     /// Invoke before assembling the next token.
-    void start() {
-        loc_ = peek().anew_begin();
-        str_.clear();
+    void start() { loc_ = peek().anew_begin(); }
+
+    /// @name Text
+    /// What has been lexed since Lexer::start.
+    /// The whole source sits in Lexer::buf_, so Lexer::loc_ already *is* the token and Lexer::view costs nothing.
+    ///@{
+    std::string_view view() const { return buf_.substr(loc_.begin.off, loc_.size()); }
+
+    /// Lexer::view, case-folded - what a case-insensitive language like FORTRAN or SQL wants to intern.
+    /// @note Byte-wise, which is all it takes: only ASCII folds, and no UTF-8 sequence spells it.
+    std::string lower() const { return fold(fe::utf8::tolower); }
+    std::string upper() const { return fold(fe::utf8::toupper); }
+
+    // Transform view() via @p f.
+    std::string fold(char32_t (*f)(char32_t) noexcept) const {
+        std::string res(view());
+        for (auto& c : res)
+            c = (char)f((char32_t)(uint8_t)c);
+        return res;
     }
+    ///@}
 
     /// Get next `char32_t` in Lexer::buf_ and extend Lexer::loc_ to cover it.
     /// @returns utf8::Invalid on an invalid UTF-8 sequence.
@@ -73,40 +90,48 @@ protected:
         return ahead_.put(decode()).c;
     }
 
-    /// @name Accept
-    /// Accept next character in Lexer::buf_, depending on some condition.
-    ///@{
-    /// What should happen to the accepted char?
-    /// Normalize identifiers via Append::Lower or Append::Upper for case-insensitive languages like FORTRAN or SQL.
-    enum class Append {
-        Off,   ///< Do not append accepted char to Lexer::str_.
-        On,    ///< Append accepted char as is to Lexer::str_.
-        Lower, ///< Append accepted char via fe::utf8::tolower` to Lexer::str_.
-        Upper, ///< Append accepted char via fe::utf8::toupper` to Lexer::str_.
-    };
-
-    /// @returns `true` if @p pred holds.
-    /// In this case invoke Lexer::next() and append to Lexer::str_, if @p append.
-    template<Append append = Append::On, class Pred>
+    /// Accept next character in Lexer::buf_ and Lexer::next it, if @p pred holds.
+    template<class Pred>
     bool accept(Pred pred) {
-        if (pred(ahead())) {
-            auto c = self().next();
-            if constexpr (append != Append::Off) {
-                if constexpr (append == Append::Lower) c = fe::utf8::tolower(c);
-                if constexpr (append == Append::Upper) c = fe::utf8::toupper(c);
-                str_ += c;
-            }
-            return true;
-        }
-        return false;
+        if (!pred(ahead())) return false;
+        self().next();
+        return true;
     }
 
     // clang-format off
-    template<Append append = Append::On> bool accept(char32_t c) { return accept<append>([c](char32_t d) { return c == d; }); }
-    template<Append append = Append::On> bool accept(char     c) { return accept<append>((char32_t)c); }
-    template<Append append = Append::On> bool accept(char8_t  c) { return accept<append>((char32_t)c); }
+    bool accept(char32_t c) { return accept([c](char32_t d) { return c == d; }); }
+    bool accept(char     c) { return accept((char32_t)c); }
+    bool accept(char8_t  c) { return accept((char32_t)c); }
     // clang-format on
-    ///@}
+
+    /// Lexer::next as long as @p pred holds, and @returns the run just consumed.
+    /// An ASCII run is taken straight out of Lexer::buf_ - no code point is decoded and the lookahead
+    /// is re-primed once at the end, which is what makes scanning an identifier or a stretch of white
+    /// space cost a compare per byte.
+    /// A character beyond ASCII falls back to Lexer::next, so @p pred may match one.
+    /// @note Only worth it if the lexed text is expected to be long such as identifiers or comments.
+    template<class Pred>
+    std::string_view accept_while(Pred pred) {
+        auto begin = ahead_[0].begin.off;
+
+        while (true) {
+            auto run = ahead_[0].begin.off;
+            for (; run != buf_.size() && (uint8_t)buf_[run] < 0x80 && pred((char32_t)(uint8_t)buf_[run]); ++run) {}
+
+            if (run != ahead_[0].begin.off) {
+                loc_.end = Pos((uint32_t)run);
+                cursor_  = run;
+                for (size_t i = 0; i != K; ++i)
+                    ahead_.put(decode());
+            }
+
+            auto c = ahead();
+            if (c < 0x80 || c == utf8::EoF || !pred(c)) break;
+            self().next();
+        }
+
+        return buf_.substr(begin, loc_.end.off - begin);
+    }
 
     /// @name Recover
     /// Lexer::next input that cannot be part of a token, report it, and keep the current lexer going.
@@ -115,8 +140,8 @@ protected:
     /// A whole run of malformed UTF-8, if any, reported as one `S::utf8_err`.
     /// Check this *before* your token dispatch: utf8::Invalid is no code point and matches no rule of yours.
     bool recover_utf8() {
-        if (!accept<Append::Off>(utf8::Invalid)) return false;
-        while (accept<Append::Off>(utf8::Invalid)) {}
+        if (!accept(utf8::Invalid)) return false;
+        while (accept(utf8::Invalid)) {}
         self().utf8_err();
         return true;
     }
@@ -159,8 +184,7 @@ protected:
     const Src* src_;
     size_t cursor_ = 0; ///< Byte offset of the first not yet decoded character.
     Ring<Ahead, K> ahead_;
-    Loc loc_; ///< Loc%ation of the token we are currently constructing within Lexer::str_,
-    std::string str_;
+    Loc loc_; ///< Loc%ation of the token we are currently constructing - see Lexer::view.
 
 private:
     Ahead decode() {
