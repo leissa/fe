@@ -279,8 +279,7 @@ TEST_CASE("Sym") {
         auto s1 = syms.sym("this-is-a-rather-long-symbol");
         auto s2 = syms.sym("this-is-a-rather-long-symbol"s);
         CHECK(s1 == s2);
-        CHECK(s1.c_str() == s2.c_str()); // same interned storage
-        CHECK(s1.c_str()[s1.size()] == '\0');
+        CHECK(s1.view().data() == s2.view().data()); // same interned storage
         CHECK(s1.str() == "this-is-a-rather-long-symbol"s);
     }
 

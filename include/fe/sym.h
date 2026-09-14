@@ -1,7 +1,6 @@
 #pragma once
 
 #include <cassert>
-#include <cstring>
 
 #include <bit>
 #include <iosfwd>
@@ -20,18 +19,15 @@
 namespace fe {
 
 /// A Sym%bol just wraps a pointer to Sym::String, so pass Sym itself around as value.
-/// Sym is compatible with:
-/// * recommended: `std::string_view` (via Sym::view)
-/// * null-terminated C-strings (via Sym::c_str)
-///
-/// This means that retrieving a `std::string_view` or a null-terminated C-string is basically free.
+/// Retrieving a `std::string_view` (via Sym::view) is basically free.
 /// You can also obtain a `std::string` (via Sym::str), but this involves a copy.
+/// The characters are *not* null-terminated.
 /// With the exception of the empty string, you should only create Sym%bols via SymPool::sym.
 /// This in turn will toss all Sym%bols into a big hash set.
 /// This makes Sym::operator== and Sym::operator!= an O(1) operation.
 /// The empty string is internally handled as `nullptr`.
 /// Thus, you can create a Sym%bol representing an empty string without having access to the SymPool.
-/// @note The empty `std::string`/`std::string_view`, `nullptr`, and `"\0"` are all identified as Sym::Sym().
+/// @note The empty `std::string`/`std::string_view` and `nullptr` are all identified as Sym::Sym().
 /// @warning Big endian version has not been tested.
 class Sym {
 public:
@@ -92,7 +88,7 @@ public:
     ///@{
     constexpr char operator[](size_t i) const noexcept {
         assert(i < size());
-        return c_str()[i];
+        return view()[i];
     }
     constexpr char front() const noexcept { return (*this)[0]; }
     constexpr char back() const noexcept { return (*this)[size() - 1]; }
@@ -100,8 +96,8 @@ public:
 
     /// @name Iterators
     ///@{
-    constexpr auto begin() const noexcept { return c_str(); }
-    constexpr auto end() const noexcept { return c_str() + size(); }
+    constexpr auto begin() const noexcept { return view().data(); }
+    constexpr auto end() const noexcept { return begin() + size(); }
     constexpr auto cbegin() const noexcept { return begin(); }
     constexpr auto cend() const noexcept { return end(); }
     constexpr auto rbegin() const noexcept { return std::reverse_iterator(end()); }
@@ -152,17 +148,13 @@ public:
 
     /// @name Conversions
     ///@{
-    /// @warning For a *short* Sym%bol (small-string-optimized, see Sym::view) the returned pointer aliases this
-    /// Sym%bol's internal `ptr_`. It is therefore only valid as long as *this* Sym%bol object lives - it dangles
-    /// for a temporary (e.g. `pool.sym("ab").c_str()`). Use Sym::str if the string must outlive the Sym%bol.
-    [[nodiscard]] constexpr const char* c_str() const noexcept { return view().data(); }
-
-    /// @note For a short Sym%bol (size fits into Sym::Short_String_Bytes) the characters are stored inline within
-    /// this object's `ptr_`, so the returned view points into *this* Sym%bol and dangles once it dies; see Sym::c_str.
+    /// @warning For a *short* Sym%bol (size < Sym::Short_String_Bytes) the characters are stored inline within this
+    /// object's `ptr_`, so the returned view points into *this* Sym%bol and is only valid as long as it lives - it
+    /// dangles for a temporary (e.g. `pool.sym("ab").view()`). Use Sym::str if the string must outlive the Sym%bol.
     [[nodiscard]] constexpr std::string_view view() const noexcept {
         if (empty()) return {std::bit_cast<const char*>(&ptr_), 0};
-        // Little endian: 2 a b 0 register: 0ba2
-        // Big endian:    a b 0 2 register: ab02
+        // Little endian: 2 a b ? register: ?ba2
+        // Big endian:    a b ? 2 register: ab?2
         uintptr_t offset = std::endian::native == std::endian::little ? 1 : 0;
         if (auto size = ptr_ & Short_String_Mask) return {std::bit_cast<const char*>(&ptr_) + offset, size};
         auto S = std::bit_cast<const String*>(ptr_);
@@ -215,8 +207,8 @@ private:
                         : (Rev ? std::strong_ordering::less : std::strong_ordering::greater);
     }
 
-    // Little endian: 2 a b 0 register: 0ba2
-    // Big endian:    a b 0 2 register: ab02
+    // Little endian: 2 a b ? register: ?ba2
+    // Big endian:    a b ? 2 register: ab?2
     uintptr_t ptr_ = 0;
 
     friend class SymPool;
