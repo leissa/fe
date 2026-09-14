@@ -48,14 +48,14 @@ constexpr char32_t min_code_point(size_t num) noexcept {
     }
 }
 
-/// Is @p c a valid Unicode scalar value?
-constexpr bool is_scalar_value(char32_t c) noexcept { return c <= 0x10ffff && !(0xd800 <= c && c <= 0xdfff); }
-
 /// Is the 2nd, 3rd, or 4th byte of an UTF-8 byte sequence valid?
 /// @returns the extracted `char8_t` or `char8_t(-1)` if invalid.
 constexpr char8_t is_valid234(char8_t c) noexcept {
     return (c & char8_t(0b11000000)) == char8_t(0b10000000) ? (c & char8_t(0b00111111)) : char8_t(-1);
 }
+
+/// Is @p c a valid Unicode scalar value?
+constexpr bool is_scalar_value(char32_t c) noexcept { return c <= 0x10ffff && !(0xd800 <= c && c <= 0xdfff); }
 
 /// Decodes the next UTF-8 sequence from @p is into a single `char32_t`.
 ///
@@ -120,6 +120,7 @@ size_t num_code_points(std::string_view str) noexcept;
 /// Encodes @p c32 as UTF-8 and writes the resulting bytes to @p os.
 /// @returns `false` when @p c32 is outside the encodable range.
 bool encode(std::ostream& os, char32_t c32);
+
 /// Wrapper for `char32_t` with an `operator<<` that writes UTF-8.
 struct Char32 {
     constexpr Char32(char32_t c) noexcept
@@ -138,46 +139,44 @@ struct Char32 {
 /// `char32_t`-style counterparts of the <[ctype](https://en.cppreference.com/w/cpp/header/cctype)>
 /// functions, for a code point of any width - everything above U+00FF belongs to no class.
 ///@{
-// clang-format off
-/// @name ctype
-///@{
-constexpr bool isascii (char32_t c) noexcept { return c <= 0x7F; }
-constexpr bool isupper (char32_t c) noexcept { return 'A' <= c && c <= 'Z'; }
-constexpr bool islower (char32_t c) noexcept { return 'a' <= c && c <= 'z'; }
-constexpr bool isdigit (char32_t c) noexcept { return '0' <= c && c <= '9'; }
-constexpr bool isalpha (char32_t c) noexcept { return isupper(c) || islower(c); }
-constexpr bool isalnum (char32_t c) noexcept { return isalpha(c) || isdigit(c); }
+constexpr bool isascii(char32_t c) noexcept { return c <= 0x7F; }
+constexpr bool isupper(char32_t c) noexcept { return 'A' <= c && c <= 'Z'; }
+constexpr bool islower(char32_t c) noexcept { return 'a' <= c && c <= 'z'; }
+constexpr bool isdigit(char32_t c) noexcept { return '0' <= c && c <= '9'; }
+constexpr bool isalpha(char32_t c) noexcept { return isupper(c) || islower(c); }
+constexpr bool isalnum(char32_t c) noexcept { return isalpha(c) || isdigit(c); }
 constexpr bool isxdigit(char32_t c) noexcept { return isdigit(c) || ('A' <= c && c <= 'F') || ('a' <= c && c <= 'f'); }
-constexpr bool iscntrl (char32_t c) noexcept { return c <= 0x1F || c == 0x7F; }
-constexpr bool isblank (char32_t c) noexcept { return c == ' ' || c == '\t'; }
-constexpr bool isspace (char32_t c) noexcept { return c == ' ' || ('\t' <= c && c <= '\r'); }
-constexpr bool isgraph (char32_t c) noexcept { return '!' <= c && c <= '~'; }
-constexpr bool isprint (char32_t c) noexcept { return ' ' <= c && c <= '~'; }
-constexpr bool ispunct (char32_t c) noexcept { return isgraph(c) && !isalnum(c); }
+constexpr bool iscntrl(char32_t c) noexcept { return c <= 0x1F || c == 0x7F; }
+constexpr bool isblank(char32_t c) noexcept { return c == ' ' || c == '\t'; }
+constexpr bool isspace(char32_t c) noexcept { return c == ' ' || ('\t' <= c && c <= '\r'); }
+constexpr bool isgraph(char32_t c) noexcept { return '!' <= c && c <= '~'; }
+constexpr bool isprint(char32_t c) noexcept { return ' ' <= c && c <= '~'; }
+constexpr bool ispunct(char32_t c) noexcept { return isgraph(c) && !isalnum(c); }
 constexpr char32_t tolower(char32_t c) noexcept { return isupper(c) ? c - 'A' + 'a' : c; }
 constexpr char32_t toupper(char32_t c) noexcept { return islower(c) ? c - 'a' + 'A' : c; }
-
 /// Is @p c within [begin, finis]?
 constexpr bool isrange(char32_t c, char32_t begin, char32_t finis) noexcept { return begin <= c && c <= finis; }
-constexpr auto isrange(char32_t begin, char32_t finis) noexcept { return [=](char32_t c) { return isrange(c, begin, finis); }; }
-
+constexpr auto isrange(char32_t begin, char32_t finis) noexcept {
+    return [=](char32_t c) { return isrange(c, begin, finis); };
+}
 constexpr bool isodigit(char32_t c) noexcept { return isrange(c, '0', '7'); } ///< Is octal digit?
 constexpr bool isbdigit(char32_t c) noexcept { return isrange(c, '0', '1'); } ///< Is binary digit?
-// clang-format on
 ///@}
 
-/// @name any
-/// Build a predicate that checks whether a code point matches any of the given values.
-///@{
-constexpr bool _any(char32_t c, char32_t d) noexcept { return c == d; }
+namespace detail {
+
+constexpr bool any(char32_t c, char32_t d) noexcept { return c == d; }
 template<class... T>
-constexpr bool _any(char32_t c, char32_t d, T... args) noexcept {
-    return c == d || _any(c, args...);
+constexpr bool any(char32_t c, char32_t d, T... args) noexcept {
+    return c == d || any(c, args...);
 }
+
+} // namespace detail
+
+/// Build a predicate that checks whether a code point matches any of the given values.
 template<class... T>
 constexpr auto any(T... args) noexcept {
-    return [=](char32_t c) { return _any(c, args...); };
+    return [=](char32_t c) { return detail::any(c, args...); };
 }
-///@}
 
 } // namespace fe::utf8
