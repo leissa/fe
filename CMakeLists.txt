@@ -77,9 +77,9 @@ target_sources(fe
             include/fe/sym.h
             include/fe/sys.h
             include/fe/term.h
-            include/fe/trailing.h
             include/fe/utf8.h
             include/fe/vector.h
+            include/fe/vla.h
             include/fe/worklist.h
             include/fe/xtrie.h
 )

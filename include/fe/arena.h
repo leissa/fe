@@ -12,7 +12,7 @@
 
 #include "fe/assert.h"
 #include "fe/span.h"
-#include "fe/trailing.h"
+#include "fe/vla.h"
 
 namespace fe {
 
@@ -245,30 +245,30 @@ public:
     static constexpr size_t align(size_t i, size_t a) noexcept { return (i + (a - 1)) & ~(a - 1); }
 
 private:
-    /// Placement-new%s a `T`, allocating and filling its fe::Trailing arrays, if it has any.
+    /// Placement-new%s a `T`, allocating and filling its fe::VLA%s, if it has any.
     template<class T, class... Args>
     std::remove_const_t<T>* create(Args&&... args) {
         using U = std::remove_const_t<T>;
-        if constexpr (Trailed<U>) {
-            static_assert(sizeof...(Args) >= U::num_trail(), "one range per trailing array, as the last arguments");
-            constexpr auto n = sizeof...(Args) - U::num_trail();
-            return create_trail<U>(std::make_index_sequence<n>(), std::make_index_sequence<U::num_trail()>(),
-                                   std::forward_as_tuple(std::forward<Args>(args)...));
+        if constexpr (VLAed<U>) {
+            static_assert(sizeof...(Args) >= U::num_vlas(), "one range per VLA, as the last arguments");
+            constexpr auto n = sizeof...(Args) - U::num_vlas();
+            return create_vla<U>(std::make_index_sequence<n>(), std::make_index_sequence<U::num_vlas()>(),
+                                 std::forward_as_tuple(std::forward<Args>(args)...));
         } else {
             static_assert(
-                !requires { typename U::Trail_Self; },
-                "this inherits the fe::Trailing of a base class, so its arrays would sit at that base's "
-                "offset - only the most derived class may declare Trail_Types");
+                !requires { typename U::VLA_Self; },
+                "this inherits the fe::VLA of a base class, so its arrays would sit at that base's "
+                "offset - only the most derived class may declare VLA_Types");
             return new (allocate<U>(1)) U(std::forward<Args>(args)...);
         }
     }
 
     template<class U, size_t... Hs, size_t... Ts, class Tuple>
-    U* create_trail(std::index_sequence<Hs...>, std::index_sequence<Ts...>, Tuple&& tuple) {
+    U* create_vla(std::index_sequence<Hs...>, std::index_sequence<Ts...>, Tuple&& tuple) {
         auto counts = std::array<size_t, sizeof...(Ts)>{std::ranges::size(std::get<sizeof...(Hs) + Ts>(tuple))...};
-        auto align  = std::max(alignof(U), U::trail_align());
-        auto ptr    = new (allocate(U::trail_bytes(counts), align)) U(std::get<Hs>(std::forward<Tuple>(tuple))...);
-        ptr->fill_trail(std::get<sizeof...(Hs) + Ts>(tuple)...);
+        auto align  = std::max(alignof(U), U::vla_align());
+        auto ptr    = new (allocate(U::vla_bytes(counts), align)) U(std::get<Hs>(std::forward<Tuple>(tuple))...);
+        ptr->fill_vla(std::get<sizeof...(Hs) + Ts>(tuple)...);
         return ptr;
     }
 

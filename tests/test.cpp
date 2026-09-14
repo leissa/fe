@@ -19,9 +19,9 @@
 #include <fe/span.h>
 #include <fe/sym.h>
 #include <fe/term.h>
-#include <fe/trailing.h>
 #include <fe/utf8.h>
 #include <fe/vector.h>
+#include <fe/vla.h>
 #include <fe/worklist.h>
 
 using namespace std::literals;
@@ -1004,15 +1004,15 @@ TEST_CASE("Log") {
 
 namespace {
 
-struct Trail3 : fe::Trailing<Trail3> {
-    using Trail_Types = std::tuple<int, char, double*>;
+struct VLA3 : fe::VLA<VLA3> {
+    using VLA_Types = std::tuple<int, char, double*>;
 
-    Trail3(int tag)
+    VLA3(int tag)
         : tag(tag) {}
 
-    auto ints() const { return trail<0>(); }
-    auto chars() const { return trail<1>(); }
-    auto ptrs() const { return trail<2>(); }
+    auto ints() const { return vla<0>(); }
+    auto chars() const { return vla<1>(); }
+    auto ptrs() const { return vla<2>(); }
 
     int tag;
 };
@@ -1024,17 +1024,17 @@ struct Poly {
     int tag;
 };
 
-struct Derived : Poly, fe::Trailing<Derived> {
-    using Trail_Types = std::tuple<const Poly*>;
+struct Derived : Poly, fe::VLA<Derived> {
+    using VLA_Types = std::tuple<const Poly*>;
 
     Derived(int tag)
         : Poly(tag) {}
-    auto kids() const { return trail<0>(); }
+    auto kids() const { return vla<0>(); }
 };
 
 } // namespace
 
-TEST_CASE("Trailing") {
+TEST_CASE("VLA") {
     fe::Arena arena;
 
     SUBCASE("several arrays of different type") {
@@ -1042,7 +1042,7 @@ TEST_CASE("Trailing") {
         auto chars = std::vector{'a', 'b'};
         auto d     = 23.0;
         auto ptrs  = std::vector{&d};
-        auto t     = arena.ref<const Trail3>(42, ints, chars, ptrs);
+        auto t     = arena.ref<const VLA3>(42, ints, chars, ptrs);
 
         CHECK(t->tag == 42);
         CHECK(std::ranges::equal(t->ints(), ints));
@@ -1052,14 +1052,14 @@ TEST_CASE("Trailing") {
 
         // every array sits inside the allocation and behind the object itself
         auto base = (const char*)t.get();
-        CHECK((const char*)t->ints().data() >= base + sizeof(Trail3));
+        CHECK((const char*)t->ints().data() >= base + sizeof(VLA3));
         CHECK((const char*)t->chars().data() + t->chars().size()
-              <= base + Trail3::trail_bytes(std::array<size_t, 3>{3, 2, 1}));
+              <= base + VLA3::vla_bytes(std::array<size_t, 3>{3, 2, 1}));
     }
 
     SUBCASE("empty arrays") {
         auto empty = std::vector<int>{};
-        auto t     = arena.ref<const Trail3>(0, empty, std::vector<char>{}, std::vector<double*>{});
+        auto t     = arena.ref<const VLA3>(0, empty, std::vector<char>{}, std::vector<double*>{});
         CHECK(t->ints().empty());
         CHECK(t->chars().empty());
         CHECK(t->ptrs().empty());
@@ -1069,15 +1069,15 @@ TEST_CASE("Trailing") {
         auto d = 0.0;
         for (size_t i = 0; i != 8; ++i) {
             auto chars = std::vector<char>(i, 'x');
-            auto t     = arena.ref<const Trail3>((int)i, std::vector{1}, chars, std::vector{&d});
-            CHECK(fe::is_aligned((uintptr_t)t.get(), alignof(Trail3)));
+            auto t     = arena.ref<const VLA3>((int)i, std::vector{1}, chars, std::vector{&d});
+            CHECK(fe::is_aligned((uintptr_t)t.get(), alignof(VLA3)));
             CHECK(fe::is_aligned((uintptr_t)t->ints().data(), alignof(int)));
             CHECK(fe::is_aligned((uintptr_t)t->ptrs().data(), alignof(double*)));
             CHECK(t->chars().size() == i);
         }
     }
 
-    SUBCASE("a polymorphic node with a trailing array") {
+    SUBCASE("a polymorphic node with a VLA") {
         auto a    = arena.ref<const Poly>(1);
         auto b    = arena.ref<const Poly>(2);
         auto kids = std::vector<const Poly*>{a.get(), b.get()};
@@ -1093,10 +1093,10 @@ TEST_CASE("Trailing") {
 
     SUBCASE("many nodes across page boundaries") {
         auto arena = fe::Arena(64);
-        auto refs  = std::vector<fe::Arena::Ref<const Trail3>>();
+        auto refs  = std::vector<fe::Arena::Ref<const VLA3>>();
         for (int i = 0; i != 100; ++i) {
             auto ints = std::vector<int>(i % 7, i);
-            refs.emplace_back(arena.ref<const Trail3>(i, ints, std::vector<char>{}, std::vector<double*>{}));
+            refs.emplace_back(arena.ref<const VLA3>(i, ints, std::vector<char>{}, std::vector<double*>{}));
         }
         for (int i = 0; i != 100; ++i) {
             CHECK(refs[i]->tag == i);
