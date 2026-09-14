@@ -1,4 +1,8 @@
 var searchData=
 [
-  ['xtrie_0',['XTrie',['../classfe_1_1XTrie.html#a5af9e5856fa05570ae55bd6c56ba6e34',1,'fe::XTrie::XTrie()'],['../classfe_1_1XTrie.html#a4a9c36604377d6923e9e28e86c4be38a',1,'fe::XTrie::XTrie(const XTrie &amp;)=delete'],['../classfe_1_1XTrie.html#a5f7e4557a4a2efef0ed7ed54b4556d0b',1,'fe::XTrie::XTrie(XTrie &amp;&amp;other)']]]
+  ['_7eanchor_0',['~Anchor',['../classfe_1_1Parser_1_1Anchor.html#ae2569d59dc583ab803e8680522f963b1',1,'fe::Parser::Anchor']]],
+  ['_7ebitset_1',['~Bitset',['../classfe_1_1Bitset.html#a08271a8afdbd34640c13e32b8668beda',1,'fe::Bitset']]],
+  ['_7ediag_2',['~Diag',['../classfe_1_1Diag.html#a757c88d54fb59ede0e75d0ecc1439f66',1,'fe::Diag']]],
+  ['_7edriver_3',['~Driver',['../structfe_1_1Driver.html#a2e4e58cea12564b4f8881f54c18aec61',1,'fe::Driver']]],
+  ['_7erestore_4',['~Restore',['../classfe_1_1Restore.html#aa63dc708549a6234345de4ae29aab3fd',1,'fe::Restore::~Restore()'],['../classfe_1_1Restore_3_01T_00_01nullptr_00_01nullptr_01_4.html#a51090615652059d588c957384220c92f',1,'fe::Restore&lt; T, nullptr, nullptr &gt;::~Restore()']]]
 ];

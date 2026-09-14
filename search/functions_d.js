@@ -1,12 +1,15 @@
 var searchData=
 [
-  ['markdown_0',['markdown',['../classfe_1_1Cli.html#a94dc09d41006be6f204294aa18748758',1,'fe::Cli']]],
-  ['memoryresource_1',['MemoryResource',['../classfe_1_1Arena_1_1MemoryResource.html#a78e95720a6a254e562ea00baaf70f2f2',1,'fe::Arena::MemoryResource']]],
-  ['merge_2',['merge',['../classfe_1_1XTrie.html#ae190a3bcab5c5c31dc3747474d6c7de0',1,'fe::XTrie']]],
-  ['min_5fcode_5fpoint_3',['min_code_point',['../namespacefe_1_1utf8.html#a6660a5ce2b492de5ef72a34c329aacba',1,'fe::utf8']]],
-  ['mk_4',['mk',['../classfe_1_1Arena.html#ac0ed8cd6c5553d0d1e75745501221a6f',1,'fe::Arena']]],
-  ['mode_5',['mode',['../namespacefe_1_1term.html#aba316509e7e9d35ab1316e47869ad856',1,'fe::term']]],
-  ['msg_6',['msg',['../classfe_1_1Error.html#a0be3ad6db15f4a91da361765326e508e',1,'fe::Error::msg(Loc loc, Tag tag, const std::function&lt; std::string()&gt; &amp;fmt)'],['../classfe_1_1Error.html#ad73db5f766b07a2b35a0b0ddd1f9d304',1,'fe::Error::msg(Loc loc, Tag tag, cite_string&lt; Args... &gt; s, Args &amp;&amp;... args)']]],
-  ['msgs_7',['msgs',['../classfe_1_1Error.html#a27fe473278b55b1e3df08f10c40f748d',1,'fe::Error']]],
-  ['murmur3_8',['murmur3',['../namespacefe.html#a89ce852a3e2d3ecde80f0ed8f81a501b',1,'fe']]]
+  ['n_0',['n',['../classfe_1_1Error.html#a00f09b90a0881ae86f805ec546d81ac3',1,'fe::Error::n(cite_string&lt; Args... &gt; s, Args &amp;&amp;... args)'],['../classfe_1_1Error.html#a19c05a577986233e9f13dd24cb6b96ba',1,'fe::Error::n(Loc loc, cite_string&lt; Args... &gt; s, Args &amp;&amp;... args)']]],
+  ['next_1',['next',['../classfe_1_1Bitset.html#a133894062d62f20943e91950387e59ff',1,'fe::Bitset::next()'],['../classfe_1_1Lexer.html#a0bbfc87be21bdd46d883002eb10303c1',1,'fe::Lexer::next()']]],
+  ['node_2',['Node',['../classfe_1_1lct_1_1Node.html#a0d02ac1d102e2d1af583428671e1264c',1,'fe::lct::Node']]],
+  ['none_3',['none',['../classfe_1_1Bitset.html#a06de774d3a8b865462578272321b4db0',1,'fe::Bitset']]],
+  ['note_4',['note',['../classfe_1_1Diag.html#a3fbacbb7cf78557dddb16182cfd756c6',1,'fe::Diag']]],
+  ['num_5fbytes_5',['num_bytes',['../namespacefe_1_1utf8.html#a3bfd6112606e85a56fcc227b127e6c4a',1,'fe::utf8']]],
+  ['num_5fcode_5fpoints_6',['num_code_points',['../namespacefe_1_1utf8.html#ada5a7d0de6f0f46d41e672c29127daaf',1,'fe::utf8']]],
+  ['num_5ferrors_7',['num_errors',['../classfe_1_1Error_1_1Bail.html#a9d472ae2ed685d122de44440ebeac3d3',1,'fe::Error::Bail::num_errors()'],['../classfe_1_1Error.html#abb54459af9ba5e732ca04b79d8be7e9e',1,'fe::Error::num_errors() const']]],
+  ['num_5fnotes_8',['num_notes',['../classfe_1_1Error.html#a00b674ddc53a6aab807f998e801dd5fa',1,'fe::Error']]],
+  ['num_5frows_9',['num_rows',['../classfe_1_1Src.html#a5addc7372afe322c60b82320112a6244',1,'fe::Src']]],
+  ['num_5fvlas_10',['num_vlas',['../classfe_1_1VLA.html#acc627251359efa023f778d36963e8b3c',1,'fe::VLA']]],
+  ['num_5fwarnings_11',['num_warnings',['../classfe_1_1Error_1_1Bail.html#a9434b8c9ae515236bfc38e6ce65b7f40',1,'fe::Error::Bail::num_warnings()'],['../classfe_1_1Error.html#a964744b2e5613bed7c339b419c51f301',1,'fe::Error::num_warnings()']]]
 ];

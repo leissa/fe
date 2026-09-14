@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['w_0',['w',['../classfe_1_1Error.html#a1a3a6f586e8ea9d163a1fe208a58bc91',1,'fe::Error::w()'],['../classfe_1_1Log.html#a9ff17172a0c0b4c3fbd094b1a8cd9b17',1,'fe::Log::w()']]],
-  ['what_1',['what',['../classfe_1_1Error_1_1Bail.html#adcecc911f3639fc4f533253c4547b730',1,'fe::Error::Bail']]],
-  ['width_2',['width',['../namespacefe_1_1term.html#aa553472665f575bceb82bdbbac9b8837',1,'fe::term']]],
-  ['worklist_3',['Worklist',['../classfe_1_1Worklist.html#a267d6e56be1e45b94b0879ea7a138bd6',1,'fe::Worklist::Worklist()=default'],['../classfe_1_1Worklist.html#a8c7074309e46f7d9c3b453d02ee6de2e',1,'fe::Worklist::Worklist(Set set)'],['../classfe_1_1Worklist.html#a60b0d2b8923547a53f87846bed1addf7',1,'fe::Worklist::Worklist(std::initializer_list&lt; T &gt; init)']]]
+  ['xtrie_0',['XTrie',['../classfe_1_1XTrie.html#a5af9e5856fa05570ae55bd6c56ba6e34',1,'fe::XTrie::XTrie()'],['../classfe_1_1XTrie.html#a4a9c36604377d6923e9e28e86c4be38a',1,'fe::XTrie::XTrie(const XTrie &amp;)=delete'],['../classfe_1_1XTrie.html#a5f7e4557a4a2efef0ed7ed54b4556d0b',1,'fe::XTrie::XTrie(XTrie &amp;&amp;other)']]]
 ];

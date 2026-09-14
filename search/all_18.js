@@ -1,18 +1,5 @@
 var searchData=
 [
-  ['w_0',['W',['../classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1fa61e9c06ea9a85a5088a499df6458d276',1,'fe::Diag::W'],['../classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06a61e9c06ea9a85a5088a499df6458d276',1,'fe::Log::W']]],
-  ['w_1',['w',['../classfe_1_1Error.html#a1a3a6f586e8ea9d163a1fe208a58bc91',1,'fe::Error::w()'],['../classfe_1_1Log.html#a9ff17172a0c0b4c3fbd094b1a8cd9b17',1,'fe::Log::w()']]],
-  ['warn_2',['Warn',['../classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1fa56525ae64d370c0b448ac0d60710ef17',1,'fe::Diag::Warn'],['../classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06a56525ae64d370c0b448ac0d60710ef17',1,'fe::Log::Warn']]],
-  ['werror_3',['werror',['../classfe_1_1Diag.html#a5747acf837fe2fe734f9a5ed3823f196',1,'fe::Diag']]],
-  ['what_4',['what',['../classfe_1_1Error_1_1Bail.html#adcecc911f3639fc4f533253c4547b730',1,'fe::Error::Bail']]],
-  ['which_5',['Which',['../namespacefe_1_1sys.html#aeb47d052f0b69ba9e06edf12f71946ad',1,'fe::sys']]],
-  ['why_20fe_6',['💡 Why FE?',['../index.html#autotoc_md1',1,'']]],
-  ['width_7',['width',['../namespacefe_1_1term.html#aa553472665f575bceb82bdbbac9b8837',1,'fe::term']]],
-  ['workflow_8',['🧭 Typical Workflow',['../index.html#autotoc_md16',1,'']]],
-  ['worklist_9',['Worklist',['../classfe_1_1Worklist.html',1,'fe::Worklist&lt; Set, C &gt;'],['../classfe_1_1Worklist.html#a267d6e56be1e45b94b0879ea7a138bd6',1,'fe::Worklist::Worklist()=default'],['../classfe_1_1Worklist.html#a8c7074309e46f7d9c3b453d02ee6de2e',1,'fe::Worklist::Worklist(Set set)'],['../classfe_1_1Worklist.html#a60b0d2b8923547a53f87846bed1addf7',1,'fe::Worklist::Worklist(std::initializer_list&lt; T &gt; init)']]],
-  ['worklist_2eh_10',['worklist.h',['../worklist_8h.html',1,'']]],
-  ['worklist_3c_20set_2c_20std_3a_3aqueue_3c_20detail_3a_3aworklistelem_3c_20set_20_3e_20_3e_20_3e_11',['Worklist&lt; Set, std::queue&lt; detail::WorklistElem&lt; Set &gt; &gt; &gt;',['../namespacefe.html#classfe_1_1Worklist',1,'fe']]],
-  ['worklist_3c_20set_2c_20std_3a_3astack_3c_20detail_3a_3aworklistelem_3c_20set_20_3e_20_3e_20_3e_12',['Worklist&lt; Set, std::stack&lt; detail::WorklistElem&lt; Set &gt; &gt; &gt;',['../namespacefe.html#classfe_1_1Worklist',1,'fe']]],
-  ['write_13',['Diagnostics you did not write',['../index.html#autotoc_md3',1,'']]],
-  ['writing_20a_20diagnostic_14',['💬 Writing a Diagnostic',['../index.html#autotoc_md17',1,'']]]
+  ['xtrie_0',['XTrie',['../classfe_1_1XTrie.html',1,'fe::XTrie&lt; D, K, N &gt;'],['../classfe_1_1XTrie_1_1Set.html#aac8fda525c29ff11b3ad035855f48eb1',1,'fe::XTrie::Set::XTrie()'],['../classfe_1_1XTrie.html#a5af9e5856fa05570ae55bd6c56ba6e34',1,'fe::XTrie::XTrie()'],['../classfe_1_1XTrie.html#a4a9c36604377d6923e9e28e86c4be38a',1,'fe::XTrie::XTrie(const XTrie &amp;)=delete'],['../classfe_1_1XTrie.html#a5f7e4557a4a2efef0ed7ed54b4556d0b',1,'fe::XTrie::XTrie(XTrie &amp;&amp;other)']]],
+  ['xtrie_2eh_1',['xtrie.h',['../xtrie_8h.html',1,'']]]
 ];

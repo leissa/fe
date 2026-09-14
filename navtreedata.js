@@ -99,8 +99,8 @@ var NAVTREEINDEX =
 "classfe_1_1RuntimeCast.html#a1f2d655724345f4b4e0bc4540ea78554",
 "classfe_1_1Worklist.html",
 "functions_func_c.html",
-"structfe_1_1Arena_1_1Allocator.html",
-"structfe_1_1utf8_1_1Char32.html#add2c71204e4cf443767a79c919b45177"
+"structfe_1_1Arena_1_1Allocator.html#a0518fe399d6419245555f5ba819befef",
+"structstd_1_1tuple__size_3_01fe_1_1Span_3_01T_00_01N_01_4_01_4.html"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';

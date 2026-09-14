@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['v_0',['v',['../classfe_1_1Log.html#abd34ee636b57537f53f3f56fcfa81f42',1,'fe::Log']]],
-  ['vector_1',['Vector',['../classfe_1_1Vector.html#a1331e033f3ce3770bbd7260ca30c9925',1,'fe::Vector::Vector(size_t size, F &amp;&amp;f)'],['../classfe_1_1Vector.html#ae1f2480b6f3023f4e05988efd43bb533',1,'fe::Vector::Vector(R &amp;&amp;range, F &amp;&amp;f)'],['../namespacefe.html#a2e8e999b77fa2e3c1cba77396a9e192d',1,'fe::Vector()']]],
-  ['view_2',['view',['../classfe_1_1Lexer.html#a5f1384d70696c2437367020346f18929',1,'fe::Lexer::view()'],['../classfe_1_1Sym.html#ae4042d6fd11e3d25c511c2feb031ad2a',1,'fe::Sym::view()'],['../classfe_1_1term_1_1Cited.html#a09b9d95c53aa63254856b35a44b85049',1,'fe::term::Cited::view()'],['../classfe_1_1term_1_1Cite.html#ad9220fb06e2f38135bbf2754579788b7',1,'fe::term::Cite::view()'],['../classfe_1_1Vector.html#a4b22e3073984242fc9e70ab3e65b0bba',1,'fe::Vector::view()'],['../classfe_1_1Cite.html#ad9220fb06e2f38135bbf2754579788b7',1,'fe::Cite::view()'],['../classfe_1_1Cited.html#a09b9d95c53aa63254856b35a44b85049',1,'fe::Cited::view()']]],
-  ['vla_3',['vla',['../classfe_1_1VLA.html#a94587c2142d9516bbf1e123a14cb3b35',1,'fe::VLA']]],
-  ['vla_5falign_4',['vla_align',['../classfe_1_1VLA.html#a0156087295ff1ec2af12007415e5fb12',1,'fe::VLA']]],
-  ['vla_5fbytes_5',['vla_bytes',['../classfe_1_1VLA.html#a4c9ccddf0942986eea1200387c203ebb',1,'fe::VLA']]]
+  ['w_0',['w',['../classfe_1_1Error.html#a1a3a6f586e8ea9d163a1fe208a58bc91',1,'fe::Error::w()'],['../classfe_1_1Log.html#a9ff17172a0c0b4c3fbd094b1a8cd9b17',1,'fe::Log::w()']]],
+  ['what_1',['what',['../classfe_1_1Error_1_1Bail.html#adcecc911f3639fc4f533253c4547b730',1,'fe::Error::Bail']]],
+  ['width_2',['width',['../namespacefe_1_1term.html#aa553472665f575bceb82bdbbac9b8837',1,'fe::term']]],
+  ['worklist_3',['Worklist',['../classfe_1_1Worklist.html#a267d6e56be1e45b94b0879ea7a138bd6',1,'fe::Worklist::Worklist()=default'],['../classfe_1_1Worklist.html#a8c7074309e46f7d9c3b453d02ee6de2e',1,'fe::Worklist::Worklist(Set set)'],['../classfe_1_1Worklist.html#a60b0d2b8923547a53f87846bed1addf7',1,'fe::Worklist::Worklist(std::initializer_list&lt; T &gt; init)']]]
 ];

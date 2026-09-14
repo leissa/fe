@@ -1,7 +1,5 @@
 var NAVTREEINDEX6 =
 {
-"structfe_1_1Arena_1_1Allocator.html":[10,0,0,5,1],
-"structfe_1_1Arena_1_1Allocator.html":[12,0,0,4,1],
 "structfe_1_1Arena_1_1Allocator.html#a0518fe399d6419245555f5ba819befef":[10,0,0,5,1,6],
 "structfe_1_1Arena_1_1Allocator.html#a0518fe399d6419245555f5ba819befef":[12,0,0,4,1,6],
 "structfe_1_1Arena_1_1Allocator.html#a1ceb3c1e151546d105f7cf3eb53c8533":[10,0,0,5,1,7],
@@ -249,5 +247,7 @@ var NAVTREEINDEX6 =
 "structfe_1_1utf8_1_1Char32.html#a1007c5ee35ebf25d42f9c65539e2500e":[10,0,0,4,0,1],
 "structfe_1_1utf8_1_1Char32.html#a1007c5ee35ebf25d42f9c65539e2500e":[12,0,0,3,0,1],
 "structfe_1_1utf8_1_1Char32.html#a77fb8e8b7ab039d14adbde307bbee793":[10,0,0,4,0,2],
-"structfe_1_1utf8_1_1Char32.html#a77fb8e8b7ab039d14adbde307bbee793":[12,0,0,3,0,2]
+"structfe_1_1utf8_1_1Char32.html#a77fb8e8b7ab039d14adbde307bbee793":[12,0,0,3,0,2],
+"structfe_1_1utf8_1_1Char32.html#add2c71204e4cf443767a79c919b45177":[10,0,0,4,0,0],
+"structfe_1_1utf8_1_1Char32.html#add2c71204e4cf443767a79c919b45177":[12,0,0,3,0,0]
 };

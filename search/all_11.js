@@ -1,28 +1,5 @@
 var searchData=
 [
-  ['pad_0',['pad',['../namespacefe.html#ab71076f2b315aa8a0170fe386daf4d4d',1,'fe']]],
-  ['parent_1',['parent',['../classfe_1_1lct_1_1Node.html#a1f340bbe21b0323ad3e98fd49bed9b2f',1,'fe::lct::Node::parent'],['../structfe_1_1Profiler_1_1Span.html#a7ae7f4328b742c38ba510cb4e79b41c6',1,'fe::Profiler::Span::parent']]],
-  ['parse_2',['parse',['../classfe_1_1Cli.html#ac44a54d788360af939f7921c600d4fb4',1,'fe::Cli']]],
-  ['parser_3',['Parser',['../classfe_1_1Parser.html',1,'fe']]],
-  ['parser_2eh_4',['parser.h',['../parser_8h.html',1,'']]],
-  ['parsing_5',['Lexing &amp;amp; Parsing',['../index.html#autotoc_md8',1,'']]],
-  ['path_6',['path',['../classfe_1_1Src.html#ac5f106917a057cf33846e62e02dffca3',1,'fe::Src']]],
-  ['path_5fparent_7',['path_parent',['../classfe_1_1lct_1_1Node.html#a78ef9cf14dd980cbf3c0d72126aaf064',1,'fe::lct::Node']]],
-  ['path_5fsep_8',['Path_Sep',['../namespacefe_1_1sys.html#a57cab2b4ca17cf6a06d7ac242bdd0ea4',1,'fe::sys']]],
-  ['path_5fsep_5fword_9',['Path_Sep_Word',['../namespacefe_1_1sys.html#a14535943f5d31e9b72e98e8896a3a553',1,'fe::sys']]],
-  ['path_5fsep_5fword_10',['Path_Sep_word',['../namespacefe_1_1sys.html#afe2f0743975b75eb6fddce2cbd7290e1',1,'fe::sys']]],
-  ['path_5fto_5flib_11',['path_to_lib',['../namespacefe_1_1sys.html#a469fb213a9135e407987acad6ca41e51',1,'fe::sys']]],
-  ['pathhash_12',['PathHash',['../structfe_1_1PathHash.html',1,'fe']]],
-  ['pathmap_13',['PathMap',['../namespacefe.html#abd33b4214fdd0afae828ffb1c5fc9f9e',1,'fe']]],
-  ['peek_14',['peek',['../classfe_1_1Lexer.html#a28b48350669ad8380c38455d138077c3',1,'fe::Lexer']]],
-  ['pointer_15',['pointer',['../classfe_1_1Bitset_1_1iterator.html#a68ba2ecb06091dd01cae4694ef4bda84',1,'fe::Bitset::iterator::pointer'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html#a72a207dc7981ded537807c27ec3bf5d9',1,'fe::XTrie::Set::iterator::pointer']]],
-  ['pop_16',['pop',['../classfe_1_1Worklist.html#a9cc45e4d95dddcc32f1ea5708d6a5adc',1,'fe::Worklist::pop()'],['../namespacefe.html#a2015189724c77cd909fa8d2ed9b4e552',1,'fe::pop(S &amp;s)'],['../namespacefe.html#a90bc9bf0b8f347e76dd29569cee16d34',1,'fe::pop(Q &amp;q)']]],
-  ['pos_17',['Pos',['../structfe_1_1Pos.html',1,'fe::Pos'],['../structfe_1_1Pos.html#a8ff13f229aec036fd7887acd4d8d03b8',1,'fe::Pos::Pos() noexcept=default'],['../structfe_1_1Pos.html#aa5e722fdec612ffd7a6cd4b46adb4766',1,'fe::Pos::Pos(uint32_t off) noexcept']]],
-  ['prev_18',['prev',['../classfe_1_1Src.html#ae149a938b0dac5fd168b64293d059e15',1,'fe::Src']]],
-  ['profile_2eh_19',['profile.h',['../profile_8h.html',1,'']]],
-  ['profiler_20',['Profiler',['../classfe_1_1Profiler.html',1,'fe']]],
-  ['projects_21',['🔨 Related Projects',['../index.html#autotoc_md20',1,'']]],
-  ['ptr_22',['Ptr',['../classfe_1_1Arena.html#a9ec4e56220ef5a3d2d80bfcd3653bbdc',1,'fe::Arena']]],
-  ['push_23',['push',['../classfe_1_1Worklist.html#a1ca7a98ed2080b46dfbe7d6a76acf8a0',1,'fe::Worklist::push(T val)'],['../classfe_1_1Worklist.html#a9539a56e9e01eda1638693db41b95b6f',1,'fe::Worklist::push(R &amp;&amp;r)']]],
-  ['put_24',['put',['../classfe_1_1Ring.html#a481a2c4843195aedace816af111ac0d3',1,'fe::Ring::put()'],['../classfe_1_1Ring_3_01T_00_011_01_4.html#a6b10b2086467a470b44c87488e2d742a',1,'fe::Ring&lt; T, 1 &gt;::put()'],['../classfe_1_1Ring_3_01T_00_012_01_4.html#ad41e9a997f1070d2e6655eab3b7ba824',1,'fe::Ring&lt; T, 2 &gt;::put()']]]
+  ['queuelike_0',['Queuelike',['../conceptfe_1_1Queuelike.html',1,'fe']]],
+  ['quick_20start_1',['🚀 Quick Start',['../index.html#autotoc_md14',1,'']]]
 ];

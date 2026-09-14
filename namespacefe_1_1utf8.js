@@ -1,8 +1,6 @@
 var namespacefe_1_1utf8 =
 [
     [ "Char32", "structfe_1_1utf8_1_1Char32.html", "structfe_1_1utf8_1_1Char32" ],
-    [ "_any", "namespacefe_1_1utf8.html#a9770537236d758f54f0e7f64fb2ebfd8", null ],
-    [ "_any", "namespacefe_1_1utf8.html#a8f8fac2ad33c17d7dcaf34ba1af7e2fc", null ],
     [ "any", "namespacefe_1_1utf8.html#af64fe6297bc1f6fe539c11232da3ebde", null ],
     [ "append", "namespacefe_1_1utf8.html#aa8ae49725f0b51d0ff9c826a7268dfb0", null ],
     [ "decode", "namespacefe_1_1utf8.html#a4ca17134ff0be619535e913b53a80e79", null ],

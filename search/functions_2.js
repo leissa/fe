@@ -1,12 +1,24 @@
 var searchData=
 [
-  ['back_0',['back',['../classfe_1_1Sym.html#a3e0afe054d407542069a0b631704d372',1,'fe::Sym::back()'],['../classfe_1_1Worklist.html#ab7e485aa3f02bc9920ab81edc1f45f1c',1,'fe::Worklist::back()'],['../classfe_1_1Worklist.html#a37b11171006ef15928142135d70b7c0f',1,'fe::Worklist::back() const']]],
-  ['bail_1',['Bail',['../classfe_1_1Error_1_1Bail.html#a5a224da9b574b6a66841ad67d3aa6b85',1,'fe::Error::Bail']]],
-  ['bail_2',['bail',['../classfe_1_1Error.html#a4c1692799986392837a8bb3552384eb9',1,'fe::Error']]],
-  ['begin_3',['begin',['../classfe_1_1Bitset.html#a707c897a250651f643b17562e10ebeb5',1,'fe::Bitset::begin()'],['../classfe_1_1Src.html#a31c97c626b05697dd272de7279ba2f46',1,'fe::Src::begin()'],['../classfe_1_1Sym.html#a20d21940d48a8d6f9fc362938d67af85',1,'fe::Sym::begin()'],['../classfe_1_1XTrie_1_1Set.html#a4d7e03fffaba8aefae918e63f43d585f',1,'fe::XTrie::Set::begin()']]],
-  ['binary_5ffind_4',['binary_find',['../namespacefe.html#a60e2475605f461717686998f540dc419',1,'fe::binary_find(I begin, I end, const T &amp;val, L lt={})'],['../namespacefe.html#ac6de5497649ad9909d7fd09784c82699',1,'fe::binary_find(R &amp;&amp;r, const T &amp;val, L lt={})']]],
-  ['bitcast_5fresize_5',['bitcast_resize',['../namespacefe.html#a23c050efc089d138baaefe04d33562f6',1,'fe']]],
-  ['bitset_6',['Bitset',['../classfe_1_1Bitset.html#a5cb3759824e6b7aec184838f7f2900b4',1,'fe::Bitset::Bitset() noexcept=default'],['../classfe_1_1Bitset.html#ac01c5c9e0ad6c1c8352787d2bbbe9478',1,'fe::Bitset::Bitset(std::initializer_list&lt; size_t &gt; bits)'],['../classfe_1_1Bitset.html#a05df7d7f17d64ebda97303c5ab4e2793',1,'fe::Bitset::Bitset(const Bitset &amp;other)'],['../classfe_1_1Bitset.html#a9ca68a037cb52a6eb07bbfac9badffcb',1,'fe::Bitset::Bitset(Bitset &amp;&amp;other) noexcept']]],
-  ['breakpoint_7',['breakpoint',['../namespacefe.html#aa67601e05290c4a15e0d5d5f1f12a4a2',1,'fe']]],
-  ['buf_8',['buf',['../classfe_1_1Src.html#a2026b6761200d7a92fa5400d5d770b29',1,'fe::Src']]]
+  ['capacity_0',['capacity',['../classfe_1_1Bitset.html#a06d9e30299a68f441ee9ffa614572e69',1,'fe::Bitset']]],
+  ['cardinality_1',['cardinality',['../classfe_1_1Cli.html#a80ee9541c1de9e704d37a3cefc593683',1,'fe::Cli']]],
+  ['cbegin_2',['cbegin',['../classfe_1_1Sym.html#ac7b89c634f5e3515dcfe3d3e786fc286',1,'fe::Sym']]],
+  ['cend_3',['cend',['../classfe_1_1Sym.html#a3308cf822fc8707a9c946335d85972cd',1,'fe::Sym']]],
+  ['char32_4',['Char32',['../structfe_1_1utf8_1_1Char32.html#add2c71204e4cf443767a79c919b45177',1,'fe::utf8::Char32']]],
+  ['char_5ferr_5',['char_err',['../classfe_1_1Lexer.html#a64d16180bbc8d11a338fdae0cd56bc46',1,'fe::Lexer']]],
+  ['chrome_5ftrace_6',['chrome_trace',['../classfe_1_1Profiler.html#ac8ec9c9ecca1edbaf0b7a776cb7a48fa',1,'fe::Profiler']]],
+  ['cite_7',['Cite',['../classfe_1_1term_1_1Cite.html#a87042c1c5ee1a98918eafe27b919ad67',1,'fe::term::Cite::Cite() noexcept=default'],['../classfe_1_1term_1_1Cite.html#a20c71f8b4fed3ce6cf592b978094c33d',1,'fe::term::Cite::Cite(const char(&amp;s)[N]) noexcept'],['../classfe_1_1term_1_1Cite.html#a32702a03a2b3afef64e90eaf87209117',1,'fe::term::Cite::Cite(const Cited &amp;cited) noexcept'],['../classfe_1_1term_1_1Cite.html#a496f54f2805ffd6b238eea3c4eb9d0e2',1,'fe::term::Cite::Cite(std::string_view s) noexcept'],['../classfe_1_1Cite.html#a87042c1c5ee1a98918eafe27b919ad67',1,'fe::Cite::Cite() noexcept=default'],['../classfe_1_1Cite.html#a20c71f8b4fed3ce6cf592b978094c33d',1,'fe::Cite::Cite(const char(&amp;s)[N]) noexcept'],['../classfe_1_1Cite.html#a32702a03a2b3afef64e90eaf87209117',1,'fe::Cite::Cite(const Cited &amp;cited) noexcept'],['../classfe_1_1Cite.html#a496f54f2805ffd6b238eea3c4eb9d0e2',1,'fe::Cite::Cite(std::string_view s) noexcept']]],
+  ['cite_5fwidth_8',['cite_width',['../namespacefe_1_1term.html#a1b862580e3b45d83aaf0a194130caabe',1,'fe::term']]],
+  ['cited_9',['Cited',['../classfe_1_1term_1_1Cited.html#a8b2e8291eb27778329d4c71f119e6973',1,'fe::term::Cited::Cited()'],['../classfe_1_1Cited.html#a8b2e8291eb27778329d4c71f119e6973',1,'fe::Cited::Cited()']]],
+  ['clear_10',['clear',['../classfe_1_1Bitset.html#a20aa02e17999d290c3f404bf22e7c8cf',1,'fe::Bitset::clear(size_t i) noexcept'],['../classfe_1_1Bitset.html#a7d579a1bc50660c16acbe88a0474b718',1,'fe::Bitset::clear() noexcept'],['../classfe_1_1Error.html#a49f4b59762202737f27bd6e35a22d0fc',1,'fe::Error::clear()'],['../classfe_1_1Worklist.html#a7411cde381850643465a57e37ca2db1b',1,'fe::Worklist::clear()'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html#ad31ab44722c8c19df28e7216dfed1d96',1,'fe::XTrie::Set::iterator::clear()']]],
+  ['cli_11',['Cli',['../classfe_1_1Cli.html#a9eeeb5d1f51087267d55c1e4ddfec310',1,'fe::Cli::Cli()=default'],['../classfe_1_1Cli.html#af4e4f323318a39d674fb047df3c44da0',1,'fe::Cli::Cli(std::string prog, std::string descr={})']]],
+  ['close_12',['close',['../namespacefe_1_1dl.html#a06893ca1a7701c45fb627831247dbc4c',1,'fe::dl']]],
+  ['cmdnotfound_13',['CmdNotFound',['../classfe_1_1sys_1_1CmdNotFound.html#aa13bab22662d2f2aa62763da2d15208b',1,'fe::sys::CmdNotFound']]],
+  ['col_14',['col',['../classfe_1_1Src.html#aa3b5f99f7e3b97c5c04d3ad52d98c18d',1,'fe::Src']]],
+  ['contains_15',['contains',['../classfe_1_1lct_1_1Node.html#a712a2d6ff62a6512e6de68f1637b730c',1,'fe::lct::Node::contains()'],['../classfe_1_1Src.html#a8a73d8777e3c6c40ec7f53e293c656f2',1,'fe::Src::contains()'],['../classfe_1_1SymTab.html#ae090a2f717ceb8ad69e37e2969fece64',1,'fe::SymTab::contains()'],['../classfe_1_1XTrie_1_1Set.html#aad5313f67986bb9c4491b39ad3230ad6',1,'fe::XTrie::Set::contains()']]],
+  ['copy_16',['copy',['../classfe_1_1Arena.html#a39b4b9c0063f25922fcf9e7d2935e0d2',1,'fe::Arena']]],
+  ['count_17',['count',['../classfe_1_1Bitset.html#a82c015828d552d0bf00bd183afae5c2c',1,'fe::Bitset::count()'],['../classfe_1_1Profiler.html#a837594026adc894f2c372d43ed1f87ee',1,'fe::Profiler::count()']]],
+  ['crbegin_18',['crbegin',['../classfe_1_1Sym.html#a5d5f386e69be60f34a1f34b1c04d5416',1,'fe::Sym']]],
+  ['create_19',['create',['../classfe_1_1XTrie.html#aa59dad3fa3aa722992c41455c7071225',1,'fe::XTrie::create(I begin, I end)'],['../classfe_1_1XTrie.html#a0bf2538c9b576143ac5ba9fba335547d',1,'fe::XTrie::create(R &amp;&amp;r)'],['../classfe_1_1XTrie.html#a82786f4cecf5148fce3df53766eaf959',1,'fe::XTrie::create(std::initializer_list&lt; D * &gt; list)']]],
+  ['crend_20',['crend',['../classfe_1_1Sym.html#a8644db50ad05ef62b82cc05f1688bc80',1,'fe::Sym']]]
 ];

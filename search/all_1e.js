@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['💡_20why_20fe_0',['💡 Why FE?',['../index.html#autotoc_md1',1,'']]]
+  ['💬_20writing_20a_20diagnostic_0',['💬 Writing a Diagnostic',['../index.html#autotoc_md17',1,'']]]
 ];

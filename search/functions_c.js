@@ -1,16 +1,12 @@
 var searchData=
 [
-  ['lca_0',['lca',['../classfe_1_1lct_1_1Node.html#ac1fbd8c8b395d6a0ea589fba9bc6c453',1,'fe::lct::Node']]],
-  ['level_1',['level',['../classfe_1_1Log.html#a86293e423fb95f888781d62fed20b497',1,'fe::Log']]],
-  ['level2acro_2',['level2acro',['../classfe_1_1Log.html#a479a8ef9e5bdbec4797f3a2a1a342ab7',1,'fe::Log']]],
-  ['level2color_3',['level2color',['../classfe_1_1Log.html#a3d38295eecbc510b2b4f1d81842dc73d',1,'fe::Log']]],
-  ['lex_4',['lex',['../classfe_1_1Parser.html#a5d4335bae86e3127fbf5b42fb0fcd3e7',1,'fe::Parser']]],
-  ['lexer_5',['Lexer',['../classfe_1_1Lexer.html#a278891a635d9f4c7ff1d789302fbfeb6',1,'fe::Lexer::Lexer(std::string_view buf)'],['../classfe_1_1Lexer.html#a02cec6b71642819b66f0b275aadeba61',1,'fe::Lexer::Lexer(const Src &amp;src)'],['../classfe_1_1Lexer.html#a762507392bfee9dc3c32776cff0a6528',1,'fe::Lexer::Lexer(std::string_view buf, const Src *src)']]],
-  ['line_6',['line',['../classfe_1_1Src.html#a43d4b3c20f03d005d423f559ff69e1d7',1,'fe::Src']]],
-  ['link_7',['link',['../classfe_1_1lct_1_1Node.html#a9d5163bbbb591e574df5b2c7960c7c71',1,'fe::lct::Node']]],
-  ['loc_8',['Loc',['../structfe_1_1Loc.html#a4a054900bf8334046c7652a12a55852f',1,'fe::Loc::Loc() noexcept=default'],['../structfe_1_1Loc.html#ae3d85d53b521ca18cc76993f59da3a35',1,'fe::Loc::Loc(const Src *src, Pos begin, Pos end) noexcept'],['../structfe_1_1Loc.html#a3a56ca81ce99402b897aa306dc805029',1,'fe::Loc::Loc(const Src *src, Pos pos) noexcept'],['../structfe_1_1Loc.html#add7645b57713cd0e2882138f8c7f0cea',1,'fe::Loc::Loc(Pos begin, Pos end) noexcept'],['../structfe_1_1Loc.html#abda56584aba3500a794de0ccf7b6b188',1,'fe::Loc::Loc(Pos pos) noexcept']]],
-  ['loc_9',['loc',['../structfe_1_1Dbg.html#a23574fcdb008f6ae9844b059e6d26737',1,'fe::Dbg::loc()'],['../classfe_1_1Diag.html#abad2a1cad90b4bb8410955e46dbd2b23',1,'fe::Diag::loc()'],['../classfe_1_1Parser_1_1Tracker.html#aed3db922e0970ec52d171663427e35e2',1,'fe::Parser::Tracker::loc()']]],
-  ['log_10',['log',['../classfe_1_1Log.html#a695916fb821911451b9a3f3f1e044981',1,'fe::Log::log(Level level, Loc loc, cite_string&lt; Args... &gt; fmt, Args &amp;&amp;... args) const'],['../classfe_1_1Log.html#a752df5f8a9fb89e1f0744c4b7b7e4530',1,'fe::Log::log(Level level, std::source_location where, cite_string&lt; Args... &gt; fmt, Args &amp;&amp;... args) const'],['../classfe_1_1Log.html#abe902baec6be1afeac687da942290b35',1,'fe::Log::log(Level level, Fmt&lt; Args... &gt; fmt, Args &amp;&amp;... args) const']]],
-  ['lookup_11',['lookup',['../classfe_1_1SrcMap.html#a471e46e42aa2229b771e598a370eef68',1,'fe::SrcMap::lookup()'],['../namespacefe.html#a00e1ee524a678f2b004c9b5c91e94903',1,'fe::lookup()']]],
-  ['lower_12',['lower',['../classfe_1_1Lexer.html#a62c91002f3e6f90a747014dcb7ae9ab0',1,'fe::Lexer']]]
+  ['markdown_0',['markdown',['../classfe_1_1Cli.html#a94dc09d41006be6f204294aa18748758',1,'fe::Cli']]],
+  ['memoryresource_1',['MemoryResource',['../classfe_1_1Arena_1_1MemoryResource.html#a78e95720a6a254e562ea00baaf70f2f2',1,'fe::Arena::MemoryResource']]],
+  ['merge_2',['merge',['../classfe_1_1XTrie.html#ae190a3bcab5c5c31dc3747474d6c7de0',1,'fe::XTrie']]],
+  ['min_5fcode_5fpoint_3',['min_code_point',['../namespacefe_1_1utf8.html#a6660a5ce2b492de5ef72a34c329aacba',1,'fe::utf8']]],
+  ['mk_4',['mk',['../classfe_1_1Arena.html#ac0ed8cd6c5553d0d1e75745501221a6f',1,'fe::Arena']]],
+  ['mode_5',['mode',['../namespacefe_1_1term.html#aba316509e7e9d35ab1316e47869ad856',1,'fe::term']]],
+  ['msg_6',['msg',['../classfe_1_1Error.html#a0be3ad6db15f4a91da361765326e508e',1,'fe::Error::msg(Loc loc, Tag tag, const std::function&lt; std::string()&gt; &amp;fmt)'],['../classfe_1_1Error.html#ad73db5f766b07a2b35a0b0ddd1f9d304',1,'fe::Error::msg(Loc loc, Tag tag, cite_string&lt; Args... &gt; s, Args &amp;&amp;... args)']]],
+  ['msgs_7',['msgs',['../classfe_1_1Error.html#a27fe473278b55b1e3df08f10c40f748d',1,'fe::Error']]],
+  ['murmur3_8',['murmur3',['../namespacefe.html#a89ce852a3e2d3ecde80f0ed8f81a501b',1,'fe']]]
 ];
