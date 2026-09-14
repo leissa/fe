@@ -49,6 +49,7 @@ var annotated_dup =
       [ "Sym", "classfe_1_1Sym.html", "classfe_1_1Sym" ],
       [ "SymPool", "classfe_1_1SymPool.html", "classfe_1_1SymPool" ],
       [ "Tab", "classfe_1_1Tab.html", "classfe_1_1Tab" ],
+      [ "Trailing", "classfe_1_1Trailing.html", "classfe_1_1Trailing" ],
       [ "Vector", "classfe_1_1Vector.html", "classfe_1_1Vector" ],
       [ "Worklist", "classfe_1_1Worklist.html", "classfe_1_1Worklist" ],
       [ "XTrie", "classfe_1_1XTrie.html", "classfe_1_1XTrie" ]

@@ -31,13 +31,14 @@ var searchData=
   ['container_2eh_28',['container.h',['../container_8h.html',1,'']]],
   ['contains_29',['contains',['../classfe_1_1lct_1_1Node.html#a712a2d6ff62a6512e6de68f1637b730c',1,'fe::lct::Node::contains()'],['../classfe_1_1Src.html#a8a73d8777e3c6c40ec7f53e293c656f2',1,'fe::Src::contains()'],['../classfe_1_1XTrie_1_1Set.html#aad5313f67986bb9c4491b39ad3230ad6',1,'fe::XTrie::Set::contains()']]],
   ['contributing_30',['🤝 Contributing',['../index.html#autotoc_md21',1,'']]],
-  ['core_31',['Core',['../index.html#autotoc_md7',1,'']]],
-  ['count_32',['count',['../classfe_1_1Bitset.html#a82c015828d552d0bf00bd183afae5c2c',1,'fe::Bitset::count()'],['../classfe_1_1Profiler.html#a837594026adc894f2c372d43ed1f87ee',1,'fe::Profiler::count()']]],
-  ['counters_33',['counters',['../structfe_1_1Profiler_1_1Span.html#ae38d2220037b222bb0100760c13cf594',1,'fe::Profiler::Span']]],
-  ['crbegin_34',['crbegin',['../classfe_1_1Sym.html#a5d5f386e69be60f34a1f34b1c04d5416',1,'fe::Sym']]],
-  ['create_35',['create',['../classfe_1_1XTrie.html#aa59dad3fa3aa722992c41455c7071225',1,'fe::XTrie::create(I begin, I end)'],['../classfe_1_1XTrie.html#a0bf2538c9b576143ac5ba9fba335547d',1,'fe::XTrie::create(R &amp;&amp;r)'],['../classfe_1_1XTrie.html#a82786f4cecf5148fce3df53766eaf959',1,'fe::XTrie::create(std::initializer_list&lt; D * &gt; list)']]],
-  ['crend_36',['crend',['../classfe_1_1Sym.html#a8644db50ad05ef62b82cc05f1688bc80',1,'fe::Sym']]],
-  ['curr_5f_37',['curr_',['../classfe_1_1Parser.html#a69e76d15919fd71e0ee0f1e491c974f8',1,'fe::Parser']]],
-  ['cursor_5f_38',['cursor_',['../classfe_1_1Lexer.html#a31d973f31b3c1f2e83dd92b642130ade',1,'fe::Lexer']]],
-  ['cyan_39',['Cyan',['../namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a023c239d2f2538f140a20e72c7b73f20',1,'fe::term']]]
+  ['copy_31',['copy',['../classfe_1_1Arena.html#a39b4b9c0063f25922fcf9e7d2935e0d2',1,'fe::Arena']]],
+  ['core_32',['Core',['../index.html#autotoc_md7',1,'']]],
+  ['count_33',['count',['../classfe_1_1Bitset.html#a82c015828d552d0bf00bd183afae5c2c',1,'fe::Bitset::count()'],['../classfe_1_1Profiler.html#a837594026adc894f2c372d43ed1f87ee',1,'fe::Profiler::count()']]],
+  ['counters_34',['counters',['../structfe_1_1Profiler_1_1Span.html#ae38d2220037b222bb0100760c13cf594',1,'fe::Profiler::Span']]],
+  ['crbegin_35',['crbegin',['../classfe_1_1Sym.html#a5d5f386e69be60f34a1f34b1c04d5416',1,'fe::Sym']]],
+  ['create_36',['create',['../classfe_1_1XTrie.html#aa59dad3fa3aa722992c41455c7071225',1,'fe::XTrie::create(I begin, I end)'],['../classfe_1_1XTrie.html#a0bf2538c9b576143ac5ba9fba335547d',1,'fe::XTrie::create(R &amp;&amp;r)'],['../classfe_1_1XTrie.html#a82786f4cecf5148fce3df53766eaf959',1,'fe::XTrie::create(std::initializer_list&lt; D * &gt; list)']]],
+  ['crend_37',['crend',['../classfe_1_1Sym.html#a8644db50ad05ef62b82cc05f1688bc80',1,'fe::Sym']]],
+  ['curr_5f_38',['curr_',['../classfe_1_1Parser.html#a69e76d15919fd71e0ee0f1e491c974f8',1,'fe::Parser']]],
+  ['cursor_5f_39',['cursor_',['../classfe_1_1Lexer.html#a31d973f31b3c1f2e83dd92b642130ade',1,'fe::Lexer']]],
+  ['cyan_40',['Cyan',['../namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a023c239d2f2538f140a20e72c7b73f20',1,'fe::term']]]
 ];

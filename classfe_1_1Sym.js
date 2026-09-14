@@ -18,6 +18,7 @@ var classfe_1_1Sym =
     [ "operator std::string_view", "classfe_1_1Sym.html#aff35eb138b2e717c637d41d1b17eba26", null ],
     [ "operator*", "classfe_1_1Sym.html#a24ee71544ed6aebf2b24ef3f1b52d877", null ],
     [ "operator[]", "classfe_1_1Sym.html#a6bcbe6efc9fd581c62df9d37ba65a904", null ],
+    [ "raw", "classfe_1_1Sym.html#a080aa47443bc0aace161791f30c44f0d", null ],
     [ "rbegin", "classfe_1_1Sym.html#a91d840fb22a5afcc50e3a70daee67907", null ],
     [ "rend", "classfe_1_1Sym.html#a1e7ad312b7d4d7f733e2ee47245b3e9b", null ],
     [ "size", "classfe_1_1Sym.html#a35a3c9b2d1a8576e2c79ad9c5582df69", null ],

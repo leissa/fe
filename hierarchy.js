@@ -60,6 +60,7 @@ var hierarchy =
     [ "fe::PathHash", "structfe_1_1PathHash.html", null ],
     [ "fe::Pos", "structfe_1_1Pos.html", null ],
     [ "fe::Profiler", "classfe_1_1Profiler.html", null ],
+    [ "fe::Arena::Ref&lt; T &gt;", "classfe_1_1Arena_1_1Ref.html", null ],
     [ "fe::Bitset::reference", "classfe_1_1Bitset_1_1reference.html", null ],
     [ "fe::Restore&lt; T, Get, Set &gt;", "classfe_1_1Restore.html", null ],
     [ "fe::Restore&lt; T, nullptr, nullptr &gt;", "classfe_1_1Restore_3_01T_00_01nullptr_00_01nullptr_01_4.html", null ],
@@ -84,6 +85,7 @@ var hierarchy =
     ] ],
     [ "fe::Tab", "classfe_1_1Tab.html", null ],
     [ "fe::Parser&lt; Tok, Tag, K, S &gt;::Tracker", "classfe_1_1Parser_1_1Tracker.html", null ],
+    [ "fe::Trailing&lt; Self &gt;", "classfe_1_1Trailing.html", null ],
     [ "std::tuple_element&lt; I, fe::Span&lt; T, N &gt; &gt;", "namespacestd.html#structstd_1_1tuple__element_3_01I_00_01fe_1_1Span_3_01T_00_01N_01_4_01_4", null ],
     [ "detail::VectorBase", null, [
       [ "fe::Vector< fe::Dbg >", "classfe_1_1Vector.html", null ],
