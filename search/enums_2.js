@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['fg_0',['FG',['../namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148',1,'fe::term']]]
+  ['level_0',['Level',['../classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06',1,'fe::Log']]]
 ];

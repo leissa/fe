@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['n_0',['N',['../classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1fa8d9c307cb7f3c4a32822a51922d1ceaa',1,'fe::Diag']]],
-  ['never_1',['Never',['../namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a6e7b34fa59e1bd229b207892956dc41c',1,'fe::term']]],
-  ['note_2',['Note',['../classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1fa3b0649c72650c313a357338dcdfb64ec',1,'fe::Diag']]]
+  ['red_0',['Red',['../namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47',1,'fe::term']]],
+  ['reset_1',['Reset',['../namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d',1,'fe::term']]],
+  ['row_2',['Row',['../structfe_1_1Loc.html#aa6449f6dc2688387c0e8ed8dc2112858aa70367aa7cb74e510f4f9413ccf059d3',1,'fe::Loc']]],
+  ['rowcol_3',['RowCol',['../structfe_1_1Loc.html#aa6449f6dc2688387c0e8ed8dc2112858a7502f49b96355b382b103f0b2cd08312',1,'fe::Loc']]]
 ];

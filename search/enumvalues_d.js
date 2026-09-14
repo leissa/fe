@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['t_0',['T',['../classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06ab9ece18c950afbfa6b0fdbfa4ff731d3',1,'fe::Log']]],
-  ['top_1',['Top',['../classfe_1_1lct_1_1Node.html#aafc0dc1bac212db5878282add778b971a61f9102df5e436953242e7af07cbf925',1,'fe::lct::Node']]],
-  ['trace_2',['Trace',['../classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06add4ec0ac4e58f7c32a01244ae91150b1',1,'fe::Log']]]
+  ['w_0',['W',['../classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1fa61e9c06ea9a85a5088a499df6458d276',1,'fe::Diag::W'],['../classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06a61e9c06ea9a85a5088a499df6458d276',1,'fe::Log::W']]],
+  ['warn_1',['Warn',['../classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1fa56525ae64d370c0b448ac0d60710ef17',1,'fe::Diag::Warn'],['../classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06a56525ae64d370c0b448ac0d60710ef17',1,'fe::Log::Warn']]]
 ];

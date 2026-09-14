@@ -1,7 +1,5 @@
 var NAVTREEINDEX4 =
 {
-"classfe_1_1XTrie.html#aa08e5b98d358fbd162f231227b008751":[12,0,0,41,10],
-"classfe_1_1XTrie.html#aa59dad3fa3aa722992c41455c7071225":[10,0,0,42,4],
 "classfe_1_1XTrie.html#aa59dad3fa3aa722992c41455c7071225":[12,0,0,41,4],
 "classfe_1_1XTrie.html#acf03a27da8603e2f66e85d144f5b7a92":[10,0,0,42,12],
 "classfe_1_1XTrie.html#acf03a27da8603e2f66e85d144f5b7a92":[12,0,0,41,12],
@@ -249,5 +247,7 @@ var NAVTREEINDEX4 =
 "hierarchy.html":[12,2],
 "index.html":[],
 "index.html#autotoc_md1":[0],
-"index.html#autotoc_md10":[1,0,3]
+"index.html#autotoc_md10":[1,0,3],
+"index.html#autotoc_md11":[1,0,4],
+"index.html#autotoc_md12":[1,0,5]
 };

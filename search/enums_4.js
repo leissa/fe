@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mode_0',['Mode',['../namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087',1,'fe::term']]]
+  ['style_0',['Style',['../structfe_1_1Loc.html#aa6449f6dc2688387c0e8ed8dc2112858',1,'fe::Loc']]]
 ];

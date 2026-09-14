@@ -186,24 +186,42 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a0ecd9086f866aa9a8d849620aba195a0" id="r_a0ecd9086f866aa9a8d849620aba195a0"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0ecd9086f866aa9a8d849620aba195a0">start</a> ()</td></tr>
 <tr class="memdesc:a0ecd9086f866aa9a8d849620aba195a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invoke before assembling the next token.  <br /></td></tr>
 <tr class="memitem:a0bbfc87be21bdd46d883002eb10303c1" id="r_a0bbfc87be21bdd46d883002eb10303c1"><td class="memItemLeft">char32_t&#160;</td><td class="memItemRight"><a class="el" href="#a0bbfc87be21bdd46d883002eb10303c1">next</a> ()</td></tr>
-<tr class="memdesc:a0bbfc87be21bdd46d883002eb10303c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get next <span class="tt">char32_t</span> in <a class="el" href="#ae93aa4d0d0632b0494c78ca67a48f99c">Lexer::buf_</a> and extend <a class="el" href="#a142d42503cc2dbeb8c496b66d47e75c7" title="Location of the token we are currently constructing within Lexer::str_,.">Lexer::loc_</a> to cover it.  <br /></td></tr>
-<tr id="pro-methods-0" class="groupHeader"><td colspan="2"><div class="groupHeader">Recover</div></td></tr>
+<tr class="memdesc:a0bbfc87be21bdd46d883002eb10303c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get next <span class="tt">char32_t</span> in <a class="el" href="#ae93aa4d0d0632b0494c78ca67a48f99c">Lexer::buf_</a> and extend <a class="el" href="#a142d42503cc2dbeb8c496b66d47e75c7" title="Location of the token we are currently constructing - see Lexer::view.">Lexer::loc_</a> to cover it.  <br /></td></tr>
+<tr class="memitem:ada0b9946cc00d08001b26f8899793d15" id="r_ada0b9946cc00d08001b26f8899793d15"><td class="memTemplParams" colspan="2">template&lt;class Pred&gt; </td></tr>
+<tr class="memitem:ada0b9946cc00d08001b26f8899793d15 template"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ada0b9946cc00d08001b26f8899793d15">accept</a> (Pred pred)</td></tr>
+<tr class="memdesc:ada0b9946cc00d08001b26f8899793d15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accept next character in <a class="el" href="#ae93aa4d0d0632b0494c78ca67a48f99c">Lexer::buf_</a> and <a class="el" href="#a0bbfc87be21bdd46d883002eb10303c1" title="Get next char32_t in Lexer::buf_ and extend Lexer::loc_ to cover it.">Lexer::next</a> it, if <code class="param">pred</code> holds.  <br /></td></tr>
+<tr class="memitem:ade52178526efaf0b1e006a7d062784bd" id="r_ade52178526efaf0b1e006a7d062784bd"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ade52178526efaf0b1e006a7d062784bd">accept</a> (char32_t c)</td></tr>
+<tr class="memitem:a721073113d17c45a947c25d33d53ff3b" id="r_a721073113d17c45a947c25d33d53ff3b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a721073113d17c45a947c25d33d53ff3b">accept</a> (char c)</td></tr>
+<tr class="memitem:abafa8c63b04317da94d934eaeb264a04" id="r_abafa8c63b04317da94d934eaeb264a04"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#abafa8c63b04317da94d934eaeb264a04">accept</a> (char8_t c)</td></tr>
+<tr class="memitem:ae7c5e57c041ebb9bb91d9acf786a1f5c" id="r_ae7c5e57c041ebb9bb91d9acf786a1f5c"><td class="memTemplParams" colspan="2">template&lt;class Pred&gt; </td></tr>
+<tr class="memitem:ae7c5e57c041ebb9bb91d9acf786a1f5c template"><td class="memItemLeft">std::string_view&#160;</td><td class="memItemRight"><a class="el" href="#ae7c5e57c041ebb9bb91d9acf786a1f5c">accept_while</a> (Pred pred)</td></tr>
+<tr class="memdesc:ae7c5e57c041ebb9bb91d9acf786a1f5c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="#a0bbfc87be21bdd46d883002eb10303c1" title="Get next char32_t in Lexer::buf_ and extend Lexer::loc_ to cover it.">Lexer::next</a> as long as <code class="param">pred</code> holds, and.  <br /></td></tr>
+<tr id="pro-methods-0" class="groupHeader"><td colspan="2"><div class="groupHeader">Text</div></td></tr>
+<tr><td colspan="2" class="ititle"><div class="groupText"><p>What has been lexed since <a class="el" href="#a0ecd9086f866aa9a8d849620aba195a0" title="Invoke before assembling the next token.">Lexer::start</a>.</p>
+<p>The whole source sits in <a class="el" href="#ae93aa4d0d0632b0494c78ca67a48f99c">Lexer::buf_</a>, so <a class="el" href="#a142d42503cc2dbeb8c496b66d47e75c7" title="Location of the token we are currently constructing - see Lexer::view.">Lexer::loc_</a> already <em>is</em> the token and <a class="el" href="#a5f1384d70696c2437367020346f18929">Lexer::view</a> costs nothing. </p>
+</div></td></tr>
+<tr class="memitem:a5f1384d70696c2437367020346f18929" id="r_a5f1384d70696c2437367020346f18929"><td class="memItemLeft">std::string_view&#160;</td><td class="memItemRight"><a class="el" href="#a5f1384d70696c2437367020346f18929">view</a> () const</td></tr>
+<tr class="memitem:a62c91002f3e6f90a747014dcb7ae9ab0" id="r_a62c91002f3e6f90a747014dcb7ae9ab0"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a62c91002f3e6f90a747014dcb7ae9ab0">lower</a> () const</td></tr>
+<tr class="memdesc:a62c91002f3e6f90a747014dcb7ae9ab0"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="#a5f1384d70696c2437367020346f18929">Lexer::view</a>, case-folded - what a case-insensitive language like FORTRAN or SQL wants to intern.  <br /></td></tr>
+<tr class="memitem:aeb22b8b33c618af27f7ecaef9addbec0" id="r_aeb22b8b33c618af27f7ecaef9addbec0"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#aeb22b8b33c618af27f7ecaef9addbec0">upper</a> () const</td></tr>
+<tr class="memitem:ae8198a0592d7fd5b8c27162942fc8316" id="r_ae8198a0592d7fd5b8c27162942fc8316"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#ae8198a0592d7fd5b8c27162942fc8316">fold</a> (char32_t(*f)(char32_t) noexcept) const</td></tr>
+<tr id="pro-methods-1" class="groupHeader"><td colspan="2"><div class="groupHeader">Recover</div></td></tr>
 <tr><td colspan="2" class="ititle"><div class="groupText"><p><a class="el" href="#a0bbfc87be21bdd46d883002eb10303c1" title="Get next char32_t in Lexer::buf_ and extend Lexer::loc_ to cover it.">Lexer::next</a> input that cannot be part of a token, report it, and keep the current lexer going.</p>
-<p>Invoke after <a class="el" href="#a0ecd9086f866aa9a8d849620aba195a0" title="Invoke before assembling the next token.">Lexer::start</a>, so <a class="el" href="#a142d42503cc2dbeb8c496b66d47e75c7" title="Location of the token we are currently constructing within Lexer::str_,.">Lexer::loc_</a> spans exactly what was discarded. </p>
+<p>Invoke after <a class="el" href="#a0ecd9086f866aa9a8d849620aba195a0" title="Invoke before assembling the next token.">Lexer::start</a>, so <a class="el" href="#a142d42503cc2dbeb8c496b66d47e75c7" title="Location of the token we are currently constructing - see Lexer::view.">Lexer::loc_</a> spans exactly what was discarded. </p>
 </div></td></tr>
 <tr class="memitem:a134ea7d6d039572a2c98ff897ce1762b" id="r_a134ea7d6d039572a2c98ff897ce1762b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a134ea7d6d039572a2c98ff897ce1762b">recover_utf8</a> ()</td></tr>
 <tr class="memitem:a989aa9f13fc738ab2c5aaf330c57105c" id="r_a989aa9f13fc738ab2c5aaf330c57105c"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a989aa9f13fc738ab2c5aaf330c57105c">recover_char</a> ()</td></tr>
 <tr class="memdesc:a989aa9f13fc738ab2c5aaf330c57105c"><td class="mdescLeft">&#160;</td><td class="mdescRight">One character, reported as <span class="tt">S::char_err</span>.  <br /></td></tr>
-<tr id="pro-methods-1" class="groupHeader"><td colspan="2"><div class="groupHeader">Diagnostics</div></td></tr>
+<tr id="pro-methods-2" class="groupHeader"><td colspan="2"><div class="groupHeader">Diagnostics</div></td></tr>
 <tr><td colspan="2" class="ititle"><div class="groupText"><p>The defaults <code class="param">S</code> may replace with one of its own.</p>
 <p>Each yields the <a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and hands each to the Diag that lays it out.">Error</a> it reported into, so a Note can be chained. </p>
 </div></td></tr>
 <tr class="memitem:a64eb8bb5d03958cd555482f861298b1f" id="r_a64eb8bb5d03958cd555482f861298b1f"><td class="memItemLeft"><a class="el" href="classfe_1_1Error.html">fe::Error</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a64eb8bb5d03958cd555482f861298b1f">error</a> ()</td></tr>
 <tr class="memitem:a4707cb64aed5b2649a6aececccc10471" id="r_a4707cb64aed5b2649a6aececccc10471"><td class="memItemLeft">const <a class="el" href="classfe_1_1Error.html">fe::Error</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a4707cb64aed5b2649a6aececccc10471">error</a> () const</td></tr>
 <tr class="memitem:aa412d38d8136b01bf1f80b39024c502b" id="r_aa412d38d8136b01bf1f80b39024c502b"><td class="memItemLeft"><a class="el" href="classfe_1_1Error.html">fe::Error</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#aa412d38d8136b01bf1f80b39024c502b">utf8_err</a> ()</td></tr>
-<tr class="memdesc:aa412d38d8136b01bf1f80b39024c502b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="#a134ea7d6d039572a2c98ff897ce1762b">Lexer::recover_utf8</a> discarded the malformed bytes at <a class="el" href="#a142d42503cc2dbeb8c496b66d47e75c7" title="Location of the token we are currently constructing within Lexer::str_,.">Lexer::loc_</a>.  <br /></td></tr>
+<tr class="memdesc:aa412d38d8136b01bf1f80b39024c502b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="#a134ea7d6d039572a2c98ff897ce1762b">Lexer::recover_utf8</a> discarded the malformed bytes at <a class="el" href="#a142d42503cc2dbeb8c496b66d47e75c7" title="Location of the token we are currently constructing - see Lexer::view.">Lexer::loc_</a>.  <br /></td></tr>
 <tr class="memitem:a64d16180bbc8d11a338fdae0cd56bc46" id="r_a64d16180bbc8d11a338fdae0cd56bc46"><td class="memItemLeft"><a class="el" href="classfe_1_1Error.html">fe::Error</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a64d16180bbc8d11a338fdae0cd56bc46">char_err</a> (char32_t c)</td></tr>
-<tr class="memdesc:a64d16180bbc8d11a338fdae0cd56bc46"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="#a989aa9f13fc738ab2c5aaf330c57105c" title="One character, reported as S::char_err.">Lexer::recover_char</a> discarded <code class="param">c</code> at <a class="el" href="#a142d42503cc2dbeb8c496b66d47e75c7" title="Location of the token we are currently constructing within Lexer::str_,.">Lexer::loc_</a>.  <br /></td></tr>
+<tr class="memdesc:a64d16180bbc8d11a338fdae0cd56bc46"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="#a989aa9f13fc738ab2c5aaf330c57105c" title="One character, reported as S::char_err.">Lexer::recover_char</a> discarded <code class="param">c</code> at <a class="el" href="#a142d42503cc2dbeb8c496b66d47e75c7" title="Location of the token we are currently constructing - see Lexer::view.">Lexer::loc_</a>.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -213,31 +231,7 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:a31d973f31b3c1f2e83dd92b642130ade"><td class="mdescLeft">&#160;</td><td class="mdescRight">Byte offset of the first not yet decoded character.  <br /></td></tr>
 <tr class="memitem:a57c91f2bd983b6d1f21e0b422e905297" id="r_a57c91f2bd983b6d1f21e0b422e905297"><td class="memItemLeft"><a class="el" href="classfe_1_1Ring.html">Ring</a>&lt; <a class="el" href="#structfe_1_1Lexer_1_1Ahead">Ahead</a>, K &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a57c91f2bd983b6d1f21e0b422e905297">ahead_</a></td></tr>
 <tr class="memitem:a142d42503cc2dbeb8c496b66d47e75c7" id="r_a142d42503cc2dbeb8c496b66d47e75c7"><td class="memItemLeft"><a class="el" href="structfe_1_1Loc.html">Loc</a>&#160;</td><td class="memItemRight"><a class="el" href="#a142d42503cc2dbeb8c496b66d47e75c7">loc_</a></td></tr>
-<tr class="memdesc:a142d42503cc2dbeb8c496b66d47e75c7"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a>ation of the token we are currently constructing within <a class="el" href="#a8038ab296487b12c19dc2d7967e6b5c7">Lexer::str_</a>,.  <br /></td></tr>
-<tr class="memitem:a8038ab296487b12c19dc2d7967e6b5c7" id="r_a8038ab296487b12c19dc2d7967e6b5c7"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a8038ab296487b12c19dc2d7967e6b5c7">str_</a></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-member-group" class="groupheader"><a id="member-group" name="member-group"></a>
-Accept</h2></td></tr>
-<tr><td class="ititle" colspan="2"><p>Accept next character in <a class="el" href="#ae93aa4d0d0632b0494c78ca67a48f99c">Lexer::buf_</a>, depending on some condition. </p>
-</td></tr>
-<tr class="memitem:a99366b3ab28fff1d6a1013b1007246a6" id="r_a99366b3ab28fff1d6a1013b1007246a6"><td class="memItemLeft">enum class &#160;</td><td class="memItemRight"><a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6">Append</a> { <br />
-&#160;&#160;<a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6ad15305d7a4e34e02489c74a5ef542f36">Off</a>
-, <br />
-&#160;&#160;<a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6a521c36a31c2762741cf0f8890cbe05e3">On</a>
-, <br />
-&#160;&#160;<a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6ab75fcdd2d72d9e000beab48622402d93">Lower</a>
-, <br />
-&#160;&#160;<a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6a19de5b94f7b83900d4b296d9fa491aec">Upper</a>
-<br />
- }</td></tr>
-<tr class="memitem:abdcc02fc2210e9ba86efb33616a98162" id="r_abdcc02fc2210e9ba86efb33616a98162"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6">Append</a> append = Append::On, class Pred&gt; </td></tr>
-<tr class="memitem:abdcc02fc2210e9ba86efb33616a98162 template"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#abdcc02fc2210e9ba86efb33616a98162">accept</a> (Pred pred)</td></tr>
-<tr class="memitem:aff112fcbcf92e4dbb66ec7285abbdc3a" id="r_aff112fcbcf92e4dbb66ec7285abbdc3a"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6">Append</a> append = Append::On&gt; </td></tr>
-<tr class="memitem:aff112fcbcf92e4dbb66ec7285abbdc3a template"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aff112fcbcf92e4dbb66ec7285abbdc3a">accept</a> (char32_t c)</td></tr>
-<tr class="memitem:a440e792690fe68c243429847b2ab2659" id="r_a440e792690fe68c243429847b2ab2659"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6">Append</a> append = Append::On&gt; </td></tr>
-<tr class="memitem:a440e792690fe68c243429847b2ab2659 template"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a440e792690fe68c243429847b2ab2659">accept</a> (char c)</td></tr>
-<tr class="memitem:a0961016fffdf2e6e70dae5a9e8553cad" id="r_a0961016fffdf2e6e70dae5a9e8553cad"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6">Append</a> append = Append::On&gt; </td></tr>
-<tr class="memitem:a0961016fffdf2e6e70dae5a9e8553cad template"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a0961016fffdf2e6e70dae5a9e8553cad">accept</a> (char8_t c)</td></tr>
+<tr class="memdesc:a142d42503cc2dbeb8c496b66d47e75c7"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a>ation of the token we are currently constructing - see <a class="el" href="#a5f1384d70696c2437367020346f18929">Lexer::view</a>.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;size_t K, class S&gt;<br />
@@ -289,44 +283,6 @@ end</td>
 <td class="fielddoc">
 </td></tr>
 </table>
-
-</div>
-</div>
-<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Member Enumeration Documentation</h2>
-<a id="a99366b3ab28fff1d6a1013b1007246a6" name="a99366b3ab28fff1d6a1013b1007246a6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99366b3ab28fff1d6a1013b1007246a6">&#9670;&#160;</a></span>Append</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;size_t K, class S&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum class <a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6">fe::Lexer::Append</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel strong">strong</span><span class="mlabel protected">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>What should happen to the accepted char? Normalize identifiers via <a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6ab75fcdd2d72d9e000beab48622402d93" title="Append accepted char via fe::utf8::tolower` to Lexer::str_.">Append::Lower</a> or <a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6a19de5b94f7b83900d4b296d9fa491aec" title="Append accepted char via fe::utf8::toupper` to Lexer::str_.">Append::Upper</a> for case-insensitive languages like FORTRAN or SQL. </p>
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a99366b3ab28fff1d6a1013b1007246a6ad15305d7a4e34e02489c74a5ef542f36" name="a99366b3ab28fff1d6a1013b1007246a6ad15305d7a4e34e02489c74a5ef542f36"></a>Off&#160;</td><td class="fielddoc"><p>Do not append accepted char to <a class="el" href="#a8038ab296487b12c19dc2d7967e6b5c7">Lexer::str_</a>. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a99366b3ab28fff1d6a1013b1007246a6a521c36a31c2762741cf0f8890cbe05e3" name="a99366b3ab28fff1d6a1013b1007246a6a521c36a31c2762741cf0f8890cbe05e3"></a>On&#160;</td><td class="fielddoc"><p><a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6">Append</a> accepted char as is to <a class="el" href="#a8038ab296487b12c19dc2d7967e6b5c7">Lexer::str_</a>. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a99366b3ab28fff1d6a1013b1007246a6ab75fcdd2d72d9e000beab48622402d93" name="a99366b3ab28fff1d6a1013b1007246a6ab75fcdd2d72d9e000beab48622402d93"></a>Lower&#160;</td><td class="fielddoc"><p><a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6">Append</a> accepted char via <a class="el" href="namespacefe_1_1utf8.html#ae585cc1899751df0f6baffc16ef5243e">fe::utf8::tolower</a>` to <a class="el" href="#a8038ab296487b12c19dc2d7967e6b5c7">Lexer::str_</a>. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a99366b3ab28fff1d6a1013b1007246a6a19de5b94f7b83900d4b296d9fa491aec" name="a99366b3ab28fff1d6a1013b1007246a6a19de5b94f7b83900d4b296d9fa491aec"></a>Upper&#160;</td><td class="fielddoc"><p><a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6">Append</a> accepted char via <a class="el" href="namespacefe_1_1utf8.html#ae1aff09fac8ea6289eaf537b61ad6114">fe::utf8::toupper</a>` to <a class="el" href="#a8038ab296487b12c19dc2d7967e6b5c7">Lexer::str_</a>. </p>
-</td></tr>
-</table>
-
-<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00081">81</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
 
 </div>
 </div>
@@ -428,20 +384,18 @@ template&lt;size_t K, class S&gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00043">43</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
 
-<p class="reference">References <a class="el" href="lexer_8h_source.html#l00161">ahead_</a>, <a class="el" href="lexer_8h_source.html#l00158">buf_</a>, <a class="el" href="lexer_8h_source.html#l00160">cursor_</a>, <a class="el" href="lexer_8h_source.html#l00159">src_</a>, and <a class="el" href="lexer_8h_source.html#l00064">start()</a>.</p>
+<p class="reference">References <a class="el" href="lexer_8h_source.html#l00186">ahead_</a>, <a class="el" href="lexer_8h_source.html#l00183">buf_</a>, <a class="el" href="lexer_8h_source.html#l00185">cursor_</a>, <a class="el" href="lexer_8h_source.html#l00184">src_</a>, and <a class="el" href="lexer_8h_source.html#l00064">start()</a>.</p>
 
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a440e792690fe68c243429847b2ab2659" name="a440e792690fe68c243429847b2ab2659"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a440e792690fe68c243429847b2ab2659">&#9670;&#160;</a></span>accept() <span class="overload">[1/4]</span></h2>
+<a id="a721073113d17c45a947c25d33d53ff3b" name="a721073113d17c45a947c25d33d53ff3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a721073113d17c45a947c25d33d53ff3b">&#9670;&#160;</a></span>accept() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;size_t K, class S&gt; </div>
-<div class="memtemplate">
-template&lt;<a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6">Append</a> append = Append::On&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -460,21 +414,21 @@ template&lt;<a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6">Append</a> a
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00106">106</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00103">103</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
 
-<p class="reference">References <a class="el" href="lexer_8h_source.html#l00091">accept()</a>.</p>
+<p class="reference">References <a class="el" href="lexer_8h_source.html#l00103">accept()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00103">accept()</a>.</p>
 
 </div>
 </div>
-<a id="aff112fcbcf92e4dbb66ec7285abbdc3a" name="aff112fcbcf92e4dbb66ec7285abbdc3a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff112fcbcf92e4dbb66ec7285abbdc3a">&#9670;&#160;</a></span>accept() <span class="overload">[2/4]</span></h2>
+<a id="ade52178526efaf0b1e006a7d062784bd" name="ade52178526efaf0b1e006a7d062784bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade52178526efaf0b1e006a7d062784bd">&#9670;&#160;</a></span>accept() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;size_t K, class S&gt; </div>
-<div class="memtemplate">
-template&lt;<a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6">Append</a> append = Append::On&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -493,21 +447,21 @@ template&lt;<a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6">Append</a> a
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00105">105</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00102">102</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
 
-<p class="reference">References <a class="el" href="lexer_8h_source.html#l00091">accept()</a>.</p>
+<p class="reference">References <a class="el" href="lexer_8h_source.html#l00102">accept()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00102">accept()</a>.</p>
 
 </div>
 </div>
-<a id="a0961016fffdf2e6e70dae5a9e8553cad" name="a0961016fffdf2e6e70dae5a9e8553cad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0961016fffdf2e6e70dae5a9e8553cad">&#9670;&#160;</a></span>accept() <span class="overload">[3/4]</span></h2>
+<a id="abafa8c63b04317da94d934eaeb264a04" name="abafa8c63b04317da94d934eaeb264a04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abafa8c63b04317da94d934eaeb264a04">&#9670;&#160;</a></span>accept() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;size_t K, class S&gt; </div>
-<div class="memtemplate">
-template&lt;<a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6">Append</a> append = Append::On&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -526,21 +480,23 @@ template&lt;<a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6">Append</a> a
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00107">107</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00104">104</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
 
-<p class="reference">References <a class="el" href="lexer_8h_source.html#l00091">accept()</a>.</p>
+<p class="reference">References <a class="el" href="lexer_8h_source.html#l00104">accept()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00104">accept()</a>.</p>
 
 </div>
 </div>
-<a id="abdcc02fc2210e9ba86efb33616a98162" name="abdcc02fc2210e9ba86efb33616a98162"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abdcc02fc2210e9ba86efb33616a98162">&#9670;&#160;</a></span>accept() <span class="overload">[4/4]</span></h2>
+<a id="ada0b9946cc00d08001b26f8899793d15" name="ada0b9946cc00d08001b26f8899793d15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada0b9946cc00d08001b26f8899793d15">&#9670;&#160;</a></span>accept() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;size_t K, class S&gt; </div>
 <div class="memtemplate">
-template&lt;<a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6">Append</a> append = Append::On, class Pred&gt; </div>
+template&lt;class Pred&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -558,13 +514,51 @@ template&lt;<a class="el" href="#a99366b3ab28fff1d6a1013b1007246a6">Append</a> a
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if <code class="param">pred</code> holds. In this case invoke <a class="el" href="#a0bbfc87be21bdd46d883002eb10303c1" title="Get next char32_t in Lexer::buf_ and extend Lexer::loc_ to cover it.">Lexer::next()</a> and append to <a class="el" href="#a8038ab296487b12c19dc2d7967e6b5c7">Lexer::str_</a>, if <code class="param">append</code>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00091">91</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
+<p>Accept next character in <a class="el" href="#ae93aa4d0d0632b0494c78ca67a48f99c">Lexer::buf_</a> and <a class="el" href="#a0bbfc87be21bdd46d883002eb10303c1" title="Get next char32_t in Lexer::buf_ and extend Lexer::loc_ to cover it.">Lexer::next</a> it, if <code class="param">pred</code> holds. </p>
 
-<p class="reference">References <a class="el" href="lexer_8h_source.html#l00058">ahead()</a>, <a class="el" href="lexer_8h_source.html#l00084">Lower</a>, <a class="el" href="lexer_8h_source.html#l00082">Off</a>, <a class="el" href="lexer_8h_source.html#l00163">str_</a>, <a class="el" href="utf8_8h_source.html#l00208">fe::utf8::tolower()</a>, <a class="el" href="utf8_8h_source.html#l00209">fe::utf8::toupper()</a>, and <a class="el" href="lexer_8h_source.html#l00085">Upper</a>.</p>
+<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00095">95</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00106">accept()</a>, <a class="el" href="lexer_8h_source.html#l00105">accept()</a>, <a class="el" href="lexer_8h_source.html#l00107">accept()</a>, and <a class="el" href="lexer_8h_source.html#l00117">recover_utf8()</a>.</p>
+<p class="reference">References <a class="el" href="lexer_8h_source.html#l00058">ahead()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00142">recover_utf8()</a>.</p>
+
+</div>
+</div>
+<a id="ae7c5e57c041ebb9bb91d9acf786a1f5c" name="ae7c5e57c041ebb9bb91d9acf786a1f5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7c5e57c041ebb9bb91d9acf786a1f5c">&#9670;&#160;</a></span>accept_while()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t K, class S&gt; </div>
+<div class="memtemplate">
+template&lt;class Pred&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string_view <a class="el" href="classfe_1_1Lexer.html">fe::Lexer</a>&lt; K, S &gt;::accept_while </td>
+          <td>(</td>
+          <td class="paramtype">Pred</td>          <td class="paramname"><span class="paramname"><em>pred</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="#a0bbfc87be21bdd46d883002eb10303c1" title="Get next char32_t in Lexer::buf_ and extend Lexer::loc_ to cover it.">Lexer::next</a> as long as <code class="param">pred</code> holds, and. </p>
+<dl class="section return"><dt>Returns</dt><dd>the run just consumed. An ASCII run is taken straight out of <a class="el" href="#ae93aa4d0d0632b0494c78ca67a48f99c">Lexer::buf_</a> - no code point is decoded and the lookahead is re-primed once at the end, which is what makes scanning an identifier or a stretch of white space cost a compare per byte. A character beyond ASCII falls back to <a class="el" href="#a0bbfc87be21bdd46d883002eb10303c1" title="Get next char32_t in Lexer::buf_ and extend Lexer::loc_ to cover it.">Lexer::next</a>, so <code class="param">pred</code> may match one. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Only worth it if the lexed text is expected to be long such as identifiers or comments. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00114">114</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
+
+<p class="reference">References <a class="el" href="lexer_8h_source.html#l00058">ahead()</a>, <a class="el" href="lexer_8h_source.html#l00186">ahead_</a>, <a class="el" href="lexer_8h_source.html#l00183">buf_</a>, <a class="el" href="lexer_8h_source.html#l00185">cursor_</a>, <a class="el" href="loc_8h_source.html#l00093">fe::Loc::end</a>, <a class="el" href="lexer_8h_source.html#l00187">loc_</a>, <a class="el" href="loc_8h_source.html#l00031">fe::Pos::off</a>, and <a class="el" href="structfe_1_1Pos.html#a8ff13f229aec036fd7887acd4d8d03b8">fe::Pos::Pos()</a>.</p>
 
 </div>
 </div>
@@ -595,9 +589,9 @@ template&lt;size_t K, class S&gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00058">58</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
 
-<p class="reference">References <a class="el" href="lexer_8h_source.html#l00161">ahead_</a>.</p>
+<p class="reference">References <a class="el" href="lexer_8h_source.html#l00186">ahead_</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00091">accept()</a>, and <a class="el" href="lexer_8h_source.html#l00127">recover_char()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00095">accept()</a>, <a class="el" href="lexer_8h_source.html#l00114">accept_while()</a>, and <a class="el" href="lexer_8h_source.html#l00152">recover_char()</a>.</p>
 
 </div>
 </div>
@@ -626,11 +620,11 @@ template&lt;size_t K, class S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="#a989aa9f13fc738ab2c5aaf330c57105c" title="One character, reported as S::char_err.">Lexer::recover_char</a> discarded <code class="param">c</code> at <a class="el" href="#a142d42503cc2dbeb8c496b66d47e75c7" title="Location of the token we are currently constructing within Lexer::str_,.">Lexer::loc_</a>. </p>
+<p><a class="el" href="#a989aa9f13fc738ab2c5aaf330c57105c" title="One character, reported as S::char_err.">Lexer::recover_char</a> discarded <code class="param">c</code> at <a class="el" href="#a142d42503cc2dbeb8c496b66d47e75c7" title="Location of the token we are currently constructing - see Lexer::view.">Lexer::loc_</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00150">150</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00175">175</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
 
-<p class="reference">References <a class="el" href="error_8h_source.html#l00096">fe::Error::e()</a>, <a class="el" href="lexer_8h_source.html#l00138">error()</a>, and <a class="el" href="lexer_8h_source.html#l00162">loc_</a>.</p>
+<p class="reference">References <a class="el" href="error_8h_source.html#l00096">fe::Error::e()</a>, <a class="el" href="lexer_8h_source.html#l00163">error()</a>, and <a class="el" href="lexer_8h_source.html#l00187">loc_</a>.</p>
 
 </div>
 </div>
@@ -659,9 +653,9 @@ template&lt;size_t K, class S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00138">138</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00163">163</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00150">char_err()</a>, and <a class="el" href="lexer_8h_source.html#l00142">utf8_err()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00175">char_err()</a>, and <a class="el" href="lexer_8h_source.html#l00167">utf8_err()</a>.</p>
 
 </div>
 </div>
@@ -690,7 +684,74 @@ template&lt;size_t K, class S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00139">139</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00164">164</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
+
+</div>
+</div>
+<a id="ae8198a0592d7fd5b8c27162942fc8316" name="ae8198a0592d7fd5b8c27162942fc8316"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8198a0592d7fd5b8c27162942fc8316">&#9670;&#160;</a></span>fold()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t K, class S&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string <a class="el" href="classfe_1_1Lexer.html">fe::Lexer</a>&lt; K, S &gt;::fold </td>
+          <td>(</td>
+          <td class="paramtype">char32_t(*</td>          <td class="paramname"><span class="paramname"><em>f&#160;</em></span>)(char32_t) noexcept</td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00078">78</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
+
+<p class="reference">References <a class="el" href="lexer_8h_source.html#l00070">view()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00074">lower()</a>, and <a class="el" href="lexer_8h_source.html#l00075">upper()</a>.</p>
+
+</div>
+</div>
+<a id="a62c91002f3e6f90a747014dcb7ae9ab0" name="a62c91002f3e6f90a747014dcb7ae9ab0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62c91002f3e6f90a747014dcb7ae9ab0">&#9670;&#160;</a></span>lower()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t K, class S&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string <a class="el" href="classfe_1_1Lexer.html">fe::Lexer</a>&lt; K, S &gt;::lower </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="#a5f1384d70696c2437367020346f18929">Lexer::view</a>, case-folded - what a case-insensitive language like FORTRAN or SQL wants to intern. </p>
+<dl class="section note"><dt>Note</dt><dd>Byte-wise, which is all it takes: only ASCII folds, and no UTF-8 sequence spells it. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00074">74</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
+
+<p class="reference">References <a class="el" href="lexer_8h_source.html#l00078">fold()</a>, and <a class="el" href="utf8_8h_source.html#l00157">fe::utf8::tolower()</a>.</p>
 
 </div>
 </div>
@@ -719,12 +780,12 @@ template&lt;size_t K, class S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Get next <span class="tt">char32_t</span> in <a class="el" href="#ae93aa4d0d0632b0494c78ca67a48f99c">Lexer::buf_</a> and extend <a class="el" href="#a142d42503cc2dbeb8c496b66d47e75c7" title="Location of the token we are currently constructing within Lexer::str_,.">Lexer::loc_</a> to cover it. </p>
+<p>Get next <span class="tt">char32_t</span> in <a class="el" href="#ae93aa4d0d0632b0494c78ca67a48f99c">Lexer::buf_</a> and extend <a class="el" href="#a142d42503cc2dbeb8c496b66d47e75c7" title="Location of the token we are currently constructing - see Lexer::view.">Lexer::loc_</a> to cover it. </p>
 <dl class="section return"><dt>Returns</dt><dd>utf8::Invalid on an invalid UTF-8 sequence. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00071">71</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00088">88</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
 
-<p class="reference">References <a class="el" href="lexer_8h_source.html#l00161">ahead_</a>, <a class="el" href="loc_8h_source.html#l00093">fe::Loc::end</a>, and <a class="el" href="lexer_8h_source.html#l00162">loc_</a>.</p>
+<p class="reference">References <a class="el" href="lexer_8h_source.html#l00186">ahead_</a>, <a class="el" href="loc_8h_source.html#l00093">fe::Loc::end</a>, and <a class="el" href="lexer_8h_source.html#l00187">loc_</a>.</p>
 
 </div>
 </div>
@@ -757,7 +818,7 @@ template&lt;size_t K, class S&gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00061">61</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
 
-<p class="reference">References <a class="el" href="lexer_8h_source.html#l00161">ahead_</a>, and <a class="el" href="lexer_8h_source.html#l00159">src_</a>.</p>
+<p class="reference">References <a class="el" href="lexer_8h_source.html#l00186">ahead_</a>, and <a class="el" href="lexer_8h_source.html#l00184">src_</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00064">start()</a>.</p>
 
@@ -791,7 +852,7 @@ template&lt;size_t K, class S&gt; </div>
 <p>One character, reported as <span class="tt">S::char_err</span>. </p>
 <p>This is the last resort of your token dispatch: nothing in your language starts with it. </p><dl class="section warning"><dt>Warning</dt><dd>Never at utf8::EoF - accept that first or your lexer will spin. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00127">127</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00152">152</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
 
 <p class="reference">References <a class="el" href="lexer_8h_source.html#l00058">ahead()</a>.</p>
 
@@ -823,9 +884,9 @@ template&lt;size_t K, class S&gt; </div>
 </div><div class="memdoc">
 <p>A whole run of malformed UTF-8, if any, reported as one <span class="tt">S::utf8_err</span>. Check this <em>before</em> your token dispatch: utf8::Invalid is no code point and matches no rule of yours. </p>
 
-<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00117">117</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00142">142</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
 
-<p class="reference">References <a class="el" href="lexer_8h_source.html#l00091">accept()</a>.</p>
+<p class="reference">References <a class="el" href="lexer_8h_source.html#l00095">accept()</a>.</p>
 
 </div>
 </div>
@@ -858,9 +919,40 @@ template&lt;size_t K, class S&gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00064">64</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
 
-<p class="reference">References <a class="el" href="loc_8h_source.html#l00063">fe::Loc::anew_begin()</a>, <a class="el" href="lexer_8h_source.html#l00162">loc_</a>, <a class="el" href="lexer_8h_source.html#l00061">peek()</a>, and <a class="el" href="lexer_8h_source.html#l00163">str_</a>.</p>
+<p class="reference">References <a class="el" href="loc_8h_source.html#l00063">fe::Loc::anew_begin()</a>, <a class="el" href="lexer_8h_source.html#l00187">loc_</a>, and <a class="el" href="lexer_8h_source.html#l00061">peek()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00043">Lexer()</a>.</p>
+
+</div>
+</div>
+<a id="aeb22b8b33c618af27f7ecaef9addbec0" name="aeb22b8b33c618af27f7ecaef9addbec0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb22b8b33c618af27f7ecaef9addbec0">&#9670;&#160;</a></span>upper()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t K, class S&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string <a class="el" href="classfe_1_1Lexer.html">fe::Lexer</a>&lt; K, S &gt;::upper </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00075">75</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
+
+<p class="reference">References <a class="el" href="lexer_8h_source.html#l00078">fold()</a>, and <a class="el" href="utf8_8h_source.html#l00158">fe::utf8::toupper()</a>.</p>
 
 </div>
 </div>
@@ -889,11 +981,44 @@ template&lt;size_t K, class S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="#a134ea7d6d039572a2c98ff897ce1762b">Lexer::recover_utf8</a> discarded the malformed bytes at <a class="el" href="#a142d42503cc2dbeb8c496b66d47e75c7" title="Location of the token we are currently constructing within Lexer::str_,.">Lexer::loc_</a>. </p>
+<p><a class="el" href="#a134ea7d6d039572a2c98ff897ce1762b">Lexer::recover_utf8</a> discarded the malformed bytes at <a class="el" href="#a142d42503cc2dbeb8c496b66d47e75c7" title="Location of the token we are currently constructing - see Lexer::view.">Lexer::loc_</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00142">142</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00167">167</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
 
-<p class="reference">References <a class="el" href="error_8h_source.html#l00096">fe::Error::e()</a>, <a class="el" href="lexer_8h_source.html#l00138">error()</a>, and <a class="el" href="lexer_8h_source.html#l00162">loc_</a>.</p>
+<p class="reference">References <a class="el" href="error_8h_source.html#l00096">fe::Error::e()</a>, <a class="el" href="lexer_8h_source.html#l00163">error()</a>, and <a class="el" href="lexer_8h_source.html#l00187">loc_</a>.</p>
+
+</div>
+</div>
+<a id="a5f1384d70696c2437367020346f18929" name="a5f1384d70696c2437367020346f18929"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f1384d70696c2437367020346f18929">&#9670;&#160;</a></span>view()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t K, class S&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string_view <a class="el" href="classfe_1_1Lexer.html">fe::Lexer</a>&lt; K, S &gt;::view </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00070">70</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
+
+<p class="reference">References <a class="el" href="loc_8h_source.html#l00092">fe::Loc::begin</a>, <a class="el" href="lexer_8h_source.html#l00183">buf_</a>, <a class="el" href="lexer_8h_source.html#l00187">loc_</a>, <a class="el" href="loc_8h_source.html#l00031">fe::Pos::off</a>, and <a class="el" href="loc_8h_source.html#l00065">fe::Loc::size()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00078">fold()</a>.</p>
 
 </div>
 </div>
@@ -920,9 +1045,9 @@ template&lt;size_t K, class S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00161">161</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00186">186</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00058">ahead()</a>, <a class="el" href="lexer_8h_source.html#l00043">Lexer()</a>, <a class="el" href="lexer_8h_source.html#l00071">next()</a>, and <a class="el" href="lexer_8h_source.html#l00061">peek()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00114">accept_while()</a>, <a class="el" href="lexer_8h_source.html#l00058">ahead()</a>, <a class="el" href="lexer_8h_source.html#l00043">Lexer()</a>, <a class="el" href="lexer_8h_source.html#l00088">next()</a>, and <a class="el" href="lexer_8h_source.html#l00061">peek()</a>.</p>
 
 </div>
 </div>
@@ -948,9 +1073,9 @@ template&lt;size_t K, class S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00158">158</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00183">183</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00043">Lexer()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00114">accept_while()</a>, <a class="el" href="lexer_8h_source.html#l00043">Lexer()</a>, and <a class="el" href="lexer_8h_source.html#l00070">view()</a>.</p>
 
 </div>
 </div>
@@ -978,9 +1103,9 @@ template&lt;size_t K, class S&gt; </div>
 
 <p>Byte offset of the first not yet decoded character. </p>
 
-<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00160">160</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00185">185</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00043">Lexer()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00114">accept_while()</a>, and <a class="el" href="lexer_8h_source.html#l00043">Lexer()</a>.</p>
 
 </div>
 </div>
@@ -1006,11 +1131,11 @@ template&lt;size_t K, class S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a>ation of the token we are currently constructing within <a class="el" href="#a8038ab296487b12c19dc2d7967e6b5c7">Lexer::str_</a>,. </p>
+<p><a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a>ation of the token we are currently constructing - see <a class="el" href="#a5f1384d70696c2437367020346f18929">Lexer::view</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00162">162</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00187">187</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00150">char_err()</a>, <a class="el" href="lexer_8h_source.html#l00071">next()</a>, <a class="el" href="lexer_8h_source.html#l00064">start()</a>, and <a class="el" href="lexer_8h_source.html#l00142">utf8_err()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00114">accept_while()</a>, <a class="el" href="lexer_8h_source.html#l00175">char_err()</a>, <a class="el" href="lexer_8h_source.html#l00088">next()</a>, <a class="el" href="lexer_8h_source.html#l00064">start()</a>, <a class="el" href="lexer_8h_source.html#l00167">utf8_err()</a>, and <a class="el" href="lexer_8h_source.html#l00070">view()</a>.</p>
 
 </div>
 </div>
@@ -1036,37 +1161,9 @@ template&lt;size_t K, class S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00159">159</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00184">184</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00043">Lexer()</a>, and <a class="el" href="lexer_8h_source.html#l00061">peek()</a>.</p>
-
-</div>
-</div>
-<a id="a8038ab296487b12c19dc2d7967e6b5c7" name="a8038ab296487b12c19dc2d7967e6b5c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8038ab296487b12c19dc2d7967e6b5c7">&#9670;&#160;</a></span>str_</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;size_t K, class S&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string <a class="el" href="classfe_1_1Lexer.html">fe::Lexer</a>&lt; K, S &gt;::str_</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="lexer_8h_source.html#l00163">163</a> of file <a class="el" href="lexer_8h_source.html">lexer.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="lexer_8h_source.html#l00091">accept()</a>, and <a class="el" href="lexer_8h_source.html#l00064">start()</a>.</p>
 
 </div>
 </div>
