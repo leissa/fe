@@ -14,8 +14,9 @@
 #    define popen  _popen
 #    define pclose _pclose
 #    define WEXITSTATUS
-#elif defined(__APPLE__) || defined(__linux__)
+#else // POSIX (macos / linux / BSD)
 #    include <dlfcn.h>
+#    include <sys/wait.h>
 #endif
 
 using namespace std::string_literals;
@@ -45,12 +46,10 @@ std::optional<fs::path> path_to_lib([[maybe_unused]] const void* addr) {
     }
 
     return fs::weakly_canonical(fs::path(buf));
-#elif defined(__APPLE__) || defined(__linux__)
+#else // POSIX (macos / linux / BSD)
     Dl_info info;
     if (dladdr(addr, &info) == 0) return {};
     return fs::weakly_canonical(info.dli_fname);
-#else
-    return {};
 #endif
 }
 
