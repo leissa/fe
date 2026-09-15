@@ -141,6 +141,8 @@ It provides a compact set of reusable, well-integrated components:
 - `fe::VLA` for low-level variable-length arrays appended to `fe::Arena`-allocated objects.
 - `fe::Bitset` for a dynamically growing bit set that keeps small sets inline and only allocates once they grow.
 - `fe::XTrie` for interned, immutable sets - an [IndexedTrie](https://dl.acm.org/doi/10.1145/3808286) that is space-efficient and answers intersection tests fast.
+- `fe::Patricia` for interned, immutable maps - and sets, via `fe::PatriciaSet` - keyed by an unsigned integer: a [Patricia tree](https://dl.acm.org/doi/10.1145/321479.321481) - see Okasaki and Gill's [Fast Mergeable Integer Maps](https://ku-fpg.github.io/papers/Okasaki-98-IntMap/) - whose small subtrees collapse into sorted arrays, so equal contents are pointer-equal and union/intersection/difference keep whatever sharing they can.
+  `fe::PatriciaPtr` is the same thing as a set of pointers, keyed and ordered by an id the elements carry themselves.
 - `fe::BFSWorklist`/`fe::DFSWorklist` for worklist traversals that visit each element at most once.
 - Optional `FE_ABSL` support for [Abseil](https://abseil.io/) hash containers.
 - `fe/container.h` for some helpers.

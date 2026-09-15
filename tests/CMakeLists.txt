@@ -7,6 +7,7 @@ target_sources(fe-test
         hash.cpp
         lexer.cpp
         loc.cpp
+        patricia.cpp
         test.cpp
         xtrie.cpp
 )
