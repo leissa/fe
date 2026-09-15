@@ -77,6 +77,9 @@ struct PatriciaVal<Unit> {
 /// @p VT tells Patricia how to hash-cons a @p V; @p V is `Unit` for a set - see PatriciaSet.
 /// @note All operations yield a **new** Map; none of them modify their input.
 /// Nothing is ever freed - the Arena%s release everything at once when the Patricia dies.
+template<class D, class KT, class K, size_t N>
+class PatriciaPtr;
+
 template<class V, class K = uint64_t, size_t N = 8, class VT = PatriciaVal<V>>
 class Patricia {
     static_assert(std::unsigned_integral<K>, "Patricia keys are ordered as unsigned");
@@ -118,6 +121,15 @@ private:
     /// Does @p k live under the prefix @p p with branching bit @p m?
     static constexpr bool match_prefix(K k, K p, K m) noexcept { return mask_of(k, m) == p; }
     ///@}
+
+    /// The entry bound to @p key - or `nullptr`.
+    /// A block holds at most @p N entries, so a scan beats a binary search; the *insertion* point still wants
+    /// `std::lower_bound`, since a miss would scan the whole block.
+    static constexpr const Entry* find(View<Entry> es, K key) noexcept {
+        for (const auto& e : es)
+            if (e.key == key) return &e;
+        return nullptr;
+    }
 
     /// Map tags a node pointer in its two low bits, so no node may be less aligned than that.
     /// Only Leaf can fall short - Arr and Br carry a `size_t` and are aligned enough by themselves.
@@ -322,9 +334,7 @@ public:
                     if (!match_prefix(key, n->prefix, n->mask)) return nullptr;
                     t = zero_bit(key, n->mask) ? t.left() : t.right();
                 } else {
-                    auto es = t.block();
-                    auto i  = std::ranges::lower_bound(es, key, {}, &Entry::key);
-                    return i != es.end() && i->key == key ? &*i : nullptr;
+                    return Patricia::find(t.block(), key);
                 }
             }
         }
@@ -472,6 +482,8 @@ public:
         uintptr_t ptr_ = 0;
 
         friend class Patricia;
+        template<class, class, class, size_t>
+        friend class PatriciaPtr;
         friend std::ostream& operator<<(std::ostream& os, Map map) { return map.stream(os); }
     };
 
@@ -596,10 +608,10 @@ public:
 
         if (t.isa_arr()) {
             auto es = t.block();
-            auto i  = std::ranges::lower_bound(es, key, {}, &Entry::key);
-            if (i == es.end() || i->key != key) return t;
+            auto i  = find(es, key);
+            if (!i) return t;
 
-            auto pos = size_t(i - es.begin());
+            auto pos = size_t(i - es.data());
             auto buf = std::array<Entry, N>();
             auto o   = std::ranges::copy(es.first(pos), buf.begin()).out;
             o        = std::ranges::copy(es.subspan(pos + 1), o).out;
@@ -955,6 +967,316 @@ private:
 
 /// A Patricia set of `uint64_t`; spell its immutable value type `PatriciaSet::Set`.
 using PatriciaSet = Patricia<Unit>;
+
+/// Hash-consed sets of `D*`, ordered by an unsigned id the elements carry themselves.
+/// A thin adaptor over a Patricia whose keys are those ids and whose values are the `D*` they belong to; so a Set
+/// iterates `D*` in ascending id order and equal sets are *pointer-equal*.
+/// @attention Key::key *is* the identity: two elements sharing an id are the same element to a Set.
+/// @p KT is a *key* trait:
+/// ```
+/// struct Key {
+///     static K key(const D*) noexcept;                      ///< Unique id; orders the elements.
+///     static std::ostream& stream(std::ostream&, const D*);  ///< Optional; defaults to Key::key.
+/// };
+/// ```
+/// @attention Every `D` must be at least 8-byte aligned; Set stores a singleton inline in the pointer.
+template<class D, class KT, class K = uint32_t, size_t N = 8>
+class PatriciaPtr {
+private:
+    /// The key already pins down the pointer, so it need not contribute to the hash.
+    struct Val {
+        static constexpr bool eq(D* d1, D* d2) noexcept { return d1 == d2; }
+        static constexpr size_t hash(D*) noexcept { return 0; }
+    };
+
+    using P     = Patricia<D*, K, N, Val>;
+    using Entry = typename P::Entry;
+
+public:
+    /// An immutable set - really just a tagged pointer, so copy it around freely.
+    class Set {
+    private:
+        /// `Patricia::Map` tags the low *two* bits and every node it points at is 8-byte aligned, so bit 2 is ours:
+        /// a Set with it set is the element itself, and a singleton therefore costs no node at all.
+        static constexpr uintptr_t Uniq = 0b100;
+
+        constexpr Set(typename P::Map map) noexcept
+            : word_(map.ptr_) {}
+
+        constexpr bool is_uniq() const noexcept { return word_ & Uniq; }
+        constexpr D* uniq() const noexcept { return std::bit_cast<D*>(word_ & ~Uniq); }
+        /// @attention Only meaningful if !is_uniq().
+        constexpr typename P::Map map() const noexcept { return typename P::Map(word_); }
+
+    public:
+        /// Yields the `D*` in ascending Key::key order.
+        class iterator {
+        public:
+            /// @name Iterator Properties
+            ///@{
+            using iterator_category = std::forward_iterator_tag;
+            using difference_type   = std::ptrdiff_t;
+            using value_type        = D*;
+            using pointer           = D*;
+            using reference         = D*;
+            ///@}
+
+            /// @name Construction
+            ///@{
+            iterator() noexcept = default;
+            ///@}
+
+            /// @name Dereference
+            ///@{
+            reference operator*() const noexcept { return uniq_ ? uniq_ : i_->val; }
+            pointer operator->() const noexcept { return this->operator*(); }
+            ///@}
+
+            /// @name Increment
+            ///@{
+            iterator& operator++() noexcept {
+                if (uniq_)
+                    uniq_ = nullptr;
+                else
+                    ++i_;
+                return *this;
+            }
+
+            iterator operator++(int) noexcept {
+                auto res = *this;
+                this->operator++();
+                return res;
+            }
+            ///@}
+
+            /// @name Comparisons
+            ///@{
+            bool operator==(const iterator& other) const noexcept { return uniq_ == other.uniq_ && i_ == other.i_; }
+            ///@}
+
+        private:
+            explicit iterator(D* uniq) noexcept
+                : uniq_(uniq) {}
+            explicit iterator(typename P::Map::iterator i) noexcept
+                : i_(i) {}
+
+            D* uniq_ = nullptr;
+            typename P::Map::iterator i_;
+
+            friend class Set;
+        };
+
+        /// @name Construction
+        ///@{
+        constexpr Set() noexcept = default; ///< The empty set.
+
+        /// The singleton @f$\{d\}@f$ - stored inline, so this allocates nothing.
+        constexpr explicit Set(D* d) noexcept
+            : word_(std::bit_cast<uintptr_t>(d) | Uniq) {
+            assert((std::bit_cast<uintptr_t>(d) & uintptr_t(0b111)) == 0 && "a D must be at least 8-byte aligned");
+        }
+        ///@}
+
+        /// @name Getters
+        ///@{
+        size_t size() const noexcept { return is_uniq() ? size_t(1) : map().size(); }
+        constexpr bool empty() const noexcept { return word_ == 0; }
+        constexpr explicit operator bool() const noexcept { return word_ != 0; } ///< Not empty?
+
+        D* min() const noexcept { return is_uniq() ? uniq() : edge(map().min()); } ///< Smallest key - or `nullptr`.
+        D* max() const noexcept { return is_uniq() ? uniq() : edge(map().max()); } ///< Largest key - or `nullptr`.
+        ///@}
+
+        /// @name Check Membership
+        ///@{
+        bool contains(D* d) const noexcept {
+            if (is_uniq()) return KT::key(uniq()) == KT::key(d);
+            return map().contains(KT::key(d));
+        }
+
+        /// Is @f$this \cap other \neq \emptyset@f$?
+        [[nodiscard]] bool has_intersection(Set other) const noexcept {
+            if (this->is_uniq()) return other.contains(this->uniq());
+            if (other.is_uniq()) return this->contains(other.uniq());
+            return map().has_intersection(other.map());
+        }
+
+        /// Is @f$this \subseteq other@f$?
+        [[nodiscard]] bool subset_of(Set other) const noexcept {
+            if (this->empty()) return true;
+            if (this->is_uniq()) return other.contains(this->uniq());
+            if (other.is_uniq()) return false; // a non-uniq, non-empty Set holds at least two elements
+            return map().subset_of(other.map());
+        }
+        ///@}
+
+        /// @name Iterators
+        ///@{
+        iterator begin() const noexcept {
+            if (is_uniq()) return iterator(uniq());
+            return iterator(map().begin());
+        }
+        iterator end() const noexcept { return {}; }
+
+        /// Like iterating, but without the iterator's path stack.
+        template<class F>
+        void for_each(F&& f) const {
+            if (is_uniq())
+                std::invoke(f, uniq());
+            else
+                map().for_each([&f](const Entry& e) { std::invoke(f, e.val); });
+        }
+        ///@}
+
+        /// @name Comparisons
+        /// Everything is hash-consed and a singleton is always Uniq, so this compares contents in `O(1)`.
+        ///@{
+        constexpr bool operator==(Set other) const noexcept { return this->word_ == other.word_; }
+        ///@}
+
+        /// @name Output
+        ///@{
+        std::ostream& stream(std::ostream& os) const {
+            os << '{';
+            auto sep = "";
+            for (auto d : *this) {
+                os << sep;
+                if constexpr (requires { KT::stream(os, d); })
+                    KT::stream(os, d);
+                else
+                    os << +KT::key(d);
+                sep = ", ";
+            }
+            return os << '}';
+        }
+
+        void dump() const { stream(std::cout) << std::endl; }
+
+        void dot(std::ostream& os) const {
+            if (is_uniq())
+                stream(os);
+            else
+                map().dot(os);
+        }
+        ///@}
+
+    private:
+        static D* edge(const Entry* e) noexcept { return e ? e->val : nullptr; }
+
+        uintptr_t word_ = 0;
+
+        friend class PatriciaPtr;
+        friend std::ostream& operator<<(std::ostream& os, Set set) { return set.stream(os); }
+    };
+
+    static_assert(std::forward_iterator<typename Set::iterator>);
+    static_assert(std::ranges::range<Set>);
+
+    /// @name Construction
+    ///@{
+    PatriciaPtr& operator=(const PatriciaPtr&) = delete;
+
+    explicit PatriciaPtr(size_t page_size = Arena::Default_Page_Size)
+        : p_(page_size) {}
+    PatriciaPtr(const PatriciaPtr&) = delete;
+    PatriciaPtr(PatriciaPtr&& other)
+        : PatriciaPtr() {
+        swap(*this, other);
+    }
+    ///@}
+
+    /// @name Set Operations
+    /// @note These operations do **not** modify their input; they yield a **new** Set.
+    ///@{
+    [[nodiscard]] static Set singleton(D* d) noexcept { return Set(d); } ///< Yields @f$\{d\}@f$.
+
+    /// Creates a Set with all elements in @p r.
+    template<std::ranges::input_range R>
+    requires std::convertible_to<std::ranges::range_reference_t<R>, D*> [[nodiscard]] Set create(R&& r) {
+        auto v = Vector<Entry>();
+        for (D* d : r)
+            v.emplace_back(Entry{KT::key(d), d});
+        return wrap(p_.create(v));
+    }
+
+    /// Creates a Set with all elements in `[begin, end)`.
+    template<std::input_iterator I, std::sentinel_for<I> S>
+    [[nodiscard]] Set create(I begin, S end) {
+        return create(std::ranges::subrange(begin, end));
+    }
+
+    /// Creates a Set with all elements in @p list.
+    [[nodiscard]] Set create(std::initializer_list<D*> list) {
+        return create(View<D* const>(list.begin(), list.size()));
+    }
+
+    /// Yields @f$s \cup \{d\}@f$.
+    [[nodiscard]] Set insert(Set s, D* d) {
+        if (s.empty()) return singleton(d);
+
+        if (s.is_uniq()) {
+            auto u = s.uniq();
+            if (KT::key(u) == KT::key(d)) return singleton(d);
+            Entry es[2];
+            if (KT::key(d) < KT::key(u))
+                es[0] = Entry{KT::key(d), d}, es[1] = Entry{KT::key(u), u};
+            else
+                es[0] = Entry{KT::key(u), u}, es[1] = Entry{KT::key(d), d};
+            return wrap(p_.create(View<Entry>(es, size_t(2))));
+        }
+
+        return wrap(p_.insert(s.map(), KT::key(d), d));
+    }
+
+    /// Yields @f$s \setminus \{d\}@f$.
+    [[nodiscard]] Set erase(Set s, D* d) {
+        if (s.empty()) return s;
+        if (s.is_uniq()) return KT::key(s.uniq()) == KT::key(d) ? Set() : s;
+        return wrap(p_.erase(s.map(), KT::key(d)));
+    }
+
+    /// Yields @f$s_1 \cup s_2@f$.
+    [[nodiscard]] Set merge(Set s1, Set s2) {
+        if (s1 == s2 || s2.empty()) return s1;
+        if (s1.empty()) return s2;
+        if (s1.is_uniq()) return insert(s2, s1.uniq());
+        if (s2.is_uniq()) return insert(s1, s2.uniq());
+        return wrap(p_.merge(s1.map(), s2.map()));
+    }
+
+    /// Yields @f$s_1 \cap s_2@f$.
+    [[nodiscard]] Set intersect(Set s1, Set s2) {
+        if (s1 == s2) return s1;
+        if (s1.empty() || s2.empty()) return {};
+        if (s1.is_uniq()) return s2.contains(s1.uniq()) ? s1 : Set();
+        if (s2.is_uniq()) return s1.contains(s2.uniq()) ? s2 : Set();
+        return wrap(p_.intersect(s1.map(), s2.map()));
+    }
+
+    /// Yields @f$s_1 \setminus s_2@f$.
+    [[nodiscard]] Set diff(Set s1, Set s2) {
+        if (s1 == s2) return {};
+        if (s1.empty() || s2.empty()) return s1;
+        if (s1.is_uniq()) return s2.contains(s1.uniq()) ? Set() : s1;
+        if (s2.is_uniq()) return erase(s1, s2.uniq());
+        return wrap(p_.diff(s1.map(), s2.map()));
+    }
+    ///@}
+
+    friend void swap(PatriciaPtr& p1, PatriciaPtr& p2) noexcept {
+        using std::swap;
+        swap(p1.p_, p2.p_);
+    }
+
+private:
+    /// Canonicity: a one-element Set is *always* Uniq, so a `Leaf` must never surface as a whole Set.
+    static Set wrap(typename P::Map map) noexcept {
+        if (auto n = map.isa_leaf()) return singleton(n->entry.val);
+        return Set(map);
+    }
+
+    P p_;
+};
 
 } // namespace fe
 

@@ -416,3 +416,158 @@ TEST_CASE("PatriciaSet") {
     CHECK(evens.subset_of(p.merge(evens, odds)));
     CHECK(p.diff(p.merge(evens, odds), odds) == evens);
 }
+
+namespace {
+
+/// Minimal element: fe::PatriciaPtr only needs an id to key and order by.
+/// The `alignas` is the contract - a Set stores a singleton inline in the pointer and claims three low bits.
+struct alignas(8) Elem {
+    uint32_t gid;
+};
+
+struct ElemKey {
+    static uint32_t key(const Elem* e) noexcept { return e->gid; }
+    static std::ostream& stream(std::ostream& os, const Elem* e) { return os << 'e' << e->gid; }
+};
+
+using PP = fe::PatriciaPtr<Elem, ElemKey>;
+
+} // namespace
+
+TEST_CASE("PatriciaPtr") {
+    static constexpr uint32_t Num = 100;
+
+    auto elems = std::vector<Elem>();
+    for (uint32_t i = 0; i != Num; ++i)
+        elems.emplace_back(i);
+
+    auto all = std::vector<Elem*>();
+    for (auto& e : elems)
+        all.emplace_back(&e);
+
+    auto p = PP();
+    auto s = PP::Set();
+    REQUIRE(s.empty());
+    REQUIRE(!s);
+
+    auto want = std::set<uint32_t>();
+    for (uint32_t i = 0; i != Num; ++i) {
+        auto j = i * 37 % Num;
+        s      = p.insert(s, &elems[j]);
+        want.emplace(j);
+
+        auto got = std::vector<uint32_t>();
+        for (auto e : s)
+            got.emplace_back(e->gid);
+        REQUIRE(std::ranges::is_sorted(got)); // ascending id, not insertion order
+        REQUIRE(std::set<uint32_t>(got.begin(), got.end()) == want);
+        REQUIRE(s.size() == want.size());
+        REQUIRE(s.contains(&elems[j]));
+    }
+
+    CHECK(s == p.create(all));
+    CHECK(s == p.create(all.begin(), all.end()));
+    CHECK(s.min() == &elems[0]);
+    CHECK(s.max() == &elems[Num - 1]);
+
+    auto u = p.create({&elems[3], &elems[70]});
+    CHECK(u.size() == 2);
+    CHECK(u.subset_of(s));
+    CHECK(u.has_intersection(s));
+    CHECK(p.intersect(s, u) == u);
+    CHECK(p.merge(u, s) == s);
+    CHECK(p.diff(s, u) == p.erase(p.erase(s, &elems[3]), &elems[70]));
+    CHECK(p.erase(p.erase(s, &elems[3]), &elems[3]) == p.erase(s, &elems[3])); // not in here
+    CHECK(p.singleton(&elems[3]) == p.create({&elems[3]}));
+    CHECK(!p.singleton(&elems[3]).has_intersection(p.singleton(&elems[70])));
+    CHECK(p.diff(u, u).empty());
+
+    size_t n = 0;
+    u.for_each([&](Elem* e) { n += e->gid; });
+    CHECK(n == 73);
+
+    auto os = std::ostringstream();
+    os << u;
+    CHECK(os.str() == "{e3, e70}");
+}
+
+/// Differential test: drive a PatriciaPtr and a std::set through the same random operations.
+/// The point is *canonicity*: a singleton must always be the inline Uniq and never a `Leaf`, or two equal sets
+/// stop being pointer-equal - which is exactly what the rebuild-from-scratch check below catches.
+TEST_CASE("PatriciaPtr: differential") {
+    static constexpr uint32_t Num = 64;
+
+    auto elems = std::vector<Elem>();
+    for (uint32_t i = 0; i != Num; ++i)
+        elems.emplace_back(i);
+
+    auto p    = PP();
+    auto rng  = std::mt19937(23);
+    auto pick = [&] { return &elems[rng() % Num]; };
+
+    auto build = [&p, &elems](const std::set<uint32_t>& ref) {
+        auto v = std::vector<Elem*>();
+        for (auto gid : ref)
+            v.emplace_back(&elems[gid]);
+        return p.create(v);
+    };
+
+    auto check = [&](PP::Set s, const std::set<uint32_t>& ref) {
+        REQUIRE(s.size() == ref.size());
+        REQUIRE(s.empty() == ref.empty());
+
+        auto got = std::vector<uint32_t>();
+        for (auto e : s)
+            got.emplace_back(e->gid);
+        REQUIRE(std::ranges::is_sorted(got));
+        REQUIRE(std::set<uint32_t>(got.begin(), got.end()) == ref);
+
+        for (uint32_t i = 0; i != Num; ++i)
+            REQUIRE(s.contains(&elems[i]) == ref.contains(i));
+
+        REQUIRE(s.min() == (ref.empty() ? nullptr : &elems[*ref.begin()]));
+        REQUIRE(s.max() == (ref.empty() ? nullptr : &elems[*ref.rbegin()]));
+        REQUIRE(build(ref) == s); // canonicity
+    };
+
+    auto sets = std::vector<std::pair<PP::Set, std::set<uint32_t>>>{
+        {PP::Set(), {}}
+    };
+
+    for (int step = 0; step != 3000; ++step) {
+        auto& [s, ref] = sets[rng() % sets.size()];
+        auto s2        = s;
+        auto ref2      = ref;
+        auto d         = pick();
+
+        switch (rng() % 6) {
+            case 0: s2 = p.insert(s, d), ref2.insert(d->gid); break;
+            case 1: s2 = p.erase(s, d), ref2.erase(d->gid); break;
+            case 2:
+            case 3:
+            case 4:
+            case 5: {
+                const auto& [o, oref] = sets[rng() % sets.size()];
+                auto op               = rng() % 3;
+                if (op == 0) {
+                    s2 = p.merge(s, o);
+                    ref2.insert(oref.begin(), oref.end());
+                } else if (op == 1) {
+                    s2 = p.intersect(s, o);
+                    std::erase_if(ref2, [&oref](uint32_t g) { return !oref.contains(g); });
+                } else {
+                    s2 = p.diff(s, o);
+                    std::erase_if(ref2, [&oref](uint32_t g) { return oref.contains(g); });
+                }
+                REQUIRE(s.has_intersection(o)
+                        == std::ranges::any_of(ref, [&oref](uint32_t g) { return oref.contains(g); }));
+                REQUIRE(s.subset_of(o) == std::ranges::all_of(ref, [&oref](uint32_t g) { return oref.contains(g); }));
+                break;
+            }
+        }
+
+        check(s2, ref2);
+        if (sets.size() > 32) sets.erase(sets.begin() + 1, sets.begin() + 16);
+        sets.emplace_back(s2, std::move(ref2));
+    }
+}
