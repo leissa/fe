@@ -138,6 +138,7 @@ It provides a compact set of reusable, well-integrated components:
 #### Data Structures
 
 - `fe::Span`/`fe::View` and `fe::Vector` for spans with structured binding and small-buffer vectors.
+- `fe::VLA` for low-level variable-length arrays appended to `fe::Arena`-allocated objects.
 - `fe::Bitset` for a dynamically growing bit set that keeps small sets inline and only allocates once they grow.
 - `fe::XTrie` for interned, immutable sets - an [IndexedTrie](https://dl.acm.org/doi/10.1145/3808286) that is space-efficient and answers intersection tests fast.
 - `fe::BFSWorklist`/`fe::DFSWorklist` for worklist traversals that visit each element at most once.
