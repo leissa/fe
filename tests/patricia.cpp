@@ -6,7 +6,6 @@
 #include <set>
 #include <sstream>
 #include <string>
-#include <utility>
 #include <vector>
 
 #include <doctest/doctest.h>
@@ -14,64 +13,72 @@
 
 namespace {
 
-/// Deliberately tiny, so that the Leaf/Arr/Br boundaries are crossed all the time.
+/// Deliberately tiny, so that the Uniq/Arr/Br boundaries are crossed all the time.
 static constexpr size_t N = 4;
 
-using P     = fe::Patricia<uint32_t, uint64_t, N>;
-using M     = P::Map;
-using Entry = P::Entry;
-using Ref   = std::map<uint64_t, uint32_t>;
+/// Minimal element: fe::Patricia only needs an id to key and order by.
+/// The `alignas` is the contract - a Set tags the two low bits of its word.
+struct alignas(4) Elem {
+    uint32_t gid;
+};
 
-Ref ref_of(M map) {
-    auto res = Ref();
-    for (const auto& e : map)
-        res.emplace(e.key, e.val);
-    return res;
+struct ElemKey {
+    static uint32_t key(const Elem* e) noexcept { return e->gid; }
+    static std::ostream& stream(std::ostream& os, const Elem* e) { return os << 'e' << e->gid; }
+};
+
+using P   = fe::Patricia<Elem, ElemKey, uint32_t, N>;
+using S   = P::Set;
+using Ref = std::set<uint32_t>;
+
+/// One stable Elem per id - a Set identifies its elements by id, which is exactly what the reference Ref means.
+Elem* elem(uint32_t gid) {
+    static auto pool = std::map<uint32_t, Elem>();
+    return &pool.emplace(gid, Elem{gid}).first->second;
 }
 
-M make(P& p, const Ref& ref) {
-    auto v = std::vector<Entry>();
-    for (const auto& [key, val] : ref)
-        v.emplace_back(Entry{key, val});
+S make(P& p, const Ref& ref) {
+    auto v = std::vector<Elem*>();
+    for (auto gid : ref)
+        v.emplace_back(elem(gid));
     return p.create(v);
 }
 
-/// Everything the public API can observe about a Map - contents, order, and above all *canonicity*:
-/// building the same bindings from scratch must land on the very same Map, which is exactly what breaks
-/// if a node fails to flatten back into an Arr, an Arr outgrows N, or a branch gets the wrong prefix.
-void check(P& p, M map, const Ref& want) {
-    REQUIRE(map.size() == want.size());
-    REQUIRE(map.empty() == want.empty());
+/// Everything the public API can observe about a Set - contents, order, and above all *canonicity*:
+/// building the same elements from scratch must land on the very same Set, which is exactly what breaks
+/// if a node fails to flatten back into an Arr or a Uniq, an Arr outgrows N, or a branch gets the wrong prefix.
+void check(P& p, S s, const Ref& want) {
+    REQUIRE(s.size() == want.size());
+    REQUIRE(s.empty() == want.empty());
+    REQUIRE(bool(s) == !want.empty());
 
-    auto got = std::vector<std::pair<uint64_t, uint32_t>>();
-    for (const auto& e : map)
-        got.emplace_back(e.key, e.val);
+    auto got = std::vector<uint32_t>();
+    for (auto d : s)
+        got.emplace_back(d->gid);
 
     REQUIRE(got.size() == want.size());
-    REQUIRE(std::ranges::is_sorted(got, {}, &std::pair<uint64_t, uint32_t>::first));
+    REQUIRE(std::ranges::is_sorted(got)); // ascending id, not insertion order
     REQUIRE(std::equal(got.begin(), got.end(), want.begin(), want.end()));
 
-    for (const auto& [key, val] : want) {
-        auto e = map.find(key);
-        REQUIRE(e != nullptr);
-        REQUIRE(e->val == val);
-    }
+    for (auto gid : want)
+        REQUIRE(s.contains(elem(gid)));
 
-    REQUIRE(make(p, want) == map);
+    REQUIRE(make(p, want) == s);
+    REQUIRE(s.subset_of(make(p, want)));
 
     if (want.empty()) {
-        REQUIRE(map.min() == nullptr);
-        REQUIRE(map.max() == nullptr);
+        REQUIRE(s.min() == nullptr);
+        REQUIRE(s.max() == nullptr);
     } else {
-        REQUIRE(map.min()->key == want.begin()->first);
-        REQUIRE(map.max()->key == want.rbegin()->first);
+        REQUIRE(s.min() == elem(*want.begin()));
+        REQUIRE(s.max() == elem(*want.rbegin()));
     }
 }
 
-Ref spread(size_t n, uint64_t offset = 0, uint64_t stride = 2) {
+Ref spread(size_t n, uint32_t offset = 0, uint32_t stride = 2) {
     auto res = Ref();
-    for (uint64_t i = 0; i != n; ++i)
-        res.emplace(i * stride + offset, uint32_t(i + 1));
+    for (uint32_t i = 0; i != n; ++i)
+        res.emplace(i * stride + offset);
     return res;
 }
 
@@ -90,39 +97,41 @@ TEST_CASE("Patricia") {
         }
     }
 
-    SUBCASE("unsigned key order") {
-        // A signed comparison anywhere would sort these the other way round.
-        auto want = Ref{
-            {                0, 1},
-            {                1, 2},
-            {uint64_t(1) << 62, 3},
-            {uint64_t(1) << 63, 4},
-            {     uint64_t(-2), 5},
-            {     uint64_t(-1), 6}
-        };
-        auto map = make(p, want);
-        check(p, map, want);
-        REQUIRE(map.min()->key == 0);
-        REQUIRE(map.max()->key == uint64_t(-1));
+    SUBCASE("a singleton is always inline") {
+        auto e = elem(23);
+        auto s = S(e);
+        check(p, s, Ref{23});
+        CHECK(s == p.create({e}));
+        CHECK(s == p.insert(S(), e));
+        CHECK(s == p.merge(S(), s));
+        CHECK(s == p.erase(p.create({e, elem(42)}), elem(42)));
+        CHECK(s == p.intersect(make(p, spread(3 * N, 23, 1)), s));
+        CHECK(s == p.diff(p.create({e, elem(42)}), p.create({elem(42)})));
+        CHECK(S() == p.erase(s, e));
     }
 
-    SUBCASE("create dedups, keeps the last binding, and is order independent") {
+    SUBCASE("unsigned id order") {
+        // A signed comparison anywhere would sort these the other way round.
+        auto want = Ref{0, 1, uint32_t(1) << 30, uint32_t(1) << 31, uint32_t(-2), uint32_t(-1)};
+        auto s    = make(p, want);
+        check(p, s, want);
+        REQUIRE(s.min() == elem(0));
+        REQUIRE(s.max() == elem(uint32_t(-1)));
+    }
+
+    SUBCASE("create dedups and is order independent") {
         for (auto n : sizes) {
             INFO("n = ", n);
-            auto fwd = std::vector<Entry>();
-            for (uint64_t i = 0; i != n; ++i)
-                fwd.emplace_back(Entry{i * 3 + 5, uint32_t(i)});
+            auto fwd = std::vector<Elem*>();
+            for (uint32_t i = 0; i != n; ++i)
+                fwd.emplace_back(elem(i * 3 + 5));
 
-            auto rev = std::vector<Entry>(fwd.rbegin(), fwd.rend());
+            auto rev = std::vector<Elem*>(fwd.rbegin(), fwd.rend());
             REQUIRE(p.create(fwd) == p.create(rev));
 
-            if (n != 0) { // a stale binding in front must lose against the real one behind it
-                auto dup = std::vector<Entry>{
-                    Entry{fwd.front().key, 0xdead}
-                };
-                dup.insert(dup.end(), fwd.begin(), fwd.end());
-                REQUIRE(p.create(dup) == p.create(fwd));
-            }
+            auto dup = fwd;
+            dup.insert(dup.end(), fwd.begin(), fwd.end());
+            REQUIRE(p.create(dup) == p.create(fwd));
         }
     }
 
@@ -132,18 +141,18 @@ TEST_CASE("Patricia") {
             INFO("n = ", n);
             auto want = spread(n, 7, 5);
 
-            auto by_insert = M();
-            for (const auto& [key, val] : want)
-                by_insert = p.insert(by_insert, key, val);
+            auto by_insert = S();
+            for (auto gid : want)
+                by_insert = p.insert(by_insert, elem(gid));
 
             auto lo = Ref(), hi = Ref();
-            for (const auto& [key, val] : want)
-                (lo.size() <= hi.size() ? lo : hi).emplace(key, val);
+            for (auto gid : want)
+                (lo.size() <= hi.size() ? lo : hi).emplace(gid);
             auto by_merge = p.merge(make(p, lo), make(p, hi));
 
             auto by_erase = make(p, want);
-            by_erase      = p.insert(by_erase, 1234567, 42);
-            by_erase      = p.erase(by_erase, 1234567);
+            by_erase      = p.insert(by_erase, elem(1234567));
+            by_erase      = p.erase(by_erase, elem(1234567));
 
             REQUIRE(by_insert == make(p, want));
             REQUIRE(by_merge == make(p, want));
@@ -154,18 +163,16 @@ TEST_CASE("Patricia") {
 
     SUBCASE("insert") {
         auto want = Ref();
-        auto map  = M();
+        auto s    = S();
 
         for (uint32_t i = 0; i != 3 * N + 20; ++i) {
             INFO("i = ", i);
-            auto key  = uint64_t(i * 11 + 3) % 97;
-            map       = p.insert(map, key, i);
-            want[key] = i;
-            check(p, map, want);
+            auto d = elem(i * 11 % 97);
+            s      = p.insert(s, d);
+            want.emplace(d->gid);
+            check(p, s, want);
 
-            CHECK_MESSAGE(p.insert(map, key, i) == map, "inserting the same binding again must be a no-op");
-            CHECK_MESSAGE(p.insert(map, key, i, P::Fst()) == map, "and so must be a combiner keeping the old one");
-            CHECK(p.insert(map, key, i + 1).find(key)->val == i + 1); // the new value wins by default
+            CHECK_MESSAGE(p.insert(s, d) == s, "inserting the same element again must be a no-op");
         }
     }
 
@@ -173,43 +180,37 @@ TEST_CASE("Patricia") {
         for (auto n : sizes) {
             INFO("n = ", n);
             auto want = spread(n);
-            auto map  = make(p, want);
+            auto s    = make(p, want);
 
-            CHECK_MESSAGE(p.erase(map, 999999) == map, "erasing an absent key must be a no-op");
+            CHECK_MESSAGE(p.erase(s, elem(999999)) == s, "erasing an absent element must be a no-op");
 
-            auto keys = std::vector<uint64_t>();
-            for (const auto& [key, _] : want)
-                keys.emplace_back(key);
-
-            for (auto key : keys) {
-                map = p.erase(map, key);
-                want.erase(key);
-                check(p, map, want);
+            for (auto gid : spread(n)) {
+                s = p.erase(s, elem(gid));
+                want.erase(gid);
+                check(p, s, want);
             }
-            CHECK(map.empty());
+            CHECK(s.empty());
         }
     }
 
     SUBCASE("merge matrix") {
         for (auto n1 : sizes) {
             for (auto n2 : sizes) {
-                for (uint64_t offset : {uint64_t(0), uint64_t(1), uint64_t(1000)}) { // overlap, interleave, disjoint
+                for (uint32_t offset : {uint32_t(0), uint32_t(1), uint32_t(1000)}) { // overlap, interleave, disjoint
                     INFO(n1, " u ", n2, " @", offset);
                     auto w1 = spread(n1);
                     auto w2 = spread(n2, offset);
+                    auto s1 = make(p, w1);
+                    auto s2 = make(p, w2);
 
-                    auto m1 = make(p, w1);
-                    auto m2 = make(p, w2);
+                    auto want = w1;
+                    want.insert(w2.begin(), w2.end());
 
-                    auto want = w2; // merge keeps the left value, so w1 overwrites w2
-                    for (const auto& [key, val] : w1)
-                        want[key] = val;
-
-                    auto m = p.merge(m1, m2);
-                    check(p, m, want);
-                    CHECK_MESSAGE(p.merge(m, m1) == m, "absorption");
-                    CHECK_MESSAGE(p.merge(m1, m1) == m1, "idempotence");
-                    CHECK_MESSAGE(p.merge(m2, m1, P::Snd()) == m, "flipping operands and combiner is the same");
+                    auto s = p.merge(s1, s2);
+                    check(p, s, want);
+                    CHECK_MESSAGE(p.merge(s, s1) == s, "absorption");
+                    CHECK_MESSAGE(p.merge(s1, s1) == s1, "idempotence");
+                    CHECK_MESSAGE(p.merge(s2, s1) == s, "commutativity");
                 }
             }
         }
@@ -218,22 +219,22 @@ TEST_CASE("Patricia") {
     SUBCASE("intersect matrix") {
         for (auto n1 : sizes) {
             for (auto n2 : sizes) {
-                for (uint64_t offset : {uint64_t(0), uint64_t(1), uint64_t(1000)}) {
+                for (uint32_t offset : {uint32_t(0), uint32_t(1), uint32_t(1000)}) {
                     INFO(n1, " ^ ", n2, " @", offset);
                     auto w1 = spread(n1);
                     auto w2 = spread(n2, offset);
+                    auto s1 = make(p, w1);
+                    auto s2 = make(p, w2);
 
                     auto want = Ref();
-                    for (const auto& [key, val] : w1)
-                        if (w2.contains(key)) want[key] = val;
+                    for (auto gid : w1)
+                        if (w2.contains(gid)) want.emplace(gid);
 
-                    auto m1 = make(p, w1);
-                    auto m2 = make(p, w2);
-                    auto m  = p.intersect(m1, m2);
-                    check(p, m, want);
-                    CHECK_MESSAGE(p.intersect(m2, m1, P::Snd()) == m, "flipping operands and combiner is the same");
-                    CHECK(m1.has_intersection(m2) == !want.empty());
-                    CHECK(m2.has_intersection(m1) == !want.empty());
+                    auto s = p.intersect(s1, s2);
+                    check(p, s, want);
+                    CHECK(p.intersect(s2, s1) == s);
+                    CHECK(s1.has_intersection(s2) == !want.empty());
+                    CHECK(s2.has_intersection(s1) == !want.empty());
                 }
             }
         }
@@ -242,20 +243,20 @@ TEST_CASE("Patricia") {
     SUBCASE("diff matrix") {
         for (auto n1 : sizes) {
             for (auto n2 : sizes) {
-                for (uint64_t offset : {uint64_t(0), uint64_t(1), uint64_t(1000)}) {
+                for (uint32_t offset : {uint32_t(0), uint32_t(1), uint32_t(1000)}) {
                     INFO(n1, " \\ ", n2, " @", offset);
                     auto w1 = spread(n1);
                     auto w2 = spread(n2, offset);
+                    auto s1 = make(p, w1);
+                    auto s2 = make(p, w2);
 
                     auto want = Ref();
-                    for (const auto& [key, val] : w1)
-                        if (!w2.contains(key)) want[key] = val;
+                    for (auto gid : w1)
+                        if (!w2.contains(gid)) want.emplace(gid);
 
-                    auto m1 = make(p, w1);
-                    auto m2 = make(p, w2);
-                    check(p, p.diff(m1, m2), want);
-                    CHECK(p.diff(m1, m1).empty());
-                    CHECK(p.diff(m1, M()) == m1);
+                    check(p, p.diff(s1, s2), want);
+                    CHECK(p.diff(s1, s1).empty());
+                    CHECK(p.diff(s1, S()) == s1);
                 }
             }
         }
@@ -265,78 +266,51 @@ TEST_CASE("Patricia") {
         for (auto n1 : sizes) {
             for (auto n2 : sizes) {
                 INFO(n1, " <= ", n2);
-                auto w1 = spread(n1);
-                auto w2 = spread(n2);
-
-                auto want = std::ranges::all_of(w1, [&](const auto& kv) { return w2.contains(kv.first); });
+                auto w1   = spread(n1);
+                auto w2   = spread(n2);
+                auto want = std::ranges::all_of(w1, [&](uint32_t gid) { return w2.contains(gid); });
                 CHECK(make(p, w1).subset_of(make(p, w2)) == want);
             }
         }
     }
 
-    SUBCASE("combiner argument order and dropping") {
-        auto w1 = spread(3 * N);
-        auto w2 = spread(3 * N, 0, 4); // every other key of w1
-
-        auto m1  = make(p, w1);
-        auto m2  = make(p, w2);
-        auto mix = [](uint64_t, uint32_t v1, uint32_t v2) { return v1 * 1000 + v2; };
-
-        auto want = w2;
-        for (const auto& [key, val] : w1)
-            want[key] = w2.contains(key) ? val * 1000 + w2[key] : val;
-        check(p, p.merge(m1, m2, mix), want);
-
-        // A combiner may drop an entry - which must collapse the branches above it all the way back down.
-        auto drop = [](uint64_t key, uint32_t v1, uint32_t) {
-            return key % 3 == 0 ? std::optional<uint32_t>() : std::optional<uint32_t>(v1);
-        };
-        auto dropped = Ref();
-        for (const auto& [key, val] : w1)
-            if (!w2.contains(key) || key % 3 != 0) dropped[key] = val;
-        for (const auto& [key, val] : w2)
-            if (!w1.contains(key)) dropped[key] = val;
-        check(p, p.merge(m1, m2, drop), dropped);
-
-        auto kept = Ref();
-        for (const auto& [key, val] : w1)
-            if (w2.contains(key) && key % 3 != 0) kept[key] = val;
-        check(p, p.intersect(m1, m2, drop), kept);
-    }
-
     SUBCASE("output and for_each") {
         auto want = spread(3 * N);
-        auto map  = make(p, want);
+        auto s    = make(p, want);
 
         auto seen = Ref();
-        map.for_each([&](const Entry& e) { seen.emplace(e.key, e.val); });
+        s.for_each([&](Elem* d) { seen.emplace(d->gid); });
         CHECK(seen == want);
 
         auto os = std::ostringstream();
-        os << map;
-        CHECK(os.str().starts_with("{0: 1, 2: 2, 4: 3,"));
+        os << s;
+        CHECK(os.str().starts_with("{e0, e2, e4,"));
         CHECK(os.str().ends_with("}"));
-        CHECK(&map.stream(os) == &os);
+        CHECK(&s.stream(os) == &os);
 
         auto dot = std::ostringstream();
-        map.dot(dot);
+        s.dot(dot);
         CHECK(dot.str().starts_with("digraph {"));
-        CHECK(dot.str().find("->") != std::string::npos); // 3 * N entries, so there *are* branches
+        CHECK(dot.str().find("->") != std::string::npos); // 3 * N elements, so there *are* branches
+
+        auto uniq = std::ostringstream();
+        uniq << S(elem(7));
+        CHECK(uniq.str() == "{e7}");
 
         auto empty = std::ostringstream();
-        empty << M();
+        empty << S();
         CHECK(empty.str() == "{}");
     }
 
-    /// Differential test: drive Patricia and std::map through the same random operations.
-    SUBCASE("random vs std::map") {
+    /// Differential test: drive Patricia and std::set through the same random operations.
+    SUBCASE("random vs std::set") {
         auto rng  = std::mt19937(42);
-        auto keys = std::vector<uint64_t>{0, 1, 2, 3, uint64_t(1) << 63, uint64_t(-1), uint64_t(-2)};
-        for (uint64_t i = 0; i != 121; ++i)
-            keys.emplace_back(i * 7 % 211);
+        auto gids = std::vector<uint32_t>{0, 1, 2, 3, uint32_t(1) << 31, uint32_t(-1), uint32_t(-2)};
+        for (uint32_t i = 0; i != 121; ++i)
+            gids.emplace_back(i * 7 % 211);
 
         auto ref = std::vector<Ref>{{}};
-        auto got = std::vector<M>{{}};
+        auto got = std::vector<S>{{}};
 
         for (int step = 0; step != 4000; ++step) {
             INFO("step = ", step);
@@ -345,33 +319,31 @@ TEST_CASE("Patricia") {
             auto op = rng() % 6;
             INFO("op = ", op);
 
-            auto key = keys[rng() % keys.size()];
-            auto val = uint32_t(rng() % 1000);
-            auto r   = ref[i];
+            auto d = elem(gids[rng() % gids.size()]);
+            auto r = ref[i];
 
             if (op == 0) {
-                got.emplace_back(p.insert(got[i], key, val));
-                r[key] = val;
+                got.emplace_back(p.insert(got[i], d));
+                r.emplace(d->gid);
             } else if (op == 1) {
-                got.emplace_back(p.erase(got[i], key));
-                r.erase(key);
+                got.emplace_back(p.erase(got[i], d));
+                r.erase(d->gid);
             } else if (op == 2) {
                 got.emplace_back(p.merge(got[i], got[j]));
-                for (const auto& [k, v] : ref[j])
-                    r.emplace(k, v); // merge keeps the left value
+                r.insert(ref[j].begin(), ref[j].end());
             } else if (op == 3) {
                 got.emplace_back(p.intersect(got[i], got[j]));
-                std::erase_if(r, [&](const auto& kv) { return !ref[j].contains(kv.first); });
+                std::erase_if(r, [&](uint32_t gid) { return !ref[j].contains(gid); });
             } else if (op == 4) {
                 got.emplace_back(p.diff(got[i], got[j]));
-                std::erase_if(r, [&](const auto& kv) { return ref[j].contains(kv.first); });
+                std::erase_if(r, [&](uint32_t gid) { return ref[j].contains(gid); });
             } else { // queries only
-                REQUIRE(got[i].contains(key) == ref[i].contains(key));
+                REQUIRE(got[i].contains(d) == ref[i].contains(d->gid));
 
-                auto meets = std::ranges::any_of(ref[i], [&](const auto& kv) { return ref[j].contains(kv.first); });
+                auto meets = std::ranges::any_of(ref[i], [&](uint32_t gid) { return ref[j].contains(gid); });
                 REQUIRE(got[i].has_intersection(got[j]) == meets);
 
-                auto sub = std::ranges::all_of(ref[i], [&](const auto& kv) { return ref[j].contains(kv.first); });
+                auto sub = std::ranges::all_of(ref[i], [&](uint32_t gid) { return ref[j].contains(gid); });
                 REQUIRE(got[i].subset_of(got[j]) == sub);
                 continue;
             }
@@ -387,187 +359,47 @@ TEST_CASE("Patricia") {
     }
 }
 
-TEST_CASE("PatriciaSet") {
-    using S = fe::PatriciaSet;
-    static_assert(sizeof(S::Entry) == sizeof(uint64_t), "Unit must not cost anything");
-
-    auto p = S();
-    auto s = S::Set();
-
-    auto want = std::set<uint64_t>();
-    for (uint64_t i = 0; i != 100; ++i) {
-        auto key = i * 37 % 211;
-        s        = p.insert(s, key);
-        want.emplace(key);
-
-        auto got = std::set<uint64_t>();
-        for (const auto& e : s)
-            got.emplace(e.key);
-        REQUIRE(got == want);
-        REQUIRE(s.size() == want.size());
-        REQUIRE(p.create(want) == s);
-    }
-
-    auto evens = p.create(std::vector<uint64_t>{0, 2, 4, 6, 8, 10, 12, 14});
-    auto odds  = p.create(std::vector<uint64_t>{1, 3, 5, 7, 9, 11, 13, 15});
-    CHECK(!evens.has_intersection(odds));
-    CHECK(p.intersect(evens, odds).empty());
-    CHECK(p.merge(evens, odds).size() == 16);
-    CHECK(evens.subset_of(p.merge(evens, odds)));
-    CHECK(p.diff(p.merge(evens, odds), odds) == evens);
-}
-
 namespace {
 
-/// Minimal element: fe::PatriciaPtr only needs an id to key and order by.
-/// The `alignas` is the contract - a Set stores a singleton inline in the pointer and claims three low bits.
-struct alignas(8) Elem {
-    uint32_t gid;
+/// The defaults: 64-bit ids and 8 elements per array node.
+struct alignas(8) Big {
+    uint64_t gid;
 };
 
-struct ElemKey {
-    static uint32_t key(const Elem* e) noexcept { return e->gid; }
-    static std::ostream& stream(std::ostream& os, const Elem* e) { return os << 'e' << e->gid; }
+struct BigKey {
+    static uint64_t key(const Big* b) noexcept { return b->gid; }
 };
-
-using PP = fe::PatriciaPtr<Elem, ElemKey>;
 
 } // namespace
 
-TEST_CASE("PatriciaPtr") {
-    static constexpr uint32_t Num = 100;
+TEST_CASE("Patricia: 64-bit ids") {
+    auto pool = std::map<uint64_t, Big>();
+    auto big  = [&pool](uint64_t gid) { return &pool.emplace(gid, Big{gid}).first->second; };
 
-    auto elems = std::vector<Elem>();
-    for (uint32_t i = 0; i != Num; ++i)
-        elems.emplace_back(i);
+    auto p    = fe::Patricia<Big, BigKey, uint64_t>();
+    auto want = std::set<uint64_t>{0, 1, uint64_t(1) << 32, uint64_t(1) << 63, uint64_t(-2), uint64_t(-1)};
+    for (uint64_t i = 0; i != 100; ++i)
+        want.emplace(i * 37 % 211);
 
-    auto all = std::vector<Elem*>();
-    for (auto& e : elems)
-        all.emplace_back(&e);
+    auto v = std::vector<Big*>();
+    for (auto gid : want)
+        v.emplace_back(big(gid));
+    auto s = p.create(v);
 
-    auto p = PP();
-    auto s = PP::Set();
-    REQUIRE(s.empty());
-    REQUIRE(!s);
-
-    auto want = std::set<uint32_t>();
-    for (uint32_t i = 0; i != Num; ++i) {
-        auto j = i * 37 % Num;
-        s      = p.insert(s, &elems[j]);
-        want.emplace(j);
-
-        auto got = std::vector<uint32_t>();
-        for (auto e : s)
-            got.emplace_back(e->gid);
-        REQUIRE(std::ranges::is_sorted(got)); // ascending id, not insertion order
-        REQUIRE(std::set<uint32_t>(got.begin(), got.end()) == want);
-        REQUIRE(s.size() == want.size());
-        REQUIRE(s.contains(&elems[j]));
-    }
-
-    CHECK(s == p.create(all));
-    CHECK(s == p.create(all.begin(), all.end()));
-    CHECK(s.min() == &elems[0]);
-    CHECK(s.max() == &elems[Num - 1]);
-
-    auto u = p.create({&elems[3], &elems[70]});
-    CHECK(u.size() == 2);
-    CHECK(u.subset_of(s));
-    CHECK(u.has_intersection(s));
-    CHECK(p.intersect(s, u) == u);
-    CHECK(p.merge(u, s) == s);
-    CHECK(p.diff(s, u) == p.erase(p.erase(s, &elems[3]), &elems[70]));
-    CHECK(p.erase(p.erase(s, &elems[3]), &elems[3]) == p.erase(s, &elems[3])); // not in here
-    CHECK(p.singleton(&elems[3]) == p.create({&elems[3]}));
-    CHECK(!p.singleton(&elems[3]).has_intersection(p.singleton(&elems[70])));
-    CHECK(p.diff(u, u).empty());
-
-    size_t n = 0;
-    u.for_each([&](Elem* e) { n += e->gid; });
-    CHECK(n == 73);
+    auto got = std::vector<uint64_t>();
+    for (auto b : s)
+        got.emplace_back(b->gid);
+    CHECK(std::equal(got.begin(), got.end(), want.begin(), want.end()));
+    CHECK(s.size() == want.size());
+    CHECK(s.min() == big(0));
+    CHECK(s.max() == big(uint64_t(-1)));
+    CHECK(s.contains(big(uint64_t(1) << 63)));
 
     auto os = std::ostringstream();
-    os << u;
-    CHECK(os.str() == "{e3, e70}");
-}
+    os << p.create({big(1), big(uint64_t(1) << 63)});
+    CHECK(os.str() == "{1, 9223372036854775808}"); // no Key::stream, so the ids speak for themselves
 
-/// Differential test: drive a PatriciaPtr and a std::set through the same random operations.
-/// The point is *canonicity*: a singleton must always be the inline Uniq and never a `Leaf`, or two equal sets
-/// stop being pointer-equal - which is exactly what the rebuild-from-scratch check below catches.
-TEST_CASE("PatriciaPtr: differential") {
-    static constexpr uint32_t Num = 64;
-
-    auto elems = std::vector<Elem>();
-    for (uint32_t i = 0; i != Num; ++i)
-        elems.emplace_back(i);
-
-    auto p    = PP();
-    auto rng  = std::mt19937(23);
-    auto pick = [&] { return &elems[rng() % Num]; };
-
-    auto build = [&p, &elems](const std::set<uint32_t>& ref) {
-        auto v = std::vector<Elem*>();
-        for (auto gid : ref)
-            v.emplace_back(&elems[gid]);
-        return p.create(v);
-    };
-
-    auto check = [&](PP::Set s, const std::set<uint32_t>& ref) {
-        REQUIRE(s.size() == ref.size());
-        REQUIRE(s.empty() == ref.empty());
-
-        auto got = std::vector<uint32_t>();
-        for (auto e : s)
-            got.emplace_back(e->gid);
-        REQUIRE(std::ranges::is_sorted(got));
-        REQUIRE(std::set<uint32_t>(got.begin(), got.end()) == ref);
-
-        for (uint32_t i = 0; i != Num; ++i)
-            REQUIRE(s.contains(&elems[i]) == ref.contains(i));
-
-        REQUIRE(s.min() == (ref.empty() ? nullptr : &elems[*ref.begin()]));
-        REQUIRE(s.max() == (ref.empty() ? nullptr : &elems[*ref.rbegin()]));
-        REQUIRE(build(ref) == s); // canonicity
-    };
-
-    auto sets = std::vector<std::pair<PP::Set, std::set<uint32_t>>>{
-        {PP::Set(), {}}
-    };
-
-    for (int step = 0; step != 3000; ++step) {
-        auto& [s, ref] = sets[rng() % sets.size()];
-        auto s2        = s;
-        auto ref2      = ref;
-        auto d         = pick();
-
-        switch (rng() % 6) {
-            case 0: s2 = p.insert(s, d), ref2.insert(d->gid); break;
-            case 1: s2 = p.erase(s, d), ref2.erase(d->gid); break;
-            case 2:
-            case 3:
-            case 4:
-            case 5: {
-                const auto& [o, oref] = sets[rng() % sets.size()];
-                auto op               = rng() % 3;
-                if (op == 0) {
-                    s2 = p.merge(s, o);
-                    ref2.insert(oref.begin(), oref.end());
-                } else if (op == 1) {
-                    s2 = p.intersect(s, o);
-                    std::erase_if(ref2, [&oref](uint32_t g) { return !oref.contains(g); });
-                } else {
-                    s2 = p.diff(s, o);
-                    std::erase_if(ref2, [&oref](uint32_t g) { return oref.contains(g); });
-                }
-                REQUIRE(s.has_intersection(o)
-                        == std::ranges::any_of(ref, [&oref](uint32_t g) { return oref.contains(g); }));
-                REQUIRE(s.subset_of(o) == std::ranges::all_of(ref, [&oref](uint32_t g) { return oref.contains(g); }));
-                break;
-            }
-        }
-
-        check(s2, ref2);
-        if (sets.size() > 32) sets.erase(sets.begin() + 1, sets.begin() + 16);
-        sets.emplace_back(s2, std::move(ref2));
-    }
+    for (auto gid : want)
+        s = p.erase(s, big(gid));
+    CHECK(s.empty());
 }
