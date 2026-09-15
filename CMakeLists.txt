@@ -68,6 +68,7 @@ target_sources(fe
             include/fe/loc.h
             include/fe/log.h
             include/fe/parser.h
+            include/fe/patricia.h
             include/fe/profile.h
             include/fe/restore.h
             include/fe/ring.h
