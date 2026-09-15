@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['value_5ftype_0',['value_type',['../structfe_1_1Arena_1_1Allocator.html#ac5c353ec9ecaf89ff9362f8e4d9124f4',1,'fe::Arena::Allocator::value_type'],['../classfe_1_1Bitset_1_1iterator.html#ac75c395898ff476b33ccd170de5519d2',1,'fe::Bitset::iterator::value_type'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html#a5e041097f36fdd16242499e0dd28ab4c',1,'fe::XTrie::Set::iterator::value_type']]],
+  ['value_5ftype_0',['value_type',['../structfe_1_1Arena_1_1Allocator.html#ac5c353ec9ecaf89ff9362f8e4d9124f4',1,'fe::Arena::Allocator::value_type'],['../classfe_1_1Bitset_1_1iterator.html#ac75c395898ff476b33ccd170de5519d2',1,'fe::Bitset::iterator::value_type'],['../classfe_1_1Patricia_1_1Set_1_1iterator.html#ad0d67a2cdad337ee0a5dfe710b8bc94b',1,'fe::Patricia::Set::iterator::value_type'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html#a5e041097f36fdd16242499e0dd28ab4c',1,'fe::XTrie::Set::iterator::value_type']]],
   ['view_1',['View',['../classfe_1_1Join.html#ada5d411581bc9cf1e7a466020755c497',1,'fe::Join::View'],['../namespacefe.html#a3fa8abec15ebc094748836707250e96e',1,'fe::View']]],
   ['vla_5fself_2',['VLA_Self',['../classfe_1_1VLA.html#afcb2b7dad2e5903068fb2e17a492020e',1,'fe::VLA']]],
   ['vla_5ftype_3',['VLA_Type',['../classfe_1_1VLA.html#a71ada1da77afebdcae069f2a37b348cc',1,'fe::VLA']]]

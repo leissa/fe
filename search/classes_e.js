@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['set_0',['Set',['../classfe_1_1XTrie_1_1Set.html',1,'fe::XTrie']]],
+  ['set_0',['Set',['../classfe_1_1Patricia_1_1Set.html',1,'fe::Patricia&lt; D, KT, K, N &gt;::Set'],['../classfe_1_1XTrie_1_1Set.html',1,'fe::XTrie&lt; D, K, N &gt;::Set']]],
   ['snippet_1',['Snippet',['../structfe_1_1Snippet.html',1,'fe']]],
   ['span_2',['Span',['../structfe_1_1Profiler_1_1Span.html',1,'fe::Profiler::Span'],['../classfe_1_1Span.html',1,'fe::Span&lt; T, N &gt;']]],
   ['span_3c_20const_20t_2c_20n_20_3e_3',['Span&lt; const T, N &gt;',['../classfe_1_1Span.html',1,'fe']]],

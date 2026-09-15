@@ -2,7 +2,7 @@ var searchData=
 [
   ['v_0',['V',['../classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06a5206560a306a2e085a437fd258eb57ce',1,'fe::Log']]],
   ['v_1',['v',['../classfe_1_1Log.html#abd34ee636b57537f53f3f56fcfa81f42',1,'fe::Log']]],
-  ['value_5ftype_2',['value_type',['../structfe_1_1Arena_1_1Allocator.html#ac5c353ec9ecaf89ff9362f8e4d9124f4',1,'fe::Arena::Allocator::value_type'],['../classfe_1_1Bitset_1_1iterator.html#ac75c395898ff476b33ccd170de5519d2',1,'fe::Bitset::iterator::value_type'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html#a5e041097f36fdd16242499e0dd28ab4c',1,'fe::XTrie::Set::iterator::value_type']]],
+  ['value_5ftype_2',['value_type',['../structfe_1_1Arena_1_1Allocator.html#ac5c353ec9ecaf89ff9362f8e4d9124f4',1,'fe::Arena::Allocator::value_type'],['../classfe_1_1Bitset_1_1iterator.html#ac75c395898ff476b33ccd170de5519d2',1,'fe::Bitset::iterator::value_type'],['../classfe_1_1Patricia_1_1Set_1_1iterator.html#ad0d67a2cdad337ee0a5dfe710b8bc94b',1,'fe::Patricia::Set::iterator::value_type'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html#a5e041097f36fdd16242499e0dd28ab4c',1,'fe::XTrie::Set::iterator::value_type']]],
   ['vector_3',['Vector',['../classfe_1_1Vector.html',1,'fe::Vector&lt; T, N, A &gt;'],['../classfe_1_1Vector.html#a1331e033f3ce3770bbd7260ca30c9925',1,'fe::Vector::Vector(size_t size, F &amp;&amp;f)'],['../classfe_1_1Vector.html#ae1f2480b6f3023f4e05988efd43bb533',1,'fe::Vector::Vector(R &amp;&amp;range, F &amp;&amp;f)'],['../namespacefe.html#a2e8e999b77fa2e3c1cba77396a9e192d',1,'fe::Vector()']]],
   ['vector_2eh_4',['vector.h',['../vector_8h.html',1,'']]],
   ['vector_3c_20fe_3a_3adbg_20_3e_5',['Vector&lt; fe::Dbg &gt;',['../classfe_1_1Vector.html',1,'fe']]],

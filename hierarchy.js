@@ -42,6 +42,7 @@ var hierarchy =
       [ "std::tuple_size< fe::Span< T, N > >", "structstd_1_1tuple__size_3_01fe_1_1Span_3_01T_00_01N_01_4_01_4.html", null ]
     ] ],
     [ "fe::Bitset::iterator", "classfe_1_1Bitset_1_1iterator.html", null ],
+    [ "fe::Patricia&lt; D, KT, K, N &gt;::Set::iterator", "classfe_1_1Patricia_1_1Set_1_1iterator.html", null ],
     [ "fe::XTrie&lt; D, K, N &gt;::Set::iterator", "classfe_1_1XTrie_1_1Set_1_1iterator.html", null ],
     [ "fe::Join&lt; R &gt;", "classfe_1_1Join.html", null ],
     [ "fe::Lexer&lt; K, S &gt;", "classfe_1_1Lexer.html", null ],
@@ -58,6 +59,7 @@ var hierarchy =
     [ "fe::Error::Note", "classfe_1_1Error.html#structfe_1_1Error_1_1Note", null ],
     [ "fe::Parser&lt; Tok, Tag, K, S &gt;", "classfe_1_1Parser.html", null ],
     [ "fe::PathHash", "structfe_1_1PathHash.html", null ],
+    [ "fe::Patricia&lt; D, KT, K, N &gt;", "classfe_1_1Patricia.html", null ],
     [ "fe::Pos", "structfe_1_1Pos.html", null ],
     [ "fe::Profiler", "classfe_1_1Profiler.html", null ],
     [ "fe::Arena::Ref&lt; T &gt;", "classfe_1_1Arena_1_1Ref.html", null ],
@@ -68,6 +70,7 @@ var hierarchy =
     [ "fe::Ring&lt; T, 1 &gt;", "classfe_1_1Ring_3_01T_00_011_01_4.html", null ],
     [ "fe::Ring&lt; T, 2 &gt;", "classfe_1_1Ring_3_01T_00_012_01_4.html", null ],
     [ "fe::RuntimeCast&lt; B &gt;", "classfe_1_1RuntimeCast.html", null ],
+    [ "fe::Patricia&lt; D, KT, K, N &gt;::Set", "classfe_1_1Patricia_1_1Set.html", null ],
     [ "fe::XTrie&lt; D, K, N &gt;::Set", "classfe_1_1XTrie_1_1Set.html", null ],
     [ "fe::Snippet", "structfe_1_1Snippet.html", null ],
     [ "fe::Profiler::Span", "structfe_1_1Profiler_1_1Span.html", null ],

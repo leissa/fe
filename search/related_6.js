@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['xtrie_0',['XTrie',['../classfe_1_1XTrie_1_1Set.html#aac8fda525c29ff11b3ad035855f48eb1',1,'fe::XTrie::Set']]]
+  ['set_0',['Set',['../classfe_1_1Patricia_1_1Set_1_1iterator.html#a85f04e9516b9eac3a6bee506abd0d30a',1,'fe::Patricia::Set::iterator::Set()'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html#a85f04e9516b9eac3a6bee506abd0d30a',1,'fe::XTrie::Set::iterator::Set()']]],
+  ['swap_1',['swap',['../classfe_1_1Arena.html#a8f9ae98bbf9b30287b975cf8c5ae86c9',1,'fe::Arena::swap()'],['../classfe_1_1Bitset.html#a4ee6fc40a5925b0d062683b25ea419ed',1,'fe::Bitset::swap()'],['../classfe_1_1Patricia.html#a2cc2317aa7761eb240fad4de2b91a4f1',1,'fe::Patricia::swap()'],['../classfe_1_1Ring.html#a4daf4bc95ee807253d4d9fbce2e880f7',1,'fe::Ring::swap()'],['../classfe_1_1Ring_3_01T_00_011_01_4.html#a4daf4bc95ee807253d4d9fbce2e880f7',1,'fe::Ring&lt; T, 1 &gt;::swap()'],['../classfe_1_1Ring_3_01T_00_012_01_4.html#a4daf4bc95ee807253d4d9fbce2e880f7',1,'fe::Ring&lt; T, 2 &gt;::swap()'],['../classfe_1_1SymPool.html#af464c4610c22df4db7d81a1e15f852be',1,'fe::SymPool::swap()'],['../classfe_1_1Vector.html#a9730195399fd78779f60404d14b60036',1,'fe::Vector::swap()'],['../classfe_1_1XTrie.html#ad713de0f61e2ddf2b0e3e06b2be72970',1,'fe::XTrie::swap()']]],
+  ['sympool_2',['SymPool',['../classfe_1_1Sym.html#a5379cdd60ce3c910e14da02defe0a1aa',1,'fe::Sym']]]
 ];

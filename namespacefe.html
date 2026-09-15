@@ -211,6 +211,8 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The blueprint for a <a href="https://en.wikipedia.org/wiki/Recursive_descent_parser">recursive descent</a>/ <a href="https://en.wikipedia.org/wiki/Recursive_ascent_parser">ascent parser</a> using a <code class="param">K</code> lookahead of <span class="tt">Tok</span>ens.  <a href="classfe_1_1Parser.html#details">More...</a><br /></td></tr>
 <tr class="memitem:PathHash" id="r_PathHash"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1PathHash.html">PathHash</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hashes a <span class="tt">std::filesystem::path</span> - consistent with its <span class="tt">operator==</span>, which compares lexically.  <a href="structfe_1_1PathHash.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Patricia" id="r_Patricia"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Patricia.html">Patricia</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hash-consed, immutable sets of <span class="tt">D*</span>, ordered by an unsigned id the elements carry themselves.  <a href="classfe_1_1Patricia.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Pos" id="r_Pos"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1Pos.html">Pos</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Byte offset into a <a class="el" href="classfe_1_1Src.html" title="The content of one source file together with the offsets its rows start at.">Src</a>; pass around as value.  <a href="structfe_1_1Pos.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Profiler" id="r_Profiler"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Profiler.html">Profiler</a></td></tr>
@@ -1812,7 +1814,7 @@ template&lt;<a class="el" href="conceptfe_1_1BitEnum.html">fe::BitEnum</a> E&gt;
 
 <p class="reference">References <a class="el" href="assert_8h_source.html#l00031">unreachable()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="xtrie_8h_source.html#l00243">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator*()</a>, <a class="el" href="xtrie_8h_source.html#l00208">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator++()</a>, and <a class="el" href="assert_8h_source.html#l00031">unreachable()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="patricia_8h_source.html#l00608">fe::Patricia&lt; D, KT, K, N &gt;::diff()</a>, <a class="el" href="patricia_8h_source.html#l00295">fe::Patricia&lt; D, KT, K, N &gt;::Set::has_intersection()</a>, <a class="el" href="patricia_8h_source.html#l00585">fe::Patricia&lt; D, KT, K, N &gt;::intersect()</a>, <a class="el" href="patricia_8h_source.html#l00562">fe::Patricia&lt; D, KT, K, N &gt;::merge()</a>, <a class="el" href="xtrie_8h_source.html#l00243">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator*()</a>, <a class="el" href="xtrie_8h_source.html#l00208">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator++()</a>, and <a class="el" href="assert_8h_source.html#l00031">unreachable()</a>.</p>
 
 </div>
 </div>

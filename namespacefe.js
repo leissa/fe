@@ -29,6 +29,7 @@ var namespacefe =
     [ "Log", "classfe_1_1Log.html", "classfe_1_1Log" ],
     [ "Parser", "classfe_1_1Parser.html", "classfe_1_1Parser" ],
     [ "PathHash", "structfe_1_1PathHash.html", "structfe_1_1PathHash" ],
+    [ "Patricia", "classfe_1_1Patricia.html", "classfe_1_1Patricia" ],
     [ "Pos", "structfe_1_1Pos.html", "structfe_1_1Pos" ],
     [ "Profiler", "classfe_1_1Profiler.html", "classfe_1_1Profiler" ],
     [ "Restore", "classfe_1_1Restore.html", "classfe_1_1Restore" ],
