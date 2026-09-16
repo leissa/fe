@@ -180,12 +180,21 @@ protected:
     bool anchored(Tag tag) const { return std::find(anchors_.rbegin(), anchors_.rend(), tag) != anchors_.rend(); }
 
     /// Parser::lex all Tok%ens whose Tag satisfies @p pred and that are not Parser::anchored;
-    /// report each one as `S::unanchored_err`.
+    /// report the whole run as a single `S::unanchored_err`.
     /// This turns an otherwise fatal Tok%en into a mere error message and keeps the current parser going.
+    /// One mistake discards one run, so one run is one diagnostic: a message per token buries the real error.
     template<std::predicate<Tag> P>
     void recover(P pred, Cite ctxt) {
-        while (pred(ahead().tag()) && !anchored(ahead().tag()))
-            self().unanchored_err(lex(), ctxt);
+        auto discard = [this, &pred] { return pred(ahead().tag()) && !anchored(ahead().tag()); };
+        if (!discard()) return;
+
+        auto first = lex();
+        auto loc   = first.loc();
+        size_t n   = 1;
+        for (; discard(); ++n)
+            loc.end = lex().loc().end;
+
+        self().unanchored_err(first, loc, n, ctxt);
     }
 
     /// As above but only recovers from @p tag.
@@ -217,12 +226,13 @@ protected:
     /// As above but spells @p tag out via Parser::tag2str_.
     decltype(auto) syntax_err(Tag tag, Cite ctxt) { return self().syntax_err(tag2str_(tag), ahead(), ctxt); }
 
-    /// Parser::recover discarded @p tok while parsing @p ctxt.
-    fe::Error& unanchored_err(Tok tok, Cite ctxt) {
+    /// Parser::recover discarded a run of @p n Tok%ens starting with @p tok and spanning @p loc while parsing @p ctxt.
+    fe::Error& unanchored_err(Tok tok, Loc loc, size_t n, Cite ctxt) {
         static_assert(
             requires(S& s) { s.driver(); },
             "provide `fe::Driver& driver()` in your parser - or an `unanchored_err` of your own");
-        return error().e(tok.loc(), "ignoring unmatched `{}` while parsing {}", tok, ctxt);
+        if (n == 1) return error().e(loc, "ignoring unmatched `{}` while parsing {}", tok, ctxt);
+        return error().e(loc, "ignoring {} unmatched tokens starting with `{}` while parsing {}", n, tok, ctxt);
     }
     ///@}
 

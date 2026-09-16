@@ -117,7 +117,7 @@ Both diagnostics come with a default implementation `S` may replace:
 - `fe::Error& syntax_err(Cite what, Tok, Cite ctxt)` - `what` was expected but that `Tok` showed up.
   The `(Cite what, Cite ctxt)` and `(Tag, Cite ctxt)` overloads funnel through it, so overriding that one suffices; they yield `decltype(auto)` and thus follow whatever the override returns.
   `Cite` says those strings are *markup*, so an override forwards them as-is - do not wrap or escape them again.
-- `fe::Error& unanchored_err(Tok, Cite ctxt)` - `Parser::recover` discarded this token.
+- `fe::Error& unanchored_err(Tok, Loc, size_t n, Cite ctxt)` - `Parser::recover` discarded a run of `n` tokens starting with that one and spanning that `Loc`.
 
 Each yields the `Error` it reported into, so an override - or a caller - can chain a `note` onto it.
 The Parser dispatches through `S`, so a declaration there wins - but it hides *all* base overloads of that name, so add `using Super::syntax_err;`.
@@ -125,6 +125,7 @@ The Parser dispatches through `S`, so a declaration there wins - but it hides *a
 Error recovery is anchor-based: an *anchor* is a `Tag` an enclosing context is still waiting for.
 `Parser::anchor(tag)` returns an RAII `Anchor` that anchors `tag` for the scope; `expect` it yourself at the end of that scope.
 `Parser::recover` then discards only tokens that are *not* anchored, so a nested parser bails out instead of swallowing a token its caller needs.
+It reports one `unanchored_err` per run rather than per token, so the diagnostic that sent it recovering stays the first thing the user reads.
 Prefer this over hand-rolled skip loops, and keep `expect` context strings noun phrases ("parenthesized expression"): they end up inside the message `syntax_err` builds.
 `expect` takes a `cite_string` overload; use it instead of formatting the context yourself - it funnels through `format_cite`, so its arguments are escaped as data.
 

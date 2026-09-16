@@ -307,6 +307,12 @@ void test_parser() {
         CHECK(str == "(* (+ a b) c)");
         CHECK(errs == 1);
     }
+    // a run of them is one diagnostic, not one per token
+    {
+        auto [str, loc, errs] = parse("a + b))) + c");
+        CHECK(str == "(+ (+ a b) c)");
+        CHECK(errs == 1);
+    }
     // ... whereas an anchored ')' still terminates the parenthesized expression
     CHECK(std::get<2>(parse("(a + b) * c")) == 0);
 
