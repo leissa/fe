@@ -13,6 +13,8 @@ var classfe_1_1Lexer =
     [ "accept", "classfe_1_1Lexer.html#abafa8c63b04317da94d934eaeb264a04", null ],
     [ "accept", "classfe_1_1Lexer.html#ada0b9946cc00d08001b26f8899793d15", null ],
     [ "accept_while", "classfe_1_1Lexer.html#ae7c5e57c041ebb9bb91d9acf786a1f5c", null ],
+    [ "accept_while_not", "classfe_1_1Lexer.html#af96acda3f3e8f61e1ce476a86f06e780", null ],
+    [ "accept_while_not", "classfe_1_1Lexer.html#a957d1c328cded941b89d95020aa4d2d2", null ],
     [ "ahead", "classfe_1_1Lexer.html#a574d6f4a890b04a422faa6a549a48687", null ],
     [ "char_err", "classfe_1_1Lexer.html#a64d16180bbc8d11a338fdae0cd56bc46", null ],
     [ "error", "classfe_1_1Lexer.html#a64eb8bb5d03958cd555482f861298b1f", null ],

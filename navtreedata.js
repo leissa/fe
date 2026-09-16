@@ -95,12 +95,12 @@ var NAVTREEINDEX =
 [
 "algo_8h.html",
 "classfe_1_1Cli.html#a753e88d69bcd1a723ba2d56407a7f832",
-"classfe_1_1Log.html#a479a8ef9e5bdbec4797f3a2a1a342ab7",
-"classfe_1_1Restore_3_01T_00_01nullptr_00_01nullptr_01_4.html",
-"classfe_1_1SymPool.html",
-"classfe_1_1lct_1_1Node.html#ac1fbd8c8b395d6a0ea589fba9bc6c453",
-"namespacefe_1_1term.html#a214cdb1ce076f0e6de11f6afb317c516",
-"structfe_1_1Log_1_1FmtLoc.html#aa4ff5bc7fc62f42b39dd9a3d9632a95b"
+"classfe_1_1Log.html#a3d38295eecbc510b2b4f1d81842dc73d",
+"classfe_1_1Restore.html#aa63dc708549a6234345de4ae29aab3fd",
+"classfe_1_1Sym.html#aecb42170e4ab76016364cfc43362d5c1",
+"classfe_1_1lct_1_1Node.html#aafc0dc1bac212db5878282add778b971a8d4b413299c85229b2778207aa7ae9e5",
+"namespacefe_1_1sys.html#afe2f0743975b75eb6fddce2cbd7290e1",
+"structfe_1_1Log_1_1FmtLoc.html#a5f3ef7995312a1a4ddec23977502f5e3"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';
