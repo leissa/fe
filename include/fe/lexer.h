@@ -133,6 +133,30 @@ protected:
         return buf_.substr(begin, loc_.end.off - begin);
     }
 
+    /// Lexer::next up to - but not including - the next @p c, and @returns the run just consumed.
+    /// Stops at the end of Lexer::buf_ if @p c never shows up.
+    /// No UTF-8 sequence spells an ASCII byte, so the run needs no decoding at all and is found with a
+    /// single `memchr`: a vector load per 16 or 32 bytes, where Lexer::accept_while pays a compare per
+    /// byte. This is how to skip a comment.
+    /// @note Nothing in the run is validated as UTF-8 - malformed bytes cannot spell @p c either.
+    std::string_view accept_while_not(char8_t c) {
+        assert(c < 0x80 && "only an ASCII byte can be searched for without decoding");
+        auto begin = ahead_[0].begin.off;
+        auto pos   = buf_.find((char)c, begin);
+        auto run   = pos == std::string_view::npos ? buf_.size() : pos;
+
+        if (run != begin) {
+            loc_.end = Pos((uint32_t)run);
+            cursor_  = run;
+            for (size_t i = 0; i != K; ++i)
+                ahead_.put(decode());
+        }
+
+        return buf_.substr(begin, run - begin);
+    }
+
+    std::string_view accept_while_not(char c) { return accept_while_not((char8_t)c); }
+
     /// @name Recover
     /// Lexer::next input that cannot be part of a token, report it, and keep the current lexer going.
     /// Invoke after Lexer::start, so Lexer::loc_ spans exactly what was discarded.

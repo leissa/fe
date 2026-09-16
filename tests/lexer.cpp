@@ -429,6 +429,7 @@ public:
         : Super(buf) {}
 
     using Super::accept_while;
+    using Super::accept_while_not;
     using Super::ahead;
     using Super::start;
 
@@ -493,6 +494,50 @@ TEST_CASE("Lexer accept_while") {
         lexer.start();
         CHECK(lexer.accept('a'));
         CHECK(lexer.accept_while(utf8::isalpha) == "bc"); // the run, not the whole token
+        CHECK(lexer.view() == "abc");
+    }
+}
+
+TEST_CASE("Lexer accept_while_not") {
+    SUBCASE("ascii run") {
+        FoldLexer lexer("abc\ndef");
+        lexer.start();
+        CHECK(lexer.accept_while_not('\n') == "abc");
+        CHECK(lexer.ahead() == '\n');
+        CHECK(lexer.accept_while_not('\n') == ""); // consumes nothing, so the run stays put
+        CHECK(lexer.ahead() == '\n');
+    }
+
+    SUBCASE("runs straight over non-ascii") {
+        FoldLexer lexer("a\u00e4b!c");
+        lexer.start();
+        CHECK(lexer.accept_while_not('!') == "a\u00e4b");
+        CHECK(lexer.ahead() == '!');
+    }
+
+    SUBCASE("runs straight over malformed utf-8") {
+        FoldLexer lexer("a\xff"
+                        "b!");
+        lexer.start();
+        CHECK(lexer.accept_while_not('!')
+              == "a\xff"
+                 "b");
+        CHECK(lexer.ahead() == '!');
+    }
+
+    SUBCASE("runs into EoF") {
+        FoldLexer lexer("abc");
+        lexer.start();
+        CHECK(lexer.accept_while_not('\n') == "abc");
+        CHECK(lexer.ahead() == utf8::EoF);
+        CHECK(lexer.accept_while_not('\n') == "");
+    }
+
+    SUBCASE("extends what was already consumed") {
+        FoldLexer lexer("abc\n");
+        lexer.start();
+        CHECK(lexer.accept('a'));
+        CHECK(lexer.accept_while_not('\n') == "bc"); // the run, not the whole token
         CHECK(lexer.view() == "abc");
     }
 }
