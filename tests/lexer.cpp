@@ -428,8 +428,9 @@ public:
     FoldLexer(std::string_view buf)
         : Super(buf) {}
 
+    using Super::accept_until;
     using Super::accept_while;
-    using Super::accept_while_not;
+    using Super::accept_while_none_of;
     using Super::ahead;
     using Super::start;
 
@@ -498,20 +499,20 @@ TEST_CASE("Lexer accept_while") {
     }
 }
 
-TEST_CASE("Lexer accept_while_not") {
+TEST_CASE("Lexer accept_while_none_of") {
     SUBCASE("ascii run") {
         FoldLexer lexer("abc\ndef");
         lexer.start();
-        CHECK(lexer.accept_while_not('\n') == "abc");
+        CHECK(lexer.accept_while_none_of('\n') == "abc");
         CHECK(lexer.ahead() == '\n');
-        CHECK(lexer.accept_while_not('\n') == ""); // consumes nothing, so the run stays put
+        CHECK(lexer.accept_while_none_of('\n') == ""); // consumes nothing, so the run stays put
         CHECK(lexer.ahead() == '\n');
     }
 
     SUBCASE("runs straight over non-ascii") {
         FoldLexer lexer("a\u00e4b!c");
         lexer.start();
-        CHECK(lexer.accept_while_not('!') == "a\u00e4b");
+        CHECK(lexer.accept_while_none_of('!') == "a\u00e4b");
         CHECK(lexer.ahead() == '!');
     }
 
@@ -519,7 +520,7 @@ TEST_CASE("Lexer accept_while_not") {
         FoldLexer lexer("a\xff"
                         "b!");
         lexer.start();
-        CHECK(lexer.accept_while_not('!')
+        CHECK(lexer.accept_while_none_of('!')
               == "a\xff"
                  "b");
         CHECK(lexer.ahead() == '!');
@@ -528,17 +529,77 @@ TEST_CASE("Lexer accept_while_not") {
     SUBCASE("runs into EoF") {
         FoldLexer lexer("abc");
         lexer.start();
-        CHECK(lexer.accept_while_not('\n') == "abc");
+        CHECK(lexer.accept_while_none_of('\n') == "abc");
         CHECK(lexer.ahead() == utf8::EoF);
-        CHECK(lexer.accept_while_not('\n') == "");
+        CHECK(lexer.accept_while_none_of('\n') == "");
     }
 
     SUBCASE("extends what was already consumed") {
         FoldLexer lexer("abc\n");
         lexer.start();
         CHECK(lexer.accept('a'));
-        CHECK(lexer.accept_while_not('\n') == "bc"); // the run, not the whole token
+        CHECK(lexer.accept_while_none_of('\n') == "bc"); // the run, not the whole token
         CHECK(lexer.view() == "abc");
+    }
+}
+
+TEST_CASE("Lexer accept_while_none_of two stop bytes") {
+    SUBCASE("stops at either") {
+        FoldLexer lexer("abc'def");
+        lexer.start();
+        CHECK(lexer.accept_while_none_of('\'', '\\') == "abc");
+        CHECK(lexer.ahead() == '\'');
+    }
+
+    SUBCASE("stops at the earlier one") {
+        FoldLexer lexer("abc\\d'e");
+        lexer.start();
+        CHECK(lexer.accept_while_none_of('\'', '\\') == "abc");
+        CHECK(lexer.ahead() == '\\');
+    }
+
+    SUBCASE("the same byte twice") {
+        FoldLexer lexer("abc!d");
+        lexer.start();
+        CHECK(lexer.accept_while_none_of('!', '!') == "abc");
+        CHECK(lexer.ahead() == '!');
+    }
+
+    SUBCASE("runs into EoF") {
+        FoldLexer lexer("abcdefghijkl");
+        lexer.start();
+        CHECK(lexer.accept_while_none_of('\'', '\\') == "abcdefghijkl");
+        CHECK(lexer.ahead() == utf8::EoF);
+    }
+}
+
+TEST_CASE("Lexer accept_until") {
+    SUBCASE("a lone first byte does not stop it") {
+        FoldLexer lexer("a * b */ c");
+        lexer.start();
+        CHECK(lexer.accept_until("*/") == "a * b ");
+        CHECK(lexer.ahead() == '*');
+    }
+
+    SUBCASE("stops at the first of several") {
+        FoldLexer lexer("ab**/c");
+        lexer.start();
+        CHECK(lexer.accept_until("*/") == "ab*");
+        CHECK(lexer.ahead() == '*');
+    }
+
+    SUBCASE("runs into EoF when it never shows up") {
+        FoldLexer lexer("ab*c");
+        lexer.start();
+        CHECK(lexer.accept_until("*/") == "ab*c");
+        CHECK(lexer.ahead() == utf8::EoF);
+    }
+
+    SUBCASE("matches right away") {
+        FoldLexer lexer("*/x");
+        lexer.start();
+        CHECK(lexer.accept_until("*/") == "");
+        CHECK(lexer.ahead() == '*');
     }
 }
 
