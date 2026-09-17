@@ -2,7 +2,6 @@
 
 #include <cstdint>
 
-#include <array>
 #include <memory>
 #include <ranges>
 #include <tuple>
@@ -55,12 +54,26 @@ public:
         return vla_begin() + offset(num_vlas(), counts);
     }
 
-    /// The @p I th VLA as a `View<VLA_Type<I>>`.
-    template<size_t I>
+    /// The @p I th VLA as a `Span<VLA_Type<I>>`.
+    template<size_t I, size_t N = std::dynamic_extent>
+    [[nodiscard]] auto vla() noexcept {
+        auto block  = (char*)static_cast<Self*>(this) + vla_begin();
+        auto counts = (uint32_t*)block;
+        if constexpr (N == std::dynamic_extent)
+            return Span<VLA_Type<I>>((VLA_Type<I>*)(block + offset(I, counts)), counts[I]);
+        else
+            return Span<VLA_Type<I>, N>((VLA_Type<I>*)(block + offset(I, counts)));
+    }
+
+    /// The @p I th VLA as a `View<VLA_Type<I>>` (`const` version).
+    template<size_t I, size_t N = std::dynamic_extent>
     [[nodiscard]] auto vla() const noexcept {
         auto block  = (const char*)static_cast<const Self*>(this) + vla_begin();
         auto counts = (const uint32_t*)block;
-        return View<VLA_Type<I>>((const VLA_Type<I>*)(block + offset(I, counts)), counts[I]);
+        if constexpr (N == std::dynamic_extent)
+            return View<VLA_Type<I>>((const VLA_Type<I>*)(block + offset(I, counts)), counts[I]);
+        else
+            return View<VLA_Type<I>, N>((const VLA_Type<I>*)(block + offset(I, counts)));
     }
 
 private:
