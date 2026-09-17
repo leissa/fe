@@ -176,12 +176,9 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4916e7efd0ad9752a3f90df778ce38e7" id="r_a4916e7efd0ad9752a3f90df778ce38e7"><td class="memTemplParams" colspan="2">template&lt;size_t I, size_t N = std::dynamic_extent&gt; </td></tr>
-<tr class="memitem:a4916e7efd0ad9752a3f90df778ce38e7 template"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#a4916e7efd0ad9752a3f90df778ce38e7">vla</a> () noexcept</td></tr>
-<tr class="memdesc:a4916e7efd0ad9752a3f90df778ce38e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <code class="param">I</code> th <a class="el" href="classfe_1_1VLA.html" title="CRTP base that gives Self one VLA per element type in Self::VLA_Types directly behind it in memory - ...">VLA</a> as a <span class="tt"><a class="el" href="classfe_1_1Span.html" title="This is a thin wrapper for std::span&lt;T, N&gt; with the following additional features:">Span</a>&lt;<a class="el" href="#a71ada1da77afebdcae069f2a37b348cc" title="Element type of the I th VLA.">VLA_Type</a>&lt;I&gt;&gt;</span>.  <br /></td></tr>
-<tr class="memitem:a6c36a81350403b1cc0d49419be8071d2" id="r_a6c36a81350403b1cc0d49419be8071d2"><td class="memTemplParams" colspan="2">template&lt;size_t I, size_t N = std::dynamic_extent&gt; </td></tr>
-<tr class="memitem:a6c36a81350403b1cc0d49419be8071d2 template"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#a6c36a81350403b1cc0d49419be8071d2">vla</a> () const noexcept</td></tr>
-<tr class="memdesc:a6c36a81350403b1cc0d49419be8071d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <code class="param">I</code> th <a class="el" href="classfe_1_1VLA.html" title="CRTP base that gives Self one VLA per element type in Self::VLA_Types directly behind it in memory - ...">VLA</a> as a <span class="tt"><a class="el" href="namespacefe.html#a3fa8abec15ebc094748836707250e96e" title="Read-only Span; use Span itself, if you want to write through its elements.">View</a>&lt;<a class="el" href="#a71ada1da77afebdcae069f2a37b348cc" title="Element type of the I th VLA.">VLA_Type</a>&lt;I&gt;&gt;</span> (<span class="tt">const</span> version).  <br /></td></tr>
+<tr class="memitem:abb1bf84b659c6c84ddeb87455df903c0" id="r_abb1bf84b659c6c84ddeb87455df903c0"><td class="memTemplParams" colspan="2">template&lt;size_t I, size_t N = std::dynamic_extent, class S&gt; </td></tr>
+<tr class="memitem:abb1bf84b659c6c84ddeb87455df903c0 template"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#abb1bf84b659c6c84ddeb87455df903c0">vla</a> (this S &amp;&amp;self) noexcept</td></tr>
+<tr class="memdesc:abb1bf84b659c6c84ddeb87455df903c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <code class="param">I</code> th <a class="el" href="classfe_1_1VLA.html" title="CRTP base that gives Self one VLA per element type in Self::VLA_Types directly behind it in memory - ...">VLA</a> as a <span class="tt"><a class="el" href="classfe_1_1Span.html" title="This is a thin wrapper for std::span&lt;T, N&gt; with the following additional features:">Span</a>&lt;<a class="el" href="#a71ada1da77afebdcae069f2a37b348cc" title="Element type of the I th VLA.">VLA_Type</a>&lt;I&gt;&gt;</span> - as a <span class="tt"><a class="el" href="namespacefe.html#a3fa8abec15ebc094748836707250e96e" title="Read-only Span; use Span itself, if you want to write through its elements.">View</a>&lt;<a class="el" href="#a71ada1da77afebdcae069f2a37b348cc" title="Element type of the I th VLA.">VLA_Type</a>&lt;I&gt;&gt;</span>, if <span class="tt">*this</span> is <span class="tt">const</span>.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -202,13 +199,13 @@ class fe::VLA&lt; Self &gt;</div><p>CRTP base that gives <code class="param">Sel
 <div class="line"><span class="keyword">public</span>:</div>
 <div class="line">    <span class="keyword">using </span>VLA_Types = std::tuple&lt;const Expr*, const Expr*&gt;;</div>
 <div class="line">    Interval(<a class="code hl_struct" href="structfe_1_1Loc.html">Loc</a> loc, Tag from, Tag to);          <span class="comment">// no parameter for either array</span></div>
-<div class="line">    <span class="keyword">auto</span> from_args()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="#a4916e7efd0ad9752a3f90df778ce38e7">vla&lt;0&gt;</a>(); } <span class="comment">// fe::View&lt;const Expr*&gt;</span></div>
-<div class="line">    <span class="keyword">auto</span> to_args()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="#a4916e7efd0ad9752a3f90df778ce38e7">vla&lt;1&gt;</a>(); }</div>
+<div class="line">    <span class="keyword">auto</span> from_args()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="#abb1bf84b659c6c84ddeb87455df903c0">vla&lt;0&gt;</a>(); } <span class="comment">// fe::View&lt;const Expr*&gt;</span></div>
+<div class="line">    <span class="keyword">auto</span> to_args()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="#abb1bf84b659c6c84ddeb87455df903c0">vla&lt;1&gt;</a>(); }</div>
 <div class="line">};</div>
 <div class="line"> </div>
 <div class="line">arena.ref&lt;Interval&gt;(loc, from, to, from_args, to_args);</div>
 <div class="ttc" id="aclassfe_1_1VLA_html"><div class="ttname"><a href="classfe_1_1VLA.html">fe::VLA</a></div><div class="ttdoc">CRTP base that gives Self one VLA per element type in Self::VLA_Types directly behind it in memory - ...</div><div class="ttdef"><b>Definition</b> <a href="vla_8h_source.html#l00037">vla.h:37</a></div></div>
-<div class="ttc" id="aclassfe_1_1VLA_html_a4916e7efd0ad9752a3f90df778ce38e7"><div class="ttname"><a href="#a4916e7efd0ad9752a3f90df778ce38e7">fe::VLA::vla</a></div><div class="ttdeci">auto vla() noexcept</div><div class="ttdoc">The I th VLA as a Span&lt;VLA_Type&lt;I&gt;&gt;.</div><div class="ttdef"><b>Definition</b> <a href="vla_8h_source.html#l00059">vla.h:59</a></div></div>
+<div class="ttc" id="aclassfe_1_1VLA_html_abb1bf84b659c6c84ddeb87455df903c0"><div class="ttname"><a href="#abb1bf84b659c6c84ddeb87455df903c0">fe::VLA::vla</a></div><div class="ttdeci">auto vla(this S &amp;&amp;self) noexcept</div><div class="ttdoc">The I th VLA as a Span&lt;VLA_Type&lt;I&gt;&gt; - as a View&lt;VLA_Type&lt;I&gt;&gt;, if *this is const.</div><div class="ttdef"><b>Definition</b> <a href="vla_8h_source.html#l00059">vla.h:59</a></div></div>
 <div class="ttc" id="astructfe_1_1Loc_html"><div class="ttname"><a href="structfe_1_1Loc.html">fe::Loc</a></div><div class="ttdoc">Location within a Src: the half-open byte range [Loc::begin, Loc::end).</div><div class="ttdef"><b>Definition</b> <a href="loc_8h_source.html#l00042">loc.h:42</a></div></div>
 </div><!-- fragment --> <dl class="section warning"><dt>Warning</dt><dd>Only the most derived class may carry them. A class deriving from <code class="param">Self</code> would inherit this base and place its arrays at <code class="param">Self's</code> offset - on top of its own members - so <a class="el" href="classfe_1_1Arena.html#ac0ed8cd6c5553d0d1e75745501221a6f" title="This is a std::unique_ptr that uses the Arena under the hood and whose Deleter will only invoke the d...">Arena::mk</a> and <a class="el" href="classfe_1_1Arena.html#a2a530cfca1470ed2be58139542bff87f" title="Like Arena::mk, but yields a Ref: nothing will ever destroy the object.">Arena::ref</a> reject it. </dd></dl>
 
@@ -289,15 +286,15 @@ template&lt;class Self&gt; </div>
 
 </div>
 </div>
-<a id="a6c36a81350403b1cc0d49419be8071d2" name="a6c36a81350403b1cc0d49419be8071d2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c36a81350403b1cc0d49419be8071d2">&#9670;&#160;</a></span>vla() <span class="overload">[1/2]</span></h2>
+<a id="abb1bf84b659c6c84ddeb87455df903c0" name="abb1bf84b659c6c84ddeb87455df903c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb1bf84b659c6c84ddeb87455df903c0">&#9670;&#160;</a></span>vla()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class Self&gt; </div>
 <div class="memtemplate">
-template&lt;size_t I, size_t N = std::dynamic_extent&gt; </div>
+template&lt;size_t I, size_t N = std::dynamic_extent, class S&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -305,40 +302,7 @@ template&lt;size_t I, size_t N = std::dynamic_extent&gt; </div>
         <tr>
           <td class="memname">auto <a class="el" href="classfe_1_1VLA.html">fe::VLA</a>&lt; Self &gt;::vla </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The <code class="param">I</code> th <a class="el" href="classfe_1_1VLA.html" title="CRTP base that gives Self one VLA per element type in Self::VLA_Types directly behind it in memory - ...">VLA</a> as a <span class="tt"><a class="el" href="namespacefe.html#a3fa8abec15ebc094748836707250e96e" title="Read-only Span; use Span itself, if you want to write through its elements.">View</a>&lt;<a class="el" href="#a71ada1da77afebdcae069f2a37b348cc" title="Element type of the I th VLA.">VLA_Type</a>&lt;I&gt;&gt;</span> (<span class="tt">const</span> version). </p>
-
-<p class="definition">Definition at line <a class="el" href="vla_8h_source.html#l00070">70</a> of file <a class="el" href="vla_8h_source.html">vla.h</a>.</p>
-
-</div>
-</div>
-<a id="a4916e7efd0ad9752a3f90df778ce38e7" name="a4916e7efd0ad9752a3f90df778ce38e7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4916e7efd0ad9752a3f90df778ce38e7">&#9670;&#160;</a></span>vla() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class Self&gt; </div>
-<div class="memtemplate">
-template&lt;size_t I, size_t N = std::dynamic_extent&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto <a class="el" href="classfe_1_1VLA.html">fe::VLA</a>&lt; Self &gt;::vla </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype">this S &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -349,9 +313,11 @@ template&lt;size_t I, size_t N = std::dynamic_extent&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>The <code class="param">I</code> th <a class="el" href="classfe_1_1VLA.html" title="CRTP base that gives Self one VLA per element type in Self::VLA_Types directly behind it in memory - ...">VLA</a> as a <span class="tt"><a class="el" href="classfe_1_1Span.html" title="This is a thin wrapper for std::span&lt;T, N&gt; with the following additional features:">Span</a>&lt;<a class="el" href="#a71ada1da77afebdcae069f2a37b348cc" title="Element type of the I th VLA.">VLA_Type</a>&lt;I&gt;&gt;</span>. </p>
+<p>The <code class="param">I</code> th <a class="el" href="classfe_1_1VLA.html" title="CRTP base that gives Self one VLA per element type in Self::VLA_Types directly behind it in memory - ...">VLA</a> as a <span class="tt"><a class="el" href="classfe_1_1Span.html" title="This is a thin wrapper for std::span&lt;T, N&gt; with the following additional features:">Span</a>&lt;<a class="el" href="#a71ada1da77afebdcae069f2a37b348cc" title="Element type of the I th VLA.">VLA_Type</a>&lt;I&gt;&gt;</span> - as a <span class="tt"><a class="el" href="namespacefe.html#a3fa8abec15ebc094748836707250e96e" title="Read-only Span; use Span itself, if you want to write through its elements.">View</a>&lt;<a class="el" href="#a71ada1da77afebdcae069f2a37b348cc" title="Element type of the I th VLA.">VLA_Type</a>&lt;I&gt;&gt;</span>, if <span class="tt">*this</span> is <span class="tt">const</span>. </p>
 
 <p class="definition">Definition at line <a class="el" href="vla_8h_source.html#l00059">59</a> of file <a class="el" href="vla_8h_source.html">vla.h</a>.</p>
+
+<p class="reference">References <a class="el" href="span_8h_source.html#l00047">fe::Span&lt; T, N &gt;::Span()</a>.</p>
 
 </div>
 </div>
@@ -446,11 +412,11 @@ template&lt;class Self&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="vla_8h_source.html#l00129">129</a> of file <a class="el" href="vla_8h_source.html">vla.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vla_8h_source.html#l00123">123</a> of file <a class="el" href="vla_8h_source.html">vla.h</a>.</p>
 
-<p class="reference">References <a class="el" href="vla_8h_source.html#l00129">Arena</a>.</p>
+<p class="reference">References <a class="el" href="vla_8h_source.html#l00123">Arena</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vla_8h_source.html#l00129">Arena</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vla_8h_source.html#l00123">Arena</a>.</p>
 
 </div>
 </div>
