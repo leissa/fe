@@ -7,7 +7,7 @@
 namespace fe {
 
 std::ostream& operator<<(std::ostream& os, Pos pos) {
-    if (pos) return os << pos.off;
+    if (pos) return os << pos.offset;
     return os << "<unknown position>";
 }
 

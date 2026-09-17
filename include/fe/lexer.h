@@ -67,7 +67,7 @@ protected:
     /// What has been lexed since Lexer::start.
     /// The whole source sits in Lexer::buf_, so Lexer::loc_ already *is* the token and Lexer::view costs nothing.
     ///@{
-    std::string_view view() const { return buf_.substr(loc_.begin.off, loc_.size()); }
+    std::string_view view() const { return buf_.substr(loc_.begin.offset, loc_.size()); }
 
     /// Lexer::view, case-folded - what a case-insensitive language like FORTRAN or SQL wants to intern.
     /// @note Byte-wise, which is all it takes: only ASCII folds, and no UTF-8 sequence spells it.
@@ -116,13 +116,13 @@ protected:
     /// @returns the run just consumed.
     template<class Pred>
     std::string_view accept_while(Pred pred) {
-        auto begin = ahead_[0].begin.off;
+        auto begin = ahead_[0].begin.offset;
 
         while (true) {
-            auto run = ahead_[0].begin.off;
+            auto run = ahead_[0].begin.offset;
             for (; run != buf_.size() && (uint8_t)buf_[run] < 0x80 && pred((char32_t)(uint8_t)buf_[run]); ++run) {}
 
-            if (run != ahead_[0].begin.off) {
+            if (run != ahead_[0].begin.offset) {
                 loc_.end = Pos((uint32_t)run);
                 cursor_  = run;
                 for (size_t i = 0; i != K; ++i)
@@ -134,7 +134,7 @@ protected:
             self().next();
         }
 
-        return buf_.substr(begin, loc_.end.off - begin);
+        return buf_.substr(begin, loc_.end.offset - begin);
     }
 
     /// Lexer::next up to - but not including - the next byte that is @p a or @p b.
@@ -147,7 +147,7 @@ protected:
     /// @returns the run just consumed.
     std::string_view accept_while_none_of(char8_t a, char8_t b) {
         assert(a < 0x80 && b < 0x80 && "only an ASCII byte can be searched for without decoding");
-        auto begin = ahead_[0].begin.off;
+        auto begin = ahead_[0].begin.offset;
         auto run   = begin;
 
         for (auto e = buf_.size(); run != e; ++run)
@@ -159,7 +159,7 @@ protected:
     /// As Lexer::accept_while_none_of(char8_t, char8_t), but a single stop byte, which one `memchr` finds outright.
     std::string_view accept_while_none_of(char8_t a) {
         assert(a < 0x80 && "only an ASCII byte can be searched for without decoding");
-        auto begin = ahead_[0].begin.off;
+        auto begin = ahead_[0].begin.offset;
         auto pos   = buf_.find((char)a, begin);
         return skip_to(begin, pos == std::string_view::npos ? buf_.size() : pos);
     }
@@ -175,7 +175,7 @@ protected:
     /// @returns the run just consumed.
     std::string_view accept_until(std::string_view seq) {
         assert(!seq.empty() && "an empty sequence matches at once, so the lexer would not advance");
-        auto begin = ahead_[0].begin.off;
+        auto begin = ahead_[0].begin.offset;
         auto pos   = buf_.find(seq, begin);
         return skip_to(begin, pos == std::string_view::npos ? buf_.size() : pos);
     }
