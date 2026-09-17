@@ -54,29 +54,23 @@ public:
         return vla_begin() + offset(num_vlas(), counts);
     }
 
-    /// The @p I th VLA as a `Span<VLA_Type<I>>`.
-    template<size_t I, size_t N = std::dynamic_extent>
-    [[nodiscard]] auto vla() noexcept {
-        auto block  = (char*)static_cast<Self*>(this) + vla_begin();
-        auto counts = (uint32_t*)block;
-        if constexpr (N == std::dynamic_extent)
-            return Span<VLA_Type<I>>((VLA_Type<I>*)(block + offset(I, counts)), counts[I]);
-        else
-            return Span<VLA_Type<I>, N>((VLA_Type<I>*)(block + offset(I, counts)));
-    }
-
-    /// The @p I th VLA as a `View<VLA_Type<I>>` (`const` version).
-    template<size_t I, size_t N = std::dynamic_extent>
-    [[nodiscard]] auto vla() const noexcept {
-        auto block  = (const char*)static_cast<const Self*>(this) + vla_begin();
+    /// The @p I th VLA as a `Span<VLA_Type<I>>` - as a `View<VLA_Type<I>>`, if `*this` is `const`.
+    template<size_t I, size_t N = std::dynamic_extent, class S>
+    [[nodiscard]] auto vla(this S&& self) noexcept {
+        using T     = Like<S, VLA_Type<I>>;
+        auto block  = (Like<S, char>*)static_cast<Like<S, Self>*>(&self) + vla_begin();
         auto counts = (const uint32_t*)block;
         if constexpr (N == std::dynamic_extent)
-            return View<VLA_Type<I>>((const VLA_Type<I>*)(block + offset(I, counts)), counts[I]);
+            return Span<T>((T*)(block + offset(I, counts)), counts[I]);
         else
-            return View<VLA_Type<I>, N>((const VLA_Type<I>*)(block + offset(I, counts)));
+            return Span<T, N>((T*)(block + offset(I, counts)));
     }
 
 private:
+    /// @p T with the `const`-qualification of @p S.
+    template<class S, class T>
+    using Like = std::conditional_t<std::is_const_v<std::remove_reference_t<S>>, const T, T>;
+
     static constexpr auto seq() noexcept { return std::make_index_sequence<num_vlas()>(); }
     static constexpr size_t vla_begin() noexcept { return pad(sizeof(Self), vla_align()); }
 
