@@ -50,7 +50,7 @@ public:
     uint32_t num_rows() const;
     Pos begin() const { return Pos(0); }
     Pos end() const { return Pos((uint32_t)buf_.size()); }
-    bool contains(Pos pos) const { return pos && pos.offset <= buf_.size(); }
+    bool contains(Pos pos) const { return pos && pos.off <= buf_.size(); }
     ///@}
 
     /// @name Resolve a Pos

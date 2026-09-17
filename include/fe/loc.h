@@ -17,18 +17,18 @@ struct Pos {
     static constexpr uint32_t Invalid = uint32_t(-1);
 
     constexpr Pos() noexcept = default; ///< Creates an invalid Pos%ition.
-    constexpr explicit Pos(uint32_t offset) noexcept
-        : offset(offset) {}
+    constexpr explicit Pos(uint32_t off) noexcept
+        : off(off) {}
 
-    constexpr explicit operator bool() const noexcept { return offset != Invalid; } ///< Is a valid Pos%ition?
+    constexpr explicit operator bool() const noexcept { return off != Invalid; } ///< Is a valid Pos%ition?
     constexpr auto operator<=>(const Pos&) const noexcept = default;
     constexpr Pos operator+(uint32_t n) const noexcept {
-        assert(*this && (uint64_t)offset + n < Invalid);
-        return Pos(offset + n);
+        assert(*this && (uint64_t)off + n < Invalid);
+        return Pos(off + n);
     }
     void dump() const;
 
-    uint32_t offset = Invalid;
+    uint32_t off = Invalid;
 
     friend std::ostream& operator<<(std::ostream& os, Pos pos);
 };
@@ -64,7 +64,7 @@ struct Loc {
     constexpr Loc anew_end() const noexcept { return {src, end, end}; }
     constexpr uint32_t size() const noexcept {
         assert((bool)begin == (bool)end && begin <= end);
-        return end.offset - begin.offset;
+        return end.off - begin.off;
     }
     constexpr Loc operator+(Pos pos) const noexcept { return {src, begin, pos}; }
     constexpr Loc operator+(Loc loc) const noexcept { return {src, begin, loc.end}; } ///< The hull of both Loc%ations.

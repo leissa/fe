@@ -23,14 +23,14 @@ uint32_t Src::num_rows() const { return (uint32_t)rows_.size() - phantom_(); }
 
 std::pair<uint32_t, uint32_t> Src::rowcol(Pos pos) const {
     if (!contains(pos)) return {0, 0};
-    auto row = (uint32_t)(std::ranges::upper_bound(rows_, pos.offset) - rows_.begin());
+    auto row = (uint32_t)(std::ranges::upper_bound(rows_, pos.off) - rows_.begin());
 
     // @p pos is at the very end of a file that ends with a terminator. That is no row of its own
     // but one past the end of the last real one - which is where an `<end of file>` token points.
     if (row > num_rows()) return {num_rows(), (uint32_t)utf8::num_code_points(line(num_rows())) + 1};
 
-    auto begin = row == 1 ? std::min(bom_, pos.offset) : rows_[row - 1];
-    return {row, (uint32_t)utf8::num_code_points(sub(begin, pos.offset)) + 1};
+    auto begin = row == 1 ? std::min(bom_, pos.off) : rows_[row - 1];
+    return {row, (uint32_t)utf8::num_code_points(sub(begin, pos.off)) + 1};
 }
 
 std::string_view Src::line(uint32_t row) const {
@@ -42,7 +42,7 @@ std::string_view Src::line(uint32_t row) const {
 }
 
 Pos Src::prev(Pos pos) const {
-    auto end = std::min<size_t>(pos.offset, buf_.size());
+    auto end = std::min<size_t>(pos.off, buf_.size());
     if (end == 0) return Pos(0);
 
     auto i = end - 1;

@@ -58,8 +58,8 @@ public:
     struct Hash {
         size_t operator()(Dbg dbg) const noexcept {
             auto h = hash_begin(std::bit_cast<uintptr_t>(dbg.loc_.src));
-            h      = hash_combine(h, dbg.loc_.begin.offset);
-            h      = hash_combine(h, dbg.loc_.end.offset);
+            h      = hash_combine(h, dbg.loc_.begin.off);
+            h      = hash_combine(h, dbg.loc_.end.off);
             return hash_combine(h, Sym::Hash()(dbg.sym_));
         }
     };
@@ -70,7 +70,7 @@ public:
 
     template<class H>
     friend H AbslHashValue(H h, Dbg dbg) noexcept {
-        return H::combine(std::move(h), dbg.loc_.src, dbg.loc_.begin.offset, dbg.loc_.end.offset, dbg.sym_);
+        return H::combine(std::move(h), dbg.loc_.src, dbg.loc_.begin.off, dbg.loc_.end.off, dbg.sym_);
     }
     ///@}
 
