@@ -207,8 +207,8 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('dbg_8h_source.
 <div class="foldopen" id="foldopen00059" data-start="{" data-end="}">
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="structfe_1_1Dbg_1_1Hash.html#a081b7f77dee989703b6ac6b3de12c091">   59</a></span>        <span class="keywordtype">size_t</span> <a class="code hl_function" href="structfe_1_1Dbg_1_1Hash.html#a081b7f77dee989703b6ac6b3de12c091">operator()</a>(<a class="code hl_function" href="structfe_1_1Dbg.html#a887c5ecc32abaf560dae5a8dcc3a7b1f">Dbg</a> dbg) <span class="keyword">const</span> <span class="keyword">noexcept</span> {</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            <span class="keyword">auto</span> h = <a class="code hl_function" href="namespacefe.html#a490ea31d86af5baf49d5f00a09298f14">hash_begin</a>(std::bit_cast&lt;uintptr_t&gt;(dbg.loc_.src));</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            h      = <a class="code hl_function" href="namespacefe.html#abf157d266c33cbe9981f19021fbf6264">hash_combine</a>(h, dbg.loc_.begin.offset);</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            h      = <a class="code hl_function" href="namespacefe.html#abf157d266c33cbe9981f19021fbf6264">hash_combine</a>(h, dbg.loc_.end.offset);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            h      = <a class="code hl_function" href="namespacefe.html#abf157d266c33cbe9981f19021fbf6264">hash_combine</a>(h, dbg.loc_.begin.off);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            h      = <a class="code hl_function" href="namespacefe.html#abf157d266c33cbe9981f19021fbf6264">hash_combine</a>(h, dbg.loc_.end.off);</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="namespacefe.html#abf157d266c33cbe9981f19021fbf6264">hash_combine</a>(h, <a class="code hl_struct" href="structfe_1_1Sym_1_1Hash.html">Sym::Hash</a>()(dbg.sym_));</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        }</div>
 </div>
@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('dbg_8h_source.
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> H&gt;</div>
 <div class="foldopen" id="foldopen00072" data-start="{" data-end="}">
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="structfe_1_1Dbg.html#a9d6abb2ddcdfb375745cd11a85eda040">   72</a></span>    <span class="keyword">friend</span> H <a class="code hl_friend" href="structfe_1_1Dbg.html#a9d6abb2ddcdfb375745cd11a85eda040">AbslHashValue</a>(H h, <a class="code hl_function" href="structfe_1_1Dbg.html#a887c5ecc32abaf560dae5a8dcc3a7b1f">Dbg</a> dbg) <span class="keyword">noexcept</span> {</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keywordflow">return</span> H::combine(std::move(h), dbg.loc_.src, dbg.loc_.begin.offset, dbg.loc_.end.offset, dbg.sym_);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keywordflow">return</span> H::combine(std::move(h), dbg.loc_.src, dbg.loc_.begin.off, dbg.loc_.end.off, dbg.sym_);</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    }<span class="comment"></span></div>
 </div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment">    ///@}</span></div>

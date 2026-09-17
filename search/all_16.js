@@ -11,7 +11,7 @@ var searchData=
   ['view_8',['View',['../classfe_1_1Join.html#ada5d411581bc9cf1e7a466020755c497',1,'fe::Join::View'],['../namespacefe.html#a3fa8abec15ebc094748836707250e96e',1,'fe::View']]],
   ['view_9',['view',['../classfe_1_1Lexer.html#a5f1384d70696c2437367020346f18929',1,'fe::Lexer::view()'],['../classfe_1_1Sym.html#ae4042d6fd11e3d25c511c2feb031ad2a',1,'fe::Sym::view()'],['../classfe_1_1term_1_1Cited.html#a09b9d95c53aa63254856b35a44b85049',1,'fe::term::Cited::view()'],['../classfe_1_1term_1_1Cite.html#ad9220fb06e2f38135bbf2754579788b7',1,'fe::term::Cite::view()'],['../classfe_1_1Vector.html#a4b22e3073984242fc9e70ab3e65b0bba',1,'fe::Vector::view()'],['../classfe_1_1Cite.html#ad9220fb06e2f38135bbf2754579788b7',1,'fe::Cite::view()'],['../classfe_1_1Cited.html#a09b9d95c53aa63254856b35a44b85049',1,'fe::Cited::view()']]],
   ['vla_10',['VLA',['../classfe_1_1VLA.html',1,'fe']]],
-  ['vla_11',['vla',['../classfe_1_1VLA.html#a94587c2142d9516bbf1e123a14cb3b35',1,'fe::VLA']]],
+  ['vla_11',['vla',['../classfe_1_1VLA.html#a4916e7efd0ad9752a3f90df778ce38e7',1,'fe::VLA::vla() noexcept'],['../classfe_1_1VLA.html#a6c36a81350403b1cc0d49419be8071d2',1,'fe::VLA::vla() const noexcept']]],
   ['vla_2eh_12',['vla.h',['../vla_8h.html',1,'']]],
   ['vla_5falign_13',['vla_align',['../classfe_1_1VLA.html#a0156087295ff1ec2af12007415e5fb12',1,'fe::VLA']]],
   ['vla_5fbytes_14',['vla_bytes',['../classfe_1_1VLA.html#a4c9ccddf0942986eea1200387c203ebb',1,'fe::VLA']]],

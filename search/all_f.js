@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['offset_0',['offset',['../structfe_1_1Pos.html#a779400940cea32e9894072f1bf81751b',1,'fe::Pos']]],
+  ['off_0',['off',['../structfe_1_1Pos.html#a055b58d719423ee4aa8928a927970f99',1,'fe::Pos']]],
   ['ok_1',['ok',['../classfe_1_1Error.html#afe0bb794482d9b67a4df05f683d5e302',1,'fe::Error']]],
   ['on_5fheap_2',['on_heap',['../classfe_1_1Bitset.html#af6ea9e1ddff79d034f10587737e8b4b3',1,'fe::Bitset']]],
   ['open_3',['open',['../namespacefe_1_1dl.html#aecc9eedf6d19099de2e520cda44af8e7',1,'fe::dl']]],
