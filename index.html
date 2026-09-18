@@ -207,13 +207,16 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
       <li class="level2">
         <a href="#autotoc_md15">CMake </a>
       </li>
+      <li class="level2">
+        <a href="#autotoc_md16">Installing </a>
+      </li>
     </ul>
   </li>
   <li class="level1">
-    <a href="#autotoc_md16">🧭 Typical Workflow </a>
+    <a href="#autotoc_md17">🧭 Typical Workflow </a>
   </li>
   <li class="level1">
-    <a href="#autotoc_md17">💬 Writing a Diagnostic </a>
+    <a href="#autotoc_md18">💬 Writing a Diagnostic </a>
     <ul>
       <li class="level2">
         <a href="#citations">Citations </a>
@@ -226,19 +229,19 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
     </ul>
   </li>
   <li class="level1">
-    <a href="#autotoc_md18">🛠️ Building and Testing </a>
+    <a href="#autotoc_md19">🛠️ Building and Testing </a>
   </li>
   <li class="level1">
-    <a href="#autotoc_md19">📚 Building the Documentation </a>
+    <a href="#autotoc_md20">📚 Building the Documentation </a>
   </li>
   <li class="level1">
-    <a href="#autotoc_md20">🔨 Related Projects </a>
+    <a href="#autotoc_md21">🔨 Related Projects </a>
   </li>
   <li class="level1">
-    <a href="#autotoc_md21">🤝 Contributing </a>
+    <a href="#autotoc_md22">🤝 Contributing </a>
   </li>
   <li class="level1">
-    <a href="#autotoc_md22">⚖️ License </a>
+    <a href="#autotoc_md23">⚖️ License </a>
   </li>
 </ul>
 </div>
@@ -389,7 +392,22 @@ CMake</h2>
 <div class="line">target_link_libraries(my_compiler PRIVATE fe)</div>
 </div><!-- fragment --><p><span class="tt"><a class="el" href="namespacefe.html">fe</a></span> is an <span class="tt">OBJECT</span> library, so its objects land inside whichever target links it directly, while everything downstream just gets the headers. Link it into exactly one shared library of yours and every other consumer resolves its symbols there instead of carrying a copy. On Windows that shared library has to export them, which CMake cannot infer: compile everything that goes into it with <span class="tt">fe_EXPORTS</span>, or <span class="tt">FE_STATIC_DEFINE</span> if there is no shared library in play.</p>
 <div class="fragment"><div class="line">set_target_properties(my_lib PROPERTIES DEFINE_SYMBOL fe_EXPORTS)</div>
-</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md16"></a>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md16"></a>
+Installing</h2>
+<p>FE installs, so a consumer does not have to vendor it:</p>
+<div class="fragment"><div class="line">cmake -S . -B build -DCMAKE_BUILD_TYPE=Release</div>
+<div class="line">cmake --build build</div>
+<div class="line">cmake --install build --prefix /usr/local</div>
+</div><!-- fragment --><p>Then find it instead of adding it as a subdirectory:</p>
+<div class="fragment"><div class="line">find_package(fe 0.15 REQUIRED)</div>
+<div class="line">target_link_libraries(my_compiler PRIVATE fe::fe)</div>
+</div><!-- fragment --><p><span class="tt">fe::fe</span> is an alias for the <span class="tt"><a class="el" href="namespacefe.html">fe</a></span> target, so that spelling works either way. <span class="tt">FE_INSTALL</span> decides whether the install rules exist at all: <span class="tt">ON</span> for a top-level build, <span class="tt">OFF</span> for an embedded one - adding FE as a subdirectory therefore adds nothing to <em>your</em> prefix. A <span class="tt">find_package(<a class="el" href="namespacefe.html">fe</a> 0.15)</span> is satisfied by 0.15.x only: while FE is pre-1.0, every minor is free to break the API.</p>
+<p>Two things follow from <span class="tt"><a class="el" href="namespacefe.html">fe</a></span> being an <span class="tt">OBJECT</span> library:</p>
+<ul>
+<li>What lands in the prefix are its object files, one set per build type you install, and they are usable only from the very compiler, standard library, and configuration that produced them. Install a Debug build alongside the Release one if you want to link Debug consumers - on MSVC the two pull in incompatible runtimes.</li>
+<li>Those objects are compiled with <span class="tt">FE_STATIC_DEFINE</span>, so on Windows an installed FE links statically into your target. Re-exporting FE from a shared library of your own is what the subdirectory build above is for.</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md17"></a>
 🧭 Typical Workflow</h1>
 <p>A typical FE-based frontend looks roughly like this:</p>
 <ol type="1">
@@ -402,7 +420,7 @@ CMake</h2>
 <li>Use <span class="tt"><a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">fe::Arena</a></span> and symbol interning where allocation cost and identifier handling matter.</li>
 </ol>
 <p>If you want a concrete model to copy from, start with <a href="../tests/lexer.cpp"><span class="tt">tests/lexer.cpp</span></a>.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md17"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md18"></a>
 💬 Writing a Diagnostic</h1>
 <p>Everything reports into the one <span class="tt"><a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and hands each to the Diag that lays it out.">fe::Error</a></span> the <span class="tt">Driver</span> owns, and one diagnostic is one chained expression:</p>
 <div class="fragment"><div class="line">error().e(tok.loc(), <span class="stringliteral">&quot;expected `)`, got `{}` while parsing {}&quot;</span>, tok, Cite(ctxt))</div>
@@ -463,7 +481,7 @@ The Markup Language</h3>
 <li><span class="tt"><a class="el" href="classfe_1_1Cite.html" title="A borrowed fragment whose backticks stay markup; format_cite escapes every other argument.">fe::Cite</a></span> is a <em>borrowed</em> fragment, and the type to spell a markup <b>parameter</b> with: <span class="tt">Parser</span>'s <span class="tt">what</span> and <span class="tt">ctxt</span> are <span class="tt">Cite</span>, so a <span class="tt">syntax_err</span> of your own cannot forward them and silently lose the highlighting. A string literal and a <span class="tt">Cited</span> convert implicitly - both are markup someone wrote - while runtime text has to say <span class="tt"><a class="el" href="classfe_1_1Cite.html" title="A borrowed fragment whose backticks stay markup; format_cite escapes every other argument.">fe::Cite(s)</a></span>, so data never becomes markup by accident. It borrows like a <span class="tt">std::string_view</span>, so keep the <span class="tt">Cited</span> alive that it points at.</li>
 </ul>
 <p>The language itself lives in <span class="tt"><a class="el" href="term_8h.html">fe/term.h</a></span>, not in the diagnostics: <span class="tt">term::render_cite</span> renders it, <span class="tt">term::cite_width</span> measures what it will occupy, <span class="tt">term::escape_cite</span> escapes data into it, and <span class="tt">term::cite_string</span>/<span class="tt">term::format_cite</span>/<span class="tt">term::Cite</span>/<span class="tt">term::Cited</span> produce it. All of them - and <span class="tt">Cli::markdown</span> - read the grammar above through the one scanner that implements it, so the terminal help, the generated manual, and a diagnostic cannot drift apart. That is what lets <span class="tt"><a class="el" href="classfe_1_1Cli.html" title="A small command-line parser for a single command - no subcommands.">fe::Cli</a></span> spell its <span class="tt">--help</span> text the same way <span class="tt"><a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and hands each to the Diag that lays it out.">fe::Error</a></span> spells a diagnostic. <span class="tt"><a class="el" href="classfe_1_1Log.html" title="Facility to log what you are doing.">fe::Log</a></span> reads the very same convention, so a log message quotes a plugin, phase, or path exactly the way a diagnostic does.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md18"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md19"></a>
 🛠️ Building and Testing</h1>
 <p>To configure, build, and run the test suite:</p>
 <div class="fragment"><div class="line">cmake -S . -B build -DBUILD_TESTING=ON</div>
@@ -473,13 +491,13 @@ The Markup Language</h3>
 <div class="fragment"><div class="line">ctest --test-dir build -R &#39;^Lexer$&#39; --output-on-failure</div>
 </div><!-- fragment --><p>To run a doctest case directly:</p>
 <div class="fragment"><div class="line">./build/bin/fe-test --test-case=Lexer</div>
-</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md19"></a>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md20"></a>
 📚 Building the Documentation</h1>
 <p>To build the documentation:</p>
 <div class="fragment"><div class="line">cmake -S . -B build -DFE_BUILD_DOCS=ON</div>
 <div class="line">cmake --build build --target docs</div>
 </div><!-- fragment --><p>This requires Doxygen and Graphviz (<span class="tt">dot</span>).</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md20"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md21"></a>
 🔨 Related Projects</h1>
 <p>FE is developed against three frontends of very different scale, and every change has to work for all three:</p>
 <ul>
@@ -491,10 +509,10 @@ The Markup Language</h3>
 <ul>
 <li><a href="https://github.com/leissa/graphtool">GraphTool</a> - a DOT-language tool using FE-style frontend infrastructure.</li>
 </ul>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md21"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md22"></a>
 🤝 Contributing</h1>
 <p>Issues and pull requests are welcome - whether that's a bug report, a new frontend building block, or a documentation fix. If you're unsure where to start, open an issue to discuss the idea first.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md22"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md23"></a>
 ⚖️ License</h1>
 <p>FE is licensed under the <a href="../LICENSE">MIT License</a>. </p>
 </div></div><!-- PageDoc -->

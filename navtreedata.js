@@ -42,19 +42,20 @@ var NAVTREE =
       ] ]
     ] ],
     [ "🚀 Quick Start", "index.html#autotoc_md14", [
-      [ "CMake", "index.html#autotoc_md15", null ]
+      [ "CMake", "index.html#autotoc_md15", null ],
+      [ "Installing", "index.html#autotoc_md16", null ]
     ] ],
-    [ "🧭 Typical Workflow", "index.html#autotoc_md16", null ],
-    [ "💬 Writing a Diagnostic", "index.html#autotoc_md17", [
+    [ "🧭 Typical Workflow", "index.html#autotoc_md17", null ],
+    [ "💬 Writing a Diagnostic", "index.html#autotoc_md18", [
       [ "Citations", "index.html#citations", [
         [ "The Markup Language", "index.html#markup", null ]
       ] ]
     ] ],
-    [ "🛠️ Building and Testing", "index.html#autotoc_md18", null ],
-    [ "📚 Building the Documentation", "index.html#autotoc_md19", null ],
-    [ "🔨 Related Projects", "index.html#autotoc_md20", null ],
-    [ "🤝 Contributing", "index.html#autotoc_md21", null ],
-    [ "⚖️ License", "index.html#autotoc_md22", null ],
+    [ "🛠️ Building and Testing", "index.html#autotoc_md19", null ],
+    [ "📚 Building the Documentation", "index.html#autotoc_md20", null ],
+    [ "🔨 Related Projects", "index.html#autotoc_md21", null ],
+    [ "🤝 Contributing", "index.html#autotoc_md22", null ],
+    [ "⚖️ License", "index.html#autotoc_md23", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -99,8 +100,8 @@ var NAVTREEINDEX =
 "classfe_1_1Restore.html#a2e556ff0b0dc914aa1e161f26448a44d",
 "classfe_1_1Sym.html#ad9d10b4be1533609b0ae6b535b45bedf",
 "classfe_1_1lct_1_1Node.html#a9d5163bbbb591e574df5b2c7960c7c71",
-"namespacefe_1_1sys.html#a469fb213a9135e407987acad6ca41e51",
-"structfe_1_1Loc.html#ae3d85d53b521ca18cc76993f59da3a35"
+"namespacefe_1_1sys.html#a32dbb92355fcb6726986a2f850cfdbb9",
+"structfe_1_1Loc.html#add7645b57713cd0e2882138f8c7f0cea"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';

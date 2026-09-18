@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['a_20diagnostic_0',['💬 Writing a Diagnostic',['../index.html#autotoc_md17',1,'']]],
+  ['a_20diagnostic_0',['💬 Writing a Diagnostic',['../index.html#autotoc_md18',1,'']]],
   ['abslhashvalue_1',['AbslHashValue',['../structfe_1_1Dbg.html#a9d6abb2ddcdfb375745cd11a85eda040',1,'fe::Dbg::AbslHashValue()'],['../classfe_1_1Sym.html#a9bf56c781ba51b3eaf7d11d6aeb080f5',1,'fe::Sym::AbslHashValue()']]],
   ['accept_2',['accept',['../classfe_1_1Lexer.html#ada0b9946cc00d08001b26f8899793d15',1,'fe::Lexer::accept(Pred pred)'],['../classfe_1_1Lexer.html#ade52178526efaf0b1e006a7d062784bd',1,'fe::Lexer::accept(char32_t c)'],['../classfe_1_1Lexer.html#a721073113d17c45a947c25d33d53ff3b',1,'fe::Lexer::accept(char c)'],['../classfe_1_1Lexer.html#abafa8c63b04317da94d934eaeb264a04',1,'fe::Lexer::accept(char8_t c)'],['../classfe_1_1Parser.html#ad7acb49705c085f2ae9e7464f03eb3c0',1,'fe::Parser::accept()']]],
   ['accept_5funtil_3',['accept_until',['../classfe_1_1Lexer.html#a278998742faefdfca8ef792caa00a76d',1,'fe::Lexer']]],
@@ -22,7 +22,7 @@ var searchData=
   ['anchor_19',['anchor',['../classfe_1_1Parser.html#abb77f69879ac8c534434df81bf1b33a4',1,'fe::Parser']]],
   ['anchored_20',['anchored',['../classfe_1_1Parser.html#a46ecd5e875f8f85a493813e2c76cb8ac',1,'fe::Parser']]],
   ['anchors_5f_21',['anchors_',['../classfe_1_1Parser.html#a58f69ff8307dc2d26b598aba613a6637',1,'fe::Parser']]],
-  ['and_20testing_22',['🛠️ Building and Testing',['../index.html#autotoc_md18',1,'']]],
+  ['and_20testing_22',['🛠️ Building and Testing',['../index.html#autotoc_md19',1,'']]],
   ['anew_5fbegin_23',['anew_begin',['../structfe_1_1Loc.html#aaa417bc33f87b0bcf991753a44abd66e',1,'fe::Loc']]],
   ['anew_5fend_24',['anew_end',['../structfe_1_1Loc.html#a22526d7195a9c583f2b8b32be72f2216',1,'fe::Loc']]],
   ['any_25',['any',['../classfe_1_1Bitset.html#a7572b2da5b9c85b0a0f20f018d948611',1,'fe::Bitset::any()'],['../namespacefe_1_1utf8.html#af64fe6297bc1f6fe539c11232da3ebde',1,'fe::utf8::any(T... args) noexcept']]],
