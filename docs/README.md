@@ -195,6 +195,34 @@ On Windows that shared library has to export them, which CMake cannot infer: com
 set_target_properties(my_lib PROPERTIES DEFINE_SYMBOL fe_EXPORTS)
 ```
 
+### Installing
+
+FE installs, so a consumer does not have to vendor it:
+
+```sh
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+cmake --install build --prefix /usr/local
+```
+
+Then find it instead of adding it as a subdirectory:
+
+```cmake
+find_package(fe 0.15 REQUIRED)
+target_link_libraries(my_compiler PRIVATE fe::fe)
+```
+
+`fe::fe` is an alias for the `fe` target, so that spelling works either way.
+`FE_INSTALL` decides whether the install rules exist at all: `ON` for a top-level build, `OFF` for an embedded one - adding FE as a subdirectory therefore adds nothing to *your* prefix.
+A `find_package(fe 0.15)` is satisfied by 0.15.x only: while FE is pre-1.0, every minor is free to break the API.
+
+Two things follow from `fe` being an `OBJECT` library:
+
+- What lands in the prefix are its object files, one set per build type you install, and they are usable only from the very compiler, standard library, and configuration that produced them.
+  Install a Debug build alongside the Release one if you want to link Debug consumers - on MSVC the two pull in incompatible runtimes.
+- Those objects are compiled with `FE_STATIC_DEFINE`, so on Windows an installed FE links statically into your target.
+  Re-exporting FE from a shared library of your own is what the subdirectory build above is for.
+
 ## 🧭 Typical Workflow
 
 A typical FE-based frontend looks roughly like this:

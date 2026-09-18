@@ -29,6 +29,15 @@ jobs:
       - name: Test
         run: ctest --test-dir ${{github.workspace}}/build --output-on-failure
 
+      - name: Install
+        run: cmake --install ${{github.workspace}}/build --prefix ${{github.workspace}}/prefix
+
+      - name: Consume the installed package
+        run: |
+          CC=clang CXX=clang++ cmake -S ${{github.workspace}}/tests/consumer -B ${{github.workspace}}/build-consumer -DCMAKE_BUILD_TYPE=${{matrix.build-type}} -DCMAKE_PREFIX_PATH=${{github.workspace}}/prefix
+          cmake --build ${{github.workspace}}/build-consumer -v
+          ${{github.workspace}}/build-consumer/fe-consumer
+
   # Apple clang has no LeakSanitizer; leak checking runs on Linux (LSan + Valgrind).
   sanitize:
     name: ASan+UBSan

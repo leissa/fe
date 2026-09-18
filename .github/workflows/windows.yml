@@ -31,3 +31,14 @@ jobs:
 
       - name: Test
         run: ctest --test-dir ${{github.workspace}}/build --output-on-failure
+
+      - name: Install
+        run: cmake --install ${{github.workspace}}/build --prefix ${{github.workspace}}/prefix
+
+      - name: Configure the consumer
+        run: cmake -S ${{github.workspace}}/tests/consumer -B ${{github.workspace}}/build-consumer -G Ninja -DCMAKE_BUILD_TYPE=${{matrix.build-type}} -DCMAKE_PREFIX_PATH=${{github.workspace}}/prefix
+
+      - name: Build and run the consumer
+        run: |
+          cmake --build ${{github.workspace}}/build-consumer -v
+          ${{github.workspace}}/build-consumer/fe-consumer.exe

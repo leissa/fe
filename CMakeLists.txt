@@ -28,6 +28,8 @@ file(GLOB fe_headers CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/include/fe/*
 # An OBJECT library so that a consumer can compile it into one shared library of its own;
 # every other consumer then resolves these symbols there instead of carrying a copy.
 add_library(fe OBJECT)
+# So that `fe::fe` names the target whether fe is embedded or found via find_package.
+add_library(fe::fe ALIAS fe)
 
 target_sources(fe
     PRIVATE
@@ -68,6 +70,10 @@ endif()
 
 option(FE_ABSL "If ON, use abseil containers, otherwise use std containers" OFF)
 if(FE_ABSL)
+    # A consumer that brings its own abseil - via add_subdirectory or FetchContent - has these already.
+    if(NOT TARGET absl::flat_hash_map)
+        find_package(absl REQUIRED)
+    endif()
     target_compile_definitions(fe PUBLIC FE_ABSL)
     target_link_libraries(fe
         PUBLIC
@@ -110,7 +116,8 @@ if(FE_INSTALL)
     write_basic_package_version_file(
         "${CMAKE_CURRENT_BINARY_DIR}/cmake/fe-config-version.cmake"
         VERSION ${fe_VERSION}
-        COMPATIBILITY SameMajorVersion
+        # Every 0.x bump is free to break the API, so only the same minor is compatible.
+        COMPATIBILITY SameMinorVersion
     )
     configure_package_config_file(
         cmake/fe-config.cmake.in
@@ -139,6 +146,7 @@ if(FE_INSTALL)
         DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/fe"
         NAMESPACE fe::
     )
+    install(FILES LICENSE DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/licenses/fe")
 endif()
 
 if(BUILD_TESTING AND CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)

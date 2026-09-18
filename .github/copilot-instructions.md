@@ -21,15 +21,16 @@ Docs are optional: `cmake -S . -B build -DFE_BUILD_DOCS=ON && cmake --build buil
 Formatting/lint-style checks live in `.pre-commit-config.yaml` and run via `pre-commit run --all-files`: `clang-format` (see `.clang-format`) plus the whitespace/YAML hooks. There is no CMake lint target.
 
 CI (`.github/workflows/`) builds one compiler per platform in Debug and Release - gcc-14 on Linux, Apple clang on macOS, MSVC on Windows - and runs `fe-test` under Valgrind as well as ASan/LSan/UBSan.
+Each of those jobs also installs into a prefix and builds `tests/consumer` - a three-line `find_package(fe)` project that is not part of the fe build - against it, so a broken install rule fails CI instead of a downstream project; a Linux job does the same with `FE_ABSL=ON`.
 A change is only done when it is leak- and UB-clean, not merely when `ctest` passes.
 
 ## Build options & toolchain
 
 - **C++23** is required (`target_compile_features` in `CMakeLists.txt`).
-- `FE_ABSL` (default `OFF`): switches `SymMap`/`SymSet`/`PathMap` and friends from `std` to Abseil containers.
+- `FE_ABSL` (default `OFF`): switches `SymMap`/`SymSet`/`PathMap` and friends from `std` to Abseil containers. It `find_package`s Abseil itself unless a consumer already provides the `absl::` targets, and the installed `fe-config` then `find_dependency`s it in turn.
 - `FE_BUILD_DOCS` (default `OFF`): Doxygen docs.
 - `BUILD_TESTING` (CTest default `ON`): builds `fe-test`, the only executable.
-- `FE_INSTALL` (default: `ON` only for a top-level build): install rules plus the `fe-config` package - `find_package(fe)` then yields `fe::fe`. An embedded `fe` links its objects into its consumer, so it installs nothing by default.
+- `FE_INSTALL` (default: `ON` only for a top-level build): install rules plus the `fe-config` package - `find_package(fe)` then yields `fe::fe`, which is also an `ALIAS` in the build tree so both consumption modes spell the target alike. An embedded `fe` links its objects into its consumer, so it installs nothing by default. The package is `SameMinorVersion`-compatible: pre-1.0, every minor may break the API.
 - MSVC gets `/utf-8 /wd4146 /wd4245` and `_CTYPE_DISABLE_MACROS`. Keep new headers MSVC-clean; UTF-8 source handling is assumed.
 
 ## High-level architecture
