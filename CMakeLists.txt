@@ -22,6 +22,9 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     include(CTest) # defines BUILD_TESTING
 endif()
 
+# CONFIGURE_DEPENDS so that a new header re-runs CMake instead of silently going uninstalled.
+file(GLOB fe_headers CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/include/fe/*.h")
+
 # An OBJECT library so that a consumer can compile it into one shared library of its own;
 # every other consumer then resolves these symbols there instead of carrying a copy.
 add_library(fe OBJECT)
@@ -47,42 +50,7 @@ target_sources(fe
         FILE_SET headers
         BASE_DIRS include
         TYPE HEADERS
-        FILES
-            include/fe/algo.h
-            include/fe/arena.h
-            include/fe/assert.h
-            include/fe/bitset.h
-            include/fe/cast.h
-            include/fe/cli.h
-            include/fe/container.h
-            include/fe/dbg.h
-            include/fe/diag.h
-            include/fe/dl.h
-            include/fe/enum.h
-            include/fe/error.h
-            include/fe/driver.h
-            include/fe/hash.h
-            include/fe/format.h
-            include/fe/lct.h
-            include/fe/lexer.h
-            include/fe/loc.h
-            include/fe/log.h
-            include/fe/parser.h
-            include/fe/patricia.h
-            include/fe/profile.h
-            include/fe/restore.h
-            include/fe/ring.h
-            include/fe/snippet.h
-            include/fe/span.h
-            include/fe/src.h
-            include/fe/sym.h
-            include/fe/sys.h
-            include/fe/term.h
-            include/fe/utf8.h
-            include/fe/vector.h
-            include/fe/vla.h
-            include/fe/worklist.h
-            include/fe/xtrie.h
+        FILES ${fe_headers}
 )
 target_include_directories(fe
     PUBLIC
@@ -123,52 +91,58 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     target_compile_definitions(fe PUBLIC FE_STATIC_DEFINE)
 endif()
 
-install(
-    FILES "${CMAKE_CURRENT_BINARY_DIR}/include/fe/api.h"
-    DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/fe"
-)
+# Installing an embedded fe would scatter its objects through the consumer's prefix; it links them in.
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+    set(fe_install ON)
+else()
+    set(fe_install OFF)
+endif()
+option(FE_INSTALL "If ON, generate install rules for fe." ${fe_install})
 
-set(targets_export_name "fe-targets")
+if(FE_INSTALL)
+    install(
+        FILES "${CMAKE_CURRENT_BINARY_DIR}/include/fe/api.h"
+        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/fe"
+    )
 
-write_basic_package_version_file(
-    "${CMAKE_CURRENT_BINARY_DIR}/cmake/fe-config-version.cmake"
-    VERSION ${fe_VERSION}
-    COMPATIBILITY SameMajorVersion
-)
-configure_package_config_file(
-    cmake/fe-config.cmake.in
-    "${CMAKE_CURRENT_BINARY_DIR}/cmake/fe-config.cmake"
-    INSTALL_DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/fe"
-)
-install(
-    TARGETS fe
-    EXPORT ${targets_export_name}
-    FILE_SET headers
-    OBJECTS DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-    INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-)
-install(
-    FILES
-        "${CMAKE_CURRENT_BINARY_DIR}/cmake/fe-config.cmake"
+    set(targets_export_name "fe-targets")
+
+    write_basic_package_version_file(
         "${CMAKE_CURRENT_BINARY_DIR}/cmake/fe-config-version.cmake"
-    DESTINATION
-        "${CMAKE_INSTALL_LIBDIR}/cmake/fe"
-)
-install(
-    EXPORT ${targets_export_name}
-    DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/fe"
-    NAMESPACE fe::
-)
-install(
-    DIRECTORY include/fe
-    DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
-    FILES_MATCHING PATTERN "*.h"
-)
+        VERSION ${fe_VERSION}
+        COMPATIBILITY SameMajorVersion
+    )
+    configure_package_config_file(
+        cmake/fe-config.cmake.in
+        "${CMAKE_CURRENT_BINARY_DIR}/cmake/fe-config.cmake"
+        INSTALL_DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/fe"
+    )
+    install(
+        TARGETS fe
+        EXPORT ${targets_export_name}
+        FILE_SET headers
+        OBJECTS DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+        INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+    )
+    install(
+        FILES
+            "${CMAKE_CURRENT_BINARY_DIR}/cmake/fe-config.cmake"
+            "${CMAKE_CURRENT_BINARY_DIR}/cmake/fe-config-version.cmake"
+        DESTINATION
+            "${CMAKE_INSTALL_LIBDIR}/cmake/fe"
+    )
+    install(
+        EXPORT ${targets_export_name}
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/fe"
+        NAMESPACE fe::
+    )
+endif()
 
 if(BUILD_TESTING AND CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+    set(DOCTEST_NO_INSTALL ON)
     add_subdirectory(submodules/doctest)
     add_subdirectory(tests)
 endif()

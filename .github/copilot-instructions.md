@@ -29,6 +29,7 @@ A change is only done when it is leak- and UB-clean, not merely when `ctest` pas
 - `FE_ABSL` (default `OFF`): switches `SymMap`/`SymSet`/`PathMap` and friends from `std` to Abseil containers.
 - `FE_BUILD_DOCS` (default `OFF`): Doxygen docs.
 - `BUILD_TESTING` (CTest default `ON`): builds `fe-test`, the only executable.
+- `FE_INSTALL` (default: `ON` only for a top-level build): install rules plus the `fe-config` package - `find_package(fe)` then yields `fe::fe`. An embedded `fe` links its objects into its consumer, so it installs nothing by default.
 - MSVC gets `/utf-8 /wd4146 /wd4245` and `_CTYPE_DISABLE_MACROS`. Keep new headers MSVC-clean; UTF-8 source handling is assumed.
 
 ## High-level architecture
@@ -67,7 +68,7 @@ Beyond those, `src/fe/` implements `fe::dl` (`dl.h`, dynamic library loading), `
 
 ## Key conventions
 
-- Declare in `include/fe/` and implement in `src/fe/`; only a template, a `constexpr` function, or a one-line accessor belongs in the header. Both lists are spelled out explicitly in `CMakeLists.txt`, and the headers are installed from `include/fe/`.
+- Declare in `include/fe/` and implement in `src/fe/`; only a template, a `constexpr` function, or a one-line accessor belongs in the header. The `.cpp` list is spelled out explicitly in `CMakeLists.txt`; the headers are globbed (`CONFIGURE_DEPENDS`) into the `headers` file set, which is what installs them and puts `include/` on the include path.
 - Default-constructed values are meaningful sentinels: `Tok{}` means parse failure, `Sym{}` is the empty symbol, and default `Pos`/`Loc` are invalid. `Parser::accept`/`Parser::expect` rely on this.
 - `Loc::end` is **exclusive** (the byte one past the span), just like an STL iterator. `Loc::src` is a borrowed `const Src*`, so the `Src` must outlive the `Loc`; a `SrcMap` owns one for you.
 - `Loc` is kept at two machine words (`static_assert` in `loc.h`) so it stays a value passed in registers - do not grow it.
