@@ -6,7 +6,7 @@
 #include <iostream>
 #include <memory>
 
-#include "fe/assert.h"
+#include "fe/term.h"
 #include "fe/utf8.h"
 
 #ifdef _WIN32

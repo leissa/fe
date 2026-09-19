@@ -1,6 +1,6 @@
 #include "fe/dl.h"
 
-#include "fe/assert.h"
+#include "fe/term.h"
 
 #ifdef _WIN32
 #    include <windows.h>

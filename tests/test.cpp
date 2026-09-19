@@ -548,6 +548,45 @@ TEST_CASE("term") {
     }
 }
 
+TEST_CASE("throwf") {
+    auto what = [](auto&& f) {
+        try {
+            f();
+        } catch (const std::exception& e) { return std::string(e.what()); }
+        return std::string("did not throw");
+    };
+
+    SUBCASE("a citation keeps its backticks when uncolored") {
+        auto guard = fe::term::ScopedMode(fe::term::Mode::Never);
+        CHECK(what([] { fe::throwf("cannot open `{}`", "a.mim"); }) == "error: cannot open `a.mim`");
+    }
+
+    SUBCASE("a citation is colored") {
+        auto guard = fe::term::ScopedMode(fe::term::Mode::Always);
+        CHECK(what([] { fe::throwf("cannot open `{}`", "a.mim"); })
+              == "\033[31merror: \033[39mcannot open \033[36ma.mim\033[39m");
+    }
+
+    // A backtick in an argument must not close the citation it sits in - a shell command line has one.
+    SUBCASE("an argument is data") {
+        auto guard = fe::term::ScopedMode(fe::term::Mode::Always);
+        CHECK(what([] { fe::throwf("command `{}` failed", "echo `x`"); })
+              == "\033[31merror: \033[39mcommand \033[36mecho `x`\033[39m failed");
+    }
+
+    SUBCASE("a Cited argument stays markup") {
+        auto guard = fe::term::ScopedMode(fe::term::Mode::Never);
+        CHECK(what([] { fe::throwf("{}, but got `{}`", fe::format_cite("expected `{}`", "Sigma"), "Lam"); })
+              == "error: expected `Sigma`, but got `Lam`");
+    }
+
+    SUBCASE("throws the requested type") {
+        auto guard = fe::term::ScopedMode(fe::term::Mode::Never);
+        CHECK_THROWS_AS(fe::throwf<std::runtime_error>("boom"), std::runtime_error);
+        CHECK_THROWS_AS(fe::throwf("boom"), std::logic_error);
+    }
+}
+
 TEST_CASE("format") {
     std::vector<int> v0;
     std::vector<int> v1 = {23};

@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <optional>
+#include <sstream>
+#include <stdexcept>
 #include <string>
 #include <string_view>
 #include <type_traits>
@@ -268,6 +270,19 @@ using term::Cite;        ///< @copydoc fe::term::Cite
 using term::cite_string; ///< @copydoc fe::term::cite_string
 using term::Cited;       ///< @copydoc fe::term::Cited
 using term::format_cite; ///< @copydoc fe::term::format_cite
+
+/// Throws a `T` (a `std::logic_error` by default) whose message is `format_cite(fmt, args...)`.
+/// Use this for unrecoverable errors that should surface as a proper exception with a formatted message.
+/// The message is rendered here, so - like fe::Error::Bail - the `what()` is finished text a generic
+/// handler may print as is, not markup someone else still has to resolve.
+/// Colors follow term::auto_detached, just like the message fe::Log builds in a detached buffer.
+template<class T = std::logic_error, class... Args>
+[[noreturn]] void throwf(cite_string<Args...> fmt, Args&&... args) {
+    auto oss = std::ostringstream();
+    oss << term::FG::Red << "error: " << term::FG::Reset;
+    term::render_cite(oss, term::detail::vformat_cite(fmt.get(), args...));
+    throw T(oss.str());
+}
 } // namespace fe
 
 #ifndef DOXYGEN
