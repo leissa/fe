@@ -162,6 +162,8 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('term_8h.html',
 <div class="contents">
 <div class="textblock"><code>#include &lt;iostream&gt;</code><br />
 <code>#include &lt;optional&gt;</code><br />
+<code>#include &lt;sstream&gt;</code><br />
+<code>#include &lt;stdexcept&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;string_view&gt;</code><br />
 <code>#include &lt;type_traits&gt;</code><br />
@@ -177,7 +179,7 @@ Include dependency graph for term.h:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="term_8h__dep__incl.svg" width="379" height="330"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="term_8h__dep__incl.svg" width="463" height="330"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="term_8h_source.html">Go to the source code of this file.</a></p>
@@ -277,6 +279,9 @@ Functions</h2></td></tr>
 <tr class="memdesc:a8e278c2f9e70e4d2d00e887e40727a10"><td class="mdescLeft">&#160;</td><td class="mdescRight">As above but lets <code class="param">os</code> decide the coloring; mirrors cite_width.  <br /></td></tr>
 <tr class="memitem:a1b862580e3b45d83aaf0a194130caabe" id="r_a1b862580e3b45d83aaf0a194130caabe"><td class="memItemLeft">FE_API size_t&#160;</td><td class="memItemRight"><a class="el" href="namespacefe_1_1term.html#a1b862580e3b45d83aaf0a194130caabe">fe::term::cite_width</a> (std::string_view str, bool color)</td></tr>
 <tr class="memdesc:a1b862580e3b45d83aaf0a194130caabe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of columns <code class="param">str</code> actually occupies once render_cite renders it with <code class="param">color</code> - fewer than <span class="tt">str.size()</span> by the backticks/backslashes render_cite drops.  <br /></td></tr>
+<tr class="memitem:a66e2c981cd46243bfcccd1d43ed3d925" id="r_a66e2c981cd46243bfcccd1d43ed3d925"><td class="memTemplParams" colspan="2">template&lt;class T = std::logic_error, class... Args&gt; </td></tr>
+<tr class="memitem:a66e2c981cd46243bfcccd1d43ed3d925 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a66e2c981cd46243bfcccd1d43ed3d925">fe::throwf</a> (<a class="el" href="namespacefe_1_1term.html#aa1e2ea2aa40fc5132b2c7364ee4467d8">cite_string</a>&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:a66e2c981cd46243bfcccd1d43ed3d925"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;  <br /></td></tr>
 <tr class="memitem:a93eda7673ac1b39525af9d0fad6e6fb7" id="r_a93eda7673ac1b39525af9d0fad6e6fb7"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
 <tr class="memitem:a93eda7673ac1b39525af9d0fad6e6fb7 template"><td class="memItemLeft"><a class="el" href="classfe_1_1term_1_1Cited.html">Cited</a>&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a93eda7673ac1b39525af9d0fad6e6fb7">fe::format_cite</a> (<a class="el" href="namespacefe_1_1term.html#aa1e2ea2aa40fc5132b2c7364ee4467d8">cite_string</a>&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
 <tr class="memdesc:a93eda7673ac1b39525af9d0fad6e6fb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;  <br /></td></tr>

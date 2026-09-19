@@ -105,7 +105,7 @@ var namespacefe =
     [ "Span", "namespacefe.html#a3f771e8cbf2331225b93c010f3601cd5", null ],
     [ "splitmix64", "namespacefe.html#acc1eed83d44fa0a6d3888d77d1065692", null ],
     [ "StreamFn", "namespacefe.html#a653a3eb512f7610b2449a4546f7e335d", null ],
-    [ "throwf", "namespacefe.html#a90e0f8ec6bf736dde22be99a5cfde6ca", null ],
+    [ "throwf", "namespacefe.html#a66e2c981cd46243bfcccd1d43ed3d925", null ],
     [ "to_underlying", "namespacefe.html#a1f98d7865fd23c1d29648fb9f6239ce3", null ],
     [ "unreachable", "namespacefe.html#aff9df682b55afdb0f712e5a0c1ff3a2b", null ],
     [ "Vector", "namespacefe.html#a2e8e999b77fa2e3c1cba77396a9e192d", null ],

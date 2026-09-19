@@ -249,8 +249,8 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Lightweight stream-based terminal colors for diagnostics and CLI output. </p>
 <p>Include <span class="tt"><a class="el" href="term_8h.html">fe/term.h</a></span> and stream a <a class="el" href="#a316a3298d89062fe9e7dbb1581c75148" title="fe::term::FG">fe::term::FG</a> value into an <span class="tt">std::ostream</span>: </p><div class="fragment"><div class="line">std::cerr &lt;&lt; <a class="code hl_enumvalue" href="#a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47">fe::term::FG::Red</a> &lt;&lt; <span class="stringliteral">&quot;error: &quot;</span> &lt;&lt; <a class="code hl_enumvalue" href="#a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d">fe::term::FG::Reset</a> &lt;&lt; <span class="stringliteral">&quot;unexpected token\n&quot;</span>;</div>
-<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d"><div class="ttname"><a href="#a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d">fe::term::FG::Reset</a></div><div class="ttdeci">@ Reset</div><div class="ttdef"><b>Definition</b> <a href="term_8h_source.html#l00058">term.h:58</a></div></div>
-<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47"><div class="ttname"><a href="#a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47">fe::term::FG::Red</a></div><div class="ttdeci">@ Red</div><div class="ttdef"><b>Definition</b> <a href="term_8h_source.html#l00050">term.h:50</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d"><div class="ttname"><a href="#a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d">fe::term::FG::Reset</a></div><div class="ttdeci">@ Reset</div><div class="ttdef"><b>Definition</b> <a href="term_8h_source.html#l00060">term.h:60</a></div></div>
+<div class="ttc" id="anamespacefe_1_1term_html_a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47"><div class="ttname"><a href="#a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47">fe::term::FG::Red</a></div><div class="ttdeci">@ Red</div><div class="ttdef"><b>Definition</b> <a href="term_8h_source.html#l00052">term.h:52</a></div></div>
 </div><!-- fragment --><p>The current behavior is controlled via <a class="el" href="#a36d4d673e10a305ff30ec08d94c8f087" title="fe::term::Mode">fe::term::Mode</a> and can be overridden with <a class="el" href="#a43b4926e20406fc7b4f64ba7497064e2" title="fe::term::set_mode">fe::term::set_mode</a>. In <a class="el" href="#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb" title="fe::term::Mode::Auto">fe::term::Mode::Auto</a>, colors are emitted only for <span class="tt">std::cout</span>, <span class="tt">std::cerr</span>, <span class="tt">std::clog</span>, or streams sharing those buffers when they refer to terminals. FE also respects the common environment conventions <span class="tt">NO_COLOR</span>, <span class="tt">CLICOLOR=0</span>, and <span class="tt">CLICOLOR_FORCE</span> (unless it is set to <span class="tt">0</span>).</p>
 <p>Note that a <span class="tt">std::formatter</span> never sees the destination stream - it formats into a detached buffer. Hence, embedding a <a class="el" href="#a316a3298d89062fe9e7dbb1581c75148" title="fe::term::FG">fe::term::FG</a> value in a <span class="tt">std::format</span>/<span class="tt">std::print</span> format string resolves <a class="el" href="#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb" title="fe::term::Mode::Auto">fe::term::Mode::Auto</a> to "no color". If you emit colors this way, call <a class="el" href="#a5a9bda2e33e1a4c3eec8ad926e16fa02" title="fe::term::resolve_mode">fe::term::resolve_mode</a> once at startup to decide <a class="el" href="#a36d4d673e10a305ff30ec08d94c8f087a06b9281e396db002010bde1de57262eb" title="fe::term::Mode::Auto">fe::term::Mode::Auto</a> up front based on a representative stream.</p>
 <p>The mode and <a class="el" href="#ae5b6b47661d8593fc66824d6665f2154" title="fe::term::auto_detached">fe::term::auto_detached</a> live in the fe library rather than in this header, so a shared library loaded via <a class="el" href="namespacefe_1_1dl.html">fe::dl</a> sees whatever the host set instead of starting over from the defaults.</p>
@@ -272,7 +272,7 @@ template&lt;class... Args&gt; </div>
 
 <p>A std::format_string whose backticks delimit a <span class="tt"> `citation` </span> while those of its arguments are data. </p>
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00241">241</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00243">243</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
 </div>
 </div>
@@ -291,7 +291,7 @@ template&lt;class... Args&gt; </div>
 <p>Overrides the color mode for the duration of the scope. </p>
 <dl class="section warning"><dt>Warning</dt><dd>The mode is global, so this affects every stream - and every thread - while it is alive. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00150">150</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00152">152</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
 </div>
 </div>
@@ -330,7 +330,7 @@ template&lt;class... Args&gt; </div>
 <tr><td class="fieldname"><a id="a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d" name="a316a3298d89062fe9e7dbb1581c75148a526d688f37a86d3c3f27d0c5016eb71d"></a>Reset&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00048">48</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00050">50</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
 </div>
 </div>
@@ -361,7 +361,7 @@ template&lt;class... Args&gt; </div>
 <tr><td class="fieldname"><a id="a36d4d673e10a305ff30ec08d94c8f087a68eec46437c384d8dad18d5464ebc35c" name="a36d4d673e10a305ff30ec08d94c8f087a68eec46437c384d8dad18d5464ebc35c"></a>Always&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00041">41</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00043">43</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
 </div>
 </div>
@@ -472,11 +472,11 @@ template&lt;class O&gt; </div>
 <p>Escapes <code class="param">str</code> into <code class="param">out</code> so that render_cite reproduces it verbatim instead of reading it as markup. </p>
 <p>Escaping the backslashes as well keeps a trailing one from swallowing the backtick that follows it. </p>
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00169">169</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00171">171</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
-<p class="reference">References <a class="el" href="term_8h_source.html#l00169">escape_cite_to()</a>.</p>
+<p class="reference">References <a class="el" href="term_8h_source.html#l00171">escape_cite_to()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="term_8h_source.html#l00169">escape_cite_to()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="term_8h_source.html#l00171">escape_cite_to()</a>.</p>
 
 </div>
 </div>
@@ -504,11 +504,11 @@ template&lt;class... Args&gt; </div>
 <p>std::format for a message that follows that convention; assemble a fragment of your own with it. </p>
 <p>The <a class="el" href="classfe_1_1term_1_1Cited.html" title="An owning message fragment that spells  `citations`  of its own; what format_cite yields.">Cited</a> it yields is markup wherever it is used as an argument again - no re-wrapping needed. </p>
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00246">246</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00248">248</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
-<p class="reference">References <a class="el" href="term_8h_source.html#l00184">fe::Cited::Cited()</a>, and <a class="el" href="term_8h_source.html#l00246">format_cite()</a>.</p>
+<p class="reference">References <a class="el" href="term_8h_source.html#l00186">fe::Cited::Cited()</a>, and <a class="el" href="term_8h_source.html#l00248">format_cite()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="term_8h_source.html#l00246">format_cite()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="term_8h_source.html#l00248">format_cite()</a>.</p>
 
 </div>
 </div>
@@ -620,7 +620,7 @@ template&lt;class... Args&gt; </div>
 
 <p class="reference">References <a class="el" href="#aedc72cd2cb9b72c919afeedce535d935">render_cite()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#a8e278c2f9e70e4d2d00e887e40727a10">render_cite()</a>, and <a class="el" href="#aedc72cd2cb9b72c919afeedce535d935">render_cite()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#a8e278c2f9e70e4d2d00e887e40727a10">render_cite()</a>, <a class="el" href="#aedc72cd2cb9b72c919afeedce535d935">render_cite()</a>, and <a class="el" href="term_8h_source.html#l00280">fe::throwf()</a>.</p>
 
 </div>
 </div>

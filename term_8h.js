@@ -37,6 +37,7 @@ var term_8h =
     [ "fe::term::resolve_mode", "namespacefe_1_1term.html#a5a9bda2e33e1a4c3eec8ad926e16fa02", null ],
     [ "fe::term::set_auto_detached", "namespacefe_1_1term.html#af7c5ecd3a2ff27481258b4d73e7622a5", null ],
     [ "fe::term::set_mode", "namespacefe_1_1term.html#a43b4926e20406fc7b4f64ba7497064e2", null ],
+    [ "fe::throwf", "namespacefe.html#a66e2c981cd46243bfcccd1d43ed3d925", null ],
     [ "fe::term::use_color", "namespacefe_1_1term.html#a52b95eff166b87b52238c9f72416c3bb", null ],
     [ "fe::term::width", "namespacefe_1_1term.html#aa553472665f575bceb82bdbbac9b8837", null ]
 ];
