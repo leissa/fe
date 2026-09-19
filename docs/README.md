@@ -308,9 +308,25 @@ error().e(loc, "identifier `{}` not found", sym); // sym may be `+ - nothing to 
 | An argument | Nothing, ever. |
 | A message fragment of your own | Nothing - assemble it with `fe::format_cite` and pass the `fe::Cited` it yields; its backticks stay markup while *its* arguments are escaped. |
 
-Markup is a *type*, not a convention you have to remember:
+Markup is a *type*, not a convention you have to remember.
+Each of those types mirrors one from `std::`, so the shape of the API is one you already know:
 
-- `fe::cite_string` is a format string whose backticks are markup - that is what `fe::Error::{msg,e,w,n}` take instead of a `std::format_string`; forward one through a wrapper of your own the same way.
+| Reach for | Where you would otherwise reach for | To |
+| --------- | ----------------------------------- | -- |
+| `fe::cite_string<Args...>` | `std::format_string<Args...>` | Declare the format-string parameter of anything that takes a message: `Error::{msg,e,w,n}`, `Log::{e,w,i,v,d,t}`, `Parser::expect`, `Castable::expect`, `fe::throwf` - and a wrapper of your own that forwards to one of them. |
+| `fe::format_cite(fmt, args...)` | `std::format(fmt, args...)` | Assemble a fragment up front, when you cannot hand `fmt, args...` to the message itself. |
+| `fe::Cited` | `std::string` | Own such a fragment - what `format_cite` yields, and what you pass straight back in as an argument. |
+| `fe::Cite` | `std::string_view` | Spell a markup **parameter**, so a wrapper cannot silently drop the markup it forwards. |
+| `term::escape_cite(s)` | - | Escape text that is not markup by hand - rarely needed, since every argument is escaped for you already. |
+| `term::render_cite(os, s)` | - | Resolve markup to output text - what `Diag::render` does, and what an override of it has to do too. |
+
+The shapes line up; the semantics deliberately do not, which is why the names do not either.
+`format_cite` escapes its arguments where `std::format` splices them in verbatim, and what comes out is `Cited` markup rather than finished text.
+So never route a message through `std::format`: pass its result in as an argument and the backticks you meant as markup arrive escaped, pass it in as the *format string* and the data you spliced in becomes markup.
+
+The three types in more detail:
+
+- `fe::cite_string` is a format string whose backticks are markup; forward one through a wrapper of your own the way those functions declare it.
 - `fe::Cited` is an owning fragment, what `fe::format_cite` yields. Pass it straight back in as an argument - no re-wrapping, and nothing to dangle.
 - `fe::Cite` is a *borrowed* fragment, and the type to spell a markup **parameter** with: `Parser`'s `what` and `ctxt` are `Cite`, so a `syntax_err` of your own cannot forward them and silently lose the highlighting.
   A string literal and a `Cited` convert implicitly - both are markup someone wrote - while runtime text has to say `fe::Cite(s)`, so data never becomes markup by accident.
