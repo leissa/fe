@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cassert>
+#include <concepts>
 
 #include <array>
 #include <bit>
@@ -126,26 +127,18 @@ public:
 
     /// @name Comparison: Sym w/ convertible to std::string_view
     ///@{
-    template<typename T>
-    requires std::is_convertible_v<T, std::string_view>
-    friend constexpr auto operator<=>(Sym lhs, const T& rhs) noexcept {
+    friend constexpr auto operator<=>(Sym lhs, const std::convertible_to<std::string_view> auto& rhs) noexcept {
         return lhs.view() <=> std::string_view(rhs);
     }
-    template<typename T>
-    requires std::is_convertible_v<T, std::string_view>
-    friend constexpr auto operator<=>(const T& lhs, Sym rhs) noexcept {
+    friend constexpr auto operator<=>(const std::convertible_to<std::string_view> auto& lhs, Sym rhs) noexcept {
         return std::string_view(lhs) <=> rhs.view();
     }
 
-    template<typename T>
-    requires std::is_convertible_v<T, std::string_view>
-    friend constexpr bool operator==(Sym lhs, const T& rhs) noexcept {
+    friend constexpr bool operator==(Sym lhs, const std::convertible_to<std::string_view> auto& rhs) noexcept {
         return lhs.view() == std::string_view(rhs);
     }
 
-    template<typename T>
-    requires std::is_convertible_v<T, std::string_view>
-    friend constexpr bool operator==(const T& lhs, Sym rhs) noexcept {
+    friend constexpr bool operator==(const std::convertible_to<std::string_view> auto& lhs, Sym rhs) noexcept {
         return std::string_view(lhs) == rhs.view();
     }
     ///@}

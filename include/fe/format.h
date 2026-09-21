@@ -51,8 +51,7 @@ StreamFn(F) -> StreamFn<F>;
 /// @sa [Stack Overflow](https://stackoverflow.com/a/75738462).
 template<class Char>
 struct basic_ostream_formatter : std::formatter<std::basic_string_view<Char>, Char> {
-    template<class T, class FormatContext>
-    auto format(T const& value, FormatContext& ctx) const {
+    auto format(const auto& value, auto& ctx) const {
         std::basic_stringstream<Char> ss;
         ss << value;
         return std::formatter<std::basic_string_view<Char>, Char>::format(ss.view(), ctx);
@@ -159,8 +158,7 @@ struct std::formatter<fe::Join<R>> {
 
     constexpr auto parse(std::format_parse_context& ctx) { return elem_fmt.parse(ctx); }
 
-    template<class FormatContext>
-    auto format(const fe::Join<R>& j, FormatContext& ctx) const {
+    auto format(const fe::Join<R>& j, auto& ctx) const {
         auto out = ctx.out();
         for (std::string_view sep = {}; const auto& elem : j.range()) {
             out = std::ranges::copy(sep, out).out;

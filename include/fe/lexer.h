@@ -94,8 +94,7 @@ protected:
     }
 
     /// Accept next character in Lexer::buf_ and Lexer::next it, if @p pred holds.
-    template<class Pred>
-    bool accept(Pred pred) {
+    bool accept(auto pred) {
         if (!pred(ahead())) return false;
         self().next();
         return true;
@@ -114,8 +113,7 @@ protected:
     /// A character beyond ASCII falls back to Lexer::next, so @p pred may match one.
     /// @note Only worth it if the lexed text is expected to be long such as identifiers or comments.
     /// @returns the run just consumed.
-    template<class Pred>
-    std::string_view accept_while(Pred pred) {
+    std::string_view accept_while(auto pred) {
         auto begin = ahead_[0].begin.off;
 
         while (true) {

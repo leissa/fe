@@ -107,8 +107,7 @@ FE_API size_t raw_width(std::string_view str, size_t begin, size_t end) noexcept
 
 /// Splits @p str into its `` `citation` `` markup and invokes `f(begin, end, cited)` on each piece;
 /// an unpaired backtick is no citation. This is the one place that knows the grammar.
-template<class F>
-void scan_cite(std::string_view str, F&& f) {
+void scan_cite(std::string_view str, auto&& f) {
     for (size_t i = 0, e = str.size(); i != e;) {
         auto l = tick(str, i);
         auto r = l == std::string_view::npos ? l : tick(str, l + 1);

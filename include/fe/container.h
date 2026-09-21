@@ -51,17 +51,15 @@ template<class C, class K>
 }
 
 /// Looks up @p key in @p container, asserts that it exists, and returns a reference to the mapped value.
-template<class C, class K>
-[[nodiscard]] decltype(auto) assert_lookup(C& container, const K& key) {
+[[nodiscard]] decltype(auto) assert_lookup(auto& container, const auto& key) {
     auto i = container.find(key);
     assert(i != container.end());
     return (i->second);
 }
 
 /// Invokes `emplace` on @p container, asserts that insertion actually happened, and returns the iterator.
-template<class C, class... Args>
-auto assert_emplace(C& container, Args&&... args) {
-    auto [i, ins] = container.emplace(std::forward<Args>(args)...);
+auto assert_emplace(auto& container, auto&&... args) {
+    auto [i, ins] = container.emplace(std::forward<decltype(args)>(args)...);
     assert_unused(ins);
     return i;
 }

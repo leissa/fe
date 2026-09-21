@@ -49,8 +49,7 @@ public:
     static constexpr size_t vla_align() noexcept { return vla_align(seq()); }
 
     /// Bytes an @p Self with these element counts occupies, `sizeof(Self)` included.
-    template<class C>
-    [[nodiscard]] static constexpr size_t vla_bytes(const C& counts) noexcept {
+    [[nodiscard]] static constexpr size_t vla_bytes(const auto& counts) noexcept {
         return vla_begin() + offset(num_vlas(), counts);
     }
 
@@ -80,13 +79,10 @@ private:
     }
 
     /// Byte offset of the @p n th array from the block, or the block's size for `n == num_vlas()`.
-    template<class C>
-    static constexpr size_t offset(size_t n, const C& counts) noexcept {
-        return offset(n, counts, seq());
-    }
+    static constexpr size_t offset(size_t n, const auto& counts) noexcept { return offset(n, counts, seq()); }
 
-    template<class C, size_t... Is>
-    static constexpr size_t offset(size_t n, const C& counts, std::index_sequence<Is...>) noexcept {
+    template<size_t... Is>
+    static constexpr size_t offset(size_t n, const auto& counts, std::index_sequence<Is...>) noexcept {
         constexpr size_t sizes[]  = {sizeof(VLA_Type<Is>)...};
         constexpr size_t aligns[] = {alignof(VLA_Type<Is>)...};
 

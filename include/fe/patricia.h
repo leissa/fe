@@ -341,8 +341,7 @@ public:
         iterator end() const noexcept { return {}; }
 
         /// Like iterating, but without the iterator's path stack.
-        template<class F>
-        void for_each(F&& f) const {
+        void for_each(auto&& f) const {
             if (isa_br()) {
                 left().for_each(f);
                 right().for_each(f);
