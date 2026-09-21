@@ -99,11 +99,14 @@ public:
         for (auto i : bits)
             set(i);
     }
-    /// Constructs the set of the first @p num_bits bits.
-    /// @note `Bitset(3)` is `{0, 1, 2}` - whereas `Bitset{3}` picks the initializer_list above and is `{3}`.
-    constexpr explicit Bitset(size_t num_bits) {
+    /// Constructs the set of the first @p num_bits bits; with @p value `false` the empty set that has
+    /// room for them - so `Bitset(n, b)` reads like `std::vector<bool>(n, b)`.
+    /// @note @p value has no default on purpose: a one-argument `Bitset(3)` would be all too easy to read as
+    /// the `Bitset{3}` above - which is `{3}`, not `{0, 1, 2}`.
+    constexpr Bitset(size_t num_bits, bool value) {
         if (num_bits == 0) return;
         grow((num_bits + Bits_Per_Word - 1) / Bits_Per_Word);
+        if (!value) return;
         auto w    = words();
         auto full = num_bits / Bits_Per_Word;
         for (size_t i = 0; i != full; ++i)

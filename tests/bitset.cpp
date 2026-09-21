@@ -42,8 +42,10 @@ constexpr bool inline_ops() {
         sum += i;
     if (sum != 9 || c.hash() != Bitset{0, 2, 7}.hash()) return false;
 
-    if (Bitset(0).any() || Bitset(3) != Bitset{0, 1, 2} || Bitset{3} != Bitset{3}.clear(2)) return false;
-    return Bitset(64).count() == 64 && !Bitset(64).on_heap() && Bitset(64).test(63) && !Bitset(64).test(64);
+    if (Bitset(0, true).any() || Bitset(3, true) != Bitset{0, 1, 2} || Bitset{3} != Bitset{3}.clear(2)) return false;
+    if (Bitset(3, false).any() || Bitset(3, false) != Bitset()) return false;
+    return Bitset(64, true).count() == 64 && !Bitset(64, true).on_heap() && Bitset(64, true).test(63)
+        && !Bitset(64, true).test(64);
 }
 
 static_assert(inline_ops());
@@ -52,13 +54,19 @@ static_assert(inline_ops());
 
 TEST_CASE("Bitset") {
     SUBCASE("num_bits") {
-        auto b = Bitset(130);
+        auto b = Bitset(130, true);
         CHECK(b.on_heap());
         CHECK(b.count() == 130);
         CHECK(b.test(129));
         CHECK(!b.test(130));
-        CHECK(elems(Bitset(3)) == std::vector<size_t>{0, 1, 2});
-        CHECK((Bitset(130) - Bitset(128)) == Bitset{128, 129});
+        CHECK(elems(Bitset(3, true)) == std::vector<size_t>{0, 1, 2});
+        CHECK((Bitset(130, true) - Bitset(128, true)) == Bitset{128, 129});
+
+        auto z = Bitset(130, false); // reserves, sets nothing
+        CHECK(z.none());
+        CHECK(z == Bitset());
+        CHECK(z.on_heap());
+        CHECK(z.capacity() >= 130);
     }
 
     SUBCASE("empty") {
