@@ -5,6 +5,7 @@ var classfe_1_1Bitset =
     [ "Hash", "structfe_1_1Bitset_1_1Hash.html", "structfe_1_1Bitset_1_1Hash" ],
     [ "Bitset", "classfe_1_1Bitset.html#a5cb3759824e6b7aec184838f7f2900b4", null ],
     [ "Bitset", "classfe_1_1Bitset.html#ac01c5c9e0ad6c1c8352787d2bbbe9478", null ],
+    [ "Bitset", "classfe_1_1Bitset.html#ace3aed85dbe8374ae7e145c817060f1b", null ],
     [ "Bitset", "classfe_1_1Bitset.html#a05df7d7f17d64ebda97303c5ab4e2793", null ],
     [ "Bitset", "classfe_1_1Bitset.html#a9ca68a037cb52a6eb07bbfac9badffcb", null ],
     [ "~Bitset", "classfe_1_1Bitset.html#a08271a8afdbd34640c13e32b8668beda", null ],

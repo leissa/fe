@@ -226,6 +226,8 @@ Static Public Attributes</h2></td></tr>
 Constructors, Destructor, Assignment</h2></td></tr>
 <tr class="memitem:a5cb3759824e6b7aec184838f7f2900b4" id="r_a5cb3759824e6b7aec184838f7f2900b4"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset</a> () noexcept=default</td></tr>
 <tr class="memitem:ac01c5c9e0ad6c1c8352787d2bbbe9478" id="r_ac01c5c9e0ad6c1c8352787d2bbbe9478"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#ac01c5c9e0ad6c1c8352787d2bbbe9478">Bitset</a> (std::initializer_list&lt; size_t &gt; bits)</td></tr>
+<tr class="memitem:ace3aed85dbe8374ae7e145c817060f1b" id="r_ace3aed85dbe8374ae7e145c817060f1b"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#ace3aed85dbe8374ae7e145c817060f1b">Bitset</a> (size_t num_bits)</td></tr>
+<tr class="memdesc:ace3aed85dbe8374ae7e145c817060f1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the set of the first <code class="param">num_bits</code> bits.  <br /></td></tr>
 <tr class="memitem:a05df7d7f17d64ebda97303c5ab4e2793" id="r_a05df7d7f17d64ebda97303c5ab4e2793"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#a05df7d7f17d64ebda97303c5ab4e2793">Bitset</a> (const Bitset &amp;other)</td></tr>
 <tr class="memitem:a9ca68a037cb52a6eb07bbfac9badffcb" id="r_a9ca68a037cb52a6eb07bbfac9badffcb"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#a9ca68a037cb52a6eb07bbfac9badffcb">Bitset</a> (Bitset &amp;&amp;other) noexcept</td></tr>
 <tr class="memitem:a08271a8afdbd34640c13e32b8668beda" id="r_a08271a8afdbd34640c13e32b8668beda"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#a08271a8afdbd34640c13e32b8668beda">~Bitset</a> () noexcept</td></tr>
@@ -257,7 +259,7 @@ Output</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00027">27</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a5cb3759824e6b7aec184838f7f2900b4" name="a5cb3759824e6b7aec184838f7f2900b4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5cb3759824e6b7aec184838f7f2900b4">&#9670;&#160;</a></span>Bitset() <span class="overload">[1/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5cb3759824e6b7aec184838f7f2900b4">&#9670;&#160;</a></span>Bitset() <span class="overload">[1/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -279,12 +281,12 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00112">Bitset()</a>, <a class="el" href="bitset_8h_source.html#l00102">Bitset()</a>, <a class="el" href="bitset_8h_source.html#l00098">Bitset()</a>, <a class="el" href="bitset_8h_source.html#l00168">clear()</a>, <a class="el" href="bitset_8h_source.html#l00163">clear()</a>, <a class="el" href="bitset_8h_source.html#l00158">flip()</a>, <a class="el" href="bitset_8h_source.html#l00248">intersects()</a>, <a class="el" href="bitset_8h_source.html#l00224">operator&amp;</a>, <a class="el" href="bitset_8h_source.html#l00202">operator&amp;=()</a>, <a class="el" href="bitset_8h_source.html#l00275">fe::Bitset::Hash::operator()()</a>, <a class="el" href="bitset_8h_source.html#l00226">operator-</a>, <a class="el" href="bitset_8h_source.html#l00217">operator-=()</a>, <a class="el" href="#abc6edd95f5cdc0e980efea2a3080878e">operator&lt;&lt;</a>, <a class="el" href="bitset_8h_source.html#l00116">operator=()</a>, <a class="el" href="bitset_8h_source.html#l00232">operator==()</a>, <a class="el" href="bitset_8h_source.html#l00225">operator^</a>, <a class="el" href="bitset_8h_source.html#l00210">operator^=()</a>, <a class="el" href="bitset_8h_source.html#l00223">operator|</a>, <a class="el" href="bitset_8h_source.html#l00195">operator|=()</a>, <a class="el" href="bitset_8h_source.html#l00152">set()</a>, <a class="el" href="bitset_8h_source.html#l00157">set()</a>, <a class="el" href="bitset_8h_source.html#l00240">subset_of()</a>, and <a class="el" href="bitset_8h_source.html#l00120">swap</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00123">Bitset()</a>, <a class="el" href="bitset_8h_source.html#l00113">Bitset()</a>, <a class="el" href="bitset_8h_source.html#l00098">Bitset()</a>, <a class="el" href="bitset_8h_source.html#l00179">clear()</a>, <a class="el" href="bitset_8h_source.html#l00174">clear()</a>, <a class="el" href="bitset_8h_source.html#l00169">flip()</a>, <a class="el" href="bitset_8h_source.html#l00259">intersects()</a>, <a class="el" href="bitset_8h_source.html#l00235">operator&amp;</a>, <a class="el" href="bitset_8h_source.html#l00213">operator&amp;=()</a>, <a class="el" href="bitset_8h_source.html#l00286">fe::Bitset::Hash::operator()()</a>, <a class="el" href="bitset_8h_source.html#l00237">operator-</a>, <a class="el" href="bitset_8h_source.html#l00228">operator-=()</a>, <a class="el" href="#abc6edd95f5cdc0e980efea2a3080878e">operator&lt;&lt;</a>, <a class="el" href="bitset_8h_source.html#l00127">operator=()</a>, <a class="el" href="bitset_8h_source.html#l00243">operator==()</a>, <a class="el" href="bitset_8h_source.html#l00236">operator^</a>, <a class="el" href="bitset_8h_source.html#l00221">operator^=()</a>, <a class="el" href="bitset_8h_source.html#l00234">operator|</a>, <a class="el" href="bitset_8h_source.html#l00206">operator|=()</a>, <a class="el" href="bitset_8h_source.html#l00163">set()</a>, <a class="el" href="bitset_8h_source.html#l00168">set()</a>, <a class="el" href="bitset_8h_source.html#l00251">subset_of()</a>, and <a class="el" href="bitset_8h_source.html#l00131">swap</a>.</p>
 
 </div>
 </div>
 <a id="ac01c5c9e0ad6c1c8352787d2bbbe9478" name="ac01c5c9e0ad6c1c8352787d2bbbe9478"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac01c5c9e0ad6c1c8352787d2bbbe9478">&#9670;&#160;</a></span>Bitset() <span class="overload">[2/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac01c5c9e0ad6c1c8352787d2bbbe9478">&#9670;&#160;</a></span>Bitset() <span class="overload">[2/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -308,12 +310,44 @@ Output</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00098">98</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
-<p class="reference">References <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>, and <a class="el" href="bitset_8h_source.html#l00152">set()</a>.</p>
+<p class="reference">References <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>, and <a class="el" href="bitset_8h_source.html#l00163">set()</a>.</p>
+
+</div>
+</div>
+<a id="ace3aed85dbe8374ae7e145c817060f1b" name="ace3aed85dbe8374ae7e145c817060f1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace3aed85dbe8374ae7e145c817060f1b">&#9670;&#160;</a></span>Bitset() <span class="overload">[3/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">fe::Bitset::Bitset </td>
+          <td>(</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>num_bits</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel explicit">explicit</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructs the set of the first <code class="param">num_bits</code> bits. </p>
+<dl class="section note"><dt>Note</dt><dd><span class="tt">Bitset(3)</span> is <span class="tt">{0, 1, 2}</span> - whereas <span class="tt"><a class="el" href="classfe_1_1Bitset.html" title="A dynamically growing set of bits with small storage optimization.">Bitset</a>{3}</span> picks the initializer_list above and is <span class="tt">{3}</span>. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00104">104</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+
+<p class="reference">References <a class="el" href="bitset_8h_source.html#l00029">Bits_Per_Word</a>.</p>
 
 </div>
 </div>
 <a id="a05df7d7f17d64ebda97303c5ab4e2793" name="a05df7d7f17d64ebda97303c5ab4e2793"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a05df7d7f17d64ebda97303c5ab4e2793">&#9670;&#160;</a></span>Bitset() <span class="overload">[3/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a05df7d7f17d64ebda97303c5ab4e2793">&#9670;&#160;</a></span>Bitset() <span class="overload">[4/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -335,14 +369,14 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00102">102</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00113">113</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
-<p class="reference">References <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>, and <a class="el" href="bitset_8h_source.html#l00189">on_heap()</a>.</p>
+<p class="reference">References <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>, and <a class="el" href="bitset_8h_source.html#l00200">on_heap()</a>.</p>
 
 </div>
 </div>
 <a id="a9ca68a037cb52a6eb07bbfac9badffcb" name="a9ca68a037cb52a6eb07bbfac9badffcb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9ca68a037cb52a6eb07bbfac9badffcb">&#9670;&#160;</a></span>Bitset() <span class="overload">[4/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ca68a037cb52a6eb07bbfac9badffcb">&#9670;&#160;</a></span>Bitset() <span class="overload">[5/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -364,9 +398,9 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00112">112</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00123">123</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
-<p class="reference">References <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>, and <a class="el" href="bitset_8h_source.html#l00120">swap</a>.</p>
+<p class="reference">References <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>, and <a class="el" href="bitset_8h_source.html#l00131">swap</a>.</p>
 
 </div>
 </div>
@@ -393,9 +427,9 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00113">113</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00124">124</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
-<p class="reference">References <a class="el" href="bitset_8h_source.html#l00189">on_heap()</a>.</p>
+<p class="reference">References <a class="el" href="bitset_8h_source.html#l00200">on_heap()</a>.</p>
 
 </div>
 </div>
@@ -423,7 +457,7 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00184">184</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00195">195</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
 </div>
 </div>
@@ -450,9 +484,9 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00258">258</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00269">269</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
-<p class="reference">References <a class="el" href="bitset_8h_source.html#l00137">next()</a>.</p>
+<p class="reference">References <a class="el" href="bitset_8h_source.html#l00148">next()</a>.</p>
 
 </div>
 </div>
@@ -481,7 +515,7 @@ Output</h2></td></tr>
 
 <p>Number of bits available without growing. </p>
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00187">187</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00198">198</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
 <p class="reference">References <a class="el" href="bitset_8h_source.html#l00029">Bits_Per_Word</a>.</p>
 
@@ -512,9 +546,9 @@ Output</h2></td></tr>
 
 <p>Clears all bits and releases the heap storage again. </p>
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00168">168</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00179">179</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
-<p class="reference">References <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>, and <a class="el" href="bitset_8h_source.html#l00189">on_heap()</a>.</p>
+<p class="reference">References <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>, and <a class="el" href="bitset_8h_source.html#l00200">on_heap()</a>.</p>
 
 </div>
 </div>
@@ -541,11 +575,11 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00163">163</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00174">174</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
 <p class="reference">References <a class="el" href="bitset_8h_source.html#l00029">Bits_Per_Word</a>, and <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00157">set()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00168">set()</a>.</p>
 
 </div>
 </div>
@@ -572,7 +606,7 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00178">178</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00189">189</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
 </div>
 </div>
@@ -616,7 +650,7 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00259">259</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00270">270</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
 </div>
 </div>
@@ -643,7 +677,7 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00158">158</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00169">169</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
 <p class="reference">References <a class="el" href="bitset_8h_source.html#l00029">Bits_Per_Word</a>, and <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>.</p>
 
@@ -672,7 +706,7 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00264">264</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00275">275</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
 <p class="reference">References <a class="el" href="hash_8h_source.html#l00069">fe::hash_begin()</a>, and <a class="el" href="hash_8h_source.html#l00073">fe::hash_combine()</a>.</p>
 
@@ -703,7 +737,7 @@ Output</h2></td></tr>
 
 <p>Do <span class="tt">this</span> and <code class="param">other</code> have at least one bit in common? </p>
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00248">248</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00259">259</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
 <p class="reference">References <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>.</p>
 
@@ -734,11 +768,11 @@ Output</h2></td></tr>
 
 <p>Index of the first bit that is set at or after <code class="param">i</code> - or npos, if there is none. </p>
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00137">137</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00148">148</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
 <p class="reference">References <a class="el" href="bitset_8h_source.html#l00029">Bits_Per_Word</a>, and <a class="el" href="bitset_8h_source.html#l00031">npos</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00258">begin()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00269">begin()</a>.</p>
 
 </div>
 </div>
@@ -765,7 +799,7 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00185">185</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00196">196</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
 </div>
 </div>
@@ -794,9 +828,9 @@ Output</h2></td></tr>
 
 <p>Outgrown the inline storage? </p>
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00189">189</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00200">200</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00102">Bitset()</a>, <a class="el" href="bitset_8h_source.html#l00168">clear()</a>, and <a class="el" href="bitset_8h_source.html#l00113">~Bitset()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00113">Bitset()</a>, <a class="el" href="bitset_8h_source.html#l00179">clear()</a>, and <a class="el" href="bitset_8h_source.html#l00124">~Bitset()</a>.</p>
 
 </div>
 </div>
@@ -823,7 +857,7 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00202">202</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00213">213</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
 <p class="reference">References <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>.</p>
 
@@ -852,7 +886,7 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00217">217</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00228">228</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
 <p class="reference">References <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>.</p>
 
@@ -881,9 +915,9 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00116">116</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00127">127</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
-<p class="reference">References <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>, and <a class="el" href="bitset_8h_source.html#l00120">swap</a>.</p>
+<p class="reference">References <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>, and <a class="el" href="bitset_8h_source.html#l00131">swap</a>.</p>
 
 </div>
 </div>
@@ -910,7 +944,7 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00232">232</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00243">243</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
 <p class="reference">References <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>.</p>
 
@@ -939,9 +973,9 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00133">133</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00144">144</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
-<p class="reference">References <a class="el" href="bitset_8h_source.html#l00129">test()</a>.</p>
+<p class="reference">References <a class="el" href="bitset_8h_source.html#l00140">test()</a>.</p>
 
 </div>
 </div>
@@ -968,7 +1002,7 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00134">134</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00145">145</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
 </div>
 </div>
@@ -995,7 +1029,7 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00210">210</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00221">221</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
 <p class="reference">References <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>.</p>
 
@@ -1024,7 +1058,7 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00195">195</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00206">206</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
 <p class="reference">References <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>.</p>
 
@@ -1053,7 +1087,7 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00152">152</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00163">163</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
 <p class="reference">References <a class="el" href="bitset_8h_source.html#l00029">Bits_Per_Word</a>, and <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>.</p>
 
@@ -1088,11 +1122,11 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00157">157</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00168">168</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
-<p class="reference">References <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>, <a class="el" href="bitset_8h_source.html#l00163">clear()</a>, and <a class="el" href="bitset_8h_source.html#l00157">set()</a>.</p>
+<p class="reference">References <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>, <a class="el" href="bitset_8h_source.html#l00174">clear()</a>, and <a class="el" href="bitset_8h_source.html#l00168">set()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00157">set()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00168">set()</a>.</p>
 
 </div>
 </div>
@@ -1121,7 +1155,7 @@ Output</h2></td></tr>
 
 <p>Is every bit set in <span class="tt">this</span> also set in <code class="param">other</code>? </p>
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00240">240</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00251">251</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
 <p class="reference">References <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>.</p>
 
@@ -1150,11 +1184,11 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00129">129</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00140">140</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
 <p class="reference">References <a class="el" href="bitset_8h_source.html#l00029">Bits_Per_Word</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00133">operator[]()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00144">operator[]()</a>.</p>
 
 </div>
 </div>
@@ -1186,7 +1220,7 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00224">224</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00235">235</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
 <p class="reference">References <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>.</p>
 
@@ -1219,7 +1253,7 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00226">226</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00237">237</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
 <p class="reference">References <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>.</p>
 
@@ -1283,7 +1317,7 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00225">225</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00236">236</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
 <p class="reference">References <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>.</p>
 
@@ -1316,7 +1350,7 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00223">223</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00234">234</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
 <p class="reference">References <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>.</p>
 
@@ -1349,11 +1383,11 @@ Output</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00120">120</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00131">131</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
-<p class="reference">References <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>, and <a class="el" href="bitset_8h_source.html#l00120">swap</a>.</p>
+<p class="reference">References <a class="el" href="#a5cb3759824e6b7aec184838f7f2900b4">Bitset()</a>, and <a class="el" href="bitset_8h_source.html#l00131">swap</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00112">Bitset()</a>, <a class="el" href="bitset_8h_source.html#l00116">operator=()</a>, and <a class="el" href="bitset_8h_source.html#l00120">swap</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00123">Bitset()</a>, <a class="el" href="bitset_8h_source.html#l00127">operator=()</a>, and <a class="el" href="bitset_8h_source.html#l00131">swap</a>.</p>
 
 </div>
 </div>
@@ -1382,7 +1416,7 @@ Output</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00029">29</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00187">capacity()</a>, <a class="el" href="bitset_8h_source.html#l00163">clear()</a>, <a class="el" href="bitset_8h_source.html#l00158">flip()</a>, <a class="el" href="bitset_8h_source.html#l00137">next()</a>, <a class="el" href="#abc6edd95f5cdc0e980efea2a3080878e">operator&lt;&lt;</a>, <a class="el" href="bitset_8h_source.html#l00152">set()</a>, and <a class="el" href="bitset_8h_source.html#l00129">test()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00104">Bitset()</a>, <a class="el" href="bitset_8h_source.html#l00198">capacity()</a>, <a class="el" href="bitset_8h_source.html#l00174">clear()</a>, <a class="el" href="bitset_8h_source.html#l00169">flip()</a>, <a class="el" href="bitset_8h_source.html#l00148">next()</a>, <a class="el" href="#abc6edd95f5cdc0e980efea2a3080878e">operator&lt;&lt;</a>, <a class="el" href="bitset_8h_source.html#l00163">set()</a>, and <a class="el" href="bitset_8h_source.html#l00140">test()</a>.</p>
 
 </div>
 </div>
@@ -1436,7 +1470,7 @@ Output</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="bitset_8h_source.html#l00031">31</a> of file <a class="el" href="bitset_8h_source.html">bitset.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00137">next()</a>, and <a class="el" href="bitset_8h_source.html#l00072">fe::Bitset::iterator::operator++()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00148">next()</a>, and <a class="el" href="bitset_8h_source.html#l00072">fe::Bitset::iterator::operator++()</a>.</p>
 
 </div>
 </div>
