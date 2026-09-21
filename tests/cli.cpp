@@ -160,7 +160,7 @@ TEST_CASE("cli section") {
     });
 
     SUBCASE("terminal") {
-        auto guard = fe::term::ScopedMode(fe::term::Mode::Never);
+        auto _ = fe::term::ScopedMode(fe::term::Mode::Never);
         std::ostringstream oss;
         oss << cli;
         CHECK(oss.str() == R"(Usage: t [options]
@@ -188,7 +188,7 @@ Options:
         auto md = oss.str();
         CHECK(md.contains("\n## Plugin Arguments\n\n### -X ll:&lt;arg&gt;\n"));
 
-        auto guard = fe::term::ScopedMode(fe::term::Mode::Never);
+        auto _ = fe::term::ScopedMode(fe::term::Mode::Never);
         std::ostringstream term;
         term << cli2;
         CHECK(term.str().contains("\nPlugin Arguments:\n\n-X ll:<arg>:\n"));
@@ -229,14 +229,14 @@ TEST_CASE("cli help") {
         auto cli3 = fe::Cli("t").help(h2, "-?", "--usage");
         CHECK(parse(cli3, {"t", "--help"}) == "unknown option '--help'");
 
-        auto guard = fe::term::ScopedMode(fe::term::Mode::Never);
+        auto _ = fe::term::ScopedMode(fe::term::Mode::Never);
         std::ostringstream oss;
         oss << cli2;
         CHECK(oss.str().contains("-?, --usage  Display this help and exit."));
     }
 
     SUBCASE("terminal") {
-        auto guard = fe::term::ScopedMode(fe::term::Mode::Never);
+        auto _ = fe::term::ScopedMode(fe::term::Mode::Never);
         std::ostringstream oss;
         oss << cli;
         CHECK(oss.str() == R"(Usage: t [options] <file>
@@ -293,7 +293,7 @@ Bye.
 }
 
 TEST_CASE("cli citations") {
-    auto guard = fe::term::ScopedMode(fe::term::Mode::Never);
+    auto _ = fe::term::ScopedMode(fe::term::Mode::Never);
 
     SUBCASE("a default value is data, not markup") {
         auto out = std::string("C:\\tmp\\");

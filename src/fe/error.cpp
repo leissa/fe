@@ -41,8 +41,8 @@ void Error::clear() {
 }
 
 std::string Error::str(std::ostream& os) const {
-    auto scope = term::ScopedMode(term::use_color(os) ? term::Mode::Always : term::Mode::Never);
-    auto oss   = std::ostringstream();
+    auto _   = term::ScopedMode(term::use_color(os) ? term::Mode::Always : term::Mode::Never);
+    auto oss = std::ostringstream();
     oss << *this;
     return oss.str();
 }

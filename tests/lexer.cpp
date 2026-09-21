@@ -319,7 +319,7 @@ void test_parser() {
     // A ctxt is Cite and hence markup: its backticks survive into the message as a citation,
     // while the token the message quotes is an argument and stays data.
     {
-        auto guard = fe::term::ScopedMode(fe::term::Mode::Never);
+        auto _ = fe::term::ScopedMode(fe::term::Mode::Never);
         fe::Driver drv;
         drv.diag().no_snippet = true;
         Parser<K> parser(drv, "(a + b");
