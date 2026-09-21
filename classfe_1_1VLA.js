@@ -5,6 +5,6 @@ var classfe_1_1VLA =
     [ "num_vlas", "classfe_1_1VLA.html#acc627251359efa023f778d36963e8b3c", null ],
     [ "vla", "classfe_1_1VLA.html#abb1bf84b659c6c84ddeb87455df903c0", null ],
     [ "vla_align", "classfe_1_1VLA.html#a0156087295ff1ec2af12007415e5fb12", null ],
-    [ "vla_bytes", "classfe_1_1VLA.html#a4c9ccddf0942986eea1200387c203ebb", null ],
+    [ "vla_bytes", "classfe_1_1VLA.html#ad29fefc29b7de7a36613e53b510c64c9", null ],
     [ "Arena", "classfe_1_1VLA.html#a5f488c25aa439166d145713c67e7d085", null ]
 ];

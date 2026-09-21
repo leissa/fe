@@ -201,27 +201,25 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('container_8h_s
 </div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment"></span> </div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment">/// Looks up @p key in @p container, asserts that it exists, and returns a reference to the mapped value.</span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> C, <span class="keyword">class</span> K&gt;</div>
-<div class="foldopen" id="foldopen00055" data-start="{" data-end="}">
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="namespacefe.html#a7f55906d386570e1170752a24b9d28e3">   55</a></span>[[nodiscard]] <span class="keyword">decltype</span>(<span class="keyword">auto</span>) <a class="code hl_function" href="namespacefe.html#a7f55906d386570e1170752a24b9d28e3">assert_lookup</a>(C&amp; container, <span class="keyword">const</span> K&amp; key) {</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keyword">auto</span> i = container.find(key);</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    assert(i != container.end());</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordflow">return</span> (i-&gt;second);</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>}</div>
+<div class="foldopen" id="foldopen00054" data-start="{" data-end="}">
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="namespacefe.html#aa5e09d6e60a63909052ada9602610354">   54</a></span>[[nodiscard]] <span class="keyword">decltype</span>(<span class="keyword">auto</span>) <a class="code hl_function" href="namespacefe.html#aa5e09d6e60a63909052ada9602610354">assert_lookup</a>(<span class="keyword">auto</span>&amp; container, <span class="keyword">const</span> <span class="keyword">auto</span>&amp; key) {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">auto</span> i = container.find(key);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    assert(i != container.end());</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordflow">return</span> (i-&gt;second);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>}</div>
 </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment"></span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">/// Invokes `emplace` on @p container, asserts that insertion actually happened, and returns the iterator.</span></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="keyword">template</span>&lt;<span class="keyword">class </span>C, <span class="keyword">class</span>... Args&gt;</div>
-<div class="foldopen" id="foldopen00063" data-start="{" data-end="}">
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="namespacefe.html#a4df91557ebad4a98ce8c285e992947e1">   63</a></span><span class="keyword">auto</span> <a class="code hl_function" href="namespacefe.html#a4df91557ebad4a98ce8c285e992947e1">assert_emplace</a>(C&amp; container, Args&amp;&amp;... args) {</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keyword">auto</span> [i, ins] = container.emplace(std::forward&lt;Args&gt;(args)...);</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <a class="code hl_define" href="assert_8h.html#a1bf507325593e1ed7b3acc75596bd525">assert_unused</a>(ins);</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordflow">return</span> i;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>}<span class="comment"></span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment"></span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment">/// Invokes `emplace` on @p container, asserts that insertion actually happened, and returns the iterator.</span></div>
+<div class="foldopen" id="foldopen00061" data-start="{" data-end="}">
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="namespacefe.html#a85bf1f70539ed76d548ac02c11c51231">   61</a></span><span class="keyword">auto</span> <a class="code hl_function" href="namespacefe.html#a85bf1f70539ed76d548ac02c11c51231">assert_emplace</a>(<span class="keyword">auto</span>&amp; container, <span class="keyword">auto</span>&amp;&amp;... args) {</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keyword">auto</span> [i, ins] = container.emplace(std::forward&lt;<span class="keyword">decltype</span>(args)&gt;(args)...);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <a class="code hl_define" href="assert_8h.html#a1bf507325593e1ed7b3acc75596bd525">assert_unused</a>(ins);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">return</span> i;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>}<span class="comment"></span></div>
 </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">///@}</span></div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>} <span class="comment">// namespace fe</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment">///@}</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>} <span class="comment">// namespace fe</span></div>
 <div class="ttc" id="aassert_8h_html"><div class="ttname"><a href="assert_8h.html">assert.h</a></div></div>
 <div class="ttc" id="aassert_8h_html_a1bf507325593e1ed7b3acc75596bd525"><div class="ttname"><a href="assert_8h.html#a1bf507325593e1ed7b3acc75596bd525">assert_unused</a></div><div class="ttdeci">#define assert_unused(x)</div><div class="ttdef"><b>Definition</b> <a href="assert_8h_source.html#l00039">assert.h:39</a></div></div>
 <div class="ttc" id="aconceptfe_1_1Queuelike_html"><div class="ttname"><a href="conceptfe_1_1Queuelike.html">fe::Queuelike</a></div><div class="ttdoc">Something which behaves like std::queue.</div><div class="ttdef"><b>Definition</b> <a href="#l00019">container.h:19</a></div></div>
@@ -229,8 +227,8 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('container_8h_s
 <div class="ttc" id="anamespacefe_html"><div class="ttname"><a href="namespacefe.html">fe</a></div><div class="ttdef"><b>Definition</b> <a href="algo_8h_source.html#l00017">algo.h:17</a></div></div>
 <div class="ttc" id="anamespacefe_html_a00e1ee524a678f2b004c9b5c91e94903"><div class="ttname"><a href="namespacefe.html#a00e1ee524a678f2b004c9b5c91e94903">fe::lookup</a></div><div class="ttdeci">auto lookup(C &amp;container, const K &amp;key)</div><div class="ttdoc">Yields pointer to element (or the element itself if it is already a pointer), if found and nullptr ot...</div><div class="ttdef"><b>Definition</b> <a href="#l00045">container.h:45</a></div></div>
 <div class="ttc" id="anamespacefe_html_a2015189724c77cd909fa8d2ed9b4e552"><div class="ttname"><a href="namespacefe.html#a2015189724c77cd909fa8d2ed9b4e552">fe::pop</a></div><div class="ttdeci">S::value_type pop(S &amp;s)</div><div class="ttdef"><b>Definition</b> <a href="#l00027">container.h:27</a></div></div>
-<div class="ttc" id="anamespacefe_html_a4df91557ebad4a98ce8c285e992947e1"><div class="ttname"><a href="namespacefe.html#a4df91557ebad4a98ce8c285e992947e1">fe::assert_emplace</a></div><div class="ttdeci">auto assert_emplace(C &amp;container, Args &amp;&amp;... args)</div><div class="ttdoc">Invokes emplace on container, asserts that insertion actually happened, and returns the iterator.</div><div class="ttdef"><b>Definition</b> <a href="#l00063">container.h:63</a></div></div>
-<div class="ttc" id="anamespacefe_html_a7f55906d386570e1170752a24b9d28e3"><div class="ttname"><a href="namespacefe.html#a7f55906d386570e1170752a24b9d28e3">fe::assert_lookup</a></div><div class="ttdeci">decltype(auto) assert_lookup(C &amp;container, const K &amp;key)</div><div class="ttdoc">Looks up key in container, asserts that it exists, and returns a reference to the mapped value.</div><div class="ttdef"><b>Definition</b> <a href="#l00055">container.h:55</a></div></div>
+<div class="ttc" id="anamespacefe_html_a85bf1f70539ed76d548ac02c11c51231"><div class="ttname"><a href="namespacefe.html#a85bf1f70539ed76d548ac02c11c51231">fe::assert_emplace</a></div><div class="ttdeci">auto assert_emplace(auto &amp;container, auto &amp;&amp;... args)</div><div class="ttdoc">Invokes emplace on container, asserts that insertion actually happened, and returns the iterator.</div><div class="ttdef"><b>Definition</b> <a href="#l00061">container.h:61</a></div></div>
+<div class="ttc" id="anamespacefe_html_aa5e09d6e60a63909052ada9602610354"><div class="ttname"><a href="namespacefe.html#aa5e09d6e60a63909052ada9602610354">fe::assert_lookup</a></div><div class="ttdeci">decltype(auto) assert_lookup(auto &amp;container, const auto &amp;key)</div><div class="ttdoc">Looks up key in container, asserts that it exists, and returns a reference to the mapped value.</div><div class="ttdef"><b>Definition</b> <a href="#l00054">container.h:54</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

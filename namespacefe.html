@@ -347,12 +347,10 @@ requires std::ranges::common_range&lt;R&gt;</td></tr>
 <tr class="memitem:a00e1ee524a678f2b004c9b5c91e94903" id="r_a00e1ee524a678f2b004c9b5c91e94903"><td class="memTemplParams" colspan="2">template&lt;class C, class K&gt; </td></tr>
 <tr class="memitem:a00e1ee524a678f2b004c9b5c91e94903 template"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#a00e1ee524a678f2b004c9b5c91e94903">lookup</a> (C &amp;container, const K &amp;key)</td></tr>
 <tr class="memdesc:a00e1ee524a678f2b004c9b5c91e94903"><td class="mdescLeft">&#160;</td><td class="mdescRight">Yields pointer to element (or the element itself if it is already a pointer), if found and <span class="tt">nullptr</span> otherwise.  <br /></td></tr>
-<tr class="memitem:a7f55906d386570e1170752a24b9d28e3" id="r_a7f55906d386570e1170752a24b9d28e3"><td class="memTemplParams" colspan="2">template&lt;class C, class K&gt; </td></tr>
-<tr class="memitem:a7f55906d386570e1170752a24b9d28e3 template"><td class="memItemLeft">decltype(auto)&#160;</td><td class="memItemRight"><a class="el" href="#a7f55906d386570e1170752a24b9d28e3">assert_lookup</a> (C &amp;container, const K &amp;key)</td></tr>
-<tr class="memdesc:a7f55906d386570e1170752a24b9d28e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Looks up <code class="param">key</code> in <code class="param">container</code>, asserts that it exists, and returns a reference to the mapped value.  <br /></td></tr>
-<tr class="memitem:a4df91557ebad4a98ce8c285e992947e1" id="r_a4df91557ebad4a98ce8c285e992947e1"><td class="memTemplParams" colspan="2">template&lt;class C, class... Args&gt; </td></tr>
-<tr class="memitem:a4df91557ebad4a98ce8c285e992947e1 template"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#a4df91557ebad4a98ce8c285e992947e1">assert_emplace</a> (C &amp;container, Args &amp;&amp;... args)</td></tr>
-<tr class="memdesc:a4df91557ebad4a98ce8c285e992947e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes <span class="tt">emplace</span> on <code class="param">container</code>, asserts that insertion actually happened, and returns the iterator.  <br /></td></tr>
+<tr class="memitem:aa5e09d6e60a63909052ada9602610354" id="r_aa5e09d6e60a63909052ada9602610354"><td class="memItemLeft">decltype(auto)&#160;</td><td class="memItemRight"><a class="el" href="#aa5e09d6e60a63909052ada9602610354">assert_lookup</a> (auto &amp;container, const auto &amp;key)</td></tr>
+<tr class="memdesc:aa5e09d6e60a63909052ada9602610354"><td class="mdescLeft">&#160;</td><td class="mdescRight">Looks up <code class="param">key</code> in <code class="param">container</code>, asserts that it exists, and returns a reference to the mapped value.  <br /></td></tr>
+<tr class="memitem:a85bf1f70539ed76d548ac02c11c51231" id="r_a85bf1f70539ed76d548ac02c11c51231"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#a85bf1f70539ed76d548ac02c11c51231">assert_emplace</a> (auto &amp;container, auto &amp;&amp;... args)</td></tr>
+<tr class="memdesc:a85bf1f70539ed76d548ac02c11c51231"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes <span class="tt">emplace</span> on <code class="param">container</code>, asserts that insertion actually happened, and returns the iterator.  <br /></td></tr>
 <tr id="func-members-3" class="groupHeader"><td colspan="2"><div class="groupHeader">Bit operations for enum classs</div></td></tr>
 <tr><td colspan="2" class="ititle"><div class="groupText"><p>Provides all kind of bit and comparison operators for an <span class="tt">enum class</span> <code class="param">E</code>.</p>
 <p>Use like this: </p><div class="fragment"><div class="line"><span class="keyword">enum class</span> MyEnum : <span class="keywordtype">unsigned</span> {</div>
@@ -467,7 +465,7 @@ template&lt;class... Args&gt; </div>
 <p>A <em>borrowed</em> fragment whose backticks stay markup; format_cite escapes every other argument.   </p>
 <p>A literal and a <a class="el" href="classfe_1_1Cited.html" title="An owning message fragment that spells  `citations`  of its own; what format_cite yields.">Cited</a> convert implicitly - both are text someone wrote as markup. Runtime text has to say so: spell it <span class="tt">Cite(s)</span>, so data never becomes markup by accident. A <span class="tt">const char*</span> - a ternary of two literals, say - counts as runtime text and needs <span class="tt">Cite(s)</span> too. </p><dl class="section warning"><dt>Warning</dt><dd>Borrows its text like a <span class="tt">std::string_view</span> does - a <a class="el" href="classfe_1_1Cited.html" title="An owning message fragment that spells  `citations`  of its own; what format_cite yields.">Cited</a> outlives the expression, a <a class="el" href="classfe_1_1Cite.html" title="A borrowed fragment whose backticks stay markup; format_cite escapes every other argument.">Cite</a> does not.    </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00243">243</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00242">242</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
 </div>
 </div>
@@ -535,7 +533,7 @@ template&lt;class Set&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00062">62</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00061">61</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -574,7 +572,7 @@ template&lt;class V&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00240">240</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00233">233</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -590,7 +588,7 @@ template&lt;class V&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00241">241</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00234">234</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -615,44 +613,40 @@ template&lt;class T, size_t N = std::dynamic_extent&gt; </div>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
-<a id="a4df91557ebad4a98ce8c285e992947e1" name="a4df91557ebad4a98ce8c285e992947e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4df91557ebad4a98ce8c285e992947e1">&#9670;&#160;</a></span>assert_emplace()</h2>
+<a id="a85bf1f70539ed76d548ac02c11c51231" name="a85bf1f70539ed76d548ac02c11c51231"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85bf1f70539ed76d548ac02c11c51231">&#9670;&#160;</a></span>assert_emplace()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<div class="memtemplate">
-template&lt;class C, class... Args&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">auto fe::assert_emplace </td>
           <td>(</td>
-          <td class="paramtype">C &amp;</td>          <td class="paramname"><span class="paramname"><em>container</em></span>, </td>
+          <td class="paramtype">auto &amp;</td>          <td class="paramname"><span class="paramname"><em>container</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+          <td class="paramtype">auto &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Invokes <span class="tt">emplace</span> on <code class="param">container</code>, asserts that insertion actually happened, and returns the iterator. </p>
 
-<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00063">63</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00061">61</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
 
-<p class="reference">References <a class="el" href="container_8h_source.html#l00063">assert_emplace()</a>, and <a class="el" href="assert_8h_source.html#l00039">assert_unused</a>.</p>
+<p class="reference">References <a class="el" href="container_8h_source.html#l00061">assert_emplace()</a>, and <a class="el" href="assert_8h_source.html#l00039">assert_unused</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="container_8h_source.html#l00063">assert_emplace()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="container_8h_source.html#l00061">assert_emplace()</a>.</p>
 
 </div>
 </div>
-<a id="a7f55906d386570e1170752a24b9d28e3" name="a7f55906d386570e1170752a24b9d28e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7f55906d386570e1170752a24b9d28e3">&#9670;&#160;</a></span>assert_lookup()</h2>
+<a id="aa5e09d6e60a63909052ada9602610354" name="aa5e09d6e60a63909052ada9602610354"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5e09d6e60a63909052ada9602610354">&#9670;&#160;</a></span>assert_lookup()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<div class="memtemplate">
-template&lt;class C, class K&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -660,12 +654,12 @@ template&lt;class C, class K&gt; </div>
         <tr>
           <td class="memname">decltype(auto) fe::assert_lookup </td>
           <td>(</td>
-          <td class="paramtype">C &amp;</td>          <td class="paramname"><span class="paramname"><em>container</em></span>, </td>
+          <td class="paramtype">auto &amp;</td>          <td class="paramname"><span class="paramname"><em>container</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const K &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span>&#160;)</td>
+          <td class="paramtype">const auto &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -677,11 +671,11 @@ template&lt;class C, class K&gt; </div>
 
 <p>Looks up <code class="param">key</code> in <code class="param">container</code>, asserts that it exists, and returns a reference to the mapped value. </p>
 
-<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00055">55</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00054">54</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
 
-<p class="reference">References <a class="el" href="container_8h_source.html#l00055">assert_lookup()</a>.</p>
+<p class="reference">References <a class="el" href="container_8h_source.html#l00054">assert_lookup()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="container_8h_source.html#l00055">assert_lookup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="container_8h_source.html#l00054">assert_lookup()</a>.</p>
 
 </div>
 </div>
@@ -968,7 +962,7 @@ template&lt;class... Args&gt; </div>
 <p>An <em>owning</em> message fragment that spells <span class="tt"> `citations` </span> of its own; what format_cite yields.   </p>
 <p>Return this from a helper that assembles a fragment, and it stays valid wherever a <a class="el" href="classfe_1_1Cite.html" title="A borrowed fragment whose backticks stay markup; format_cite escapes every other argument.">Cite</a> may go.    </p>
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00248">248</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00247">247</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00129">fe::Parser&lt; Tok, Tag, K, S &gt;::expect()</a>, <a class="el" href="cast_8h_source.html#l00058">fe::RuntimeCast&lt; B &gt;::expect()</a>, and <a class="el" href="parser_8h_source.html#l00240">fe::Parser&lt; Tok, Tag, K, S &gt;::tag2str_()</a>.</p>
 
@@ -1075,7 +1069,7 @@ template&lt;<a class="el" href="conceptfe_1_1BitEnum.html">fe::BitEnum</a> E&gt;
 
 <p class="reference">References <a class="el" href="hash_8h_source.html#l00042">hash()</a>, <a class="el" href="hash_8h_source.html#l00022">murmur3()</a>, and <a class="el" href="hash_8h_source.html#l00032">splitmix64()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="hash_8h_source.html#l00042">hash()</a>, <a class="el" href="hash_8h_source.html#l00084">hash_combine()</a>, <a class="el" href="hash_8h_source.html#l00073">hash_combine()</a>, and <a class="el" href="sym_8h_source.html#l00191">fe::Sym::Hash::operator()()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="hash_8h_source.html#l00042">hash()</a>, <a class="el" href="hash_8h_source.html#l00084">hash_combine()</a>, <a class="el" href="hash_8h_source.html#l00073">hash_combine()</a>, and <a class="el" href="sym_8h_source.html#l00184">fe::Sym::Hash::operator()()</a>.</p>
 
 </div>
 </div>
@@ -1108,7 +1102,7 @@ template&lt;<a class="el" href="conceptfe_1_1BitEnum.html">fe::BitEnum</a> E&gt;
 
 <p class="reference">References <a class="el" href="hash_8h_source.html#l00064">fnv1_offset</a>, and <a class="el" href="hash_8h_source.html#l00069">hash_begin()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00278">fe::Bitset::hash()</a>, <a class="el" href="hash_8h_source.html#l00069">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00103">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00079">hash_begin()</a>, <a class="el" href="dbg_8h_source.html#l00059">fe::Dbg::Hash::operator()()</a>, <a class="el" href="sym_8h_source.html#l00060">fe::Sym::String::Hash::operator()()</a>, and <a class="el" href="xtrie_8h_source.html#l00136">fe::XTrie&lt; D, K, N &gt;::Data::Hash::operator()()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00278">fe::Bitset::hash()</a>, <a class="el" href="hash_8h_source.html#l00069">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00103">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00079">hash_begin()</a>, <a class="el" href="dbg_8h_source.html#l00059">fe::Dbg::Hash::operator()()</a>, <a class="el" href="sym_8h_source.html#l00061">fe::Sym::String::Hash::operator()()</a>, and <a class="el" href="xtrie_8h_source.html#l00136">fe::XTrie&lt; D, K, N &gt;::Data::Hash::operator()()</a>.</p>
 
 </div>
 </div>
@@ -1746,11 +1740,11 @@ template&lt;class T = std::logic_error, class... Args&gt; </div>
 <p>std::format for a message that follows that convention; assemble a fragment of your own with it.   </p>
 <p>The <a class="el" href="classfe_1_1Cited.html" title="An owning message fragment that spells  `citations`  of its own; what format_cite yields.">Cited</a> it yields is markup wherever it is used as an argument again - no re-wrapping needed.    Throws a <span class="tt">T</span> (a <span class="tt">std::logic_error</span> by default) whose message is <span class="tt">format_cite(fmt, args...)</span>. Use this for unrecoverable errors that should surface as a proper exception with a formatted message. The message is rendered here, so - like <a class="el" href="classfe_1_1Error_1_1Bail.html" title="What Error::ack and Error::bail throw.">fe::Error::Bail</a> - the <span class="tt">what()</span> is finished text a generic handler may print as is, not markup someone else still has to resolve. Colors follow <a class="el" href="namespacefe_1_1term.html#ae5b6b47661d8593fc66824d6665f2154" title="Whether Mode::Auto emits colors into a detached buffer - anything a std::formatter writes into.">term::auto_detached</a>, just like the message <a class="el" href="classfe_1_1Log.html" title="Facility to log what you are doing.">fe::Log</a> builds in a detached buffer. </p>
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00280">280</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00279">279</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
-<p class="reference">References <a class="el" href="term_8h_source.html#l00052">fe::term::Red</a>, <a class="el" href="namespacefe_1_1term.html#aedc72cd2cb9b72c919afeedce535d935">fe::term::render_cite()</a>, <a class="el" href="term_8h_source.html#l00060">fe::term::Reset</a>, and <a class="el" href="term_8h_source.html#l00280">throwf()</a>.</p>
+<p class="reference">References <a class="el" href="term_8h_source.html#l00052">fe::term::Red</a>, <a class="el" href="namespacefe_1_1term.html#aedc72cd2cb9b72c919afeedce535d935">fe::term::render_cite()</a>, <a class="el" href="term_8h_source.html#l00060">fe::term::Reset</a>, and <a class="el" href="term_8h_source.html#l00279">throwf()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cast_8h_source.html#l00058">fe::RuntimeCast&lt; B &gt;::expect()</a>, and <a class="el" href="term_8h_source.html#l00280">throwf()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cast_8h_source.html#l00058">fe::RuntimeCast&lt; B &gt;::expect()</a>, and <a class="el" href="term_8h_source.html#l00279">throwf()</a>.</p>
 
 </div>
 </div>
@@ -1815,7 +1809,7 @@ template&lt;<a class="el" href="conceptfe_1_1BitEnum.html">fe::BitEnum</a> E&gt;
 
 <p class="reference">References <a class="el" href="assert_8h_source.html#l00020">unreachable()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="patricia_8h_source.html#l00608">fe::Patricia&lt; D, KT, K, N &gt;::diff()</a>, <a class="el" href="patricia_8h_source.html#l00295">fe::Patricia&lt; D, KT, K, N &gt;::Set::has_intersection()</a>, <a class="el" href="patricia_8h_source.html#l00585">fe::Patricia&lt; D, KT, K, N &gt;::intersect()</a>, <a class="el" href="patricia_8h_source.html#l00562">fe::Patricia&lt; D, KT, K, N &gt;::merge()</a>, <a class="el" href="xtrie_8h_source.html#l00243">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator*()</a>, <a class="el" href="xtrie_8h_source.html#l00208">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator++()</a>, and <a class="el" href="assert_8h_source.html#l00020">unreachable()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="patricia_8h_source.html#l00607">fe::Patricia&lt; D, KT, K, N &gt;::diff()</a>, <a class="el" href="patricia_8h_source.html#l00295">fe::Patricia&lt; D, KT, K, N &gt;::Set::has_intersection()</a>, <a class="el" href="patricia_8h_source.html#l00584">fe::Patricia&lt; D, KT, K, N &gt;::intersect()</a>, <a class="el" href="patricia_8h_source.html#l00561">fe::Patricia&lt; D, KT, K, N &gt;::merge()</a>, <a class="el" href="xtrie_8h_source.html#l00243">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator*()</a>, <a class="el" href="xtrie_8h_source.html#l00208">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator++()</a>, and <a class="el" href="assert_8h_source.html#l00020">unreachable()</a>.</p>
 
 </div>
 </div>

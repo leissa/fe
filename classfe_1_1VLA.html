@@ -184,9 +184,8 @@ Public Member Functions</h2></td></tr>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:acc627251359efa023f778d36963e8b3c" id="r_acc627251359efa023f778d36963e8b3c"><td class="memItemLeft">static constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="#acc627251359efa023f778d36963e8b3c">num_vlas</a> () noexcept</td></tr>
 <tr class="memitem:a0156087295ff1ec2af12007415e5fb12" id="r_a0156087295ff1ec2af12007415e5fb12"><td class="memItemLeft">static constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="#a0156087295ff1ec2af12007415e5fb12">vla_align</a> () noexcept</td></tr>
-<tr class="memitem:a4c9ccddf0942986eea1200387c203ebb" id="r_a4c9ccddf0942986eea1200387c203ebb"><td class="memTemplParams" colspan="2">template&lt;class C&gt; </td></tr>
-<tr class="memitem:a4c9ccddf0942986eea1200387c203ebb template"><td class="memItemLeft">static constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="#a4c9ccddf0942986eea1200387c203ebb">vla_bytes</a> (const C &amp;counts) noexcept</td></tr>
-<tr class="memdesc:a4c9ccddf0942986eea1200387c203ebb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bytes an <code class="param">Self</code> with these element counts occupies, <span class="tt">sizeof(Self)</span> included.  <br /></td></tr>
+<tr class="memitem:ad29fefc29b7de7a36613e53b510c64c9" id="r_ad29fefc29b7de7a36613e53b510c64c9"><td class="memItemLeft">static constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="#ad29fefc29b7de7a36613e53b510c64c9">vla_bytes</a> (const auto &amp;counts) noexcept</td></tr>
+<tr class="memdesc:ad29fefc29b7de7a36613e53b510c64c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bytes an <code class="param">Self</code> with these element counts occupies, <span class="tt">sizeof(Self)</span> included.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-friends" class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
@@ -205,7 +204,7 @@ class fe::VLA&lt; Self &gt;</div><p>CRTP base that gives <code class="param">Sel
 <div class="line"> </div>
 <div class="line">arena.ref&lt;Interval&gt;(loc, from, to, from_args, to_args);</div>
 <div class="ttc" id="aclassfe_1_1VLA_html"><div class="ttname"><a href="classfe_1_1VLA.html">fe::VLA</a></div><div class="ttdoc">CRTP base that gives Self one VLA per element type in Self::VLA_Types directly behind it in memory - ...</div><div class="ttdef"><b>Definition</b> <a href="vla_8h_source.html#l00037">vla.h:37</a></div></div>
-<div class="ttc" id="aclassfe_1_1VLA_html_abb1bf84b659c6c84ddeb87455df903c0"><div class="ttname"><a href="#abb1bf84b659c6c84ddeb87455df903c0">fe::VLA::vla</a></div><div class="ttdeci">auto vla(this S &amp;&amp;self) noexcept</div><div class="ttdoc">The I th VLA as a Span&lt;VLA_Type&lt;I&gt;&gt; - as a View&lt;VLA_Type&lt;I&gt;&gt;, if *this is const.</div><div class="ttdef"><b>Definition</b> <a href="vla_8h_source.html#l00059">vla.h:59</a></div></div>
+<div class="ttc" id="aclassfe_1_1VLA_html_abb1bf84b659c6c84ddeb87455df903c0"><div class="ttname"><a href="#abb1bf84b659c6c84ddeb87455df903c0">fe::VLA::vla</a></div><div class="ttdeci">auto vla(this S &amp;&amp;self) noexcept</div><div class="ttdoc">The I th VLA as a Span&lt;VLA_Type&lt;I&gt;&gt; - as a View&lt;VLA_Type&lt;I&gt;&gt;, if *this is const.</div><div class="ttdef"><b>Definition</b> <a href="vla_8h_source.html#l00058">vla.h:58</a></div></div>
 <div class="ttc" id="astructfe_1_1Loc_html"><div class="ttname"><a href="structfe_1_1Loc.html">fe::Loc</a></div><div class="ttdoc">Location within a Src: the half-open byte range [Loc::begin, Loc::end).</div><div class="ttdef"><b>Definition</b> <a href="loc_8h_source.html#l00042">loc.h:42</a></div></div>
 </div><!-- fragment --> <dl class="section warning"><dt>Warning</dt><dd>Only the most derived class may carry them. A class deriving from <code class="param">Self</code> would inherit this base and place its arrays at <code class="param">Self's</code> offset - on top of its own members - so <a class="el" href="classfe_1_1Arena.html#ac0ed8cd6c5553d0d1e75745501221a6f" title="This is a std::unique_ptr that uses the Arena under the hood and whose Deleter will only invoke the d...">Arena::mk</a> and <a class="el" href="classfe_1_1Arena.html#a2a530cfca1470ed2be58139542bff87f" title="Like Arena::mk, but yields a Ref: nothing will ever destroy the object.">Arena::ref</a> reject it. </dd></dl>
 
@@ -282,7 +281,7 @@ template&lt;class Self&gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="vla_8h_source.html#l00047">47</a> of file <a class="el" href="vla_8h_source.html">vla.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vla_8h_source.html#l00053">vla_bytes()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vla_8h_source.html#l00052">vla_bytes()</a>.</p>
 
 </div>
 </div>
@@ -315,7 +314,7 @@ template&lt;size_t I, size_t N = std::dynamic_extent, class S&gt; </div>
 
 <p>The <code class="param">I</code> th <a class="el" href="classfe_1_1VLA.html" title="CRTP base that gives Self one VLA per element type in Self::VLA_Types directly behind it in memory - ...">VLA</a> as a <span class="tt"><a class="el" href="classfe_1_1Span.html" title="This is a thin wrapper for std::span&lt;T, N&gt; with the following additional features:">Span</a>&lt;<a class="el" href="#a71ada1da77afebdcae069f2a37b348cc" title="Element type of the I th VLA.">VLA_Type</a>&lt;I&gt;&gt;</span> - as a <span class="tt"><a class="el" href="namespacefe.html#a3fa8abec15ebc094748836707250e96e" title="Read-only Span; use Span itself, if you want to write through its elements.">View</a>&lt;<a class="el" href="#a71ada1da77afebdcae069f2a37b348cc" title="Element type of the I th VLA.">VLA_Type</a>&lt;I&gt;&gt;</span>, if <span class="tt">*this</span> is <span class="tt">const</span>. </p>
 
-<p class="definition">Definition at line <a class="el" href="vla_8h_source.html#l00059">59</a> of file <a class="el" href="vla_8h_source.html">vla.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vla_8h_source.html#l00058">58</a> of file <a class="el" href="vla_8h_source.html">vla.h</a>.</p>
 
 <p class="reference">References <a class="el" href="span_8h_source.html#l00047">fe::Span&lt; T, N &gt;::Span()</a>.</p>
 
@@ -354,15 +353,13 @@ template&lt;class Self&gt; </div>
 
 </div>
 </div>
-<a id="a4c9ccddf0942986eea1200387c203ebb" name="a4c9ccddf0942986eea1200387c203ebb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c9ccddf0942986eea1200387c203ebb">&#9670;&#160;</a></span>vla_bytes()</h2>
+<a id="ad29fefc29b7de7a36613e53b510c64c9" name="ad29fefc29b7de7a36613e53b510c64c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad29fefc29b7de7a36613e53b510c64c9">&#9670;&#160;</a></span>vla_bytes()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class Self&gt; </div>
-<div class="memtemplate">
-template&lt;class C&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -370,7 +367,7 @@ template&lt;class C&gt; </div>
         <tr>
           <td class="memname">constexpr size_t <a class="el" href="classfe_1_1VLA.html">fe::VLA</a>&lt; Self &gt;::vla_bytes </td>
           <td>(</td>
-          <td class="paramtype">const C &amp;</td>          <td class="paramname"><span class="paramname"><em>counts</em></span></td><td>)</td>
+          <td class="paramtype">const auto &amp;</td>          <td class="paramname"><span class="paramname"><em>counts</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -383,7 +380,7 @@ template&lt;class C&gt; </div>
 
 <p>Bytes an <code class="param">Self</code> with these element counts occupies, <span class="tt">sizeof(Self)</span> included. </p>
 
-<p class="definition">Definition at line <a class="el" href="vla_8h_source.html#l00053">53</a> of file <a class="el" href="vla_8h_source.html">vla.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vla_8h_source.html#l00052">52</a> of file <a class="el" href="vla_8h_source.html">vla.h</a>.</p>
 
 <p class="reference">References <a class="el" href="vla_8h_source.html#l00047">num_vlas()</a>.</p>
 
@@ -412,11 +409,11 @@ template&lt;class Self&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="vla_8h_source.html#l00123">123</a> of file <a class="el" href="vla_8h_source.html">vla.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vla_8h_source.html#l00119">119</a> of file <a class="el" href="vla_8h_source.html">vla.h</a>.</p>
 
-<p class="reference">References <a class="el" href="vla_8h_source.html#l00123">Arena</a>.</p>
+<p class="reference">References <a class="el" href="vla_8h_source.html#l00119">Arena</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vla_8h_source.html#l00123">Arena</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vla_8h_source.html#l00119">Arena</a>.</p>
 
 </div>
 </div>
