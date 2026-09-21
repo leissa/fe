@@ -99,6 +99,17 @@ public:
         for (auto i : bits)
             set(i);
     }
+    /// Constructs the set of the first @p num_bits bits.
+    /// @note `Bitset(3)` is `{0, 1, 2}` - whereas `Bitset{3}` picks the initializer_list above and is `{3}`.
+    constexpr explicit Bitset(size_t num_bits) {
+        if (num_bits == 0) return;
+        grow((num_bits + Bits_Per_Word - 1) / Bits_Per_Word);
+        auto w    = words();
+        auto full = num_bits / Bits_Per_Word;
+        for (size_t i = 0; i != full; ++i)
+            w[i] = ~uint64_t(0);
+        if (auto rest = num_bits % Bits_Per_Word) w[full] = (uint64_t(1) << rest) - 1;
+    }
     constexpr Bitset(const Bitset& other)
         : num_words_(other.num_words_) {
         if (other.on_heap()) {

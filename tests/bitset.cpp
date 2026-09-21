@@ -40,7 +40,10 @@ constexpr bool inline_ops() {
     size_t sum = 0;
     for (auto i : c)
         sum += i;
-    return sum == 9 && c.hash() == Bitset{0, 2, 7}.hash();
+    if (sum != 9 || c.hash() != Bitset{0, 2, 7}.hash()) return false;
+
+    if (Bitset(0).any() || Bitset(3) != Bitset{0, 1, 2} || Bitset{3} != Bitset{3}.clear(2)) return false;
+    return Bitset(64).count() == 64 && !Bitset(64).on_heap() && Bitset(64).test(63) && !Bitset(64).test(64);
 }
 
 static_assert(inline_ops());
@@ -48,6 +51,16 @@ static_assert(inline_ops());
 } // namespace
 
 TEST_CASE("Bitset") {
+    SUBCASE("num_bits") {
+        auto b = Bitset(130);
+        CHECK(b.on_heap());
+        CHECK(b.count() == 130);
+        CHECK(b.test(129));
+        CHECK(!b.test(130));
+        CHECK(elems(Bitset(3)) == std::vector<size_t>{0, 1, 2});
+        CHECK((Bitset(130) - Bitset(128)) == Bitset{128, 129});
+    }
+
     SUBCASE("empty") {
         auto b = Bitset();
         CHECK(!b.on_heap());
