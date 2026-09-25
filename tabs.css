@@ -80,7 +80,7 @@
     position: absolute;
     height: 2px;
     width: 24px;
-    background: #003C74;
+    background: #002874;
     -webkit-transition: all .25s;
     transition: all .25s
 }
@@ -153,12 +153,12 @@
     font-size: 13px;
     line-height: 36px;
     text-decoration: none;
-    color: #00274D;
+    color: #001B4D;
     outline: 0
 }
 
 .sm-dox a:hover {
-    background-color: #B9DDFF;
+    background-color: #B9D1FF;
     border-radius: 5px
 }
 
@@ -229,7 +229,7 @@
 }
 
 .sm-dox ul a:hover {
-    background-color: #B9DDFF;
+    background-color: #B9D1FF;
     border-radius: 5px
 }
 
@@ -308,8 +308,8 @@
     display: inline-block;
     width: 5px;
     height: 5px;
-    border-right: 2px solid #73BBFF;
-    border-bottom: 2px solid #73BBFF;
+    border-right: 2px solid #73A4FF;
+    border-bottom: 2px solid #73A4FF;
     transform: rotate(45deg);
     -moz-border-radius: 0;
     -webkit-border-radius: 0;
@@ -321,14 +321,14 @@
 }
 
 .sm-dox a:hover {
-    background-color: #B9DDFF;
+    background-color: #B9D1FF;
     border-radius: 5px!important
 }
 
 .sm-dox a:hover span.sub-arrow {
-    background-color: #B9DDFF;
-    border-right: 2px solid #2E9AFE;
-    border-bottom: 2px solid #2E9AFE
+    background-color: #B9D1FF;
+    border-right: 2px solid #2E77FE;
+    border-bottom: 2px solid #2E77FE
 }
 
 .sm-dox a.has-submenu {
@@ -368,7 +368,7 @@
 }
 
 .sm-dox ul a:hover {
-    background-color: #B9DDFF;
+    background-color: #B9D1FF;
     border-radius: 5px
 }
 
