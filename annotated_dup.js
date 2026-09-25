@@ -47,6 +47,7 @@ var annotated_dup =
       [ "Src", "classfe_1_1Src.html", "classfe_1_1Src" ],
       [ "SrcMap", "classfe_1_1SrcMap.html", "classfe_1_1SrcMap" ],
       [ "StreamFn", "classfe_1_1StreamFn.html", "classfe_1_1StreamFn" ],
+      [ "StrHash", "structfe_1_1StrHash.html", "structfe_1_1StrHash" ],
       [ "Sym", "classfe_1_1Sym.html", "classfe_1_1Sym" ],
       [ "SymPool", "classfe_1_1SymPool.html", "classfe_1_1SymPool" ],
       [ "SymTab", "classfe_1_1SymTab.html", "classfe_1_1SymTab" ],

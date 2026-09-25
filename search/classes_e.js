@@ -7,8 +7,9 @@ var searchData=
   ['src_4',['Src',['../classfe_1_1Src.html',1,'fe']]],
   ['srcmap_5',['SrcMap',['../classfe_1_1SrcMap.html',1,'fe']]],
   ['streamfn_6',['StreamFn',['../classfe_1_1StreamFn.html',1,'fe']]],
-  ['string_7',['String',['../structfe_1_1Sym_1_1String.html',1,'fe::Sym']]],
-  ['sym_8',['Sym',['../classfe_1_1Sym.html',1,'fe']]],
-  ['sympool_9',['SymPool',['../classfe_1_1SymPool.html',1,'fe']]],
-  ['symtab_10',['SymTab',['../classfe_1_1SymTab.html',1,'fe']]]
+  ['strhash_7',['StrHash',['../structfe_1_1StrHash.html',1,'fe']]],
+  ['string_8',['String',['../structfe_1_1Sym_1_1String.html',1,'fe::Sym']]],
+  ['sym_9',['Sym',['../classfe_1_1Sym.html',1,'fe']]],
+  ['sympool_10',['SymPool',['../classfe_1_1SymPool.html',1,'fe']]],
+  ['symtab_11',['SymTab',['../classfe_1_1SymTab.html',1,'fe']]]
 ];

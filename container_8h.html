@@ -154,18 +154,23 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('container_8h.h
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#concepts">Concepts</a>  </div>
   <div class="headertitle"><div class="title">container.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;type_traits&gt;</code><br />
+<div class="textblock"><code>#include &lt;functional&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;string_view&gt;</code><br />
+<code>#include &lt;type_traits&gt;</code><br />
 <code>#include &lt;utility&gt;</code><br />
+<code>#include &lt;ankerl/unordered_dense.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="assert_8h_source.html">fe/assert.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for container.h:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="container_8h__incl.svg" width="332" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="container_8h__incl.svg" width="100%" height="442"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -175,6 +180,10 @@ This graph shows which files directly or indirectly include this file:</div>
 </div>
 <p><a href="container_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:fe_3A_3AStrHash" id="r_fe_3A_3AStrHash"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1StrHash.html">fe::StrHash</a></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:fe" id="r_fe"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html">fe</a></td></tr>
@@ -185,6 +194,15 @@ Concepts</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Something which behaves like <span class="tt">std::stack</span> or <span class="tt">std::priority_queue</span>. <br /></td></tr>
 <tr class="memitem:fe_3A_3AQueuelike" id="r_fe_3A_3AQueuelike"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="conceptfe_1_1Queuelike.html">fe::Queuelike</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Something which behaves like <span class="tt">std::queue</span>. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr id="typedef-members-0" class="groupHeader"><td colspan="2"><div class="groupHeader">StrMap/StrSet</div></td></tr>
+<tr><td colspan="2" class="ititle"><div class="groupText"><p>Keyed by <span class="tt">std::string</span> but also looked up by <span class="tt">std::string_view</span> or <span class="tt">const char*</span> without building a <span class="tt">std::string</span>. </p>
+</div></td></tr>
+<tr class="memitem:a030f4b2005b47b3422d85383f42635d7" id="r_a030f4b2005b47b3422d85383f42635d7"><td class="memTemplParams" colspan="2">template&lt;class V&gt; </td></tr>
+<tr class="memitem:a030f4b2005b47b3422d85383f42635d7 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a030f4b2005b47b3422d85383f42635d7">fe::StrMap</a> = ankerl::unordered_dense::map&lt;std::string, V, <a class="el" href="structfe_1_1StrHash.html">StrHash</a>, std::equal_to&lt;&gt;&gt;</td></tr>
+<tr class="memitem:a4f3c7ffd2cc6617944e2a5558e80801b" id="r_a4f3c7ffd2cc6617944e2a5558e80801b"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a4f3c7ffd2cc6617944e2a5558e80801b">fe::StrSet</a> = ankerl::unordered_dense::set&lt;std::string, <a class="el" href="structfe_1_1StrHash.html">StrHash</a>, std::equal_to&lt;&gt;&gt;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
