@@ -7,8 +7,8 @@ on:
 
 jobs:
   build-and-test:
-    name: gcc-14 ${{matrix.build-type}}
-    runs-on: ubuntu-latest
+    name: gcc-15 ${{matrix.build-type}}
+    runs-on: ubuntu-26.04
     strategy:
       fail-fast: false
       matrix:
@@ -23,10 +23,10 @@ jobs:
       - name: Install toolchain and Valgrind
         run: |
           sudo apt-get update
-          sudo apt-get install -y valgrind g++-14
+          sudo apt-get install -y valgrind g++-15
 
       - name: Configure
-        run: CC=gcc-14 CXX=g++-14 cmake -S ${{github.workspace}} -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{matrix.build-type}} -DBUILD_TESTING=ON
+        run: CC=gcc-15 CXX=g++-15 cmake -S ${{github.workspace}} -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{matrix.build-type}} -DBUILD_TESTING=ON
 
       - name: Build
         run: cmake --build ${{github.workspace}}/build -v
@@ -36,7 +36,7 @@ jobs:
 
       - name: Consume the installed package
         run: |
-          CC=gcc-14 CXX=g++-14 cmake -S ${{github.workspace}}/tests/consumer -B ${{github.workspace}}/build-consumer -DCMAKE_BUILD_TYPE=${{matrix.build-type}} -DCMAKE_PREFIX_PATH=${{github.workspace}}/prefix
+          CC=gcc-15 CXX=g++-15 cmake -S ${{github.workspace}}/tests/consumer -B ${{github.workspace}}/build-consumer -DCMAKE_BUILD_TYPE=${{matrix.build-type}} -DCMAKE_PREFIX_PATH=${{github.workspace}}/prefix
           cmake --build ${{github.workspace}}/build-consumer -v
           ${{github.workspace}}/build-consumer/fe-consumer
 
@@ -45,7 +45,7 @@ jobs:
 
   sanitize:
     name: ASan+LSan+UBSan
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
 
     steps:
       - name: Clone recursively
@@ -56,7 +56,7 @@ jobs:
       - name: Install toolchain
         run: |
           sudo apt-get update
-          sudo apt-get install -y clang g++-14
+          sudo apt-get install -y clang g++-15
 
       - name: Configure
         run: >

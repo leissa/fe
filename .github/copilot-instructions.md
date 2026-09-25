@@ -20,7 +20,7 @@ Docs are optional: `cmake -S . -B build -DFE_BUILD_DOCS=ON && cmake --build buil
 
 Formatting/lint-style checks live in `.pre-commit-config.yaml` and run via `pre-commit run --all-files`: `clang-format` (see `.clang-format`) plus the whitespace/YAML hooks. There is no CMake lint target.
 
-CI (`.github/workflows/`) builds one compiler per platform in Debug and Release - gcc-14 on Linux, Apple clang on macOS, MSVC on Windows - and runs `fe-test` under Valgrind as well as ASan/LSan/UBSan.
+CI (`.github/workflows/`) builds one compiler per platform in Debug and Release - gcc-15 on Linux, Apple clang on macOS, MSVC on Windows - and runs `fe-test` under Valgrind as well as ASan/LSan/UBSan.
 Each of those jobs also installs into a prefix and builds `tests/consumer` - a three-line `find_package(fe)` project that is not part of the fe build - against it, so a broken install rule fails CI instead of a downstream project.
 A change is only done when it is leak- and UB-clean, not merely when `ctest` passes.
 
