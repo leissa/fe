@@ -1,6 +1,11 @@
 set(DOXYFILE          "${CMAKE_CURRENT_BINARY_DIR}/Doxyfile")
-set(DOXY_INDEX_HTML   "${CMAKE_CURRENT_BINARY_DIR}/html/index.html")
-set(DOXY_EXTRA_FILES  "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
+set(DOXY_INDEX_HTML   "${CMAKE_BINARY_DIR}/html/index.html")
+set(DOXY_EXTRA_FILES
+    "${CMAKE_CURRENT_SOURCE_DIR}/README.md"
+    "${CMAKE_CURRENT_SOURCE_DIR}/header.html"
+    "${CMAKE_CURRENT_SOURCE_DIR}/theme.css"
+    "${CMAKE_CURRENT_SOURCE_DIR}/doxygen-fixes.css"
+)
 set(FE_LOGO_SVG       "${CMAKE_CURRENT_BINARY_DIR}/logo.svg")
 set(FE_LOGO_PNG       "${CMAKE_CURRENT_BINARY_DIR}/logo.png")
 
