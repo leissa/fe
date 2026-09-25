@@ -74,10 +74,16 @@ set(fe_ankerl_headers
     ${CMAKE_CURRENT_SOURCE_DIR}/submodules/unordered_dense/include/ankerl/stl.h
     ${CMAKE_CURRENT_SOURCE_DIR}/submodules/unordered_dense/include/ankerl/unordered_dense.h
 )
-target_include_directories(fe SYSTEM
+if(NOT TARGET svector::svector)
+    add_subdirectory(submodules/svector SYSTEM)
+endif()
+if(NOT TARGET unordered_dense::unordered_dense)
+    add_subdirectory(submodules/unordered_dense SYSTEM)
+endif()
+target_link_libraries(fe
     PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/submodules/svector/include>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/submodules/unordered_dense/include>
+        $<BUILD_INTERFACE:svector::svector>
+        $<BUILD_INTERFACE:unordered_dense::unordered_dense>
 )
 
 # Windows resolves an exported vtable only through __declspec(dllimport); see FE_API on fe::Diag.
