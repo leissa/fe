@@ -12,7 +12,8 @@
 
 namespace fe {
 
-/// Use up to 4 words (i.e., 4 * sizeof(size_t)) of inlined storage, rounded up.
+/// Aims at 4 words (i.e., 4 * sizeof(size_t)) of inlined storage; svector's one-byte tag makes the object a word
+/// larger.
 template<class T>
 static constexpr size_t Default_Inlined_Size = std::max((size_t)1, 4 * sizeof(size_t) / sizeof(T));
 
