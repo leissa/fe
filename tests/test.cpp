@@ -850,6 +850,20 @@ TEST_CASE("container") {
         CHECK(*fe::pop(m) == 23);
     }
 
+    SUBCASE("StrMap/StrSet") {
+        auto map = fe::StrMap<int>();
+        map.emplace("foo", 23);
+        auto sv = std::string_view("foobar").substr(0, 3);
+        CHECK(*fe::lookup(map, sv) == 23);
+        CHECK(fe::lookup(map, "bar") == nullptr);
+        map[std::string_view("bar")] = 42;
+        CHECK(fe::assert_lookup(map, "bar") == 42);
+
+        auto set = fe::StrSet{"foo"};
+        CHECK(set.contains(sv));
+        CHECK(!set.contains("bar"));
+    }
+
     SUBCASE("lookup") {
         std::unordered_map<int, int> map = {
             {1, 23}

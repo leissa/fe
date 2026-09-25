@@ -1,7 +1,12 @@
 #pragma once
 
+#include <functional>
+#include <string>
+#include <string_view>
 #include <type_traits>
 #include <utility>
+
+#include <ankerl/unordered_dense.h>
 
 #include "fe/assert.h"
 
@@ -63,6 +68,18 @@ auto assert_emplace(auto& container, auto&&... args) {
     assert_unused(ins);
     return i;
 }
+///@}
+
+/// @name StrMap/StrSet
+/// Keyed by `std::string` but also looked up by `std::string_view` or `const char*` without building a `std::string`.
+///@{
+struct StrHash : ankerl::unordered_dense::hash<std::string_view> {
+    using is_transparent = void;
+};
+
+template<class V>
+using StrMap = ankerl::unordered_dense::map<std::string, V, StrHash, std::equal_to<>>;
+using StrSet = ankerl::unordered_dense::set<std::string, StrHash, std::equal_to<>>;
 ///@}
 
 } // namespace fe
