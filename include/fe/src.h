@@ -9,12 +9,7 @@
 #include <utility>
 #include <vector>
 
-#ifdef FE_ABSL
-#    include <absl/container/node_hash_map.h>
-#else
-#    include <unordered_map>
-#endif
-
+#include "fe/hash_map.h"
 #include "fe/loc.h"
 
 namespace fe {
@@ -27,13 +22,8 @@ struct PathHash {
 /// Maps a `std::filesystem::path` to @p V.
 /// @warning Node-based on purpose: fe::SrcMap stores its Src%s in here and a Loc points to one,
 /// so the values must never move.
-#ifdef FE_ABSL
 template<class V>
-using PathMap = absl::node_hash_map<std::filesystem::path, V, PathHash>;
-#else
-template<class V>
-using PathMap = std::unordered_map<std::filesystem::path, V, PathHash>;
-#endif
+using PathMap = NodeMap<std::filesystem::path, V, PathHash>;
 
 /// The content of one source file together with the offsets its rows start at.
 /// This is what turns a Pos back into the row/column a human wants to read.

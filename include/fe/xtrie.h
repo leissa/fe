@@ -11,17 +11,10 @@
 #include <ranges>
 #include <string>
 
-#ifdef FE_ABSL
-#    include <absl/container/flat_hash_map.h>
-#    include <absl/container/flat_hash_set.h>
-#else
-#    include <unordered_map>
-#    include <unordered_set>
-#endif
-
 #include "fe/arena.h"
 #include "fe/assert.h"
 #include "fe/hash.h"
+#include "fe/hash_map.h"
 #include "fe/lct.h"
 #include "fe/vector.h"
 
@@ -47,13 +40,8 @@ private:
         constexpr size_t operator()(D* d) const noexcept { return fe::hash(K::gid(d)); }
     };
 
-#ifdef FE_ABSL
     template<class V>
-    using Map = absl::flat_hash_map<D*, V, Hash>;
-#else
-    template<class V>
-    using Map  = std::unordered_map<D*, V, Hash>;
-#endif
+    using Map = HashMap<D*, V, Hash>;
 
     /// Trie Node.
     class Node : public lct::Node<Node, D*> {
@@ -158,10 +146,10 @@ private:
 #endif
     };
 
-#ifdef FE_ABSL
-    using Pool = absl::flat_hash_set<const Data*, absl::Hash<const Data*>, typename Data::Equal>;
+#ifdef FE_HASH_ABSL
+    using Pool = HashSet<const Data*, absl::Hash<const Data*>, typename Data::Equal>;
 #else
-    using Pool = std::unordered_set<const Data*, typename Data::Hash, typename Data::Equal>;
+    using Pool = HashSet<const Data*, typename Data::Hash, typename Data::Equal>;
 #endif
 
 public:

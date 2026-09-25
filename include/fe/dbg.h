@@ -3,16 +3,9 @@
 #include <bit>
 #include <ostream>
 
-#ifdef FE_ABSL
-#    include <absl/container/flat_hash_map.h>
-#    include <absl/container/flat_hash_set.h>
-#else
-#    include <unordered_map>
-#    include <unordered_set>
-#endif
-
 #include "fe/format.h"
 #include "fe/hash.h"
+#include "fe/hash_map.h"
 #include "fe/loc.h"
 #include "fe/sym.h"
 
@@ -83,15 +76,9 @@ private:
 
 /// @name DbgMap/DbgSet
 ///@{
-#ifdef FE_ABSL
 template<class V>
-using DbgMap = absl::flat_hash_map<Dbg, V, Dbg::Hash, Dbg::Eq>;
-using DbgSet = absl::flat_hash_set<Dbg, Dbg::Hash, Dbg::Eq>;
-#else
-template<class V>
-using DbgMap = std::unordered_map<Dbg, V, Dbg::Hash, Dbg::Eq>;
-using DbgSet = std::unordered_set<Dbg, Dbg::Hash, Dbg::Eq>;
-#endif
+using DbgMap = HashMap<Dbg, V, Dbg::Hash, Dbg::Eq>;
+using DbgSet = HashSet<Dbg, Dbg::Hash, Dbg::Eq>;
 ///@}
 
 /// Opaque handle to a Dbg interned in a Driver; see Driver::dbg.

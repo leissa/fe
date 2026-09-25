@@ -83,6 +83,16 @@ if(FE_ABSL)
     )
 endif()
 
+set(FE_HASH "" CACHE STRING "hash table backend: absl, std, tsl_robin, tsl_hopscotch, ankerl, phmap, emhash, boost (empty: absl if FE_ABSL, else std)")
+set(FE_HASH_INCLUDE_DIRS "" CACHE STRING "include directories of the header-only FE_HASH backend")
+if(FE_HASH)
+    string(TOUPPER "${FE_HASH}" FE_HASH_UPPER)
+    target_compile_definitions(fe PUBLIC FE_HASH_${FE_HASH_UPPER})
+    foreach(dir IN LISTS FE_HASH_INCLUDE_DIRS)
+        target_include_directories(fe SYSTEM PUBLIC $<BUILD_INTERFACE:${dir}>)
+    endforeach()
+endif()
+
 # Windows resolves an exported vtable only through __declspec(dllimport); see FE_API on fe::Diag.
 generate_export_header(fe
     BASE_NAME FE

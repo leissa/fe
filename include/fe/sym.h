@@ -10,16 +10,12 @@
 #include <string>
 
 #ifdef FE_ABSL
-#    include <absl/container/flat_hash_map.h>
-#    include <absl/container/flat_hash_set.h>
 #    include <absl/hash/hash.h>
-#else
-#    include <unordered_map>
-#    include <unordered_set>
 #endif
 
 #include "fe/arena.h"
 #include "fe/hash.h"
+#include "fe/hash_map.h"
 
 namespace fe {
 
@@ -224,15 +220,9 @@ namespace fe {
 /// Set/Map is keyed by pointer - which is hashed in SymPool.
 ///@{
 ///
-#ifdef FE_ABSL
 template<class V>
-using SymMap = absl::flat_hash_map<Sym, V, Sym::Hash, Sym::Eq>;
-using SymSet = absl::flat_hash_set<Sym, Sym::Hash, Sym::Eq>;
-#else
-template<class V>
-using SymMap = std::unordered_map<Sym, V, Sym::Hash, Sym::Eq>;
-using SymSet = std::unordered_set<Sym, Sym::Hash, Sym::Eq>;
-#endif
+using SymMap = HashMap<Sym, V, Sym::Hash, Sym::Eq>;
+using SymSet = HashSet<Sym, Sym::Hash, Sym::Eq>;
 ///@}
 
 /// A fixed-capacity Sym%bol -> @p V map for a *closed* set of @p Size entries: filled once, then only
@@ -326,11 +316,7 @@ public:
 
 private:
     Arena strings_;
-#ifdef FE_ABSL
-    absl::flat_hash_set<const String*, String::Hash, String::Equal> pool_;
-#else
-    std::unordered_set<const String*, String::Hash, String::Equal> pool_;
-#endif
+    HashSet<const String*, String::Hash, String::Equal> pool_;
 };
 
 static_assert(std::is_trivially_copyable_v<Sym>);

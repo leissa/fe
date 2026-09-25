@@ -16,15 +16,10 @@
 #include <print>
 #include <ranges>
 
-#ifdef FE_ABSL
-#    include <absl/container/flat_hash_set.h>
-#else
-#    include <unordered_set>
-#endif
-
 #include "fe/arena.h"
 #include "fe/assert.h"
 #include "fe/hash.h"
+#include "fe/hash_map.h"
 #include "fe/span.h"
 #include "fe/vector.h"
 
@@ -794,13 +789,8 @@ private:
         }
     };
 
-#ifdef FE_ABSL
     template<class T, class H, class E>
-    using Pool = absl::flat_hash_set<const T*, H, E>;
-#else
-    template<class T, class H, class E>
-    using Pool = std::unordered_set<const T*, H, E>;
-#endif
+    using Pool = HashSet<const T*, H, E>;
     ///@}
 
     // One Arena per node kind, so that rolling a speculative allocation back on a pool hit is always LIFO.
