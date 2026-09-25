@@ -9,13 +9,10 @@
 #include <optional>
 #include <string>
 
-#ifdef FE_ABSL
-#    include <absl/hash/hash.h>
-#endif
+#include <ankerl/unordered_dense.h>
 
 #include "fe/arena.h"
 #include "fe/hash.h"
-#include "fe/hash_map.h"
 
 namespace fe {
 
@@ -54,13 +51,11 @@ public:
 
         /// Hashes the characters, not the pointer - String::Equal compares them, and the two have to agree.
         struct Hash {
+            using is_avalanching = void;
+
             size_t operator()(const String* s) const noexcept {
                 auto sv = std::string_view(s->chars, s->size);
-#ifdef FE_ABSL
-                return absl::HashOf(sv); // a few percent ahead of ours, and we link it anyway
-#else
                 return hash_begin(sv);
-#endif
             }
         };
     };
@@ -163,10 +158,6 @@ public:
     constexpr explicit operator bool() const noexcept { return ptr_; } ///< Is not empty?
     ///@}
 
-    template<class H>
-    friend constexpr H AbslHashValue(H h, Sym sym) noexcept {
-        return H::combine(std::move(h), sym.ptr_);
-    }
     friend struct ::std::hash<fe::Sym>;
     friend std::ostream& operator<<(std::ostream& os, Sym sym);
 
@@ -221,8 +212,8 @@ namespace fe {
 ///@{
 ///
 template<class V>
-using SymMap = HashMap<Sym, V, Sym::Hash, Sym::Eq>;
-using SymSet = HashSet<Sym, Sym::Hash, Sym::Eq>;
+using SymMap = ankerl::unordered_dense::map<Sym, V, Sym::Hash, Sym::Eq>;
+using SymSet = ankerl::unordered_dense::set<Sym, Sym::Hash, Sym::Eq>;
 ///@}
 
 /// A fixed-capacity Sym%bol -> @p V map for a *closed* set of @p Size entries: filled once, then only
@@ -316,7 +307,7 @@ public:
 
 private:
     Arena strings_;
-    HashSet<const String*, String::Hash, String::Equal> pool_;
+    ankerl::unordered_dense::set<const String*, String::Hash, String::Equal> pool_;
 };
 
 static_assert(std::is_trivially_copyable_v<Sym>);

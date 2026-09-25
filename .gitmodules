@@ -4,3 +4,9 @@
 [submodule "external/doctest"]
 	path = submodules/doctest
 	url = ../../doctest/doctest.git
+[submodule "submodules/unordered_dense"]
+	path = submodules/unordered_dense
+	url = ../../martinus/unordered_dense.git
+[submodule "submodules/svector"]
+	path = submodules/svector
+	url = ../../martinus/svector.git

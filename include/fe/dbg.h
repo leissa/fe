@@ -3,9 +3,10 @@
 #include <bit>
 #include <ostream>
 
+#include <ankerl/unordered_dense.h>
+
 #include "fe/format.h"
 #include "fe/hash.h"
-#include "fe/hash_map.h"
 #include "fe/loc.h"
 #include "fe/sym.h"
 
@@ -49,6 +50,8 @@ public:
     constexpr bool operator==(const Dbg& other) const noexcept { return loc_ == other.loc_ && sym_ == other.sym_; }
 
     struct Hash {
+        using is_avalanching = void;
+
         size_t operator()(Dbg dbg) const noexcept {
             auto h = hash_begin(std::bit_cast<uintptr_t>(dbg.loc_.src));
             h      = hash_combine(h, dbg.loc_.begin.off);
@@ -60,11 +63,6 @@ public:
     struct Eq {
         constexpr bool operator()(Dbg d1, Dbg d2) const noexcept { return d1 == d2; }
     };
-
-    template<class H>
-    friend H AbslHashValue(H h, Dbg dbg) noexcept {
-        return H::combine(std::move(h), dbg.loc_.src, dbg.loc_.begin.off, dbg.loc_.end.off, dbg.sym_);
-    }
     ///@}
 
 private:
@@ -77,8 +75,8 @@ private:
 /// @name DbgMap/DbgSet
 ///@{
 template<class V>
-using DbgMap = HashMap<Dbg, V, Dbg::Hash, Dbg::Eq>;
-using DbgSet = HashSet<Dbg, Dbg::Hash, Dbg::Eq>;
+using DbgMap = ankerl::unordered_dense::map<Dbg, V, Dbg::Hash, Dbg::Eq>;
+using DbgSet = ankerl::unordered_dense::set<Dbg, Dbg::Hash, Dbg::Eq>;
 ///@}
 
 /// Opaque handle to a Dbg interned in a Driver; see Driver::dbg.

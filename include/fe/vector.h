@@ -6,11 +6,7 @@
 #include <ranges>
 #include <type_traits>
 
-#ifdef FE_ABSL
-#    include <absl/container/inlined_vector.h>
-#else
-#    include <vector>
-#endif
+#include <ankerl/svector.h>
 
 #include "fe/span.h"
 
@@ -20,27 +16,14 @@ namespace fe {
 template<class T>
 static constexpr size_t Default_Inlined_Size = std::max((size_t)1, 4 * sizeof(size_t) / sizeof(T));
 
-namespace detail {
-#ifdef FE_ABSL
-template<class T, size_t N, class A>
-using VectorBase = absl::InlinedVector<T, N, A>;
-#else
-template<class T, size_t, class A>
-using VectorBase = std::vector<T, A>;
-#endif
-} // namespace detail
-
 /// This is a thin wrapper for
-/// [`absl::InlinedVector<T, N, A>`](https://github.com/abseil/abseil-cpp/blob/master/absl/container/inlined_vector.h)
+/// [`ankerl::svector<T, N, A>`](https://github.com/martinus/svector)
 /// which is a drop-in replacement for [`std::vector<T, A>`](https://en.cppreference.com/w/cpp/container/vector).
 /// In addition, there are generator-like/lambda-based constructors and conversions to Span available.
-/// @note Without `FE_ABSL` this falls back to `std::vector<T, A>` and @p N has no effect.
 template<class T, size_t N = Default_Inlined_Size<T>, class A = std::allocator<T>>
-class Vector : public detail::VectorBase<T, N, A> {
+class Vector : public ankerl::svector<T, N, A> {
 public:
-    using Base = detail::VectorBase<T, N, A>;
-
-    using Base::insert;
+    using Base = ankerl::svector<T, N, A>;
 
     /// @name Constructors
     ///@{
@@ -63,56 +46,14 @@ public:
     }
     ///@}
 
-    /// @name insert_range / append_range
-    /// Available in C++23 but not absl.
-    ///@{
-    template<std::ranges::forward_range R>
-    constexpr void insert_range(Base::const_iterator pos, R&& r) {
-        insert(pos, r.begin(), r.end());
-    }
-    template<std::ranges::forward_range R>
-    constexpr void append_range(R&& r) {
-        insert_range(Base::end(), r);
-    }
-    ///@}
-
     /// @name Span
     ///@{
     constexpr auto span() noexcept { return Span{Base::data(), Base::size()}; }
     constexpr auto span() const noexcept { return Span{Base::data(), Base::size()}; }
     constexpr auto view() const noexcept { return span(); }
     ///@}
-
-    friend void swap(Vector& v1, Vector& v2) noexcept(noexcept(v1.swap(v2))) { v1.swap(v2); }
 };
 
 static_assert(std::ranges::contiguous_range<Vector<int>>);
-
-/// @name Deduction Guides
-///@{
-template<class I, class A = std::allocator<typename std::iterator_traits<I>::value_type>>
-Vector(I, I, A = A()) -> Vector<typename std::iterator_traits<I>::value_type,
-                                Default_Inlined_Size<typename std::iterator_traits<I>::value_type>,
-                                A>;
-///@}
-
-/// @name erase
-///@{
-template<class T, size_t N, class A, class U>
-typename Vector<T, N, A>::size_type erase(Vector<T, N, A>& c, const U& value) {
-    auto it = std::remove(c.begin(), c.end(), value);
-    auto r  = c.end() - it;
-    c.erase(it, c.end());
-    return r;
-}
-
-template<class T, size_t N, class A, class Pred>
-typename Vector<T, N, A>::size_type erase_if(Vector<T, N, A>& c, Pred pred) {
-    auto it = std::remove_if(c.begin(), c.end(), pred);
-    auto r  = c.end() - it;
-    c.erase(it, c.end());
-    return r;
-}
-///@}
 
 } // namespace fe

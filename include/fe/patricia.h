@@ -16,10 +16,11 @@
 #include <print>
 #include <ranges>
 
+#include <ankerl/unordered_dense.h>
+
 #include "fe/arena.h"
 #include "fe/assert.h"
 #include "fe/hash.h"
-#include "fe/hash_map.h"
 #include "fe/span.h"
 #include "fe/vector.h"
 
@@ -763,6 +764,8 @@ private:
     }
 
     struct ArrHash {
+        using is_avalanching = void;
+
         size_t operator()(const Arr* n) const noexcept { return n->hash; }
     };
 
@@ -776,6 +779,8 @@ private:
     };
 
     struct BrHash {
+        using is_avalanching = void;
+
         size_t operator()(const Br* n) const noexcept {
             auto h = hash_combine(hash_combine(hash_begin(), n->prefix), n->mask);
             return hash_combine(hash_combine(h, n->l), n->r);
@@ -790,7 +795,7 @@ private:
     };
 
     template<class T, class H, class E>
-    using Pool = HashSet<const T*, H, E>;
+    using Pool = ankerl::unordered_dense::set<const T*, H, E>;
     ///@}
 
     // One Arena per node kind, so that rolling a speculative allocation back on a pool hit is always LIFO.

@@ -137,14 +137,14 @@ It provides a compact set of reusable, well-integrated components:
 
 #### Data Structures
 
-- `fe::Span`/`fe::View` and `fe::Vector` for spans with structured binding and small-buffer vectors.
+- `fe::Span`/`fe::View` and `fe::Vector` for spans with structured binding and small-buffer vectors - the latter built on [`ankerl::svector`](https://github.com/martinus/svector).
 - `fe::VLA` for low-level variable-length arrays appended to `fe::Arena`-allocated objects.
 - `fe::Bitset` for a dynamically growing bit set that keeps small sets inline and only allocates once they grow.
 - `fe::XTrie` for interned, immutable sets - an [IndexedTrie](https://dl.acm.org/doi/10.1145/3808286) that is space-efficient and answers intersection tests fast.
 - `fe::Patricia` for interned, immutable maps - and sets, via `fe::PatriciaSet` - keyed by an unsigned integer: a [Patricia tree](https://dl.acm.org/doi/10.1145/321479.321481) - see Okasaki and Gill's [Fast Mergeable Integer Maps](https://ku-fpg.github.io/papers/Okasaki-98-IntMap/) - whose small subtrees collapse into sorted arrays, so equal contents are pointer-equal and union/intersection/difference keep whatever sharing they can.
   `fe::PatriciaPtr` is the same thing as a set of pointers, keyed and ordered by an id the elements carry themselves.
 - `fe::BFSWorklist`/`fe::DFSWorklist` for worklist traversals that visit each element at most once.
-- Optional `FE_ABSL` support for [Abseil](https://abseil.io/) hash containers.
+- `fe::SymMap`/`fe::SymSet` and friends are [`ankerl::unordered_dense`](https://github.com/martinus/unordered_dense) maps/sets.
 - `fe/container.h` for some helpers.
 
 #### Algorithms
@@ -175,14 +175,6 @@ That gives you a concrete, working example of how FE is intended to be used in p
 Add FE as a subdirectory and link the `fe` target:
 
 ```cmake
-add_subdirectory(submodules/fe)
-target_link_libraries(my_compiler PRIVATE fe)
-```
-
-Set any of the options below *before* adding the subdirectory:
-
-```cmake
-set(FE_ABSL ON) # use Abseil-backed hash containers
 add_subdirectory(submodules/fe)
 target_link_libraries(my_compiler PRIVATE fe)
 ```

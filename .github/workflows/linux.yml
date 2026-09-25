@@ -73,36 +73,3 @@ jobs:
         env:
           ASAN_OPTIONS: detect_leaks=1
           UBSAN_OPTIONS: print_stacktrace=1
-
-  absl:
-    name: FE_ABSL
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Clone recursively
-        uses: actions/checkout@v4
-        with:
-          submodules: recursive
-
-      - name: Install toolchain and Abseil
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libabsl-dev g++-14
-
-      - name: Configure
-        run: CC=gcc-14 CXX=g++-14 cmake -S ${{github.workspace}} -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON -DFE_ABSL=ON
-
-      - name: Build
-        run: cmake --build ${{github.workspace}}/build -v
-
-      - name: Test
-        run: ctest --test-dir ${{github.workspace}}/build --output-on-failure
-
-      - name: Install
-        run: cmake --install ${{github.workspace}}/build --prefix ${{github.workspace}}/prefix
-
-      - name: Consume the installed package
-        run: |
-          CC=gcc-14 CXX=g++-14 cmake -S ${{github.workspace}}/tests/consumer -B ${{github.workspace}}/build-consumer -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=${{github.workspace}}/prefix
-          cmake --build ${{github.workspace}}/build-consumer -v
-          ${{github.workspace}}/build-consumer/fe-consumer

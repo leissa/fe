@@ -40,7 +40,7 @@ template<Queuelike Q>
 /// Yields pointer to element (or the element itself if it is already a pointer), if found and `nullptr` otherwise.
 /// Constness of @p container carries over to the result.
 /// @warning If the element is **not** already a pointer, this lookup will simply take the address of this element.
-/// This means that, e.g., a rehash of an `absl::flat_hash_map` will invalidate this pointer.
+/// This means that, e.g., a rehash of an `ankerl::unordered_dense::map` will invalidate this pointer.
 template<class C, class K>
 [[nodiscard]] auto lookup(C& container, const K& key) {
     auto i = container.find(key);
