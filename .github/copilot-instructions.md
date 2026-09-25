@@ -11,7 +11,7 @@ cmake --build build
 ctest --test-dir build --output-on-failure
 ```
 
-Tests need the bundled submodules. If configure fails on a missing `submodules/doctest`, run `git submodule update --init --recursive` first.
+The build needs the bundled `submodules/svector` and `submodules/unordered_dense`, the tests `submodules/doctest` as well. If configure or the build fails on a missing one, run `git submodule update --init --recursive` first.
 
 Run a single test through CTest (`ctest --test-dir build -R '^Lexer$' --output-on-failure`) or the test binary (`./build/bin/fe-test --test-case=Lexer`).
 `doctest_discover_tests` registers each `TEST_CASE` name verbatim, so several contain spaces: `--test-case='Lexer buffer starts'`.
@@ -20,14 +20,13 @@ Docs are optional: `cmake -S . -B build -DFE_BUILD_DOCS=ON && cmake --build buil
 
 Formatting/lint-style checks live in `.pre-commit-config.yaml` and run via `pre-commit run --all-files`: `clang-format` (see `.clang-format`) plus the whitespace/YAML hooks. There is no CMake lint target.
 
-CI (`.github/workflows/`) builds one compiler per platform in Debug and Release - gcc-14 on Linux, Apple clang on macOS, MSVC on Windows - and runs `fe-test` under Valgrind as well as ASan/LSan/UBSan.
-Each of those jobs also installs into a prefix and builds `tests/consumer` - a three-line `find_package(fe)` project that is not part of the fe build - against it, so a broken install rule fails CI instead of a downstream project; a Linux job does the same with `FE_ABSL=ON`.
+CI (`.github/workflows/`) builds one compiler per platform in Debug and Release - gcc-15 on Linux, Apple clang on macOS, MSVC on Windows - and runs `fe-test` under Valgrind as well as ASan/LSan/UBSan.
+Each of those jobs also installs into a prefix and builds `tests/consumer` - a three-line `find_package(fe)` project that is not part of the fe build - against it, so a broken install rule fails CI instead of a downstream project.
 A change is only done when it is leak- and UB-clean, not merely when `ctest` passes.
 
 ## Build options & toolchain
 
 - **C++23** is required (`target_compile_features` in `CMakeLists.txt`).
-- `FE_ABSL` (default `OFF`): switches `SymMap`/`SymSet`/`PathMap` and friends from `std` to Abseil containers. It `find_package`s Abseil itself unless a consumer already provides the `absl::` targets, and the installed `fe-config` then `find_dependency`s it in turn.
 - `FE_BUILD_DOCS` (default `OFF`): Doxygen docs.
 - `BUILD_TESTING` (CTest default `ON`): builds `fe-test`, the only executable.
 - `FE_INSTALL` (default: `ON` only for a top-level build): install rules plus the `fe-config` package - `find_package(fe)` then yields `fe::fe`, which is also an `ALIAS` in the build tree so both consumption modes spell the target alike. An embedded `fe` links its objects into its consumer, so it installs nothing by default. The package is `SameMinorVersion`-compatible: pre-1.0, every minor may break the API.
@@ -61,7 +60,7 @@ The library is a few frontend-building blocks designed to be composed:
   A `Set` is a single tagged word, and an *untagged* one is the element itself, so a singleton needs no node - which is also why a one-element result must collapse back to that `Uniq` form to stay canonical.
 - `fe::Ring` (`ring.h`) is the fixed-size lookahead buffer of those blueprints; `fe::Worklist` (`worklist.h`) pushes each element at most once - use it through `BFSWorklist`/`DFSWorklist`.
 
-Support headers: `algo.h` (bit casts, padding, small string/range algorithms), `assert.h` (`assert`/`assertf`/`unreachable`), `cast.h` (checked/dynamic casts), `cli.h` (`fe::Cli`, a single-command `argc`/`argv` parser that renders its help for a terminal or as Markdown tables), `container.h` (`pop`/`lookup` helpers, `Stacklike`/`Queuelike` concepts), `dbg.h` (`fe::Dbg`, a `Loc`/`Sym` pair), `enum.h` (bit-flag enum ops), `format.h` (`ostream_formatter`, `std::format` glue), `hash.h` (`constexpr` hash mixing/combining), `log.h` (`fe::Log`, leveled logging; its `e`/`w`/... shorthands capture the call site with `std::source_location` and take a `cite_string` like `fe::Error`), `restore.h` (`fe::Restore`, an RAII guard that restores a reference - or a getter/setter pair - at end of scope), `span.h` (`fe::Span`/`fe::View`), `term.h` (terminal/ANSI color, incl. `fe::term::ScopedMode`; also `fe::throwf`, which lives next to the markup it renders), `utf8.h` (UTF-8 decode primitives plus the ASCII ctype set below), `vector.h` (`fe::Vector`, small-buffer vector).
+Support headers: `algo.h` (bit casts, padding, small string/range algorithms), `assert.h` (`assert`/`assertf`/`unreachable`), `cast.h` (checked/dynamic casts), `cli.h` (`fe::Cli`, a single-command `argc`/`argv` parser that renders its help for a terminal or as Markdown tables), `container.h` (`pop`/`lookup` helpers, `Stacklike`/`Queuelike` concepts), `dbg.h` (`fe::Dbg`, a `Loc`/`Sym` pair), `enum.h` (bit-flag enum ops), `format.h` (`ostream_formatter`, `std::format` glue), `hash.h` (`constexpr` hash mixing/combining), `log.h` (`fe::Log`, leveled logging; its `e`/`w`/... shorthands capture the call site with `std::source_location` and take a `cite_string` like `fe::Error`), `restore.h` (`fe::Restore`, an RAII guard that restores a reference - or a getter/setter pair - at end of scope), `span.h` (`fe::Span`/`fe::View`), `term.h` (terminal/ANSI color, incl. `fe::term::ScopedMode`; also `fe::throwf`, which lives next to the markup it renders), `utf8.h` (UTF-8 decode primitives plus the ASCII ctype set below), `vector.h` (`fe::Vector`, small-buffer vector over `ankerl::svector`).
 
 Beyond those, `src/fe/` implements `fe::dl` (`dl.h`, dynamic library loading), `fe::sys` (`sys.h`, locating and running external commands), and `fe::Profiler` (`profile.h`, nested wall-clock spans reported as a flat table, a tree, or Chrome Trace JSON).
 
@@ -75,7 +74,7 @@ Beyond those, `src/fe/` implements `fe::dl` (`dl.h`, dynamic library loading), `
 - `Loc` is kept at two machine words (`static_assert` in `loc.h`) so it stays a value passed in registers - do not grow it.
 - `SrcMap` interns paths under `SrcMap::key` (absolute, symlink-free, normalized), so one file yields exactly one `Src`. That is what lets `Loc` compare files by pointer - do not hand a `Loc` a `Src` that some other `SrcMap` (or nobody) owns.
 - A `Loc` renders itself: `operator<<`/`std::format` spell out `path:row:col-row:col` via `Loc::src`, falling back to `path@begin-end` when it has no `Src` or the offsets do not resolve within it. Diagnostics just pass the `Loc`.
-- Create non-empty symbols through `SymPool::sym`/`Driver::sym`, not by constructing `Sym` manually. Use the `SymMap`/`SymSet` aliases rather than concrete hash container types, especially because `FE_ABSL` switches them to Abseil.
+- Create non-empty symbols through `SymPool::sym`/`Driver::sym`, not by constructing `Sym` manually. Use the `SymMap`/`SymSet` aliases rather than concrete hash container types. Hash containers are `ankerl::unordered_dense` directly; a hasher built on `fe::hash` declares `using is_avalanching = void;` so ankerl does not mix it again.
 - Classify characters with `fe::utf8`'s `constexpr`, locale-independent ASCII ctype (`isalpha`, `isdigit`, `isspace`, `tolower`, ... plus the `isrange`/`isodigit`/`isbdigit`/`any` predicate factories) - never `<cctype>`, which is locale-dependent and whose MSVC macros are disabled. They take a `char32_t` and are safe on `utf8::EoF`/`utf8::Invalid`.
 - Diagnostics are `std::format`-based and go through `fe::Error::{e,w,n}` - an error, a warning, and a note hanging off whichever came last - reached via the `error()` the lexer/parser blueprints provide. Follow that pattern rather than inventing separate reporting helpers.
 - Put a `` `citation` `` in backticks: `fe::Diag` colors what they enclose and drops them, or keeps them verbatim without color. Escape a literal one as `` \` `` (and a literal backslash as `\\`).

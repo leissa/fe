@@ -68,20 +68,17 @@ if(MSVC)
     target_compile_options(fe PUBLIC /utf-8 /wd4146 /wd4245)
 endif()
 
-option(FE_ABSL "If ON, use abseil containers, otherwise use std containers" OFF)
-if(FE_ABSL)
-    # A consumer that brings its own abseil - via add_subdirectory or FetchContent - has these already.
-    if(NOT TARGET absl::flat_hash_map)
-        find_package(absl REQUIRED)
-    endif()
-    target_compile_definitions(fe PUBLIC FE_ABSL)
-    target_link_libraries(fe
-        PUBLIC
-            absl::flat_hash_map absl::flat_hash_set
-            absl::inlined_vector
-            absl::node_hash_map absl::node_hash_set
-    )
-endif()
+# Public headers include these, so an installed fe ships them alongside its own.
+set(fe_ankerl_headers
+    ${CMAKE_CURRENT_SOURCE_DIR}/submodules/svector/include/ankerl/svector.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/submodules/unordered_dense/include/ankerl/stl.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/submodules/unordered_dense/include/ankerl/unordered_dense.h
+)
+target_include_directories(fe SYSTEM
+    PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/submodules/svector/include>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/submodules/unordered_dense/include>
+)
 
 # Windows resolves an exported vtable only through __declspec(dllimport); see FE_API on fe::Diag.
 generate_export_header(fe
@@ -110,6 +107,7 @@ if(FE_INSTALL)
         FILES "${CMAKE_CURRENT_BINARY_DIR}/include/fe/api.h"
         DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/fe"
     )
+    install(FILES ${fe_ankerl_headers} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/ankerl")
 
     set(targets_export_name "fe-targets")
 
@@ -147,6 +145,8 @@ if(FE_INSTALL)
         NAMESPACE fe::
     )
     install(FILES LICENSE DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/licenses/fe")
+    install(FILES submodules/svector/LICENSE DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/licenses/fe/svector")
+    install(FILES submodules/unordered_dense/LICENSE DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/licenses/fe/unordered_dense")
 endif()
 
 if(BUILD_TESTING AND CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)

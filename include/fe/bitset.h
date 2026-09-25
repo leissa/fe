@@ -286,15 +286,10 @@ public:
     }
 
     struct Hash {
+        using is_avalanching = void;
+
         constexpr size_t operator()(const Bitset& bitset) const noexcept { return bitset.hash(); }
     };
-
-#ifdef FE_ABSL
-    template<class H>
-    friend H AbslHashValue(H h, const Bitset& bitset) {
-        return H::combine(std::move(h), bitset.hash());
-    }
-#endif
     ///@}
 
     /// @name Output

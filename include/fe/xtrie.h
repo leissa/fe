@@ -11,13 +11,7 @@
 #include <ranges>
 #include <string>
 
-#ifdef FE_ABSL
-#    include <absl/container/flat_hash_map.h>
-#    include <absl/container/flat_hash_set.h>
-#else
-#    include <unordered_map>
-#    include <unordered_set>
-#endif
+#include <ankerl/unordered_dense.h>
 
 #include "fe/arena.h"
 #include "fe/assert.h"
@@ -44,16 +38,13 @@ template<class D, class K, size_t N = 16>
 class XTrie {
 private:
     struct Hash {
+        using is_avalanching = void;
+
         constexpr size_t operator()(D* d) const noexcept { return fe::hash(K::gid(d)); }
     };
 
-#ifdef FE_ABSL
     template<class V>
-    using Map = absl::flat_hash_map<D*, V, Hash>;
-#else
-    template<class V>
-    using Map  = std::unordered_map<D*, V, Hash>;
-#endif
+    using Map = ankerl::unordered_dense::map<D*, V, Hash>;
 
     /// Trie Node.
     class Node : public lct::Node<Node, D*> {
@@ -133,6 +124,8 @@ private:
         };
 
         struct Hash {
+            using is_avalanching = void;
+
             constexpr size_t operator()(const Data* d) const noexcept {
                 auto h = hash_begin();
                 for (auto e : *d)
@@ -148,21 +141,9 @@ private:
         constexpr D* const* begin() const noexcept { return elems; }
         constexpr D* const* end() const noexcept { return elems + size; }
         ///@}
-
-#ifdef FE_ABSL
-        template<class H>
-        friend constexpr H AbslHashValue(H h, const Data* d) noexcept {
-            if (!d) return H::combine(std::move(h), 0);
-            return H::combine_contiguous(std::move(h), d->elems, d->size);
-        }
-#endif
     };
 
-#ifdef FE_ABSL
-    using Pool = absl::flat_hash_set<const Data*, absl::Hash<const Data*>, typename Data::Equal>;
-#else
-    using Pool = std::unordered_set<const Data*, typename Data::Hash, typename Data::Equal>;
-#endif
+    using Pool = ankerl::unordered_dense::set<const Data*, typename Data::Hash, typename Data::Equal>;
 
 public:
     class Set {
