@@ -396,7 +396,7 @@ requires std::ranges::common_range&lt;R&gt;</td></tr>
 Variables</h2></td></tr>
 <tr class="memitem:aaca9f8e93c591cf178995b1d5da5ad7c" id="r_aaca9f8e93c591cf178995b1d5da5ad7c"><td class="memTemplParams" colspan="2">template&lt;class T&gt; </td></tr>
 <tr class="memitem:aaca9f8e93c591cf178995b1d5da5ad7c template"><td class="memItemLeft">static constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="#aaca9f8e93c591cf178995b1d5da5ad7c">Default_Inlined_Size</a> = std::max((size_t)1, 4 * sizeof(size_t) / sizeof(T))</td></tr>
-<tr class="memdesc:aaca9f8e93c591cf178995b1d5da5ad7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use up to 4 words (i.e., 4 * sizeof(size_t)) of inlined storage, rounded up.  <br /></td></tr>
+<tr class="memdesc:aaca9f8e93c591cf178995b1d5da5ad7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aims at 4 words (i.e., 4 * sizeof(size_t)) of inlined storage; svector's one-byte tag makes the object a word larger.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-member-group" class="groupheader"><a id="member-group" name="member-group"></a>
 FNV-1 Hash</h2></td></tr>
@@ -1773,9 +1773,9 @@ template&lt;class T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Use up to 4 words (i.e., 4 * sizeof(size_t)) of inlined storage, rounded up. </p>
+<p>Aims at 4 words (i.e., 4 * sizeof(size_t)) of inlined storage; svector's one-byte tag makes the object a word larger. </p>
 
-<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00017">17</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00018">18</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
 
 </div>
 </div>

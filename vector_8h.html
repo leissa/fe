@@ -193,7 +193,7 @@ Namespaces</h2></td></tr>
 Variables</h2></td></tr>
 <tr class="memitem:aaca9f8e93c591cf178995b1d5da5ad7c" id="r_aaca9f8e93c591cf178995b1d5da5ad7c"><td class="memTemplParams" colspan="2">template&lt;class T&gt; </td></tr>
 <tr class="memitem:aaca9f8e93c591cf178995b1d5da5ad7c template"><td class="memItemLeft">static constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#aaca9f8e93c591cf178995b1d5da5ad7c">fe::Default_Inlined_Size</a> = std::max((size_t)1, 4 * sizeof(size_t) / sizeof(T))</td></tr>
-<tr class="memdesc:aaca9f8e93c591cf178995b1d5da5ad7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use up to 4 words (i.e., 4 * sizeof(size_t)) of inlined storage, rounded up.  <br /></td></tr>
+<tr class="memdesc:aaca9f8e93c591cf178995b1d5da5ad7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aims at 4 words (i.e., 4 * sizeof(size_t)) of inlined storage; svector's one-byte tag makes the object a word larger.  <br /></td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->
