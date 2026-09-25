@@ -165,17 +165,17 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('vector_8h.html
 <code>#include &lt;memory&gt;</code><br />
 <code>#include &lt;ranges&gt;</code><br />
 <code>#include &lt;type_traits&gt;</code><br />
-<code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;ankerl/svector.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="span_8h_source.html">fe/span.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for vector.h:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="vector_8h__incl.svg" width="100%" height="437"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="vector_8h__incl.svg" width="100%" height="442"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="vector_8h__dep__incl.svg" width="382" height="183"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="vector_8h__dep__incl.svg" width="378" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="vector_8h_source.html">Go to the source code of this file.</a></p>
@@ -183,22 +183,11 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:fe_3A_3AVector_3C_20T_2C_20N_2C_20A_20_3E" id="r_fe_3A_3AVector_3C_20T_2C_20N_2C_20A_20_3E"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Vector.html">fe::Vector&lt; T, N, A &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a thin wrapper for <a href="https://github.com/abseil/abseil-cpp/blob/master/absl/container/inlined_vector.h"><span class="tt">absl::InlinedVector&lt;T, N, A&gt;</span></a> which is a drop-in replacement for <a href="https://en.cppreference.com/w/cpp/container/vector"><span class="tt">std::vector&lt;T, A&gt;</span></a>.  <a href="classfe_1_1Vector.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a thin wrapper for <a href="https://github.com/martinus/svector"><span class="tt">ankerl::svector&lt;T, N, A&gt;</span></a> which is a drop-in replacement for <a href="https://en.cppreference.com/w/cpp/container/vector"><span class="tt">std::vector&lt;T, A&gt;</span></a>.  <a href="classfe_1_1Vector.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:fe" id="r_fe"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html">fe</a></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr id="func-members-0" class="groupHeader"><td colspan="2"><div class="groupHeader">Deduction Guides</div></td></tr>
-<tr class="memitem:a2e8e999b77fa2e3c1cba77396a9e192d" id="r_a2e8e999b77fa2e3c1cba77396a9e192d"><td class="memTemplParams" colspan="2">template&lt;class I, class A = std::allocator&lt;typename std::iterator_traits&lt;I&gt;::value_type&gt;&gt; </td></tr>
-<tr class="memitem:a2e8e999b77fa2e3c1cba77396a9e192d template"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a2e8e999b77fa2e3c1cba77396a9e192d">fe::Vector</a> (I, I, A=A()) -&gt; Vector&lt; typename std::iterator_traits&lt; I &gt;::value_type, <a class="el" href="namespacefe.html#aaca9f8e93c591cf178995b1d5da5ad7c">Default_Inlined_Size</a>&lt; typename std::iterator_traits&lt; I &gt;::value_type &gt;, A &gt;</td></tr>
-<tr id="func-members-1" class="groupHeader"><td colspan="2"><div class="groupHeader">erase</div></td></tr>
-<tr class="memitem:a32e00013e42152781f4bb035ace7af01" id="r_a32e00013e42152781f4bb035ace7af01"><td class="memTemplParams" colspan="2">template&lt;class T, size_t N, class A, class U&gt; </td></tr>
-<tr class="memitem:a32e00013e42152781f4bb035ace7af01 template"><td class="memItemLeft"><a class="el" href="classfe_1_1Vector.html">Vector</a>&lt; T, N, A &gt;::size_type&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a32e00013e42152781f4bb035ace7af01">fe::erase</a> (<a class="el" href="classfe_1_1Vector.html">Vector</a>&lt; T, N, A &gt; &amp;c, const U &amp;value)</td></tr>
-<tr class="memitem:ace6f5864e6c7ef635e260299ed16fe86" id="r_ace6f5864e6c7ef635e260299ed16fe86"><td class="memTemplParams" colspan="2">template&lt;class T, size_t N, class A, class Pred&gt; </td></tr>
-<tr class="memitem:ace6f5864e6c7ef635e260299ed16fe86 template"><td class="memItemLeft"><a class="el" href="classfe_1_1Vector.html">Vector</a>&lt; T, N, A &gt;::size_type&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#ace6f5864e6c7ef635e260299ed16fe86">fe::erase_if</a> (<a class="el" href="classfe_1_1Vector.html">Vector</a>&lt; T, N, A &gt; &amp;c, Pred pred)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>

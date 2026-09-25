@@ -214,8 +214,6 @@ Static Public Attributes</h2></td></tr>
 Friends</h2></td></tr>
 <tr class="memitem:a4c865acde4de25ac1247eeaac18710b5" id="r_a4c865acde4de25ac1247eeaac18710b5"><td class="memItemLeft">struct&#160;</td><td class="memItemRight"><a class="el" href="#a4c865acde4de25ac1247eeaac18710b5">::std::hash&lt; fe::Sym &gt;</a></td></tr>
 <tr class="memitem:a5379cdd60ce3c910e14da02defe0a1aa" id="r_a5379cdd60ce3c910e14da02defe0a1aa"><td class="memItemLeft">class&#160;</td><td class="memItemRight"><a class="el" href="#a5379cdd60ce3c910e14da02defe0a1aa">SymPool</a></td></tr>
-<tr class="memitem:a9bf56c781ba51b3eaf7d11d6aeb080f5" id="r_a9bf56c781ba51b3eaf7d11d6aeb080f5"><td class="memTemplParams" colspan="2">template&lt;class H&gt; </td></tr>
-<tr class="memitem:a9bf56c781ba51b3eaf7d11d6aeb080f5 template"><td class="memItemLeft">constexpr H&#160;</td><td class="memItemRight"><a class="el" href="#a9bf56c781ba51b3eaf7d11d6aeb080f5">AbslHashValue</a> (H h, Sym sym) noexcept</td></tr>
 <tr class="memitem:a8cabe81bac727f8cac7eaa68cf2ecec8" id="r_a8cabe81bac727f8cac7eaa68cf2ecec8"><td class="memItemLeft">std::ostream &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a8cabe81bac727f8cac7eaa68cf2ecec8">operator&lt;&lt;</a> (std::ostream &amp;os, Sym sym)</td></tr>
 <tr id="friends-0" class="groupHeader"><td colspan="2"><div class="groupHeader">Comparison: Sym w/ Sym</div></td></tr>
 <tr class="memitem:a1159509cba1ced1970da8b57c51387c8" id="r_a1159509cba1ced1970da8b57c51387c8"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#a1159509cba1ced1970da8b57c51387c8">operator&lt;=&gt;</a> (Sym s1, Sym s2) noexcept</td></tr>
@@ -236,7 +234,7 @@ Friends</h2></td></tr>
 <p>Retrieving a <span class="tt">std::string_view</span> (via <a class="el" href="#ae4042d6fd11e3d25c511c2feb031ad2a">Sym::view</a>) is basically free. You can also obtain a <span class="tt">std::string</span> (via <a class="el" href="#aa221972b6c2c378b931e1b68eead0498" title="This involves a copy.">Sym::str</a>), but this involves a copy. The characters are <em>not</em> null-terminated. With the exception of the empty string, you should only create <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bols via <a class="el" href="classfe_1_1SymPool.html#a1a7c3278db18ad72926b06c1e757b865">SymPool::sym</a>. This in turn will toss all <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bols into a big hash set. This makes <a class="el" href="#a4d32de46ba12881bc6a41505f0fcd49b">Sym::operator==</a> and Sym::operator!= an O(1) operation. The empty string is internally handled as <span class="tt">nullptr</span>. Thus, you can create a <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol representing an empty string without having access to the <a class="el" href="classfe_1_1SymPool.html" title="Hash set where all strings - wrapped in Symbol - live in.">SymPool</a>. </p><dl class="section note"><dt>Note</dt><dd>The empty <span class="tt">std::string</span>/<span class="tt">std::string_view</span> and <span class="tt">nullptr</span> are all identified as <a class="el" href="#a3b4417ab3002f28d1e4f340711a8d094">Sym::Sym()</a>. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Big endian version has not been tested. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00037">37</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00030">30</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3b4417ab3002f28d1e4f340711a8d094" name="a3b4417ab3002f28d1e4f340711a8d094"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3b4417ab3002f28d1e4f340711a8d094">&#9670;&#160;</a></span>Sym()</h2>
@@ -261,7 +259,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00315">fe::SymPool::sym()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00296">fe::SymPool::sym()</a>.</p>
 
 </div>
 </div>
@@ -289,9 +287,9 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00099">99</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00090">90</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00084">size()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00075">size()</a>.</p>
 
 </div>
 </div>
@@ -318,11 +316,11 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00104">104</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00095">95</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00151">view()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00142">view()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00106">cbegin()</a>, <a class="el" href="sym_8h_source.html#l00105">end()</a>, and <a class="el" href="sym_8h_source.html#l00109">rend()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00097">cbegin()</a>, <a class="el" href="sym_8h_source.html#l00096">end()</a>, and <a class="el" href="sym_8h_source.html#l00100">rend()</a>.</p>
 
 </div>
 </div>
@@ -349,9 +347,9 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00106">106</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00097">97</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00104">begin()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00095">begin()</a>.</p>
 
 </div>
 </div>
@@ -378,9 +376,9 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00107">107</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00098">98</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00105">end()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00096">end()</a>.</p>
 
 </div>
 </div>
@@ -407,9 +405,9 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00110">110</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00101">101</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00108">rbegin()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00099">rbegin()</a>.</p>
 
 </div>
 </div>
@@ -436,9 +434,9 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00111">111</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00102">102</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00109">rend()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00100">rend()</a>.</p>
 
 </div>
 </div>
@@ -465,11 +463,11 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00083">83</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00074">74</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00083">empty()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00074">empty()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00253">fe::SymTab&lt; V, Size &gt;::emplace()</a>, <a class="el" href="sym_8h_source.html#l00083">empty()</a>, <a class="el" href="sym_8h_source.html#l00266">fe::SymTab&lt; V, Size &gt;::find()</a>, <a class="el" href="sym_8h_source.html#l00084">size()</a>, and <a class="el" href="sym_8h_source.html#l00151">view()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00234">fe::SymTab&lt; V, Size &gt;::emplace()</a>, <a class="el" href="sym_8h_source.html#l00074">empty()</a>, <a class="el" href="sym_8h_source.html#l00247">fe::SymTab&lt; V, Size &gt;::find()</a>, <a class="el" href="sym_8h_source.html#l00075">size()</a>, and <a class="el" href="sym_8h_source.html#l00142">view()</a>.</p>
 
 </div>
 </div>
@@ -496,11 +494,11 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00105">105</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00096">96</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00104">begin()</a>, and <a class="el" href="sym_8h_source.html#l00084">size()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00095">begin()</a>, and <a class="el" href="sym_8h_source.html#l00075">size()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00107">cend()</a>, and <a class="el" href="sym_8h_source.html#l00108">rbegin()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00098">cend()</a>, and <a class="el" href="sym_8h_source.html#l00099">rbegin()</a>.</p>
 
 </div>
 </div>
@@ -527,7 +525,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00098">98</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00089">89</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -556,7 +554,7 @@ Friends</h2></td></tr>
 
 <p>Is not empty? </p>
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00167">167</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00158">158</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -585,9 +583,9 @@ Friends</h2></td></tr>
 
 <p><span class="tt">explicit</span> as this involves a copy. </p>
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00166">166</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00157">157</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00165">str()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00156">str()</a>.</p>
 
 </div>
 </div>
@@ -614,9 +612,9 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00160">160</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00151">151</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00151">view()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00142">view()</a>.</p>
 
 </div>
 </div>
@@ -643,9 +641,9 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00161">161</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00152">152</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00151">view()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00142">view()</a>.</p>
 
 </div>
 </div>
@@ -672,9 +670,9 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00094">94</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00085">85</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00084">size()</a>, and <a class="el" href="sym_8h_source.html#l00151">view()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00075">size()</a>, and <a class="el" href="sym_8h_source.html#l00142">view()</a>.</p>
 
 </div>
 </div>
@@ -701,7 +699,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00089">89</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00080">80</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -728,11 +726,11 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00108">108</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00099">99</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00105">end()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00096">end()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00110">crbegin()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00101">crbegin()</a>.</p>
 
 </div>
 </div>
@@ -759,11 +757,11 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00109">109</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00100">100</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00104">begin()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00095">begin()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00111">crend()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00102">crend()</a>.</p>
 
 </div>
 </div>
@@ -790,11 +788,11 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00084">84</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00075">75</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00083">empty()</a>, <a class="el" href="sym_8h_source.html#l00040">Short_String_Mask</a>, and <a class="el" href="sym_8h_source.html#l00084">size()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00074">empty()</a>, <a class="el" href="sym_8h_source.html#l00033">Short_String_Mask</a>, and <a class="el" href="sym_8h_source.html#l00075">size()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00099">back()</a>, <a class="el" href="sym_8h_source.html#l00105">end()</a>, <a class="el" href="sym_8h_source.html#l00094">operator[]()</a>, <a class="el" href="sym_8h_source.html#l00084">size()</a>, and <a class="el" href="sym_8h_source.html#l00151">view()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00090">back()</a>, <a class="el" href="sym_8h_source.html#l00096">end()</a>, <a class="el" href="sym_8h_source.html#l00085">operator[]()</a>, <a class="el" href="sym_8h_source.html#l00075">size()</a>, and <a class="el" href="sym_8h_source.html#l00142">view()</a>.</p>
 
 </div>
 </div>
@@ -823,11 +821,11 @@ Friends</h2></td></tr>
 
 <p>This involves a copy. </p>
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00165">165</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00156">156</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00151">view()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00142">view()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00166">operator std::string()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00157">operator std::string()</a>.</p>
 
 </div>
 </div>
@@ -855,11 +853,11 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 <dl class="section warning"><dt>Warning</dt><dd>For a <em>short</em> <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol (size &lt; <a class="el" href="#a2d6e0bb54a5a9513e4a064dd38011863">Sym::Short_String_Bytes</a>) the characters are stored inline within this object's <span class="tt">ptr_</span>, so the returned view points into <em>this</em> <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol and is only valid as long as it lives - it dangles for a temporary (e.g. <span class="tt">pool.sym("ab").<a class="el" href="#ae4042d6fd11e3d25c511c2feb031ad2a">view()</a></span>). Use <a class="el" href="#aa221972b6c2c378b931e1b68eead0498" title="This involves a copy.">Sym::str</a> if the string must outlive the <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00151">151</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00142">142</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00083">empty()</a>, <a class="el" href="sym_8h_source.html#l00040">Short_String_Mask</a>, and <a class="el" href="sym_8h_source.html#l00084">size()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00074">empty()</a>, <a class="el" href="sym_8h_source.html#l00033">Short_String_Mask</a>, and <a class="el" href="sym_8h_source.html#l00075">size()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00104">begin()</a>, <a class="el" href="sym_8h_source.html#l00160">operator std::string_view()</a>, <a class="el" href="sym_8h_source.html#l00161">operator*()</a>, <a class="el" href="sym_8h_source.html#l00094">operator[]()</a>, and <a class="el" href="sym_8h_source.html#l00165">str()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00095">begin()</a>, <a class="el" href="sym_8h_source.html#l00151">operator std::string_view()</a>, <a class="el" href="sym_8h_source.html#l00152">operator*()</a>, <a class="el" href="sym_8h_source.html#l00085">operator[]()</a>, and <a class="el" href="sym_8h_source.html#l00156">str()</a>.</p>
 
 </div>
 </div>
@@ -884,44 +882,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00171">171</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
-
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00171">AbslHashValue</a>.</p>
-
-</div>
-</div>
-<a id="a9bf56c781ba51b3eaf7d11d6aeb080f5" name="a9bf56c781ba51b3eaf7d11d6aeb080f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9bf56c781ba51b3eaf7d11d6aeb080f5">&#9670;&#160;</a></span>AbslHashValue</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class H&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">H AbslHashValue </td>
-          <td>(</td>
-          <td class="paramtype">H</td>          <td class="paramname"><span class="paramname"><em>h</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Sym</td>          <td class="paramname"><span class="paramname"><em>sym</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel friend">friend</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00171">171</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00174">::std::hash&lt; fe::Sym &gt;</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00158">158</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -981,7 +942,7 @@ template&lt;class H&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00123">123</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00114">114</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -1012,7 +973,7 @@ template&lt;class H&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00133">133</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00124">124</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -1043,7 +1004,7 @@ template&lt;class H&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00130">130</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00121">121</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -1074,7 +1035,7 @@ template&lt;class H&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00122">122</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00113">113</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -1105,7 +1066,7 @@ template&lt;class H&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00116">116</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00107">107</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -1136,7 +1097,7 @@ template&lt;class H&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00125">125</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00116">116</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -1167,7 +1128,7 @@ template&lt;class H&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00141">141</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00132">132</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -1198,7 +1159,7 @@ template&lt;class H&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00137">137</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00128">128</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -1229,7 +1190,7 @@ template&lt;class H&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00124">124</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00115">115</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -1260,7 +1221,7 @@ template&lt;class H&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00117">117</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00108">108</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -1284,11 +1245,11 @@ template&lt;class H&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00209">209</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00196">196</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00209">SymPool</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00196">SymPool</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00209">SymPool</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00196">SymPool</a>.</p>
 
 </div>
 </div>
@@ -1313,7 +1274,7 @@ template&lt;class H&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00039">39</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00032">32</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -1337,9 +1298,9 @@ template&lt;class H&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00040">40</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00033">33</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00084">size()</a>, and <a class="el" href="sym_8h_source.html#l00151">view()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00075">size()</a>, and <a class="el" href="sym_8h_source.html#l00142">view()</a>.</p>
 
 </div>
 </div>

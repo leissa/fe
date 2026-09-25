@@ -161,8 +161,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('dbg_8h.html','
 <div class="contents">
 <div class="textblock"><code>#include &lt;bit&gt;</code><br />
 <code>#include &lt;ostream&gt;</code><br />
-<code>#include &lt;unordered_map&gt;</code><br />
-<code>#include &lt;unordered_set&gt;</code><br />
+<code>#include &lt;ankerl/unordered_dense.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="format_8h_source.html">fe/format.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="hash_8h_source.html">fe/hash.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="loc_8h_source.html">fe/loc.h</a>&quot;</code><br />
@@ -175,7 +174,7 @@ Include dependency graph for dbg.h:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="dbg_8h__dep__incl.svg" width="208" height="183"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="dbg_8h__dep__incl.svg" width="206" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="dbg_8h_source.html">Go to the source code of this file.</a></p>
@@ -196,9 +195,9 @@ Namespaces</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr id="typedef-members-0" class="groupHeader"><td colspan="2"><div class="groupHeader">DbgMap/DbgSet</div></td></tr>
-<tr class="memitem:ac1c71f6a9945566d80eb25be4812334a" id="r_ac1c71f6a9945566d80eb25be4812334a"><td class="memTemplParams" colspan="2">template&lt;class V&gt; </td></tr>
-<tr class="memitem:ac1c71f6a9945566d80eb25be4812334a template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#ac1c71f6a9945566d80eb25be4812334a">fe::DbgMap</a> = std::unordered_map&lt;<a class="el" href="structfe_1_1Dbg.html">Dbg</a>, V, <a class="el" href="structfe_1_1Dbg_1_1Hash.html">Dbg::Hash</a>, <a class="el" href="structfe_1_1Dbg_1_1Eq.html">Dbg::Eq</a>&gt;</td></tr>
-<tr class="memitem:a6001bdc1f05c56d81cf41b355f2027f6" id="r_a6001bdc1f05c56d81cf41b355f2027f6"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a6001bdc1f05c56d81cf41b355f2027f6">fe::DbgSet</a> = std::unordered_set&lt;<a class="el" href="structfe_1_1Dbg.html">Dbg</a>, <a class="el" href="structfe_1_1Dbg_1_1Hash.html">Dbg::Hash</a>, <a class="el" href="structfe_1_1Dbg_1_1Eq.html">Dbg::Eq</a>&gt;</td></tr>
+<tr class="memitem:a0069ce0b7f7b0bc6136d13f01b4cfe56" id="r_a0069ce0b7f7b0bc6136d13f01b4cfe56"><td class="memTemplParams" colspan="2">template&lt;class V&gt; </td></tr>
+<tr class="memitem:a0069ce0b7f7b0bc6136d13f01b4cfe56 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a0069ce0b7f7b0bc6136d13f01b4cfe56">fe::DbgMap</a> = ankerl::unordered_dense::map&lt;<a class="el" href="structfe_1_1Dbg.html">Dbg</a>, V, <a class="el" href="structfe_1_1Dbg_1_1Hash.html">Dbg::Hash</a>, <a class="el" href="structfe_1_1Dbg_1_1Eq.html">Dbg::Eq</a>&gt;</td></tr>
+<tr class="memitem:a11f591255ddcc09fd99af1bcc4ecaf20" id="r_a11f591255ddcc09fd99af1bcc4ecaf20"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a11f591255ddcc09fd99af1bcc4ecaf20">fe::DbgSet</a> = ankerl::unordered_dense::set&lt;<a class="el" href="structfe_1_1Dbg.html">Dbg</a>, <a class="el" href="structfe_1_1Dbg_1_1Hash.html">Dbg::Hash</a>, <a class="el" href="structfe_1_1Dbg_1_1Eq.html">Dbg::Eq</a>&gt;</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

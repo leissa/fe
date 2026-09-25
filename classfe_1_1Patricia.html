@@ -227,7 +227,7 @@ class fe::Patricia&lt; D, KT, K, N &gt;</div><p>Hash-consed, immutable sets of <
 </div><!-- fragment --> <dl class="section attention"><dt>Attention</dt><dd>Key::key <em>is</em> the identity: two elements sharing an id are the same element to a <a class="el" href="classfe_1_1Patricia_1_1Set.html" title="An immutable set - really just a tagged pointer, so copy it around freely.">Set</a>, and which of them survives an operation is unspecified. Every <span class="tt">D</span> must be at least 4-byte aligned, since a <a class="el" href="classfe_1_1Patricia_1_1Set.html" title="An immutable set - really just a tagged pointer, so copy it around freely.">Set</a> tags the two low bits of its word. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>All operations yield a <b>new</b> <a class="el" href="classfe_1_1Patricia_1_1Set.html" title="An immutable set - really just a tagged pointer, so copy it around freely.">Set</a>; none of them modify their input. Nothing is ever freed - the <a class="el" href="classfe_1_1Arena.html" title="An arena pre-allocates so-called pages of size Arena::page_size_.">Arena</a>s release everything at once when the <a class="el" href="classfe_1_1Patricia.html" title="Hash-consed, immutable sets of D*, ordered by an unsigned id the elements carry themselves.">Patricia</a> dies. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="patricia_8h_source.html#l00064">64</a> of file <a class="el" href="patricia_8h_source.html">patricia.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="patricia_8h_source.html#l00060">60</a> of file <a class="el" href="patricia_8h_source.html">patricia.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2df923933aba63875e043ce603aa74f4" name="a2df923933aba63875e043ce603aa74f4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2df923933aba63875e043ce603aa74f4">&#9670;&#160;</a></span>Patricia() <span class="overload">[1/3]</span></h2>
@@ -254,11 +254,11 @@ template&lt;class D, class KT, class K = uint32_t, size_t N = 8&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="patricia_8h_source.html#l00464">464</a> of file <a class="el" href="patricia_8h_source.html">patricia.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="patricia_8h_source.html#l00460">460</a> of file <a class="el" href="patricia_8h_source.html">patricia.h</a>.</p>
 
 <p class="reference">References <a class="el" href="arena_8h_source.html#l00027">fe::Arena::Default_Page_Size</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#a5a4f561cfc9f993006776c1dc1a412a3">operator=()</a>, <a class="el" href="#aa10daa1efb680ef363b39e871f237401">Patricia()</a>, <a class="el" href="patricia_8h_source.html#l00468">Patricia()</a>, and <a class="el" href="patricia_8h_source.html#l00629">swap</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#a5a4f561cfc9f993006776c1dc1a412a3">operator=()</a>, <a class="el" href="#aa10daa1efb680ef363b39e871f237401">Patricia()</a>, <a class="el" href="patricia_8h_source.html#l00464">Patricia()</a>, and <a class="el" href="patricia_8h_source.html#l00625">swap</a>.</p>
 
 </div>
 </div>
@@ -287,7 +287,7 @@ template&lt;class D, class KT, class K = uint32_t, size_t N = 8&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="patricia_8h_source.html#l00464">Patricia()</a>.</p>
+<p class="reference">References <a class="el" href="patricia_8h_source.html#l00460">Patricia()</a>.</p>
 
 </div>
 </div>
@@ -316,9 +316,9 @@ template&lt;class D, class KT, class K = uint32_t, size_t N = 8&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="patricia_8h_source.html#l00468">468</a> of file <a class="el" href="patricia_8h_source.html">patricia.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="patricia_8h_source.html#l00464">464</a> of file <a class="el" href="patricia_8h_source.html">patricia.h</a>.</p>
 
-<p class="reference">References <a class="el" href="patricia_8h_source.html#l00464">Patricia()</a>, and <a class="el" href="patricia_8h_source.html#l00629">swap</a>.</p>
+<p class="reference">References <a class="el" href="patricia_8h_source.html#l00460">Patricia()</a>, and <a class="el" href="patricia_8h_source.html#l00625">swap</a>.</p>
 
 </div>
 </div>
@@ -353,9 +353,9 @@ requires std::convertible_to&lt;std::ranges::range_reference_t&lt;R&gt;, D*&gt;<
 
 <p>Creates a <a class="el" href="classfe_1_1Patricia_1_1Set.html" title="An immutable set - really just a tagged pointer, so copy it around freely.">Set</a> with all elements in <code class="param">r</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="patricia_8h_source.html#l00480">480</a> of file <a class="el" href="patricia_8h_source.html">patricia.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="patricia_8h_source.html#l00476">476</a> of file <a class="el" href="patricia_8h_source.html">patricia.h</a>.</p>
 
-<p class="reference">References <a class="el" href="vector_8h_source.html#l00049">fe::Vector&lt; T, N, A &gt;::Vector()</a>.</p>
+<p class="reference">References <a class="el" href="vector_8h_source.html#l00032">fe::Vector&lt; T, N, A &gt;::Vector()</a>.</p>
 
 </div>
 </div>
@@ -384,11 +384,11 @@ template&lt;class D, class KT, class K = uint32_t, size_t N = 8&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="patricia_8h_source.html#l00487">487</a> of file <a class="el" href="patricia_8h_source.html">patricia.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="patricia_8h_source.html#l00483">483</a> of file <a class="el" href="patricia_8h_source.html">patricia.h</a>.</p>
 
-<p class="reference">References <a class="el" href="patricia_8h_source.html#l00487">create()</a>.</p>
+<p class="reference">References <a class="el" href="patricia_8h_source.html#l00483">create()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="patricia_8h_source.html#l00487">create()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="patricia_8h_source.html#l00483">create()</a>.</p>
 
 </div>
 </div>
@@ -423,11 +423,11 @@ template&lt;class D, class KT, class K = uint32_t, size_t N = 8&gt; </div>
 
 <p>Yields \(s_1 \setminus s_2\). </p>
 
-<p class="definition">Definition at line <a class="el" href="patricia_8h_source.html#l00607">607</a> of file <a class="el" href="patricia_8h_source.html">patricia.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="patricia_8h_source.html#l00603">603</a> of file <a class="el" href="patricia_8h_source.html">patricia.h</a>.</p>
 
-<p class="reference">References <a class="el" href="patricia_8h_source.html#l00607">diff()</a>, <a class="el" href="patricia_8h_source.html#l00283">fe::Patricia&lt; D, KT, K, N &gt;::Set::empty()</a>, and <a class="el" href="assert_8h_source.html#l00020">fe::unreachable()</a>.</p>
+<p class="reference">References <a class="el" href="patricia_8h_source.html#l00603">diff()</a>, <a class="el" href="patricia_8h_source.html#l00279">fe::Patricia&lt; D, KT, K, N &gt;::Set::empty()</a>, and <a class="el" href="assert_8h_source.html#l00020">fe::unreachable()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="patricia_8h_source.html#l00607">diff()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="patricia_8h_source.html#l00603">diff()</a>.</p>
 
 </div>
 </div>
@@ -462,11 +462,11 @@ template&lt;class D, class KT, class K = uint32_t, size_t N = 8&gt; </div>
 
 <p>Yields \(s \setminus \{d\}\). </p>
 
-<p class="definition">Definition at line <a class="el" href="patricia_8h_source.html#l00532">532</a> of file <a class="el" href="patricia_8h_source.html">patricia.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="patricia_8h_source.html#l00528">528</a> of file <a class="el" href="patricia_8h_source.html">patricia.h</a>.</p>
 
-<p class="reference">References <a class="el" href="patricia_8h_source.html#l00532">erase()</a>, and <a class="el" href="classfe_1_1Patricia_1_1Set.html#a28f07fd636d48820a592c49db1597c7c">fe::Patricia&lt; D, KT, K, N &gt;::Set::Set()</a>.</p>
+<p class="reference">References <a class="el" href="patricia_8h_source.html#l00528">erase()</a>, and <a class="el" href="classfe_1_1Patricia_1_1Set.html#a28f07fd636d48820a592c49db1597c7c">fe::Patricia&lt; D, KT, K, N &gt;::Set::Set()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="patricia_8h_source.html#l00532">erase()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="patricia_8h_source.html#l00528">erase()</a>.</p>
 
 </div>
 </div>
@@ -502,11 +502,11 @@ template&lt;class D, class KT, class K = uint32_t, size_t N = 8&gt; </div>
 <p>Yields \(s \cup \{d\}\). </p>
 <dl class="section note"><dt>Note</dt><dd><code class="param">s</code> comes back unchanged if it already holds an element with <code class="param">d's</code> id. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="patricia_8h_source.html#l00491">491</a> of file <a class="el" href="patricia_8h_source.html">patricia.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="patricia_8h_source.html#l00487">487</a> of file <a class="el" href="patricia_8h_source.html">patricia.h</a>.</p>
 
-<p class="reference">References <a class="el" href="patricia_8h_source.html#l00283">fe::Patricia&lt; D, KT, K, N &gt;::Set::empty()</a>, <a class="el" href="patricia_8h_source.html#l00491">insert()</a>, and <a class="el" href="classfe_1_1Patricia_1_1Set.html#a28f07fd636d48820a592c49db1597c7c">fe::Patricia&lt; D, KT, K, N &gt;::Set::Set()</a>.</p>
+<p class="reference">References <a class="el" href="patricia_8h_source.html#l00279">fe::Patricia&lt; D, KT, K, N &gt;::Set::empty()</a>, <a class="el" href="patricia_8h_source.html#l00487">insert()</a>, and <a class="el" href="classfe_1_1Patricia_1_1Set.html#a28f07fd636d48820a592c49db1597c7c">fe::Patricia&lt; D, KT, K, N &gt;::Set::Set()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="patricia_8h_source.html#l00491">insert()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="patricia_8h_source.html#l00487">insert()</a>.</p>
 
 </div>
 </div>
@@ -541,11 +541,11 @@ template&lt;class D, class KT, class K = uint32_t, size_t N = 8&gt; </div>
 
 <p>Yields \(s_1 \cap s_2\). </p>
 
-<p class="definition">Definition at line <a class="el" href="patricia_8h_source.html#l00584">584</a> of file <a class="el" href="patricia_8h_source.html">patricia.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="patricia_8h_source.html#l00580">580</a> of file <a class="el" href="patricia_8h_source.html">patricia.h</a>.</p>
 
-<p class="reference">References <a class="el" href="patricia_8h_source.html#l00283">fe::Patricia&lt; D, KT, K, N &gt;::Set::empty()</a>, <a class="el" href="patricia_8h_source.html#l00584">intersect()</a>, and <a class="el" href="assert_8h_source.html#l00020">fe::unreachable()</a>.</p>
+<p class="reference">References <a class="el" href="patricia_8h_source.html#l00279">fe::Patricia&lt; D, KT, K, N &gt;::Set::empty()</a>, <a class="el" href="patricia_8h_source.html#l00580">intersect()</a>, and <a class="el" href="assert_8h_source.html#l00020">fe::unreachable()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="patricia_8h_source.html#l00584">intersect()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="patricia_8h_source.html#l00580">intersect()</a>.</p>
 
 </div>
 </div>
@@ -580,11 +580,11 @@ template&lt;class D, class KT, class K = uint32_t, size_t N = 8&gt; </div>
 
 <p>Yields \(s_1 \cup s_2\). </p>
 
-<p class="definition">Definition at line <a class="el" href="patricia_8h_source.html#l00561">561</a> of file <a class="el" href="patricia_8h_source.html">patricia.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="patricia_8h_source.html#l00557">557</a> of file <a class="el" href="patricia_8h_source.html">patricia.h</a>.</p>
 
-<p class="reference">References <a class="el" href="patricia_8h_source.html#l00283">fe::Patricia&lt; D, KT, K, N &gt;::Set::empty()</a>, <a class="el" href="patricia_8h_source.html#l00561">merge()</a>, and <a class="el" href="assert_8h_source.html#l00020">fe::unreachable()</a>.</p>
+<p class="reference">References <a class="el" href="patricia_8h_source.html#l00279">fe::Patricia&lt; D, KT, K, N &gt;::Set::empty()</a>, <a class="el" href="patricia_8h_source.html#l00557">merge()</a>, and <a class="el" href="assert_8h_source.html#l00020">fe::unreachable()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="patricia_8h_source.html#l00561">merge()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="patricia_8h_source.html#l00557">merge()</a>.</p>
 
 </div>
 </div>
@@ -613,7 +613,7 @@ template&lt;class D, class KT, class K = uint32_t, size_t N = 8&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="patricia_8h_source.html#l00464">Patricia()</a>.</p>
+<p class="reference">References <a class="el" href="patricia_8h_source.html#l00460">Patricia()</a>.</p>
 
 </div>
 </div>
@@ -647,11 +647,11 @@ template&lt;class D, class KT, class K = uint32_t, size_t N = 8&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="patricia_8h_source.html#l00629">629</a> of file <a class="el" href="patricia_8h_source.html">patricia.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="patricia_8h_source.html#l00625">625</a> of file <a class="el" href="patricia_8h_source.html">patricia.h</a>.</p>
 
-<p class="reference">References <a class="el" href="patricia_8h_source.html#l00464">Patricia()</a>, and <a class="el" href="patricia_8h_source.html#l00629">swap</a>.</p>
+<p class="reference">References <a class="el" href="patricia_8h_source.html#l00460">Patricia()</a>, and <a class="el" href="patricia_8h_source.html#l00625">swap</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="patricia_8h_source.html#l00468">Patricia()</a>, and <a class="el" href="patricia_8h_source.html#l00629">swap</a>.</p>
+<p class="reference">Referenced by <a class="el" href="patricia_8h_source.html#l00464">Patricia()</a>, and <a class="el" href="patricia_8h_source.html#l00625">swap</a>.</p>
 
 </div>
 </div>

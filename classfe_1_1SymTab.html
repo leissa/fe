@@ -181,10 +181,10 @@ Static Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class V, size_t Size&gt;<br />
 class fe::SymTab&lt; V, Size &gt;</div><p>A fixed-capacity <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol -&gt; <code class="param">V</code> map for a <em>closed</em> set of <code class="param">Size</code> entries: filled once, then only looked up - a <a class="el" href="classfe_1_1Lexer.html" title="The blueprint for a lexer with a buffer of K tokens to peek into the future (Lexer::ahead).">Lexer</a>'s reserved words, say. </p>
-<p>Prefer this over <a class="el" href="namespacefe.html#a11fef75d471024bdbf5cfc3223146f8e">SymMap</a> for that use: both hash and compare the same interned pointer, but <a class="el" href="namespacefe.html#a11fef75d471024bdbf5cfc3223146f8e">SymMap</a> pays a full finalizer and a SwissTable group probe where this pays one multiply and one probe of a table whose capacity is a compile-time constant. </p><dl class="section note"><dt>Note</dt><dd><code class="param">V</code> has to be default-constructible; an absent key yields no <code class="param">V</code> at all - see <a class="el" href="#af31d617ec748fb58842ee8bbc6384293" title="Yields nothing if sym is not present - the empty Symbol never is.">SymTab::find</a>. </dd></dl>
+<p>Prefer this over <a class="el" href="namespacefe.html#a8de94121a38357dbd977862a05e34acc">SymMap</a> for that use: both hash and compare the same interned pointer, but <a class="el" href="namespacefe.html#a8de94121a38357dbd977862a05e34acc">SymMap</a> pays a full finalizer and a SwissTable group probe where this pays one multiply and one probe of a table whose capacity is a compile-time constant. </p><dl class="section note"><dt>Note</dt><dd><code class="param">V</code> has to be default-constructible; an absent key yields no <code class="param">V</code> at all - see <a class="el" href="#af31d617ec748fb58842ee8bbc6384293" title="Yields nothing if sym is not present - the empty Symbol never is.">SymTab::find</a>. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Insert-only: there is no erase, and <a class="el" href="#aba55a3f2f03b5a02ed179d549a057ea4">SymTab::emplace</a> asserts on a key already present. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00246">246</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00227">227</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="ae090a2f717ceb8ad69e37e2969fece64" name="ae090a2f717ceb8ad69e37e2969fece64"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae090a2f717ceb8ad69e37e2969fece64">&#9670;&#160;</a></span>contains()</h2>
@@ -211,9 +211,9 @@ template&lt;class V, size_t Size&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00273">273</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00254">254</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00266">find()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00247">find()</a>.</p>
 
 </div>
 </div>
@@ -246,9 +246,9 @@ template&lt;class V, size_t Size&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00253">253</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00234">234</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00083">fe::Sym::empty()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00074">fe::Sym::empty()</a>.</p>
 
 </div>
 </div>
@@ -280,11 +280,11 @@ template&lt;class V, size_t Size&gt; </div>
 <p>Yields nothing if <code class="param">sym</code> is not present - the empty <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol never is. </p>
 <dl class="section note"><dt>Note</dt><dd>The free-slot test comes first: the empty <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a>bol <em>is</em> a free slot's key. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00266">266</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00247">247</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
-<p class="reference">References <a class="el" href="sym_8h_source.html#l00083">fe::Sym::empty()</a>.</p>
+<p class="reference">References <a class="el" href="sym_8h_source.html#l00074">fe::Sym::empty()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00273">contains()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sym_8h_source.html#l00254">contains()</a>.</p>
 
 </div>
 </div>
@@ -313,7 +313,7 @@ template&lt;class V, size_t Size&gt; </div>
 
 <p>Twice <code class="param">Size</code>, rounded up to a power of two, so the load factor stays below <span class="tt">1/2</span>. </p>
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00249">249</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00230">230</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>

@@ -250,7 +250,7 @@ Classes</h2></td></tr>
 <tr class="memitem:Tab" id="r_Tab"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Tab.html">Tab</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keeps track of indentation level during output.  <a href="classfe_1_1Tab.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Vector" id="r_Vector"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Vector.html">Vector</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a thin wrapper for <a href="https://github.com/abseil/abseil-cpp/blob/master/absl/container/inlined_vector.h"><span class="tt">absl::InlinedVector&lt;T, N, A&gt;</span></a> which is a drop-in replacement for <a href="https://en.cppreference.com/w/cpp/container/vector"><span class="tt">std::vector&lt;T, A&gt;</span></a>.  <a href="classfe_1_1Vector.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a thin wrapper for <a href="https://github.com/martinus/svector"><span class="tt">ankerl::svector&lt;T, N, A&gt;</span></a> which is a drop-in replacement for <a href="https://en.cppreference.com/w/cpp/container/vector"><span class="tt">std::vector&lt;T, A&gt;</span></a>.  <a href="classfe_1_1Vector.html#details">More...</a><br /></td></tr>
 <tr class="memitem:VLA" id="r_VLA"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1VLA.html">VLA</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">CRTP base that gives <code class="param">Self</code> one <a href="https://en.wikipedia.org/wiki/Variable-length_array">VLA</a> per element type in <span class="tt">Self::VLA_Types</span> directly behind it in memory - the C flexible array member, generalized to several arrays of different type.  <a href="classfe_1_1VLA.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Worklist" id="r_Worklist"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Worklist.html">Worklist</a></td></tr>
@@ -291,15 +291,15 @@ Typedefs</h2></td></tr>
 <tr class="memitem:aa1e2ea2aa40fc5132b2c7364ee4467d8 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#aa1e2ea2aa40fc5132b2c7364ee4467d8">cite_string</a></td></tr>
 <tr class="memdesc:aa1e2ea2aa40fc5132b2c7364ee4467d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;  <br /></td></tr>
 <tr id="typedef-members-0" class="groupHeader"><td colspan="2"><div class="groupHeader">DbgMap/DbgSet</div></td></tr>
-<tr class="memitem:ac1c71f6a9945566d80eb25be4812334a" id="r_ac1c71f6a9945566d80eb25be4812334a"><td class="memTemplParams" colspan="2">template&lt;class V&gt; </td></tr>
-<tr class="memitem:ac1c71f6a9945566d80eb25be4812334a template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#ac1c71f6a9945566d80eb25be4812334a">DbgMap</a> = std::unordered_map&lt;<a class="el" href="structfe_1_1Dbg.html">Dbg</a>, V, <a class="el" href="structfe_1_1Dbg_1_1Hash.html">Dbg::Hash</a>, <a class="el" href="structfe_1_1Dbg_1_1Eq.html">Dbg::Eq</a>&gt;</td></tr>
-<tr class="memitem:a6001bdc1f05c56d81cf41b355f2027f6" id="r_a6001bdc1f05c56d81cf41b355f2027f6"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a6001bdc1f05c56d81cf41b355f2027f6">DbgSet</a> = std::unordered_set&lt;<a class="el" href="structfe_1_1Dbg.html">Dbg</a>, <a class="el" href="structfe_1_1Dbg_1_1Hash.html">Dbg::Hash</a>, <a class="el" href="structfe_1_1Dbg_1_1Eq.html">Dbg::Eq</a>&gt;</td></tr>
+<tr class="memitem:a0069ce0b7f7b0bc6136d13f01b4cfe56" id="r_a0069ce0b7f7b0bc6136d13f01b4cfe56"><td class="memTemplParams" colspan="2">template&lt;class V&gt; </td></tr>
+<tr class="memitem:a0069ce0b7f7b0bc6136d13f01b4cfe56 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a0069ce0b7f7b0bc6136d13f01b4cfe56">DbgMap</a> = ankerl::unordered_dense::map&lt;<a class="el" href="structfe_1_1Dbg.html">Dbg</a>, V, <a class="el" href="structfe_1_1Dbg_1_1Hash.html">Dbg::Hash</a>, <a class="el" href="structfe_1_1Dbg_1_1Eq.html">Dbg::Eq</a>&gt;</td></tr>
+<tr class="memitem:a11f591255ddcc09fd99af1bcc4ecaf20" id="r_a11f591255ddcc09fd99af1bcc4ecaf20"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a11f591255ddcc09fd99af1bcc4ecaf20">DbgSet</a> = ankerl::unordered_dense::set&lt;<a class="el" href="structfe_1_1Dbg.html">Dbg</a>, <a class="el" href="structfe_1_1Dbg_1_1Hash.html">Dbg::Hash</a>, <a class="el" href="structfe_1_1Dbg_1_1Eq.html">Dbg::Eq</a>&gt;</td></tr>
 <tr id="typedef-members-1" class="groupHeader"><td colspan="2"><div class="groupHeader">SymMap/SymSet</div></td></tr>
 <tr><td colspan="2" class="ititle"><div class="groupText"><p>Set/Map is keyed by pointer - which is hashed in <a class="el" href="classfe_1_1SymPool.html" title="Hash set where all strings - wrapped in Symbol - live in.">SymPool</a>. </p>
 </div></td></tr>
-<tr class="memitem:a11fef75d471024bdbf5cfc3223146f8e" id="r_a11fef75d471024bdbf5cfc3223146f8e"><td class="memTemplParams" colspan="2">template&lt;class V&gt; </td></tr>
-<tr class="memitem:a11fef75d471024bdbf5cfc3223146f8e template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a11fef75d471024bdbf5cfc3223146f8e">SymMap</a> = std::unordered_map&lt;<a class="el" href="classfe_1_1Sym.html">Sym</a>, V, <a class="el" href="structfe_1_1Sym_1_1Hash.html">Sym::Hash</a>, <a class="el" href="structfe_1_1Sym_1_1Eq.html">Sym::Eq</a>&gt;</td></tr>
-<tr class="memitem:afc6debb6fc36d12352409c5e46ce4e55" id="r_afc6debb6fc36d12352409c5e46ce4e55"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#afc6debb6fc36d12352409c5e46ce4e55">SymSet</a> = std::unordered_set&lt;<a class="el" href="classfe_1_1Sym.html">Sym</a>, <a class="el" href="structfe_1_1Sym_1_1Hash.html">Sym::Hash</a>, <a class="el" href="structfe_1_1Sym_1_1Eq.html">Sym::Eq</a>&gt;</td></tr>
+<tr class="memitem:a8de94121a38357dbd977862a05e34acc" id="r_a8de94121a38357dbd977862a05e34acc"><td class="memTemplParams" colspan="2">template&lt;class V&gt; </td></tr>
+<tr class="memitem:a8de94121a38357dbd977862a05e34acc template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a8de94121a38357dbd977862a05e34acc">SymMap</a> = ankerl::unordered_dense::map&lt;<a class="el" href="classfe_1_1Sym.html">Sym</a>, V, <a class="el" href="structfe_1_1Sym_1_1Hash.html">Sym::Hash</a>, <a class="el" href="structfe_1_1Sym_1_1Eq.html">Sym::Eq</a>&gt;</td></tr>
+<tr class="memitem:a431cf06d5e3afb9ceba5bcb450e060c6" id="r_a431cf06d5e3afb9ceba5bcb450e060c6"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a431cf06d5e3afb9ceba5bcb450e060c6">SymSet</a> = ankerl::unordered_dense::set&lt;<a class="el" href="classfe_1_1Sym.html">Sym</a>, <a class="el" href="structfe_1_1Sym_1_1Hash.html">Sym::Hash</a>, <a class="el" href="structfe_1_1Sym_1_1Eq.html">Sym::Eq</a>&gt;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -391,13 +391,6 @@ requires std::ranges::common_range&lt;R&gt;</td></tr>
 <tr class="memitem:a3f771e8cbf2331225b93c010f3601cd5 template"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a3f771e8cbf2331225b93c010f3601cd5">Span</a> (Vec &amp;) -&gt; Span&lt; typename Vec::value_type, std::dynamic_extent &gt;</td></tr>
 <tr class="memitem:aaba37687c8d9677ad78b7b418c0b6505" id="r_aaba37687c8d9677ad78b7b418c0b6505"><td class="memTemplParams" colspan="2">template&lt;Vectorlike Vec&gt; </td></tr>
 <tr class="memitem:aaba37687c8d9677ad78b7b418c0b6505 template"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aaba37687c8d9677ad78b7b418c0b6505">Span</a> (const Vec &amp;) -&gt; Span&lt; const typename Vec::value_type, std::dynamic_extent &gt;</td></tr>
-<tr class="memitem:a2e8e999b77fa2e3c1cba77396a9e192d" id="r_a2e8e999b77fa2e3c1cba77396a9e192d"><td class="memTemplParams" colspan="2">template&lt;class I, class A = std::allocator&lt;typename std::iterator_traits&lt;I&gt;::value_type&gt;&gt; </td></tr>
-<tr class="memitem:a2e8e999b77fa2e3c1cba77396a9e192d template"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a2e8e999b77fa2e3c1cba77396a9e192d">Vector</a> (I, I, A=A()) -&gt; Vector&lt; typename std::iterator_traits&lt; I &gt;::value_type, <a class="el" href="#aaca9f8e93c591cf178995b1d5da5ad7c">Default_Inlined_Size</a>&lt; typename std::iterator_traits&lt; I &gt;::value_type &gt;, A &gt;</td></tr>
-<tr id="func-members-6" class="groupHeader"><td colspan="2"><div class="groupHeader">erase</div></td></tr>
-<tr class="memitem:a32e00013e42152781f4bb035ace7af01" id="r_a32e00013e42152781f4bb035ace7af01"><td class="memTemplParams" colspan="2">template&lt;class T, size_t N, class A, class U&gt; </td></tr>
-<tr class="memitem:a32e00013e42152781f4bb035ace7af01 template"><td class="memItemLeft"><a class="el" href="classfe_1_1Vector.html">Vector</a>&lt; T, N, A &gt;::size_type&#160;</td><td class="memItemRight"><a class="el" href="#a32e00013e42152781f4bb035ace7af01">erase</a> (<a class="el" href="classfe_1_1Vector.html">Vector</a>&lt; T, N, A &gt; &amp;c, const U &amp;value)</td></tr>
-<tr class="memitem:ace6f5864e6c7ef635e260299ed16fe86" id="r_ace6f5864e6c7ef635e260299ed16fe86"><td class="memTemplParams" colspan="2">template&lt;class T, size_t N, class A, class Pred&gt; </td></tr>
-<tr class="memitem:ace6f5864e6c7ef635e260299ed16fe86 template"><td class="memItemLeft"><a class="el" href="classfe_1_1Vector.html">Vector</a>&lt; T, N, A &gt;::size_type&#160;</td><td class="memItemRight"><a class="el" href="#ace6f5864e6c7ef635e260299ed16fe86">erase_if</a> (<a class="el" href="classfe_1_1Vector.html">Vector</a>&lt; T, N, A &gt; &amp;c, Pred pred)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -471,8 +464,8 @@ template&lt;class... Args&gt; </div>
 
 </div>
 </div>
-<a id="ac1c71f6a9945566d80eb25be4812334a" name="ac1c71f6a9945566d80eb25be4812334a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac1c71f6a9945566d80eb25be4812334a">&#9670;&#160;</a></span>DbgMap</h2>
+<a id="a0069ce0b7f7b0bc6136d13f01b4cfe56" name="a0069ce0b7f7b0bc6136d13f01b4cfe56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0069ce0b7f7b0bc6136d13f01b4cfe56">&#9670;&#160;</a></span>DbgMap</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -480,28 +473,28 @@ template&lt;class... Args&gt; </div>
 template&lt;class V&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="#ac1c71f6a9945566d80eb25be4812334a">fe::DbgMap</a> = std::unordered_map&lt;<a class="el" href="structfe_1_1Dbg.html">Dbg</a>, V, <a class="el" href="structfe_1_1Dbg_1_1Hash.html">Dbg::Hash</a>, <a class="el" href="structfe_1_1Dbg_1_1Eq.html">Dbg::Eq</a>&gt;</td>
+          <td class="memname">using <a class="el" href="#a0069ce0b7f7b0bc6136d13f01b4cfe56">fe::DbgMap</a> = ankerl::unordered_dense::map&lt;<a class="el" href="structfe_1_1Dbg.html">Dbg</a>, V, <a class="el" href="structfe_1_1Dbg_1_1Hash.html">Dbg::Hash</a>, <a class="el" href="structfe_1_1Dbg_1_1Eq.html">Dbg::Eq</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="dbg_8h_source.html#l00092">92</a> of file <a class="el" href="dbg_8h_source.html">dbg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dbg_8h_source.html#l00078">78</a> of file <a class="el" href="dbg_8h_source.html">dbg.h</a>.</p>
 
 </div>
 </div>
-<a id="a6001bdc1f05c56d81cf41b355f2027f6" name="a6001bdc1f05c56d81cf41b355f2027f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6001bdc1f05c56d81cf41b355f2027f6">&#9670;&#160;</a></span>DbgSet</h2>
+<a id="a11f591255ddcc09fd99af1bcc4ecaf20" name="a11f591255ddcc09fd99af1bcc4ecaf20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11f591255ddcc09fd99af1bcc4ecaf20">&#9670;&#160;</a></span>DbgSet</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="#a6001bdc1f05c56d81cf41b355f2027f6">fe::DbgSet</a> = std::unordered_set&lt;<a class="el" href="structfe_1_1Dbg.html">Dbg</a>, <a class="el" href="structfe_1_1Dbg_1_1Hash.html">Dbg::Hash</a>, <a class="el" href="structfe_1_1Dbg_1_1Eq.html">Dbg::Eq</a>&gt;</td>
+          <td class="memname">using <a class="el" href="#a11f591255ddcc09fd99af1bcc4ecaf20">fe::DbgSet</a> = ankerl::unordered_dense::set&lt;<a class="el" href="structfe_1_1Dbg.html">Dbg</a>, <a class="el" href="structfe_1_1Dbg_1_1Hash.html">Dbg::Hash</a>, <a class="el" href="structfe_1_1Dbg_1_1Eq.html">Dbg::Eq</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="dbg_8h_source.html#l00093">93</a> of file <a class="el" href="dbg_8h_source.html">dbg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dbg_8h_source.html#l00079">79</a> of file <a class="el" href="dbg_8h_source.html">dbg.h</a>.</p>
 
 </div>
 </div>
@@ -556,12 +549,12 @@ template&lt;class V&gt; </div>
 <p>Maps a <span class="tt">std::filesystem::path</span> to <code class="param">V</code>. </p>
 <dl class="section warning"><dt>Warning</dt><dd>Node-based on purpose: <a class="el" href="classfe_1_1SrcMap.html" title="Interns the text - and the std::filesystem::path - of every file a Loc may point into.">fe::SrcMap</a> stores its <a class="el" href="classfe_1_1Src.html" title="The content of one source file together with the offsets its rows start at.">Src</a>s in here and a <a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a> points to one, so the values must never move. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="src_8h_source.html#l00035">35</a> of file <a class="el" href="src_8h_source.html">src.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="src_8h_source.html#l00026">26</a> of file <a class="el" href="src_8h_source.html">src.h</a>.</p>
 
 </div>
 </div>
-<a id="a11fef75d471024bdbf5cfc3223146f8e" name="a11fef75d471024bdbf5cfc3223146f8e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a11fef75d471024bdbf5cfc3223146f8e">&#9670;&#160;</a></span>SymMap</h2>
+<a id="a8de94121a38357dbd977862a05e34acc" name="a8de94121a38357dbd977862a05e34acc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8de94121a38357dbd977862a05e34acc">&#9670;&#160;</a></span>SymMap</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -569,28 +562,28 @@ template&lt;class V&gt; </div>
 template&lt;class V&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="#a11fef75d471024bdbf5cfc3223146f8e">fe::SymMap</a> = std::unordered_map&lt;<a class="el" href="classfe_1_1Sym.html">Sym</a>, V, <a class="el" href="structfe_1_1Sym_1_1Hash.html">Sym::Hash</a>, <a class="el" href="structfe_1_1Sym_1_1Eq.html">Sym::Eq</a>&gt;</td>
+          <td class="memname">using <a class="el" href="#a8de94121a38357dbd977862a05e34acc">fe::SymMap</a> = ankerl::unordered_dense::map&lt;<a class="el" href="classfe_1_1Sym.html">Sym</a>, V, <a class="el" href="structfe_1_1Sym_1_1Hash.html">Sym::Hash</a>, <a class="el" href="structfe_1_1Sym_1_1Eq.html">Sym::Eq</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00233">233</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00215">215</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
-<a id="afc6debb6fc36d12352409c5e46ce4e55" name="afc6debb6fc36d12352409c5e46ce4e55"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afc6debb6fc36d12352409c5e46ce4e55">&#9670;&#160;</a></span>SymSet</h2>
+<a id="a431cf06d5e3afb9ceba5bcb450e060c6" name="a431cf06d5e3afb9ceba5bcb450e060c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a431cf06d5e3afb9ceba5bcb450e060c6">&#9670;&#160;</a></span>SymSet</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="#afc6debb6fc36d12352409c5e46ce4e55">fe::SymSet</a> = std::unordered_set&lt;<a class="el" href="classfe_1_1Sym.html">Sym</a>, <a class="el" href="structfe_1_1Sym_1_1Hash.html">Sym::Hash</a>, <a class="el" href="structfe_1_1Sym_1_1Eq.html">Sym::Eq</a>&gt;</td>
+          <td class="memname">using <a class="el" href="#a431cf06d5e3afb9ceba5bcb450e060c6">fe::SymSet</a> = ankerl::unordered_dense::set&lt;<a class="el" href="classfe_1_1Sym.html">Sym</a>, <a class="el" href="structfe_1_1Sym_1_1Hash.html">Sym::Hash</a>, <a class="el" href="structfe_1_1Sym_1_1Eq.html">Sym::Eq</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00234">234</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00216">216</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -839,64 +832,6 @@ requires (std::is_trivially_copyable_v&lt;S&gt; &amp;&amp; std::is_trivially_cop
 
 </div>
 </div>
-<a id="a32e00013e42152781f4bb035ace7af01" name="a32e00013e42152781f4bb035ace7af01"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32e00013e42152781f4bb035ace7af01">&#9670;&#160;</a></span>erase()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T, size_t N, class A, class U&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classfe_1_1Vector.html">Vector</a>&lt; T, N, A &gt;::size_type fe::erase </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classfe_1_1Vector.html">Vector</a>&lt; T, N, A &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>c</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const U &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00102">102</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-
-<p class="reference">References <a class="el" href="vector_8h_source.html#l00102">erase()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="vector_8h_source.html#l00102">erase()</a>.</p>
-
-</div>
-</div>
-<a id="ace6f5864e6c7ef635e260299ed16fe86" name="ace6f5864e6c7ef635e260299ed16fe86"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ace6f5864e6c7ef635e260299ed16fe86">&#9670;&#160;</a></span>erase_if()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T, size_t N, class A, class Pred&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classfe_1_1Vector.html">Vector</a>&lt; T, N, A &gt;::size_type fe::erase_if </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classfe_1_1Vector.html">Vector</a>&lt; T, N, A &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>c</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Pred</td>          <td class="paramname"><span class="paramname"><em>pred</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00110">110</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-
-<p class="reference">References <a class="el" href="vector_8h_source.html#l00110">erase_if()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="vector_8h_source.html#l00110">erase_if()</a>.</p>
-
-</div>
-</div>
 <a id="a1bc01939aa7352b79a0917dc535bde8a" name="a1bc01939aa7352b79a0917dc535bde8a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1bc01939aa7352b79a0917dc535bde8a">&#9670;&#160;</a></span>find_and_replace()</h2>
 
@@ -1071,7 +1006,7 @@ template&lt;<a class="el" href="conceptfe_1_1BitEnum.html">fe::BitEnum</a> E&gt;
 
 <p class="reference">References <a class="el" href="hash_8h_source.html#l00042">hash()</a>, <a class="el" href="hash_8h_source.html#l00022">murmur3()</a>, and <a class="el" href="hash_8h_source.html#l00032">splitmix64()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="hash_8h_source.html#l00042">hash()</a>, <a class="el" href="hash_8h_source.html#l00084">hash_combine()</a>, <a class="el" href="hash_8h_source.html#l00073">hash_combine()</a>, and <a class="el" href="sym_8h_source.html#l00184">fe::Sym::Hash::operator()()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="hash_8h_source.html#l00042">hash()</a>, <a class="el" href="hash_8h_source.html#l00084">hash_combine()</a>, <a class="el" href="hash_8h_source.html#l00073">hash_combine()</a>, and <a class="el" href="sym_8h_source.html#l00171">fe::Sym::Hash::operator()()</a>.</p>
 
 </div>
 </div>
@@ -1104,7 +1039,7 @@ template&lt;<a class="el" href="conceptfe_1_1BitEnum.html">fe::BitEnum</a> E&gt;
 
 <p class="reference">References <a class="el" href="hash_8h_source.html#l00064">fnv1_offset</a>, and <a class="el" href="hash_8h_source.html#l00069">hash_begin()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00278">fe::Bitset::hash()</a>, <a class="el" href="hash_8h_source.html#l00069">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00103">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00079">hash_begin()</a>, <a class="el" href="dbg_8h_source.html#l00059">fe::Dbg::Hash::operator()()</a>, <a class="el" href="sym_8h_source.html#l00061">fe::Sym::String::Hash::operator()()</a>, and <a class="el" href="xtrie_8h_source.html#l00136">fe::XTrie&lt; D, K, N &gt;::Data::Hash::operator()()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00278">fe::Bitset::hash()</a>, <a class="el" href="hash_8h_source.html#l00069">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00103">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00079">hash_begin()</a>, <a class="el" href="dbg_8h_source.html#l00055">fe::Dbg::Hash::operator()()</a>, <a class="el" href="sym_8h_source.html#l00056">fe::Sym::String::Hash::operator()()</a>, and <a class="el" href="xtrie_8h_source.html#l00129">fe::XTrie&lt; D, K, N &gt;::Data::Hash::operator()()</a>.</p>
 
 </div>
 </div>
@@ -1242,7 +1177,7 @@ template&lt;std::integral T&gt; </div>
 
 <p class="reference">References <a class="el" href="hash_8h_source.html#l00065">fnv1_prime</a>, <a class="el" href="hash_8h_source.html#l00042">hash()</a>, and <a class="el" href="hash_8h_source.html#l00073">hash_combine()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00278">fe::Bitset::hash()</a>, <a class="el" href="hash_8h_source.html#l00103">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00079">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00084">hash_combine()</a>, <a class="el" href="hash_8h_source.html#l00073">hash_combine()</a>, <a class="el" href="dbg_8h_source.html#l00059">fe::Dbg::Hash::operator()()</a>, and <a class="el" href="xtrie_8h_source.html#l00136">fe::XTrie&lt; D, K, N &gt;::Data::Hash::operator()()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00278">fe::Bitset::hash()</a>, <a class="el" href="hash_8h_source.html#l00103">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00079">hash_begin()</a>, <a class="el" href="hash_8h_source.html#l00084">hash_combine()</a>, <a class="el" href="hash_8h_source.html#l00073">hash_combine()</a>, <a class="el" href="dbg_8h_source.html#l00055">fe::Dbg::Hash::operator()()</a>, and <a class="el" href="xtrie_8h_source.html#l00129">fe::XTrie&lt; D, K, N &gt;::Data::Hash::operator()()</a>.</p>
 
 </div>
 </div>
@@ -1334,7 +1269,7 @@ template&lt;class C, class K&gt; </div>
 </div><div class="memdoc">
 
 <p>Yields pointer to element (or the element itself if it is already a pointer), if found and <span class="tt">nullptr</span> otherwise. </p>
-<p>Constness of <code class="param">container</code> carries over to the result. </p><dl class="section warning"><dt>Warning</dt><dd>If the element is <b>not</b> already a pointer, this lookup will simply take the address of this element. This means that, e.g., a rehash of an <span class="tt">absl::flat_hash_map</span> will invalidate this pointer. </dd></dl>
+<p>Constness of <code class="param">container</code> carries over to the result. </p><dl class="section warning"><dt>Warning</dt><dd>If the element is <b>not</b> already a pointer, this lookup will simply take the address of this element. This means that, e.g., a rehash of an <span class="tt">ankerl::unordered_dense::map</span> will invalidate this pointer. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00045">45</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
 
@@ -1811,39 +1746,7 @@ template&lt;<a class="el" href="conceptfe_1_1BitEnum.html">fe::BitEnum</a> E&gt;
 
 <p class="reference">References <a class="el" href="assert_8h_source.html#l00020">unreachable()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="patricia_8h_source.html#l00607">fe::Patricia&lt; D, KT, K, N &gt;::diff()</a>, <a class="el" href="patricia_8h_source.html#l00295">fe::Patricia&lt; D, KT, K, N &gt;::Set::has_intersection()</a>, <a class="el" href="patricia_8h_source.html#l00584">fe::Patricia&lt; D, KT, K, N &gt;::intersect()</a>, <a class="el" href="patricia_8h_source.html#l00561">fe::Patricia&lt; D, KT, K, N &gt;::merge()</a>, <a class="el" href="xtrie_8h_source.html#l00243">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator*()</a>, <a class="el" href="xtrie_8h_source.html#l00208">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator++()</a>, and <a class="el" href="assert_8h_source.html#l00020">unreachable()</a>.</p>
-
-</div>
-</div>
-<a id="a2e8e999b77fa2e3c1cba77396a9e192d" name="a2e8e999b77fa2e3c1cba77396a9e192d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2e8e999b77fa2e3c1cba77396a9e192d">&#9670;&#160;</a></span>Vector()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class I, class A = std::allocator&lt;typename std::iterator_traits&lt;I&gt;::value_type&gt;&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">fe::Vector </td>
-          <td>(</td>
-          <td class="paramtype">I</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">I</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">A</td>          <td class="paramname"><span class="paramname"><em></em></span><span class="paramdefsep"> = </span><span class="paramdefval">A()</span>&#160;) -&gt;  Vector&lt; typename std::iterator_traits&lt; I &gt;::value_type, <a class="el" href="#aaca9f8e93c591cf178995b1d5da5ad7c">Default_Inlined_Size</a>&lt; typename std::iterator_traits&lt; I &gt;::value_type &gt;, A &gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="reference">References <a class="el" href="vector_8h_source.html#l00021">Default_Inlined_Size</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="xtrie_8h_source.html#l00463">fe::XTrie&lt; D, K, N &gt;::create()</a>, and <a class="el" href="xtrie_8h_source.html#l00469">fe::XTrie&lt; D, K, N &gt;::create()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="patricia_8h_source.html#l00603">fe::Patricia&lt; D, KT, K, N &gt;::diff()</a>, <a class="el" href="patricia_8h_source.html#l00291">fe::Patricia&lt; D, KT, K, N &gt;::Set::has_intersection()</a>, <a class="el" href="patricia_8h_source.html#l00580">fe::Patricia&lt; D, KT, K, N &gt;::intersect()</a>, <a class="el" href="patricia_8h_source.html#l00557">fe::Patricia&lt; D, KT, K, N &gt;::merge()</a>, <a class="el" href="xtrie_8h_source.html#l00224">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator*()</a>, <a class="el" href="xtrie_8h_source.html#l00189">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator++()</a>, and <a class="el" href="assert_8h_source.html#l00020">unreachable()</a>.</p>
 
 </div>
 </div>
@@ -1872,9 +1775,7 @@ template&lt;class T&gt; </div>
 
 <p>Use up to 4 words (i.e., 4 * sizeof(size_t)) of inlined storage, rounded up. </p>
 
-<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00021">21</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="#a2e8e999b77fa2e3c1cba77396a9e192d">Vector()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00017">17</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
 
 </div>
 </div>

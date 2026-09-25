@@ -8,6 +8,6 @@ var sym_8h =
     [ "fe::Sym::Eq", "structfe_1_1Sym_1_1Eq.html", "structfe_1_1Sym_1_1Eq" ],
     [ "fe::SymTab&lt; V, Size &gt;", "classfe_1_1SymTab.html", "classfe_1_1SymTab" ],
     [ "fe::SymPool", "classfe_1_1SymPool.html", "classfe_1_1SymPool" ],
-    [ "fe::SymMap", "namespacefe.html#a11fef75d471024bdbf5cfc3223146f8e", null ],
-    [ "fe::SymSet", "namespacefe.html#afc6debb6fc36d12352409c5e46ce4e55", null ]
+    [ "fe::SymMap", "namespacefe.html#a8de94121a38357dbd977862a05e34acc", null ],
+    [ "fe::SymSet", "namespacefe.html#a431cf06d5e3afb9ceba5bcb450e060c6", null ]
 ];
