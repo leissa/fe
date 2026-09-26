@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['scopedanchor_0',['ScopedAnchor',['../classfe_1_1Parser_1_1ScopedAnchor.html',1,'fe::Parser&lt; Tok, Tag, K, S &gt;::ScopedAnchor'],['../classfe_1_1Parser_1_1ScopedAnchor.html#aa6a67e6737db8b9b12ee7b8b97c3d767',1,'fe::Parser::ScopedAnchor::ScopedAnchor(const ScopedAnchor &amp;)=delete'],['../classfe_1_1Parser_1_1ScopedAnchor.html#a3849eaf91f8d04071049765bc94c87bd',1,'fe::Parser::ScopedAnchor::ScopedAnchor(Parser &amp;parser, Tag r_tag, Tok l_tok)']]],
+  ['scopedanchor_0',['ScopedAnchor',['../classfe_1_1Parser_1_1ScopedAnchor.html',1,'fe::Parser&lt; Tok, Tag, K, S &gt;::ScopedAnchor'],['../classfe_1_1Parser_1_1ScopedAnchor.html#aa6a67e6737db8b9b12ee7b8b97c3d767',1,'fe::Parser::ScopedAnchor::ScopedAnchor(const ScopedAnchor &amp;)=delete'],['../classfe_1_1Parser_1_1ScopedAnchor.html#af24de309e8cbbe19deea62cd786dc726',1,'fe::Parser::ScopedAnchor::ScopedAnchor(Parser &amp;parser, Tok l_tok, Tag r_tag)']]],
   ['scopedmode_1',['ScopedMode',['../namespacefe_1_1term.html#a214cdb1ce076f0e6de11f6afb317c516',1,'fe::term']]],
   ['section_2',['section',['../classfe_1_1Cli.html#a078c8a81149af9adba3901f9129c420f',1,'fe::Cli']]],
   ['sep_3',['sep',['../classfe_1_1Join.html#a1b2d2b4827668cebaa09e7a30ef509dc',1,'fe::Join']]],

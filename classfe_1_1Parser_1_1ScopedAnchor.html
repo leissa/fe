@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classfe_1_1Par
 </div><!--header-->
 <div class="contents">
 
-<p>RAII helper that pushes a <a class="el" href="classfe_1_1Parser.html#structfe_1_1Parser_1_1Anchor" title="One anchor; the left end opened the context, the right one is what it is still waiting for.">Parser::Anchor</a> for its lifetime; use <a class="el" href="classfe_1_1Parser.html#a3cfea002c6c78ae8ef7bd490fe00a272" title="Factory method to build a Parser::ScopedAnchor; Parser::expect r_tag yourself at the end of the scope...">Parser::anchor</a> to build one.  
+<p>RAII helper that pushes a <a class="el" href="classfe_1_1Parser.html#structfe_1_1Parser_1_1Anchor" title="One anchor; the left end opened the context, the right one is what it is still waiting for.">Parser::Anchor</a> for its lifetime; use <a class="el" href="classfe_1_1Parser.html#a349e1239a63f188da86c411c46a629d2" title="Factory method to build a Parser::ScopedAnchor; Parser::expect r_tag yourself at the end of the scope...">Parser::anchor</a> to build one.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="parser_8h_source.html">fe/parser.h</a>&gt;</code></p>
@@ -169,12 +169,12 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classfe_1_1Par
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aa6a67e6737db8b9b12ee7b8b97c3d767" id="r_aa6a67e6737db8b9b12ee7b8b97c3d767"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aa6a67e6737db8b9b12ee7b8b97c3d767">ScopedAnchor</a> (const ScopedAnchor &amp;)=delete</td></tr>
 <tr class="memitem:aba804ee78ee779e22825702680a6b978" id="r_aba804ee78ee779e22825702680a6b978"><td class="memItemLeft"><a class="el" href="#aa6a67e6737db8b9b12ee7b8b97c3d767">ScopedAnchor</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#aba804ee78ee779e22825702680a6b978">operator=</a> (const <a class="el" href="#aa6a67e6737db8b9b12ee7b8b97c3d767">ScopedAnchor</a> &amp;)=delete</td></tr>
-<tr class="memitem:a3849eaf91f8d04071049765bc94c87bd" id="r_a3849eaf91f8d04071049765bc94c87bd"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a3849eaf91f8d04071049765bc94c87bd">ScopedAnchor</a> (<a class="el" href="classfe_1_1Parser.html">Parser</a> &amp;parser, Tag r_tag, Tok l_tok)</td></tr>
+<tr class="memitem:af24de309e8cbbe19deea62cd786dc726" id="r_af24de309e8cbbe19deea62cd786dc726"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#af24de309e8cbbe19deea62cd786dc726">ScopedAnchor</a> (<a class="el" href="classfe_1_1Parser.html">Parser</a> &amp;parser, Tok l_tok, Tag r_tag)</td></tr>
 <tr class="memitem:a79ca5b36ab4f16860a0f563d7f2174e8" id="r_a79ca5b36ab4f16860a0f563d7f2174e8"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a79ca5b36ab4f16860a0f563d7f2174e8">~ScopedAnchor</a> ()</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class Tok, class Tag, size_t K, class S&gt;<br />
-class fe::Parser&lt; Tok, Tag, K, S &gt;::ScopedAnchor</div><p>RAII helper that pushes a <a class="el" href="classfe_1_1Parser.html#structfe_1_1Parser_1_1Anchor" title="One anchor; the left end opened the context, the right one is what it is still waiting for.">Parser::Anchor</a> for its lifetime; use <a class="el" href="classfe_1_1Parser.html#a3cfea002c6c78ae8ef7bd490fe00a272" title="Factory method to build a Parser::ScopedAnchor; Parser::expect r_tag yourself at the end of the scope...">Parser::anchor</a> to build one. </p>
+class fe::Parser&lt; Tok, Tag, K, S &gt;::ScopedAnchor</div><p>RAII helper that pushes a <a class="el" href="classfe_1_1Parser.html#structfe_1_1Parser_1_1Anchor" title="One anchor; the left end opened the context, the right one is what it is still waiting for.">Parser::Anchor</a> for its lifetime; use <a class="el" href="classfe_1_1Parser.html#a349e1239a63f188da86c411c46a629d2" title="Factory method to build a Parser::ScopedAnchor; Parser::expect r_tag yourself at the end of the scope...">Parser::anchor</a> to build one. </p>
 
 <p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00172">172</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -209,8 +209,8 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 
 </div>
 </div>
-<a id="a3849eaf91f8d04071049765bc94c87bd" name="a3849eaf91f8d04071049765bc94c87bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3849eaf91f8d04071049765bc94c87bd">&#9670;&#160;</a></span>ScopedAnchor() <span class="overload">[2/2]</span></h2>
+<a id="af24de309e8cbbe19deea62cd786dc726" name="af24de309e8cbbe19deea62cd786dc726"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af24de309e8cbbe19deea62cd786dc726">&#9670;&#160;</a></span>ScopedAnchor() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -228,12 +228,12 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Tag</td>          <td class="paramname"><span class="paramname"><em>r_tag</em></span>, </td>
+          <td class="paramtype">Tok</td>          <td class="paramname"><span class="paramname"><em>l_tok</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Tok</td>          <td class="paramname"><span class="paramname"><em>l_tok</em></span>&#160;)</td>
+          <td class="paramtype">Tag</td>          <td class="paramname"><span class="paramname"><em>r_tag</em></span>&#160;)</td>
         </tr>
       </table>
   </td>

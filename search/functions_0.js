@@ -11,7 +11,7 @@ var searchData=
   ['allocate_8',['allocate',['../structfe_1_1Arena_1_1Allocator.html#a5a01ae641100e200cfc220e96c0d6cf2',1,'fe::Arena::Allocator::allocate()'],['../classfe_1_1Arena.html#a1845ff9a50156c9e4aaacb38aec6269e',1,'fe::Arena::allocate(size_t num_bytes, size_t align)'],['../classfe_1_1Arena.html#a821f393e0b38a3f89d8987dc3426bda8',1,'fe::Arena::allocate(size_t num_elems)']]],
   ['allocator_9',['Allocator',['../structfe_1_1Arena_1_1Allocator.html#a7b5428de2d5645150018b0726b9aeb02',1,'fe::Arena::Allocator::Allocator()=delete'],['../structfe_1_1Arena_1_1Allocator.html#aa2b65962d7819a6f5354d900e5a3449b',1,'fe::Arena::Allocator::Allocator(const Arena::Allocator&lt; U &gt; &amp;allocator) noexcept'],['../structfe_1_1Arena_1_1Allocator.html#ad05417fdfb99bb1a524efddbdc767cef',1,'fe::Arena::Allocator::Allocator(Arena &amp;arena) noexcept']]],
   ['allocator_10',['allocator',['../classfe_1_1Arena.html#a85e64d0613cd480c9bff31fcf62dfe59',1,'fe::Arena']]],
-  ['anchor_11',['anchor',['../classfe_1_1Parser.html#a3cfea002c6c78ae8ef7bd490fe00a272',1,'fe::Parser']]],
+  ['anchor_11',['anchor',['../classfe_1_1Parser.html#a349e1239a63f188da86c411c46a629d2',1,'fe::Parser::anchor(Tok l_tok, Tag r_tag)'],['../classfe_1_1Parser.html#ad43b9a49325fb5d3a5f88588f43ecc0e',1,'fe::Parser::anchor(Tag r_tag)']]],
   ['anew_5fbegin_12',['anew_begin',['../structfe_1_1Loc.html#aaa417bc33f87b0bcf991753a44abd66e',1,'fe::Loc']]],
   ['anew_5fend_13',['anew_end',['../structfe_1_1Loc.html#a22526d7195a9c583f2b8b32be72f2216',1,'fe::Loc']]],
   ['any_14',['any',['../classfe_1_1Bitset.html#a7572b2da5b9c85b0a0f20f018d948611',1,'fe::Bitset::any()'],['../namespacefe_1_1utf8.html#af64fe6297bc1f6fe539c11232da3ebde',1,'fe::utf8::any(T... args) noexcept']]],

@@ -18,7 +18,7 @@ var searchData=
   ['allocator_15',['allocator',['../classfe_1_1Arena.html#a85e64d0613cd480c9bff31fcf62dfe59',1,'fe::Arena']]],
   ['always_16',['Always',['../namespacefe_1_1term.html#a36d4d673e10a305ff30ec08d94c8f087a68eec46437c384d8dad18d5464ebc35c',1,'fe::term']]],
   ['anchor_17',['Anchor',['../classfe_1_1Parser.html#structfe_1_1Parser_1_1Anchor',1,'fe::Parser']]],
-  ['anchor_18',['anchor',['../classfe_1_1Parser.html#a3cfea002c6c78ae8ef7bd490fe00a272',1,'fe::Parser']]],
+  ['anchor_18',['anchor',['../classfe_1_1Parser.html#a349e1239a63f188da86c411c46a629d2',1,'fe::Parser::anchor(Tok l_tok, Tag r_tag)'],['../classfe_1_1Parser.html#ad43b9a49325fb5d3a5f88588f43ecc0e',1,'fe::Parser::anchor(Tag r_tag)']]],
   ['anchors_5f_19',['anchors_',['../classfe_1_1Parser.html#ae08759fa7eb86565b3f95b3f74226482',1,'fe::Parser']]],
   ['and_20testing_20',['🛠️ Building and Testing',['../index.html#autotoc_md19',1,'']]],
   ['anew_5fbegin_21',['anew_begin',['../structfe_1_1Loc.html#aaa417bc33f87b0bcf991753a44abd66e',1,'fe::Loc']]],
