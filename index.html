@@ -513,6 +513,13 @@ The Markup Language</h3>
 <div class="fragment"><div class="line">cmake -S . -B build -DFE_BUILD_DOCS=ON</div>
 <div class="line">cmake --build build --target docs</div>
 </div><!-- fragment --><p>This requires Doxygen and Graphviz (<span class="tt">dot</span>).</p>
+<p>An embedded FE also exports where its Doxygen assets live, so a consumer can dress its own documentation in the same theme instead of vendoring a second copy:</p>
+<div class="fragment"><div class="line">set(MY_STYLESHEETS</div>
+<div class="line">    &quot;${FE_DOXY_AWESOME}/doxygen-awesome.css&quot;    # the doxygen-awesome-css submodule FE already pulls in</div>
+<div class="line">    &quot;${FE_DOXY_DIR}/theme.css&quot;                  # FE&#39;s colour palette, light and dark</div>
+<div class="line">    &quot;${FE_DOXY_DIR}/doxygen-fixes.css&quot;          # what doxygen-awesome leaves unthemed</div>
+<div class="line">)</div>
+</div><!-- fragment --><p>MimIR builds its manual this way.</p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md21"></a>
 🔨 Related Projects</h1>
 <p>FE is developed against three frontends of very different scale, and every change has to work for all three:</p>
