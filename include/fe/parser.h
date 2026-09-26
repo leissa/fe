@@ -18,6 +18,7 @@ namespace fe {
 /// Parser::accept and Parser::expect indicate failure by returning a default-constructed Tok%en,
 /// so `Tok()` must be falsy and tagged Tag::Nil.
 /// That sentinel is only checkable here if `Tok()` is usable in a constant expression - Parser::init asserts it.
+/// The probe for that yields a `bool`, as MSVC mistypes an enum as the non-type argument of a template.
 template<class Tok, class Tag>
 concept Token = requires(const Tok tok) {
     Tag::Nil;
@@ -26,7 +27,7 @@ concept Token = requires(const Tok tok) {
     requires std::equality_comparable<Tag>;
     requires std::semiregular<Tok>;
     requires std::constructible_from<bool, Tok>;
-    requires !requires { std::integral_constant<Tag, Tok().tag()>(); } || Tok().tag() == Tag::Nil;
+    requires !requires { std::bool_constant<Tok().tag() == Tag::Nil>(); } || Tok().tag() == Tag::Nil;
 };
 
 /// What fe::Parser needs of its CRTP child @p S beyond fe::Diagnosable: the Lexer to pull Tok%ens from.
@@ -278,7 +279,7 @@ protected:
         if (!got) got = ahead();
         auto& err = error().e(got.loc(), "expected {}, got `{}` while parsing {}", what.what, got, ctxt);
         if (auto* a = find_anchor(what.tag); a && a->l_tok)
-            err.n(a->l_tok.loc(), "unmatched `{}` opened here", a->l_tok);
+            err.n(a->l_tok.loc(), "to match this `{}`", a->l_tok);
         return err;
     }
 
@@ -287,8 +288,8 @@ protected:
         static_assert(Diagnosable<S>,
                       "provide `fe::Driver& driver()` in your parser - or an `unanchored_err` of your own");
         static_assert(Formattable<Tok>, "provide a `std::formatter` for your Tok - or an `unanchored_err` of your own");
-        if (n == 1) return error().e(loc, "ignoring unmatched `{}` while parsing {}", tok, ctxt);
-        return error().e(loc, "ignoring {} unmatched tokens starting with `{}` while parsing {}", n, tok, ctxt);
+        if (n == 1) return error().e(loc, "ignoring stray `{}` while parsing {}", tok, ctxt);
+        return error().e(loc, "ignoring {} stray tokens starting with `{}` while parsing {}", n, tok, ctxt);
     }
     ///@}
 

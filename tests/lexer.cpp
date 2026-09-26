@@ -347,7 +347,7 @@ void test_parser() {
         CHECK(str.contains("while parsing parenthesized expression"));
         CHECK(str.contains("expected `)`"));
         // and the anchor remembers its `(`, so the default syntax_err notes it - this Parser declares none.
-        CHECK(str.contains("unmatched `(` opened here"));
+        CHECK(str.contains("to match this `(`"));
     }
 }
 

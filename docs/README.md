@@ -58,7 +58,7 @@ The error line and its snippet come out of `expect`; the note that points back a
 test/error/unclosed_paren.let:1:13: error: expected `)`, got `;` while parsing parenthesized expression
     1 | print (1 + 2;
       |             ^
-      test/error/unclosed_paren.let:1:7: note: unmatched `(` opened here
+      test/error/unclosed_paren.let:1:7: note: to match this `(`
     1 | print (1 + 2;
       |       ^
 1 error(s) encountered
@@ -68,13 +68,13 @@ An *anchor* is a token an enclosing context is still waiting for, so a nested pa
 That is what lets a stray `)` be a message the parser recovers from - three times in one run - instead of the end of the parse:
 
 ```
-test/error/stray_paren.let:1:12: error: ignoring unmatched `)` while parsing right-hand side of binary expression
+test/error/stray_paren.let:1:12: error: ignoring stray `)` while parsing right-hand side of binary expression
     1 | print 3 + 4) + 5;
       |            ^
-test/error/stray_paren.let:2:14: error: ignoring unmatched `)` while parsing print-statement
+test/error/stray_paren.let:2:14: error: ignoring stray `)` while parsing print-statement
     2 | print (1 + 2)) * 2;
       |              ^
-test/error/stray_paren.let:3:7: error: ignoring unmatched `)` while parsing print-statement
+test/error/stray_paren.let:3:7: error: ignoring stray `)` while parsing print-statement
     3 | print ) + 5;
       |       ^
 3 error(s) encountered
