@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <deque>
 #include <format>
+#include <optional>
 
 #include "fe/driver.h"
 #include "fe/loc.h"
@@ -44,8 +45,7 @@ namespace fe {
 /// };
 /// ```
 /// Parser::syntax_err and Parser::unanchored_err come with a default; declare either in @p S to word it differently.
-/// All Parser::syntax_err overloads funnel through the one taking a `what`/`Tok`/`ctxt`; override just that one.
-/// @warning Declaring *any* `syntax_err` in @p S hides all of them, so add `using Super::syntax_err;`.
+/// Each is one name with one signature, so a declaration in @p S replaces it outright - no `using` of the base needed.
 template<class Tok, class Tag, size_t K, class S>
 requires std::is_default_constructible_v<Tok>
       && (std::is_convertible_v<Tok, bool> || std::is_constructible_v<bool, Tok>)class Parser {
@@ -203,6 +203,25 @@ protected:
     }
     ///@}
 
+    /// What Parser::expect was after - a Tag, or free-form markup.
+    /// Both spellings are one parameter rather than two overloads, so that Parser::syntax_err stays a single
+    /// signature: a declaration in @p S then replaces it instead of hiding a set of siblings alongside it.
+    struct Expected {
+        std::optional<Tag> tag; ///< Nothing if the expectation was not a Tag.
+        Cited what;             ///< Already rendered as markup - Parser::tag2str_ backticks a Tag.
+
+        Expected(Tag tag)
+            : tag(tag)
+            , what(tag2str_(tag)) {}
+        Expected(Cited what)
+            : what(std::move(what)) {}
+        Expected(Cite what)
+            : what(std::string(what.view())) {}
+        template<size_t N>
+        Expected(const char (&what)[N])
+            : Expected(Cite(what)) {}
+    };
+
     /// @name Diagnostics
     /// The defaults @p S may replace with one of its own.
     /// Each yields the Error it reported into, so a Note can be chained.
@@ -210,21 +229,15 @@ protected:
     fe::Error& error() { return self().driver().error(); }
     const fe::Error& error() const { return self().driver().error(); }
 
-    /// Parser::expect did not find @p what while parsing @p ctxt.
-    /// Both are Cite: a context string is *markup*, so backtick a literal token within it yourself.
-    fe::Error& syntax_err(Cite what, Tok tok, Cite ctxt) {
+    /// Parser::expect did not find @p what while parsing @p ctxt; @p got defaults to Parser::ahead.
+    /// @p ctxt is markup, so backtick a literal token within it yourself.
+    fe::Error& syntax_err(Expected what, Cite ctxt, Tok got = {}) {
         static_assert(
             requires(S& s) { s.driver(); },
             "provide `fe::Driver& driver()` in your parser - or a `syntax_err` of your own");
-        return error().e(tok.loc(), "expected {}, got `{}` while parsing {}", what, tok, ctxt);
+        if (!got) got = ahead();
+        return error().e(got.loc(), "expected {}, got `{}` while parsing {}", what.what, got, ctxt);
     }
-
-    /// As above but uses Parser::ahead as @p tok.
-    /// @note `decltype(auto)`, so an override of the funnel above may yield something else - or nothing.
-    decltype(auto) syntax_err(Cite what, Cite ctxt) { return self().syntax_err(what, ahead(), ctxt); }
-
-    /// As above but spells @p tag out via Parser::tag2str_.
-    decltype(auto) syntax_err(Tag tag, Cite ctxt) { return self().syntax_err(tag2str_(tag), ahead(), ctxt); }
 
     /// Parser::recover discarded a run of @p n Tok%ens starting with @p tok and spanning @p loc while parsing @p ctxt.
     fe::Error& unanchored_err(Tok tok, Loc loc, size_t n, Cite ctxt) {

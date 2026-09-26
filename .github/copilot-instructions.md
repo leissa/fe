@@ -116,13 +116,14 @@ Its constructor must call `Parser::init()` to fill the lookahead, *after* its le
 
 Both diagnostics come with a default implementation `S` may replace:
 
-- `fe::Error& syntax_err(Cite what, Tok, Cite ctxt)` - `what` was expected but that `Tok` showed up.
-  The `(Cite what, Cite ctxt)` and `(Tag, Cite ctxt)` overloads funnel through it, so overriding that one suffices; they yield `decltype(auto)` and thus follow whatever the override returns.
-  `Cite` says those strings are *markup*, so an override forwards them as-is - do not wrap or escape them again.
+- `fe::Error& syntax_err(Parser::Expected what, Cite ctxt, Tok got = {})` - `what` was expected but `got` showed up; an empty `got` means `Parser::ahead`.
+  `Expected` converts from a `Tag` as well as from markup and keeps both: `Expected::tag` holds the `Tag` if there was one, so an override can key off a particular token, and `Expected::what` is the rendered markup either way.
+  `ctxt` is markup, so an override forwards it as-is - do not wrap or escape it again.
 - `fe::Error& unanchored_err(Tok, Loc, size_t n, Cite ctxt)` - `Parser::recover` discarded a run of `n` tokens starting with that one and spanning that `Loc`.
 
 Each yields the `Error` it reported into, so an override - or a caller - can chain a `note` onto it.
-The Parser dispatches through `S`, so a declaration there wins - but it hides *all* base overloads of that name, so add `using Super::syntax_err;`.
+The Parser dispatches through `S`, so a declaration there wins.
+Both hooks are deliberately one name with one signature: a customization point that is an overload *set* would be hidden wholesale by a declaration in `S`, forcing every consumer to write `using Super::...` - keep it that way when adding one.
 
 Error recovery is anchor-based: an *anchor* is a `Tag` an enclosing context is still waiting for.
 `Parser::anchor(tag)` returns an RAII `Anchor` that anchors `tag` for the scope; `expect` it yourself at the end of that scope.
