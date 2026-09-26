@@ -205,7 +205,6 @@ protected:
     /// }
     /// ```
     [[nodiscard]] ScopedAnchor anchor(Tok l_tok, Tag r_tag) { return {*this, l_tok, r_tag}; }
-    [[nodiscard]] ScopedAnchor anchor(Tag r_tag) { return {*this, {}, r_tag}; }
 
     /// The innermost Anchor waiting for @p r_tag - `nullptr` if no enclosing context is.
     /// Scans the innermost anchor first, but *any* enclosing context counts.
