@@ -52,7 +52,7 @@ Nor does it write the diagnostics, and that is where the difference actually sho
 ### Diagnostics you did not write
 
 Those 203 lines already produce this.
-The error line and its snippet come out of `expect`; the note that points back at the `(` is a three-line `syntax_err` override plus one `fe::Restore` to remember which `(` it was:
+The error line and its snippet come out of `expect`; the note that points back at the `(` comes out of the anchor that was waiting for the `)` - neither costs a line of `let`:
 
 ```
 test/error/unclosed_paren.let:1:13: error: expected `)`, got `;` while parsing parenthesized expression
@@ -80,7 +80,7 @@ test/error/stray_paren.let:3:7: error: ignoring unmatched `)` while parsing prin
 3 error(s) encountered
 ```
 
-Every message above is FE's own wording, summary line included; the only text Let contributes is that one note.
+Every message above is FE's own wording, summary line included - Let contributes no text at all.
 A generator hands you the parse and `yyerror("syntax error")` - the snippets, the notes, the recovery, and the `--max-errors` truncation are yours to build.
 
 ### No generated code to debug
@@ -107,6 +107,7 @@ It provides a compact set of reusable, well-integrated components:
 
 - `fe::Lexer<K, S>` for UTF-8-aware lexing with lookahead and token text accumulation.
 - `fe::Parser<Tok, Tag, K, S>` for recursive-descent-style parsing with token lookahead, span tracking, and anchor-based error recovery.
+  An anchor also remembers the token that opened its context, so a `)` that never came points back at its `(` without a diagnostic of your own.
   Both blueprints ask their child for a `fe::Driver& driver()` and report their default diagnostics into its `Error`.
 - `fe::utf8` for lightweight UTF-8 handling.
 
@@ -234,8 +235,8 @@ If you want a concrete model to copy from, start with [`tests/lexer.cpp`](../tes
 Everything reports into the one `fe::Error` the `Driver` owns, and one diagnostic is one chained expression:
 
 ```cpp
-error().e(tok.loc(), "expected `)`, got `{}` while parsing {}", tok, Cite(ctxt))
-       .n(open.loc(), "unmatched `(` opened here");
+error().e(tok.loc(), "identifier `{}` already defined", sym)
+       .n(prev.loc(), "previous definition here");
 ```
 
 `Error::e` opens an error and `Error::w` a warning; `Error::n` hangs a note off whichever came last.

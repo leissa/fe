@@ -1,5 +1,7 @@
 #pragma once
 
+#include <concepts>
+
 #include <array>
 #include <exception>
 #include <format>
@@ -145,6 +147,12 @@ private:
     std::array<size_t, 3> num_ = {};
     bool truncated_            = false;
     bool dropped_              = false; ///< Was the Msg that Note%s would attach to dropped?
+};
+
+/// Every frontend building block reports into the Error of `S::driver`.
+template<class S>
+concept Diagnosable = requires(S& s) {
+    { s.driver().error() } -> std::convertible_to<Error&>;
 };
 
 } // namespace fe

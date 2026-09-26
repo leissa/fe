@@ -52,7 +52,7 @@ public:
 
     enum Prec { Err, Bot, Ass, Add, Mul };
 
-    Tok() {}
+    constexpr Tok() {}
     Tok(Loc loc, Tag tag)
         : loc_(loc)
         , tag_(tag) {}
@@ -65,9 +65,9 @@ public:
         , tag_(Tag::M_lit)
         , u64_(u64) {}
 
-    Tag tag() const { return tag_; }
+    constexpr Tag tag() const { return tag_; }
     Loc loc() const { return loc_; }
-    explicit operator bool() const { return tag_ != Tag::Nil; }
+    constexpr explicit operator bool() const { return tag_ != Tag::Nil; }
 
     static const char* tag2str(Tag tag) {
         switch (tag) {
@@ -168,6 +168,18 @@ private:
     fe::Driver& driver_;
 };
 
+/// A Tok whose default constructor yields something other than Tag::Nil breaks Parser::accept and Parser::expect.
+struct NotNilTok {
+    enum class Tag { Nil, Other };
+    constexpr Tag tag() const { return tag_; }
+    fe::Loc loc() const { return {}; }
+    constexpr explicit operator bool() const { return tag_ != Tag::Nil; }
+    Tag tag_ = Tag::Other;
+};
+
+static_assert(fe::Token<Tok, Tok::Tag>);
+static_assert(!fe::Token<NotNilTok, NotNilTok::Tag>);
+
 /// Minimal precedence-climbing expression parser, mirroring the intended `fe::Parser` usage in the
 /// sister `let` project: derive via CRTP, expose `lexer()`/`driver()`, drive the parse with
 /// the inherited `tracker`/`ahead`/`accept`/`expect`/`eat`/`lex` helpers.
@@ -224,8 +236,8 @@ private:
     std::string parse_primary(fe::Cite ctxt) {
         if (auto tok = accept(Tok::Tag::M_id)) return tok.to_string();
         if (auto tok = accept(Tok::Tag::M_lit)) return tok.to_string();
-        if (accept(Tok::Tag::D_paren_l)) {
-            auto _   = this->anchor(Tok::Tag::D_paren_r);
+        if (auto paren_l = accept(Tok::Tag::D_paren_l)) {
+            auto _   = this->anchor(Tok::Tag::D_paren_r, paren_l);
             auto str = parse_expr("parenthesized expression", Tok::Bot);
             expect(Tok::Tag::D_paren_r, "parenthesized expression");
             return str;
@@ -254,6 +266,12 @@ private:
     fe::Driver& driver_;
     Lexer<K> lexer_;
 };
+
+/// `lexer()`/`driver()` are part of the *public* contract: a named concept is checked in its own context,
+/// so these must hold out here and not merely inside the base.
+static_assert(fe::Diagnosable<Lexer<1>>);
+static_assert(fe::Diagnosable<Parser<1>>);
+static_assert(fe::Lexable<Parser<1>, Tok>);
 
 template<size_t K>
 void test_parser() {
@@ -328,6 +346,8 @@ void test_parser() {
         drv.error().clear();
         CHECK(str.contains("while parsing parenthesized expression"));
         CHECK(str.contains("expected `)`"));
+        // and the anchor remembers its `(`, so the default syntax_err notes it - this Parser declares none.
+        CHECK(str.contains("unmatched `(` opened here"));
     }
 }
 

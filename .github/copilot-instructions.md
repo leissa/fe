@@ -70,6 +70,7 @@ Beyond those, `src/fe/` implements `fe::dl` (`dl.h`, dynamic library loading), `
 
 - Declare in `include/fe/` and implement in `src/fe/`; only a template, a `constexpr` function, or a one-line accessor belongs in the header. The `.cpp` list is spelled out explicitly in `CMakeLists.txt`; the headers are globbed (`CONFIGURE_DEPENDS`) into the `headers` file set, which is what installs them and puts `include/` on the include path.
 - Default-constructed values are meaningful sentinels: `Tok{}` means parse failure, `Sym{}` is the empty symbol, and default `Pos`/`Loc` are invalid. `Parser::accept`/`Parser::expect` rely on this.
+  `fe::Parser` is constrained on the `fe::Token` concept, which spells that out: `Tok()` is falsy and tagged `Tag::Nil` - checked at compile time when `Tok` is `constexpr`-constructible, asserted in `Parser::init` otherwise.
 - `Loc::end` is **exclusive** (the byte one past the span), just like an STL iterator. `Loc::src` is a borrowed `const Src*`, so the `Src` must outlive the `Loc`; a `SrcMap` owns one for you.
 - `Loc` is kept at two machine words (`static_assert` in `loc.h`) so it stays a value passed in registers - do not grow it.
 - `SrcMap` interns paths under `SrcMap::key` (absolute, symlink-free, normalized), so one file yields exactly one `Src`. That is what lets `Loc` compare files by pointer - do not hand a `Loc` a `Src` that some other `SrcMap` (or nobody) owns.
@@ -91,7 +92,11 @@ Beyond those, `src/fe/` implements `fe::dl` (`dl.h`, dynamic library loading), `
 
 ## Lexer contract
 
-The derived class `S` must provide `fe::Driver& driver()` (and `friend` the base if it is private) - the default diagnostics go to its `Driver::error`.
+The derived class `S` must provide `fe::Driver& driver()` **publicly** - the default diagnostics go to its `Driver::error`.
+That is `fe::Diagnosable`: a named concept is checked in its own context, so a private `driver()` plus a `friend` makes it false for everyone but the base - which is an ODR trap, not a supported spelling.
+An `S` that "overrides" `next` must still yield the code point it consumed; that one is checked by an inline `requires` in `Lexer::next_`, since `Lexer::next` is protected and no named concept could see it from outside.
+`Diagnosable` is `static_assert`ed in the default diagnostics rather than on the class template, because `S` is still incomplete while that base is instantiated; `K >= 1` *is* a constraint on the class.
+`accept`/`accept_while` take a `std::predicate<char32_t>`, so a stray integer picks the `char32_t` overload instead of silently deducing one.
 
 Both of those come with a default implementation `S` may replace:
 
@@ -107,17 +112,22 @@ Both want `Lexer::start` to have run, so `loc_` spans exactly what was discarded
 
 ## Parser contract
 
-The derived class `S` must provide (and `friend` the base if they are private):
+The derived class `S` must provide, **publicly** - a named concept is checked in its own context, so a private member plus a `friend` makes the concept false for everyone but the base:
 
-- `Lexer& lexer()` - where `Parser::lex` pulls the next token from.
-- `fe::Driver& driver()` - the default diagnostics go to its `Driver::error`.
+- `Lexer& lexer()` - where `Parser::lex` pulls the next token from; that is `fe::Lexable`.
+- `fe::Driver& driver()` - the default diagnostics go to its `Driver::error`; that is `fe::Diagnosable`.
+
+`Lexable` is `static_assert`ed in `Parser::init` and `Diagnosable` in the default diagnostics, not on the class template - `S` is still incomplete while the base is instantiated.
+The class template is constrained on what it can see: `fe::Token<Tok, Tag>` and `K >= 1`.
+A default diagnostic additionally asserts `fe::Formattable` for the type it prints, and `tag2str_` asks for `Tok::tag2str` or a `std::formatter` for the `Tag`.
 
 Its constructor must call `Parser::init()` to fill the lookahead, *after* its lexer member is constructed.
 
 Both diagnostics come with a default implementation `S` may replace:
 
 - `fe::Error& syntax_err(Parser::Expected what, Cite ctxt, Tok got = {})` - `what` was expected but `got` showed up; an empty `got` means `Parser::ahead`.
-  `Expected` converts from a `Tag` as well as from markup and keeps both: `Expected::tag` holds the `Tag` if there was one, so an override can key off a particular token, and `Expected::what` is the rendered markup either way.
+  `Expected` converts from a `Tag` as well as from markup and keeps both: `Expected::tag` holds the `Tag` (`Tag::Nil` otherwise), so an override can key off a particular token, and `Expected::what` is the rendered markup either way.
+  It notes the opening token by itself when `what` is anchored, so do not hand-roll that note.
   `ctxt` is markup, so an override forwards it as-is - do not wrap or escape it again.
 - `fe::Error& unanchored_err(Tok, Loc, size_t n, Cite ctxt)` - `Parser::recover` discarded a run of `n` tokens starting with that one and spanning that `Loc`.
 
@@ -126,7 +136,10 @@ The Parser dispatches through `S`, so a declaration there wins.
 Both hooks are deliberately one name with one signature: a customization point that is an overload *set* would be hidden wholesale by a declaration in `S`, forcing every consumer to write `using Super::...` - keep it that way when adding one.
 
 Error recovery is anchor-based: an *anchor* is a `Tag` an enclosing context is still waiting for.
-`Parser::anchor(tag)` returns an RAII `Anchor` that anchors `tag` for the scope; `expect` it yourself at the end of that scope.
+`Parser::anchor(tag)` returns an RAII `ScopedAnchor` that pushes an `Anchor` for the scope; `expect` it yourself at the end of that scope.
+Pass the token that opened the context as well - `anchor(tag, tok)` - and the default `syntax_err` notes it on a missing `tag`:
+a `)` that never came points back at its `(` with no `syntax_err` of your own (`Parser::find_anchor(tag)` hands that anchor to one that wants it).
+An `Anchor` spells its two ends `l_tok`/`r_tag`: the *left* one opened the context, the *right* one is what it waits for.
 `Parser::recover` then discards only tokens that are *not* anchored, so a nested parser bails out instead of swallowing a token its caller needs.
 It reports one `unanchored_err` per run rather than per token, so the diagnostic that sent it recovering stays the first thing the user reads.
 Prefer this over hand-rolled skip loops, and keep `expect` context strings noun phrases ("parenthesized expression"): they end up inside the message `syntax_err` builds.

@@ -1,11 +1,12 @@
 #pragma once
 
+#include <concepts>
 #include <cstddef>
 
 #include <string>
 #include <string_view>
 
-#include "fe/driver.h"
+#include "fe/error.h"
 #include "fe/loc.h"
 #include "fe/ring.h"
 #include "fe/src.h"
@@ -17,20 +18,29 @@ namespace fe {
 /// You can "override" Lexer::next via CRTP (@p S is the child).
 /// The whole source has to sit in @p buf: a Pos is an index into it, so there is nothing left to
 /// keep track of - Lexer::next just hands out the byte range the code point it consumed occupied.
-/// @p S must provide somewhere to report to:
+/// @p S must provide somewhere to report to - publicly, so that fe::Diagnosable holds outside this class too:
 /// ```
 /// class MyLexer : public fe::Lexer<K, MyLexer> {
+/// public:
 ///     fe::Driver& driver();                ///< The default diagnostic below lands in its Driver::error.
-///
-///     friend fe::Lexer<K, MyLexer>;        ///< Otherwise, this may be private.
 /// };
 /// ```
 /// Lexer::utf8_err and Lexer::char_err come with a default; declare either in @p S to word it differently.
 template<size_t K, class S>
-class Lexer {
+requires(K >= 1) class Lexer {
 private:
     S& self() { return *static_cast<S*>(this); }
     const S& self() const { return *static_cast<const S*>(this); }
+
+    /// The one place Lexer dispatches to `S::next`; @p S is complete by the time this body is instantiated.
+    /// The check is spelled inline: Lexer::next is protected, so a named concept would be false outside this class.
+    char32_t next_() {
+        static_assert(
+            requires(S& s) {
+                { s.next() } -> std::convertible_to<char32_t>;
+            }, "`S::next` must yield the code point it consumed");
+        return self().next();
+    }
 
 public:
     Lexer(std::string_view buf)
@@ -94,9 +104,9 @@ protected:
     }
 
     /// Accept next character in Lexer::buf_ and Lexer::next it, if @p pred holds.
-    bool accept(auto pred) {
+    bool accept(std::predicate<char32_t> auto pred) {
         if (!pred(ahead())) return false;
-        self().next();
+        next_();
         return true;
     }
 
@@ -113,7 +123,7 @@ protected:
     /// A character beyond ASCII falls back to Lexer::next, so @p pred may match one.
     /// @note Only worth it if the lexed text is expected to be long such as identifiers or comments.
     /// @returns the run just consumed.
-    std::string_view accept_while(auto pred) {
+    std::string_view accept_while(std::predicate<char32_t> auto pred) {
         auto begin = ahead_[0].begin.off;
 
         while (true) {
@@ -129,7 +139,7 @@ protected:
 
             auto c = ahead();
             if (c < 0x80 || c == utf8::EoF || !pred(c)) break;
-            self().next();
+            next_();
         }
 
         return buf_.substr(begin, loc_.end.off - begin);
@@ -197,7 +207,7 @@ protected:
     /// @warning Never at utf8::EoF - accept that first or your lexer will spin.
     void recover_char() {
         auto c = ahead();
-        self().next();
+        next_();
         self().char_err(c);
     }
     ///@}
@@ -211,17 +221,13 @@ protected:
 
     /// Lexer::recover_utf8 discarded the malformed bytes at Lexer::loc_.
     fe::Error& utf8_err() {
-        static_assert(
-            requires(S& s) { s.driver(); },
-            "provide `fe::Driver& driver()` in your lexer - or a `utf8_err` of your own");
+        static_assert(Diagnosable<S>, "provide `fe::Driver& driver()` in your lexer - or a `utf8_err` of your own");
         return error().e(loc_, "invalid UTF-8 sequence");
     }
 
     /// Lexer::recover_char discarded @p c at Lexer::loc_.
     fe::Error& char_err(char32_t c) {
-        static_assert(
-            requires(S& s) { s.driver(); },
-            "provide `fe::Driver& driver()` in your lexer - or a `char_err` of your own");
+        static_assert(Diagnosable<S>, "provide `fe::Driver& driver()` in your lexer - or a `char_err` of your own");
         return error().e(loc_, "invalid input character `{}`", utf8::Char32(c));
     }
     ///@}

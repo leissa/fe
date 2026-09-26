@@ -3,20 +3,42 @@
 #include <concepts>
 
 #include <algorithm>
-#include <deque>
-#include <format>
-#include <optional>
+#include <type_traits>
 
-#include "fe/driver.h"
+#include "fe/assert.h"
+#include "fe/error.h"
+#include "fe/format.h"
 #include "fe/loc.h"
 #include "fe/ring.h"
+#include "fe/vector.h"
 
 namespace fe {
+
+/// What fe::Parser needs of its Tok%en type: a Tag and a Loc, copied in and out of the lookahead by value.
+/// Parser::accept and Parser::expect indicate failure by returning a default-constructed Tok%en,
+/// so `Tok()` must be falsy and tagged Tag::Nil.
+/// That sentinel is only checkable here if `Tok()` is usable in a constant expression - Parser::init asserts it.
+template<class Tok, class Tag>
+concept Token = requires(const Tok tok) {
+    Tag::Nil;
+    { tok.tag() } -> std::convertible_to<Tag>;
+    { tok.loc() } -> std::convertible_to<Loc>;
+    requires std::equality_comparable<Tag>;
+    requires std::semiregular<Tok>;
+    requires std::constructible_from<bool, Tok>;
+    requires !requires { std::integral_constant<Tag, Tok().tag()>(); } || Tok().tag() == Tag::Nil;
+};
+
+/// What fe::Parser needs of its CRTP child @p S beyond fe::Diagnosable: the Lexer to pull Tok%ens from.
+template<class S, class Tok>
+concept Lexable = requires(S& s) {
+    { s.lexer().lex() } -> std::convertible_to<Tok>;
+};
 
 /// The blueprint for a [recursive descent](https://en.wikipedia.org/wiki/Recursive_descent_parser)/
 /// [ascent parser](https://en.wikipedia.org/wiki/Recursive_ascent_parser) using a @p K lookahead of `Tok`ens.
 /// Parser::accept and Parser::expect indicate failure by constructing a @p Tok%en with its default constructor.
-/// Hence, @p Tok must be default-constructible *and* testable as a `bool` (to check for that failure):
+/// Hence, @p Tok must be an fe::Token - default-constructible, testable as a `bool`, and tagged Tag::Nil:
 /// ```
 /// class Tok {
 /// public:
@@ -35,20 +57,19 @@ namespace fe {
 ///     do_something(tok);
 /// }
 /// ```
-/// @p S must provide the Lexer to pull from and the Driver to report to:
+/// @p S must provide the Lexer to pull from and the Driver to report to - publicly,
+/// so that fe::Lexable and fe::Diagnosable hold outside this class too:
 /// ```
 /// class MyParser : public fe::Parser<Tok, Tok::Tag, K, MyParser> {
-///     Lexer& lexer();                                ///< Parser::lex pulls the next Tok%en from here.
-///     fe::Driver& driver();                          ///< The default diagnostics below land in its Driver::error.
-///
-///     friend fe::Parser<Tok, Tok::Tag, K, MyParser>; ///< Otherwise, these may be private.
+/// public:
+///     Lexer& lexer();     ///< Parser::lex pulls the next Tok%en from here.
+///     fe::Driver& driver(); ///< The default diagnostics below land in its Driver::error.
 /// };
 /// ```
 /// Parser::syntax_err and Parser::unanchored_err come with a default; declare either in @p S to word it differently.
 /// Each is one name with one signature, so a declaration in @p S replaces it outright - no `using` of the base needed.
 template<class Tok, class Tag, size_t K, class S>
-requires std::is_default_constructible_v<Tok>
-      && (std::is_convertible_v<Tok, bool> || std::is_constructible_v<bool, Tok>)class Parser {
+requires Token<Tok, Tag> && (K >= 1) class Parser {
 private:
     S& self() { return *static_cast<S*>(this); }
     const S& self() const { return *static_cast<const S*>(this); }
@@ -57,6 +78,8 @@ protected:
     /// @name Construction
     ///@{
     void init() {
+        static_assert(Lexable<S, Tok>, "provide `Lexer& lexer()` in your parser - its `lex` is what feeds the Parser");
+        assert(!Tok() && Tok().tag() == Tag::Nil && "a default-constructed Tok must be the Nil token");
         ahead_.reset();
         for (size_t i = 0; i != K; ++i)
             ahead_[i] = self().lexer().lex();
@@ -139,18 +162,24 @@ protected:
     }
     ///@}
 
-    /// RAII helper that anchors a @p Tag for its lifetime; use Parser::anchor to build one.
-    class Anchor {
-    public:
-        Anchor(const Anchor&)            = delete;
-        Anchor& operator=(const Anchor&) = delete;
+    /// One anchor; the *left* end opened the context, the *right* one is what it is still waiting for.
+    struct Anchor {
+        Tok l_tok; ///< The Tok%en that opened the context; default-constructed unless Parser::anchor was given one.
+        Tag r_tag; ///< The closing Tag that context is waiting for.
+    };
 
-        Anchor(Parser& parser, Tag tag)
+    /// RAII helper that pushes a Parser::Anchor for its lifetime; use Parser::anchor to build one.
+    class ScopedAnchor {
+    public:
+        ScopedAnchor(const ScopedAnchor&)            = delete;
+        ScopedAnchor& operator=(const ScopedAnchor&) = delete;
+
+        ScopedAnchor(Parser& parser, Tag r_tag, Tok l_tok)
             : parser_(parser) {
-            parser_.anchors_.emplace_back(tag);
+            parser_.anchors_.emplace_back(std::move(l_tok), r_tag);
         }
 
-        ~Anchor() { parser_.anchors_.pop_back(); }
+        ~ScopedAnchor() { parser_.anchors_.pop_back(); }
 
     private:
         Parser& parser_;
@@ -163,29 +192,39 @@ protected:
     /// A `)` that is *not* anchored, however, is simply bogus and Parser::recover discards it.
     ///@{
 
-    /// Factory method to build a Parser::Anchor; Parser::expect @p tag yourself at the end of the scope.
+    /// Factory method to build a Parser::ScopedAnchor; Parser::expect @p r_tag yourself at the end of the scope.
+    /// Hand the Tok%en that opened this context to @p l_tok and Parser::syntax_err notes it on a missing @p r_tag,
+    /// which is all it takes to point a `)` that never came back at its `(`.
     /// Use like this:
     /// ```
-    /// if (accept(Tag::D_paren_l)) {
-    ///     auto _    = this->anchor(Tag::D_paren_r);
+    /// if (auto paren_l = accept(Tag::D_paren_l)) {
+    ///     auto _    = this->anchor(Tag::D_paren_r, paren_l);
     ///     auto expr = parse_expr();
     ///     expect(Tag::D_paren_r, "parenthesized expression");
     ///     return expr;
     /// }
     /// ```
-    [[nodiscard]] Anchor anchor(Tag tag) { return {*this, tag}; }
+    [[nodiscard]] ScopedAnchor anchor(Tag r_tag, Tok l_tok = {}) { return {*this, r_tag, l_tok}; }
 
-    /// Is @p tag anchored by an enclosing context?
+    /// The innermost Anchor waiting for @p r_tag - `nullptr` if no enclosing context is.
     /// Scans the innermost anchor first, but *any* enclosing context counts.
-    bool anchored(Tag tag) const { return std::find(anchors_.rbegin(), anchors_.rend(), tag) != anchors_.rend(); }
+    const Anchor* find_anchor(Tag r_tag) const {
+        if (r_tag == Tag::Nil) return nullptr;
+        auto i
+            = std::find_if(anchors_.rbegin(), anchors_.rend(), [r_tag](const Anchor& a) { return a.r_tag == r_tag; });
+        return i == anchors_.rend() ? nullptr : &*i;
+    }
 
-    /// Parser::lex all Tok%ens whose Tag satisfies @p pred and that are not Parser::anchored;
+    /// Is @p r_tag anchored by an enclosing context?
+    bool is_anchored(Tag r_tag) const { return find_anchor(r_tag); }
+
+    /// Parser::lex all Tok%ens whose Tag satisfies @p pred and that are not Parser::is_anchored;
     /// report the whole run as a single `S::unanchored_err`.
     /// This turns an otherwise fatal Tok%en into a mere error message and keeps the current parser going.
     /// One mistake discards one run, so one run is one diagnostic: a message per token buries the real error.
     template<std::predicate<Tag> P>
     void recover(P pred, Cite ctxt) {
-        auto discard = [this, &pred] { return pred(ahead().tag()) && !anchored(ahead().tag()); };
+        auto discard = [this, &pred] { return pred(ahead().tag()) && !is_anchored(ahead().tag()); };
         if (!discard()) return;
 
         auto first = lex();
@@ -207,8 +246,8 @@ protected:
     /// Both spellings are one parameter rather than two overloads, so that Parser::syntax_err stays a single
     /// signature: a declaration in @p S then replaces it instead of hiding a set of siblings alongside it.
     struct Expected {
-        std::optional<Tag> tag; ///< Nothing if the expectation was not a Tag.
-        Cited what;             ///< Already rendered as markup - Parser::tag2str_ backticks a Tag.
+        Tag tag = Tag::Nil; ///< Tag::Nil, if the expectation was not a Tag.
+        Cited what;         ///< Already rendered as markup - Parser::tag2str_ backticks a Tag.
 
         Expected(Tag tag)
             : tag(tag)
@@ -231,19 +270,23 @@ protected:
 
     /// Parser::expect did not find @p what while parsing @p ctxt; @p got defaults to Parser::ahead.
     /// @p ctxt is markup, so backtick a literal token within it yourself.
+    /// A @p what that an enclosing context anchors gets a Note pointing back at the Tok%en that opened it -
+    /// the `(` of a `)` that never came - as long as Parser::anchor was handed that token.
     fe::Error& syntax_err(Expected what, Cite ctxt, Tok got = {}) {
-        static_assert(
-            requires(S& s) { s.driver(); },
-            "provide `fe::Driver& driver()` in your parser - or a `syntax_err` of your own");
+        static_assert(Diagnosable<S>, "provide `fe::Driver& driver()` in your parser - or a `syntax_err` of your own");
+        static_assert(Formattable<Tok>, "provide a `std::formatter` for your Tok - or a `syntax_err` of your own");
         if (!got) got = ahead();
-        return error().e(got.loc(), "expected {}, got `{}` while parsing {}", what.what, got, ctxt);
+        auto& err = error().e(got.loc(), "expected {}, got `{}` while parsing {}", what.what, got, ctxt);
+        if (auto* a = find_anchor(what.tag); a && a->l_tok)
+            err.n(a->l_tok.loc(), "unmatched `{}` opened here", a->l_tok);
+        return err;
     }
 
     /// Parser::recover discarded a run of @p n Tok%ens starting with @p tok and spanning @p loc while parsing @p ctxt.
     fe::Error& unanchored_err(Tok tok, Loc loc, size_t n, Cite ctxt) {
-        static_assert(
-            requires(S& s) { s.driver(); },
-            "provide `fe::Driver& driver()` in your parser - or an `unanchored_err` of your own");
+        static_assert(Diagnosable<S>,
+                      "provide `fe::Driver& driver()` in your parser - or an `unanchored_err` of your own");
+        static_assert(Formattable<Tok>, "provide a `std::formatter` for your Tok - or an `unanchored_err` of your own");
         if (n == 1) return error().e(loc, "ignoring unmatched `{}` while parsing {}", tok, ctxt);
         return error().e(loc, "ignoring {} unmatched tokens starting with `{}` while parsing {}", n, tok, ctxt);
     }
@@ -251,15 +294,17 @@ protected:
 
     /// Spells @p tag out via `Tok::tag2str` if there is one - a bare enumerator would render as its number.
     static auto tag2str_(Tag tag) {
-        if constexpr (requires { Tok::tag2str(tag); })
+        if constexpr (requires { Tok::tag2str(tag); }) {
             return format_cite("`{}`", Tok::tag2str(tag));
-        else
+        } else {
+            static_assert(Formattable<Tag>, "provide `Tok::tag2str` - or a `std::formatter` for your Tag");
             return format_cite("`{}`", tag);
+        }
     }
 
     Ring<Tok, K> ahead_;
     Loc curr_;
-    std::deque<Tag> anchors_;
+    Vector<Anchor> anchors_;
 };
 
 } // namespace fe
