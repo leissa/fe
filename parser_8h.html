@@ -163,6 +163,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('parser_8h.html
 <code>#include &lt;algorithm&gt;</code><br />
 <code>#include &lt;deque&gt;</code><br />
 <code>#include &lt;format&gt;</code><br />
+<code>#include &lt;optional&gt;</code><br />
 <code>#include &quot;<a class="el" href="driver_8h_source.html">fe/driver.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="loc_8h_source.html">fe/loc.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ring_8h_source.html">fe/ring.h</a>&quot;</code><br />
@@ -181,6 +182,8 @@ Classes</h2></td></tr>
 <tr class="memitem:fe_3A_3AParser_3C_20Tok_2C_20Tag_2C_20K_2C_20S_20_3E_3A_3ATracker" id="r_fe_3A_3AParser_3C_20Tok_2C_20Tag_2C_20K_2C_20S_20_3E_3A_3ATracker"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Parser_1_1Tracker.html">fe::Parser&lt; Tok, Tag, K, S &gt;::Tracker</a></td></tr>
 <tr class="memitem:fe_3A_3AParser_3C_20Tok_2C_20Tag_2C_20K_2C_20S_20_3E_3A_3AAnchor" id="r_fe_3A_3AParser_3C_20Tok_2C_20Tag_2C_20K_2C_20S_20_3E_3A_3AAnchor"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Parser_1_1Anchor.html">fe::Parser&lt; Tok, Tag, K, S &gt;::Anchor</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">RAII helper that anchors a <code class="param">Tag</code> for its lifetime; use <a class="el" href="classfe_1_1Parser.html#abb77f69879ac8c534434df81bf1b33a4" title="Factory method to build a Parser::Anchor; Parser::expect tag yourself at the end of the scope.">Parser::anchor</a> to build one.  <a href="classfe_1_1Parser_1_1Anchor.html#details">More...</a><br /></td></tr>
+<tr class="memitem:fe_3A_3AParser_3C_20Tok_2C_20Tag_2C_20K_2C_20S_20_3E_3A_3AExpected" id="r_fe_3A_3AParser_3C_20Tok_2C_20Tag_2C_20K_2C_20S_20_3E_3A_3AExpected"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1Parser_1_1Expected.html">fe::Parser&lt; Tok, Tag, K, S &gt;::Expected</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">What <a class="el" href="classfe_1_1Parser.html#a8d3515757df0b24385e51e953b9c3899" title="Parser::lex Parser::ahead() which must be a tag.">Parser::expect</a> was after - a Tag, or free-form markup.  <a href="structfe_1_1Parser_1_1Expected.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>

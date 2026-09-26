@@ -2,6 +2,7 @@ var classfe_1_1Parser =
 [
     [ "Tracker", "classfe_1_1Parser_1_1Tracker.html", "classfe_1_1Parser_1_1Tracker" ],
     [ "Anchor", "classfe_1_1Parser_1_1Anchor.html", "classfe_1_1Parser_1_1Anchor" ],
+    [ "Expected", "structfe_1_1Parser_1_1Expected.html", "structfe_1_1Parser_1_1Expected" ],
     [ "accept", "classfe_1_1Parser.html#ad7acb49705c085f2ae9e7464f03eb3c0", null ],
     [ "ahead", "classfe_1_1Parser.html#af07368e3fabbf75a441b4e206fba2aa4", null ],
     [ "anchor", "classfe_1_1Parser.html#abb77f69879ac8c534434df81bf1b33a4", null ],
@@ -15,9 +16,7 @@ var classfe_1_1Parser =
     [ "lex", "classfe_1_1Parser.html#a5d4335bae86e3127fbf5b42fb0fcd3e7", null ],
     [ "recover", "classfe_1_1Parser.html#a32505015e6aee87c21b8c2ec6bc920a2", null ],
     [ "recover", "classfe_1_1Parser.html#a9cc6a9f60154118843b33c06b91e5aae", null ],
-    [ "syntax_err", "classfe_1_1Parser.html#a10973fb456a4516a27c9f4f35963fa4b", null ],
-    [ "syntax_err", "classfe_1_1Parser.html#a947bf829998cb9add97d7408f9a87a8c", null ],
-    [ "syntax_err", "classfe_1_1Parser.html#a527a47d8fb1b8e158c55a6e5e4d09c5e", null ],
+    [ "syntax_err", "classfe_1_1Parser.html#a4bd424773766a48d000f493f497c1179", null ],
     [ "tag2str_", "classfe_1_1Parser.html#a729e065306271ccbfdf2b74ca8223932", null ],
     [ "tracker", "classfe_1_1Parser.html#aea3507b75aa247b9431256f5463a7821", null ],
     [ "tracker", "classfe_1_1Parser.html#a4a964da822c8e0c743a8e5fce865ca20", null ],

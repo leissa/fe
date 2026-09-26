@@ -4,7 +4,7 @@ var searchData=
   ['w_1',['w',['../classfe_1_1Error.html#a1a3a6f586e8ea9d163a1fe208a58bc91',1,'fe::Error::w()'],['../classfe_1_1Log.html#a9ff17172a0c0b4c3fbd094b1a8cd9b17',1,'fe::Log::w()']]],
   ['warn_2',['Warn',['../classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1fa56525ae64d370c0b448ac0d60710ef17',1,'fe::Diag::Warn'],['../classfe_1_1Log.html#aec116a9875f7cc3d51340c05c19b3d06a56525ae64d370c0b448ac0d60710ef17',1,'fe::Log::Warn']]],
   ['werror_3',['werror',['../classfe_1_1Diag.html#a5747acf837fe2fe734f9a5ed3823f196',1,'fe::Diag']]],
-  ['what_4',['what',['../classfe_1_1Error_1_1Bail.html#adcecc911f3639fc4f533253c4547b730',1,'fe::Error::Bail']]],
+  ['what_4',['what',['../structfe_1_1Parser_1_1Expected.html#a4ed44edd9d9b30d15bb0c2783ef38e40',1,'fe::Parser::Expected::what'],['../classfe_1_1Error_1_1Bail.html#adcecc911f3639fc4f533253c4547b730',1,'fe::Error::Bail::what()']]],
   ['which_5',['Which',['../namespacefe_1_1sys.html#aeb47d052f0b69ba9e06edf12f71946ad',1,'fe::sys']]],
   ['why_20fe_6',['💡 Why FE?',['../index.html#autotoc_md1',1,'']]],
   ['width_7',['width',['../namespacefe_1_1term.html#aa553472665f575bceb82bdbbac9b8837',1,'fe::term']]],

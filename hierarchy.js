@@ -25,6 +25,7 @@ var hierarchy =
     [ "std::exception", null, [
       [ "fe::Error::Bail", "classfe_1_1Error_1_1Bail.html", null ]
     ] ],
+    [ "fe::Parser&lt; Tok, Tag, K, S &gt;::Expected", "structfe_1_1Parser_1_1Expected.html", null ],
     [ "std::false_type", null, [
       [ "fe::is_bit_enum< T >", "structfe_1_1is__bit__enum.html", null ]
     ] ],
