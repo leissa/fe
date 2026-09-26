@@ -89,7 +89,7 @@ var hierarchy =
     [ "fe::Sym::String", "structfe_1_1Sym_1_1String.html", null ],
     [ "ankerl::svector", null, [
       [ "fe::Vector< fe::Dbg >", "classfe_1_1Vector.html", null ],
-      [ "fe::Vector< fe::Parser::Anchor >", "classfe_1_1Vector.html", null ],
+      [ "fe::Vector< fe::Parser::Anchor, 8 >", "classfe_1_1Vector.html", null ],
       [ "fe::Vector< T, N, A >", "classfe_1_1Vector.html", null ]
     ] ],
     [ "fe::Sym", "classfe_1_1Sym.html", null ],
