@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['back_0',['back',['../classfe_1_1Sym.html#a3e0afe054d407542069a0b631704d372',1,'fe::Sym::back()'],['../classfe_1_1Worklist.html#ab7e485aa3f02bc9920ab81edc1f45f1c',1,'fe::Worklist::back()'],['../classfe_1_1Worklist.html#a37b11171006ef15928142135d70b7c0f',1,'fe::Worklist::back() const']]],
+  ['back_0',['back',['../classfe_1_1Sym.html#a3e0afe054d407542069a0b631704d372',1,'fe::Sym::back()'],['../classfe_1_1VectorQueue.html#ad1ba95fcfcbaa2980158876b5b920994',1,'fe::VectorQueue::back()'],['../classfe_1_1VectorQueue.html#a6253c502206b4fd1019e523ebcee9f65',1,'fe::VectorQueue::back() const'],['../classfe_1_1Worklist.html#ab7e485aa3f02bc9920ab81edc1f45f1c',1,'fe::Worklist::back()'],['../classfe_1_1Worklist.html#a37b11171006ef15928142135d70b7c0f',1,'fe::Worklist::back() const']]],
   ['bail_1',['Bail',['../classfe_1_1Error_1_1Bail.html#a5a224da9b574b6a66841ad67d3aa6b85',1,'fe::Error::Bail']]],
   ['bail_2',['bail',['../classfe_1_1Error.html#a4c1692799986392837a8bb3552384eb9',1,'fe::Error']]],
   ['begin_3',['begin',['../classfe_1_1Bitset.html#a707c897a250651f643b17562e10ebeb5',1,'fe::Bitset::begin()'],['../classfe_1_1Patricia_1_1Set.html#a3e77e4f37c490cb92075fbbcd5dc25c8',1,'fe::Patricia::Set::begin()'],['../classfe_1_1Src.html#a31c97c626b05697dd272de7279ba2f46',1,'fe::Src::begin()'],['../classfe_1_1Sym.html#a20d21940d48a8d6f9fc362938d67af85',1,'fe::Sym::begin()'],['../classfe_1_1XTrie_1_1Set.html#a4d7e03fffaba8aefae918e63f43d585f',1,'fe::XTrie::Set::begin()']]],

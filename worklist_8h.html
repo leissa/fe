@@ -161,12 +161,12 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('worklist_8h.ht
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;cstddef&gt;</code><br />
-<code>#include &lt;queue&gt;</code><br />
 <code>#include &lt;ranges&gt;</code><br />
 <code>#include &lt;stack&gt;</code><br />
 <code>#include &lt;type_traits&gt;</code><br />
 <code>#include &lt;utility&gt;</code><br />
 <code>#include &quot;<a class="el" href="container_8h_source.html">fe/container.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="vector_8h_source.html">fe/vector.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for worklist.h:</div>
 <div class="dyncontent">
@@ -177,6 +177,8 @@ Include dependency graph for worklist.h:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:fe_3A_3AVectorQueue_3C_20T_2C_20N_20_3E" id="r_fe_3A_3AVectorQueue_3C_20T_2C_20N_20_3E"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1VectorQueue.html">fe::VectorQueue&lt; T, N &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A FIFO queue over a <a class="el" href="classfe_1_1Vector.html" title="This is a thin wrapper for ankerl::svector&lt;T, N, A&gt; which is a drop-in replacement for std::vector&lt;T,...">Vector</a>.  <a href="classfe_1_1VectorQueue.html#details">More...</a><br /></td></tr>
 <tr class="memitem:fe_3A_3AWorklist_3C_20Set_2C_20C_20_3E" id="r_fe_3A_3AWorklist_3C_20Set_2C_20C_20_3E"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Worklist.html">fe::Worklist&lt; Set, C &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A worklist that pushes each element at most once.  <a href="classfe_1_1Worklist.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
@@ -186,10 +188,10 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a0cf8b223e0a15d8cae20a0d8b332e8b9" id="r_a0cf8b223e0a15d8cae20a0d8b332e8b9"><td class="memTemplParams" colspan="2">template&lt;class Set&gt; </td></tr>
-<tr class="memitem:a0cf8b223e0a15d8cae20a0d8b332e8b9 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a0cf8b223e0a15d8cae20a0d8b332e8b9">fe::BFSWorklist</a> = <a class="el" href="classfe_1_1Worklist.html">Worklist</a>&lt;Set, std::queue&lt;detail::WorklistElem&lt;Set&gt;&gt;&gt;</td></tr>
-<tr class="memitem:a549e9d25223dacc899ddef74bf627b3f" id="r_a549e9d25223dacc899ddef74bf627b3f"><td class="memTemplParams" colspan="2">template&lt;class Set&gt; </td></tr>
-<tr class="memitem:a549e9d25223dacc899ddef74bf627b3f template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a549e9d25223dacc899ddef74bf627b3f">fe::DFSWorklist</a> = <a class="el" href="classfe_1_1Worklist.html">Worklist</a>&lt;Set, std::stack&lt;detail::WorklistElem&lt;Set&gt;&gt;&gt;</td></tr>
+<tr class="memitem:a6ad23aaf34f135222c77e8318e302766" id="r_a6ad23aaf34f135222c77e8318e302766"><td class="memTemplParams" colspan="2">template&lt;class Set&gt; </td></tr>
+<tr class="memitem:a6ad23aaf34f135222c77e8318e302766 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a6ad23aaf34f135222c77e8318e302766">fe::BFSWorklist</a> = <a class="el" href="classfe_1_1Worklist.html">Worklist</a>&lt;Set, <a class="el" href="classfe_1_1VectorQueue.html">VectorQueue</a>&lt;detail::WorklistElem&lt;Set&gt;&gt;&gt;</td></tr>
+<tr class="memitem:a5a41d580caea2a76244072823f837135" id="r_a5a41d580caea2a76244072823f837135"><td class="memTemplParams" colspan="2">template&lt;class Set&gt; </td></tr>
+<tr class="memitem:a5a41d580caea2a76244072823f837135 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a5a41d580caea2a76244072823f837135">fe::DFSWorklist</a> = <a class="el" href="classfe_1_1Worklist.html">Worklist</a>&lt;Set, std::stack&lt;detail::WorklistElem&lt;Set&gt;, <a class="el" href="classfe_1_1Vector.html">Vector</a>&lt;detail::WorklistElem&lt;Set&gt;&gt;&gt;&gt;</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

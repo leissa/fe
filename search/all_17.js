@@ -11,8 +11,8 @@ var searchData=
   ['workflow_8',['🧭 Typical Workflow',['../index.html#autotoc_md17',1,'']]],
   ['worklist_9',['Worklist',['../classfe_1_1Worklist.html',1,'fe::Worklist&lt; Set, C &gt;'],['../classfe_1_1Worklist.html#a267d6e56be1e45b94b0879ea7a138bd6',1,'fe::Worklist::Worklist()=default'],['../classfe_1_1Worklist.html#a8c7074309e46f7d9c3b453d02ee6de2e',1,'fe::Worklist::Worklist(Set set)'],['../classfe_1_1Worklist.html#a60b0d2b8923547a53f87846bed1addf7',1,'fe::Worklist::Worklist(std::initializer_list&lt; T &gt; init)']]],
   ['worklist_2eh_10',['worklist.h',['../worklist_8h.html',1,'']]],
-  ['worklist_3c_20set_2c_20std_3a_3aqueue_3c_20detail_3a_3aworklistelem_3c_20set_20_3e_20_3e_20_3e_11',['Worklist&lt; Set, std::queue&lt; detail::WorklistElem&lt; Set &gt; &gt; &gt;',['../namespacefe.html#classfe_1_1Worklist',1,'fe']]],
-  ['worklist_3c_20set_2c_20std_3a_3astack_3c_20detail_3a_3aworklistelem_3c_20set_20_3e_20_3e_20_3e_12',['Worklist&lt; Set, std::stack&lt; detail::WorklistElem&lt; Set &gt; &gt; &gt;',['../namespacefe.html#classfe_1_1Worklist',1,'fe']]],
+  ['worklist_3c_20set_2c_20std_3a_3astack_3c_20detail_3a_3aworklistelem_3c_20set_20_3e_2c_20vector_3c_20detail_3a_3aworklistelem_3c_20set_20_3e_20_3e_20_3e_20_3e_11',['Worklist&lt; Set, std::stack&lt; detail::WorklistElem&lt; Set &gt;, Vector&lt; detail::WorklistElem&lt; Set &gt; &gt; &gt; &gt;',['../namespacefe.html#classfe_1_1Worklist',1,'fe']]],
+  ['worklist_3c_20set_2c_20vectorqueue_3c_20detail_3a_3aworklistelem_3c_20set_20_3e_20_3e_20_3e_12',['Worklist&lt; Set, VectorQueue&lt; detail::WorklistElem&lt; Set &gt; &gt; &gt;',['../namespacefe.html#classfe_1_1Worklist',1,'fe']]],
   ['write_13',['Diagnostics you did not write',['../index.html#autotoc_md3',1,'']]],
   ['writing_20a_20diagnostic_14',['💬 Writing a Diagnostic',['../index.html#autotoc_md18',1,'']]]
 ];
