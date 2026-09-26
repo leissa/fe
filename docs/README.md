@@ -362,6 +362,18 @@ cmake --build build --target docs
 
 This requires Doxygen and Graphviz (`dot`).
 
+An embedded FE also exports where its Doxygen assets live, so a consumer can dress its own documentation in the same theme instead of vendoring a second copy:
+
+```cmake
+set(MY_STYLESHEETS
+    "${FE_DOXY_AWESOME}/doxygen-awesome.css"    # the doxygen-awesome-css submodule FE already pulls in
+    "${FE_DOXY_DIR}/theme.css"                  # FE's colour palette, light and dark
+    "${FE_DOXY_DIR}/doxygen-fixes.css"          # what doxygen-awesome leaves unthemed
+)
+```
+
+MimIR builds its manual this way.
+
 ## 🔨 Related Projects
 
 FE is developed against three frontends of very different scale, and every change has to work for all three:

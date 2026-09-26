@@ -161,6 +161,10 @@ if(BUILD_TESTING AND CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     add_subdirectory(tests)
 endif()
 
+# A consumer that embeds FE dresses its own Doxygen in the same theme instead of vendoring a second copy of it.
+set(FE_DOXY_AWESOME "${CMAKE_CURRENT_SOURCE_DIR}/submodules/doxygen-awesome-css" CACHE INTERNAL "doxygen-awesome-css as shipped with FE")
+set(FE_DOXY_DIR     "${CMAKE_CURRENT_SOURCE_DIR}/docs"                           CACHE INTERNAL "FE's shared Doxygen theme and fixes")
+
 option(FE_BUILD_DOCS "If ON, documentation will be built (requires Doxygen)." OFF)
 if(FE_BUILD_DOCS)
     find_package(Doxygen REQUIRED dot)
