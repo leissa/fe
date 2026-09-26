@@ -174,7 +174,7 @@ protected:
         ScopedAnchor(const ScopedAnchor&)            = delete;
         ScopedAnchor& operator=(const ScopedAnchor&) = delete;
 
-        ScopedAnchor(Parser& parser, Tag r_tag, Tok l_tok)
+        ScopedAnchor(Parser& parser, Tok l_tok, Tag r_tag)
             : parser_(parser) {
             parser_.anchors_.emplace_back(std::move(l_tok), r_tag);
         }
@@ -204,7 +204,8 @@ protected:
     ///     return expr;
     /// }
     /// ```
-    [[nodiscard]] ScopedAnchor anchor(Tag r_tag, Tok l_tok = {}) { return {*this, r_tag, l_tok}; }
+    [[nodiscard]] ScopedAnchor anchor(Tok l_tok, Tag r_tag) { return {*this, l_tok, r_tag}; }
+    [[nodiscard]] ScopedAnchor anchor(Tag r_tag) { return {*this, {}, r_tag}; }
 
     /// The innermost Anchor waiting for @p r_tag - `nullptr` if no enclosing context is.
     /// Scans the innermost anchor first, but *any* enclosing context counts.
