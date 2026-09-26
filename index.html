@@ -286,18 +286,18 @@ Diagnostics you did not write</h2>
 <div class="fragment"><div class="line">test/error/unclosed_paren.let:1:13: error: expected `)`, got `;` while parsing parenthesized expression</div>
 <div class="line">    1 | print (1 + 2;</div>
 <div class="line">      |             ^</div>
-<div class="line">      test/error/unclosed_paren.let:1:7: note: unmatched `(` opened here</div>
+<div class="line">      test/error/unclosed_paren.let:1:7: note: to match this `(`</div>
 <div class="line">    1 | print (1 + 2;</div>
 <div class="line">      |       ^</div>
 <div class="line">1 error(s) encountered</div>
 </div><!-- fragment --><p>An <em>anchor</em> is a token an enclosing context is still waiting for, so a nested parser bails out instead of swallowing it. That is what lets a stray <span class="tt">)</span> be a message the parser recovers from - three times in one run - instead of the end of the parse:</p>
-<div class="fragment"><div class="line">test/error/stray_paren.let:1:12: error: ignoring unmatched `)` while parsing right-hand side of binary expression</div>
+<div class="fragment"><div class="line">test/error/stray_paren.let:1:12: error: ignoring stray `)` while parsing right-hand side of binary expression</div>
 <div class="line">    1 | print 3 + 4) + 5;</div>
 <div class="line">      |            ^</div>
-<div class="line">test/error/stray_paren.let:2:14: error: ignoring unmatched `)` while parsing print-statement</div>
+<div class="line">test/error/stray_paren.let:2:14: error: ignoring stray `)` while parsing print-statement</div>
 <div class="line">    2 | print (1 + 2)) * 2;</div>
 <div class="line">      |              ^</div>
-<div class="line">test/error/stray_paren.let:3:7: error: ignoring unmatched `)` while parsing print-statement</div>
+<div class="line">test/error/stray_paren.let:3:7: error: ignoring stray `)` while parsing print-statement</div>
 <div class="line">    3 | print ) + 5;</div>
 <div class="line">      |       ^</div>
 <div class="line">3 error(s) encountered</div>

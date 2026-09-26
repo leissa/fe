@@ -170,14 +170,14 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('conceptfe_1_1T
 <div class="line">    <span class="keyword">requires</span> std::equality_comparable&lt;Tag&gt;;</div>
 <div class="line">    <span class="keyword">requires</span> std::semiregular&lt;Tok&gt;;</div>
 <div class="line">    <span class="keyword">requires</span> std::constructible_from&lt;bool, Tok&gt;;</div>
-<div class="line">    <span class="keyword">requires</span> !<span class="keyword">requires</span> { std::integral_constant&lt;Tag, Tok().tag()&gt;(); } || Tok().tag() == Tag::Nil;</div>
+<div class="line">    <span class="keyword">requires</span> !<span class="keyword">requires</span> { std::bool_constant&lt;Tok().tag() == Tag::Nil&gt;(); } || Tok().tag() == Tag::Nil;</div>
 <div class="line">}</div>
-<div class="ttc" id="aconceptfe_1_1Token_html"><div class="ttname"><a href="conceptfe_1_1Token.html">fe::Token</a></div><div class="ttdoc">What fe::Parser needs of its Token type: a Tag and a Loc, copied in and out of the lookahead by value...</div><div class="ttdef"><b>Definition</b> <a href="parser_8h_source.html#l00022">parser.h:22</a></div></div>
+<div class="ttc" id="aconceptfe_1_1Token_html"><div class="ttname"><a href="conceptfe_1_1Token.html">fe::Token</a></div><div class="ttdoc">What fe::Parser needs of its Token type: a Tag and a Loc, copied in and out of the lookahead by value...</div><div class="ttdef"><b>Definition</b> <a href="parser_8h_source.html#l00023">parser.h:23</a></div></div>
 </div><!-- fragment --><a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>What <a class="el" href="classfe_1_1Parser.html" title="The blueprint for a recursive descent/ ascent parser using a K lookahead of Tokens.">fe::Parser</a> needs of its Token type: a Tag and a Loc, copied in and out of the lookahead by value. </p>
-<p>Parser::accept and Parser::expect indicate failure by returning a default-constructed Token, so <span class="tt">Tok()</span> must be falsy and tagged Tag::Nil. That sentinel is only checkable here if <span class="tt">Tok()</span> is usable in a constant expression - Parser::init asserts it. </p>
+<p>Parser::accept and Parser::expect indicate failure by returning a default-constructed Token, so <span class="tt">Tok()</span> must be falsy and tagged Tag::Nil. That sentinel is only checkable here if <span class="tt">Tok()</span> is usable in a constant expression - Parser::init asserts it. The probe for that yields a <span class="tt">bool</span>, as MSVC mistypes an enum as the non-type argument of a template. </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00022">22</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00023">23</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->
