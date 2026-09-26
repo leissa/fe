@@ -380,12 +380,9 @@ MimIR builds its manual this way.
 FE is developed against three frontends of very different scale, and every change has to work for all three:
 
 - [Let](https://github.com/leissa/let) - the demo language above, and the template to fork.
-- [SQL](https://github.com/leissa/sql) - a SQL parser: two-token lookahead, reserved versus non-reserved words, and anchor-based recovery through comma-separated lists.
-- [MimIR](https://anydsl.github.io/MimIR/) - the author's compiler IR: three-token lookahead, a Unicode-heavy surface syntax, and plugins loaded mid-parse that bring their own vocabulary.
-
-In the same spirit:
-
-- [GraphTool](https://github.com/leissa/graphtool) - a DOT-language tool using FE-style frontend infrastructure.
+- [MimIR](https://anydsl.github.io/MimIR/) - an extensible compiler IR: three-token lookahead, a Unicode-heavy surface syntax, and plugins loaded mid-parse.
+- [SQL](https://github.com/leissa/sql) - a fast SQL parser: two-token lookahead, reserved versus non-reserved words, and anchor-based recovery through comma-separated lists.
+- [GraphTool](https://github.com/leissa/graphtool) - reads a subset of the DOT-language and showcases some graph algorithms.
 
 ## 🤝 Contributing
 
