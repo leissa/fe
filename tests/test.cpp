@@ -916,6 +916,20 @@ TEST_CASE("Worklist") {
         CHECK(queue.size() == 3);
     }
 
+    SUBCASE("BFSWorklist order across compaction") {
+        fe::BFSWorklist<std::unordered_set<int>> queue;
+        int next = 0;
+        for (int i = 0; i != 1000; ++i) {
+            queue.push(2 * i);
+            queue.push(2 * i + 1);
+            CHECK(queue.pop() == next++);
+        }
+        CHECK(queue.size() == 1000);
+        while (!queue.empty())
+            CHECK(queue.pop() == next++);
+        CHECK(next == 2000);
+    }
+
     SUBCASE("DFSWorklist") {
         fe::DFSWorklist<std::unordered_set<int>> stack = {1, 2, 3, 1};
         CHECK(stack.size() == 3);

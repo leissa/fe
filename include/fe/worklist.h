@@ -2,15 +2,52 @@
 
 #include <cstddef>
 
-#include <queue>
 #include <ranges>
 #include <stack>
 #include <type_traits>
 #include <utility>
 
 #include "fe/container.h"
+#include "fe/vector.h"
 
 namespace fe {
+
+/// A FIFO queue over a Vector.
+/// Popped elements stay in place until they make up half of the storage, so `pop` is amortized constant.
+template<class T, size_t N = Default_Inlined_Size<T>>
+class VectorQueue {
+public:
+    using value_type = T;
+
+    bool empty() const { return head_ == vec_.size(); }
+    size_t size() const { return vec_.size() - head_; }
+
+    T& front() { return vec_[head_]; }
+    const T& front() const { return vec_[head_]; }
+    T& back() { return vec_.back(); }
+    const T& back() const { return vec_.back(); }
+
+    void push(const T& val) { vec_.push_back(val); }
+    void push(T&& val) { vec_.push_back(std::move(val)); }
+    template<class... Args>
+    decltype(auto) emplace(Args&&... args) {
+        return vec_.emplace_back(std::forward<Args>(args)...);
+    }
+
+    void pop() {
+        if (++head_ == vec_.size()) {
+            vec_.clear();
+            head_ = 0;
+        } else if (head_ >= 2 * N && 2 * head_ >= vec_.size()) {
+            vec_.erase(vec_.begin(), vec_.begin() + head_);
+            head_ = 0;
+        }
+    }
+
+private:
+    Vector<T, N> vec_;
+    size_t head_ = 0;
+};
 
 /// A worklist that pushes each element at most once.
 /// @p Set remembers what has already been pushed and may be a reference to share it with the caller.
@@ -75,8 +112,8 @@ using WorklistElem = typename std::remove_reference_t<Set>::value_type;
 }
 
 template<class Set>
-using BFSWorklist = Worklist<Set, std::queue<detail::WorklistElem<Set>>>;
+using BFSWorklist = Worklist<Set, VectorQueue<detail::WorklistElem<Set>>>;
 template<class Set>
-using DFSWorklist = Worklist<Set, std::stack<detail::WorklistElem<Set>>>;
+using DFSWorklist = Worklist<Set, std::stack<detail::WorklistElem<Set>, Vector<detail::WorklistElem<Set>>>>;
 
 } // namespace fe
