@@ -198,7 +198,7 @@ protected:
     /// Use like this:
     /// ```
     /// if (auto paren_l = accept(Tag::D_paren_l)) {
-    ///     auto _    = this->anchor(Tag::D_paren_r, paren_l);
+    ///     auto _    = anchor(Tag::D_paren_r, paren_l);
     ///     auto expr = parse_expr();
     ///     expect(Tag::D_paren_r, "parenthesized expression");
     ///     return expr;
