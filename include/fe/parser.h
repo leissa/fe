@@ -165,7 +165,7 @@ protected:
 
     /// One anchor; the *left* end opened the context, the *right* one is what it is still waiting for.
     struct Anchor {
-        Tok l_tok; ///< The Tok%en that opened the context; default-constructed unless Parser::anchor was given one.
+        Tok l_tok; ///< The Tok%en that opened the context.
         Tag r_tag; ///< The closing Tag that context is waiting for.
     };
 
@@ -177,7 +177,7 @@ protected:
 
         ScopedAnchor(Parser& parser, Tok l_tok, Tag r_tag)
             : parser_(parser) {
-            parser_.anchors_.emplace_back(std::move(l_tok), r_tag);
+            parser_.anchors_.emplace_back(l_tok, r_tag);
         }
 
         ~ScopedAnchor() { parser_.anchors_.pop_back(); }
@@ -194,12 +194,12 @@ protected:
     ///@{
 
     /// Factory method to build a Parser::ScopedAnchor; Parser::expect @p r_tag yourself at the end of the scope.
-    /// Hand the Tok%en that opened this context to @p l_tok and Parser::syntax_err notes it on a missing @p r_tag,
+    /// @p l_tok is the Tok%en that opened this context and Parser::syntax_err notes it on a missing @p r_tag,
     /// which is all it takes to point a `)` that never came back at its `(`.
     /// Use like this:
     /// ```
     /// if (auto paren_l = accept(Tag::D_paren_l)) {
-    ///     auto _    = anchor(Tag::D_paren_r, paren_l);
+    ///     auto _    = anchor(paren_l, Tag::D_paren_r);
     ///     auto expr = parse_expr();
     ///     expect(Tag::D_paren_r, "parenthesized expression");
     ///     return expr;
@@ -271,15 +271,17 @@ protected:
 
     /// Parser::expect did not find @p what while parsing @p ctxt; @p got defaults to Parser::ahead.
     /// @p ctxt is markup, so backtick a literal token within it yourself.
-    /// A @p what that an enclosing context anchors gets a Note pointing back at the Tok%en that opened it -
-    /// the `(` of a `)` that never came - as long as Parser::anchor was handed that token.
+    /// A @p what the innermost Anchor is waiting for gets a Note pointing back at the Tok%en that opened it -
+    /// the `(` of a `)` that never came.
     fe::Error& syntax_err(Expected what, Cite ctxt, Tok got = {}) {
         static_assert(Diagnosable<S>, "provide `fe::Driver& driver()` in your parser - or a `syntax_err` of your own");
         static_assert(Formattable<Tok>, "provide a `std::formatter` for your Tok - or a `syntax_err` of your own");
         if (!got) got = ahead();
         auto& err = error().e(got.loc(), "expected {}, got `{}` while parsing {}", what.what, got, ctxt);
-        if (auto* a = find_anchor(what.tag); a && a->l_tok)
-            err.n(a->l_tok.loc(), "to match this `{}`", a->l_tok);
+        if (!anchors_.empty() && anchors_.back().r_tag == what.tag) {
+            const auto& a = anchors_.back();
+            err.n(a.l_tok.loc(), "to match this `{}`", a.l_tok);
+        }
         return err;
     }
 
@@ -305,7 +307,7 @@ protected:
 
     Ring<Tok, K> ahead_;
     Loc curr_;
-    Vector<Anchor> anchors_;
+    Vector<Anchor, 8> anchors_; // Inline space: 8
 };
 
 } // namespace fe
