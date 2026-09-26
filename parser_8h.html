@@ -155,18 +155,20 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('parser_8h.html
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#concepts">Concepts</a>  </div>
   <div class="headertitle"><div class="title">parser.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;concepts&gt;</code><br />
 <code>#include &lt;algorithm&gt;</code><br />
-<code>#include &lt;deque&gt;</code><br />
-<code>#include &lt;format&gt;</code><br />
-<code>#include &lt;optional&gt;</code><br />
-<code>#include &quot;<a class="el" href="driver_8h_source.html">fe/driver.h</a>&quot;</code><br />
+<code>#include &lt;type_traits&gt;</code><br />
+<code>#include &quot;<a class="el" href="assert_8h_source.html">fe/assert.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="error_8h_source.html">fe/error.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="format_8h_source.html">fe/format.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="loc_8h_source.html">fe/loc.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ring_8h_source.html">fe/ring.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="vector_8h_source.html">fe/vector.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for parser.h:</div>
 <div class="dyncontent">
@@ -180,15 +182,58 @@ Classes</h2></td></tr>
 <tr class="memitem:fe_3A_3AParser_3C_20Tok_2C_20Tag_2C_20K_2C_20S_20_3E" id="r_fe_3A_3AParser_3C_20Tok_2C_20Tag_2C_20K_2C_20S_20_3E"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Parser.html">fe::Parser&lt; Tok, Tag, K, S &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The blueprint for a <a href="https://en.wikipedia.org/wiki/Recursive_descent_parser">recursive descent</a>/ <a href="https://en.wikipedia.org/wiki/Recursive_ascent_parser">ascent parser</a> using a <code class="param">K</code> lookahead of <span class="tt">Tok</span>ens.  <a href="classfe_1_1Parser.html#details">More...</a><br /></td></tr>
 <tr class="memitem:fe_3A_3AParser_3C_20Tok_2C_20Tag_2C_20K_2C_20S_20_3E_3A_3ATracker" id="r_fe_3A_3AParser_3C_20Tok_2C_20Tag_2C_20K_2C_20S_20_3E_3A_3ATracker"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Parser_1_1Tracker.html">fe::Parser&lt; Tok, Tag, K, S &gt;::Tracker</a></td></tr>
-<tr class="memitem:fe_3A_3AParser_3C_20Tok_2C_20Tag_2C_20K_2C_20S_20_3E_3A_3AAnchor" id="r_fe_3A_3AParser_3C_20Tok_2C_20Tag_2C_20K_2C_20S_20_3E_3A_3AAnchor"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Parser_1_1Anchor.html">fe::Parser&lt; Tok, Tag, K, S &gt;::Anchor</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">RAII helper that anchors a <code class="param">Tag</code> for its lifetime; use <a class="el" href="classfe_1_1Parser.html#abb77f69879ac8c534434df81bf1b33a4" title="Factory method to build a Parser::Anchor; Parser::expect tag yourself at the end of the scope.">Parser::anchor</a> to build one.  <a href="classfe_1_1Parser_1_1Anchor.html#details">More...</a><br /></td></tr>
+<tr class="memitem:fe_3A_3AParser_3C_20Tok_2C_20Tag_2C_20K_2C_20S_20_3E_3A_3AAnchor_5Fstructfe_5F1_5F1Parser_5F1_5F1Anchor" id="r_fe_3A_3AParser_3C_20Tok_2C_20Tag_2C_20K_2C_20S_20_3E_3A_3AAnchor_5Fstructfe_5F1_5F1Parser_5F1_5F1Anchor"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Parser.html#structfe_1_1Parser_1_1Anchor">fe::Parser&lt; Tok, Tag, K, S &gt;::Anchor</a></td></tr>
+<tr class="memdesc:structfe_1_1Parser_1_1Anchor"><td class="mdescLeft">&#160;</td><td class="mdescRight">One anchor; the <em>left</em> end opened the context, the <em>right</em> one is what it is still waiting for.  <a href="classfe_1_1Parser.html#structfe_1_1Parser_1_1Anchor">More...</a><br /></td></tr>
+<tr class="memitem:fe_3A_3AParser_3C_20Tok_2C_20Tag_2C_20K_2C_20S_20_3E_3A_3AScopedAnchor" id="r_fe_3A_3AParser_3C_20Tok_2C_20Tag_2C_20K_2C_20S_20_3E_3A_3AScopedAnchor"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Parser_1_1ScopedAnchor.html">fe::Parser&lt; Tok, Tag, K, S &gt;::ScopedAnchor</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">RAII helper that pushes a <a class="el" href="classfe_1_1Parser.html#structfe_1_1Parser_1_1Anchor" title="One anchor; the left end opened the context, the right one is what it is still waiting for.">Parser::Anchor</a> for its lifetime; use <a class="el" href="classfe_1_1Parser.html#a3cfea002c6c78ae8ef7bd490fe00a272" title="Factory method to build a Parser::ScopedAnchor; Parser::expect r_tag yourself at the end of the scope...">Parser::anchor</a> to build one.  <a href="classfe_1_1Parser_1_1ScopedAnchor.html#details">More...</a><br /></td></tr>
 <tr class="memitem:fe_3A_3AParser_3C_20Tok_2C_20Tag_2C_20K_2C_20S_20_3E_3A_3AExpected" id="r_fe_3A_3AParser_3C_20Tok_2C_20Tag_2C_20K_2C_20S_20_3E_3A_3AExpected"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1Parser_1_1Expected.html">fe::Parser&lt; Tok, Tag, K, S &gt;::Expected</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">What <a class="el" href="classfe_1_1Parser.html#a8d3515757df0b24385e51e953b9c3899" title="Parser::lex Parser::ahead() which must be a tag.">Parser::expect</a> was after - a Tag, or free-form markup.  <a href="structfe_1_1Parser_1_1Expected.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:fe" id="r_fe"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html">fe</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-concepts" class="groupheader"><a id="concepts" name="concepts"></a>
+Concepts</h2></td></tr>
+<tr class="memitem:fe_3A_3AToken" id="r_fe_3A_3AToken"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="conceptfe_1_1Token.html">fe::Token</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">What <a class="el" href="classfe_1_1Parser.html" title="The blueprint for a recursive descent/ ascent parser using a K lookahead of Tokens.">fe::Parser</a> needs of its Token type: a Tag and a Loc, copied in and out of the lookahead by value. <br /></td></tr>
+<tr class="memitem:fe_3A_3ALexable" id="r_fe_3A_3ALexable"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="conceptfe_1_1Lexable.html">fe::Lexable</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">What <a class="el" href="classfe_1_1Parser.html" title="The blueprint for a recursive descent/ ascent parser using a K lookahead of Tokens.">fe::Parser</a> needs of its CRTP child <code class="param">S</code> beyond <a class="el" href="conceptfe_1_1Diagnosable.html" title="Every frontend building block reports into the Error of S::driver.">fe::Diagnosable</a>: the Lexer to pull Tokens from. <br /></td></tr>
 </table>
+<hr/><h2 id="header-inline_5Fclasses" class="groupheader">Class Documentation</h2>
+<a name="structfe_1_1Parser_1_1Anchor" id="structfe_1_1Parser_1_1Anchor"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#structfe_1_1Parser_1_1Anchor">&#9670;&#160;</a></span>fe::Parser::Anchor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct fe::Parser::Anchor</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="textblock"><div class="compoundTemplParams">template&lt;class Tok, class Tag, size_t K, class S&gt;<br />
+struct fe::Parser&lt; Tok, Tag, K, S &gt;::Anchor</div><p>One anchor; the <em>left</em> end opened the context, the <em>right</em> one is what it is still waiting for. </p>
+
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00166">166</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+</div><table class="fieldtable">
+<tr><th colspan="3">Class Members</th></tr>
+<tr><td class="fieldtype">
+<a id="a61969bea88dafdffa822b44c45bffc59" name="a61969bea88dafdffa822b44c45bffc59"></a>Tok</td>
+<td class="fieldname">
+l_tok</td>
+<td class="fielddoc">
+The Token that opened the context; default-constructed unless <a class="el" href="classfe_1_1Parser.html#a3cfea002c6c78ae8ef7bd490fe00a272" title="Factory method to build a Parser::ScopedAnchor; Parser::expect r_tag yourself at the end of the scope...">Parser::anchor</a> was given one. </td></tr>
+<tr><td class="fieldtype">
+<a id="acada1c5a449c6f92b8ca3884c0411792" name="acada1c5a449c6f92b8ca3884c0411792"></a>Tag</td>
+<td class="fieldname">
+r_tag</td>
+<td class="fielddoc">
+The closing Tag that context is waiting for. </td></tr>
+</table>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

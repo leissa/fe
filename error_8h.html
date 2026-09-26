@@ -155,11 +155,13 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('error_8h.html'
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#concepts">Concepts</a>  </div>
   <div class="headertitle"><div class="title">error.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;array&gt;</code><br />
+<div class="textblock"><code>#include &lt;concepts&gt;</code><br />
+<code>#include &lt;array&gt;</code><br />
 <code>#include &lt;exception&gt;</code><br />
 <code>#include &lt;format&gt;</code><br />
 <code>#include &lt;functional&gt;</code><br />
@@ -179,7 +181,7 @@ Include dependency graph for error.h:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="error_8h__dep__incl.svg" width="206" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="error_8h__dep__incl.svg" width="318" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="error_8h_source.html">Go to the source code of this file.</a></p>
@@ -198,6 +200,11 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:fe" id="r_fe"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html">fe</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-concepts" class="groupheader"><a id="concepts" name="concepts"></a>
+Concepts</h2></td></tr>
+<tr class="memitem:fe_3A_3ADiagnosable" id="r_fe_3A_3ADiagnosable"><td class="memItemLeft">concept &#160;</td><td class="memItemRight"><a class="el" href="conceptfe_1_1Diagnosable.html">fe::Diagnosable</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Every frontend building block reports into the Error of <span class="tt">S::driver</span>. <br /></td></tr>
 </table>
 <hr/><h2 id="header-inline_5Fclasses" class="groupheader">Class Documentation</h2>
 <a name="structfe_1_1Error_1_1Note" id="structfe_1_1Error_1_1Note"></a>
@@ -214,7 +221,7 @@ Namespaces</h2></td></tr>
 <div class="textblock"><p>A secondary message elaborating a <a class="el" href="classfe_1_1Error.html#structfe_1_1Error_1_1Msg" title="One Tag::Error or Tag::Warn together with the Notes that belong to it.">Msg</a>. </p>
 <p>A <a class="el" href="classfe_1_1Error.html#structfe_1_1Error_1_1Note" title="A secondary message elaborating a Msg.">Note</a> with a <a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a> of its own reads as a diagnostic of its own - header line plus snippet; one without has nowhere else to point and renders as a <span class="tt">= note:</span> continuation line. </p>
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00052">52</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00054">54</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
@@ -246,7 +253,7 @@ str</td>
 </div><div class="memdoc">
 <div class="textblock"><p>One Tag::Error or Tag::Warn together with the <a class="el" href="classfe_1_1Error.html#structfe_1_1Error_1_1Note" title="A secondary message elaborating a Msg.">Note</a>s that belong to it. </p>
 
-<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00058">58</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="error_8h_source.html#l00060">60</a> of file <a class="el" href="error_8h_source.html">error.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">

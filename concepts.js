@@ -2,11 +2,14 @@ var concepts =
 [
     [ "fe", "namespacefe.html", [
       [ "BitEnum", "conceptfe_1_1BitEnum.html", null ],
+      [ "Diagnosable", "conceptfe_1_1Diagnosable.html", null ],
       [ "Formattable", "conceptfe_1_1Formattable.html", null ],
+      [ "Lexable", "conceptfe_1_1Lexable.html", null ],
       [ "Nodeable", "conceptfe_1_1Nodeable.html", null ],
       [ "NodeSetable", "conceptfe_1_1NodeSetable.html", null ],
       [ "Queuelike", "conceptfe_1_1Queuelike.html", null ],
       [ "Stacklike", "conceptfe_1_1Stacklike.html", null ],
+      [ "Token", "conceptfe_1_1Token.html", null ],
       [ "Vectorlike", "conceptfe_1_1Vectorlike.html", null ],
       [ "VLAed", "conceptfe_1_1VLAed.html", null ]
     ] ]

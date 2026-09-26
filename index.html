@@ -282,7 +282,7 @@ How much code is that?</h2>
 <p>A <span class="tt">.l</span>/<span class="tt">.y</span> pair for that grammar would not come out much shorter than those 203 lines - and Bison would additionally check the grammar for conflicts, which recursive descent never will. What a generator does <em>not</em> write for you is the other 395: command-line parsing, the AST, the arena, the interning, the evaluator, the printer. Nor does it write the diagnostics, and that is where the difference actually shows up.</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
 Diagnostics you did not write</h2>
-<p>Those 203 lines already produce this. The error line and its snippet come out of <span class="tt">expect</span>; the note that points back at the <span class="tt">(</span> is a three-line <span class="tt">syntax_err</span> override plus one <span class="tt"><a class="el" href="classfe_1_1Restore.html" title="RAII guard that restores a value at the end of the scope.">fe::Restore</a></span> to remember which <span class="tt">(</span> it was:</p>
+<p>Those 203 lines already produce this. The error line and its snippet come out of <span class="tt">expect</span>; the note that points back at the <span class="tt">(</span> comes out of the anchor that was waiting for the <span class="tt">)</span> - neither costs a line of <span class="tt">let</span>:</p>
 <div class="fragment"><div class="line">test/error/unclosed_paren.let:1:13: error: expected `)`, got `;` while parsing parenthesized expression</div>
 <div class="line">    1 | print (1 + 2;</div>
 <div class="line">      |             ^</div>
@@ -301,7 +301,7 @@ Diagnostics you did not write</h2>
 <div class="line">    3 | print ) + 5;</div>
 <div class="line">      |       ^</div>
 <div class="line">3 error(s) encountered</div>
-</div><!-- fragment --><p>Every message above is FE's own wording, summary line included; the only text Let contributes is that one note. A generator hands you the parse and <span class="tt">yyerror("syntax error")</span> - the snippets, the notes, the recovery, and the <span class="tt">--max-errors</span> truncation are yours to build.</p>
+</div><!-- fragment --><p>Every message above is FE's own wording, summary line included - Let contributes no text at all. A generator hands you the parse and <span class="tt">yyerror("syntax error")</span> - the snippets, the notes, the recovery, and the <span class="tt">--max-errors</span> truncation are yours to build.</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
 No generated code to debug</h2>
 <p>There is no code generation step, so there is no generated code to debug and no build-time dependency on a tool. <span class="tt">parse_expr</span> is a function that says what it does, in the language the rest of your compiler is written in.</p>
@@ -322,7 +322,7 @@ Core</h3>
 Lexing &amp; Parsing</h3>
 <ul>
 <li><span class="tt"><a class="el" href="classfe_1_1Lexer.html" title="The blueprint for a lexer with a buffer of K tokens to peek into the future (Lexer::ahead).">fe::Lexer</a>&lt;K, S&gt;</span> for UTF-8-aware lexing with lookahead and token text accumulation.</li>
-<li><span class="tt"><a class="el" href="classfe_1_1Parser.html" title="The blueprint for a recursive descent/ ascent parser using a K lookahead of Tokens.">fe::Parser</a>&lt;Tok, Tag, K, S&gt;</span> for recursive-descent-style parsing with token lookahead, span tracking, and anchor-based error recovery. Both blueprints ask their child for a <span class="tt"><a class="el" href="structfe_1_1Driver.html" title="Use/derive from this class for &quot;global&quot; variables that you need all over the place.">fe::Driver</a>&amp; driver()</span> and report their default diagnostics into its <span class="tt">Error</span>.</li>
+<li><span class="tt"><a class="el" href="classfe_1_1Parser.html" title="The blueprint for a recursive descent/ ascent parser using a K lookahead of Tokens.">fe::Parser</a>&lt;Tok, Tag, K, S&gt;</span> for recursive-descent-style parsing with token lookahead, span tracking, and anchor-based error recovery. An anchor also remembers the token that opened its context, so a <span class="tt">)</span> that never came points back at its <span class="tt">(</span> without a diagnostic of your own. Both blueprints ask their child for a <span class="tt"><a class="el" href="structfe_1_1Driver.html" title="Use/derive from this class for &quot;global&quot; variables that you need all over the place.">fe::Driver</a>&amp; driver()</span> and report their default diagnostics into its <span class="tt">Error</span>.</li>
 <li><span class="tt"><a class="el" href="namespacefe_1_1utf8.html" title="UTF-8 helpers for decoding byte streams, encoding char32_t values, and running ASCII-style character ...">fe::utf8</a></span> for lightweight UTF-8 handling.</li>
 </ul>
 <h3 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
@@ -421,8 +421,8 @@ Installing</h2>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md18"></a>
 💬 Writing a Diagnostic</h1>
 <p>Everything reports into the one <span class="tt"><a class="el" href="classfe_1_1Error.html" title="Collects diagnostics and hands each to the Diag that lays it out.">fe::Error</a></span> the <span class="tt">Driver</span> owns, and one diagnostic is one chained expression:</p>
-<div class="fragment"><div class="line">error().e(tok.loc(), <span class="stringliteral">&quot;expected `)`, got `{}` while parsing {}&quot;</span>, tok, Cite(ctxt))</div>
-<div class="line">       .n(open.loc(), <span class="stringliteral">&quot;unmatched `(` opened here&quot;</span>);</div>
+<div class="fragment"><div class="line">error().e(tok.loc(), <span class="stringliteral">&quot;identifier `{}` already defined&quot;</span>, sym)</div>
+<div class="line">       .n(prev.loc(), <span class="stringliteral">&quot;previous definition here&quot;</span>);</div>
 </div><!-- fragment --><p><span class="tt">Error::e</span> opens an error and <span class="tt">Error::w</span> a warning; <span class="tt">Error::n</span> hangs a note off whichever came last. A note <em>with</em> a <span class="tt">Loc</span> reads as a diagnostic of its own - header line plus snippet - and is dropped when that <span class="tt">Loc</span> merely repeats the primary one; a note without one has nowhere else to point and renders as a <span class="tt">= note:</span> continuation. Nothing throws along the way: <span class="tt">Error::bail</span> throws what has accumulated as an <span class="tt">Error::Bail</span>, and <span class="tt">Error::ack</span> at the end of the run does that only if an error was among it and otherwise just reports the warnings.</p>
 <h2 class="doxsection"><a class="anchor" id="citations"></a>
 Citations</h2>

@@ -5,14 +5,14 @@ var indexSectionsWithContent =
   2: "fs",
   3: "abcdefhlprstuvwx",
   4: "abcdefghijklmnoprstuvwx~",
-  5: "abcdefgiklmnopstw",
+  5: "abcdefgiklmnoprstw",
   6: "bcdfioprstv",
   7: "dflmst",
   8: "abcdefgimnrtvwy",
   9: ":abdopsx",
   10: "a",
   11: "abcdfghilmnpqrstwy⚖✨💡💬📚🔨🚀🛠🤝🧭",
-  12: "bfnqsv"
+  12: "bdflnqstv"
 };
 
 var indexSectionNames =

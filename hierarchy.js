@@ -2,7 +2,7 @@ var hierarchy =
 [
     [ "fe::Lexer&lt; K, S &gt;::Ahead", "classfe_1_1Lexer.html#structfe_1_1Lexer_1_1Ahead", null ],
     [ "fe::Arena::Allocator&lt; T &gt;", "structfe_1_1Arena_1_1Allocator.html", null ],
-    [ "fe::Parser&lt; Tok, Tag, K, S &gt;::Anchor", "classfe_1_1Parser_1_1Anchor.html", null ],
+    [ "fe::Parser&lt; Tok, Tag, K, S &gt;::Anchor", "classfe_1_1Parser.html#structfe_1_1Parser_1_1Anchor", null ],
     [ "fe::Arena", "classfe_1_1Arena.html", null ],
     [ "fe::Bitset", "classfe_1_1Bitset.html", null ],
     [ "fe::utf8::Char32", "structfe_1_1utf8_1_1Char32.html", null ],
@@ -74,6 +74,7 @@ var hierarchy =
     [ "fe::Ring&lt; T, 1 &gt;", "classfe_1_1Ring_3_01T_00_011_01_4.html", null ],
     [ "fe::Ring&lt; T, 2 &gt;", "classfe_1_1Ring_3_01T_00_012_01_4.html", null ],
     [ "fe::RuntimeCast&lt; B &gt;", "classfe_1_1RuntimeCast.html", null ],
+    [ "fe::Parser&lt; Tok, Tag, K, S &gt;::ScopedAnchor", "classfe_1_1Parser_1_1ScopedAnchor.html", null ],
     [ "fe::Patricia&lt; D, KT, K, N &gt;::Set", "classfe_1_1Patricia_1_1Set.html", null ],
     [ "fe::XTrie&lt; D, K, N &gt;::Set", "classfe_1_1XTrie_1_1Set.html", null ],
     [ "fe::Snippet", "structfe_1_1Snippet.html", null ],
@@ -88,6 +89,7 @@ var hierarchy =
     [ "fe::Sym::String", "structfe_1_1Sym_1_1String.html", null ],
     [ "ankerl::svector", null, [
       [ "fe::Vector< fe::Dbg >", "classfe_1_1Vector.html", null ],
+      [ "fe::Vector< fe::Parser::Anchor >", "classfe_1_1Vector.html", null ],
       [ "fe::Vector< T, N, A >", "classfe_1_1Vector.html", null ]
     ] ],
     [ "fe::Sym", "classfe_1_1Sym.html", null ],

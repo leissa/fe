@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.18.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>FE: fe::Parser&lt; Tok, Tag, K, S &gt;::Anchor Class Reference</title>
+<title>FE: fe::Parser&lt; Tok, Tag, K, S &gt;::ScopedAnchor Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript">
 // Doxygen no longer ships jQuery, but doxygen-awesome's extensions still expect it.
@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', codefold.init);
   </div>
 </div>
 <script type="text/javascript">
-document.addEventListener('DOMContentLoaded',() => { initNavTree('classfe_1_1Parser_1_1Anchor.html','','classfe_1_1Parser_1_1Anchor-members'); });
+document.addEventListener('DOMContentLoaded',() => { initNavTree('classfe_1_1Parser_1_1ScopedAnchor.html','','classfe_1_1Parser_1_1ScopedAnchor-members'); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -155,31 +155,31 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classfe_1_1Par
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="classfe_1_1Parser_1_1Anchor-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">fe::Parser&lt; Tok, Tag, K, S &gt;::Anchor Class Reference</div></div>
+<a href="classfe_1_1Parser_1_1ScopedAnchor-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">fe::Parser&lt; Tok, Tag, K, S &gt;::ScopedAnchor Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>RAII helper that anchors a <code class="param">Tag</code> for its lifetime; use <a class="el" href="classfe_1_1Parser.html#abb77f69879ac8c534434df81bf1b33a4" title="Factory method to build a Parser::Anchor; Parser::expect tag yourself at the end of the scope.">Parser::anchor</a> to build one.  
+<p>RAII helper that pushes a <a class="el" href="classfe_1_1Parser.html#structfe_1_1Parser_1_1Anchor" title="One anchor; the left end opened the context, the right one is what it is still waiting for.">Parser::Anchor</a> for its lifetime; use <a class="el" href="classfe_1_1Parser.html#a3cfea002c6c78ae8ef7bd490fe00a272" title="Factory method to build a Parser::ScopedAnchor; Parser::expect r_tag yourself at the end of the scope...">Parser::anchor</a> to build one.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="parser_8h_source.html">fe/parser.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa773e7f91dbe52b6dd8961a4812c77aa" id="r_aa773e7f91dbe52b6dd8961a4812c77aa"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aa773e7f91dbe52b6dd8961a4812c77aa">Anchor</a> (const Anchor &amp;)=delete</td></tr>
-<tr class="memitem:a5779c2788e14625638a8d4dc77fee0f2" id="r_a5779c2788e14625638a8d4dc77fee0f2"><td class="memItemLeft"><a class="el" href="#aa773e7f91dbe52b6dd8961a4812c77aa">Anchor</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a5779c2788e14625638a8d4dc77fee0f2">operator=</a> (const <a class="el" href="#aa773e7f91dbe52b6dd8961a4812c77aa">Anchor</a> &amp;)=delete</td></tr>
-<tr class="memitem:aabe6832e7a9db8d6feaa8747fd3fc112" id="r_aabe6832e7a9db8d6feaa8747fd3fc112"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aabe6832e7a9db8d6feaa8747fd3fc112">Anchor</a> (<a class="el" href="classfe_1_1Parser.html">Parser</a> &amp;parser, Tag tag)</td></tr>
-<tr class="memitem:ae2569d59dc583ab803e8680522f963b1" id="r_ae2569d59dc583ab803e8680522f963b1"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ae2569d59dc583ab803e8680522f963b1">~Anchor</a> ()</td></tr>
+<tr class="memitem:aa6a67e6737db8b9b12ee7b8b97c3d767" id="r_aa6a67e6737db8b9b12ee7b8b97c3d767"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aa6a67e6737db8b9b12ee7b8b97c3d767">ScopedAnchor</a> (const ScopedAnchor &amp;)=delete</td></tr>
+<tr class="memitem:aba804ee78ee779e22825702680a6b978" id="r_aba804ee78ee779e22825702680a6b978"><td class="memItemLeft"><a class="el" href="#aa6a67e6737db8b9b12ee7b8b97c3d767">ScopedAnchor</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#aba804ee78ee779e22825702680a6b978">operator=</a> (const <a class="el" href="#aa6a67e6737db8b9b12ee7b8b97c3d767">ScopedAnchor</a> &amp;)=delete</td></tr>
+<tr class="memitem:a3849eaf91f8d04071049765bc94c87bd" id="r_a3849eaf91f8d04071049765bc94c87bd"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a3849eaf91f8d04071049765bc94c87bd">ScopedAnchor</a> (<a class="el" href="classfe_1_1Parser.html">Parser</a> &amp;parser, Tag r_tag, Tok l_tok)</td></tr>
+<tr class="memitem:a79ca5b36ab4f16860a0f563d7f2174e8" id="r_a79ca5b36ab4f16860a0f563d7f2174e8"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a79ca5b36ab4f16860a0f563d7f2174e8">~ScopedAnchor</a> ()</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class Tok, class Tag, size_t K, class S&gt;<br />
-class fe::Parser&lt; Tok, Tag, K, S &gt;::Anchor</div><p>RAII helper that anchors a <code class="param">Tag</code> for its lifetime; use <a class="el" href="classfe_1_1Parser.html#abb77f69879ac8c534434df81bf1b33a4" title="Factory method to build a Parser::Anchor; Parser::expect tag yourself at the end of the scope.">Parser::anchor</a> to build one. </p>
+class fe::Parser&lt; Tok, Tag, K, S &gt;::ScopedAnchor</div><p>RAII helper that pushes a <a class="el" href="classfe_1_1Parser.html#structfe_1_1Parser_1_1Anchor" title="One anchor; the left end opened the context, the right one is what it is still waiting for.">Parser::Anchor</a> for its lifetime; use <a class="el" href="classfe_1_1Parser.html#a3cfea002c6c78ae8ef7bd490fe00a272" title="Factory method to build a Parser::ScopedAnchor; Parser::expect r_tag yourself at the end of the scope...">Parser::anchor</a> to build one. </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00143">143</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00172">172</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aa773e7f91dbe52b6dd8961a4812c77aa" name="aa773e7f91dbe52b6dd8961a4812c77aa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa773e7f91dbe52b6dd8961a4812c77aa">&#9670;&#160;</a></span>Anchor() <span class="overload">[1/2]</span></h2>
+<a id="aa6a67e6737db8b9b12ee7b8b97c3d767" name="aa6a67e6737db8b9b12ee7b8b97c3d767"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6a67e6737db8b9b12ee7b8b97c3d767">&#9670;&#160;</a></span>ScopedAnchor() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -190,9 +190,9 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classfe_1_1Parser.html">fe::Parser</a>&lt; Tok, Tag, K, S &gt;::Anchor::Anchor </td>
+          <td class="memname"><a class="el" href="classfe_1_1Parser.html">fe::Parser</a>&lt; Tok, Tag, K, S &gt;::ScopedAnchor::ScopedAnchor </td>
           <td>(</td>
-          <td class="paramtype">const Anchor &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype">const ScopedAnchor &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -203,14 +203,14 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#aa773e7f91dbe52b6dd8961a4812c77aa">Anchor()</a>.</p>
+<p class="reference">References <a class="el" href="#aa6a67e6737db8b9b12ee7b8b97c3d767">ScopedAnchor()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#aa773e7f91dbe52b6dd8961a4812c77aa">Anchor()</a>, and <a class="el" href="#a5779c2788e14625638a8d4dc77fee0f2">operator=()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#aba804ee78ee779e22825702680a6b978">operator=()</a>, and <a class="el" href="#aa6a67e6737db8b9b12ee7b8b97c3d767">ScopedAnchor()</a>.</p>
 
 </div>
 </div>
-<a id="aabe6832e7a9db8d6feaa8747fd3fc112" name="aabe6832e7a9db8d6feaa8747fd3fc112"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aabe6832e7a9db8d6feaa8747fd3fc112">&#9670;&#160;</a></span>Anchor() <span class="overload">[2/2]</span></h2>
+<a id="a3849eaf91f8d04071049765bc94c87bd" name="a3849eaf91f8d04071049765bc94c87bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3849eaf91f8d04071049765bc94c87bd">&#9670;&#160;</a></span>ScopedAnchor() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -221,14 +221,19 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classfe_1_1Parser.html">fe::Parser</a>&lt; Tok, Tag, K, S &gt;::Anchor::Anchor </td>
+          <td class="memname"><a class="el" href="classfe_1_1Parser.html">fe::Parser</a>&lt; Tok, Tag, K, S &gt;::ScopedAnchor::ScopedAnchor </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classfe_1_1Parser.html">Parser</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>parser</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Tag</td>          <td class="paramname"><span class="paramname"><em>tag</em></span>&#160;)</td>
+          <td class="paramtype">Tag</td>          <td class="paramname"><span class="paramname"><em>r_tag</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Tok</td>          <td class="paramname"><span class="paramname"><em>l_tok</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -238,12 +243,12 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00148">148</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00177">177</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
 </div>
 </div>
-<a id="ae2569d59dc583ab803e8680522f963b1" name="ae2569d59dc583ab803e8680522f963b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae2569d59dc583ab803e8680522f963b1">&#9670;&#160;</a></span>~Anchor()</h2>
+<a id="a79ca5b36ab4f16860a0f563d7f2174e8" name="a79ca5b36ab4f16860a0f563d7f2174e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79ca5b36ab4f16860a0f563d7f2174e8">&#9670;&#160;</a></span>~ScopedAnchor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -254,7 +259,7 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classfe_1_1Parser.html">fe::Parser</a>&lt; Tok, Tag, K, S &gt;::Anchor::~Anchor </td>
+          <td class="memname"><a class="el" href="classfe_1_1Parser.html">fe::Parser</a>&lt; Tok, Tag, K, S &gt;::ScopedAnchor::~ScopedAnchor </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -267,13 +272,13 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00153">153</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00182">182</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a5779c2788e14625638a8d4dc77fee0f2" name="a5779c2788e14625638a8d4dc77fee0f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5779c2788e14625638a8d4dc77fee0f2">&#9670;&#160;</a></span>operator=()</h2>
+<a id="aba804ee78ee779e22825702680a6b978" name="aba804ee78ee779e22825702680a6b978"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba804ee78ee779e22825702680a6b978">&#9670;&#160;</a></span>operator=()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -284,9 +289,9 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#aa773e7f91dbe52b6dd8961a4812c77aa">Anchor</a> &amp; <a class="el" href="classfe_1_1Parser.html">fe::Parser</a>&lt; Tok, Tag, K, S &gt;::Anchor::operator= </td>
+          <td class="memname"><a class="el" href="#aa6a67e6737db8b9b12ee7b8b97c3d767">ScopedAnchor</a> &amp; <a class="el" href="classfe_1_1Parser.html">fe::Parser</a>&lt; Tok, Tag, K, S &gt;::ScopedAnchor::operator= </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="#aa773e7f91dbe52b6dd8961a4812c77aa">Anchor</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="#aa6a67e6737db8b9b12ee7b8b97c3d767">ScopedAnchor</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -297,7 +302,7 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#aa773e7f91dbe52b6dd8961a4812c77aa">Anchor()</a>.</p>
+<p class="reference">References <a class="el" href="#aa6a67e6737db8b9b12ee7b8b97c3d767">ScopedAnchor()</a>.</p>
 
 </div>
 </div>
@@ -310,7 +315,7 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="namespacefe.html">fe</a></li><li class="navelem"><a href="classfe_1_1Parser.html">Parser</a></li><li class="navelem"><a href="classfe_1_1Parser_1_1Anchor.html">Anchor</a></li>
+    <li class="navelem"><a href="namespacefe.html">fe</a></li><li class="navelem"><a href="classfe_1_1Parser.html">Parser</a></li><li class="navelem"><a href="classfe_1_1Parser_1_1ScopedAnchor.html">ScopedAnchor</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
   </ul>
 </div>

@@ -176,8 +176,8 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ab366875e50cea5c9fada8ce1390c7ddb" id="r_ab366875e50cea5c9fada8ce1390c7ddb"><td class="memItemLeft">std::optional&lt; Tag &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ab366875e50cea5c9fada8ce1390c7ddb">tag</a></td></tr>
-<tr class="memdesc:ab366875e50cea5c9fada8ce1390c7ddb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nothing if the expectation was not a Tag.  <br /></td></tr>
+<tr class="memitem:adb905f1f641773888d3b833ea2fde1bb" id="r_adb905f1f641773888d3b833ea2fde1bb"><td class="memItemLeft">Tag&#160;</td><td class="memItemRight"><a class="el" href="#adb905f1f641773888d3b833ea2fde1bb">tag</a> = Tag::Nil</td></tr>
+<tr class="memdesc:adb905f1f641773888d3b833ea2fde1bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tag::Nil, if the expectation was not a Tag.  <br /></td></tr>
 <tr class="memitem:a4ed44edd9d9b30d15bb0c2783ef38e40" id="r_a4ed44edd9d9b30d15bb0c2783ef38e40"><td class="memItemLeft"><a class="el" href="classfe_1_1term_1_1Cited.html">Cited</a>&#160;</td><td class="memItemRight"><a class="el" href="#a4ed44edd9d9b30d15bb0c2783ef38e40">what</a></td></tr>
 <tr class="memdesc:a4ed44edd9d9b30d15bb0c2783ef38e40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Already rendered as markup - <a class="el" href="classfe_1_1Parser.html#a729e065306271ccbfdf2b74ca8223932" title="Spells tag out via Tok::tag2str if there is one - a bare enumerator would render as its number.">Parser::tag2str_</a> backticks a Tag.  <br /></td></tr>
 </table>
@@ -186,7 +186,7 @@ Public Attributes</h2></td></tr>
 struct fe::Parser&lt; Tok, Tag, K, S &gt;::Expected</div><p>What <a class="el" href="classfe_1_1Parser.html#a8d3515757df0b24385e51e953b9c3899" title="Parser::lex Parser::ahead() which must be a tag.">Parser::expect</a> was after - a Tag, or free-form markup. </p>
 <p>Both spellings are one parameter rather than two overloads, so that <a class="el" href="classfe_1_1Parser.html#a4bd424773766a48d000f493f497c1179" title="Parser::expect did not find what while parsing ctxt; got defaults to Parser::ahead.">Parser::syntax_err</a> stays a single signature: a declaration in <code class="param">S</code> then replaces it instead of hiding a set of siblings alongside it. </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00209">209</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00248">248</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aea0eb86c2d876c2cfb5699b9b5b6ab34" name="aea0eb86c2d876c2cfb5699b9b5b6ab34"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aea0eb86c2d876c2cfb5699b9b5b6ab34">&#9670;&#160;</a></span>Expected() <span class="overload">[1/4]</span></h2>
@@ -213,11 +213,11 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00213">213</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00252">252</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">References <a class="el" href="parser_8h_source.html#l00210">tag</a>, <a class="el" href="parser_8h_source.html#l00253">fe::Parser&lt; Tok, Tag, K, S &gt;::tag2str_()</a>, and <a class="el" href="parser_8h_source.html#l00211">what</a>.</p>
+<p class="reference">References <a class="el" href="parser_8h_source.html#l00249">tag</a>, <a class="el" href="parser_8h_source.html#l00296">fe::Parser&lt; Tok, Tag, K, S &gt;::tag2str_()</a>, and <a class="el" href="parser_8h_source.html#l00250">what</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00221">Expected()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00260">Expected()</a>.</p>
 
 </div>
 </div>
@@ -246,9 +246,9 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00216">216</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00255">255</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">References <a class="el" href="parser_8h_source.html#l00211">what</a>.</p>
+<p class="reference">References <a class="el" href="parser_8h_source.html#l00250">what</a>.</p>
 
 </div>
 </div>
@@ -277,9 +277,9 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00218">218</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00257">257</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">References <a class="el" href="parser_8h_source.html#l00211">what</a>.</p>
+<p class="reference">References <a class="el" href="parser_8h_source.html#l00250">what</a>.</p>
 
 </div>
 </div>
@@ -310,15 +310,15 @@ template&lt;size_t N&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00221">221</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00260">260</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">References <a class="el" href="parser_8h_source.html#l00213">Expected()</a>, and <a class="el" href="parser_8h_source.html#l00211">what</a>.</p>
+<p class="reference">References <a class="el" href="parser_8h_source.html#l00252">Expected()</a>, and <a class="el" href="parser_8h_source.html#l00250">what</a>.</p>
 
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="ab366875e50cea5c9fada8ce1390c7ddb" name="ab366875e50cea5c9fada8ce1390c7ddb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab366875e50cea5c9fada8ce1390c7ddb">&#9670;&#160;</a></span>tag</h2>
+<a id="adb905f1f641773888d3b833ea2fde1bb" name="adb905f1f641773888d3b833ea2fde1bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb905f1f641773888d3b833ea2fde1bb">&#9670;&#160;</a></span>tag</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -326,16 +326,16 @@ template&lt;size_t N&gt; </div>
 template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;Tag&gt; <a class="el" href="classfe_1_1Parser.html">fe::Parser</a>&lt; Tok, Tag, K, S &gt;::Expected::tag</td>
+          <td class="memname">Tag <a class="el" href="classfe_1_1Parser.html">fe::Parser</a>&lt; Tok, Tag, K, S &gt;::Expected::tag = Tag::Nil</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Nothing if the expectation was not a Tag. </p>
+<p>Tag::Nil, if the expectation was not a Tag. </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00210">210</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00249">249</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00213">Expected()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00252">Expected()</a>.</p>
 
 </div>
 </div>
@@ -355,9 +355,9 @@ template&lt;class Tok, class Tag, size_t K, class S&gt; </div>
 
 <p>Already rendered as markup - <a class="el" href="classfe_1_1Parser.html#a729e065306271ccbfdf2b74ca8223932" title="Spells tag out via Tok::tag2str if there is one - a bare enumerator would render as its number.">Parser::tag2str_</a> backticks a Tag. </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00211">211</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00250">250</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00218">Expected()</a>, <a class="el" href="parser_8h_source.html#l00216">Expected()</a>, <a class="el" href="parser_8h_source.html#l00221">Expected()</a>, and <a class="el" href="parser_8h_source.html#l00213">Expected()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00257">Expected()</a>, <a class="el" href="parser_8h_source.html#l00255">Expected()</a>, <a class="el" href="parser_8h_source.html#l00260">Expected()</a>, and <a class="el" href="parser_8h_source.html#l00252">Expected()</a>.</p>
 
 </div>
 </div>
