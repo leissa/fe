@@ -9,6 +9,8 @@
 #include <bit>
 #include <string_view>
 
+#include <ankerl/unordered_dense.h>
+
 namespace fe {
 
 static_assert(sizeof(size_t) == 4 || sizeof(size_t) == 8, "unsupported sizeof(size_t)");
@@ -102,5 +104,15 @@ constexpr size_t hash_combine(size_t seed, std::string_view sv) noexcept {
 /// Shorthand for `hash_combine(hash_begin(), sv)`.
 constexpr size_t hash_begin(std::string_view sv) noexcept { return hash_combine(hash_begin(), sv); }
 ///@}
+
+/// Hashes the characters of a string; transparent, so `std::string` keys may be looked up by `std::string_view`.
+struct StrHash {
+    using is_transparent = void;
+    using is_avalanching = void;
+
+    size_t operator()(std::string_view sv) const noexcept {
+        return ankerl::unordered_dense::hash<std::string_view>()(sv);
+    }
+};
 
 } // namespace fe

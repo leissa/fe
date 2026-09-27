@@ -15,7 +15,6 @@
 
 #include "fe/arena.h"
 #include "fe/assert.h"
-#include "fe/hash.h"
 #include "fe/lct.h"
 #include "fe/vector.h"
 
@@ -40,7 +39,7 @@ private:
     struct Hash {
         using is_avalanching = void;
 
-        constexpr size_t operator()(D* d) const noexcept { return fe::hash(K::gid(d)); }
+        size_t operator()(D* d) const noexcept { return ankerl::unordered_dense::hash<uint32_t>()(K::gid(d)); }
     };
 
     template<class V>
@@ -126,10 +125,10 @@ private:
         struct Hash {
             using is_avalanching = void;
 
-            constexpr size_t operator()(const Data* d) const noexcept {
-                auto h = hash_begin();
+            size_t operator()(const Data* d) const noexcept {
+                uint64_t h = 0;
                 for (auto e : *d)
-                    h = hash_combine(h, std::bit_cast<uintptr_t>(e));
+                    h = ankerl::unordered_dense::tuple_hash_helper<>::mix64(h, std::bit_cast<uintptr_t>(e));
                 return h;
             }
         };

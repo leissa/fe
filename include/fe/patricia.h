@@ -15,12 +15,12 @@
 #include <ostream>
 #include <print>
 #include <ranges>
+#include <tuple>
 
 #include <ankerl/unordered_dense.h>
 
 #include "fe/arena.h"
 #include "fe/assert.h"
-#include "fe/hash.h"
 #include "fe/span.h"
 #include "fe/vector.h"
 
@@ -757,9 +757,9 @@ private:
     /// The id follows from the element, so only the pointers take part.
     ///@{
     static size_t hash_entries(View<Entry> es) noexcept {
-        auto h = hash_begin();
+        uint64_t h = 0;
         for (const auto& e : es)
-            h = hash_combine(h, std::bit_cast<uintptr_t>(e.d));
+            h = ankerl::unordered_dense::tuple_hash_helper<>::mix64(h, std::bit_cast<uintptr_t>(e.d));
         return h;
     }
 
@@ -782,8 +782,8 @@ private:
         using is_avalanching = void;
 
         size_t operator()(const Br* n) const noexcept {
-            auto h = hash_combine(hash_combine(hash_begin(), n->prefix), n->mask);
-            return hash_combine(hash_combine(h, n->l), n->r);
+            return ankerl::unordered_dense::hash<std::tuple<K, K, uintptr_t, uintptr_t>>()(
+                {n->prefix, n->mask, n->l, n->r});
         }
     };
 

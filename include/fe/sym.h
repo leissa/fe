@@ -53,10 +53,7 @@ public:
         struct Hash {
             using is_avalanching = void;
 
-            size_t operator()(const String* s) const noexcept {
-                auto sv = std::string_view(s->chars, s->size);
-                return hash_begin(sv);
-            }
+            size_t operator()(const String* s) const noexcept { return StrHash()(std::string_view(s->chars, s->size)); }
         };
     };
 
@@ -158,7 +155,6 @@ public:
     constexpr explicit operator bool() const noexcept { return ptr_; } ///< Is not empty?
     ///@}
 
-    friend struct ::std::hash<fe::Sym>;
     friend std::ostream& operator<<(std::ostream& os, Sym sym);
 
     /// @name Hash/Eq for hash tables.
@@ -168,7 +164,9 @@ public:
     /// Intern via SymPool::sym first, then look up with the resulting Sym.
     ///@{
     struct Hash {
-        size_t operator()(Sym s) const noexcept { return fe::hash(s.ptr_); }
+        using is_avalanching = void;
+
+        size_t operator()(Sym s) const noexcept { return ankerl::unordered_dense::hash<uintptr_t>()(s.ptr_); }
     };
 
     struct Eq {
@@ -201,7 +199,7 @@ private:
 
 template<>
 struct std::hash<fe::Sym> {
-    size_t operator()(fe::Sym sym) const noexcept { return fe::hash(sym.ptr_); }
+    size_t operator()(fe::Sym sym) const noexcept { return fe::Sym::Hash()(sym); }
 };
 
 namespace fe {

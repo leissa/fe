@@ -2,11 +2,11 @@
 
 #include <bit>
 #include <ostream>
+#include <tuple>
 
 #include <ankerl/unordered_dense.h>
 
 #include "fe/format.h"
-#include "fe/hash.h"
 #include "fe/loc.h"
 #include "fe/sym.h"
 
@@ -53,10 +53,9 @@ public:
         using is_avalanching = void;
 
         size_t operator()(Dbg dbg) const noexcept {
-            auto h = hash_begin(std::bit_cast<uintptr_t>(dbg.loc_.src));
-            h      = hash_combine(h, dbg.loc_.begin.off);
-            h      = hash_combine(h, dbg.loc_.end.off);
-            return hash_combine(h, Sym::Hash()(dbg.sym_));
+            using Tuple = std::tuple<uintptr_t, uint32_t, uint32_t, uintptr_t>;
+            return ankerl::unordered_dense::hash<Tuple>()(
+                {std::bit_cast<uintptr_t>(dbg.loc_.src), dbg.loc_.begin.off, dbg.loc_.end.off, dbg.sym_.raw()});
         }
     };
 
