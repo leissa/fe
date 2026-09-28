@@ -39,9 +39,6 @@ var hierarchy =
     [ "fe::Sym::Hash", "structfe_1_1Sym_1_1Hash.html", null ],
     [ "fe::Sym::String::Hash", "structfe_1_1Sym_1_1String_1_1Hash.html", null ],
     [ "fe::XTrie&lt; D, K, N &gt;::Data::Hash", "structfe_1_1XTrie_1_1Data_1_1Hash.html", null ],
-    [ "ankerl::unordered_dense::hash", "classankerl_1_1unordered__dense_1_1hash.html", [
-      [ "fe::StrHash", "structfe_1_1StrHash.html", null ]
-    ] ],
     [ "std::integral_constant", null, [
       [ "std::tuple_size< fe::Span< T, N > >", "structstd_1_1tuple__size_3_01fe_1_1Span_3_01T_00_01N_01_4_01_4.html", null ]
     ] ],
@@ -86,6 +83,7 @@ var hierarchy =
     [ "fe::Src", "classfe_1_1Src.html", null ],
     [ "fe::SrcMap", "classfe_1_1SrcMap.html", null ],
     [ "fe::StreamFn&lt; F &gt;", "classfe_1_1StreamFn.html", null ],
+    [ "fe::StrHash", "structfe_1_1StrHash.html", null ],
     [ "fe::Sym::String", "structfe_1_1Sym_1_1String.html", null ],
     [ "ankerl::svector", null, [
       [ "fe::Vector< fe::Dbg >", "classfe_1_1Vector.html", null ],

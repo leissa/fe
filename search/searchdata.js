@@ -1,6 +1,6 @@
 var indexSectionsWithContent =
 {
-  0: ":abcdefghijklmnopqrstuvwxy~⚖✨💡💬📚🔨🚀🛠🤝🧭",
+  0: "abcdefghijklmnopqrstuvwxy~⚖✨💡💬📚🔨🚀🛠🤝🧭",
   1: "abcdefhijlmnprstvwx",
   2: "fs",
   3: "abcdefhlprstuvwx",
@@ -9,7 +9,7 @@ var indexSectionsWithContent =
   6: "bcdfioprstv",
   7: "dflmst",
   8: "abcdefgimnrtvwy",
-  9: ":abdopsx",
+  9: "abdopsx",
   10: "a",
   11: "abcdfghilmnpqrstwy⚖✨💡💬📚🔨🚀🛠🤝🧭",
   12: "bdflnqstv"

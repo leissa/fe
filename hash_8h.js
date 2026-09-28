@@ -1,5 +1,6 @@
 var hash_8h =
 [
+    [ "fe::StrHash", "structfe_1_1StrHash.html", "structfe_1_1StrHash" ],
     [ "fe::hash", "namespacefe.html#a11d6f3c09be860709bc513577982fbaa", null ],
     [ "fe::hash_begin", "namespacefe.html#a490ea31d86af5baf49d5f00a09298f14", null ],
     [ "fe::hash_begin", "namespacefe.html#ad6de12009a2f2e8e9cd71878c79cf9dc", null ],
