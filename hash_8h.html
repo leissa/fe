@@ -155,16 +155,16 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('hash_8h.html',
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">hash.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;concepts&gt;</code><br />
 <code>#include &lt;cstddef&gt;</code><br />
 <code>#include &lt;cstdint&gt;</code><br />
-<code>#include &lt;algorithm&gt;</code><br />
-<code>#include &lt;array&gt;</code><br />
-<code>#include &lt;bit&gt;</code><br />
+<code>#include &lt;functional&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
 <code>#include &lt;string_view&gt;</code><br />
 <code>#include &lt;ankerl/unordered_dense.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -175,7 +175,7 @@ Include dependency graph for hash.h:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="hash_8h__dep__incl.svg" width="640" height="492"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="hash_8h__dep__incl.svg" width="612" height="492"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="hash_8h_source.html">Go to the source code of this file.</a></p>
@@ -189,43 +189,20 @@ Classes</h2></td></tr>
 Namespaces</h2></td></tr>
 <tr class="memitem:fe" id="r_fe"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html">fe</a></td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr id="typedef-members-0" class="groupHeader"><td colspan="2"><div class="groupHeader">StrMap/StrSet</div></td></tr>
+<tr><td colspan="2" class="ititle"><div class="groupText"><p>Keyed by <span class="tt">std::string</span> but also looked up by <span class="tt">std::string_view</span> or <span class="tt">const char*</span> without building a <span class="tt">std::string</span>. </p>
+</div></td></tr>
+<tr class="memitem:a030f4b2005b47b3422d85383f42635d7" id="r_a030f4b2005b47b3422d85383f42635d7"><td class="memTemplParams" colspan="2">template&lt;class V&gt; </td></tr>
+<tr class="memitem:a030f4b2005b47b3422d85383f42635d7 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a030f4b2005b47b3422d85383f42635d7">fe::StrMap</a> = ankerl::unordered_dense::map&lt;std::string, V, <a class="el" href="structfe_1_1StrHash.html">StrHash</a>, std::equal_to&lt;&gt;&gt;</td></tr>
+<tr class="memitem:a4f3c7ffd2cc6617944e2a5558e80801b" id="r_a4f3c7ffd2cc6617944e2a5558e80801b"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a4f3c7ffd2cc6617944e2a5558e80801b">fe::StrSet</a> = ankerl::unordered_dense::set&lt;std::string, <a class="el" href="structfe_1_1StrHash.html">StrHash</a>, std::equal_to&lt;&gt;&gt;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr id="func-members-0" class="groupHeader"><td colspan="2"><div class="groupHeader">Bit Mixers</div></td></tr>
-<tr><td colspan="2" class="ititle"><div class="groupText"><p>These finalizers scramble a single word.</p>
-<p>They are bijective, i.e., they don't introduce any collisions on their own - they merely spread the input bits. </p>
-</div></td></tr>
-<tr class="memitem:a89ce852a3e2d3ecde80f0ed8f81a501b" id="r_a89ce852a3e2d3ecde80f0ed8f81a501b"><td class="memItemLeft">constexpr uint32_t&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a89ce852a3e2d3ecde80f0ed8f81a501b">fe::murmur3</a> (uint32_t h) noexcept</td></tr>
-<tr class="memdesc:a89ce852a3e2d3ecde80f0ed8f81a501b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a href="https://en.wikipedia.org/wiki/MurmurHash">MurmurHash3</a>'s 32-bit finalizer <span class="tt">fmix32</span>.  <br /></td></tr>
-<tr class="memitem:acc1eed83d44fa0a6d3888d77d1065692" id="r_acc1eed83d44fa0a6d3888d77d1065692"><td class="memItemLeft">constexpr uint64_t&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#acc1eed83d44fa0a6d3888d77d1065692">fe::splitmix64</a> (uint64_t h) noexcept</td></tr>
-<tr class="memdesc:acc1eed83d44fa0a6d3888d77d1065692"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a href="https://prng.di.unimi.it/splitmix64.c">SplitMix64</a>'s 64-bit finalizer.  <br /></td></tr>
-<tr class="memitem:a11d6f3c09be860709bc513577982fbaa" id="r_a11d6f3c09be860709bc513577982fbaa"><td class="memItemLeft">constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a11d6f3c09be860709bc513577982fbaa">fe::hash</a> (size_t h) noexcept</td></tr>
-<tr class="memdesc:a11d6f3c09be860709bc513577982fbaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mixes <code class="param">h</code> with murmur3 or splitmix64 - whichever matches <span class="tt">sizeof(size_t)</span>.  <br /></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-member-group" class="groupheader"><a id="member-group" name="member-group"></a>
-FNV-1 Hash</h2></td></tr>
-<tr><td class="ititle" colspan="2"><p>See <a href="https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function#FNV-1_hash">Wikipedia</a>.</p>
-<p>Use hash_begin to seed a hash chain and hash_combine to fold in one value after another: </p><div class="fragment"><div class="line"><span class="keyword">auto</span> h = <a class="code hl_function" href="namespacefe.html#a490ea31d86af5baf49d5f00a09298f14">fe::hash_begin</a>(x);</div>
-<div class="line"><span class="keywordflow">for</span> (<span class="keyword">auto</span> elem : elems) h = <a class="code hl_function" href="namespacefe.html#abf157d266c33cbe9981f19021fbf6264">fe::hash_combine</a>(h, elem);</div>
-<div class="ttc" id="anamespacefe_html_a490ea31d86af5baf49d5f00a09298f14"><div class="ttname"><a href="namespacefe.html#a490ea31d86af5baf49d5f00a09298f14">fe::hash_begin</a></div><div class="ttdeci">constexpr size_t hash_begin() noexcept</div><div class="ttdoc">Seeds a hash chain with the FNV-1 offset basis.</div><div class="ttdef"><b>Definition</b> <a href="hash_8h_source.html#l00071">hash.h:71</a></div></div>
-<div class="ttc" id="anamespacefe_html_abf157d266c33cbe9981f19021fbf6264"><div class="ttname"><a href="namespacefe.html#abf157d266c33cbe9981f19021fbf6264">fe::hash_combine</a></div><div class="ttdeci">constexpr size_t hash_combine(size_t seed, T v) noexcept</div><div class="ttdoc">Mixes v into seed word-wise, reusing the FNV-1 prime as multiplier.</div><div class="ttdef"><b>Definition</b> <a href="hash_8h_source.html#l00075">hash.h:75</a></div></div>
-</div><!-- fragment --> <dl class="section note"><dt>Note</dt><dd>These hashes are <em>not</em> stable: they differ between 32- and 64-bit builds and may change between fe releases. Never serialize them and never rely on the iteration order they induce. </dd></dl>
-</td></tr>
-<tr class="memitem:a23eca58148a59f1a33c1fa3d47e78a4f" id="r_a23eca58148a59f1a33c1fa3d47e78a4f"><td class="memItemLeft">constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a23eca58148a59f1a33c1fa3d47e78a4f">fe::fnv1_offset</a> = sizeof(size_t) == 4 ? size_t(UINT32_C(2166136261)) : size_t(UINT64_C(14695981039346656037))</td></tr>
-<tr class="memdesc:a23eca58148a59f1a33c1fa3d47e78a4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">FNV-1 <a href="http://www.isthe.com/chongo/tech/comp/fnv/index.html#FNV-var">magic numbers</a> for <span class="tt">sizeof(size_t)</span>.  <br /></td></tr>
-<tr class="memitem:a58095bbcff6b7ff77b3e6592838e079e" id="r_a58095bbcff6b7ff77b3e6592838e079e"><td class="memItemLeft">constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a58095bbcff6b7ff77b3e6592838e079e">fe::fnv1_prime</a> = sizeof(size_t) == 4 ? size_t(UINT32_C( 16777619)) : size_t(UINT64_C( 1099511628211))</td></tr>
-<tr class="memitem:a490ea31d86af5baf49d5f00a09298f14" id="r_a490ea31d86af5baf49d5f00a09298f14"><td class="memItemLeft">constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a490ea31d86af5baf49d5f00a09298f14">fe::hash_begin</a> () noexcept</td></tr>
-<tr class="memdesc:a490ea31d86af5baf49d5f00a09298f14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seeds a hash chain with the FNV-1 offset basis.  <br /></td></tr>
 <tr class="memitem:abf157d266c33cbe9981f19021fbf6264" id="r_abf157d266c33cbe9981f19021fbf6264"><td class="memTemplParams" colspan="2">template&lt;std::integral T&gt; </td></tr>
 <tr class="memitem:abf157d266c33cbe9981f19021fbf6264 template"><td class="memItemLeft">constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#abf157d266c33cbe9981f19021fbf6264">fe::hash_combine</a> (size_t seed, T v) noexcept</td></tr>
-<tr class="memdesc:abf157d266c33cbe9981f19021fbf6264"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mixes <code class="param">v</code> into <code class="param">seed</code> word-wise, reusing the FNV-1 prime as multiplier.  <br /></td></tr>
-<tr class="memitem:ac131b22cfcf0e569e4adc1bf67583358" id="r_ac131b22cfcf0e569e4adc1bf67583358"><td class="memTemplParams" colspan="2">template&lt;std::integral T&gt; </td></tr>
-<tr class="memitem:ac131b22cfcf0e569e4adc1bf67583358 template"><td class="memItemLeft">constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#ac131b22cfcf0e569e4adc1bf67583358">fe::hash_begin</a> (T v) noexcept</td></tr>
-<tr class="memdesc:ac131b22cfcf0e569e4adc1bf67583358"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shorthand for <span class="tt">hash_combine(hash_begin(), v)</span>.  <br /></td></tr>
-<tr class="memitem:a281749b3266771e19616bfec1b9c4d08" id="r_a281749b3266771e19616bfec1b9c4d08"><td class="memItemLeft">constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#a281749b3266771e19616bfec1b9c4d08">fe::hash_combine</a> (size_t seed, std::string_view sv) noexcept</td></tr>
-<tr class="memdesc:a281749b3266771e19616bfec1b9c4d08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mixes the bytes of <code class="param">sv</code> into <code class="param">seed</code> a machine word at a time.  <br /></td></tr>
-<tr class="memitem:ad6de12009a2f2e8e9cd71878c79cf9dc" id="r_ad6de12009a2f2e8e9cd71878c79cf9dc"><td class="memItemLeft">constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#ad6de12009a2f2e8e9cd71878c79cf9dc">fe::hash_begin</a> (std::string_view sv) noexcept</td></tr>
-<tr class="memdesc:ad6de12009a2f2e8e9cd71878c79cf9dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shorthand for <span class="tt">hash_combine(hash_begin(), sv)</span>.  <br /></td></tr>
+<tr class="memdesc:abf157d266c33cbe9981f19021fbf6264"><td class="mdescLeft">&#160;</td><td class="mdescRight">Folds <code class="param">v</code> into <code class="param">seed</code> like <span class="tt">ankerl::unordered_dense</span> hashes a tuple: one 128-bit multiply, halves xored.  <br /></td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

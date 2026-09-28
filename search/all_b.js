@@ -25,6 +25,6 @@ var searchData=
   ['log_22',['Log',['../classfe_1_1Log.html',1,'fe']]],
   ['log_23',['log',['../classfe_1_1Log.html#a695916fb821911451b9a3f3f1e044981',1,'fe::Log::log(Level level, Loc loc, cite_string&lt; Args... &gt; fmt, Args &amp;&amp;... args) const'],['../classfe_1_1Log.html#a752df5f8a9fb89e1f0744c4b7b7e4530',1,'fe::Log::log(Level level, std::source_location where, cite_string&lt; Args... &gt; fmt, Args &amp;&amp;... args) const'],['../classfe_1_1Log.html#abe902baec6be1afeac687da942290b35',1,'fe::Log::log(Level level, Fmt&lt; Args... &gt; fmt, Args &amp;&amp;... args) const']]],
   ['log_2eh_24',['log.h',['../log_8h.html',1,'']]],
-  ['lookup_25',['lookup',['../classfe_1_1SrcMap.html#a471e46e42aa2229b771e598a370eef68',1,'fe::SrcMap::lookup()'],['../namespacefe.html#a00e1ee524a678f2b004c9b5c91e94903',1,'fe::lookup()']]],
+  ['lookup_25',['lookup',['../classfe_1_1SrcMap.html#a471e46e42aa2229b771e598a370eef68',1,'fe::SrcMap::lookup()'],['../namespacefe.html#abc25dbb690e14e1be331e5a84729e013',1,'fe::lookup()']]],
   ['lower_26',['lower',['../classfe_1_1Lexer.html#a62c91002f3e6f90a747014dcb7ae9ab0',1,'fe::Lexer']]]
 ];

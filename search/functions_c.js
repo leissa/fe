@@ -9,6 +9,5 @@ var searchData=
   ['mk_6',['mk',['../classfe_1_1Arena.html#ac0ed8cd6c5553d0d1e75745501221a6f',1,'fe::Arena']]],
   ['mode_7',['mode',['../namespacefe_1_1term.html#aba316509e7e9d35ab1316e47869ad856',1,'fe::term']]],
   ['msg_8',['msg',['../classfe_1_1Error.html#a0be3ad6db15f4a91da361765326e508e',1,'fe::Error::msg(Loc loc, Tag tag, const std::function&lt; std::string()&gt; &amp;fmt)'],['../classfe_1_1Error.html#ad73db5f766b07a2b35a0b0ddd1f9d304',1,'fe::Error::msg(Loc loc, Tag tag, cite_string&lt; Args... &gt; s, Args &amp;&amp;... args)']]],
-  ['msgs_9',['msgs',['../classfe_1_1Error.html#a27fe473278b55b1e3df08f10c40f748d',1,'fe::Error']]],
-  ['murmur3_10',['murmur3',['../namespacefe.html#a89ce852a3e2d3ecde80f0ed8f81a501b',1,'fe']]]
+  ['msgs_9',['msgs',['../classfe_1_1Error.html#a27fe473278b55b1e3df08f10c40f748d',1,'fe::Error']]]
 ];
