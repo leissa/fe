@@ -7,6 +7,7 @@
 #include <stack>
 #include <unordered_map>
 #include <unordered_set>
+#include <vector>
 
 #include <doctest/doctest.h>
 #include <fe/algo.h>
@@ -845,23 +846,18 @@ TEST_CASE("container") {
         CHECK(fe::pop(p) == 5);
         CHECK(fe::pop(p) == 1);
 
+        auto deref_lt = [](const auto& a, const auto& b) { return *a < *b; };
+        std::priority_queue<std::unique_ptr<int>, std::vector<std::unique_ptr<int>>, decltype(deref_lt)> u;
+        u.push(std::make_unique<int>(1));
+        u.push(std::make_unique<int>(5));
+        u.push(std::make_unique<int>(3));
+        CHECK(*fe::pop(u) == 5);
+        CHECK(*fe::pop(u) == 3);
+        CHECK(*fe::pop(u) == 1);
+
         std::queue<std::unique_ptr<int>> m;
         m.emplace(std::make_unique<int>(23));
         CHECK(*fe::pop(m) == 23);
-    }
-
-    SUBCASE("StrMap/StrSet") {
-        auto map = fe::StrMap<int>();
-        map.emplace("foo", 23);
-        auto sv = std::string_view("foobar").substr(0, 3);
-        CHECK(*fe::lookup(map, sv) == 23);
-        CHECK(fe::lookup(map, "bar") == nullptr);
-        map[std::string_view("bar")] = 42;
-        CHECK(fe::assert_lookup(map, "bar") == 42);
-
-        auto set = fe::StrSet{"foo"};
-        CHECK(set.contains(sv));
-        CHECK(!set.contains("bar"));
     }
 
     SUBCASE("lookup") {

@@ -276,7 +276,7 @@ public:
     /// @name Hash
     ///@{
     [[nodiscard]] constexpr size_t hash() const noexcept {
-        auto res = hash_begin();
+        size_t res = 0;
         for (size_t i = 0, e = used(); i != e; ++i) {
             auto word = words()[i];
             res       = hash_combine(res, uint32_t(word));

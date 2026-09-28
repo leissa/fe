@@ -150,7 +150,7 @@ It provides a compact set of reusable, well-integrated components:
 
 #### Algorithms
 
-- `fe::hash` and friends for cheap, `constexpr` hash mixing/combining.
+- `fe::hash_combine` for cheap, `constexpr` hash combining.
 - `fe::Restore` for RAII save/restore of a variable - or of anything a getter/setter pair reaches, like `term::ScopedMode` - across a scope.
 - `fe/algo.h` for some helpers.
 

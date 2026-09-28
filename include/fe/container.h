@@ -1,15 +1,9 @@
 #pragma once
 
-#include <functional>
-#include <string>
-#include <string_view>
 #include <type_traits>
 #include <utility>
 
-#include <ankerl/unordered_dense.h>
-
 #include "fe/assert.h"
-#include "fe/hash.h"
 
 namespace fe {
 
@@ -31,7 +25,8 @@ concept Queuelike = requires(C c) {
 ///@{
 template<Stacklike S>
 [[nodiscard]] typename S::value_type pop(S& s) {
-    auto val = std::move(s.top());
+    // std::priority_queue::top is const, but pop_heap moves the top out of the heap before it compares anything.
+    auto val = std::move(const_cast<typename S::value_type&>(s.top()));
     s.pop();
     return val;
 }
@@ -43,14 +38,13 @@ template<Queuelike Q>
     return val;
 }
 
-/// Yields pointer to element (or the element itself if it is already a pointer), if found and `nullptr` otherwise.
+/// Yields a pointer to the value mapped to @p key (or the value itself if it is a pointer) or `nullptr` if not found.
 /// Constness of @p container carries over to the result.
-/// @warning If the element is **not** already a pointer, this lookup will simply take the address of this element.
+/// @warning If the mapped value is **not** already a pointer, this lookup will simply take its address.
 /// This means that, e.g., a rehash of an `ankerl::unordered_dense::map` will invalidate this pointer.
-template<class C, class K>
-[[nodiscard]] auto lookup(C& container, const K& key) {
+[[nodiscard]] auto lookup(auto& container, const auto& key) {
     auto i = container.find(key);
-    if constexpr (std::is_pointer_v<typename C::mapped_type>)
+    if constexpr (std::is_pointer_v<typename std::remove_cvref_t<decltype(container)>::mapped_type>)
         return i != container.end() ? i->second : nullptr;
     else
         return i != container.end() ? &i->second : nullptr;
@@ -69,14 +63,6 @@ auto assert_emplace(auto& container, auto&&... args) {
     assert_unused(ins);
     return i;
 }
-///@}
-
-/// @name StrMap/StrSet
-/// Keyed by `std::string` but also looked up by `std::string_view` or `const char*` without building a `std::string`.
-///@{
-template<class V>
-using StrMap = ankerl::unordered_dense::map<std::string, V, StrHash, std::equal_to<>>;
-using StrSet = ankerl::unordered_dense::set<std::string, StrHash, std::equal_to<>>;
 ///@}
 
 } // namespace fe

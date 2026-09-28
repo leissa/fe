@@ -4,106 +4,43 @@
 #include <cstddef>
 #include <cstdint>
 
-#include <algorithm>
-#include <array>
-#include <bit>
+#include <functional>
+#include <string>
 #include <string_view>
 
 #include <ankerl/unordered_dense.h>
 
 namespace fe {
 
-static_assert(sizeof(size_t) == 4 || sizeof(size_t) == 8, "unsupported sizeof(size_t)");
-
-/// @name Bit Mixers
-/// These finalizers scramble a single word.
-/// They are bijective, i.e., they don't introduce any collisions on their own - they merely spread the input bits.
-///@{
-
-/// [MurmurHash3](https://en.wikipedia.org/wiki/MurmurHash)'s 32-bit finalizer `fmix32`.
-constexpr uint32_t murmur3(uint32_t h) noexcept {
-    h ^= h >> 16;
-    h *= UINT32_C(0x85ebca6b);
-    h ^= h >> 13;
-    h *= UINT32_C(0xc2b2ae35);
-    h ^= h >> 16;
-    return h;
-}
-
-/// [SplitMix64](https://prng.di.unimi.it/splitmix64.c)'s 64-bit finalizer.
-constexpr uint64_t splitmix64(uint64_t h) noexcept {
-    h ^= h >> 30;
-    h *= UINT64_C(0xbf58476d1ce4e5b9);
-    h ^= h >> 27;
-    h *= UINT64_C(0x94d049bb133111eb);
-    h ^= h >> 31;
-    return h;
-}
-
-/// Mixes @p h with murmur3 or splitmix64 - whichever matches `sizeof(size_t)`.
-constexpr size_t hash(size_t h) noexcept {
-    if constexpr (sizeof(size_t) == 4)
-        return size_t(murmur3(uint32_t(h)));
-    else
-        return size_t(splitmix64(uint64_t(h)));
-}
-///@}
-
-/// @name FNV-1 Hash
-/// See [Wikipedia](https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function#FNV-1_hash).
-/// Use hash_begin to seed a hash chain and hash_combine to fold in one value after another:
+/// Folds @p v into @p seed like `ankerl::unordered_dense` hashes a tuple: one 128-bit multiply, halves xored.
+/// Each step avalanches, so a chain needs no finalizer and suits a hasher that declares `is_avalanching`.
+/// Seed a chain with `0`:
 /// ```
-/// auto h = fe::hash_begin(x);
+/// size_t h = 0;
 /// for (auto elem : elems) h = fe::hash_combine(h, elem);
 /// ```
 /// @note These hashes are *not* stable:
 /// they differ between 32- and 64-bit builds and may change between fe releases.
 /// Never serialize them and never rely on the iteration order they induce.
-///@{
-
-// clang-format off
-/// FNV-1 [magic numbers](http://www.isthe.com/chongo/tech/comp/fnv/index.html#FNV-var) for `sizeof(size_t)`.
-inline constexpr size_t fnv1_offset = sizeof(size_t) == 4 ? size_t(UINT32_C(2166136261)) : size_t(UINT64_C(14695981039346656037));
-inline constexpr size_t fnv1_prime  = sizeof(size_t) == 4 ? size_t(UINT32_C(  16777619)) : size_t(UINT64_C(       1099511628211));
-// clang-format on
-
-/// Seeds a hash chain with the FNV-1 offset basis.
-constexpr size_t hash_begin() noexcept { return fnv1_offset; }
-
-/// Mixes @p v into @p seed word-wise, reusing the FNV-1 prime as multiplier.
 template<std::integral T>
 constexpr size_t hash_combine(size_t seed, T v) noexcept {
-    return hash(seed ^ (size_t(v) * fnv1_prime));
-}
+    constexpr auto Secret = UINT64_C(0x9ddfea08eb382d69);
+    auto a                = uint64_t(seed) + uint64_t(v);
 
-/// Shorthand for `hash_combine(hash_begin(), v)`.
-template<std::integral T>
-constexpr size_t hash_begin(T v) noexcept {
-    return hash_combine(hash_begin(), v);
-}
-
-/// Mixes the bytes of @p sv into @p seed a machine word at a time.
-constexpr size_t hash_combine(size_t seed, std::string_view sv) noexcept {
-    auto h = seed ^ (sv.size() * fnv1_prime); // the size too, or "a" and "a\0" would agree
-
-    for (; sv.size() >= sizeof(size_t); sv.remove_prefix(sizeof(size_t))) {
-        std::array<char, sizeof(size_t)> bytes;
-        std::copy_n(sv.begin(), bytes.size(), bytes.begin());
-        h = (h ^ std::bit_cast<size_t>(bytes)) * fnv1_prime;
+    if !consteval {
+        return size_t(ankerl::unordered_dense::detail::hash_impl::mix(a, Secret));
+    } else {
+        uint64_t ha = a >> 32, la = uint32_t(a);
+        uint64_t hb = Secret >> 32, lb = uint32_t(Secret);
+        uint64_t rh = ha * hb, rm0 = ha * lb, rm1 = hb * la, rl = la * lb;
+        uint64_t t  = rl + (rm0 << 32);
+        uint64_t c  = t < rl;
+        uint64_t lo = t + (rm1 << 32);
+        c += lo < t;
+        uint64_t hi = rh + (rm0 >> 32) + (rm1 >> 32) + c;
+        return size_t(lo ^ hi);
     }
-
-    if (!sv.empty()) {
-        std::array<char, sizeof(size_t)> bytes{}; // the last word is a partial one, so zero-pad it
-        std::copy(sv.begin(), sv.end(), bytes.begin());
-        h = (h ^ std::bit_cast<size_t>(bytes)) * fnv1_prime;
-    }
-
-    return hash(h); // one finalizer for the whole range instead of one per word
 }
-
-/// Shorthand for `hash_combine(hash_begin(), sv)`.
-constexpr size_t hash_begin(std::string_view sv) noexcept { return hash_combine(hash_begin(), sv); }
-///@}
 
 /// Hashes the characters of a string; transparent, so `std::string` keys may be looked up by `std::string_view`.
 struct StrHash {
@@ -114,5 +51,13 @@ struct StrHash {
         return ankerl::unordered_dense::hash<std::string_view>()(sv);
     }
 };
+
+/// @name StrMap/StrSet
+/// Keyed by `std::string` but also looked up by `std::string_view` or `const char*` without building a `std::string`.
+///@{
+template<class V>
+using StrMap = ankerl::unordered_dense::map<std::string, V, StrHash, std::equal_to<>>;
+using StrSet = ankerl::unordered_dense::set<std::string, StrHash, std::equal_to<>>;
+///@}
 
 } // namespace fe
