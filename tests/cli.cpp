@@ -324,4 +324,13 @@ TEST_CASE("cli citations") {
         oss << cli;
         CHECK(!oss.str().contains('`'));
     }
+    SUBCASE("an unpaired backtick that wraps stays plain text") {
+        auto _   = fe::term::ScopedMode(fe::term::Mode::Never);
+        auto x   = false;
+        auto cli = fe::Cli("t").opt(x, "-x", "--xx", std::string(60, 'a') + " ` an unpaired backtick that wraps.");
+
+        std::ostringstream oss;
+        oss << cli;
+        CHECK(std::ranges::count(oss.str(), '`') == 1);
+    }
 }

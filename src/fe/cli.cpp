@@ -149,8 +149,8 @@ void Cli::help(std::ostream& os) const {
             if (row != 0) std::print(os, "{:{}}", "", col);
             auto line   = text.substr(begin, end - begin);
             bool reopen = open;
-            for (auto i = term::detail::tick(line, 0); i != std::string_view::npos; i = term::detail::tick(line, i + 1))
-                open = !open;
+            for (auto i = term::detail::tick(text, begin); i < end; i = term::detail::tick(text, i + 1))
+                if (open || term::detail::tick(text, i + 1) != std::string_view::npos) open = !open;
             term::render_cite(os, std::format("{}{}{}", reopen ? "`" : "", line, open ? "`" : ""));
             std::println(os);
             begin = end;
