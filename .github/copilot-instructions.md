@@ -45,7 +45,7 @@ The library is a few frontend-building blocks designed to be composed:
 - `fe::Diag` (`diag.h`) owns how a diagnostic lays out: the knobs (`gutter`, `max_rows`, `max_errors`, `no_snippet`, `werror`, `loc_style` of type `Loc::Style`) plus one virtual per piece (`loc`, `header`, `snippet`, `note`, `summary`) and the `render` hook each message is formatted through.
   Adjust the knobs for the common cases; derive and `Driver::diag(std::make_unique<MyDiag>())` to lay a diagnostic out from scratch.
   An `Error::Msg` holds citation *markup*, not finished text: `Diag::render` resolves it to plain text and `CodeDiag::render` colors it, so a `render` of your own must handle the markup rather than print it raw.
-- `fe::Error` (`error.h`) collects `std::format`-based errors and warnings - each owning the notes that hang off it - and renders each with the `Snippet` its `Loc` points at.
+- `fe::Error` (`error.h`) collects errors and warnings - each owning the notes that hang off it - and renders each with the `Snippet` its `Loc` points at.
   It is a sink, not an exception: `Error::ack`/`Error::bail` render everything and throw the text as an `Error::Bail`, which no longer points into any `Src` and may propagate past the `Driver`.
   Report into `Driver::error`; construct one of your own only for a diagnostic that must not join that sink.
 - `fe::Pos`/`fe::Loc` (`loc.h`), `fe::Src`/`fe::SrcMap` (`src.h`), and `fe::Snippet` (`snippet.h`) are positions, the file text behind them, and the underlined excerpt a diagnostic prints; they are threaded through lexers, parsers, and diagnostics.
@@ -58,7 +58,7 @@ The library is a few frontend-building blocks designed to be composed:
   It is a big-endian Patricia tree, except that every subtree of at most `N` elements is one sorted array rather than a chain of branches.
   The flavour follows from the size alone, so one element set has exactly one representation and equal sets are pointer-equal.
   A `Set` is a single tagged word, and an *untagged* one is the element itself, so a singleton needs no node - which is also why a one-element result must collapse back to that `Uniq` form to stay canonical.
-- `fe::Ring` (`ring.h`) is the fixed-size lookahead buffer of those blueprints; `fe::Worklist` (`worklist.h`) pushes each element at most once - use it through `BFSWorklist`/`DFSWorklist`.
+- `fe::Ring` (`ring.h`) is the fixed-size lookahead buffer of those blueprints; `fe::Worklist` (`worklist.h`) pushes each element at most once - use it through `BFSWorklist` (over `fe::VectorQueue`) / `DFSWorklist`.
 
 Support headers: `algo.h` (bit casts, padding, small string/range algorithms), `assert.h` (`assert`/`assert_unused`/`breakpoint`), `cast.h` (checked/dynamic casts), `cli.h` (`fe::Cli`, a single-command `argc`/`argv` parser that renders its help for a terminal or as Markdown tables), `container.h` (`pop`/`lookup` helpers, `Stacklike`/`Queuelike` concepts), `dbg.h` (`fe::Dbg`, a `Loc`/`Sym` pair), `enum.h` (bit-flag enum ops), `format.h` (`ostream_formatter`, `std::format` glue), `hash.h` (`constexpr` hash combining; `StrHash` and the `StrMap`/`StrSet` it backs, with `std::string_view` lookup), `log.h` (`fe::Log`, leveled logging; its `e`/`w`/... shorthands capture the call site with `std::source_location` and take a `cite_string` like `fe::Error`), `restore.h` (`fe::Restore`, an RAII guard that restores a reference - or a getter/setter pair - at end of scope), `span.h` (`fe::Span`/`fe::View`), `term.h` (terminal/ANSI color, incl. `fe::term::ScopedMode`; also `fe::throwf`, which lives next to the markup it renders), `utf8.h` (UTF-8 decode primitives plus the ASCII ctype set below), `vector.h` (`fe::Vector`, small-buffer vector over `ankerl::svector`).
 
@@ -77,7 +77,7 @@ Beyond those, `src/fe/` implements `fe::dl` (`dl.h`, dynamic library loading), `
 - A `Loc` renders itself: `operator<<`/`std::format` spell out `path:row:col-row:col` via `Loc::src`, falling back to `path@begin-end` when it has no `Src` or the offsets do not resolve within it. Diagnostics just pass the `Loc`.
 - Create non-empty symbols through `SymPool::sym`/`Driver::sym`, not by constructing `Sym` manually. Use the `SymMap`/`SymSet` aliases rather than concrete hash container types. Hash containers are `ankerl::unordered_dense` directly; a hasher built on `fe::hash_combine` declares `using is_avalanching = void;` so ankerl does not mix it again.
 - Classify characters with `fe::utf8`'s `constexpr`, locale-independent ASCII ctype (`isalpha`, `isdigit`, `isspace`, `tolower`, ... plus the `isrange`/`isodigit`/`isbdigit`/`any` predicate factories) - never `<cctype>`, which is locale-dependent and whose MSVC macros are disabled. They take a `char32_t` and are safe on `utf8::EoF`/`utf8::Invalid`.
-- Diagnostics are `std::format`-based and go through `fe::Error::{e,w,n}` - an error, a warning, and a note hanging off whichever came last - reached via the `error()` the lexer/parser blueprints provide. Follow that pattern rather than inventing separate reporting helpers.
+- Diagnostics go through `fe::Error::{e,w,n}` - an error, a warning, and a note hanging off whichever came last - reached via the `error()` the lexer/parser blueprints provide. Follow that pattern rather than inventing separate reporting helpers.
 - Put a `` `citation` `` in backticks: `fe::Diag` colors what they enclose and drops them, or keeps them verbatim without color. Escape a literal one as `` \` `` (and a literal backslash as `\\`).
 - Only the *format string* is markup. `fe::Error` escapes the backticks of every argument, so a symbol, path, or token containing one cannot break the highlighting. Markup is a type: `fe::cite_string` is a format string, `fe::Cited` an owning fragment (what `fe::format_cite` yields - pass it straight back in), and `fe::Cite` a borrowed one, which is how a markup *parameter* is spelled. A literal and a `Cited` convert to `Cite` implicitly; runtime text must spell `Cite(s)`.
 - That convention lives in `term.h`, not in the diagnostics: `term::render_cite` renders it, `term::escape_cite`/`escape_cite_to` escape data into it, and `term::cite_string`/`term::format_cite`/`term::Cite`/`term::Cited` produce it (`error.h` re-exports those four as `fe::`). Splice data into a message with `format_cite`, never `std::format` - that is how `fe::Cli`, `fe::Log`, and `fe::throwf` stay consistent with `fe::Error`.
@@ -88,7 +88,7 @@ Beyond those, `src/fe/` implements `fe::dl` (`dl.h`, dynamic library loading), `
 - Keep `Driver` free of virtual functions; `Driver::diag` is where a consumer plugs in behavior of its own.
 - A vtable is a *data* symbol, and Windows resolves one exported from a shared library only through `__declspec(dllimport)` - without it the linker silently binds it to a call thunk and the first virtual dispatch jumps into hyperspace. Hence `FE_API` on `fe::Diag` - `generate_export_header` generates that macro into `fe/api.h` - and hence the `Driver` ctor lives in `src/fe/driver.cpp`: nothing must emit `fe::Diag`'s vtable into a consumer's shared library. Annotate any further polymorphic type on that boundary the same way.
 - If a type already has `operator<<`, expose it to `std::format` with `template<> struct std::formatter<T> : fe::ostream_formatter {};`.
-- Derived lexers/parsers pull the CRTP base helpers they use into scope with `using` declarations (`ahead`, `accept`, `next`, `recover_char`, `recover_utf8`, `loc_`, `view` for the lexer; `ahead`, `anchor`, `curr_`, `eat`, `expect`, `lex`, `recover`, `tracker` for the parser), matching `tests/lexer.cpp`.
+- A derived lexer/parser that is itself a template has a dependent base, so it pulls the helpers it uses into scope with `using` declarations, as `tests/lexer.cpp` does; a non-template one (like Let's) needs neither those nor `this->`.
 
 ## Lexer contract
 
@@ -112,7 +112,7 @@ Both want `Lexer::start` to have run, so `loc_` spans exactly what was discarded
 
 ## Parser contract
 
-The derived class `S` must provide, **publicly** - a named concept is checked in its own context, so a private member plus a `friend` makes the concept false for everyone but the base:
+The derived class `S` must provide, **publicly** (for the reason given under the Lexer contract):
 
 - `Lexer& lexer()` - where `Parser::lex` pulls the next token from; that is `fe::Lexable`.
 - `fe::Driver& driver()` - the default diagnostics go to its `Driver::error`; that is `fe::Diagnosable`.
@@ -136,14 +136,12 @@ The Parser dispatches through `S`, so a declaration there wins.
 Both hooks are deliberately one name with one signature: a customization point that is an overload *set* would be hidden wholesale by a declaration in `S`, forcing every consumer to write `using Super::...` - keep it that way when adding one.
 
 Error recovery is anchor-based: an *anchor* is a `Tag` an enclosing context is still waiting for.
-`Parser::anchor(tag)` returns an RAII `ScopedAnchor` that pushes an `Anchor` for the scope; `expect` it yourself at the end of that scope.
-Pass the token that opened the context as well - `anchor(tag, tok)` - and the default `syntax_err` notes it on a missing `tag`:
-a `)` that never came points back at its `(` with no `syntax_err` of your own (`Parser::find_anchor(tag)` hands that anchor to one that wants it).
-An `Anchor` spells its two ends `l_tok`/`r_tag`: the *left* one opened the context, the *right* one is what it waits for.
+`Parser::anchor(l_tok, r_tag)` returns an RAII `ScopedAnchor` that pushes an `Anchor` - `l_tok` opened the context, `r_tag` is what it waits for - for the scope; `expect` `r_tag` yourself at the end of it.
+On a missing `r_tag` the default `syntax_err` notes `l_tok`, so a `)` that never came points back at its `(` with no `syntax_err` of your own; `Parser::find_anchor(r_tag)` hands that anchor to an override that wants it.
 `Parser::recover` then discards only tokens that are *not* anchored, so a nested parser bails out instead of swallowing a token its caller needs.
 It reports one `unanchored_err` per run rather than per token, so the diagnostic that sent it recovering stays the first thing the user reads.
 Prefer this over hand-rolled skip loops, and keep `expect` context strings noun phrases ("parenthesized expression"): they end up inside the message `syntax_err` builds.
-`expect` takes a `cite_string` overload; use it instead of formatting the context yourself - it funnels through `format_cite`, so its arguments are escaped as data.
+`expect` has a `cite_string` overload; use it instead of formatting the context yourself - its arguments are escaped as data.
 
 ## Comments
 

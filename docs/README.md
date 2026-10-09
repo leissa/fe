@@ -36,22 +36,22 @@ It is especially useful when you want the flexibility of handwritten code withou
 ### How much code is that?
 
 [**Let**](https://github.com/leissa/let) is a complete little language: lexer, parser, AST, arena-allocated nodes, evaluator, printer, CLI, and a golden-file test suite.
-`sloccount src include` says 598 lines.
+`sloccount src include` says 597 lines.
 
 | | SLOC |
 | ------------------------------------ | ---: |
-| lexer + parser                       |  203 |
-| token type: tag list and precedences |  128 |
-| AST, evaluator, printer              |  201 |
-| driver + CLI                         |   66 |
+| lexer + parser                       |  191 |
+| token type: tag list and precedences |  126 |
+| AST, evaluator, printer              |  189 |
+| driver + CLI                         |   91 |
 
-A `.l`/`.y` pair for that grammar would not come out much shorter than those 203 lines - and Bison would additionally check the grammar for conflicts, which recursive descent never will.
-What a generator does *not* write for you is the other 395: command-line parsing, the AST, the arena, the interning, the evaluator, the printer.
+A `.l`/`.y` pair for that grammar would not come out much shorter than those 191 lines - and Bison would additionally check the grammar for conflicts, which recursive descent never will.
+What a generator does *not* write for you is the other 406: command-line parsing, the AST, the arena, the interning, the evaluator, the printer.
 Nor does it write the diagnostics, and that is where the difference actually shows up.
 
 ### Diagnostics you did not write
 
-Those 203 lines already produce this.
+Those 191 lines already produce this.
 The error line and its snippet come out of `expect`; the note that points back at the `(` comes out of the anchor that was waiting for the `)` - neither costs a line of `let`:
 
 ```
