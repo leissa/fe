@@ -105,6 +105,5 @@ var namespacefe =
     [ "StreamFn", "namespacefe.html#a653a3eb512f7610b2449a4546f7e335d", null ],
     [ "throwf", "namespacefe.html#a66e2c981cd46243bfcccd1d43ed3d925", null ],
     [ "to_underlying", "namespacefe.html#a1f98d7865fd23c1d29648fb9f6239ce3", null ],
-    [ "unreachable", "namespacefe.html#aff9df682b55afdb0f712e5a0c1ff3a2b", null ],
     [ "Default_Inlined_Size", "namespacefe.html#aaca9f8e93c591cf178995b1d5da5ad7c", null ]
 ];

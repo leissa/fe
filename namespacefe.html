@@ -319,7 +319,6 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aff9df682b55afdb0f712e5a0c1ff3a2b" id="r_aff9df682b55afdb0f712e5a0c1ff3a2b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aff9df682b55afdb0f712e5a0c1ff3a2b">unreachable</a> ()</td></tr>
 <tr class="memitem:aa67601e05290c4a15e0d5d5f1f12a4a2" id="r_aa67601e05290c4a15e0d5d5f1f12a4a2"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa67601e05290c4a15e0d5d5f1f12a4a2">breakpoint</a> ()</td></tr>
 <tr class="memdesc:aa67601e05290c4a15e0d5d5f1f12a4a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raise a breakpoint in the debugger.  <br /></td></tr>
 <tr class="memitem:a499d7e2b75e472cbedd1ac272b82b3f3" id="r_a499d7e2b75e472cbedd1ac272b82b3f3"><td class="memItemLeft">FE_API std::ostream &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a499d7e2b75e472cbedd1ac272b82b3f3">operator&lt;&lt;</a> (std::ostream &amp;, <a class="el" href="classfe_1_1Diag.html#ad8fb588f09730aa9ef9915dfb9c8bb1f">Diag::Tag</a>)</td></tr>
@@ -443,7 +442,7 @@ template&lt;class... Args&gt; </div>
 <p>A <em>borrowed</em> fragment whose backticks stay markup; format_cite escapes every other argument.   </p>
 <p>A literal and a <a class="el" href="classfe_1_1Cited.html" title="An owning message fragment that spells  `citations`  of its own; what format_cite yields.">Cited</a> convert implicitly - both are text someone wrote as markup. Runtime text has to say so: spell it <span class="tt">Cite(s)</span>, so data never becomes markup by accident. A <span class="tt">const char*</span> - a ternary of two literals, say - counts as runtime text and needs <span class="tt">Cite(s)</span> too. </p><dl class="section warning"><dt>Warning</dt><dd>Borrows its text like a <span class="tt">std::string_view</span> does - a <a class="el" href="classfe_1_1Cited.html" title="An owning message fragment that spells  `citations`  of its own; what format_cite yields.">Cited</a> outlives the expression, a <a class="el" href="classfe_1_1Cite.html" title="A borrowed fragment whose backticks stay markup; format_cite escapes every other argument.">Cite</a> does not.    </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00242">242</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00237">237</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
 </div>
 </div>
@@ -461,7 +460,7 @@ template&lt;class V&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="dbg_8h_source.html#l00077">77</a> of file <a class="el" href="dbg_8h_source.html">dbg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dbg_8h_source.html#l00074">74</a> of file <a class="el" href="dbg_8h_source.html">dbg.h</a>.</p>
 
 </div>
 </div>
@@ -477,7 +476,7 @@ template&lt;class V&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="dbg_8h_source.html#l00078">78</a> of file <a class="el" href="dbg_8h_source.html">dbg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dbg_8h_source.html#l00075">75</a> of file <a class="el" href="dbg_8h_source.html">dbg.h</a>.</p>
 
 </div>
 </div>
@@ -584,7 +583,7 @@ template&lt;class V&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00213">213</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00210">210</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -600,7 +599,7 @@ template&lt;class V&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00214">214</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sym_8h_source.html#l00211">211</a> of file <a class="el" href="sym_8h_source.html">sym.h</a>.</p>
 
 </div>
 </div>
@@ -648,7 +647,7 @@ template&lt;class T, size_t N = std::dynamic_extent&gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="container_8h_source.html#l00061">61</a> of file <a class="el" href="container_8h_source.html">container.h</a>.</p>
 
-<p class="reference">References <a class="el" href="container_8h_source.html#l00061">assert_emplace()</a>, and <a class="el" href="assert_8h_source.html#l00039">assert_unused</a>.</p>
+<p class="reference">References <a class="el" href="container_8h_source.html#l00061">assert_emplace()</a>, and <a class="el" href="assert_8h_source.html#l00027">assert_unused</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="container_8h_source.html#l00061">assert_emplace()</a>.</p>
 
@@ -841,11 +840,11 @@ requires (std::is_trivially_copyable_v&lt;S&gt; &amp;&amp; std::is_trivially_cop
 
 <p>Raise a breakpoint in the debugger. </p>
 
-<p class="definition">Definition at line <a class="el" href="assert_8h_source.html#l00030">30</a> of file <a class="el" href="assert_8h_source.html">assert.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="assert_8h_source.html#l00012">12</a> of file <a class="el" href="assert_8h_source.html">assert.h</a>.</p>
 
-<p class="reference">References <a class="el" href="assert_8h_source.html#l00030">breakpoint()</a>.</p>
+<p class="reference">References <a class="el" href="assert_8h_source.html#l00012">breakpoint()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="assert_8h_source.html#l00030">breakpoint()</a>, and <a class="el" href="classfe_1_1Log.html#a3d38295eecbc510b2b4f1d81842dc73d">fe::Log::level2color()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="assert_8h_source.html#l00012">breakpoint()</a>, and <a class="el" href="classfe_1_1Log.html#a3d38295eecbc510b2b4f1d81842dc73d">fe::Log::level2color()</a>.</p>
 
 </div>
 </div>
@@ -916,7 +915,7 @@ template&lt;class... Args&gt; </div>
 <p>An <em>owning</em> message fragment that spells <span class="tt"> `citations` </span> of its own; what format_cite yields.   </p>
 <p>Return this from a helper that assembles a fragment, and it stays valid wherever a <a class="el" href="classfe_1_1Cite.html" title="A borrowed fragment whose backticks stay markup; format_cite escapes every other argument.">Cite</a> may go.    </p>
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00247">247</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00242">242</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="parser_8h_source.html#l00153">fe::Parser&lt; Tok, Tag, K, S &gt;::expect()</a>, <a class="el" href="cast_8h_source.html#l00058">fe::RuntimeCast&lt; B &gt;::expect()</a>, and <a class="el" href="parser_8h_source.html#l00299">fe::Parser&lt; Tok, Tag, K, S &gt;::tag2str_()</a>.</p>
 
@@ -1033,7 +1032,7 @@ template&lt;std::integral T&gt; </div>
 
 <p class="reference">References <a class="el" href="hash_8h_source.html#l00026">hash_combine()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00278">fe::Bitset::hash()</a>, and <a class="el" href="hash_8h_source.html#l00026">hash_combine()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bitset_8h_source.html#l00278">fe::Bitset::hash()</a>, <a class="el" href="hash_8h_source.html#l00026">hash_combine()</a>, and <a class="el" href="xtrie_8h_source.html#l00130">fe::XTrie&lt; D, K, N &gt;::Data::Hash::operator()()</a>.</p>
 
 </div>
 </div>
@@ -1465,11 +1464,11 @@ template&lt;class T = std::logic_error, class... Args&gt; </div>
 <p>std::format for a message that follows that convention; assemble a fragment of your own with it.   </p>
 <p>The <a class="el" href="classfe_1_1Cited.html" title="An owning message fragment that spells  `citations`  of its own; what format_cite yields.">Cited</a> it yields is markup wherever it is used as an argument again - no re-wrapping needed.    Throws a <span class="tt">T</span> (a <span class="tt">std::logic_error</span> by default) whose message is <span class="tt">format_cite(fmt, args...)</span>. Use this for unrecoverable errors that should surface as a proper exception with a formatted message. The message is rendered here, so - like <a class="el" href="classfe_1_1Error_1_1Bail.html" title="What Error::ack and Error::bail throw.">fe::Error::Bail</a> - the <span class="tt">what()</span> is finished text a generic handler may print as is, not markup someone else still has to resolve. Colors follow <a class="el" href="namespacefe_1_1term.html#ae5b6b47661d8593fc66824d6665f2154" title="Whether Mode::Auto emits colors into a detached buffer - anything a std::formatter writes into.">term::auto_detached</a>, just like the message <a class="el" href="classfe_1_1Log.html" title="Facility to log what you are doing.">fe::Log</a> builds in a detached buffer. </p>
 
-<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00279">279</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="term_8h_source.html#l00274">274</a> of file <a class="el" href="term_8h_source.html">term.h</a>.</p>
 
-<p class="reference">References <a class="el" href="term_8h_source.html#l00052">fe::term::Red</a>, <a class="el" href="namespacefe_1_1term.html#aedc72cd2cb9b72c919afeedce535d935">fe::term::render_cite()</a>, <a class="el" href="term_8h_source.html#l00060">fe::term::Reset</a>, and <a class="el" href="term_8h_source.html#l00279">throwf()</a>.</p>
+<p class="reference">References <a class="el" href="term_8h_source.html#l00053">fe::term::Red</a>, <a class="el" href="namespacefe_1_1term.html#aedc72cd2cb9b72c919afeedce535d935">fe::term::render_cite()</a>, <a class="el" href="term_8h_source.html#l00061">fe::term::Reset</a>, and <a class="el" href="term_8h_source.html#l00274">throwf()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cast_8h_source.html#l00058">fe::RuntimeCast&lt; B &gt;::expect()</a>, and <a class="el" href="term_8h_source.html#l00279">throwf()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cast_8h_source.html#l00058">fe::RuntimeCast&lt; B &gt;::expect()</a>, and <a class="el" href="term_8h_source.html#l00274">throwf()</a>.</p>
 
 </div>
 </div>
@@ -1503,38 +1502,6 @@ template&lt;<a class="el" href="conceptfe_1_1BitEnum.html">fe::BitEnum</a> E&gt;
 <p class="reference">References <a class="el" href="enum_8h_source.html#l00028">to_underlying()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="enum_8h_source.html#l00047">has_flag()</a>, <a class="el" href="enum_8h_source.html#l00036">operator&amp;()</a>, <a class="el" href="enum_8h_source.html#l00037">operator^()</a>, <a class="el" href="enum_8h_source.html#l00035">operator|()</a>, and <a class="el" href="enum_8h_source.html#l00028">to_underlying()</a>.</p>
-
-</div>
-</div>
-<a id="aff9df682b55afdb0f712e5a0c1ff3a2b" name="aff9df682b55afdb0f712e5a0c1ff3a2b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff9df682b55afdb0f712e5a0c1ff3a2b">&#9670;&#160;</a></span>unreachable()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void fe::unreachable </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a href="https://stackoverflow.com/a/65258501">https://stackoverflow.com/a/65258501</a> </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="assert_8h_source.html#l00020">20</a> of file <a class="el" href="assert_8h_source.html">assert.h</a>.</p>
-
-<p class="reference">References <a class="el" href="assert_8h_source.html#l00020">unreachable()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="patricia_8h_source.html#l00603">fe::Patricia&lt; D, KT, K, N &gt;::diff()</a>, <a class="el" href="patricia_8h_source.html#l00291">fe::Patricia&lt; D, KT, K, N &gt;::Set::has_intersection()</a>, <a class="el" href="patricia_8h_source.html#l00580">fe::Patricia&lt; D, KT, K, N &gt;::intersect()</a>, <a class="el" href="patricia_8h_source.html#l00557">fe::Patricia&lt; D, KT, K, N &gt;::merge()</a>, <a class="el" href="xtrie_8h_source.html#l00223">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator*()</a>, <a class="el" href="xtrie_8h_source.html#l00188">fe::XTrie&lt; D, K, N &gt;::Set::iterator::operator++()</a>, and <a class="el" href="assert_8h_source.html#l00020">unreachable()</a>.</p>
 
 </div>
 </div>

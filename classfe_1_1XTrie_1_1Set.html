@@ -170,13 +170,10 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr id="pub-methods-0" class="groupHeader"><td colspan="2"><div class="groupHeader">Construction</div></td></tr>
-<tr class="memitem:ac6ce3b9ef35699368a9f0e7c3a7a3c84" id="r_ac6ce3b9ef35699368a9f0e7c3a7a3c84"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#ac6ce3b9ef35699368a9f0e7c3a7a3c84">Set</a> (const Set &amp;) noexcept=default</td></tr>
-<tr class="memitem:afaf4315c309cb0fc38bb160a81a408a0" id="r_afaf4315c309cb0fc38bb160a81a408a0"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#afaf4315c309cb0fc38bb160a81a408a0">Set</a> (Set &amp;&amp;) noexcept=default</td></tr>
 <tr class="memitem:a4043a4661ff4b6bdd21cbc5343a74301" id="r_a4043a4661ff4b6bdd21cbc5343a74301"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#a4043a4661ff4b6bdd21cbc5343a74301">Set</a> () noexcept=default</td></tr>
 <tr class="memdesc:a4043a4661ff4b6bdd21cbc5343a74301"><td class="mdescLeft">&#160;</td><td class="mdescRight">Null set.  <br /></td></tr>
 <tr class="memitem:a307672341473bfe907e3a2b609a8482d" id="r_a307672341473bfe907e3a2b609a8482d"><td class="memItemLeft">constexpr&#160;</td><td class="memItemRight"><a class="el" href="#a307672341473bfe907e3a2b609a8482d">Set</a> (D *d) noexcept</td></tr>
 <tr class="memdesc:a307672341473bfe907e3a2b609a8482d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uniq set.  <br /></td></tr>
-<tr class="memitem:a74b8753951a042bf00248881b7cffb28" id="r_a74b8753951a042bf00248881b7cffb28"><td class="memItemLeft">constexpr Set &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a74b8753951a042bf00248881b7cffb28">operator=</a> (const Set &amp;) noexcept=default</td></tr>
 <tr id="pub-methods-1" class="groupHeader"><td colspan="2"><div class="groupHeader">Getters</div></td></tr>
 <tr class="memitem:aa6d578531bc83831bff1b1f7c09f2af5" id="r_aa6d578531bc83831bff1b1f7c09f2af5"><td class="memItemLeft">constexpr size_t&#160;</td><td class="memItemRight"><a class="el" href="#aa6d578531bc83831bff1b1f7c09f2af5">size</a> () const noexcept</td></tr>
 <tr class="memitem:ab36b82ad85a6589d471c15a8e5b67f76" id="r_ab36b82ad85a6589d471c15a8e5b67f76"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#ab36b82ad85a6589d471c15a8e5b67f76">empty</a> () const noexcept</td></tr>
@@ -205,64 +202,10 @@ Friends</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class D, class K, size_t N = 16&gt;<br />
 class fe::XTrie&lt; D, K, N &gt;::Set</div>
-<p class="definition">Definition at line <a class="el" href="xtrie_8h_source.html#l00148">148</a> of file <a class="el" href="xtrie_8h_source.html">xtrie.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xtrie_8h_source.html#l00150">150</a> of file <a class="el" href="xtrie_8h_source.html">xtrie.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ac6ce3b9ef35699368a9f0e7c3a7a3c84" name="ac6ce3b9ef35699368a9f0e7c3a7a3c84"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac6ce3b9ef35699368a9f0e7c3a7a3c84">&#9670;&#160;</a></span>Set() <span class="overload">[1/4]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class D, class K, size_t N = 16&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classfe_1_1XTrie.html">fe::XTrie</a>&lt; D, K, N &gt;::Set::Set </td>
-          <td>(</td>
-          <td class="paramtype">const Set &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel default">default</span><span class="mlabel noexcept">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="afaf4315c309cb0fc38bb160a81a408a0" name="afaf4315c309cb0fc38bb160a81a408a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afaf4315c309cb0fc38bb160a81a408a0">&#9670;&#160;</a></span>Set() <span class="overload">[2/4]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class D, class K, size_t N = 16&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classfe_1_1XTrie.html">fe::XTrie</a>&lt; D, K, N &gt;::Set::Set </td>
-          <td>(</td>
-          <td class="paramtype">Set &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel default">default</span><span class="mlabel noexcept">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a4043a4661ff4b6bdd21cbc5343a74301" name="a4043a4661ff4b6bdd21cbc5343a74301"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4043a4661ff4b6bdd21cbc5343a74301">&#9670;&#160;</a></span>Set() <span class="overload">[3/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a4043a4661ff4b6bdd21cbc5343a74301">&#9670;&#160;</a></span>Set() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -288,12 +231,12 @@ template&lt;class D, class K, size_t N = 16&gt; </div>
 
 <p>Null set. </p>
 
-<p class="reference">Referenced by <a class="el" href="xtrie_8h_source.html#l00570">fe::XTrie&lt; D, K, N &gt;::erase()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="xtrie_8h_source.html#l00568">fe::XTrie&lt; D, K, N &gt;::erase()</a>.</p>
 
 </div>
 </div>
 <a id="a307672341473bfe907e3a2b609a8482d" name="a307672341473bfe907e3a2b609a8482d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a307672341473bfe907e3a2b609a8482d">&#9670;&#160;</a></span>Set() <span class="overload">[4/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a307672341473bfe907e3a2b609a8482d">&#9670;&#160;</a></span>Set() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -349,7 +292,7 @@ template&lt;class D, class K, size_t N = 16&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="xtrie_8h_source.html#l00346">346</a> of file <a class="el" href="xtrie_8h_source.html">xtrie.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xtrie_8h_source.html#l00344">344</a> of file <a class="el" href="xtrie_8h_source.html">xtrie.h</a>.</p>
 
 </div>
 </div>
@@ -380,9 +323,9 @@ template&lt;class D, class K, size_t N = 16&gt; </div>
 
 <p>Is \(d \in this\)?. </p>
 
-<p class="definition">Definition at line <a class="el" href="xtrie_8h_source.html#l00277">277</a> of file <a class="el" href="xtrie_8h_source.html">xtrie.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xtrie_8h_source.html#l00275">275</a> of file <a class="el" href="xtrie_8h_source.html">xtrie.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="xtrie_8h_source.html#l00292">has_intersection()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="xtrie_8h_source.html#l00290">has_intersection()</a>.</p>
 
 </div>
 </div>
@@ -411,9 +354,9 @@ template&lt;class D, class K, size_t N = 16&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="xtrie_8h_source.html#l00380">380</a> of file <a class="el" href="xtrie_8h_source.html">xtrie.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xtrie_8h_source.html#l00378">378</a> of file <a class="el" href="xtrie_8h_source.html">xtrie.h</a>.</p>
 
-<p class="reference">References <a class="el" href="xtrie_8h_source.html#l00366">stream()</a>.</p>
+<p class="reference">References <a class="el" href="xtrie_8h_source.html#l00364">stream()</a>.</p>
 
 </div>
 </div>
@@ -444,9 +387,9 @@ template&lt;class D, class K, size_t N = 16&gt; </div>
 
 <p>Is empty? </p>
 
-<p class="definition">Definition at line <a class="el" href="xtrie_8h_source.html#l00265">265</a> of file <a class="el" href="xtrie_8h_source.html">xtrie.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xtrie_8h_source.html#l00263">263</a> of file <a class="el" href="xtrie_8h_source.html">xtrie.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="xtrie_8h_source.html#l00292">has_intersection()</a>, <a class="el" href="xtrie_8h_source.html#l00506">fe::XTrie&lt; D, K, N &gt;::merge()</a>, and <a class="el" href="xtrie_8h_source.html#l00270">operator bool()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="xtrie_8h_source.html#l00290">has_intersection()</a>, <a class="el" href="xtrie_8h_source.html#l00504">fe::XTrie&lt; D, K, N &gt;::merge()</a>, and <a class="el" href="xtrie_8h_source.html#l00268">operator bool()</a>.</p>
 
 </div>
 </div>
@@ -475,7 +418,7 @@ template&lt;class D, class K, size_t N = 16&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="xtrie_8h_source.html#l00353">353</a> of file <a class="el" href="xtrie_8h_source.html">xtrie.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xtrie_8h_source.html#l00351">351</a> of file <a class="el" href="xtrie_8h_source.html">xtrie.h</a>.</p>
 
 <p class="reference">References <a class="el" href="classfe_1_1XTrie_1_1Set_1_1iterator.html#a57c00b8c969a7f22c8347be2497813a8">fe::XTrie&lt; D, K, N &gt;::Set::iterator::iterator()</a>.</p>
 
@@ -508,9 +451,9 @@ template&lt;class D, class K, size_t N = 16&gt; </div>
 
 <p>Is \(this \cap other \neq \emptyset\)?. </p>
 
-<p class="definition">Definition at line <a class="el" href="xtrie_8h_source.html#l00292">292</a> of file <a class="el" href="xtrie_8h_source.html">xtrie.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xtrie_8h_source.html#l00290">290</a> of file <a class="el" href="xtrie_8h_source.html">xtrie.h</a>.</p>
 
-<p class="reference">References <a class="el" href="xtrie_8h_source.html#l00277">contains()</a>, and <a class="el" href="xtrie_8h_source.html#l00265">empty()</a>.</p>
+<p class="reference">References <a class="el" href="xtrie_8h_source.html#l00275">contains()</a>, and <a class="el" href="xtrie_8h_source.html#l00263">empty()</a>.</p>
 
 </div>
 </div>
@@ -541,36 +484,9 @@ template&lt;class D, class K, size_t N = 16&gt; </div>
 
 <p>Not empty? </p>
 
-<p class="definition">Definition at line <a class="el" href="xtrie_8h_source.html#l00270">270</a> of file <a class="el" href="xtrie_8h_source.html">xtrie.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xtrie_8h_source.html#l00268">268</a> of file <a class="el" href="xtrie_8h_source.html">xtrie.h</a>.</p>
 
-<p class="reference">References <a class="el" href="xtrie_8h_source.html#l00265">empty()</a>.</p>
-
-</div>
-</div>
-<a id="a74b8753951a042bf00248881b7cffb28" name="a74b8753951a042bf00248881b7cffb28"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a74b8753951a042bf00248881b7cffb28">&#9670;&#160;</a></span>operator=()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class D, class K, size_t N = 16&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Set &amp; <a class="el" href="classfe_1_1XTrie.html">fe::XTrie</a>&lt; D, K, N &gt;::Set::operator= </td>
-          <td>(</td>
-          <td class="paramtype">const Set &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel default">default</span><span class="mlabel noexcept">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
+<p class="reference">References <a class="el" href="xtrie_8h_source.html#l00263">empty()</a>.</p>
 
 </div>
 </div>
@@ -599,7 +515,7 @@ template&lt;class D, class K, size_t N = 16&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="xtrie_8h_source.html#l00361">361</a> of file <a class="el" href="xtrie_8h_source.html">xtrie.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xtrie_8h_source.html#l00359">359</a> of file <a class="el" href="xtrie_8h_source.html">xtrie.h</a>.</p>
 
 </div>
 </div>
@@ -628,7 +544,7 @@ template&lt;class D, class K, size_t N = 16&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="xtrie_8h_source.html#l00257">257</a> of file <a class="el" href="xtrie_8h_source.html">xtrie.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xtrie_8h_source.html#l00255">255</a> of file <a class="el" href="xtrie_8h_source.html">xtrie.h</a>.</p>
 
 </div>
 </div>
@@ -657,9 +573,9 @@ template&lt;class D, class K, size_t N = 16&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="xtrie_8h_source.html#l00366">366</a> of file <a class="el" href="xtrie_8h_source.html">xtrie.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xtrie_8h_source.html#l00364">364</a> of file <a class="el" href="xtrie_8h_source.html">xtrie.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="xtrie_8h_source.html#l00380">dump()</a>, and <a class="el" href="xtrie_8h_source.html#l00398">operator&lt;&lt;</a>.</p>
+<p class="reference">Referenced by <a class="el" href="xtrie_8h_source.html#l00378">dump()</a>, and <a class="el" href="xtrie_8h_source.html#l00396">operator&lt;&lt;</a>.</p>
 
 </div>
 </div>
@@ -693,9 +609,9 @@ template&lt;class D, class K, size_t N = 16&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="xtrie_8h_source.html#l00398">398</a> of file <a class="el" href="xtrie_8h_source.html">xtrie.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xtrie_8h_source.html#l00396">396</a> of file <a class="el" href="xtrie_8h_source.html">xtrie.h</a>.</p>
 
-<p class="reference">References <a class="el" href="xtrie_8h_source.html#l00366">stream()</a>.</p>
+<p class="reference">References <a class="el" href="xtrie_8h_source.html#l00364">stream()</a>.</p>
 
 </div>
 </div>
@@ -721,11 +637,11 @@ template&lt;class D, class K, size_t N = 16&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="xtrie_8h_source.html#l00397">397</a> of file <a class="el" href="xtrie_8h_source.html">xtrie.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="xtrie_8h_source.html#l00395">395</a> of file <a class="el" href="xtrie_8h_source.html">xtrie.h</a>.</p>
 
-<p class="reference">References <a class="el" href="xtrie_8h_source.html#l00397">XTrie</a>.</p>
+<p class="reference">References <a class="el" href="xtrie_8h_source.html#l00395">XTrie</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="xtrie_8h_source.html#l00397">XTrie</a>.</p>
+<p class="reference">Referenced by <a class="el" href="xtrie_8h_source.html#l00395">XTrie</a>.</p>
 
 </div>
 </div>
