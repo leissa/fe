@@ -109,11 +109,9 @@ private:
     int indent_ = 0;
 };
 
-template<class T, class CharT = char>
+template<class T>
 concept Formattable
-    = requires(std::basic_format_context<std::back_insert_iterator<std::basic_string<CharT>>, CharT>& ctx, T const& v) {
-          std::formatter<std::remove_cvref_t<T>, CharT>{}.format(v, ctx);
-      };
+    = requires(std::format_context& ctx, const T& v) { std::formatter<std::remove_cvref_t<T>>{}.format(v, ctx); };
 
 /// Join elements of @p range with @p sep.
 /// Use as a `std::format` or `operator<<` argument: `std::format("{}", fe::Join(v, ", "))`.

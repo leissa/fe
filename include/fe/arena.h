@@ -72,7 +72,6 @@ public:
         /// `propagate_on_container_swap`, which we cannot enable here because `arena` is a non-rebindable reference.
         // clang-format off
         template<class U> constexpr bool operator==(const Allocator<U>&) const noexcept { return true; }
-        template<class U> constexpr bool operator!=(const Allocator<U>&) const noexcept { return false; }
         // clang-format on
 
         Arena& arena;
@@ -81,8 +80,8 @@ public:
     template<class T>
     struct Deleter {
         constexpr Deleter() noexcept = default;
-        template<class U, std::enable_if_t<std::is_convertible_v<U*, T*>, int> = 0>
-        constexpr Deleter(const Deleter<U>&) noexcept {}
+        template<class U>
+        requires std::convertible_to<U*, T*> constexpr Deleter(const Deleter<U>&) noexcept {}
 
         constexpr void operator()(T* ptr) const noexcept(noexcept(ptr->~T())) { ptr->~T(); }
     };
@@ -178,16 +177,13 @@ public:
     ///@{
 
     /// Get @p n bytes of fresh memory.
-    /// @note When a fresh page is allocated, its base is only aligned to the @p align of the allocation that
-    /// triggered it. A *later* allocation in the same page that requests a *larger* alignment has its offset
-    /// aligned but may still be under-aligned relative to its request. This is a non-issue for the default
-    /// (max-aligned) page size and for arenas with uniform alignment; only tiny custom arenas mixing alignments
-    /// can hit it.
     [[nodiscard]] void* allocate(size_t num_bytes, size_t align) {
         if (num_bytes == 0) return nullptr;
         assert(align != 0);
 
-        auto aligned_index = Arena::align(index_, align);
+        // A page's base is only aligned to whatever allocation created it.
+        auto base          = reinterpret_cast<uintptr_t>(pages_.back().buffer);
+        auto aligned_index = Arena::align(base + index_, align) - base;
         if (aligned_index + num_bytes > pages_.back().size) {
             pages_.emplace_back(std::max(page_size_, num_bytes), align);
             aligned_index = 0;
@@ -271,8 +267,6 @@ private:
         ptr->fill_vla(std::get<sizeof...(Hs) + Ts>(tuple)...);
         return ptr;
     }
-
-    Arena& align(size_t a) noexcept { return index_ = align(index_, a), *this; }
 
     struct Page {
         constexpr Page() noexcept = default;

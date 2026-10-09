@@ -99,12 +99,6 @@ constexpr bool escape(std::string_view str, size_t i, size_t end) noexcept {
 /// Index of the next backtick at or after @p i that is not escaped, or `npos`.
 FE_API size_t tick(std::string_view str, size_t i) noexcept;
 
-/// Streams `[begin, end)` of @p str, dropping the leading backslash of every escape.
-FE_API void stream_raw(std::ostream& os, std::string_view str, size_t begin, size_t end);
-
-/// Columns `[begin, end)` of @p str occupies once streamed via stream_raw - one less per escape.
-FE_API size_t raw_width(std::string_view str, size_t begin, size_t end) noexcept;
-
 /// Splits @p str into its `` `citation` `` markup and invokes `f(begin, end, cited)` on each piece;
 /// an unpaired backtick is no citation. This is the one place that knows the grammar.
 void scan_cite(std::string_view str, auto&& f) {
@@ -294,7 +288,7 @@ struct std::formatter<fe::term::detail::Escaped<T>> {
         for (; i != ctx.end() && *i != '}'; ++i)
             if (*i == '{') throw std::format_error("fe::term::format_cite: a nested replacement field needs Cite");
         spec = std::string_view(ctx.begin(), i);
-        return i;
+        return std::formatter<T>().parse(ctx);
     }
 
     auto format(const fe::term::detail::Escaped<T>& escaped, std::format_context& ctx) const {

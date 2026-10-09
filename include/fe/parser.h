@@ -134,7 +134,7 @@ protected:
         return result;
     }
 
-    /// If Parser::ahead() is a @p tag, consume and return it, otherwise yield `std::nullopt`.
+    /// If Parser::ahead() is a @p tag, consume and return it, otherwise yield the Nil `Tok()`.
     Tok accept(Tag tag) {
         if (tag != ahead().tag()) return {};
         return lex();

@@ -1177,3 +1177,10 @@ TEST_CASE("Arena::copy") {
     CHECK(std::ranges::equal(span, v));
     CHECK(arena.copy(std::vector<int>{}).empty());
 }
+
+TEST_CASE("Arena mixed alignment") {
+    fe::Arena arena(4096);
+    (void)arena.allocate(1, 1);
+    for (size_t align : {2, 8, 64, 256})
+        CHECK(reinterpret_cast<uintptr_t>(arena.allocate(1, align)) % align == 0);
+}

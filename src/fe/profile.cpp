@@ -6,6 +6,8 @@
 #include <ostream>
 #include <print>
 
+#include "fe/assert.h"
+
 using namespace std::literals;
 
 namespace fe {
@@ -29,7 +31,11 @@ std::string json_escape(std::string_view str) {
             case '\n': res += "\\n"; break;
             case '\t': res += "\\t"; break;
             case '\r': res += "\\r"; break;
-            default: res += c;
+            default:
+                if (static_cast<unsigned char>(c) < 0x20)
+                    res += std::format("\\u{:04x}", static_cast<unsigned char>(c));
+                else
+                    res += c;
         }
     }
     return res;
@@ -69,6 +75,7 @@ std::vector<Profiler::Duration> Profiler::children_durations() const {
 }
 
 void Profiler::summary(std::ostream& os) const {
+    assert(stack_.empty() && "stop every Span before reporting");
     struct Agg {
         Duration total = Duration::zero();
         Duration self  = Duration::zero();
@@ -117,6 +124,7 @@ void Profiler::summary(std::ostream& os) const {
 }
 
 void Profiler::tree(std::ostream& os) const {
+    assert(stack_.empty() && "stop every Span before reporting");
     auto children = children_durations();
     auto total    = Duration::zero();
     for (const auto& span : spans_)
@@ -139,6 +147,7 @@ void Profiler::tree(std::ostream& os) const {
 }
 
 void Profiler::chrome_trace(std::ostream& os) const {
+    assert(stack_.empty() && "stop every Span before reporting");
     auto origin = spans_.empty() ? Clock::time_point{} : spans_.front().start;
 
     std::println(os, "{{\"displayTimeUnit\":\"ms\",\"traceEvents\":[");

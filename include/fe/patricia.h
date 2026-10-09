@@ -21,6 +21,7 @@
 
 #include "fe/arena.h"
 #include "fe/assert.h"
+#include "fe/hash.h"
 #include "fe/span.h"
 #include "fe/vector.h"
 
@@ -759,7 +760,7 @@ private:
     static size_t hash_entries(View<Entry> es) noexcept {
         uint64_t h = 0;
         for (const auto& e : es)
-            h = ankerl::unordered_dense::tuple_hash_helper<>::mix64(h, std::bit_cast<uintptr_t>(e.d));
+            h = hash_combine(h, std::bit_cast<uintptr_t>(e.d));
         return h;
     }
 

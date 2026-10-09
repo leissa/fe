@@ -20,7 +20,6 @@ namespace fe {
 /// @note Deliberately free of virtual functions - Driver::diag is where you plug in behavior of your own.
 /// @warning Not movable: Driver::error - and a Diag of your own - point back here.
 struct Driver : public SymPool {
-public:
     Driver();
 
     /// Installs @p diag right away, so Driver::error renders through it from the very first message.

@@ -14,11 +14,9 @@ namespace fe {
 
 /// The debug info of an entity: where it came from and what it was called.
 struct Dbg {
-public:
     /// @name Constructors
     ///@{
-    constexpr Dbg() noexcept           = default;
-    constexpr Dbg(const Dbg&) noexcept = default;
+    constexpr Dbg() noexcept = default;
     constexpr Dbg(Loc loc, Sym sym) noexcept
         : loc_(loc)
         , sym_(sym) {}
@@ -26,7 +24,6 @@ public:
         : Dbg(loc, {}) {}
     constexpr Dbg(Sym sym) noexcept
         : Dbg({}, sym) {}
-    Dbg& operator=(const Dbg&) noexcept = default;
     ///@}
 
     /// @name Getters

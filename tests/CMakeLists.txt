@@ -8,6 +8,7 @@ target_sources(fe-test
         lexer.cpp
         loc.cpp
         patricia.cpp
+        profile.cpp
         test.cpp
         xtrie.cpp
 )

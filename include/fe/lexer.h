@@ -84,7 +84,6 @@ protected:
     std::string lower() const { return fold(fe::utf8::tolower); }
     std::string upper() const { return fold(fe::utf8::toupper); }
 
-    // Transform view() via @p f.
     std::string fold(char32_t (*f)(char32_t) noexcept) const {
         std::string res(view());
         for (auto& c : res)
@@ -130,12 +129,7 @@ protected:
             auto run = ahead_[0].begin.off;
             for (; run != buf_.size() && (uint8_t)buf_[run] < 0x80 && pred((char32_t)(uint8_t)buf_[run]); ++run) {}
 
-            if (run != ahead_[0].begin.off) {
-                loc_.end = Pos((uint32_t)run);
-                cursor_  = run;
-                for (size_t i = 0; i != K; ++i)
-                    ahead_.put(decode());
-            }
+            skip_to(ahead_[0].begin.off, run);
 
             auto c = ahead();
             if (c < 0x80 || c == utf8::EoF || !pred(c)) break;
@@ -171,9 +165,6 @@ protected:
         auto pos   = buf_.find((char)a, begin);
         return skip_to(begin, pos == std::string_view::npos ? buf_.size() : pos);
     }
-
-    std::string_view accept_while_none_of(char a) { return accept_while_none_of((char8_t)a); }
-    std::string_view accept_while_none_of(char a, char b) { return accept_while_none_of((char8_t)a, (char8_t)b); }
 
     /// Lexer::next up to - but not including - the next occurrence of @p seq.
     /// Where Lexer::accept_while_none_of takes a set of bytes, this one takes a *sequence*:

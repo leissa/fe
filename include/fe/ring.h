@@ -20,13 +20,7 @@ public:
         assert(list.size() == N);
         std::copy(list.begin(), list.end(), array_.begin());
     }
-    Ring()            = default; // no noexcept: we don't know whether T's operations throw
-    Ring(const Ring&) = default;
-    Ring(Ring&& other)
-        : Ring() {
-        swap(*this, other);
-    }
-    Ring& operator=(Ring other) { return swap(*this, other), *this; }
+    Ring() = default; // no noexcept: we don't know whether T's operations throw
     ///@}
 
     /// @name Access
@@ -76,13 +70,7 @@ public:
     ///@{
     Ring(std::initializer_list<T> list)
         : item_(*list.begin()) {}
-    Ring()            = default;
-    Ring(const Ring&) = default;
-    Ring(Ring&& other)
-        : Ring() {
-        swap(*this, other);
-    }
-    Ring& operator=(Ring other) { return swap(*this, other), *this; }
+    Ring() = default;
     ///@}
 
     /// @name Access
@@ -128,13 +116,7 @@ public:
         assert(list.size() == 2);
         std::copy(list.begin(), list.end(), array_.begin());
     }
-    Ring()            = default;
-    Ring(const Ring&) = default;
-    Ring(Ring&& other)
-        : Ring() {
-        swap(*this, other);
-    }
-    Ring& operator=(Ring other) { return swap(*this, other), *this; }
+    Ring() = default;
     ///@}
 
     /// @name Access

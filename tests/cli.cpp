@@ -315,4 +315,13 @@ TEST_CASE("cli citations") {
         cli.markdown(md);
         CHECK(md.str().contains("` then `a<b` and a\\|b \\-- end"));
     }
+    SUBCASE("a citation wrapped across lines keeps its color") {
+        auto _   = fe::term::ScopedMode(fe::term::Mode::Always);
+        auto x   = false;
+        auto cli = fe::Cli("t").opt(x, "-x", "--xx", std::string(60, 'a') + " `a citation with spaces in it` wraps.");
+
+        std::ostringstream oss;
+        oss << cli;
+        CHECK(!oss.str().contains('`'));
+    }
 }
