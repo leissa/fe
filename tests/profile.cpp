@@ -2,6 +2,7 @@
 
 #include <doctest/doctest.h>
 #include <fe/profile.h>
+#include <fe/term.h>
 
 TEST_CASE("Profiler") {
     fe::Profiler prof;
@@ -29,4 +30,15 @@ TEST_CASE("Profiler") {
     std::ostringstream os;
     prof.chrome_trace(os);
     CHECK(os.str().find(R"(in\"ner\\\u0001)") != std::string::npos);
+
+    SUBCASE("names are citations") {
+        auto _ = fe::term::ScopedMode(fe::term::Mode::Never);
+        std::ostringstream tree;
+        prof.tree(tree);
+        CHECK(tree.str().contains("`outer` [`n`=3]"));
+
+        std::ostringstream summary;
+        prof.summary(summary);
+        CHECK(summary.str().contains("`outer`: `n`"));
+    }
 }

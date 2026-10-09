@@ -6,6 +6,7 @@
 #include <atomic>
 #include <iterator>
 #include <ostream>
+#include <utility>
 
 #ifdef _WIN32
 #    ifndef WIN32_LEAN_AND_MEAN
@@ -140,7 +141,7 @@ bool use_color(std::ostream& os) noexcept {
         case Mode::Always: return true;
         case Mode::Never:  return false;
         case Mode::Auto:   return s == detail::Stream::Unknown ? auto_detached() : detail::is_terminal(s);
-        default: fe::unreachable();
+        default: std::unreachable();
     }
     // clang-format on
 }

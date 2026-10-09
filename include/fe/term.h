@@ -7,6 +7,7 @@
 #include <string>
 #include <string_view>
 #include <type_traits>
+#include <utility>
 
 #include "fe/api.h"
 #include "fe/assert.h"
@@ -86,7 +87,7 @@ constexpr std::string_view sgr(FG color) noexcept {
         case FG::Cyan:    return "\033[36m";
         case FG::Gray:    return "\033[90m";
         case FG::Reset:   return "\033[39m";
-        default: fe::unreachable();
+        default: std::unreachable();
     }
     // clang-format on
 }

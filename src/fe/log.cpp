@@ -1,5 +1,7 @@
 #include "fe/log.h"
 
+#include <utility>
+
 namespace fe {
 
 // clang-format off
@@ -11,7 +13,7 @@ char Log::level2acro(Level level) {
         case Level::I: return 'I';
         case Level::W: return 'W';
         case Level::E: return 'E';
-        default: unreachable();
+        default: std::unreachable();
     }
 }
 
@@ -23,7 +25,7 @@ term::FG Log::level2color(Level level) {
         case Level::I: return term::FG::Green;
         case Level::W: return term::FG::Yellow;
         case Level::E: return term::FG::Red;
-        default: unreachable();
+        default: std::unreachable();
     }
 }
 // clang-format on

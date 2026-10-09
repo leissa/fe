@@ -1,4 +1,5 @@
 #include <sstream>
+#include <utility>
 
 #include <doctest/doctest.h>
 #include <fe/driver.h>
@@ -81,7 +82,7 @@ public:
     case Tok::Tag::t: return str;
             LET_OP(CODE)
 #undef CODE
-            default: fe::unreachable();
+            default: std::unreachable();
         }
     }
 

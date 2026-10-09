@@ -2,18 +2,11 @@
 
 #include <cassert>
 
-#include <utility>
-
 #ifdef _MSC_VER
 #    include <intrin.h>
 #endif
 
 namespace fe {
-
-[[noreturn]] inline void unreachable() {
-    assert(false);
-    std::unreachable();
-}
 
 /// Raise a breakpoint in the debugger.
 inline void breakpoint() {
