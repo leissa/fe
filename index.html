@@ -266,23 +266,23 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
 <p>It is especially useful when you want the flexibility of handwritten code without repeatedly rebuilding the same frontend infrastructure from scratch.</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
 How much code is that?</h2>
-<p><a href="https://github.com/leissa/let"><b>Let</b></a> is a complete little language: lexer, parser, AST, arena-allocated nodes, evaluator, printer, CLI, and a golden-file test suite. <span class="tt">sloccount src include</span> says 598 lines.</p>
+<p><a href="https://github.com/leissa/let"><b>Let</b></a> is a complete little language: lexer, parser, AST, arena-allocated nodes, evaluator, printer, CLI, and a golden-file test suite. <span class="tt">sloccount src include</span> says 597 lines.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone"></th><th class="markdownTableHeadRight">SLOC  </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">lexer + parser  </td><td class="markdownTableBodyRight">203  </td></tr>
+<td class="markdownTableBodyNone">lexer + parser  </td><td class="markdownTableBodyRight">191  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">token type: tag list and precedences  </td><td class="markdownTableBodyRight">128  </td></tr>
+<td class="markdownTableBodyNone">token type: tag list and precedences  </td><td class="markdownTableBodyRight">126  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">AST, evaluator, printer  </td><td class="markdownTableBodyRight">201  </td></tr>
+<td class="markdownTableBodyNone">AST, evaluator, printer  </td><td class="markdownTableBodyRight">189  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">driver + CLI  </td><td class="markdownTableBodyRight">66  </td></tr>
+<td class="markdownTableBodyNone">driver + CLI  </td><td class="markdownTableBodyRight">91  </td></tr>
 </table>
-<p>A <span class="tt">.l</span>/<span class="tt">.y</span> pair for that grammar would not come out much shorter than those 203 lines - and Bison would additionally check the grammar for conflicts, which recursive descent never will. What a generator does <em>not</em> write for you is the other 395: command-line parsing, the AST, the arena, the interning, the evaluator, the printer. Nor does it write the diagnostics, and that is where the difference actually shows up.</p>
+<p>A <span class="tt">.l</span>/<span class="tt">.y</span> pair for that grammar would not come out much shorter than those 191 lines - and Bison would additionally check the grammar for conflicts, which recursive descent never will. What a generator does <em>not</em> write for you is the other 406: command-line parsing, the AST, the arena, the interning, the evaluator, the printer. Nor does it write the diagnostics, and that is where the difference actually shows up.</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
 Diagnostics you did not write</h2>
-<p>Those 203 lines already produce this. The error line and its snippet come out of <span class="tt">expect</span>; the note that points back at the <span class="tt">(</span> comes out of the anchor that was waiting for the <span class="tt">)</span> - neither costs a line of <span class="tt">let</span>:</p>
+<p>Those 191 lines already produce this. The error line and its snippet come out of <span class="tt">expect</span>; the note that points back at the <span class="tt">(</span> comes out of the anchor that was waiting for the <span class="tt">)</span> - neither costs a line of <span class="tt">let</span>:</p>
 <div class="fragment"><div class="line">test/error/unclosed_paren.let:1:13: error: expected `)`, got `;` while parsing parenthesized expression</div>
 <div class="line">    1 | print (1 + 2;</div>
 <div class="line">      |             ^</div>
