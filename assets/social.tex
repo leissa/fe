@@ -1,0 +1,21 @@
+\documentclass[tikz]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[sfdefault]{FiraSans}
+
+% https://www.uni-goettingen.de/storage/pictures/184865.png
+\definecolor{Uniblau}{HTML}{153268}
+\definecolor{Logohellblau}{HTML}{50A5D2}
+
+\begin{document}
+\begin{tikzpicture}
+    \fill [Uniblau] (0, 0) rectangle (12.8, 6.4);
+    \useasboundingbox (0, 0) rectangle (12.8, 6.4);
+    \node [inner sep=0, font=\bfseries\fontsize{88}{88}\selectfont] at (3.15, 3.2)
+        {\textcolor{Logohellblau}{\{}\textcolor{white}{fe}\textcolor{Logohellblau}{\}}};
+    \fill [Logohellblau] (5.75, 2.2) rectangle (5.8, 4.2);
+    \node [anchor=west, align=left, text=white, inner sep=0, font=\fontsize{15}{20}\selectfont] at (6.2, 3.5)
+        {\bfseries Building blocks\\\bfseries for language frontends};
+    \node [anchor=west, text=Logohellblau, inner sep=0, font=\fontsize{11}{11}\selectfont] at (6.2, 2.6)
+        {C++23 \textperiodcentered\ github.com/leissa/fe};
+\end{tikzpicture}
+\end{document}
