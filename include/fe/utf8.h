@@ -137,7 +137,7 @@ struct Char32 {
 
 /// @name Character classification
 /// `char32_t`-style counterparts of the <[ctype](https://en.cppreference.com/w/cpp/header/cctype)>
-/// functions, for a code point of any width - everything above U+00FF belongs to no class.
+/// functions, for a code point of any width - everything above U+007F belongs to no class.
 ///@{
 constexpr bool isascii(char32_t c) noexcept { return c <= 0x7F; }
 constexpr bool isupper(char32_t c) noexcept { return 'A' <= c && c <= 'Z'; }
@@ -163,20 +163,10 @@ constexpr bool isodigit(char32_t c) noexcept { return isrange(c, '0', '7'); } //
 constexpr bool isbdigit(char32_t c) noexcept { return isrange(c, '0', '1'); } ///< Is binary digit?
 ///@}
 
-namespace detail {
-
-constexpr bool any(char32_t c, char32_t d) noexcept { return c == d; }
-template<class... T>
-constexpr bool any(char32_t c, char32_t d, T... args) noexcept {
-    return c == d || any(c, args...);
-}
-
-} // namespace detail
-
 /// Build a predicate that checks whether a code point matches any of the given values.
 template<class... T>
 constexpr auto any(T... args) noexcept {
-    return [=](char32_t c) { return detail::any(c, args...); };
+    return [=](char32_t c) { return ((c == char32_t(args)) || ...); };
 }
 
 } // namespace fe::utf8

@@ -157,7 +157,6 @@ public:
     }
 
     /// Least Common Ancestor of `this` and @p other in the *aux* tree; leaves @p other expose%d.
-    /// @returns `nullptr`, if @p a and @p b are in different trees.
     constexpr P* lca(Node* other) noexcept { return this->expose(), other->expose(); }
 
     /// Is `this` a descendant of `other` in the *aux* tree?

@@ -20,12 +20,8 @@ void* open(const char* file) {
                file, GetLastError());
     }
 #else
-    if (void* handle = dlopen(file, RTLD_NOW))
-        return handle;
-    else if (auto err = dlerror())
-        throwf("could not load dynamic library `{}` due to error `{}`", file, err);
-    else
-        throwf("could not load dynamic library `{}`", file);
+    if (void* handle = dlopen(file, RTLD_NOW)) return handle;
+    throwf("could not load dynamic library `{}` due to error `{}`", file, dlerror());
 #endif
 }
 

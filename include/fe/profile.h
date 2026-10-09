@@ -59,6 +59,7 @@ public:
     ///@}
 
     /// @name Reporting
+    /// Every Span must have been stopped.
     ///@{
     /// Prints a flat table aggregated by name, sorted by total time, descending.
     void summary(std::ostream&) const;

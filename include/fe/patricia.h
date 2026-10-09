@@ -16,11 +16,13 @@
 #include <print>
 #include <ranges>
 #include <tuple>
+#include <utility>
 
 #include <ankerl/unordered_dense.h>
 
 #include "fe/arena.h"
 #include "fe/assert.h"
+#include "fe/hash.h"
 #include "fe/span.h"
 #include "fe/vector.h"
 
@@ -307,7 +309,7 @@ public:
                 case Rel::R2: return this->has_intersection(other.right());
                 case Rel::None: return false;
             }
-            unreachable();
+            std::unreachable();
         }
 
         /// Is @f$this \subseteq other@f$?
@@ -573,7 +575,7 @@ public:
             case Rel::R2: return br(n2->prefix, n2->mask, s2.left(), merge(s1, s2.right()));
             case Rel::None: return join(s1, s2);
         }
-        unreachable();
+        std::unreachable();
     }
 
     /// Yields @f$s_1 \cap s_2@f$.
@@ -596,7 +598,7 @@ public:
             case Rel::R2: return intersect(s1, s2.right());
             case Rel::None: return {};
         }
-        unreachable();
+        std::unreachable();
     }
 
     /// Yields @f$s_1 \setminus s_2@f$.
@@ -618,7 +620,7 @@ public:
             case Rel::R2: return diff(s1, s2.right());
             case Rel::None: return s1;
         }
-        unreachable();
+        std::unreachable();
     }
     ///@}
 
@@ -759,7 +761,7 @@ private:
     static size_t hash_entries(View<Entry> es) noexcept {
         uint64_t h = 0;
         for (const auto& e : es)
-            h = ankerl::unordered_dense::tuple_hash_helper<>::mix64(h, std::bit_cast<uintptr_t>(e.d));
+            h = hash_combine(h, std::bit_cast<uintptr_t>(e.d));
         return h;
     }
 

@@ -10,11 +10,13 @@
 #include <print>
 #include <ranges>
 #include <string>
+#include <utility>
 
 #include <ankerl/unordered_dense.h>
 
 #include "fe/arena.h"
 #include "fe/assert.h"
+#include "fe/hash.h"
 #include "fe/lct.h"
 #include "fe/vector.h"
 
@@ -128,7 +130,7 @@ private:
             size_t operator()(const Data* d) const noexcept {
                 uint64_t h = 0;
                 for (auto e : *d)
-                    h = ankerl::unordered_dense::tuple_hash_helper<>::mix64(h, std::bit_cast<uintptr_t>(e));
+                    h = hash_combine(h, std::bit_cast<uintptr_t>(e));
                 return h;
             }
         };
@@ -199,7 +201,7 @@ public:
                             ptr_ = std::bit_cast<uintptr_t>(node);
                         return *this;
                     }
-                    default: unreachable();
+                    default: std::unreachable();
                 }
                 // clang-format on
             }
@@ -225,7 +227,7 @@ public:
                     case Tag::Uniq: return std::bit_cast<D*>(ptr_);
                     case Tag::Data: return *std::bit_cast<D* const*>(ptr_);
                     case Tag::Node: return std::bit_cast<Node*>(ptr_)->def;
-                    default: unreachable();
+                    default: std::unreachable();
                 }
             }
 
@@ -243,13 +245,9 @@ public:
 
         /// @name Construction
         ///@{
-        constexpr Set(const Set&) noexcept = default;
-        constexpr Set(Set&&) noexcept      = default;
-        constexpr Set() noexcept           = default; ///< Null set
+        constexpr Set() noexcept = default; ///< Null set
         constexpr Set(D* d) noexcept
             : ptr_(uintptr_t(d) | uintptr_t(Tag::Uniq)) {} ///< Uniq set.
-
-        constexpr Set& operator=(const Set&) noexcept = default;
         ///@}
 
         /// @name Getters

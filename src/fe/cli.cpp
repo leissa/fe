@@ -134,6 +134,7 @@ void Cli::help(std::ostream& os) const {
 
     auto color = term::use_color(os);
     auto wrap  = [&](std::string_view text) {
+        bool open = false; // A citation that wraps is closed and reopened on every line.
         for (size_t begin = 0, row = 0; begin < text.size(); ++row) {
             while (begin < text.size() && text[begin] == ' ')
                 ++begin;
@@ -146,7 +147,11 @@ void Cli::help(std::ostream& os) const {
             if (end < text.size())
                 if (auto space = text.rfind(' ', end); space != std::string_view::npos && space > begin) end = space;
             if (row != 0) std::print(os, "{:{}}", "", col);
-            term::render_cite(os, text.substr(begin, end - begin));
+            auto line   = text.substr(begin, end - begin);
+            bool reopen = open;
+            for (auto i = term::detail::tick(text, begin); i < end; i = term::detail::tick(text, i + 1))
+                if (open || term::detail::tick(text, i + 1) != std::string_view::npos) open = !open;
+            term::render_cite(os, std::format("{}{}{}", reopen ? "`" : "", line, open ? "`" : ""));
             std::println(os);
             begin = end;
         }

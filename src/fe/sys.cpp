@@ -13,7 +13,6 @@
 #    include <windows.h>
 #    define popen  _popen
 #    define pclose _pclose
-#    define WEXITSTATUS
 #else // POSIX (macos / linux / BSD)
 #    include <dlfcn.h>
 #    include <sys/wait.h>
@@ -82,7 +81,12 @@ std::string require_cmd(std::string_view name) {
 int system(std::string cmd) {
     std::cout << cmd << std::endl;
     int status = std::system(cmd.c_str());
-    return WEXITSTATUS(status);
+#ifdef _WIN32
+    return status;
+#else
+    if (status == -1) return -1;
+    return WIFEXITED(status) ? WEXITSTATUS(status) : 128 + WTERMSIG(status);
+#endif
 }
 
 void require_run(const std::string& cmd) {

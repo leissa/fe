@@ -3,8 +3,8 @@
 #include <format>
 #include <ostream>
 #include <sstream>
+#include <utility>
 
-#include "fe/assert.h"
 #include "fe/snippet.h"
 #include "fe/src.h"
 
@@ -17,7 +17,7 @@ std::ostream& operator<<(std::ostream& os, Diag::Tag tag) {
         case Diag::Tag::E: return os << "error";
         case Diag::Tag::W: return os << "warning";
         case Diag::Tag::N: return os << "note";
-        default: unreachable();
+        default: std::unreachable();
     }
     // clang-format on
 }
@@ -28,7 +28,7 @@ term::FG Diag::tag2color(Tag tag) {
         case Tag::E: return term::FG::Red;
         case Tag::W: return term::FG::Magenta;
         case Tag::N: return term::FG::Green;
-        default: unreachable();
+        default: std::unreachable();
     }
     // clang-format on
 }
@@ -45,7 +45,7 @@ void Diag::loc(std::ostream& os, Loc loc) const {
                 case Loc::Style::RowCol: os << path << ':' << row << ':' << col;        return;
                 case Loc::Style::Row:    os << path << ':' << row;                      return;
                 case Loc::Style::MSVC:   os << path << '(' << row << ',' << col << ')'; return;
-                default: unreachable();
+                default: std::unreachable();
             }
             // clang-format on
         }

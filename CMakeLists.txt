@@ -3,11 +3,10 @@ cmake_minimum_required(VERSION 3.29 FATAL_ERROR)
 project(fe VERSION 0.15.0)
 
 include(CMakePackageConfigHelpers)
-include(CheckIncludeFileCXX)
 include(GenerateExportHeader)
 include(GNUInstallDirs)
 
-if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+if(PROJECT_IS_TOP_LEVEL AND NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Choose the type of build." FORCE)
     set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
 endif()
@@ -16,7 +15,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
-if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+if(PROJECT_IS_TOP_LEVEL)
     # Make `make test`/`ninja test` build first instead of testing a stale binary.
     set(CMAKE_SKIP_TEST_ALL_DEPENDENCY FALSE)
     include(CTest) # defines BUILD_TESTING
@@ -54,11 +53,6 @@ target_sources(fe
         TYPE HEADERS
         FILES ${fe_headers}
 )
-target_include_directories(fe
-    PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>
-        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
-)
 target_compile_features(fe PUBLIC cxx_std_23)
 target_link_libraries(fe PRIVATE ${CMAKE_DL_LIBS})
 set_target_properties(fe PROPERTIES POSITION_INDEPENDENT_CODE ON)
@@ -92,27 +86,24 @@ generate_export_header(fe
     EXPORT_MACRO_NAME FE_API
     EXPORT_FILE_NAME ${CMAKE_CURRENT_BINARY_DIR}/include/fe/api.h
 )
+target_sources(fe
+    PUBLIC
+        FILE_SET headers
+        BASE_DIRS ${CMAKE_CURRENT_BINARY_DIR}/include
+        FILES ${CMAKE_CURRENT_BINARY_DIR}/include/fe/api.h
+)
 # CMake defines <target>_EXPORTS on its own only for a SHARED or MODULE library, so an OBJECT library
 # leaves it to whoever links it into a shared library of their own.
 target_compile_definitions(fe PRIVATE fe_EXPORTS)
 # A standalone build has no shared library to export from.
-if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+if(PROJECT_IS_TOP_LEVEL)
     target_compile_definitions(fe PUBLIC FE_STATIC_DEFINE)
 endif()
 
 # Installing an embedded fe would scatter its objects through the consumer's prefix; it links them in.
-if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-    set(fe_install ON)
-else()
-    set(fe_install OFF)
-endif()
-option(FE_INSTALL "If ON, generate install rules for fe." ${fe_install})
+option(FE_INSTALL "If ON, generate install rules for fe." ${PROJECT_IS_TOP_LEVEL})
 
 if(FE_INSTALL)
-    install(
-        FILES "${CMAKE_CURRENT_BINARY_DIR}/include/fe/api.h"
-        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/fe"
-    )
     install(FILES ${fe_ankerl_headers} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/ankerl")
 
     set(targets_export_name "fe-targets")
@@ -133,10 +124,6 @@ if(FE_INSTALL)
         EXPORT ${targets_export_name}
         FILE_SET headers
         OBJECTS DESTINATION ${CMAKE_INSTALL_LIBDIR}
-        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-        INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
     )
     install(
         FILES
@@ -155,7 +142,7 @@ if(FE_INSTALL)
     install(FILES submodules/unordered_dense/LICENSE DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/licenses/fe/unordered_dense")
 endif()
 
-if(BUILD_TESTING AND CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+if(BUILD_TESTING AND PROJECT_IS_TOP_LEVEL)
     set(DOCTEST_NO_INSTALL ON)
     add_subdirectory(submodules/doctest)
     add_subdirectory(tests)
@@ -168,7 +155,5 @@ set(FE_DOXY_DIR     "${CMAKE_CURRENT_SOURCE_DIR}/docs"                          
 option(FE_BUILD_DOCS "If ON, documentation will be built (requires Doxygen)." OFF)
 if(FE_BUILD_DOCS)
     find_package(Doxygen REQUIRED dot)
-    if(DOXYGEN_FOUND)
-        add_subdirectory(docs)
-    endif()
+    add_subdirectory(docs)
 endif()

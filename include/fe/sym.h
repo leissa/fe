@@ -42,10 +42,7 @@ public:
 
         struct Equal {
             constexpr bool operator()(const String* s1, const String* s2) const noexcept {
-                bool res = s1->size == s2->size;
-                for (size_t i = 0, e = s1->size; res && i != e; ++i)
-                    res &= s1->chars[i] == s2->chars[i];
-                return res;
+                return std::string_view(s1->chars, s1->size) == std::string_view(s2->chars, s2->size);
             }
         };
 

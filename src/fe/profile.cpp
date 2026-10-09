@@ -6,6 +6,9 @@
 #include <ostream>
 #include <print>
 
+#include "fe/assert.h"
+#include "fe/term.h"
+
 using namespace std::literals;
 
 namespace fe {
@@ -19,6 +22,13 @@ double us(Profiler::Duration d) {
     return std::chrono::duration_cast<std::chrono::duration<double, std::micro>>(d).count();
 }
 
+void title(std::ostream& os, std::string_view str) { os << term::FG::Yellow << str << term::FG::Reset << '\n'; }
+void header(std::ostream& os, std::string_view str) { os << term::FG::Gray << str << term::FG::Reset << '\n'; }
+void row(std::ostream& os, const term::Cited& line) {
+    term::render_cite(os, line);
+    std::println(os);
+}
+
 /// Escapes @p str for inclusion in a JSON string literal.
 std::string json_escape(std::string_view str) {
     std::string res;
@@ -29,7 +39,11 @@ std::string json_escape(std::string_view str) {
             case '\n': res += "\\n"; break;
             case '\t': res += "\\t"; break;
             case '\r': res += "\\r"; break;
-            default: res += c;
+            default:
+                if (static_cast<unsigned char>(c) < 0x20)
+                    res += std::format("\\u{:04x}", static_cast<unsigned char>(c));
+                else
+                    res += c;
         }
     }
     return res;
@@ -69,6 +83,7 @@ std::vector<Profiler::Duration> Profiler::children_durations() const {
 }
 
 void Profiler::summary(std::ostream& os) const {
+    assert(stack_.empty() && "stop every Span before reporting");
     struct Agg {
         Duration total = Duration::zero();
         Duration self  = Duration::zero();
@@ -92,14 +107,15 @@ void Profiler::summary(std::ostream& os) const {
     auto ordered = std::vector<std::pair<std::string_view, Agg>>(by_name.begin(), by_name.end());
     std::ranges::sort(ordered, [](const auto& a, const auto& b) { return a.second.total > b.second.total; });
 
-    std::println(os, "Profile (flat):");
-    std::println(os, "{:>12}  {:>12}  {:>7}  {:>6}  {}", "total[ms]", "self[ms]", "self[%]", "#runs", "name");
+    title(os, "Profile (flat):");
+    header(os, std::format("{:>12}  {:>12}  {:>7}  {:>6}  {}", "total[ms]", "self[ms]", "self[%]", "#runs", "name"));
     for (const auto& [name, agg] : ordered) {
         auto percent = total > Duration::zero() ? 100.0 * ms(agg.self) / ms(total) : 0.0;
-        std::println(os, "{:>12.3f}  {:>12.3f}  {:>6.1f}%  {:>6}  {}", ms(agg.total), ms(agg.self), percent, agg.count,
-                     name);
+        row(os, format_cite("{:>12.3f}  {:>12.3f}  {:>6.1f}%  {:>6}  `{}`", ms(agg.total), ms(agg.self), percent,
+                            agg.count, name));
     }
-    std::println(os, "{:>12.3f}  {:>12.3f}  {:>6.1f}%  {:>6}  {}", ms(total), ms(total), 100.0, spans_.size(), "TOTAL");
+    header(os, std::format("{:>12.3f}  {:>12.3f}  {:>6.1f}%  {:>6}  {}", ms(total), ms(total), 100.0, spans_.size(),
+                           "TOTAL"));
 
     // aggregate custom counters by (name, counter) - deterministically ordered
     auto counters = std::map<std::pair<std::string_view, std::string_view>, uint64_t>();
@@ -108,37 +124,39 @@ void Profiler::summary(std::ostream& os) const {
             counters[{span.name, key}] += val;
 
     if (!counters.empty()) {
-        std::println(os, "");
-        std::println(os, "Counters:");
-        std::println(os, "{:>12}  {}", "value", "name: counter");
+        std::println(os);
+        title(os, "Counters:");
+        header(os, std::format("{:>12}  {}", "value", "name: counter"));
         for (const auto& [name_key, val] : counters)
-            std::println(os, "{:>12}  {}: {}", val, name_key.first, name_key.second);
+            row(os, format_cite("{:>12}  `{}`: `{}`", val, name_key.first, name_key.second));
     }
 }
 
 void Profiler::tree(std::ostream& os) const {
+    assert(stack_.empty() && "stop every Span before reporting");
     auto children = children_durations();
     auto total    = Duration::zero();
     for (const auto& span : spans_)
         if (span.parent == No_Parent) total += span.elapsed();
 
-    std::println(os, "Profile (tree):");
-    std::println(os, "{:>12}  {:>12}  {:>7}  {}", "total[ms]", "self[ms]", "tot[%]", "name");
+    title(os, "Profile (tree):");
+    header(os, std::format("{:>12}  {:>12}  {:>7}  {}", "total[ms]", "self[ms]", "tot[%]", "name"));
     for (size_t i = 0, e = spans_.size(); i != e; ++i) {
         const auto& span = spans_[i];
         auto self        = span.elapsed() - children[i];
         auto percent     = total > Duration::zero() ? 100.0 * ms(span.elapsed()) / ms(total) : 0.0;
         auto counters    = std::string();
         for (const auto& [key, val] : span.counters)
-            counters += std::format("{}{}={}", counters.empty() ? " [" : " ", key, val);
+            counters += format_cite("{}`{}`={}", counters.empty() ? " [" : " ", key, val).view();
         if (!counters.empty()) counters += "]";
-        std::println(os, "{:>12.3f}  {:>12.3f}  {:>6.1f}%  {:>{}}{}{}", ms(span.elapsed()), ms(self), percent, "",
-                     span.depth * 2, span.name, counters);
+        row(os, format_cite("{:>12.3f}  {:>12.3f}  {:>6.1f}%  {}`{}`{}", ms(span.elapsed()), ms(self), percent,
+                            std::string(span.depth * 2, ' '), span.name, term::Cite(counters)));
     }
-    std::println(os, "{:>12.3f}  {:>12}  {:>6.1f}%  {}", ms(total), "", 100.0, "TOTAL");
+    header(os, std::format("{:>12.3f}  {:>12}  {:>6.1f}%  {}", ms(total), "", 100.0, "TOTAL"));
 }
 
 void Profiler::chrome_trace(std::ostream& os) const {
+    assert(stack_.empty() && "stop every Span before reporting");
     auto origin = spans_.empty() ? Clock::time_point{} : spans_.front().start;
 
     std::println(os, "{{\"displayTimeUnit\":\"ms\",\"traceEvents\":[");

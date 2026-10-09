@@ -6,6 +6,7 @@
 #include <atomic>
 #include <iterator>
 #include <ostream>
+#include <utility>
 
 #ifdef _WIN32
 #    ifndef WIN32_LEAN_AND_MEAN
@@ -76,35 +77,31 @@ Stream stream(std::ostream& os) noexcept {
     return Stream::Unknown;
 }
 
+namespace {
+
+bool probe(Stream s) noexcept {
 #ifdef _WIN32
-bool is_terminal(Stream s) noexcept {
-    switch (s) {
-        case Stream::Stdout: {
-            static bool stdout_is_terminal = enable_vt(GetStdHandle(STD_OUTPUT_HANDLE));
-            return stdout_is_terminal;
-        }
-        case Stream::Stderr: {
-            static bool stderr_is_terminal = enable_vt(GetStdHandle(STD_ERROR_HANDLE));
-            return stderr_is_terminal;
-        }
-        default: return false;
-    }
-}
+    return enable_vt(GetStdHandle(s == Stream::Stdout ? STD_OUTPUT_HANDLE : STD_ERROR_HANDLE));
 #else
+    return ::isatty(s == Stream::Stdout ? STDOUT_FILENO : STDERR_FILENO) != 0;
+#endif
+}
+
+} // namespace
+
 bool is_terminal(Stream s) noexcept {
     switch (s) {
         case Stream::Stdout: {
-            static bool stdout_is_terminal = ::isatty(STDOUT_FILENO) != 0;
+            static const bool stdout_is_terminal = probe(s);
             return stdout_is_terminal;
         }
         case Stream::Stderr: {
-            static bool stderr_is_terminal = ::isatty(STDERR_FILENO) != 0;
+            static const bool stderr_is_terminal = probe(s);
             return stderr_is_terminal;
         }
         default: return false;
     }
 }
-#endif
 
 size_t tick(std::string_view str, size_t i) noexcept {
     for (; i != str.size(); ++i)
@@ -115,6 +112,9 @@ size_t tick(std::string_view str, size_t i) noexcept {
     return std::string_view::npos;
 }
 
+namespace {
+
+/// Streams `[begin, end)` of @p str, dropping the leading backslash of every escape.
 void stream_raw(std::ostream& os, std::string_view str, size_t begin, size_t end) {
     for (auto i = begin; i != end; ++i) {
         if (escape(str, i, end)) ++i;
@@ -122,12 +122,15 @@ void stream_raw(std::ostream& os, std::string_view str, size_t begin, size_t end
     }
 }
 
+/// Columns `[begin, end)` of @p str occupies once streamed via stream_raw - one less per escape.
 size_t raw_width(std::string_view str, size_t begin, size_t end) noexcept {
     size_t width = 0;
     for (auto i = begin; i != end; ++i, ++width)
         if (escape(str, i, end)) ++i;
     return width;
 }
+
+} // namespace
 
 } // namespace detail
 
@@ -138,7 +141,7 @@ bool use_color(std::ostream& os) noexcept {
         case Mode::Always: return true;
         case Mode::Never:  return false;
         case Mode::Auto:   return s == detail::Stream::Unknown ? auto_detached() : detail::is_terminal(s);
-        default: fe::unreachable();
+        default: std::unreachable();
     }
     // clang-format on
 }
@@ -177,8 +180,7 @@ std::string escape_cite(std::string_view str) {
 }
 
 void render_cite(std::ostream& os, std::string_view str, bool color) {
-    // Written out instead of streaming an FG: @p color has already decided, whereas operator<< would
-    // ask @p os again - and a detached buffer answers differently than the stream it ends up on.
+    // @p color has already decided; operator<< would ask the detached @p os again.
     auto open  = color ? detail::sgr(FG::Cyan) : std::string_view("`");
     auto close = color ? detail::sgr(FG::Reset) : std::string_view("`");
 
