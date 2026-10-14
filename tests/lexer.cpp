@@ -459,6 +459,7 @@ public:
     using Super::accept_while;
     using Super::accept_while_none_of;
     using Super::ahead;
+    using Super::eol;
     using Super::start;
 
     void next_word() {
@@ -627,6 +628,40 @@ TEST_CASE("Lexer accept_until") {
         lexer.start();
         CHECK(lexer.accept_until("*/") == "");
         CHECK(lexer.ahead() == '*');
+    }
+}
+
+TEST_CASE("Lexer eol") {
+    SUBCASE("\\n") {
+        FoldLexer lexer("a\nb");
+        CHECK(!lexer.eol());
+        CHECK(lexer.accept('a'));
+        CHECK(lexer.eol());
+        CHECK(lexer.accept('\n'));
+        CHECK(!lexer.eol());
+    }
+
+    SUBCASE("\\r\\n") {
+        FoldLexer lexer("a\r\nb");
+        CHECK(lexer.accept('a'));
+        CHECK(lexer.eol());
+        CHECK(lexer.accept('\r'));
+        CHECK(lexer.eol());
+    }
+
+    SUBCASE("a lone \\r is none") {
+        FoldLexer lexer("\rb\r");
+        CHECK(!lexer.eol());
+        CHECK(lexer.accept('\r'));
+        CHECK(lexer.accept('b'));
+        CHECK(!lexer.eol());
+        CHECK(lexer.accept('\r'));
+        CHECK(lexer.eol());
+    }
+
+    SUBCASE("EoF") {
+        FoldLexer lexer("");
+        CHECK(lexer.eol());
     }
 }
 

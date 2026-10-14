@@ -67,6 +67,15 @@ protected:
 
     char32_t ahead(size_t i = 0) const { return ahead_[i].c; }
 
+    /// Is Lexer::ahead the end of a line - `\n`, `\r\n`, or utf8::EoF?
+    /// Works for any @p K: the `\n` of a `\r\n` is looked up in Lexer::buf_ directly.
+    bool eol() const {
+        auto c = ahead();
+        if (c == '\n' || c == utf8::EoF) return true;
+        auto off = ahead_[0].end.off;
+        return c == '\r' && off != buf_.size() && buf_[off] == '\n';
+    }
+
     /// Loc%ation of the next character to be consumed (Lexer::ahead()); empty once the buffer is exhausted.
     Loc peek() const { return {src_, ahead_[0].begin, ahead_[0].end}; }
 
