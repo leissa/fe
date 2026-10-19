@@ -1,0 +1,786 @@
+<!-- HTML header for doxygen 1.9.3-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>FE: fe::BiMap&lt; L, R, LHash, LEq, RHash, REq &gt; Class Template Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript">
+// Doxygen no longer ships jQuery, but doxygen-awesome's extensions still expect it.
+window.$ = (() => {
+    const ready = fn => document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', fn) : fn();
+    return target => typeof target === 'function' ? ready(target) : {ready, resize: fn => window.addEventListener('resize', fn)};
+})();
+</script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeParagraphLink.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+window.MathJax = {
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/ams']
+  },
+  tex: {
+    macros: {},
+    packages: ['base','configmacros','ams']
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-fixes.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/leissa/fe" class="github-corner" title="View source on GitHub">
+    <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign">
+   <div id="projectname">FE<span id="projectnumber">&#160;0.16.1</span>
+   </div>
+   <div id="projectbrief">Fast, Effecient FrontEnds</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('classfe_1_1BiMap.html','','classfe_1_1BiMap-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#friends">Friends</a> &#124;
+<a href="classfe_1_1BiMap-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">fe::BiMap&lt; L, R, LHash, LEq, RHash, REq &gt; Class Template Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>A bijection between <code class="param">L</code> and <code class="param">R</code>, kept as one <span class="tt">ankerl::unordered_dense::map</span> per direction.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="bimap_8h_source.html">fe/bimap.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:ac5b72316127314a8139875f4f0a322f4" id="r_ac5b72316127314a8139875f4f0a322f4"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#ac5b72316127314a8139875f4f0a322f4">Left</a> = ankerl::unordered_dense::map&lt;L, R, LHash, LEq&gt;</td></tr>
+<tr class="memitem:a0bfefddabab843a0e74217e3b9b1a204" id="r_a0bfefddabab843a0e74217e3b9b1a204"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a0bfefddabab843a0e74217e3b9b1a204">Right</a> = ankerl::unordered_dense::map&lt;R, L, RHash, REq&gt;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr id="pub-methods-0" class="groupHeader"><td colspan="2"><div class="groupHeader">Getters</div></td></tr>
+<tr class="memitem:ae658107385693db400d567e369691fcf" id="r_ae658107385693db400d567e369691fcf"><td class="memItemLeft">const <a class="el" href="#ac5b72316127314a8139875f4f0a322f4">Left</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ae658107385693db400d567e369691fcf">left</a> () const noexcept</td></tr>
+<tr class="memitem:afeceeb9d887561c0965bf86f8cc652d5" id="r_afeceeb9d887561c0965bf86f8cc652d5"><td class="memItemLeft">const <a class="el" href="#a0bfefddabab843a0e74217e3b9b1a204">Right</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#afeceeb9d887561c0965bf86f8cc652d5">right</a> () const noexcept</td></tr>
+<tr class="memitem:a4a0af813e994d2f1ec7a66eaef08bf2b" id="r_a4a0af813e994d2f1ec7a66eaef08bf2b"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a4a0af813e994d2f1ec7a66eaef08bf2b">size</a> () const noexcept</td></tr>
+<tr class="memitem:a50e27384e4cdb5743ba69183927c4eae" id="r_a50e27384e4cdb5743ba69183927c4eae"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a50e27384e4cdb5743ba69183927c4eae">empty</a> () const noexcept</td></tr>
+<tr class="memitem:ad4d4aea0b3d9259e4a8564d9814eb5ec" id="r_ad4d4aea0b3d9259e4a8564d9814eb5ec"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#ad4d4aea0b3d9259e4a8564d9814eb5ec">begin</a> () const noexcept</td></tr>
+<tr class="memitem:a126db53a946bc3f7b2ecc35049dc45b4" id="r_a126db53a946bc3f7b2ecc35049dc45b4"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#a126db53a946bc3f7b2ecc35049dc45b4">end</a> () const noexcept</td></tr>
+<tr id="pub-methods-1" class="groupHeader"><td colspan="2"><div class="groupHeader">Lookup</div></td></tr>
+<tr><td colspan="2" class="ititle"><div class="groupText"><p><a class="el" href="#a7f7cbd1beb6f69d42cf1505006d67553">at_left()</a> and <a class="el" href="#a647b180074a1338d67e2fd75a29c5aa9">at_right()</a> throw <span class="tt">std::out_of_range</span> if the key is unbound. </p>
+</div></td></tr>
+<tr class="memitem:a69796b39e919eeaf19fdd9aee83f17a7" id="r_a69796b39e919eeaf19fdd9aee83f17a7"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a69796b39e919eeaf19fdd9aee83f17a7">contains_left</a> (const auto &amp;l) const</td></tr>
+<tr class="memitem:a1e6aaa2ccc86c4b63cbc955324bb4ad9" id="r_a1e6aaa2ccc86c4b63cbc955324bb4ad9"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a1e6aaa2ccc86c4b63cbc955324bb4ad9">contains_right</a> (const auto &amp;r) const</td></tr>
+<tr class="memitem:a7f7cbd1beb6f69d42cf1505006d67553" id="r_a7f7cbd1beb6f69d42cf1505006d67553"><td class="memItemLeft">const R &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a7f7cbd1beb6f69d42cf1505006d67553">at_left</a> (const auto &amp;l) const</td></tr>
+<tr class="memitem:a647b180074a1338d67e2fd75a29c5aa9" id="r_a647b180074a1338d67e2fd75a29c5aa9"><td class="memItemLeft">const L &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a647b180074a1338d67e2fd75a29c5aa9">at_right</a> (const auto &amp;r) const</td></tr>
+<tr id="pub-methods-2" class="groupHeader"><td colspan="2"><div class="groupHeader">Modifiers</div></td></tr>
+<tr><td colspan="2" class="ititle"><div class="groupText"><p>They take their arguments by value, so a reference into this <a class="el" href="classfe_1_1BiMap.html" title="A bijection between L and R, kept as one ankerl::unordered_dense::map per direction.">BiMap</a> cannot dangle halfway through. </p>
+</div></td></tr>
+<tr class="memitem:a8f603d43a5d6d4059de8e324406e2e9b" id="r_a8f603d43a5d6d4059de8e324406e2e9b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a8f603d43a5d6d4059de8e324406e2e9b">insert</a> (L l, R r)</td></tr>
+<tr class="memdesc:a8f603d43a5d6d4059de8e324406e2e9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds <code class="param">l</code> to <code class="param">r</code> unless either is already bound; yields whether it did.  <br /></td></tr>
+<tr class="memitem:ad09585d40c540b961ede6a1d724efe19" id="r_ad09585d40c540b961ede6a1d724efe19"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ad09585d40c540b961ede6a1d724efe19">insert_or_assign</a> (L l, R r)</td></tr>
+<tr class="memdesc:ad09585d40c540b961ede6a1d724efe19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds <code class="param">l</code> to <code class="param">r</code> after unbinding whatever either was bound to.  <br /></td></tr>
+<tr class="memitem:afe2ef99cc9c4f0cfc85f95269ed60ac9" id="r_afe2ef99cc9c4f0cfc85f95269ed60ac9"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#afe2ef99cc9c4f0cfc85f95269ed60ac9">erase_left</a> (const auto &amp;l)</td></tr>
+<tr class="memdesc:afe2ef99cc9c4f0cfc85f95269ed60ac9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unbinds <code class="param">l</code> and its partner; yields whether <code class="param">l</code> was bound.  <br /></td></tr>
+<tr class="memitem:a77cc6f9906e64afdf26b0d32298e9a19" id="r_a77cc6f9906e64afdf26b0d32298e9a19"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a77cc6f9906e64afdf26b0d32298e9a19">erase_right</a> (const auto &amp;r)</td></tr>
+<tr class="memdesc:a77cc6f9906e64afdf26b0d32298e9a19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unbinds <code class="param">r</code> and its partner; yields whether <code class="param">r</code> was bound.  <br /></td></tr>
+<tr class="memitem:aa79171e15b654dee42221d0622347882" id="r_aa79171e15b654dee42221d0622347882"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa79171e15b654dee42221d0622347882">reserve</a> (size_t n)</td></tr>
+<tr class="memitem:a1ec6a036ebc7fd0c610249f7a65e5579" id="r_a1ec6a036ebc7fd0c610249f7a65e5579"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1ec6a036ebc7fd0c610249f7a65e5579">clear</a> () noexcept</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-friends" class="groupheader"><a id="friends" name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:af9e0c53d740fb496d1b9e77c68855ec8" id="r_af9e0c53d740fb496d1b9e77c68855ec8"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#af9e0c53d740fb496d1b9e77c68855ec8">operator==</a> (const <a class="el" href="classfe_1_1BiMap.html">BiMap</a> &amp;a, const <a class="el" href="classfe_1_1BiMap.html">BiMap</a> &amp;b)</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class L, class R, class LHash = ankerl::unordered_dense::hash&lt;L&gt;, class LEq = std::equal_to&lt;L&gt;, class RHash = ankerl::unordered_dense::hash&lt;R&gt;, class REq = std::equal_to&lt;R&gt;&gt;<br />
+class fe::BiMap&lt; L, R, LHash, LEq, RHash, REq &gt;</div><p>A bijection between <code class="param">L</code> and <code class="param">R</code>, kept as one <span class="tt">ankerl::unordered_dense::map</span> per direction. </p>
+<p>Look up through <a class="el" href="#ae658107385693db400d567e369691fcf">left()</a> and <a class="el" href="#afeceeb9d887561c0965bf86f8cc652d5">right()</a>; a transparent hasher and equality enable heterogeneous lookup there as well. Iterating a <a class="el" href="classfe_1_1BiMap.html" title="A bijection between L and R, kept as one ankerl::unordered_dense::map per direction.">BiMap</a> yields its <span class="tt">std::pair&lt;L, R&gt;</span>s in <a class="el" href="#ae658107385693db400d567e369691fcf">left()</a> order. </p><dl class="section note"><dt>Note</dt><dd>Every pair is stored once per direction, so keep <code class="param">L</code> and <code class="param">R</code> cheap to copy - a <a class="el" href="classfe_1_1Sym.html" title="A Symbol just wraps a pointer to Sym::String, so pass Sym itself around as value.">Sym</a> or a pointer, say. Otherwise, or if you need a pair's address to survive an insert, use <a class="el" href="classfe_1_1BiNodeMap.html" title="A bijection between L and R that stores every pair once, in an ankerl::unordered_dense::segmented_map...">BiNodeMap</a>. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="bimap_8h_source.html#l00037">37</a> of file <a class="el" href="bimap_8h_source.html">bimap.h</a>.</p>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a id="ac5b72316127314a8139875f4f0a322f4" name="ac5b72316127314a8139875f4f0a322f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5b72316127314a8139875f4f0a322f4">&#9670;&#160;</a></span>Left</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class L, class R, class LHash = ankerl::unordered_dense::hash&lt;L&gt;, class LEq = std::equal_to&lt;L&gt;, class RHash = ankerl::unordered_dense::hash&lt;R&gt;, class REq = std::equal_to&lt;R&gt;&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classfe_1_1BiMap.html">fe::BiMap</a>&lt; L, R, LHash, LEq, RHash, REq &gt;::Left = ankerl::unordered_dense::map&lt;L, R, LHash, LEq&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bimap_8h_source.html#l00039">39</a> of file <a class="el" href="bimap_8h_source.html">bimap.h</a>.</p>
+
+</div>
+</div>
+<a id="a0bfefddabab843a0e74217e3b9b1a204" name="a0bfefddabab843a0e74217e3b9b1a204"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bfefddabab843a0e74217e3b9b1a204">&#9670;&#160;</a></span>Right</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class L, class R, class LHash = ankerl::unordered_dense::hash&lt;L&gt;, class LEq = std::equal_to&lt;L&gt;, class RHash = ankerl::unordered_dense::hash&lt;R&gt;, class REq = std::equal_to&lt;R&gt;&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classfe_1_1BiMap.html">fe::BiMap</a>&lt; L, R, LHash, LEq, RHash, REq &gt;::Right = ankerl::unordered_dense::map&lt;R, L, RHash, REq&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bimap_8h_source.html#l00040">40</a> of file <a class="el" href="bimap_8h_source.html">bimap.h</a>.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a7f7cbd1beb6f69d42cf1505006d67553" name="a7f7cbd1beb6f69d42cf1505006d67553"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f7cbd1beb6f69d42cf1505006d67553">&#9670;&#160;</a></span>at_left()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class L, class R, class LHash = ankerl::unordered_dense::hash&lt;L&gt;, class LEq = std::equal_to&lt;L&gt;, class RHash = ankerl::unordered_dense::hash&lt;R&gt;, class REq = std::equal_to&lt;R&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const R &amp; <a class="el" href="classfe_1_1BiMap.html">fe::BiMap</a>&lt; L, R, LHash, LEq, RHash, REq &gt;::at_left </td>
+          <td>(</td>
+          <td class="paramtype">const auto &amp;</td>          <td class="paramname"><span class="paramname"><em>l</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bimap_8h_source.html#l00057">57</a> of file <a class="el" href="bimap_8h_source.html">bimap.h</a>.</p>
+
+</div>
+</div>
+<a id="a647b180074a1338d67e2fd75a29c5aa9" name="a647b180074a1338d67e2fd75a29c5aa9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a647b180074a1338d67e2fd75a29c5aa9">&#9670;&#160;</a></span>at_right()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class L, class R, class LHash = ankerl::unordered_dense::hash&lt;L&gt;, class LEq = std::equal_to&lt;L&gt;, class RHash = ankerl::unordered_dense::hash&lt;R&gt;, class REq = std::equal_to&lt;R&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const L &amp; <a class="el" href="classfe_1_1BiMap.html">fe::BiMap</a>&lt; L, R, LHash, LEq, RHash, REq &gt;::at_right </td>
+          <td>(</td>
+          <td class="paramtype">const auto &amp;</td>          <td class="paramname"><span class="paramname"><em>r</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bimap_8h_source.html#l00058">58</a> of file <a class="el" href="bimap_8h_source.html">bimap.h</a>.</p>
+
+</div>
+</div>
+<a id="ad4d4aea0b3d9259e4a8564d9814eb5ec" name="ad4d4aea0b3d9259e4a8564d9814eb5ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4d4aea0b3d9259e4a8564d9814eb5ec">&#9670;&#160;</a></span>begin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class L, class R, class LHash = ankerl::unordered_dense::hash&lt;L&gt;, class LEq = std::equal_to&lt;L&gt;, class RHash = ankerl::unordered_dense::hash&lt;R&gt;, class REq = std::equal_to&lt;R&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto <a class="el" href="classfe_1_1BiMap.html">fe::BiMap</a>&lt; L, R, LHash, LEq, RHash, REq &gt;::begin </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bimap_8h_source.html#l00048">48</a> of file <a class="el" href="bimap_8h_source.html">bimap.h</a>.</p>
+
+</div>
+</div>
+<a id="a1ec6a036ebc7fd0c610249f7a65e5579" name="a1ec6a036ebc7fd0c610249f7a65e5579"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ec6a036ebc7fd0c610249f7a65e5579">&#9670;&#160;</a></span>clear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class L, class R, class LHash = ankerl::unordered_dense::hash&lt;L&gt;, class LEq = std::equal_to&lt;L&gt;, class RHash = ankerl::unordered_dense::hash&lt;R&gt;, class REq = std::equal_to&lt;R&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classfe_1_1BiMap.html">fe::BiMap</a>&lt; L, R, LHash, LEq, RHash, REq &gt;::clear </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bimap_8h_source.html#l00107">107</a> of file <a class="el" href="bimap_8h_source.html">bimap.h</a>.</p>
+
+</div>
+</div>
+<a id="a69796b39e919eeaf19fdd9aee83f17a7" name="a69796b39e919eeaf19fdd9aee83f17a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69796b39e919eeaf19fdd9aee83f17a7">&#9670;&#160;</a></span>contains_left()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class L, class R, class LHash = ankerl::unordered_dense::hash&lt;L&gt;, class LEq = std::equal_to&lt;L&gt;, class RHash = ankerl::unordered_dense::hash&lt;R&gt;, class REq = std::equal_to&lt;R&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classfe_1_1BiMap.html">fe::BiMap</a>&lt; L, R, LHash, LEq, RHash, REq &gt;::contains_left </td>
+          <td>(</td>
+          <td class="paramtype">const auto &amp;</td>          <td class="paramname"><span class="paramname"><em>l</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bimap_8h_source.html#l00055">55</a> of file <a class="el" href="bimap_8h_source.html">bimap.h</a>.</p>
+
+</div>
+</div>
+<a id="a1e6aaa2ccc86c4b63cbc955324bb4ad9" name="a1e6aaa2ccc86c4b63cbc955324bb4ad9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e6aaa2ccc86c4b63cbc955324bb4ad9">&#9670;&#160;</a></span>contains_right()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class L, class R, class LHash = ankerl::unordered_dense::hash&lt;L&gt;, class LEq = std::equal_to&lt;L&gt;, class RHash = ankerl::unordered_dense::hash&lt;R&gt;, class REq = std::equal_to&lt;R&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classfe_1_1BiMap.html">fe::BiMap</a>&lt; L, R, LHash, LEq, RHash, REq &gt;::contains_right </td>
+          <td>(</td>
+          <td class="paramtype">const auto &amp;</td>          <td class="paramname"><span class="paramname"><em>r</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bimap_8h_source.html#l00056">56</a> of file <a class="el" href="bimap_8h_source.html">bimap.h</a>.</p>
+
+</div>
+</div>
+<a id="a50e27384e4cdb5743ba69183927c4eae" name="a50e27384e4cdb5743ba69183927c4eae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50e27384e4cdb5743ba69183927c4eae">&#9670;&#160;</a></span>empty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class L, class R, class LHash = ankerl::unordered_dense::hash&lt;L&gt;, class LEq = std::equal_to&lt;L&gt;, class RHash = ankerl::unordered_dense::hash&lt;R&gt;, class REq = std::equal_to&lt;R&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classfe_1_1BiMap.html">fe::BiMap</a>&lt; L, R, LHash, LEq, RHash, REq &gt;::empty </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bimap_8h_source.html#l00047">47</a> of file <a class="el" href="bimap_8h_source.html">bimap.h</a>.</p>
+
+</div>
+</div>
+<a id="a126db53a946bc3f7b2ecc35049dc45b4" name="a126db53a946bc3f7b2ecc35049dc45b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a126db53a946bc3f7b2ecc35049dc45b4">&#9670;&#160;</a></span>end()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class L, class R, class LHash = ankerl::unordered_dense::hash&lt;L&gt;, class LEq = std::equal_to&lt;L&gt;, class RHash = ankerl::unordered_dense::hash&lt;R&gt;, class REq = std::equal_to&lt;R&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto <a class="el" href="classfe_1_1BiMap.html">fe::BiMap</a>&lt; L, R, LHash, LEq, RHash, REq &gt;::end </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bimap_8h_source.html#l00049">49</a> of file <a class="el" href="bimap_8h_source.html">bimap.h</a>.</p>
+
+</div>
+</div>
+<a id="afe2ef99cc9c4f0cfc85f95269ed60ac9" name="afe2ef99cc9c4f0cfc85f95269ed60ac9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe2ef99cc9c4f0cfc85f95269ed60ac9">&#9670;&#160;</a></span>erase_left()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class L, class R, class LHash = ankerl::unordered_dense::hash&lt;L&gt;, class LEq = std::equal_to&lt;L&gt;, class RHash = ankerl::unordered_dense::hash&lt;R&gt;, class REq = std::equal_to&lt;R&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classfe_1_1BiMap.html">fe::BiMap</a>&lt; L, R, LHash, LEq, RHash, REq &gt;::erase_left </td>
+          <td>(</td>
+          <td class="paramtype">const auto &amp;</td>          <td class="paramname"><span class="paramname"><em>l</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unbinds <code class="param">l</code> and its partner; yields whether <code class="param">l</code> was bound. </p>
+
+<p class="definition">Definition at line <a class="el" href="bimap_8h_source.html#l00085">85</a> of file <a class="el" href="bimap_8h_source.html">bimap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="bimap_8h_source.html#l00077">insert_or_assign()</a>.</p>
+
+</div>
+</div>
+<a id="a77cc6f9906e64afdf26b0d32298e9a19" name="a77cc6f9906e64afdf26b0d32298e9a19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77cc6f9906e64afdf26b0d32298e9a19">&#9670;&#160;</a></span>erase_right()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class L, class R, class LHash = ankerl::unordered_dense::hash&lt;L&gt;, class LEq = std::equal_to&lt;L&gt;, class RHash = ankerl::unordered_dense::hash&lt;R&gt;, class REq = std::equal_to&lt;R&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classfe_1_1BiMap.html">fe::BiMap</a>&lt; L, R, LHash, LEq, RHash, REq &gt;::erase_right </td>
+          <td>(</td>
+          <td class="paramtype">const auto &amp;</td>          <td class="paramname"><span class="paramname"><em>r</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unbinds <code class="param">r</code> and its partner; yields whether <code class="param">r</code> was bound. </p>
+
+<p class="definition">Definition at line <a class="el" href="bimap_8h_source.html#l00094">94</a> of file <a class="el" href="bimap_8h_source.html">bimap.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="bimap_8h_source.html#l00077">insert_or_assign()</a>.</p>
+
+</div>
+</div>
+<a id="a8f603d43a5d6d4059de8e324406e2e9b" name="a8f603d43a5d6d4059de8e324406e2e9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f603d43a5d6d4059de8e324406e2e9b">&#9670;&#160;</a></span>insert()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class L, class R, class LHash = ankerl::unordered_dense::hash&lt;L&gt;, class LEq = std::equal_to&lt;L&gt;, class RHash = ankerl::unordered_dense::hash&lt;R&gt;, class REq = std::equal_to&lt;R&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classfe_1_1BiMap.html">fe::BiMap</a>&lt; L, R, LHash, LEq, RHash, REq &gt;::insert </td>
+          <td>(</td>
+          <td class="paramtype">L</td>          <td class="paramname"><span class="paramname"><em>l</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">R</td>          <td class="paramname"><span class="paramname"><em>r</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Binds <code class="param">l</code> to <code class="param">r</code> unless either is already bound; yields whether it did. </p>
+
+<p class="definition">Definition at line <a class="el" href="bimap_8h_source.html#l00066">66</a> of file <a class="el" href="bimap_8h_source.html">bimap.h</a>.</p>
+
+</div>
+</div>
+<a id="ad09585d40c540b961ede6a1d724efe19" name="ad09585d40c540b961ede6a1d724efe19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad09585d40c540b961ede6a1d724efe19">&#9670;&#160;</a></span>insert_or_assign()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class L, class R, class LHash = ankerl::unordered_dense::hash&lt;L&gt;, class LEq = std::equal_to&lt;L&gt;, class RHash = ankerl::unordered_dense::hash&lt;R&gt;, class REq = std::equal_to&lt;R&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classfe_1_1BiMap.html">fe::BiMap</a>&lt; L, R, LHash, LEq, RHash, REq &gt;::insert_or_assign </td>
+          <td>(</td>
+          <td class="paramtype">L</td>          <td class="paramname"><span class="paramname"><em>l</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">R</td>          <td class="paramname"><span class="paramname"><em>r</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Binds <code class="param">l</code> to <code class="param">r</code> after unbinding whatever either was bound to. </p>
+
+<p class="definition">Definition at line <a class="el" href="bimap_8h_source.html#l00077">77</a> of file <a class="el" href="bimap_8h_source.html">bimap.h</a>.</p>
+
+<p class="reference">References <a class="el" href="bimap_8h_source.html#l00085">erase_left()</a>, and <a class="el" href="bimap_8h_source.html#l00094">erase_right()</a>.</p>
+
+</div>
+</div>
+<a id="ae658107385693db400d567e369691fcf" name="ae658107385693db400d567e369691fcf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae658107385693db400d567e369691fcf">&#9670;&#160;</a></span>left()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class L, class R, class LHash = ankerl::unordered_dense::hash&lt;L&gt;, class LEq = std::equal_to&lt;L&gt;, class RHash = ankerl::unordered_dense::hash&lt;R&gt;, class REq = std::equal_to&lt;R&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="#ac5b72316127314a8139875f4f0a322f4">Left</a> &amp; <a class="el" href="classfe_1_1BiMap.html">fe::BiMap</a>&lt; L, R, LHash, LEq, RHash, REq &gt;::left </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bimap_8h_source.html#l00044">44</a> of file <a class="el" href="bimap_8h_source.html">bimap.h</a>.</p>
+
+</div>
+</div>
+<a id="aa79171e15b654dee42221d0622347882" name="aa79171e15b654dee42221d0622347882"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa79171e15b654dee42221d0622347882">&#9670;&#160;</a></span>reserve()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class L, class R, class LHash = ankerl::unordered_dense::hash&lt;L&gt;, class LEq = std::equal_to&lt;L&gt;, class RHash = ankerl::unordered_dense::hash&lt;R&gt;, class REq = std::equal_to&lt;R&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classfe_1_1BiMap.html">fe::BiMap</a>&lt; L, R, LHash, LEq, RHash, REq &gt;::reserve </td>
+          <td>(</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bimap_8h_source.html#l00102">102</a> of file <a class="el" href="bimap_8h_source.html">bimap.h</a>.</p>
+
+</div>
+</div>
+<a id="afeceeb9d887561c0965bf86f8cc652d5" name="afeceeb9d887561c0965bf86f8cc652d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afeceeb9d887561c0965bf86f8cc652d5">&#9670;&#160;</a></span>right()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class L, class R, class LHash = ankerl::unordered_dense::hash&lt;L&gt;, class LEq = std::equal_to&lt;L&gt;, class RHash = ankerl::unordered_dense::hash&lt;R&gt;, class REq = std::equal_to&lt;R&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="#a0bfefddabab843a0e74217e3b9b1a204">Right</a> &amp; <a class="el" href="classfe_1_1BiMap.html">fe::BiMap</a>&lt; L, R, LHash, LEq, RHash, REq &gt;::right </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bimap_8h_source.html#l00045">45</a> of file <a class="el" href="bimap_8h_source.html">bimap.h</a>.</p>
+
+</div>
+</div>
+<a id="a4a0af813e994d2f1ec7a66eaef08bf2b" name="a4a0af813e994d2f1ec7a66eaef08bf2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a0af813e994d2f1ec7a66eaef08bf2b">&#9670;&#160;</a></span>size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class L, class R, class LHash = ankerl::unordered_dense::hash&lt;L&gt;, class LEq = std::equal_to&lt;L&gt;, class RHash = ankerl::unordered_dense::hash&lt;R&gt;, class REq = std::equal_to&lt;R&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t <a class="el" href="classfe_1_1BiMap.html">fe::BiMap</a>&lt; L, R, LHash, LEq, RHash, REq &gt;::size </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bimap_8h_source.html#l00046">46</a> of file <a class="el" href="bimap_8h_source.html">bimap.h</a>.</p>
+
+</div>
+</div>
+<a name="doc-related-members" id="doc-related-members"></a><h2 id="header-doc-related-members" class="groupheader">Friends And Related Symbol Documentation</h2>
+<a id="af9e0c53d740fb496d1b9e77c68855ec8" name="af9e0c53d740fb496d1b9e77c68855ec8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9e0c53d740fb496d1b9e77c68855ec8">&#9670;&#160;</a></span>operator==</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class L, class R, class LHash = ankerl::unordered_dense::hash&lt;L&gt;, class LEq = std::equal_to&lt;L&gt;, class RHash = ankerl::unordered_dense::hash&lt;R&gt;, class REq = std::equal_to&lt;R&gt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classfe_1_1BiMap.html">BiMap</a>&lt; L, R, LHash, LEq, RHash, REq &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classfe_1_1BiMap.html">BiMap</a>&lt; L, R, LHash, LEq, RHash, REq &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel friend">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bimap_8h_source.html#l00113">113</a> of file <a class="el" href="bimap_8h_source.html">bimap.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>fe/<a class="el" href="bimap_8h_source.html">bimap.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="namespacefe.html">fe</a></li><li class="navelem"><a href="classfe_1_1BiMap.html">BiMap</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>

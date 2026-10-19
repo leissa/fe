@@ -21,6 +21,8 @@ var searchData=
   ['as_18',['as',['../classfe_1_1RuntimeCast.html#a1f2d655724345f4b4e0bc4540ea78554',1,'fe::RuntimeCast::as()'],['../classfe_1_1RuntimeCast.html#af077f6cb9aef8502e4c76674a3a2666d',1,'fe::RuntimeCast::as() const']]],
   ['assert_5femplace_19',['assert_emplace',['../namespacefe.html#a85bf1f70539ed76d548ac02c11c51231',1,'fe']]],
   ['assert_5flookup_20',['assert_lookup',['../namespacefe.html#aa5e09d6e60a63909052ada9602610354',1,'fe']]],
-  ['auto_5fdetached_21',['auto_detached',['../namespacefe_1_1term.html#ae5b6b47661d8593fc66824d6665f2154',1,'fe::term']]],
-  ['aux_5fparent_22',['aux_parent',['../classfe_1_1lct_1_1Node.html#a09aa5b87ed14fc527222cfc29b83d472',1,'fe::lct::Node']]]
+  ['at_5fleft_21',['at_left',['../classfe_1_1BiMap.html#a7f7cbd1beb6f69d42cf1505006d67553',1,'fe::BiMap::at_left()'],['../classfe_1_1BiNodeMap.html#ad1e5b73e42e0c347360436c38723cbe3',1,'fe::BiNodeMap::at_left()']]],
+  ['at_5fright_22',['at_right',['../classfe_1_1BiMap.html#a647b180074a1338d67e2fd75a29c5aa9',1,'fe::BiMap::at_right()'],['../classfe_1_1BiNodeMap.html#a8f731afcc68504779e6c7d87a65039dd',1,'fe::BiNodeMap::at_right()']]],
+  ['auto_5fdetached_23',['auto_detached',['../namespacefe_1_1term.html#ae5b6b47661d8593fc66824d6665f2154',1,'fe::term']]],
+  ['aux_5fparent_24',['aux_parent',['../classfe_1_1lct_1_1Node.html#a09aa5b87ed14fc527222cfc29b83d472',1,'fe::lct::Node']]]
 ];

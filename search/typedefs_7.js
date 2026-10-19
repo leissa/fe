@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['reference_0',['reference',['../classfe_1_1Bitset_1_1iterator.html#a9062596fa622ae6edbc471d7c31249ec',1,'fe::Bitset::iterator::reference'],['../classfe_1_1Patricia_1_1Set_1_1iterator.html#ae5604810442e06b94612aa0915029c06',1,'fe::Patricia::Set::iterator::reference'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html#afdd862aea2bf0c44672b13bd0fdd6cde',1,'fe::XTrie::Set::iterator::reference']]],
-  ['row_1',['Row',['../classfe_1_1Cli.html#a035a0ff529a7e4b4c2e5d0a776a438db',1,'fe::Cli']]],
-  ['rows_2',['Rows',['../classfe_1_1Cli.html#a156ddac0230b9d51935aec97a6db295c',1,'fe::Cli']]]
+  ['pathmap_0',['PathMap',['../namespacefe.html#afac59de7492b799676f945d5310e5c10',1,'fe']]],
+  ['pointer_1',['pointer',['../classfe_1_1Bitset_1_1iterator.html#a68ba2ecb06091dd01cae4694ef4bda84',1,'fe::Bitset::iterator::pointer'],['../classfe_1_1Patricia_1_1Set_1_1iterator.html#a4189686d36ce8f8d5dd137fba91dafaf',1,'fe::Patricia::Set::iterator::pointer'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html#a72a207dc7981ded537807c27ec3bf5d9',1,'fe::XTrie::Set::iterator::pointer']]],
+  ['ptr_2',['Ptr',['../classfe_1_1Arena.html#a9ec4e56220ef5a3d2d80bfcd3653bbdc',1,'fe::Arena']]]
 ];

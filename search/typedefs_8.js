@@ -1,10 +1,7 @@
 var searchData=
 [
-  ['scopedmode_0',['ScopedMode',['../namespacefe_1_1term.html#a214cdb1ce076f0e6de11f6afb317c516',1,'fe::term']]],
-  ['state_1',['State',['../classfe_1_1Arena.html#a5e05161e3a767ebfdecbf2cb1e21f6d4',1,'fe::Arena']]],
-  ['string_2',['String',['../classfe_1_1SymPool.html#a11d53cf665ae00f361fd8d2e4d00d100',1,'fe::SymPool']]],
-  ['strmap_3',['StrMap',['../namespacefe.html#a030f4b2005b47b3422d85383f42635d7',1,'fe']]],
-  ['strset_4',['StrSet',['../namespacefe.html#a4f3c7ffd2cc6617944e2a5558e80801b',1,'fe']]],
-  ['symmap_5',['SymMap',['../namespacefe.html#a8de94121a38357dbd977862a05e34acc',1,'fe']]],
-  ['symset_6',['SymSet',['../namespacefe.html#a431cf06d5e3afb9ceba5bcb450e060c6',1,'fe']]]
+  ['reference_0',['reference',['../classfe_1_1Bitset_1_1iterator.html#a9062596fa622ae6edbc471d7c31249ec',1,'fe::Bitset::iterator::reference'],['../classfe_1_1Patricia_1_1Set_1_1iterator.html#ae5604810442e06b94612aa0915029c06',1,'fe::Patricia::Set::iterator::reference'],['../classfe_1_1XTrie_1_1Set_1_1iterator.html#afdd862aea2bf0c44672b13bd0fdd6cde',1,'fe::XTrie::Set::iterator::reference']]],
+  ['right_1',['Right',['../classfe_1_1BiMap.html#a0bfefddabab843a0e74217e3b9b1a204',1,'fe::BiMap']]],
+  ['row_2',['Row',['../classfe_1_1Cli.html#a035a0ff529a7e4b4c2e5d0a776a438db',1,'fe::Cli']]],
+  ['rows_3',['Rows',['../classfe_1_1Cli.html#a156ddac0230b9d51935aec97a6db295c',1,'fe::Cli']]]
 ];

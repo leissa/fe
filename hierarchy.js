@@ -4,6 +4,8 @@ var hierarchy =
     [ "fe::Arena::Allocator&lt; T &gt;", "structfe_1_1Arena_1_1Allocator.html", null ],
     [ "fe::Parser&lt; Tok, Tag, K, S &gt;::Anchor", "classfe_1_1Parser.html#structfe_1_1Parser_1_1Anchor", null ],
     [ "fe::Arena", "classfe_1_1Arena.html", null ],
+    [ "fe::BiMap&lt; L, R, LHash, LEq, RHash, REq &gt;", "classfe_1_1BiMap.html", null ],
+    [ "fe::BiNodeMap&lt; L, R, LHash, LEq, RHash, REq &gt;", "classfe_1_1BiNodeMap.html", null ],
     [ "fe::Bitset", "classfe_1_1Bitset.html", null ],
     [ "fe::utf8::Char32", "structfe_1_1utf8_1_1Char32.html", null ],
     [ "fe::Cite", "classfe_1_1Cite.html", null ],

@@ -12,6 +12,8 @@ var namespacefe =
     [ "utf8", "namespacefe_1_1utf8.html", "namespacefe_1_1utf8" ],
     [ "Arena", "classfe_1_1Arena.html", "classfe_1_1Arena" ],
     [ "basic_ostream_formatter", "structfe_1_1basic__ostream__formatter.html", "structfe_1_1basic__ostream__formatter" ],
+    [ "BiMap", "classfe_1_1BiMap.html", "classfe_1_1BiMap" ],
+    [ "BiNodeMap", "classfe_1_1BiNodeMap.html", "classfe_1_1BiNodeMap" ],
     [ "Bitset", "classfe_1_1Bitset.html", "classfe_1_1Bitset" ],
     [ "Cite", "classfe_1_1Cite.html", "classfe_1_1Cite" ],
     [ "Cited", "classfe_1_1Cited.html", "classfe_1_1Cited" ],
