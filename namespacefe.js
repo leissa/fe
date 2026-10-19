@@ -70,7 +70,7 @@ var namespacefe =
     [ "DbgSet", "namespacefe.html#a11f591255ddcc09fd99af1bcc4ecaf20", null ],
     [ "DFSWorklist", "namespacefe.html#a5a41d580caea2a76244072823f837135", null ],
     [ "ostream_formatter", "namespacefe.html#a923ce058163e2041744a84793de679c0", null ],
-    [ "PathMap", "namespacefe.html#abd33b4214fdd0afae828ffb1c5fc9f9e", null ],
+    [ "PathMap", "namespacefe.html#afac59de7492b799676f945d5310e5c10", null ],
     [ "StrMap", "namespacefe.html#a030f4b2005b47b3422d85383f42635d7", null ],
     [ "StrSet", "namespacefe.html#a4f3c7ffd2cc6617944e2a5558e80801b", null ],
     [ "SymMap", "namespacefe.html#a8de94121a38357dbd977862a05e34acc", null ],

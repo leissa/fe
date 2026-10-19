@@ -165,9 +165,9 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('src_8h.html','
 <code>#include &lt;iosfwd&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;string_view&gt;</code><br />
-<code>#include &lt;unordered_map&gt;</code><br />
 <code>#include &lt;utility&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;ankerl/unordered_dense.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="loc_8h_source.html">fe/loc.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for src.h:</div>
@@ -197,9 +197,9 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:abd33b4214fdd0afae828ffb1c5fc9f9e" id="r_abd33b4214fdd0afae828ffb1c5fc9f9e"><td class="memTemplParams" colspan="2">template&lt;class V&gt; </td></tr>
-<tr class="memitem:abd33b4214fdd0afae828ffb1c5fc9f9e template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#abd33b4214fdd0afae828ffb1c5fc9f9e">fe::PathMap</a> = std::unordered_map&lt;std::filesystem::path, V, <a class="el" href="structfe_1_1PathHash.html">PathHash</a>&gt;</td></tr>
-<tr class="memdesc:abd33b4214fdd0afae828ffb1c5fc9f9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps a <span class="tt">std::filesystem::path</span> to <code class="param">V</code>.  <br /></td></tr>
+<tr class="memitem:afac59de7492b799676f945d5310e5c10" id="r_afac59de7492b799676f945d5310e5c10"><td class="memTemplParams" colspan="2">template&lt;class V&gt; </td></tr>
+<tr class="memitem:afac59de7492b799676f945d5310e5c10 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespacefe.html#afac59de7492b799676f945d5310e5c10">fe::PathMap</a> = ankerl::unordered_dense::segmented_map&lt;std::filesystem::path, V, <a class="el" href="structfe_1_1PathHash.html">PathHash</a>&gt;</td></tr>
+<tr class="memdesc:afac59de7492b799676f945d5310e5c10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps a <span class="tt">std::filesystem::path</span> to <code class="param">V</code>.  <br /></td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

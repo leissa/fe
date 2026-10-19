@@ -290,9 +290,9 @@ Typedefs</h2></td></tr>
 <tr class="memitem:a3fa8abec15ebc094748836707250e96e" id="r_a3fa8abec15ebc094748836707250e96e"><td class="memTemplParams" colspan="2">template&lt;class T, size_t N = std::dynamic_extent&gt; </td></tr>
 <tr class="memitem:a3fa8abec15ebc094748836707250e96e template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a3fa8abec15ebc094748836707250e96e">View</a> = <a class="el" href="classfe_1_1Span.html">Span</a>&lt;const T, N&gt;</td></tr>
 <tr class="memdesc:a3fa8abec15ebc094748836707250e96e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read-only <a class="el" href="classfe_1_1Span.html" title="This is a thin wrapper for std::span&lt;T, N&gt; with the following additional features:">Span</a>; use <a class="el" href="classfe_1_1Span.html" title="This is a thin wrapper for std::span&lt;T, N&gt; with the following additional features:">Span</a> itself, if you want to write through its elements.  <br /></td></tr>
-<tr class="memitem:abd33b4214fdd0afae828ffb1c5fc9f9e" id="r_abd33b4214fdd0afae828ffb1c5fc9f9e"><td class="memTemplParams" colspan="2">template&lt;class V&gt; </td></tr>
-<tr class="memitem:abd33b4214fdd0afae828ffb1c5fc9f9e template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#abd33b4214fdd0afae828ffb1c5fc9f9e">PathMap</a> = std::unordered_map&lt;std::filesystem::path, V, <a class="el" href="structfe_1_1PathHash.html">PathHash</a>&gt;</td></tr>
-<tr class="memdesc:abd33b4214fdd0afae828ffb1c5fc9f9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps a <span class="tt">std::filesystem::path</span> to <code class="param">V</code>.  <br /></td></tr>
+<tr class="memitem:afac59de7492b799676f945d5310e5c10" id="r_afac59de7492b799676f945d5310e5c10"><td class="memTemplParams" colspan="2">template&lt;class V&gt; </td></tr>
+<tr class="memitem:afac59de7492b799676f945d5310e5c10 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#afac59de7492b799676f945d5310e5c10">PathMap</a> = ankerl::unordered_dense::segmented_map&lt;std::filesystem::path, V, <a class="el" href="structfe_1_1PathHash.html">PathHash</a>&gt;</td></tr>
+<tr class="memdesc:afac59de7492b799676f945d5310e5c10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps a <span class="tt">std::filesystem::path</span> to <code class="param">V</code>.  <br /></td></tr>
 <tr class="memitem:a6ad23aaf34f135222c77e8318e302766" id="r_a6ad23aaf34f135222c77e8318e302766"><td class="memTemplParams" colspan="2">template&lt;class Set&gt; </td></tr>
 <tr class="memitem:a6ad23aaf34f135222c77e8318e302766 template"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a6ad23aaf34f135222c77e8318e302766">BFSWorklist</a> = <a class="el" href="classfe_1_1Worklist.html">Worklist</a>&lt;Set, <a class="el" href="classfe_1_1VectorQueue.html">VectorQueue</a>&lt;detail::WorklistElem&lt;Set&gt;&gt;&gt;</td></tr>
 <tr class="memitem:a5a41d580caea2a76244072823f837135" id="r_a5a41d580caea2a76244072823f837135"><td class="memTemplParams" colspan="2">template&lt;class Set&gt; </td></tr>
@@ -514,8 +514,8 @@ template&lt;class Set&gt; </div>
 
 </div>
 </div>
-<a id="abd33b4214fdd0afae828ffb1c5fc9f9e" name="abd33b4214fdd0afae828ffb1c5fc9f9e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abd33b4214fdd0afae828ffb1c5fc9f9e">&#9670;&#160;</a></span>PathMap</h2>
+<a id="afac59de7492b799676f945d5310e5c10" name="afac59de7492b799676f945d5310e5c10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afac59de7492b799676f945d5310e5c10">&#9670;&#160;</a></span>PathMap</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -523,7 +523,7 @@ template&lt;class Set&gt; </div>
 template&lt;class V&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="#abd33b4214fdd0afae828ffb1c5fc9f9e">fe::PathMap</a> = std::unordered_map&lt;std::filesystem::path, V, <a class="el" href="structfe_1_1PathHash.html">PathHash</a>&gt;</td>
+          <td class="memname">using <a class="el" href="#afac59de7492b799676f945d5310e5c10">fe::PathMap</a> = ankerl::unordered_dense::segmented_map&lt;std::filesystem::path, V, <a class="el" href="structfe_1_1PathHash.html">PathHash</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -531,7 +531,7 @@ template&lt;class V&gt; </div>
 <p>Maps a <span class="tt">std::filesystem::path</span> to <code class="param">V</code>. </p>
 <dl class="section warning"><dt>Warning</dt><dd>Node-based on purpose: <a class="el" href="classfe_1_1SrcMap.html" title="Interns the text - and the std::filesystem::path - of every file a Loc may point into.">fe::SrcMap</a> stores its <a class="el" href="classfe_1_1Src.html" title="The content of one source file together with the offsets its rows start at.">Src</a>s in here and a <a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a> points to one, so the values must never move. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="src_8h_source.html#l00026">26</a> of file <a class="el" href="src_8h_source.html">src.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="src_8h_source.html#l00027">27</a> of file <a class="el" href="src_8h_source.html">src.h</a>.</p>
 
 </div>
 </div>
