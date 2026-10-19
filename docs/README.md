@@ -146,6 +146,8 @@ It provides a compact set of reusable, well-integrated components:
   `fe::PatriciaPtr` is the same thing as a set of pointers, keyed and ordered by an id the elements carry themselves.
 - `fe::BFSWorklist`/`fe::DFSWorklist` for worklist traversals that visit each element at most once.
 - `fe::SymMap`/`fe::SymSet` and friends are [`ankerl::unordered_dense`](https://github.com/martinus/unordered_dense) maps/sets.
+- `fe::BiMap`/`fe::BiNodeMap` for bijections, looked up from either side.
+  `BiMap` keeps one flat map per direction and thus every pair twice; `BiNodeMap` stores each pair once in a `segmented_map` and indexes the right side by pointer, so a pair stays put on insert.
 - `fe/container.h` for some helpers.
 
 #### Algorithms
