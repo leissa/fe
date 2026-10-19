@@ -6,9 +6,10 @@
 #include <iosfwd>
 #include <string>
 #include <string_view>
-#include <unordered_map>
 #include <utility>
 #include <vector>
+
+#include <ankerl/unordered_dense.h>
 
 #include "fe/loc.h"
 
@@ -23,7 +24,7 @@ struct PathHash {
 /// @warning Node-based on purpose: fe::SrcMap stores its Src%s in here and a Loc points to one,
 /// so the values must never move.
 template<class V>
-using PathMap = std::unordered_map<std::filesystem::path, V, PathHash>;
+using PathMap = ankerl::unordered_dense::segmented_map<std::filesystem::path, V, PathHash>;
 
 /// The content of one source file together with the offsets its rows start at.
 /// This is what turns a Pos back into the row/column a human wants to read.
