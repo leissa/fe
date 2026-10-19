@@ -1,6 +1,7 @@
 add_executable(fe-test)
 target_sources(fe-test
     PRIVATE
+        bimap.cpp
         bitset.cpp
         cast.cpp
         cli.cpp
