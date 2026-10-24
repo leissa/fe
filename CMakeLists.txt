@@ -62,23 +62,23 @@ if(MSVC)
     target_compile_options(fe PUBLIC /utf-8 /wd4146 /wd4245)
 endif()
 
-# Public headers include these, so an installed fe ships them alongside its own.
-set(fe_ankerl_headers
-    ${CMAKE_CURRENT_SOURCE_DIR}/submodules/svector/include/ankerl/svector.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/submodules/unordered_dense/include/ankerl/stl.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/submodules/unordered_dense/include/ankerl/unordered_dense.h
-)
+# A distribution that packages unordered_dense on its own would otherwise conflict with our copy of its headers.
+option(FE_USE_SYSTEM_UNORDERED_DENSE "If ON, use an installed unordered_dense instead of the bundled one." OFF)
+
 if(NOT TARGET svector::svector)
     add_subdirectory(submodules/svector SYSTEM)
 endif()
-if(NOT TARGET unordered_dense::unordered_dense)
-    add_subdirectory(submodules/unordered_dense SYSTEM)
+target_link_libraries(fe PUBLIC $<BUILD_INTERFACE:svector::svector>)
+
+if(FE_USE_SYSTEM_UNORDERED_DENSE)
+    find_package(unordered_dense CONFIG REQUIRED)
+    target_link_libraries(fe PUBLIC unordered_dense::unordered_dense)
+else()
+    if(NOT TARGET unordered_dense::unordered_dense)
+        add_subdirectory(submodules/unordered_dense SYSTEM)
+    endif()
+    target_link_libraries(fe PUBLIC $<BUILD_INTERFACE:unordered_dense::unordered_dense>)
 endif()
-target_link_libraries(fe
-    PUBLIC
-        $<BUILD_INTERFACE:svector::svector>
-        $<BUILD_INTERFACE:unordered_dense::unordered_dense>
-)
 
 # Windows resolves an exported vtable only through __declspec(dllimport); see FE_API on fe::Diag.
 generate_export_header(fe
@@ -100,11 +100,23 @@ if(PROJECT_IS_TOP_LEVEL)
     target_compile_definitions(fe PUBLIC FE_STATIC_DEFINE)
 endif()
 
-# Installing an embedded fe would scatter its objects through the consumer's prefix; it links them in.
+# An embedded fe is linked into its consumer, which decides whether to re-export it.
 option(FE_INSTALL "If ON, generate install rules for fe." ${PROJECT_IS_TOP_LEVEL})
 
 if(FE_INSTALL)
-    install(FILES ${fe_ankerl_headers} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/ankerl")
+    # Public headers include these, so an installed fe ships them alongside its own.
+    install(FILES submodules/svector/include/ankerl/svector.h DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/ankerl")
+    install(FILES submodules/svector/LICENSE DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/licenses/fe/svector")
+    if(NOT FE_USE_SYSTEM_UNORDERED_DENSE)
+        install(
+            FILES
+                submodules/unordered_dense/include/ankerl/stl.h
+                submodules/unordered_dense/include/ankerl/unordered_dense.h
+            DESTINATION
+                "${CMAKE_INSTALL_INCLUDEDIR}/ankerl"
+        )
+        install(FILES submodules/unordered_dense/LICENSE DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/licenses/fe/unordered_dense")
+    endif()
 
     set(targets_export_name "fe-targets")
 
@@ -119,11 +131,15 @@ if(FE_INSTALL)
         "${CMAKE_CURRENT_BINARY_DIR}/cmake/fe-config.cmake"
         INSTALL_DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/fe"
     )
+    # An embedded fe's objects already live in its consumer's library.
+    if(PROJECT_IS_TOP_LEVEL)
+        set(fe_objects OBJECTS DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    endif()
     install(
         TARGETS fe
         EXPORT ${targets_export_name}
         FILE_SET headers
-        OBJECTS DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        ${fe_objects}
     )
     install(
         FILES
@@ -138,8 +154,6 @@ if(FE_INSTALL)
         NAMESPACE fe::
     )
     install(FILES LICENSE DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/licenses/fe")
-    install(FILES submodules/svector/LICENSE DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/licenses/fe/svector")
-    install(FILES submodules/unordered_dense/LICENSE DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/licenses/fe/unordered_dense")
 endif()
 
 if(BUILD_TESTING AND PROJECT_IS_TOP_LEVEL)

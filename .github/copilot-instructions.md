@@ -29,7 +29,8 @@ A change is only done when it is leak- and UB-clean, not merely when `ctest` pas
 - **C++23** is required (`target_compile_features` in `CMakeLists.txt`).
 - `FE_BUILD_DOCS` (default `OFF`): Doxygen docs.
 - `BUILD_TESTING` (CTest default `ON`): builds `fe-test`, the only executable.
-- `FE_INSTALL` (default: `ON` only for a top-level build): install rules plus the `fe-config` package - `find_package(fe)` then yields `fe::fe`, which is also an `ALIAS` in the build tree so both consumption modes spell the target alike. An embedded `fe` links its objects into its consumer, so it installs nothing by default. The package is `SameMinorVersion`-compatible: pre-1.0, every minor may break the API.
+- `FE_INSTALL` (default: `ON` only for a top-level build): install rules plus the `fe-config` package - `find_package(fe)` then yields `fe::fe`, which is also an `ALIAS` in the build tree so both consumption modes spell the target alike. An embedded `fe` links its objects into its consumer, so it installs nothing by default; forced on, it installs headers and usage requirements but no objects. The package is `SameMinorVersion`-compatible: pre-1.0, every minor may break the API.
+- `FE_USE_SYSTEM_UNORDERED_DENSE` (default `OFF`): use an installed `unordered_dense` via `find_package` instead of the bundled one; the install then ships neither its headers nor its license, and `fe-config` looks it up as a dependency.
 - MSVC gets `/utf-8 /wd4146 /wd4245` and `_CTYPE_DISABLE_MACROS`. Keep new headers MSVC-clean; UTF-8 source handling is assumed.
 
 ## High-level architecture

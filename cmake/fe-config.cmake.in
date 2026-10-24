@@ -1,3 +1,8 @@
 @PACKAGE_INIT@
 
+if(@FE_USE_SYSTEM_UNORDERED_DENSE@)
+    include(CMakeFindDependencyMacro)
+    find_dependency(unordered_dense CONFIG)
+endif()
+
 include(${CMAKE_CURRENT_LIST_DIR}/@targets_export_name@.cmake)
