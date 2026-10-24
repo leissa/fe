@@ -65,28 +65,14 @@ public:
     /// Binds @p l to @p r unless either is already bound; yields whether it did.
     bool insert(L l, R r) {
         auto [i, ins] = l2r_.try_emplace(l, r);
-        if (!ins) return false;
-        try {
-            if (r2l_.try_emplace(std::move(r), std::move(l)).second) return true;
-        } catch (...) {
-            l2r_.erase(i);
-            throw;
-        }
-        l2r_.erase(i);
-        return false;
+        return ins && link(i, std::move(l), std::move(r));
     }
 
     /// Binds @p l to @p r after unbinding whatever either was bound to.
     void insert_or_assign(L l, R r) {
         erase_left(l);
         erase_right(r);
-        auto i = l2r_.emplace(l, r).first;
-        try {
-            r2l_.emplace(std::move(r), std::move(l));
-        } catch (...) {
-            l2r_.erase(i);
-            throw;
-        }
+        link(l2r_.emplace(l, r).first, std::move(l), std::move(r));
     }
 
     /// Unbinds @p l and its partner; yields whether @p l was bound.
@@ -121,6 +107,17 @@ public:
     friend bool operator==(const BiMap& a, const BiMap& b) { return a.l2r_ == b.l2r_; }
 
 private:
+    bool link(typename Left::iterator i, L&& l, R&& r) {
+        try {
+            if (r2l_.try_emplace(std::move(r), std::move(l)).second) return true;
+        } catch (...) {
+            l2r_.erase(i);
+            throw;
+        }
+        l2r_.erase(i);
+        return false;
+    }
+
     Left l2r_;
     Right r2l_;
 };
@@ -180,7 +177,7 @@ public:
     BiNodeMap(BiNodeMap&&) noexcept = default;
 
     BiNodeMap& operator=(const BiNodeMap& other) {
-        if (this != &other) *this = BiNodeMap(other);
+        *this = BiNodeMap(other);
         return *this;
     }
     BiNodeMap& operator=(BiNodeMap&&) noexcept = default;
@@ -224,10 +221,8 @@ public:
 
     /// Binds @p l to @p r unless either is already bound; yields whether it did.
     bool insert(L l, R r) {
-        if (contains_right(r)) return false;
         auto [i, ins] = l2r_.try_emplace(std::move(l), std::move(r));
-        if (ins) index(i);
-        return ins;
+        return ins && index(i);
     }
 
     /// Binds @p l to @p r after unbinding whatever either was bound to.
@@ -241,7 +236,7 @@ public:
     bool erase_left(const auto& l) {
         auto i = l2r_.find(l);
         if (i == l2r_.end()) return false;
-        erase(i);
+        erase(&*i);
         return true;
     }
 
@@ -249,7 +244,7 @@ public:
     bool erase_right(const auto& r) {
         auto p = find_right(r);
         if (!p) return false;
-        erase(l2r_.find(p->first));
+        erase(p);
         return true;
     }
 
@@ -267,23 +262,24 @@ public:
     friend bool operator==(const BiNodeMap& a, const BiNodeMap& b) { return a.l2r_ == b.l2r_; }
 
 private:
-    void index(typename Left::iterator i) {
+    bool index(typename Left::iterator i) {
         try {
-            r2l_.emplace(&*i);
+            if (r2l_.emplace(&*i).second) return true;
         } catch (...) {
             l2r_.erase(i);
             throw;
         }
+        l2r_.erase(i);
+        return false;
     }
 
-    void erase(typename Left::iterator i) {
-        Ptr p    = &*i;
-        Ptr back = &l2r_.values()[l2r_.size() - 1];
+    void erase(Ptr p) {
+        Ptr back = &l2r_.values().back();
         r2l_.erase(p);
-        if (p != back) r2l_.erase(back);
-        l2r_.erase(i);
-        // The former back now lives at p.
-        if (p != back) r2l_.emplace(p);
+        auto j = p != back ? r2l_.find(back) : r2l_.end();
+        l2r_.erase(p->first);
+        // The former back now lives at p and keeps its R, so only the pointer changes, not its hash.
+        if (j != r2l_.end()) const_cast<Ptr&>(*j) = p;
     }
 
     Left l2r_;

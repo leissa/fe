@@ -161,6 +161,13 @@ TEST_CASE("BiNodeMap") {
         auto rng = std::mt19937(23);
         auto key = std::uniform_int_distribution<uint32_t>(0, 255);
 
+        auto unbind_l = [&](uint32_t l) {
+            if (auto j = l2r.find(l); j != l2r.end()) r2l.erase(j->second), l2r.erase(j);
+        };
+        auto unbind_r = [&](uint32_t r) {
+            if (auto j = r2l.find(r); j != r2l.end()) l2r.erase(j->second), r2l.erase(j);
+        };
+
         for (int i = 0; i != 20'000; ++i) {
             auto l = key(rng), r = key(rng);
             switch (rng() % 4) {
@@ -171,17 +178,17 @@ TEST_CASE("BiNodeMap") {
                     break;
                 }
                 case 1:
-                    if (auto j = l2r.find(l); j != l2r.end()) r2l.erase(j->second), l2r.erase(j);
-                    if (auto j = r2l.find(r); j != r2l.end()) l2r.erase(j->second), r2l.erase(j);
+                    unbind_l(l);
+                    unbind_r(r);
                     l2r[l] = r, r2l[r] = l;
                     bm.insert_or_assign(l, r);
                     break;
                 case 2:
-                    if (auto j = l2r.find(l); j != l2r.end()) r2l.erase(j->second), l2r.erase(j);
+                    unbind_l(l);
                     bm.erase_left(l);
                     break;
                 case 3:
-                    if (auto j = r2l.find(r); j != r2l.end()) l2r.erase(j->second), r2l.erase(j);
+                    unbind_r(r);
                     bm.erase_right(r);
                     break;
             }
