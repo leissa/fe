@@ -533,7 +533,7 @@ template&lt;class V&gt; </div>
 </div><div class="memdoc">
 
 <p>Maps a <span class="tt">std::filesystem::path</span> to <code class="param">V</code>. </p>
-<dl class="section warning"><dt>Warning</dt><dd>Node-based on purpose: <a class="el" href="classfe_1_1SrcMap.html" title="Interns the text - and the std::filesystem::path - of every file a Loc may point into.">fe::SrcMap</a> stores its <a class="el" href="classfe_1_1Src.html" title="The content of one source file together with the offsets its rows start at.">Src</a>s in here and a <a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a> points to one, so the values must never move. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>An insert never moves a value, which <a class="el" href="classfe_1_1SrcMap.html" title="Interns the text - and the std::filesystem::path - of every file a Loc may point into.">fe::SrcMap</a> relies on: a <a class="el" href="structfe_1_1Loc.html" title="Location within a Src: the half-open byte range [Loc::begin, Loc::end).">Loc</a> points to the <a class="el" href="classfe_1_1Src.html" title="The content of one source file together with the offsets its rows start at.">Src</a> it stores in here. An erase, however, moves the last value into the freed slot. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="src_8h_source.html#l00027">27</a> of file <a class="el" href="src_8h_source.html">src.h</a>.</p>
 

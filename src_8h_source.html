@@ -165,8 +165,8 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('src_8h_source.
 </div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment"></span> </div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">/// Maps a `std::filesystem::path` to @p V.</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">/// @warning Node-based on purpose: fe::SrcMap stores its Src%s in here and a Loc points to one,</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">/// so the values must never move.</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">/// @warning An insert never moves a value, which fe::SrcMap relies on: a Loc points to the Src it stores in here.</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">/// An erase, however, moves the last value into the freed slot.</span></div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> V&gt;</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="namespacefe.html#afac59de7492b799676f945d5310e5c10">   27</a></span><span class="keyword">using </span><a class="code hl_typedef" href="namespacefe.html#afac59de7492b799676f945d5310e5c10">PathMap</a> = ankerl::unordered_dense::segmented_map&lt;std::filesystem::path, V, PathHash&gt;;</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment"></span> </div>
@@ -260,7 +260,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('src_8h_source.
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="comment">    ///@}</span></div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <a class="code hl_typedef" href="namespacefe.html#afac59de7492b799676f945d5310e5c10">PathMap&lt;Src&gt;</a> path2src_; <span class="comment">///&lt; Keyed by SrcMap::key; node-based, so a Src never moves.</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <a class="code hl_typedef" href="namespacefe.html#afac59de7492b799676f945d5310e5c10">PathMap&lt;Src&gt;</a> path2src_; <span class="comment">///&lt; Keyed by SrcMap::key; insert-only, so a Src never moves.</span></div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>};</div>
 </div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
