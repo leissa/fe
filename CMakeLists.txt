@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.29 FATAL_ERROR)
 
-project(fe VERSION 0.17.0)
+project(fe VERSION 0.17.1)
 
 include(CMakePackageConfigHelpers)
 include(GenerateExportHeader)
