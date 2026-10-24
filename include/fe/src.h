@@ -21,8 +21,8 @@ struct PathHash {
 };
 
 /// Maps a `std::filesystem::path` to @p V.
-/// @warning Node-based on purpose: fe::SrcMap stores its Src%s in here and a Loc points to one,
-/// so the values must never move.
+/// @warning An insert never moves a value, which fe::SrcMap relies on: a Loc points to the Src it stores in here.
+/// An erase, however, moves the last value into the freed slot.
 template<class V>
 using PathMap = ankerl::unordered_dense::segmented_map<std::filesystem::path, V, PathHash>;
 
@@ -113,7 +113,7 @@ public:
     ///@}
 
 private:
-    PathMap<Src> path2src_; ///< Keyed by SrcMap::key; node-based, so a Src never moves.
+    PathMap<Src> path2src_; ///< Keyed by SrcMap::key; insert-only, so a Src never moves.
 };
 
 } // namespace fe

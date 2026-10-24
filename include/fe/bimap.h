@@ -66,19 +66,27 @@ public:
     bool insert(L l, R r) {
         auto [i, ins] = l2r_.try_emplace(l, r);
         if (!ins) return false;
-        if (!r2l_.try_emplace(std::move(r), std::move(l)).second) {
+        try {
+            if (r2l_.try_emplace(std::move(r), std::move(l)).second) return true;
+        } catch (...) {
             l2r_.erase(i);
-            return false;
+            throw;
         }
-        return true;
+        l2r_.erase(i);
+        return false;
     }
 
     /// Binds @p l to @p r after unbinding whatever either was bound to.
     void insert_or_assign(L l, R r) {
         erase_left(l);
         erase_right(r);
-        l2r_.emplace(l, r);
-        r2l_.emplace(std::move(r), std::move(l));
+        auto i = l2r_.emplace(l, r).first;
+        try {
+            r2l_.emplace(std::move(r), std::move(l));
+        } catch (...) {
+            l2r_.erase(i);
+            throw;
+        }
     }
 
     /// Unbinds @p l and its partner; yields whether @p l was bound.
@@ -218,7 +226,7 @@ public:
     bool insert(L l, R r) {
         if (contains_right(r)) return false;
         auto [i, ins] = l2r_.try_emplace(std::move(l), std::move(r));
-        if (ins) r2l_.emplace(&*i);
+        if (ins) index(i);
         return ins;
     }
 
@@ -226,7 +234,7 @@ public:
     void insert_or_assign(L l, R r) {
         erase_left(l);
         erase_right(r);
-        r2l_.emplace(&*l2r_.try_emplace(std::move(l), std::move(r)).first);
+        index(l2r_.try_emplace(std::move(l), std::move(r)).first);
     }
 
     /// Unbinds @p l and its partner; yields whether @p l was bound.
@@ -259,6 +267,15 @@ public:
     friend bool operator==(const BiNodeMap& a, const BiNodeMap& b) { return a.l2r_ == b.l2r_; }
 
 private:
+    void index(typename Left::iterator i) {
+        try {
+            r2l_.emplace(&*i);
+        } catch (...) {
+            l2r_.erase(i);
+            throw;
+        }
+    }
+
     void erase(typename Left::iterator i) {
         Ptr p    = &*i;
         Ptr back = &l2r_.values()[l2r_.size() - 1];

@@ -1,6 +1,7 @@
 #include <cstdint>
 
 #include <map>
+#include <new>
 #include <random>
 #include <string>
 #include <string_view>
@@ -86,6 +87,52 @@ TEST_CASE_TEMPLATE("BiMap", M, IntStr<fe::BiMap>, IntStr<fe::BiNodeMap>) {
         CHECK(copy.at_right("two") == 2);
         CHECK(!copy.contains_right("one"));
     }
+}
+
+namespace {
+/// Copies fine, but a move throws while armed - like a `std::string` that cannot allocate.
+struct Fragile {
+    static inline bool armed = false;
+
+    Fragile(int i)
+        : i(i) {}
+    Fragile(const Fragile&) = default;
+    Fragile(Fragile&& other)
+        : i(other.i) {
+        if (armed) throw std::bad_alloc();
+    }
+    Fragile& operator=(const Fragile&) = default;
+    Fragile& operator=(Fragile&&)      = default;
+
+    bool operator==(const Fragile&) const = default;
+
+    int i;
+};
+
+struct FragileHash {
+    size_t operator()(const Fragile& f) const { return ankerl::unordered_dense::hash<int>()(f.i); }
+};
+} // namespace
+
+TEST_CASE_TEMPLATE("BiMap rollback",
+                   M,
+                   fe::BiMap<Fragile, int, FragileHash>,
+                   fe::BiNodeMap<Fragile, int, FragileHash>) {
+    auto bm = M();
+    bm.reserve(16);
+    bm.insert(1, 2);
+
+    Fragile::armed = true;
+    CHECK_THROWS_AS(bm.insert(3, 4), std::bad_alloc);
+    CHECK_THROWS_AS(bm.insert_or_assign(5, 6), std::bad_alloc);
+    Fragile::armed = false;
+
+    CHECK(bm.size() == 1);
+    CHECK(!bm.contains_left(Fragile(3)));
+    CHECK(!bm.contains_right(4));
+    CHECK(!bm.contains_left(Fragile(5)));
+    CHECK(!bm.contains_right(6));
+    CHECK(bm.at_right(2).i == 1);
 }
 
 TEST_CASE("BiMap::right") {
