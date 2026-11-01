@@ -5,7 +5,6 @@
 #include <algorithm>
 #include <type_traits>
 
-#include "fe/assert.h"
 #include "fe/error.h"
 #include "fe/format.h"
 #include "fe/loc.h"
@@ -141,10 +140,10 @@ protected:
     }
 
     /// Parser::lex Parser::ahead() which must be a @p tag.
-    /// Issue error with @p ctxt otherwise.
-    Tok expect(Tag tag, Cite ctxt) {
+    /// Issue error with @p ctx otherwise.
+    Tok expect(Tag tag, Cite ctx) {
         if (ahead().tag() == tag) return lex();
-        self().syntax_err(tag, ctxt);
+        self().syntax_err(tag, ctx);
         return {};
     }
 
@@ -224,7 +223,7 @@ protected:
     /// This turns an otherwise fatal Tok%en into a mere error message and keeps the current parser going.
     /// One mistake discards one run, so one run is one diagnostic: a message per token buries the real error.
     template<std::predicate<Tag> P>
-    void recover(P pred, Cite ctxt) {
+    void recover(P pred, Cite ctx) {
         auto discard = [this, &pred] { return pred(ahead().tag()) && !is_anchored(ahead().tag()); };
         if (!discard()) return;
 
@@ -234,12 +233,12 @@ protected:
         for (; discard(); ++n)
             loc.end = lex().loc().end;
 
-        self().unanchored_err(first, loc, n, ctxt);
+        self().unanchored_err(first, loc, n, ctx);
     }
 
     /// As above but only recovers from @p tag.
-    void recover(Tag tag, Cite ctxt) {
-        recover([tag](Tag t) { return t == tag; }, ctxt);
+    void recover(Tag tag, Cite ctx) {
+        recover([tag](Tag t) { return t == tag; }, ctx);
     }
     ///@}
 
@@ -269,15 +268,15 @@ protected:
     fe::Error& error() { return self().driver().error(); }
     const fe::Error& error() const { return self().driver().error(); }
 
-    /// Parser::expect did not find @p what while parsing @p ctxt; @p got defaults to Parser::ahead.
-    /// @p ctxt is markup, so backtick a literal token within it yourself.
+    /// Parser::expect did not find @p what while parsing @p ctx; @p got defaults to Parser::ahead.
+    /// @p ctx is markup, so backtick a literal token within it yourself.
     /// A @p what the innermost Anchor is waiting for gets a Note pointing back at the Tok%en that opened it -
     /// the `(` of a `)` that never came.
-    fe::Error& syntax_err(Expected what, Cite ctxt, Tok got = {}) {
+    fe::Error& syntax_err(Expected what, Cite ctx, Tok got = {}) {
         static_assert(Diagnosable<S>, "provide `fe::Driver& driver()` in your parser - or a `syntax_err` of your own");
         static_assert(Formattable<Tok>, "provide a `std::formatter` for your Tok - or a `syntax_err` of your own");
         if (!got) got = ahead();
-        auto& err = error().e(got.loc(), "expected {}, got `{}` while parsing {}", what.what, got, ctxt);
+        auto& err = error().e(got.loc(), "expected {}, got `{}` while parsing {}", what.what, got, ctx);
         if (!anchors_.empty() && anchors_.back().r_tag == what.tag) {
             const auto& a = anchors_.back();
             err.n(a.l_tok.loc(), "to match this `{}`", a.l_tok);
@@ -285,13 +284,13 @@ protected:
         return err;
     }
 
-    /// Parser::recover discarded a run of @p n Tok%ens starting with @p tok and spanning @p loc while parsing @p ctxt.
-    fe::Error& unanchored_err(Tok tok, Loc loc, size_t n, Cite ctxt) {
+    /// Parser::recover discarded a run of @p n Tok%ens starting with @p tok and spanning @p loc while parsing @p ctx.
+    fe::Error& unanchored_err(Tok tok, Loc loc, size_t n, Cite ctx) {
         static_assert(Diagnosable<S>,
                       "provide `fe::Driver& driver()` in your parser - or an `unanchored_err` of your own");
         static_assert(Formattable<Tok>, "provide a `std::formatter` for your Tok - or an `unanchored_err` of your own");
-        if (n == 1) return error().e(loc, "ignoring stray `{}` while parsing {}", tok, ctxt);
-        return error().e(loc, "ignoring {} stray tokens starting with `{}` while parsing {}", n, tok, ctxt);
+        if (n == 1) return error().e(loc, "ignoring stray `{}` while parsing {}", tok, ctx);
+        return error().e(loc, "ignoring {} stray tokens starting with `{}` while parsing {}", n, tok, ctx);
     }
     ///@}
 

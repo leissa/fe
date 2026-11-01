@@ -234,7 +234,7 @@ private:
     // clang-format on
     static bool left_assoc(Tok::Tag t) { return t != Tok::O_ass; } // '=' is right-associative
 
-    std::string parse_primary(fe::Cite ctxt) {
+    std::string parse_primary(fe::Cite ctx) {
         if (auto tok = accept(Tok::Tag::M_id)) return tok.to_string();
         if (auto tok = accept(Tok::Tag::M_lit)) return tok.to_string();
         if (auto paren_l = accept(Tok::Tag::D_paren_l)) {
@@ -243,15 +243,15 @@ private:
             expect(Tok::Tag::D_paren_r, "parenthesized expression");
             return str;
         }
-        this->syntax_err("primary expression", ctxt);
+        this->syntax_err("primary expression", ctx);
         return "<error>";
     }
 
-    std::string parse_expr(fe::Cite ctxt, Tok::Prec curr_prec) {
-        recover(Tok::Tag::D_paren_r, ctxt);
-        auto lhs = parse_primary(ctxt);
+    std::string parse_expr(fe::Cite ctx, Tok::Prec curr_prec) {
+        recover(Tok::Tag::D_paren_r, ctx);
+        auto lhs = parse_primary(ctx);
         while (true) {
-            recover(Tok::Tag::D_paren_r, ctxt);
+            recover(Tok::Tag::D_paren_r, ctx);
             auto tag  = ahead().tag();
             auto prec = bin_prec(tag);
             if (prec <= curr_prec) break;
@@ -335,7 +335,7 @@ void test_parser() {
     // ... whereas an anchored ')' still terminates the parenthesized expression
     CHECK(std::get<2>(parse("(a + b) * c")) == 0);
 
-    // A ctxt is Cite and hence markup: its backticks survive into the message as a citation,
+    // A ctx is Cite and hence markup: its backticks survive into the message as a citation,
     // while the token the message quotes is an argument and stays data.
     {
         auto _ = fe::term::ScopedMode(fe::term::Mode::Never);

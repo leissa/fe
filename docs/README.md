@@ -323,7 +323,7 @@ The three types in more detail:
 
 - `fe::cite_string` is a format string whose backticks are markup; forward one through a wrapper of your own the way those functions declare it.
 - `fe::Cited` is an owning fragment, what `fe::format_cite` yields. Pass it straight back in as an argument - no re-wrapping, and nothing to dangle.
-- `fe::Cite` is a *borrowed* fragment, and the type to spell a markup **parameter** with: `Parser`'s `what` and `ctxt` are `Cite`, so a `syntax_err` of your own cannot forward them and silently lose the highlighting.
+- `fe::Cite` is a *borrowed* fragment, and the type to spell a markup **parameter** with: `Parser`'s `what` and `ctx` are `Cite`, so a `syntax_err` of your own cannot forward them and silently lose the highlighting.
   A string literal and a `Cited` convert implicitly - both are markup someone wrote - while runtime text has to say `fe::Cite(s)`, so data never becomes markup by accident.
   It borrows like a `std::string_view`, so keep the `Cited` alive that it points at.
 
