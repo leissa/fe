@@ -5,7 +5,7 @@ var searchData=
   ['raw_2',['raw',['../classfe_1_1Sym.html#a080aa47443bc0aace161791f30c44f0d',1,'fe::Sym']]],
   ['rbegin_3',['rbegin',['../classfe_1_1Sym.html#a91d840fb22a5afcc50e3a70daee67907',1,'fe::Sym']]],
   ['readme_2emd_4',['README.md',['../README_8md.html',1,'']]],
-  ['recover_5',['recover',['../classfe_1_1Parser.html#a32505015e6aee87c21b8c2ec6bc920a2',1,'fe::Parser::recover(P pred, Cite ctxt)'],['../classfe_1_1Parser.html#a9cc6a9f60154118843b33c06b91e5aae',1,'fe::Parser::recover(Tag tag, Cite ctxt)']]],
+  ['recover_5',['recover',['../classfe_1_1Parser.html#afcf8fb3ac110a7fd08222bdd297b0284',1,'fe::Parser::recover(P pred, Cite ctx)'],['../classfe_1_1Parser.html#aff78c9aa949899ed4e4c409ad1769d5f',1,'fe::Parser::recover(Tag tag, Cite ctx)']]],
   ['recover_5fchar_6',['recover_char',['../classfe_1_1Lexer.html#a989aa9f13fc738ab2c5aaf330c57105c',1,'fe::Lexer']]],
   ['recover_5futf8_7',['recover_utf8',['../classfe_1_1Lexer.html#a134ea7d6d039572a2c98ff897ce1762b',1,'fe::Lexer']]],
   ['red_8',['Red',['../namespacefe_1_1term.html#a316a3298d89062fe9e7dbb1581c75148aee38e4d5dd68c4e440825018d549cb47',1,'fe::term']]],

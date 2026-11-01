@@ -3,7 +3,7 @@ var searchData=
   ['range_0',['range',['../classfe_1_1Join.html#a13ae95390cd5b2d9fcc32513071b707d',1,'fe::Join']]],
   ['raw_1',['raw',['../classfe_1_1Sym.html#a080aa47443bc0aace161791f30c44f0d',1,'fe::Sym']]],
   ['rbegin_2',['rbegin',['../classfe_1_1Sym.html#a91d840fb22a5afcc50e3a70daee67907',1,'fe::Sym']]],
-  ['recover_3',['recover',['../classfe_1_1Parser.html#a32505015e6aee87c21b8c2ec6bc920a2',1,'fe::Parser::recover(P pred, Cite ctxt)'],['../classfe_1_1Parser.html#a9cc6a9f60154118843b33c06b91e5aae',1,'fe::Parser::recover(Tag tag, Cite ctxt)']]],
+  ['recover_3',['recover',['../classfe_1_1Parser.html#afcf8fb3ac110a7fd08222bdd297b0284',1,'fe::Parser::recover(P pred, Cite ctx)'],['../classfe_1_1Parser.html#aff78c9aa949899ed4e4c409ad1769d5f',1,'fe::Parser::recover(Tag tag, Cite ctx)']]],
   ['recover_5fchar_4',['recover_char',['../classfe_1_1Lexer.html#a989aa9f13fc738ab2c5aaf330c57105c',1,'fe::Lexer']]],
   ['recover_5futf8_5',['recover_utf8',['../classfe_1_1Lexer.html#a134ea7d6d039572a2c98ff897ce1762b',1,'fe::Lexer']]],
   ['ref_6',['Ref',['../classfe_1_1Arena_1_1Ref.html#a3950baa3ce9563d257d1960879768733',1,'fe::Arena::Ref::Ref() noexcept=default'],['../classfe_1_1Arena_1_1Ref.html#a3cbe44c80e81c8d28cc394b5d7920644',1,'fe::Arena::Ref::Ref(std::nullptr_t) noexcept'],['../classfe_1_1Arena_1_1Ref.html#a442eb81954180e3edd7bc5fd18fc2ab6',1,'fe::Arena::Ref::Ref(T *ptr) noexcept'],['../classfe_1_1Arena_1_1Ref.html#aeb83709cf726ab9876680d6253a45395',1,'fe::Arena::Ref::Ref(Ref&lt; U &gt; ref) noexcept']]],

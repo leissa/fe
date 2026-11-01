@@ -163,7 +163,6 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('parser_8h.html
 <div class="textblock"><code>#include &lt;concepts&gt;</code><br />
 <code>#include &lt;algorithm&gt;</code><br />
 <code>#include &lt;type_traits&gt;</code><br />
-<code>#include &quot;<a class="el" href="assert_8h_source.html">fe/assert.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="error_8h_source.html">fe/error.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="format_8h_source.html">fe/format.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="loc_8h_source.html">fe/loc.h</a>&quot;</code><br />
@@ -187,7 +186,7 @@ Classes</h2></td></tr>
 <tr class="memitem:fe_3A_3AParser_3C_20Tok_2C_20Tag_2C_20K_2C_20S_20_3E_3A_3AScopedAnchor" id="r_fe_3A_3AParser_3C_20Tok_2C_20Tag_2C_20K_2C_20S_20_3E_3A_3AScopedAnchor"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classfe_1_1Parser_1_1ScopedAnchor.html">fe::Parser&lt; Tok, Tag, K, S &gt;::ScopedAnchor</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">RAII helper that pushes a <a class="el" href="classfe_1_1Parser.html#structfe_1_1Parser_1_1Anchor" title="One anchor; the left end opened the context, the right one is what it is still waiting for.">Parser::Anchor</a> for its lifetime; use <a class="el" href="classfe_1_1Parser.html#a349e1239a63f188da86c411c46a629d2" title="Factory method to build a Parser::ScopedAnchor; Parser::expect r_tag yourself at the end of the scope...">Parser::anchor</a> to build one.  <a href="classfe_1_1Parser_1_1ScopedAnchor.html#details">More...</a><br /></td></tr>
 <tr class="memitem:fe_3A_3AParser_3C_20Tok_2C_20Tag_2C_20K_2C_20S_20_3E_3A_3AExpected" id="r_fe_3A_3AParser_3C_20Tok_2C_20Tag_2C_20K_2C_20S_20_3E_3A_3AExpected"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structfe_1_1Parser_1_1Expected.html">fe::Parser&lt; Tok, Tag, K, S &gt;::Expected</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">What <a class="el" href="classfe_1_1Parser.html#a8d3515757df0b24385e51e953b9c3899" title="Parser::lex Parser::ahead() which must be a tag.">Parser::expect</a> was after - a Tag, or free-form markup.  <a href="structfe_1_1Parser_1_1Expected.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">What <a class="el" href="classfe_1_1Parser.html#a636d4abda392fd7dd09349be67a72880" title="Parser::lex Parser::ahead() which must be a tag.">Parser::expect</a> was after - a Tag, or free-form markup.  <a href="structfe_1_1Parser_1_1Expected.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
@@ -215,7 +214,7 @@ Concepts</h2></td></tr>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class Tok, class Tag, size_t K, class S&gt;<br />
 struct fe::Parser&lt; Tok, Tag, K, S &gt;::Anchor</div><p>One anchor; the <em>left</em> end opened the context, the <em>right</em> one is what it is still waiting for. </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00167">167</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8h_source.html#l00166">166</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">

@@ -54,7 +54,7 @@ var searchData=
   ['sympool_51',['SymPool',['../classfe_1_1SymPool.html',1,'fe::SymPool'],['../classfe_1_1Sym.html#a5379cdd60ce3c910e14da02defe0a1aa',1,'fe::Sym::SymPool()'],['../classfe_1_1SymPool.html#a9446b07a54c8892bc6135608d0321af7',1,'fe::SymPool::SymPool(const SymPool &amp;)=delete'],['../classfe_1_1SymPool.html#ad760b218bdbfd83a596a4482be8df1a4',1,'fe::SymPool::SymPool() noexcept'],['../classfe_1_1SymPool.html#ab59d67329468787346189016e67794b2',1,'fe::SymPool::SymPool(SymPool &amp;&amp;other) noexcept']]],
   ['symset_52',['SymSet',['../namespacefe.html#a431cf06d5e3afb9ceba5bcb450e060c6',1,'fe']]],
   ['symtab_53',['SymTab',['../classfe_1_1SymTab.html',1,'fe']]],
-  ['syntax_5ferr_54',['syntax_err',['../classfe_1_1Parser.html#a4bd424773766a48d000f493f497c1179',1,'fe::Parser']]],
+  ['syntax_5ferr_54',['syntax_err',['../classfe_1_1Parser.html#a367cbef62cb5e1592293083b28642c70',1,'fe::Parser']]],
   ['sys_2eh_55',['sys.h',['../sys_8h.html',1,'']]],
   ['system_56',['System',['../index.html#autotoc_md13',1,'']]],
   ['system_57',['system',['../namespacefe_1_1sys.html#a32dbb92355fcb6726986a2f850cfdbb9',1,'fe::sys']]]
