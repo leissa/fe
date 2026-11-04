@@ -246,10 +246,13 @@ private:
     std::remove_const_t<T>* create(Args&&... args) {
         using U = std::remove_const_t<T>;
         if constexpr (VLAed<U>) {
-            static_assert(sizeof...(Args) >= U::num_vlas(), "one range per VLA, as the last arguments");
-            constexpr auto n = sizeof...(Args) - U::num_vlas();
-            return create_vla<U>(std::make_index_sequence<n>(), std::make_index_sequence<U::num_vlas()>(),
-                                 std::forward_as_tuple(std::forward<Args>(args)...));
+            if constexpr (sizeof...(Args) < U::num_vlas()) {
+                static_assert(false, "one range per VLA, as the last arguments");
+            } else {
+                constexpr auto n = sizeof...(Args) - U::num_vlas();
+                return create_vla<U>(std::make_index_sequence<n>(), std::make_index_sequence<U::num_vlas()>(),
+                                     std::forward_as_tuple(std::forward<Args>(args)...));
+            }
         } else {
             static_assert(
                 !requires { typename U::VLA_Self; },
