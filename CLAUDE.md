@@ -1,5 +1,4 @@
 # CLAUDE.md
 
-The project instructions live in `.github/copilot-instructions.md` and are imported here:
-
-@.github/copilot-instructions.md
+Project instructions live in AGENTS.md. Read it first.
+@AGENTS.md
