@@ -38,7 +38,14 @@ public:
             : size(size) {}
 
         size_t size = 0;
+#if defined(__GNUC__)
+#    pragma GCC diagnostic push
+#    pragma GCC diagnostic ignored "-Wpedantic"
+#endif
         char chars[]; // This is actually a C-only feature, but all C++ compilers support that anyway.
+#if defined(__GNUC__)
+#    pragma GCC diagnostic pop
+#endif
 
         struct Equal {
             constexpr bool operator()(const String* s1, const String* s2) const noexcept {

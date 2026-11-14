@@ -62,17 +62,17 @@ constexpr bool is_scalar_value(char32_t c) noexcept { return c <= 0x10ffff && !(
 /// Returns @ref EoF when the stream is exhausted and @ref Invalid for malformed,
 /// overlong, surrogate, or otherwise non-scalar encodings.
 inline char32_t decode(std::istream& is) {
-    char32_t result = is.get();
+    char32_t result = char32_t(is.get());
     if (result == EoF) return result;
 
     switch (auto n = utf8::num_bytes(char8_t(result))) {
         case 0: return Invalid;
         case 1: return result;
         default:
-            result = utf8::first(result, n);
+            result = utf8::first(result, char32_t(n));
 
             for (size_t i = 1; i != n; ++i)
-                if (auto x = is_valid234(is.get()); x != char8_t(-1))
+                if (auto x = is_valid234(char8_t(is.get())); x != char8_t(-1))
                     result = utf8::append(result, x);
                 else
                     return Invalid;
@@ -98,7 +98,7 @@ inline char32_t decode(std::string_view str, size_t& i) noexcept {
     if (n == 0 || i + n > str.size()) return ++i, Invalid;
     if (n == 1) return ++i, result;
 
-    result = utf8::first(result, n);
+    result = utf8::first(result, char32_t(n));
     for (size_t j = 1; j != n; ++j) {
         auto x = is_valid234(char8_t(str[i + j]));
         if (x == char8_t(-1)) return ++i, Invalid;
@@ -126,8 +126,8 @@ struct Char32 {
     constexpr Char32(char32_t c) noexcept
         : c(c) {}
 
-    friend std::ostream& operator<<(std::ostream& os, Char32 c) {
-        auto res = utf8::encode(os, c.c);
+    friend std::ostream& operator<<(std::ostream& os, Char32 c32) {
+        auto res = utf8::encode(os, c32.c);
         assert_unused(res);
         return os;
     }
