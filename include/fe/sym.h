@@ -42,7 +42,14 @@ public:
 #    pragma GCC diagnostic push
 #    pragma GCC diagnostic ignored "-Wpedantic"
 #endif
+#if defined(_MSC_VER)
+#    pragma warning(push)
+#    pragma warning(disable : 4200)
+#endif
         char chars[]; // This is actually a C-only feature, but all C++ compilers support that anyway.
+#if defined(_MSC_VER)
+#    pragma warning(pop)
+#endif
 #if defined(__GNUC__)
 #    pragma GCC diagnostic pop
 #endif

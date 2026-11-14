@@ -31,7 +31,7 @@ constexpr size_t hash_combine(size_t seed, T v) noexcept {
         return size_t(ankerl::unordered_dense::detail::hash_impl::mix(a, Secret));
     } else {
         uint64_t ha = a >> 32, la = uint32_t(a);
-        uint64_t hb = Secret >> 32, lb = uint32_t(Secret);
+        uint64_t hb = Secret >> 32, lb = Secret & UINT32_MAX;
         uint64_t rh = ha * hb, rm0 = ha * lb, rm1 = hb * la, rl = la * lb;
         uint64_t t  = rl + (rm0 << 32);
         uint64_t c  = t < rl;
