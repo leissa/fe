@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('hash_8h_source
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keywordflow">return</span> size_t(ankerl::unordered_dense::detail::hash_impl::mix(a, Secret));</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    } <span class="keywordflow">else</span> {</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        uint64_t ha = a &gt;&gt; 32, la = uint32_t(a);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        uint64_t hb = Secret &gt;&gt; 32, lb = uint32_t(Secret);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        uint64_t hb = Secret &gt;&gt; 32, lb = Secret &amp; UINT32_MAX;</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        uint64_t rh = ha * hb, rm0 = ha * lb, rm1 = hb * la, rl = la * lb;</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        uint64_t t  = rl + (rm0 &lt;&lt; 32);</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        uint64_t c  = t &lt; rl;</div>
