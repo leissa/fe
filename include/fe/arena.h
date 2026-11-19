@@ -10,7 +10,6 @@
 #include <type_traits>
 #include <utility>
 
-#include "fe/assert.h"
 #include "fe/span.h"
 #include "fe/vla.h"
 
@@ -19,6 +18,7 @@ namespace fe {
 /// An arena pre-allocates so-called *pages* of size Arena::page_size_.
 /// You can use Arena::allocate to obtain memory from this.
 /// When a page runs out of memory, the next page will be (pre-)allocated.
+/// The first page is allocated on first use and outlives every rollback via Arena::deallocate.
 /// You cannot directly release memory obtained via this method.
 /// Instead, *all* memory acquired via this Arena will be released as soon as this Arena will be destroyed.
 /// As an exception, you can Arena::deallocate memory that has just been acquired.
@@ -185,6 +185,8 @@ public:
         auto base          = reinterpret_cast<uintptr_t>(pages_.back().buffer);
         auto aligned_index = Arena::align(base + index_, align) - base;
         if (aligned_index + num_bytes > pages_.back().size) {
+            // The first page is created on demand and must outlive a rollback to an otherwise empty Arena.
+            if (pages_.back().buffer == nullptr) pages_.pop_back();
             pages_.emplace_back(std::max(page_size_, num_bytes), align);
             aligned_index = 0;
         }

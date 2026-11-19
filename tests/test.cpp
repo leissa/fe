@@ -45,11 +45,11 @@ TEST_CASE("Arena") {
         fe::Arena small(64);
         auto first = small.allocate(57, 1);
         REQUIRE(first != nullptr);
-        CHECK(small.state() == fe::Arena::State{2, 57});
+        CHECK(small.state() == fe::Arena::State{1, 57});
 
         auto second = small.allocate(7, 8);
         REQUIRE(second != nullptr);
-        CHECK(small.state() == fe::Arena::State{3, 7});
+        CHECK(small.state() == fe::Arena::State{2, 7});
     }
 
     SUBCASE("mk constructs in the arena and Ptr only destructs") {
@@ -117,18 +117,29 @@ TEST_CASE("Arena") {
         auto first = small.allocate(60, 1);
         REQUIRE(first != nullptr);
         auto checkpoint = small.state();
-        CHECK(checkpoint == fe::Arena::State{2, 60});
+        CHECK(checkpoint == fe::Arena::State{1, 60});
 
         auto second = small.allocate(16, 1);
         REQUIRE(second != nullptr);
-        CHECK(small.state() == fe::Arena::State{3, 16});
+        CHECK(small.state() == fe::Arena::State{2, 16});
 
         small.deallocate(checkpoint);
         CHECK(small.state() == checkpoint);
 
         auto third = small.allocate(4, 4);
         REQUIRE(third != nullptr);
-        CHECK(small.state() == fe::Arena::State{2, 64});
+        CHECK(small.state() == fe::Arena::State{1, 64});
+    }
+
+    SUBCASE("the page a scope allocates survives its rollback") {
+        fe::Arena small(64);
+        const auto checkpoint = small.state();
+        REQUIRE(small.allocate(32, 1) != nullptr);
+        small.deallocate(checkpoint);
+        CHECK(small.state() == checkpoint);
+
+        REQUIRE(small.allocate(32, 1) != nullptr);
+        CHECK(small.state() == fe::Arena::State{1, 32});
     }
 }
 
